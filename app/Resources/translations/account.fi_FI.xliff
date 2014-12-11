@@ -608,6 +608,34 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                 <source>wishlist.remove.all.items</source>
                 <target>Tyhjennä lista</target>
             </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Lähetä Ostoslista tutullesi</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>Anna sähköpostiosoite, johon haluat lähettää Ostoslistan.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Vastaanottajan sähköpostiosoite</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Lähetä</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Sähköpostiosoite ei kelpaa</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Ostoslista on nyt lähetetty.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted">
+                <source>wishlist.all.items.deleted</source>
+                <target>Kaikki tuotteet on nyt poistettu ostoslistaltasi.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

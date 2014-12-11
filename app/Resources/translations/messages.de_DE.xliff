@@ -277,18 +277,18 @@
 Sie haben ein 14-tägiges Rückgaberecht auf alle POMPdeLUX Waren ab dem Tag des Empfangs der Ware. Im Falle eines Kaufrückzugs müssen Sie uns lediglich darüber informieren. Dies können Sie ganz einfach tun indem Sie den Rücksendeschein ausfüllen welchen Sie auf der Webseite unter „Meine Seite“ finden.
 <br><br><b>SO GEHT&acute;S</b><br>
 Bei POMPdeLUX ist es einfach, eine Ware zurückzuschicken. Die Postverpackung, in der Sie Ihre Waren erhalten, ist so ausgelegt, dass Sie sie problemlos für die Rücksendung von Waren verwenden können. Auf diese Weise brauchen Sie keine teuren Rückverpackungen zu kaufen – das ist gut für Ihren Geldbeutel und die Umwelt. Da Ihre Rücksendung später erneut verkauft wird, wäre es eine große Hilfe, wenn Sie die Ware in Originalverpackung mit Textiletiketten usw. zurückschicken.<br><br>
-Wir erwarten, dass Sie die Waren so schnell wie möglich nach dem Sie uns Bescheid gegeben haben – spätestens nach 14 Tagen, zurückgesendet werden sollten. Bei der Rücksendung sorgen Sie bitte dafür, dass die Waren ordentlich eingepackt sind, da Sie die Verantwortung für das Paket/die Waren haben bis diese bei uns eintreffen. Bewahren Sie also Postquittungen und die Verfolgungsnummer auf. 
+Wir erwarten, dass Sie die Waren so schnell wie möglich nach dem Sie uns Bescheid gegeben haben – spätestens nach 14 Tagen, zurückgesendet werden sollten. Bei der Rücksendung sorgen Sie bitte dafür, dass die Waren ordentlich eingepackt sind, da Sie die Verantwortung für das Paket/die Waren haben bis diese bei uns eintreffen. Bewahren Sie also Postquittungen und die Verfolgungsnummer auf.
 <br><br>
-Den Rücksendeschein finden Sie auf „Meine Seite“. Diesen können Sie dort ausfüllen. 
+Den Rücksendeschein finden Sie auf „Meine Seite“. Diesen können Sie dort ausfüllen.
 Auf ”Meine Seite“ finden Sie ebenfalls das Rücksendeetikett. Benutzen Sie bitte unbedingt dieses, damit Sie die Ware portofrei zurücksenden können. Die Rücksendeetikett, ist für Sie kostenlos. Das Paket können Sie bei der Post oder an einer Packstation als Paket (mit DHL Rücksendeetikett) aufgegeben.
 <br><br>
 <b>RÜCKZAHLUNG</b><br>
-Wir zahlen Ihnen das Geld zurück, so bald wir Ihre Waren erhalten und kontrolliert haben. Der Betrag wird stets auf die Art und Weise zurückgezahlt, wie die Bestellung bezahlt wurde. 
+Wir zahlen Ihnen das Geld zurück, so bald wir Ihre Waren erhalten und kontrolliert haben. Der Betrag wird stets auf die Art und Weise zurückgezahlt, wie die Bestellung bezahlt wurde.
 <br><br>
-Denken Sie dran, dass Sie evtl. nicht den vollen Kaufpreis zurückerhalten evtl. sogar gar nichts, falls wir feststellen, dass Sie die Waren in Gebrauch genommen haben und deren Wert verringert ist. Es ist natürlich erlaubt die Waren anzuprobieren, wie Sie es in einem Geschäft tun würden. 
+Denken Sie dran, dass Sie evtl. nicht den vollen Kaufpreis zurückerhalten evtl. sogar gar nichts, falls wir feststellen, dass Sie die Waren in Gebrauch genommen haben und deren Wert verringert ist. Es ist natürlich erlaubt die Waren anzuprobieren, wie Sie es in einem Geschäft tun würden.
 <br><br>
 <b>REKLAMATIONEN UND FEHLLIEFERUNGEN</b><br>
-Wenn Sie eine Ware mit Fehlern erhalten haben oder wenn die erhaltene Ware nicht die ist, die auf Ihrer Rechnung steht, dann schicken Sie sie wie oben beschrieben zurück. Wenn Ihre Reklamation unserer Beurteilung nach berechtigt ist, schicken wir Ihnen versandkostenfrei eine neue Ware. Verwenden Sie das per Mail geschickte Rücksendeetikett, wenn Sie die Ware verschicken. Falls die Ware ausverkauft ist, erstatten wir Ihnen den Preis der Ware zurück. 
+Wenn Sie eine Ware mit Fehlern erhalten haben oder wenn die erhaltene Ware nicht die ist, die auf Ihrer Rechnung steht, dann schicken Sie sie wie oben beschrieben zurück. Wenn Ihre Reklamation unserer Beurteilung nach berechtigt ist, schicken wir Ihnen versandkostenfrei eine neue Ware. Verwenden Sie das per Mail geschickte Rücksendeetikett, wenn Sie die Ware verschicken. Falls die Ware ausverkauft ist, erstatten wir Ihnen den Preis der Ware zurück.
 </p>
                 ]]></target>
             </trans-unit>
@@ -398,6 +398,10 @@ Wenn Sie eine Ware mit Fehlern erhalten haben oder wenn die erhaltene Ware nicht
             <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Kaufen Sie %span% Stk. und sparen Sie %discount% pro Stk.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Zur Shoppingliste hinzufügen</target>
             </trans-unit>
         </body>
     </file>

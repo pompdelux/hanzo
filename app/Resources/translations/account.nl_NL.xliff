@@ -609,6 +609,34 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                 <source>wishlist.remove.all.items</source>
                 <target>WIS JE LIJSTJE</target>
             </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Stuur je Shoppinglijst aan iemand die je kent</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>Typ de e-mail waar je je Shoppinglijst naartoe wilt sturen.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>E-mail van ontvanger</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Versturen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Ongeldig e-mailadres</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Je Shoppinglijst is nu verstuurd.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alle artikelen zijn nu van je shoppinglijst verwijderd.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

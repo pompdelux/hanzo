@@ -410,6 +410,18 @@
                 <source>basket.latest.added</source>
                 <target>Soeben hinzugefügt</target>
             </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Diese Ware wurde der Shoppingliste hinzugefügt.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>LOGIN ERFORDERLICH</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Sie müssen angemeldet sein, um die Shoppingliste zu nutzen.<br><br><a href="%url%">» Hier einloggen / Anmelden</a><br><br>Bitte beachten: Wenn Sie eingeloggt sind, kommen Sie wieder auf diese Seite.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

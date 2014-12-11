@@ -46,7 +46,7 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <p>Skriv in din e-mailadress nedan och klicka på knappen ”Fortsätt”. Inom några minuter kommer du att få ett mail från POMPdeLUX med ditt lösenord.</p>
+                    <p>Skriv in din e-mailadress nedan och klicka på knappen "Fortsätt". Inom några minuter kommer du att få ett mail från POMPdeLUX med ditt lösenord.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
@@ -605,6 +605,34 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
                 <target>RENSA LISTAN</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Skicka Shoppinglistan till någon du känner</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>Fyll i den e-mail adress, som du vill skicka Shoppinglistan till.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Mottagarens e-mail adress</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Skicka</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Ogiltig e-mail adress</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Shoppinglistan är nu skickad.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alla varor är nu borttagna från din shoppinglista.</target>
             </trans-unit>
         </body>
     </file>

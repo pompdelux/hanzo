@@ -407,6 +407,18 @@
                 <source>basket.latest.added</source>
                 <target>Nettopp tilføyd</target>
             </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Denne varen er føyd til i Shoppinglisten.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>LOGIN påKREVES</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Du må være logget inn for å bruke Shoppinglisten.<br><br><a href="%url%">» Login her / opprett login</a><br><br>Merk: Når du er logget inn her, blir du sendt tilbake til denne siden.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

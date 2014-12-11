@@ -294,7 +294,7 @@
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text">
+            <trans-unit id="checkout.confirm.mobile.text" approved="no">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
@@ -309,6 +309,18 @@
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
                 <target>Product added</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>The product has been added to your Shoppinglist.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>LOGIN REQUIRED</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[You must be logged in to use the Shoppinglist.<br><br><a href="%url%">» Login here / Create login</a><br><br>Notice: When you are logged in you will be sent back to this page.]]></target>
             </trans-unit>
 			<trans-unit id="quickorder.choose.size">
                 <source>quickorder.choose.size</source>

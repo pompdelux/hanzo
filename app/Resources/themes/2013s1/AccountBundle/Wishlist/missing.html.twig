@@ -1,0 +1,23 @@
+{% if misses|length %}
+    <div class="wishlist-misses">
+        <h4>{{ 'wishlist.misses.header'|trans({}, 'quickorder') }}</h4>
+        <table>
+            <thead>
+            <tr>
+                <th> </th>
+                <th>{{ "size"|trans }}</th>
+                <th>{{ "color"|trans }}</th>
+                <th>{{ "quantity"|trans }}</th>
+            </tr>
+            </thead>
+            {% for item in misses %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.color }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endif %}

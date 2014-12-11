@@ -323,7 +323,43 @@
                         dialoug.error(Translator.trans('notice!'), Translator.trans('an.error.occurred'));
                     });
                 } else {
-                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $('.button', $form).parent());
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
+                }
+            });
+
+            $(document).on('click', '.buy .wishlist', function(event) {
+                event.preventDefault();
+
+                var $trigger = $(this);
+                if ($trigger.hasClass('js-is-anonymous')) {
+                    dialoug.alert(
+                        Translator.trans('require.login.label'),
+                        Translator.trans('wishlist.require.login.text', {'url': base_url+'login?target='+encodeURI(document.location.href)})
+                    );
+
+                    return;
+                }
+
+                var $form = $trigger.closest('form');
+                if ('' == $('.color', $form).val()) {
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
+                    return;
+                }
+
+                var xhr = $.post(this.href, $form.serialize());
+
+                xhr.done(function(data) {
+                    dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
+                });
+
+                xhr.fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                });
+            });
+
+            $.get(base_url+'is-authendicated', function(response) {
+                if (response.status) {
+                    $('.add-buttons a').removeClass('js-is-anonymous');
                 }
             });
         };

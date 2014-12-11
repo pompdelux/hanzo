@@ -13,5 +13,5 @@ quickorder_get_sku:
 quickorder_load_from_list:
     pattern: /quickorder/load-wishlist
     defaults:
-        _controller: QuickOrderBundle:Default:loadWishList
+        _controller: AccountBundle:Wishlist:wishListToBasket
     methods: [POST]

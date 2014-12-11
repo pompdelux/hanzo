@@ -406,6 +406,18 @@
                 <source>basket.latest.added</source>
                 <target>Lisätty</target>
             </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Tämä tuote on lisätty Ostoslistallesi.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>Login påkrævet</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Sinun tulee olla sisäänkirjautuneena, jotta voit käyttää Ostoslistaa.<br><br><a href="%url%">» Kirjaudu täällä / rekisteröidy</a><br><br>Huomaa: Kun kirjaudut sisään, palaat takaisin tälle sivulle.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
