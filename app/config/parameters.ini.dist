@@ -51,4 +51,6 @@
 
     pdfupload_root_dir="/var/www/pompdelux/shared/web/pdfupload"
 
-    statsd_dsn= "pdlstats:8125"
+    statsd.host = "pdlstats"
+    statsd.port = "8125"
+
