@@ -285,7 +285,6 @@ class DefaultController extends CoreController
             $this->container->get('hanzo.statsd')->increment('shoppinglist2order.'.$this->container->get('kernel')->getAttribute('domain_key'));
         }
 
-
         return $this->render('CheckoutBundle:Default:success.html.twig', [
             'order' => $data,
         ]);
