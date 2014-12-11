@@ -26,16 +26,15 @@ class StatsD
     private $data = [];
 
     /**
-     * @param string $variabledDsn
+     * @param string $host
+     * @param int    $port
      */
-    public function __construct($variabledDsn)
+    public function __construct($host, $port = 8125)
     {
-        if ($variabledDsn) {
-            list($host, $port) = explode(':', $variabledDsn);
-
+        if ($host) {
             $this->parameters['enabled'] = true;
             $this->parameters['host'] = $host;
-            $this->parameters['port'] = $port ?: 8125;
+            $this->parameters['port'] = $port;
         }
     }
 
@@ -87,7 +86,16 @@ class StatsD
      */
     public function flush()
     {
-        if ((false === $this->parameters['enabled']) || empty($this->data)) {
+        if (false === $this->parameters['enabled']) {
+            return;
+        }
+
+        if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
+            // register the time (in milliseconds) it took to process the request.
+            $this->timing('buildtime', number_format(((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 100), 3, '.', ''));
+        }
+
+        if (empty($this->data)) {
             return;
         }
 
