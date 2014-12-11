@@ -628,7 +628,7 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.invalid_to_address" approved="no">
                 <source>wishlist.invalid_to_address</source>
-                <target>Ugyldig emailaddresse</target>
+                <target>Ugyldig e-mail-adresse</target>
             </trans-unit>
             <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
@@ -636,7 +636,7 @@ Deretter kan du bare shoppe videre.</p><br>
             </trans-unit>
             <trans-unit id="wishlist.all.items.deleted" approved="no">
                 <source>wishlist.all.items.deleted</source>
-                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
+                <target>Alle produktene er nå fjernet fra  shoppinglisten din.</target>
             </trans-unit>
         </body>
     </file>

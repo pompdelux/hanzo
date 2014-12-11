@@ -628,17 +628,17 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                 <source>wishlist.send_list.button_label</source>
                 <target>Senden</target>
             </trans-unit>
-            <trans-unit id="wishlist.invalid_to_address" approved="no">
+            <trans-unit id="wishlist.invalid_to_address">
                 <source>wishlist.invalid_to_address</source>
-                <target>Ugyldig emailaddresse</target>
+                <target>Ungültige Emailadresse</target>
             </trans-unit>
             <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
                 <target>Die Shoppingliste wurde versendet.</target>
             </trans-unit>
-            <trans-unit id="wishlist.all.items.deleted" approved="no">
+            <trans-unit id="wishlist.all.items.deleted">
                 <source>wishlist.all.items.deleted</source>
-                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
+                <target>Alle Produkte wurden von Ihrer Shoppingliste entfernt.</target>
             </trans-unit>
         </body>
     </file>
