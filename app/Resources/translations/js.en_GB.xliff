@@ -310,17 +310,17 @@
                 <source>basket.latest.added</source>
                 <target>Product added</target>
             </trans-unit>
-            <trans-unit id="product.added.to.wishlist" approved="no">
+            <trans-unit id="product.added.to.wishlist">
                 <source>product.added.to.wishlist</source>
-                <target>Produktet er nu lagt på din ønskeliste.</target>
+                <target>The product has been added to your Shoppinglist.</target>
             </trans-unit>
-            <trans-unit id="require.login.label" approved="no">
+            <trans-unit id="require.login.label">
                 <source>require.login.label</source>
-                <target>Login påkrævet</target>
+                <target>LOGIN REQUIRED</target>
             </trans-unit>
-            <trans-unit id="wishlist.require.login.text" approved="no">
+            <trans-unit id="wishlist.require.login.text">
                 <source>wishlist.require.login.text</source>
-                <target><![CDATA[Du skal være logget ind for at benytte ønskeliste funktionen.<br><br><a href="%url%">» Login her</a><br><br>Bemærk: Du vil blive sendt tilbage til denne side så snart du er logget ind.]]></target>
+                <target><![CDATA[You must be logged in to use the Shoppinglist.<br><br><a href="%url%">» Login here / Create login</a><br><br>Notice: When you are logged in you will be sent back to this page.]]></target>
             </trans-unit>
 			<trans-unit id="quickorder.choose.size">
                 <source>quickorder.choose.size</source>
