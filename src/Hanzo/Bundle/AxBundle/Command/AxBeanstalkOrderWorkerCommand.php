@@ -21,10 +21,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class AxBeanstalkWorkerCommand
+ * Class AxBeanstalkOrderWorkerCommand
+ *
  * @package Hanzo\Bundle\AxBundle
  */
-class AxBeanstalkWorkerCommand extends ContainerAwareCommand
+class AxBeanstalkOrderWorkerCommand extends ContainerAwareCommand
 {
     /**
      * @var bool
@@ -37,17 +38,17 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
      */
     protected function configure()
     {
-        $this->setName('hanzo:ax:pheanstalk-worker')
+        $this->setName('hanzo:ax:pheanstalk-order-worker')
             ->setDescription('Send orders to ax from beanstalk queue')
             ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Set max number of loops before exit.', 0)
-            ->addOption('ttl', null, InputOption::VALUE_OPTIONAL, 'Set ttl on script, will exit script in tts seconds.', 0)
-        ;
+            ->addOption('ttl', null, InputOption::VALUE_OPTIONAL, 'Set ttl on script, will exit script in tts seconds.', 0);
     }
 
 
     /**
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -72,7 +73,7 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
         while ($this->watch($input, $output)) {
             $loop++;
 
-            if ($ttl && strtotime('now +'.(int)$ttl.' seconds') > $now) {
+            if ($ttl && strtotime('now +'.(int) $ttl.' seconds') > $now) {
                 exit;
             }
 
@@ -128,12 +129,12 @@ class AxBeanstalkWorkerCommand extends ContainerAwareCommand
 
         try {
             if (isset($data['action']) && ('delete' === $data['action'])) {
-                $this->getContainer()->get('ax.out.pheanstalk.send')->delete($data);
+                $this->getContainer()->get('ax.out.pheanstalk.send_order')->delete($data);
             } else {
-                $this->getContainer()->get('ax.out.pheanstalk.send')->send($data);
+                $this->getContainer()->get('ax.out.pheanstalk.send_order')->send($data);
             }
         } catch (\Exception $exception) {
-            $this->halt($data, 'AxBeanstalkWorkerCommand: Exception detected: '.$exception->getMessage());
+            $this->halt($data, 'AxBeanstalkOrderWorkerCommand: Exception detected: '.$exception->getMessage());
         }
 
         $pheanstalk->delete($job);

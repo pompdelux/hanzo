@@ -263,6 +263,27 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     }
 
     /**
+     * @param \PropelObjectCollection $address
+     */
+    public function setAddresses(\PropelObjectCollection $address)
+    {
+        /** @var Addresses $address */
+        $address = $address->getFirst();
+        $address->setFirstName($this->getFirstName());
+        $address->setLastName($this->getLastName());
+        $address->save();
+    }
+
+    /**
+     * @param \PropelObjectCollection $address
+     */
+    public function setAddresses(\PropelObjectCollection $address)
+    {
+        $address = $address->getFirst();
+        $address->save();
+    }
+
+    /**
      * Validate length of users full name
      *
      * @param ExecutionContextInterface $context

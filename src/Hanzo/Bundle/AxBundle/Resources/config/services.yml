@@ -23,12 +23,19 @@ services:
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 0 }
 
-    ax.out.pheanstalk.send:
-        class: Hanzo\Bundle\AxBundle\Actions\Out\Workers\PheanstalkWorker
+    ax.out.pheanstalk.send_order:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\Workers\PheanstalkOrderWorker
         arguments:
             pheanstalk:       @leezy.pheanstalk
             axServiceWrapper: @ax.out.service.wrapper
             mailer:           @hanzo.order.send.confirmation.mail
+            logger:           @ax.logger
+
+    ax.out.pheanstalk.send_debitor:
+        class: Hanzo\Bundle\AxBundle\Actions\Out\Workers\PheanstalkDebitorWorker
+        arguments:
+            pheanstalk:       @leezy.pheanstalk
+            axServiceWrapper: @ax.out.service.wrapper
             logger:           @ax.logger
 
     ax.out.service.wrapper:

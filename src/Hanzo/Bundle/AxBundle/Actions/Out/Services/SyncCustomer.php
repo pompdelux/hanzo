@@ -104,7 +104,7 @@ class SyncCustomer extends BaseService
                     'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
                     'AddressStreet'          => $this->address->getAddressLine1(),
                     'AddressZipCode'         => $this->address->getPostalCode(),
-                    'CustName'               => trim($this->address->getTitle($this->translator).' '.$this->address->getFirstName().' '.$this->address->getLastName()),
+                    'CustName'               => $this->address->getName($this->translator),
                     'Email'                  => $this->customer->getEmail(),
                     'Phone'                  => $this->customer->getPhone(),
                 ]
