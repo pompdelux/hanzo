@@ -338,6 +338,14 @@ class GothiaController extends CoreController
 
         try {
             $api->updateOrderSuccess($request, $order);
+
+            /**
+             * Listeners includes:
+             *  - stopping order edit flows
+             *  - cansellation of "old" payments (for edits)
+             *  - adding the order to beanstalk for processing
+             *  - ..
+             */
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
             return $this->json_response([

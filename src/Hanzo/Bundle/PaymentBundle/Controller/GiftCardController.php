@@ -34,6 +34,14 @@ class GiftCardController extends CoreController
 
         try {
             $api->updateOrderSuccess($request, $order);
+
+            /**
+             * Listeners includes:
+             *  - stopping order edit flows
+             *  - cansellation of "old" payments (for edits)
+             *  - adding the order to beanstalk for processing
+             *  - ..
+             */
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         } catch (Exception $e) {
             Tools::log($e->getMessage());

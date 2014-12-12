@@ -116,6 +116,9 @@ class PensioController extends CoreController
         $order->reload(true);
 
         if ($order instanceof Orders) {
+            /**
+             * used in google analytics to generate stats on order order edits.
+             */
             $queryParameters = [];
             if ($order->getInEdit()) {
                 $queryParameters = ['is-edit' => 1];
@@ -127,6 +130,13 @@ class PensioController extends CoreController
                 $api->verifyCallback($request, $order);
                 $api->updateOrderStatus(Orders::STATE_PAYMENT_OK, $request, $order);
 
+                /**
+                 * Listeners includes:
+                 *  - stopping order edit flows
+                 *  - cansellation of "old" payments (for edits)
+                 *  - adding the order to beanstalk for processing
+                 *  - ..
+                 */
                 $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
             } catch (Exception $e) {
                 $status = 'failed';
