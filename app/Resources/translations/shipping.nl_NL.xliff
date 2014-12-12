@@ -30,6 +30,10 @@
         <source>shipping_method.label.70</source>
         <target>Verzendkosten %price%</target>
       </trans-unit>
+	   <trans-unit id="shipping_method.name.71">
+        <source>shipping_method.name.71</source>
+        <target>DHL Servicepoint - Zelf afhalen</target>
+      </trans-unit>
 	  <trans-unit id="shipping_method.desc.71">
         <source>shipping_method.desc.71</source>
         <target><![CDATA[Vind het servicepoint door je postcode in het veld Alternatief verzendadres in te vullen. Hierna wordt er een lijst getoond met servicepoints bij jou in de buurt. <a href="http://www.dhlparcel.nl/" class="js-external">www.dhlparcel.nl</a> – DHL servicepoint.]]></target>
