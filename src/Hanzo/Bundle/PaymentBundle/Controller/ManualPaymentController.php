@@ -32,6 +32,9 @@ class ManualPaymentController extends CoreController
         $api   = $this->get('payment.manualpaymentapi');
         $order = OrdersPeer::getCurrent(true);
 
+        /**
+         * used in google analytics to generate stats on order order edits.
+         */
         $queryParameters = [];
         if ($order->getInEdit()) {
             $queryParameters = ['is-edit' => 1];
@@ -43,6 +46,14 @@ class ManualPaymentController extends CoreController
 
         try {
             $api->updateOrderSuccess($request, $order);
+
+            /**
+             * Listeners includes:
+             *  - stopping order edit flows
+             *  - cansellation of "old" payments (for edits)
+             *  - adding the order to beanstalk for processing
+             *  - ..
+             */
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         } catch (Exception $e) {
             Tools::log($e->getMessage());

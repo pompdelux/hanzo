@@ -597,7 +597,7 @@ After this you can easily continue shopping.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+                <target><![CDATA[SHOPPING LIST NUMBER<span>%number%</span>]]></target>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
@@ -607,33 +607,33 @@ After this you can easily continue shopping.<br></p>
                 <source>wishlist.remove.all.items</source>
                 <target>Clear the list</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.header" approved="no">
+            <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send shoppinglisten til en du kender</target>
+                <target>Send the Shoppinglist to someone you know</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.description" approved="no">
+            <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
-                <target>jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ... jadi jadi jadi ja ...</target>
+                <target>Write the e-mail adress to which you want to send the Shoppinglist.</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.placeholder" approved="no">
+            <trans-unit id="wishlist.send_list.placeholder">
                 <source>wishlist.send_list.placeholder</source>
-                <target>Modtager email adresse</target>
+                <target>Receivers e-mail address</target>
             </trans-unit>
-            <trans-unit id="wishlist.send_list.button_label" approved="no">
+            <trans-unit id="wishlist.send_list.button_label">
                 <source>wishlist.send_list.button_label</source>
                 <target>Send</target>
             </trans-unit>
-            <trans-unit id="wishlist.invalid_to_address" approved="no">
+            <trans-unit id="wishlist.invalid_to_address">
                 <source>wishlist.invalid_to_address</source>
-                <target>Ugyldig emailaddresse</target>
+                <target>Incorrect e-mail address</target>
             </trans-unit>
-            <trans-unit id="wishlist.send" approved="no">
+            <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
-                <target>Shoppinglisten er nu sendt.</target>
+                <target>The Shoppinglist has been sent.</target>
             </trans-unit>
-            <trans-unit id="wishlist.all.items.deleted" approved="no">
+            <trans-unit id="wishlist.all.items.deleted">
                 <source>wishlist.all.items.deleted</source>
-                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
+                <target>All the products was removed from your Shoppinglist.</target>
             </trans-unit>
         </body>
     </file>

@@ -56,9 +56,11 @@ class PayPalController extends CoreController
         $order = OrdersQuery::create()
             ->findOneByPaymentGatewayId(
                 $request->query->get('payment_gateway_id'),
-                Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            );
+                Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
+        /**
+         * used in google analytics to generate stats on order order edits.
+         */
         $queryParameters = [];
         if ($order->getInEdit()) {
             $queryParameters = ['is-edit' => 1];
@@ -76,6 +78,14 @@ class PayPalController extends CoreController
                 }
 
                 $api->updateOrderSuccess($request, $order);
+
+                /**
+                 * Listeners includes:
+                 *  - stopping order edit flows
+                 *  - cansellation of "old" payments (for edits)
+                 *  - adding the order to beanstalk for processing
+                 *  - ..
+                 */
                 $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
                 $status = 'ok';
             } catch (Exception $e) {

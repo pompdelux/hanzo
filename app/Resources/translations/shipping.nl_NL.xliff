@@ -30,7 +30,7 @@
         <source>shipping_method.label.70</source>
         <target>Verzendkosten %price%</target>
       </trans-unit>
-	  <trans-unit id="shipping_method.name.71">
+	   <trans-unit id="shipping_method.name.71">
         <source>shipping_method.name.71</source>
         <target>DHL Servicepoint - Zelf afhalen</target>
       </trans-unit>

@@ -280,6 +280,12 @@ class DefaultController extends CoreController
         // update/set basket cookie
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
+        $attributes = $order->getAttributes();
+        if (isset($attributes->wishlist, $attributes->wishlist->id)) {
+            $this->container->get('hanzo.statsd')->increment('shoppinglist2order.'.$this->container->get('kernel')->getAttribute('domain_key'));
+        }
+
+
         return $this->render('CheckoutBundle:Default:success.html.twig', [
             'order' => $data,
         ]);

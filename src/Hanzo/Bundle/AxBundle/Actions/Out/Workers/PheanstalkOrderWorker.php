@@ -14,6 +14,7 @@ use Hanzo\Bundle\AxBundle\Actions\Out\AxServiceWrapper;
 use Hanzo\Bundle\AxBundle\Actions\Out\Services\AxDataException;
 use Hanzo\Bundle\AxBundle\Logger;
 use Hanzo\Bundle\CheckoutBundle\SendOrderConfirmationMail;
+use Hanzo\Core\StatsD;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Orders;
@@ -32,6 +33,7 @@ class PheanstalkOrderWorker
     private $serviceWrapper;
     private $orderConfirmationMailer;
     private $logger;
+    private $statsd;
 
     /**
      * @var null|\PropelPDO
@@ -43,13 +45,15 @@ class PheanstalkOrderWorker
      * @param AxServiceWrapper          $serviceWrapper
      * @param SendOrderConfirmationMail $orderConfirmationMailer
      * @param Logger                    $logger
+     * @param StatsD                    $statsd
      */
-    public function __construct(PheanstalkProxy $pheanstalkProxy, AxServiceWrapper $serviceWrapper, SendOrderConfirmationMail $orderConfirmationMailer, Logger $logger)
+    public function __construct(PheanstalkProxy $pheanstalkProxy, AxServiceWrapper $serviceWrapper, SendOrderConfirmationMail $orderConfirmationMailer, Logger $logger, StatsD $statsd)
     {
         $this->pheanstalkProxy         = $pheanstalkProxy;
         $this->serviceWrapper          = $serviceWrapper;
         $this->orderConfirmationMailer = $orderConfirmationMailer;
         $this->logger                  = $logger;
+        $this->statsd                  = $statsd;
     }
 
 
@@ -128,6 +132,7 @@ class PheanstalkOrderWorker
 
         $this->writeLog('send', 'ok', $jobData);
         $this->removeFromQueueLog($jobData['order_id']);
+        $this->statsd->increment('order2ax.run_'.$jobData['iteration']);
 
         return true;
     }
@@ -179,6 +184,7 @@ class PheanstalkOrderWorker
         }
 
         $this->removeFromQueueLog($jobData['order_id']);
+        $this->statsd->increment('order2ax.run_'.$jobData['iteration']);
 
         return true;
     }

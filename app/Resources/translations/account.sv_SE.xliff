@@ -46,7 +46,7 @@
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
                 <target><![CDATA[
-                    <p>Skriv in din e-mailadress nedan och klicka på knappen ”Fortsätt”. Inom några minuter kommer du att få ett mail från POMPdeLUX med ditt lösenord.</p>
+                    <p>Skriv in din e-mailadress nedan och klicka på knappen "Fortsätt". Inom några minuter kommer du att få ett mail från POMPdeLUX med ditt lösenord.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
@@ -622,17 +622,17 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>wishlist.send_list.button_label</source>
                 <target>Skicka</target>
             </trans-unit>
-            <trans-unit id="wishlist.invalid_to_address" approved="no">
+            <trans-unit id="wishlist.invalid_to_address">
                 <source>wishlist.invalid_to_address</source>
-                <target>Ugyldig emailaddresse</target>
+                <target>Ogiltig e-mail adress</target>
             </trans-unit>
             <trans-unit id="wishlist.send">
                 <source>wishlist.send</source>
                 <target>Shoppinglistan är nu skickad.</target>
             </trans-unit>
-            <trans-unit id="wishlist.all.items.deleted" approved="no">
+            <trans-unit id="wishlist.all.items.deleted">
                 <source>wishlist.all.items.deleted</source>
-                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
+                <target>Alla varor är nu borttagna från din shoppinglista.</target>
             </trans-unit>
         </body>
     </file>
