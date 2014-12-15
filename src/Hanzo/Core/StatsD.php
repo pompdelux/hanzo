@@ -83,11 +83,18 @@ class StatsD
     /**
      * Add timing log, note the $time variable is in milliseconds
      *
-     * @param string $variable
-     * @param float  $time
+     * If $time is an array, it's expected that key 0 and key 1 is millisecond floats returned by microtime(true).
+     *
+     * @param string      $variable
+     * @param float|array $time
      */
     public function timing($variable, $time)
     {
+        if (is_array($time) && 2 === count($time)) {
+            $time = $time[0] - $time[1];
+            $time = round($time * 1000);
+        }
+
         $this->data[] = "{$this->prefix}{$variable}:{$time}|ms";
     }
 
@@ -174,10 +181,10 @@ class StatsD
 
         // register the time (in milliseconds) it took to process the HTTP request.
         if (($event instanceof PostResponseEvent) && $this->routeName) {
-            $time = microtime(true) - $event->getRequest()->server->get('REQUEST_TIME_FLOAT', $event->getRequest()->server->get('REQUEST_TIME'));
-            $time = round($time * 1000);
-
-            $this->timing('buildtime.'.$this->routeName, number_format($time, 3, '.', ''));
+            $this->timing('buildtime.'.$this->routeName, [
+                microtime(true),
+                $event->getRequest()->server->get('REQUEST_TIME_FLOAT', $event->getRequest()->server->get('REQUEST_TIME'))
+            ]);
         }
 
         if (empty($this->data)) {
