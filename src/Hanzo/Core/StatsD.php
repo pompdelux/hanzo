@@ -196,7 +196,7 @@ class StatsD
             $port = $this->parameters["port"];
             $fp = fsockopen("udp://$host", $port, $errno, $errstr);
 
-            if (! $fp) {
+            if (false === $fp) {
                 return;
             }
 
