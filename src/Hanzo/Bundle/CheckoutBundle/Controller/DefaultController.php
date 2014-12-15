@@ -281,9 +281,15 @@ class DefaultController extends CoreController
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
         $attributes = $order->getAttributes();
+        $domainKey  = $this->container->get('kernel')->getAttribute('domain_key');
+
+        // stats on shoppinglists that turns into orders
         if (isset($attributes->wishlist, $attributes->wishlist->id)) {
-            $this->container->get('hanzo.statsd')->increment('shoppinglist2order.'.$this->container->get('kernel')->getAttribute('domain_key'));
+            $this->container->get('hanzo.statsd')->increment('shoppinglist2order.'.$domainKey);
         }
+
+        // order stats counter
+        $this->container->get('hanzo.statsd')->increment('order.'.$domainKey);
 
         return $this->render('CheckoutBundle:Default:success.html.twig', [
             'order' => $data,
