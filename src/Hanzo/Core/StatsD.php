@@ -109,6 +109,7 @@ class StatsD
         $this->data[] = "{$this->prefix}{$variable}:{$value}|c";
     }
 
+
     /**
      * Increment a counter by one
      *
