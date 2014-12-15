@@ -82,8 +82,12 @@ services:
 
     hanzo.statsd:
         class: Hanzo\Core\StatsD
-        arguments: ['%statsd.host%', '%statsd.port%']
+        arguments:
+            - '%statsd.host%'
+            - '%statsd.port%'
+            - '%kernel.environment%'
         tags:
+            -   { name: kernel.event_listener, event: kernel.request, method: onCoreHTTPRequest, priority: 1 }
             -   { name: kernel.event_listener, event: kernel.terminate, method: flush, priority: 100 }
             -   { name: kernel.event_listener, event: console.terminate, method: flush, priority: 100 }
 
