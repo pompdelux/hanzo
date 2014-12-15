@@ -10,7 +10,10 @@
 
 namespace Hanzo\Core;
 
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
@@ -158,16 +161,23 @@ class StatsD
      * Flush the statsd cache to the statsd server.
      *
      * If the request is a http request, we add the buildtime for the request to the outgoing payload.
+     *
+     * @param Event                         $event
+     * @param string                        $eventName
+     * @param ContainerAwareEventDispatcher $eventDispatcher
      */
-    public function flush()
+    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher)
     {
         if (false === $this->enabled) {
             return;
         }
 
-        if (isset($_SERVER['REQUEST_TIME_FLOAT']) && $this->routeName) {
-            // register the time (in milliseconds) it took to process the request.
-            $this->timing('buildtime.'.$this->routeName, number_format(((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 100), 3, '.', ''));
+        // register the time (in milliseconds) it took to process the HTTP request.
+        if (($event instanceof PostResponseEvent) && $this->routeName) {
+            $time = microtime(true) - $event->getRequest()->server->get('REQUEST_TIME_FLOAT', $event->getRequest()->server->get('REQUEST_TIME'));
+            $time = round($time * 1000);
+
+            $this->timing('buildtime.'.$this->routeName, number_format($time, 3, '.', ''));
         }
 
         if (empty($this->data)) {
