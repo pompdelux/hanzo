@@ -10,9 +10,12 @@
 
 namespace Hanzo\Core;
 
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
+=======
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
 /**
  * Class StatsD
  *
@@ -20,16 +23,22 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 class StatsD
 {
+<<<<<<< HEAD
     /**
      * StatsD parameters
      *
      * @var array
      */
     private $parameters = [
+=======
+    private $parameters = [
+        'enabled' => false,
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
         'host'    => '127.0.0.1',
         'port'    => 8125
     ];
 
+<<<<<<< HEAD
     /**
      * Data to send to StatsD
      *
@@ -74,28 +83,53 @@ class StatsD
 
             list($env, ) = explode('_', $env, 2);
             $this->prefix = $env.'.';
+=======
+    private $data = [];
+
+    /**
+     * @param string $host
+     * @param int    $port
+     */
+    public function __construct($host, $port = 8125)
+    {
+        if ($host) {
+            $this->parameters['enabled'] = true;
+            $this->parameters['host'] = $host;
+            $this->parameters['port'] = $port;
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
         }
     }
 
     /**
+<<<<<<< HEAD
      * Add timing log, note the $time variable is in milliseconds
      *
+=======
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
      * @param string $variable
      * @param float  $time
      */
     public function timing($variable, $time)
     {
+<<<<<<< HEAD
         $this->data[] = "{$this->prefix}{$variable}:{$time}|ms";
     }
 
     /**
      * Add arbitrary gauge values
      *
+=======
+        $this->data[] = "$variable:$time|ms";
+    }
+
+    /**
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
      * @param string $variable
      * @param float  $value
      */
     public function gauge($variable, $value)
     {
+<<<<<<< HEAD
         $this->data[] = "{$this->prefix}{$variable}:{$value}|g";
     }
 
@@ -112,20 +146,43 @@ class StatsD
     /**
      * Increment a counter by one
      *
+=======
+        $this->data[] = "$variable:$value|g";
+    }
+
+    /**
+     * @param string $variable
+     * @param float  $value
+     */
+    public function measure($variable, $value)
+    {
+        $this->data[] = "$variable:$value|c";
+    }
+
+    /**
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
      * @param string $variable
      */
     public function increment($variable)
     {
+<<<<<<< HEAD
         $this->data[] = "{$this->prefix}{$variable}:1|c";
     }
 
     /**
      * Decrement a counter by one
      *
+=======
+        $this->data[] = "$variable:1|c";
+    }
+
+    /**
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
      * @param string $variable
      */
     public function decrement($variable)
     {
+<<<<<<< HEAD
         $this->data[] = "{$this->prefix}{$variable}:-1|c";
     }
 
@@ -167,6 +224,23 @@ class StatsD
         if (isset($_SERVER['REQUEST_TIME_FLOAT']) && $this->routeName) {
             // register the time (in milliseconds) it took to process the request.
             $this->timing('buildtime.'.$this->routeName, number_format(((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 100), 3, '.', ''));
+=======
+        $this->data[] = "$variable:-1|c";
+    }
+
+    /**
+     * Flush the statsd cache to the statsd server.
+     */
+    public function flush()
+    {
+        if (false === $this->parameters['enabled']) {
+            return;
+        }
+
+        if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
+            // register the time (in milliseconds) it took to process the request.
+            $this->timing('buildtime', number_format(((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 100), 3, '.', ''));
+>>>>>>> ad8b135c8fec9fcf32e30ab38409b62104c3e79c
         }
 
         if (empty($this->data)) {
