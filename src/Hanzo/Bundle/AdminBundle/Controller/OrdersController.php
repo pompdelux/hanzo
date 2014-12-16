@@ -938,6 +938,7 @@ class OrdersController extends CoreController
             }
 
             $order = new Orders();
+            $order->setSkipPreEventMetaData();
             $order->fromArray($data['orders']);
             $order->setState(Orders::STATE_SHIPPED);
             $order->setInEdit(false);
