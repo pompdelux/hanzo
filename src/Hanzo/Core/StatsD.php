@@ -234,7 +234,7 @@ class StatsD
         if (('product_' == substr($this->routeName, 0, 8)) ||
             ('product_info' == substr($this->routeName, 0, 12))
         ) {
-            return 'cms_page';
+            return 'product_view';
         }
 
         return $this->routeName;
