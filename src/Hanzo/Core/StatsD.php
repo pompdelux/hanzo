@@ -99,7 +99,7 @@ class StatsD
     }
 
     /**
-     * Add arbitrary gauge values
+     * Updates one stat gauges by arbitrary amounts.
      *
      * @param string $variable
      * @param float  $value
@@ -110,11 +110,12 @@ class StatsD
     }
 
     /**
+     * Updates one or more variable counters by arbitrary amounts.
      *
      * @param string $variable
      * @param float  $value
      */
-    public function count($variable, $value)
+    public function measure($variable, $value)
     {
         $this->data[] = "{$this->prefix}{$variable}:{$value}|c";
     }
@@ -193,6 +194,7 @@ class StatsD
         if (empty($this->data)) {
             return;
         }
+
         try {
             $host = $this->parameters["host"];
             $port = $this->parameters["port"];
@@ -207,12 +209,17 @@ class StatsD
                 fwrite($fp, $line);
             }
             error_reporting($level);
-            $this->data = [];
-
         } catch (\Exception $e) {
         }
+
+        $this->data = [];
     }
 
+    /**
+     * Group routes by nature
+     *
+     * @return string
+     */
     private function getGroupingName()
     {
         if ('bycolour' == substr($this->routeName, 0, 8)) {
