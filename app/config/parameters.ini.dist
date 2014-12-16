@@ -50,3 +50,7 @@
     core.active_product_range=""
 
     pdfupload_root_dir="/var/www/pompdelux/shared/web/pdfupload"
+
+    statsd.host = "pdlstats"
+    statsd.port = "8125"
+

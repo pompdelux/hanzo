@@ -30,6 +30,7 @@ services:
             axServiceWrapper: @ax.out.service.wrapper
             mailer:           @hanzo.order.send.confirmation.mail
             logger:           @ax.logger
+            statsd:           @hanzo.statsd
 
     ax.out.pheanstalk.send_debitor:
         class: Hanzo\Bundle\AxBundle\Actions\Out\Workers\PheanstalkDebitorWorker
