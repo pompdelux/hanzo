@@ -281,7 +281,7 @@ class DefaultController extends CoreController
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
         $attributes = $order->getAttributes();
-        $domainKey  = $this->container->get('kernel')->getAttribute('domain_key');
+        $domainKey  = $this->container->get('kernel')->getSetting('domain_key');
 
         // stats on shoppinglists that turns into orders
         if (isset($attributes->wishlist, $attributes->wishlist->id)) {
