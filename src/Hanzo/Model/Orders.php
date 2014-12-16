@@ -85,6 +85,32 @@ class Orders extends BaseOrders
     protected $dbConn = null;
 
     /**
+     * @var bool
+     */
+    protected $skipPreEventMetaData = false;
+
+    /**
+     * Needed by recreatedDeletedOrdersAction to prevent the event
+     * handeler from setting metadata already handled by the function.
+     */
+    public function setSkipPreEventMetaData()
+    {
+        $this->skipPreEventMetaData = true;
+    }
+
+    /**
+     * Check the state of $skipPreEventMetaData
+     *
+     * @see OnPreSaveEvent::handle
+     * @return bool
+     */
+    public function getSkipPreEventMetaData()
+    {
+        return $this->skipPreEventMetaData;
+    }
+
+
+    /**
      * Get DB Connection
      *
      * @return null|\PDO|\PropelPDO
