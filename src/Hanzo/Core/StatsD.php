@@ -173,7 +173,7 @@ class StatsD
      * @param string                        $eventName
      * @param ContainerAwareEventDispatcher $eventDispatcher
      */
-    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher)
+    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher = null)
     {
         if (false === $this->enabled) {
             return;
@@ -190,7 +190,6 @@ class StatsD
         if (empty($this->data)) {
             return;
         }
-
         try {
             $host = $this->parameters["host"];
             $port = $this->parameters["port"];
@@ -205,6 +204,7 @@ class StatsD
                 fwrite($fp, $line);
             }
             error_reporting($level);
+            $this->data = [];
 
         } catch (\Exception $e) {
         }
