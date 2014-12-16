@@ -158,7 +158,7 @@ class StatsD
         }
 
         $route = $request->get('_route');
-        if ($route && !in_array($route, ['_wdt', 'is_authenicated', 'bazinga_jstranslation_js'])) {
+        if ($route && !in_array($route, ['_wdt', 'is_authenicated', 'bazinga_jstranslation_js', '_varnish_ping']) && ('admin' != substr($route, 0, 5))) {
             $this->routeName = $route;
         }
     }
@@ -181,7 +181,10 @@ class StatsD
 
         // register the time (in milliseconds) it took to process the HTTP request.
         if (($event instanceof PostResponseEvent) && $this->routeName) {
-            $this->timing('buildtime.'.$this->routeName, [
+            // some pages we group to reduce namespaces
+            $name = $this->getGroupingName();
+
+            $this->timing('buildtime.'.$name, [
                 microtime(true),
                 $event->getRequest()->server->get('REQUEST_TIME_FLOAT', $event->getRequest()->server->get('REQUEST_TIME'))
             ]);
@@ -208,5 +211,32 @@ class StatsD
 
         } catch (\Exception $e) {
         }
+    }
+
+    private function getGroupingName()
+    {
+        if ('bycolour' == substr($this->routeName, 0, 8)) {
+            return 'category_bycolour';
+        }
+
+        if ('category_search' == substr($this->routeName, 0, 15)) {
+            return 'category_search';
+        }
+
+        if ('category' == substr($this->routeName, 0, 8)) {
+            return 'category_default';
+        }
+
+        if ('page_' == substr($this->routeName, 0, 5)) {
+            return 'cms_page';
+        }
+
+        if (('product_' == substr($this->routeName, 0, 8)) ||
+            ('product_info' == substr($this->routeName, 0, 12))
+        ) {
+            return 'cms_page';
+        }
+
+        return $this->routeName;
     }
 }
