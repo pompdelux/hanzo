@@ -497,7 +497,7 @@ Returlapp og returskjema ligger i hver sin PDF-fil, og skal printes hver for seg
 			<ul>
             <li>Sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt.</li>
             <li>Endre farger og størrelser på de varene du har bestilt.</li>
-            <li>Tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter du har bestilt varene.</li>
+            <li>Tilføye eller slette varer så lenge det står "Avventer" ved din ordre.</li>
 			<li>Se dine tidligere bestillinger og finn gamle fakturaer.</li>
           </ul></p>]]></target>
             </trans-unit>
