@@ -762,7 +762,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 }
 .product-list .block a .discount-badge {
   position: absolute;
-  bottom: 0;
+  bottom: 11px;
   right: 0;
   text-indent: -999px;
   height: 73px;
