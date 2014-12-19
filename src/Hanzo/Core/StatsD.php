@@ -100,6 +100,7 @@ class StatsD
 
     /**
      * Add arbitrary gauge values
+     * Updates one stat gauges by arbitrary amounts.
      *
      * @param string $variable
      * @param float  $value
@@ -110,6 +111,7 @@ class StatsD
     }
 
     /**
+     * Updates one or more variable counters by arbitrary amounts.
      *
      * @param string $variable
      * @param float  $value
@@ -158,7 +160,7 @@ class StatsD
         }
 
         $route = $request->get('_route');
-        if ($route && !in_array($route, ['_wdt', 'is_authenicated', 'bazinga_jstranslation_js'])) {
+        if ($route && !in_array($route, ['_wdt', 'is_authenicated', 'bazinga_jstranslation_js', '_varnish_ping']) && ('admin' != substr($route, 0, 5))) {
             $this->routeName = $route;
         }
     }
@@ -173,7 +175,7 @@ class StatsD
      * @param string                        $eventName
      * @param ContainerAwareEventDispatcher $eventDispatcher
      */
-    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher)
+    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher = null)
     {
         if (false === $this->enabled) {
             return;
@@ -181,7 +183,10 @@ class StatsD
 
         // register the time (in milliseconds) it took to process the HTTP request.
         if (($event instanceof PostResponseEvent) && $this->routeName) {
-            $this->timing('buildtime.'.$this->routeName, [
+            // some pages we group to reduce namespaces
+            $name = $this->getGroupingName();
+
+            $this->timing('buildtime.'.$name, [
                 microtime(true),
                 $event->getRequest()->server->get('REQUEST_TIME_FLOAT', $event->getRequest()->server->get('REQUEST_TIME'))
             ]);
@@ -196,7 +201,7 @@ class StatsD
             $port = $this->parameters["port"];
             $fp = fsockopen("udp://$host", $port, $errno, $errstr);
 
-            if (! $fp) {
+            if (false === $fp) {
                 return;
             }
 
@@ -205,8 +210,39 @@ class StatsD
                 fwrite($fp, $line);
             }
             error_reporting($level);
-
         } catch (\Exception $e) {
         }
+
+        $this->data = [];
+    }
+
+    /**
+     * Group routes by nature
+     *
+     * @return string
+     */
+    private function getGroupingName()
+    {
+        if ('bycolour' == substr($this->routeName, 0, 8)) {
+            return 'category_bycolour';
+        }
+
+        if ('category_search' == substr($this->routeName, 0, 15)) {
+            return 'category_search';
+        }
+
+        if ('category' == substr($this->routeName, 0, 8)) {
+            return 'category_default';
+        }
+
+        if ('page_' == substr($this->routeName, 0, 5)) {
+            return 'cms_page';
+        }
+
+        if ('product_' == substr($this->routeName, 0, 8)) {
+            return 'product_view';
+        }
+
+        return $this->routeName;
     }
 }

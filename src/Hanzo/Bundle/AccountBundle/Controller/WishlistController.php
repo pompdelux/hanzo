@@ -302,7 +302,7 @@ class WishlistController extends CoreController
             $list->setId($this->random(5));
             $list->save();
 
-            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getAttribute('domain_key'));
+            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getSetting('domain_key'));
         }
 
         return $list;

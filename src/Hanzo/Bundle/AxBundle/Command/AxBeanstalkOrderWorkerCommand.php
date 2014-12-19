@@ -16,9 +16,11 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersToAxQueueLogQuery;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Event\ConsoleEvent;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class AxBeanstalkOrderWorkerCommand
@@ -139,6 +141,10 @@ class AxBeanstalkOrderWorkerCommand extends ContainerAwareCommand
 
         $pheanstalk->delete($job);
         $this->isWorking = false;
+
+        // we need to trigger the flush command - due to the nature of this job, the console.terminate event is not triggered.
+        $event = new ConsoleEvent($this, $input, $output);
+        $this->getContainer()->get('hanzo.statsd')->flush($event, 'hanzo.console.trigger');
 
         return true;
     }

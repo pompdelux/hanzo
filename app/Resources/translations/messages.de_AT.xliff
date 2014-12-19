@@ -260,8 +260,8 @@
             <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Paket mit der Österreichischen Post versandt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in Österreich bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 3 Werktagen nachdem der Status der Bestellung auf "Meine Seite" mit "fakturiert" vermerkt wurde, nachverfolgt werden. Die komplette Lieferzeit beträgt 7-10 Tage.<br>
-Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschlieβend bei der Post abholen..<br><br>Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.</p>
+                    <p>Alle Waren werden als Paket mit DHL versandt. Sie haben die Möglichkeit, Ihr Paket ab Versand bis zum Empfang mit Hilfe von <a href="http://www.dhl.de/de.html" target="_blank">Track & Trace</a> zu verfolgen. Die Lieferzeit beträgt 5-7 Tage. Sie haben selbstverständlich die Möglichkeit, eine alternative Lieferadresse zu Ihrer Rechnungsadresse einzugeben. Die Lieferung erfolgt jedoch nur an Privatadressen. Lieferungen kosten EUR 5,95 (EUR 4,95 wenn Sie über eine Home Shopping Veranstaltung bestellen). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Österreichischen Post abholen.<br>
+Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.</p>
 ]]>
 </target>
 </trans-unit>

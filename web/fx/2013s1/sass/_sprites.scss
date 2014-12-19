@@ -3,22 +3,18 @@
 */
 
 @import "icons/da/*.png";
-//@include all-da-sprites; //
-@import "icons/icons/*.png";
-@include all-icons-sprites; // Generates a sprite from all images inside the folder
 
+@import "icons/icons/*.png";
+@include all-icons-sprites; // Generates a sprite from all images inside the "icons" folder
+
+// sprites in "language" folders are build below
+// reason we have these: they contain text.
 @import "icons/fi/*.png";
-//@include all-fi-sprites; // Generates a sprite from all images inside the folder
 @import "icons/nl/*.png";
-//@include all-nl-sprites; // Generates a sprite from all images inside the folder
 @import "icons/no/*.png";
-//@include all-no-sprites; // Generates a sprite from all images inside the folder
 @import "icons/se/*.png";
-//@include all-se-sprites; // Generates a sprite from all images inside the folder
 @import "icons/en/*.png";
-//@include all-en-sprites; // Generates a sprite from all images inside the folder
 @import "icons/de/*.png";
-//@include all-de-sprites; // Generates a sprite from all images inside the folder
 
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
@@ -257,3 +253,9 @@ body.sv{
         width: se-sprite-width(subscribe-button);
     }
 }
+
+// Generates a sprite from all images inside the "discountbadges" folder
+@import "discountbadges/*.png";
+@include all-discountbadges-sprites;
+
+

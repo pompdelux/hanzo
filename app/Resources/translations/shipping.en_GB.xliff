@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.20">
         <source>shipping_method.name.20</source>
-        <target>Post Danmark - Private priority</target>
+        <target>DHL / Post Danmark - Private priority</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.20">
         <source>shipping_method.desc.20</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.20">
         <source>shipping_method.label.20</source>
-        <target>Post Danmark - Private priority %price%</target>
+        <target>DHL / Post Danmark - Private priority %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>

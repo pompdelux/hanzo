@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Wird bei den möglichen Versandarten angezeigt -->
         <source>page.desc.after_methods</source>
-        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von 0 DKK auf alle Bestellungen</target>
+        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von 0 EUR auf alle Bestellungen</target>
       </trans-unit>
     </body>
   </file>
