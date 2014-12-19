@@ -32,6 +32,9 @@
                   {% if product.out_of_stock %}
                   <div class="out-of-stock"></div>
                   {% endif %}
+                  {% if product.prices.sales is defined %}
+                  <div class="discount-badge discountbadges-pct{{ product.prices.sales.sales_pct|round(0) }}"></div>
+                  {% endif %}
                 </a>
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
                   <span class="title">{{ product.title }}</span>

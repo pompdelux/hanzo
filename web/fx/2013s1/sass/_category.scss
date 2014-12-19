@@ -36,6 +36,15 @@
 				left:0;
 				text-indent: -999px;
 			}
+			.discount-badge {
+				position: absolute;
+				bottom:0;
+				right:0;
+				text-indent: -999px;
+				height: 73px;
+				width: 73px;
+			}
+
 		}
 		&.look{
 			.buy-set{
