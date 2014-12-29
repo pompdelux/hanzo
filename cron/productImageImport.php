@@ -75,8 +75,8 @@ $failed = array();
 
 // DK == vip
 $pdo = $_databases['vip'];
-$products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-$categories_stmt = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$products_stmt      = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$categories_stmt    = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
@@ -325,16 +325,20 @@ $product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :col
 
 $image_records_to_delete = array();
 while ($record = $images_stmt->fetchObject()) {
-
-    if (!file_exists($source_dir.$record->image)) {
+    // note we check for both old and new style image names.
+    if ((!file_exists($source_dir.$record->image)) &&
+        (!file_exists($source_dir.strtolower($record->image)))
+    ) {
         $image_records_to_delete[$record->id] = $record->image;
         continue;
     }
+
     // Find the master with correct color
     $product_stmt->execute(array(
         ':master' => $record->master,
         ':color' => $record->color
     ));
+
     $image_master = $product_stmt->fetchColumn();
     if (!$image_master > 0) {
         $image_records_to_delete[$record->id] = $record->image;
