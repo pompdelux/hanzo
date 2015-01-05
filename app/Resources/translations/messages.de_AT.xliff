@@ -273,7 +273,7 @@ Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Wenn Sie eine Ware umtauschen oder zurückgeben möchten, haben Sie bei POMPdeLUX ein 14-tägiges Rückgaberecht ab dem Tag an dem Sie die Waren erhalten haben. Es ist wichtig, dass die Waren mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommen, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurückhaben möchten. Sie können unter <a href="/de_AT/home/kundendienst/ruckgabe-umtausch" target="_blank">Rückgabe</a> und <a href="/de_AT/home/kundendienst/umtausch" target="_blank">Umtausch</a> mehr über die Verfahrensweise erfahren. <br><br>Sie können mehr über das Kaufrückzugsrecht in unseren <a href="/de_AT/home/kundendienst/abgs" target="_blank">Allgemeinen Geschäftsbedingungen</a> lesen.
+                    <p>Wenn Sie eine Ware umtauschen oder zurückgeben möchten, haben Sie bei POMPdeLUX ein 14-tägiges Rückgaberecht ab dem Tag an dem Sie die Waren erhalten haben. Es ist wichtig, dass die Waren mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommen, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurückhaben möchten. Sie können unter <a href="/de_AT/home/kundendienst/ruckgabe" target="_blank">Rückgabe</a> und <a href="/de_AT/home/kundendienst/umtausch" target="_blank">Umtausch</a> mehr über die Verfahrensweise erfahren. <br><br>Sie können mehr über das Kaufrückzugsrecht in unseren <a href="/de_AT/home/kundendienst/abgs" target="_blank">Allgemeinen Geschäftsbedingungen</a> lesen.
 </p>
                 ]]></target>
             </trans-unit>
@@ -284,7 +284,7 @@ Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das
                 <ul class="menu">
                     <li><a href="/de_AT/kundendienst/telefonzeiten">Telefonzeiten</a></li>
                     <li><a href="/de_AT/home/kundendienst/faq">FAQ</a></li>
-                    <li><a href="/de_AT/home/kundendienst/ruckgabe-umtausch">Rückgabe und Umtausch</a></li>
+                    <li><a href="/de_AT/home/kundendienst/ruckgabe">Rückgabe</a></li>
                     <li><a href="/de_AT/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_AT/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
                     <li><a href="/de_AT/home/kundendienst/waschtipps">Waschtipps</a></li>
