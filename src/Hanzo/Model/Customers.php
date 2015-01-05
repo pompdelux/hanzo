@@ -53,7 +53,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     private $extended = [
         // admin
         'hd@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'jm@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'sc@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'cc@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'hanzo@bellcom.dk'    => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -63,6 +63,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // stats
         'mh@pompdelux.dk'     => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         'pd@pompdelux.dk'     => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
+		'de@pompdelux.dk'     => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'     => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // design
