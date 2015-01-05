@@ -328,12 +328,15 @@ $product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :col
 $image_records_to_delete = array();
 while ($record = $images_stmt->fetchObject()) {
     // note we check for both old and new style image names.
-    if ((!file_exists($source_dir.$record->image)) &&
-        (!file_exists($source_dir.strtolower($record->image)))
+
+    // If the file exists, or the lowercase file exists, do not delete anything
+    if ((file_exists($source_dir.$record->image)) ||
+        (file_exists($source_dir.strtolower($record->image)))
     ) {
-        $image_records_to_delete[$record->id] = $record->image;
         continue;
     }
+
+    $image_records_to_delete[$record->id] = $record->image;
 
     // Find the master with correct color
     $product_stmt->execute(array(
