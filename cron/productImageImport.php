@@ -19,23 +19,25 @@ if (empty($images_found)) {
 }
 
 // hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541 -->>
-$renamedImages = [];
-foreach ($images_found as $file) {
-    $path = dirname($file);
-    $newName = $path .'/'.strtolower(basename($file));
-
-    // Only rename if names are different
-    if ( $file != $newName ) {
-        if ( !rename($file, $newName) ) {
-            _dbug("Could not rename $file to $newName");
-            continue;
-        }
-    }
-
-    $renamedImages[] = $newName;
-}
-
-$images_found = $renamedImages;
+/*
+ * $renamedImages = [];
+ * foreach ($images_found as $file) {
+ *     $path = dirname($file);
+ *     $newName = $path .'/'.strtolower(basename($file));
+ *
+ *     // Only rename if names are different
+ *     if ( $file != $newName ) {
+ *         if ( !rename($file, $newName) ) {
+ *             _dbug("Could not rename $file to $newName");
+ *             continue;
+ *         }
+ *     }
+ *
+ *     $renamedImages[] = $newName;
+ * }
+ *
+ * $images_found = $renamedImages;
+ */
 // <<-- hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541
 
 $images = array();
