@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
                         ->ifString()
                         ->then(function($v) { return [$v]; })
                     ->end()
+                ->scalarNode('google_tag_manager_id')->defaultNull()->end()
                 ->end()
                 ->arrayNode('addwords')
                     ->children()

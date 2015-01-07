@@ -8,12 +8,14 @@ class GoogleExtension extends \Twig_Extension
      * @param string $analytics_code
      * @param string $conversion_id
      * @param array  $site_verification
+     * @param string $google_tag_manager_id
      */
-    public function __construct($analytics_code, $conversion_id, array $site_verification)
+    public function __construct($analytics_code, $conversion_id, array $site_verification, $google_tag_manager_id)
     {
-        $this->analytics_code    = $analytics_code;
-        $this->conversion_id     = $conversion_id;
-        $this->site_verification = $site_verification;
+        $this->analytics_code        = $analytics_code;
+        $this->conversion_id         = $conversion_id;
+        $this->site_verification     = $site_verification;
+        $this->google_tag_manager_id = $google_tag_manager_id;
     }
 
     /**
@@ -33,7 +35,6 @@ class GoogleExtension extends \Twig_Extension
         return 'google';
     }
 
-
     /**
      * @inherit
      */
@@ -45,9 +46,9 @@ class GoogleExtension extends \Twig_Extension
             new \Twig_SimpleFunction('google_addwords_conversion_tag', [$this, 'getAddWordsConversionTag'], ['needs_context' => true, 'pre_escape' => 'html', 'is_safe' => ['html']]),
             new \Twig_SimpleFunction('google_analytics_tag', [$this, 'getAnalyticsTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
             new \Twig_SimpleFunction('google_site_verification_tag', [$this, 'getSiteVerificationTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
+            new \Twig_SimpleFunction('google_tag_manager', [$this, 'getGoogleTagManagerTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
-
 
     /**
      * Google analytics tag, will only be displayed if a key is found
@@ -200,5 +201,31 @@ DOC;
         $out .= $this->getConversionTag();
 
         return $out;
+    }
+
+    /**
+     * getGoogleTagManagerTag
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getGoogleTagManagerTag($context)
+    {
+        if (empty($this->google_tag_manager_id)) {
+            return '';
+        }
+
+        $html = <<<DOC
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRF34M"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NRF34M');</script>
+<!-- End Google Tag Manager -->
+DOC;
+
+        return $html;
     }
 }

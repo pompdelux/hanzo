@@ -38,6 +38,7 @@
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
+{{ google_tag_manager() }}
 {% include '::inlineEditMenu.html.twig' %}
 
 <div class="top-bar"></div>
