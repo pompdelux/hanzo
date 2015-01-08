@@ -10,4 +10,5 @@ function moreHest()
     echo "HEST!";
 }
 
+doHestNow();
 moreHest();
