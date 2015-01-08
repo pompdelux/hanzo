@@ -9,3 +9,5 @@ function moreHest()
 {
     echo "HEST!";
 }
+
+moreHest();
