@@ -50,9 +50,24 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+$xml = '<xmlrequest>
+  <username>[username]</username>
+  <usertoken>[token]</usertoken>
+  <requesttype>subscribers</requesttype>
+  <requestmethod>GetSubscriberDetails</requestmethod>
+  <details>
+  <emailaddress>hf+mailplatform@bellcom.dk</emailaddress>
+   </details>
+ </xmlrequest>';
 
-$stock = $this->getContainer()->get('stock');
-$stock->check(123);
+$ch = curl_init($application_URL .'/xml.php');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+$result = curl_exec($ch);
+
+//$stock = $this->getContainer()->get('stock');
+//$stock->check(123);
 
 return;
 
