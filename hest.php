@@ -4,3 +4,8 @@ function doHestNow()
 {
     echo "Hest!";
 }
+
+function moreHest()
+{
+    echo "HEST!";
+}
