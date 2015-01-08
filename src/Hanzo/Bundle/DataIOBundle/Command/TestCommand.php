@@ -85,13 +85,14 @@ class TestCommand extends ContainerAwareCommand
 
         $client = new \GuzzleHttp\Client( ['base_url' => $baseUrl] );
 
-        $response = $client->post('xml.php', ['body' => $request]);
-
         //$ch = curl_init($application_URL .'/xml.php');
         //curl_setopt($ch, CURLOPT_POST, 1);
         //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         //curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
         //return curl_exec($ch);
+
+
+        $response = $client->post('xml.php', ['body' => $request]);
 
         return $response;
     }
