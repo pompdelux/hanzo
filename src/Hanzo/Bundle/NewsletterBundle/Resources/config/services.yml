@@ -2,11 +2,6 @@ parameters:
     newsletterapi.class: Hanzo\Bundle\NewsletterBundle\NewsletterApi
 
 services:
-    hanzo.test_listener:
-        class: Hanzo\Bundle\NewsletterBundle\TestListener
-        tags:
-            - { name: kernel.event_listener, event: hanzo.test, method: onTest }
-
     newsletterapi:
         class: %newsletterapi.class%
         arguments: [@mail_manager]
