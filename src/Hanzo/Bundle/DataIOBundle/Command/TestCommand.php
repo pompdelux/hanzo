@@ -38,8 +38,67 @@ class TestCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:dataio:test')
             ->setDescription('For testing')
-        ;
+            ;
     }
+
+
+    /**
+     * -------------------------------------------------------------------->
+     */
+    /**
+     * buildRequest
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function buildRequest()
+    {
+        $username = 'pompdelux_dk';
+        $token = 'c4bfaa0026f352e13aab064ea623e6cec3703e64';
+        $email = 'hf+mailplatform@bellcom.dk';
+
+        $xml = '<?xml version="1.0" encoding="UTF-8" ?>
+<xmlrequest>
+    <username>'.$username.'</username>
+    <usertoken>'.$token.'</usertoken>
+    <requesttype>subscribers</requesttype>
+    <requestmethod>GetSubscribers</requestmethod>
+    <details>
+        <searchinfo>
+            <Email>
+                <exactly>true</exactly>
+                <data>'.$email.'</data>
+            </Email>
+        </searchinfo>
+    </details>
+</xmlrequest>';
+        return $xml;
+    }
+
+    /**
+     * executeRequest
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function executeRequest($request)
+    {
+        $baseURL = 'http://client2.mailmailmail.net/';
+
+        $client = new \GuzzleHttp\Client( ['base_url' => $baseUrl] );
+
+        $response = $client->post('xml.php', ['body' => $request]);
+
+        //$ch = curl_init($application_URL .'/xml.php');
+        //curl_setopt($ch, CURLOPT_POST, 1);
+        //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+        //return curl_exec($ch);
+
+        return $response;
+    }
+
+    /**
+     * <--------------------------------------------------------------------
+     */
 
     /**
      * executes the job
@@ -50,31 +109,21 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-$xml = '<xmlrequest>
-  <username>[username]</username>
-  <usertoken>[token]</usertoken>
-  <requesttype>subscribers</requesttype>
-  <requestmethod>GetSubscriberDetails</requestmethod>
-  <details>
-  <emailaddress>hf+mailplatform@bellcom.dk</emailaddress>
-   </details>
- </xmlrequest>';
+        $request = $this->buildRequest();
+        $result  = $this->executeRequest($request);
+        $sxe = simplexml_load_string($result);
 
-$ch = curl_init($application_URL .'/xml.php');
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-$result = curl_exec($ch);
+        echo $sxe->status.PHP_EOL;
 
-//$stock = $this->getContainer()->get('stock');
-//$stock->check(123);
+        //$stock = $this->getContainer()->get('stock');
+        //$stock->check(123);
 
-return;
+        return;
 
         $redis = $this->getContainer()->get('pdl.phpredis.stock');
-//        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
-//        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
-//        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
 
         $stock = [];
         $redis->multi();
@@ -95,8 +144,8 @@ return;
                 ];
             }
         }
-print_r($stock);
-return;
+        print_r($stock);
+        return;
         foreach ($redis->exec() as $record) {
             $stock[$id] = [
                 'total' => 0,
@@ -117,19 +166,19 @@ return;
 
         print_r($stock);
 
-//        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
-//        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
-//        //print_r($soap->__getFunctions());
-//        //
-//
-//        $data = new \stdClass();
-//        $data->eOrderNumber = 1013569;
-//        $data->amount = -10.00;
-//        $data->initials = 'un';
-//        $result = $soap->SalesOrderCaptureOrRefund($data);
-//
-//
-//        print_r($result);
+        //        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
+        //        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
+        //        //print_r($soap->__getFunctions());
+        //        //
+        //
+        //        $data = new \stdClass();
+        //        $data->eOrderNumber = 1013569;
+        //        $data->amount = -10.00;
+        //        $data->initials = 'un';
+        //        $result = $soap->SalesOrderCaptureOrRefund($data);
+        //
+        //
+        //        print_r($result);
 
         // $accounts = GothiaAccountsQuery::create()
         //     ->find();
