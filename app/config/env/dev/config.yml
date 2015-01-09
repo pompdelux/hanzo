@@ -32,7 +32,7 @@ propel:
                 driver:     %database_driver%
                 user:       %database_user%
                 password:   %database_password%
-                dsn:        mysql:host=%database_host%;dbname=%database_name%
+                dsn:        mysql:host=%database_host%;dbname=%database_name%;charset=utf8
                 options:    {}
                 attributes: {}
             # use for testing replications or other multi db stuff
