@@ -52,8 +52,14 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $email = 'hf+mailplatform2@bellcom.dk';
+        $list_id = 1908;
         $mail = new MailPlatformProvider();
-        $mail->subscriberGet('hf+mailplatform@bellcom.dk');
+        // $mail->listsGet([]);
+        // $mail->subscriberAddToList($email, $list_id);
+        // $mail->subscriberDelete($email, $list_id);
+        $mail->subscriberGet($email);
+        // $mail->subscriberIsSubscribed($email, [$list_id]);
 
         //$stock = $this->getContainer()->get('stock');
         //$stock->check(123);
