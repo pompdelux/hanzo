@@ -30,6 +30,8 @@ use Hanzo\Model\Orders,
     Hanzo\Model\GothiaAccountsQuery
     ;
 
+use Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformProvider;
+
 use Exception;
 
 class TestCommand extends ContainerAwareCommand
@@ -41,66 +43,6 @@ class TestCommand extends ContainerAwareCommand
             ;
     }
 
-
-    /**
-     * -------------------------------------------------------------------->
-     */
-    /**
-     * buildRequest
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    protected function buildRequest()
-    {
-        $username = 'pompdelux_dk';
-        $token = 'c4bfaa0026f352e13aab064ea623e6cec3703e64';
-        $email = 'hf+mailplatform@bellcom.dk';
-
-        $xml = '<?xml version="1.0" encoding="UTF-8" ?>
-<xmlrequest>
-    <username>'.$username.'</username>
-    <usertoken>'.$token.'</usertoken>
-    <requesttype>subscribers</requesttype>
-    <requestmethod>GetSubscribers</requestmethod>
-    <details>
-        <searchinfo>
-            <Email>
-                <exactly>true</exactly>
-                <data>'.$email.'</data>
-            </Email>
-        </searchinfo>
-    </details>
-</xmlrequest>';
-        return $xml;
-    }
-
-    /**
-     * executeRequest
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    protected function executeRequest($request)
-    {
-        $baseURL = 'http://client2.mailmailmail.net/';
-
-        $client = new \GuzzleHttp\Client( ['base_url' => $baseUrl] );
-
-        //$ch = curl_init($application_URL .'/xml.php');
-        //curl_setopt($ch, CURLOPT_POST, 1);
-        //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        //return curl_exec($ch);
-
-
-        $response = $client->post('xml.php', ['body' => $request]);
-
-        return $response;
-    }
-
-    /**
-     * <--------------------------------------------------------------------
-     */
-
     /**
      * executes the job
      *
@@ -110,11 +52,8 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $request = $this->buildRequest();
-        $result  = $this->executeRequest($request);
-        $sxe = simplexml_load_string($result);
-
-        echo $sxe->status.PHP_EOL;
+        $mail = new MailPlatformProvider();
+        $mail->subscriberGet('hf+mailplatform@bellcom.dk');
 
         //$stock = $this->getContainer()->get('stock');
         //$stock->check(123);
