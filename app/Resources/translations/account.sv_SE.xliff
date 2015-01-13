@@ -564,14 +564,14 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-evenemang. Shoppinglistan sparas automatiskt.</p>
+                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-arrangemang. Shoppinglistan sparas automatiskt.</p>
                     <ul>
                         <li>Klicka på ”Min shoppinglista” Din lista får ett unikt nummer som din Shopping Advisor sedan använder.</li>
                         <li>Lägg till de plagg du vill köpa.</li>
                         <li>Ge shoppinglistans nummer till din Shopping Advisor så behandlar han/hon din beställning.</li>
-                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en beställningsbekräftelse.</li>
+                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en orderbekräftelse.</li>
                     </ul>
-                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
+                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en ordrebekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -596,7 +596,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+                <target><![CDATA[Shoppinglista Nr: <span>%number%</span>]]></target>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
