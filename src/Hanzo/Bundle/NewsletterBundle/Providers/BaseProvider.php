@@ -4,7 +4,6 @@ namespace Hanzo\Bundle\NewsletterBundle\Providers;
 
 abstract class BaseProvider
 {
-
     /**
      * subscriberCreate
      *
@@ -104,5 +103,5 @@ abstract class BaseProvider
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    abstract public function listsGet($params);
+    abstract public function listsGet(Array $params = []);
 }
