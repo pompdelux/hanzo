@@ -174,6 +174,7 @@ class AdvisorController extends CoreController
             $info   = $record['info'];
             $avatar = '';
             $matches = [];
+            $fallBackAvatarSet = false;
 
             // Sometimes the info field will contain extra junk (aka html), so this might break
             if ($type == 'hus') {
@@ -182,6 +183,7 @@ class AdvisorController extends CoreController
                 // do we need a fallback avatar ?
                 if (empty($matches[0])) {
                     $matches[0] = '<img src="'.$cdn.'/images/debitorDK/JohnDoe.jpg" width="100" height="75">';
+                    $fallBackAvatarSet = true;
                 }
 
                 $avatar = $matches[0];
@@ -189,7 +191,11 @@ class AdvisorController extends CoreController
             }
 
             $info = str_replace('src="/', 'src="' . $cdn, $info);
-            $avatar = str_replace('src="/', 'src="' . $cdn, $avatar);
+            // Url allready contains cdn if true
+            if ($fallBackAvatarSet === false)
+            {
+                $avatar = str_replace('src="/', 'src="' . $cdn, $avatar);
+            }
 
             if ($info == 'null') {
                 $info = '';
