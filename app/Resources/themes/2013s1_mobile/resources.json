@@ -52,6 +52,7 @@
         "web/fx/scripts/newsletter.js",
         "web/fx/scripts/events.js",
         "web/fx/2013s1_mobile/scripts/checkout.js",
+        "web/fx/scripts/mailplatform.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
         "web/fx/scripts/App.WishlistBuilder.js",

@@ -67,6 +67,7 @@
         "web/fx/scripts/rma.js",
         "web/fx/scripts/jquery.placeholder-enhanced.min.js",
         "web/fx/scripts/oldie.js",
+        "web/fx/scripts/mailplatform.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
         "web/fx/scripts/App.WishlistBuilder.js",
