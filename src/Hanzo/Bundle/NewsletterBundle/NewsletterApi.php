@@ -16,8 +16,6 @@ class NewsletterApi
 {
     protected $domainKey   = null;
     protected $mailer      = null;
-    protected $phplistUrl  = null;
-    protected $httpReferer = null;
     protected $provider    = null;
     protected $cache       = null;
 
@@ -31,8 +29,6 @@ class NewsletterApi
         // TODO: priority: low, hardcoded vars
         $this->mailer      = $mailer;
         $this->domainKey   = Hanzo::getInstance()->get('core.domain_key');
-        $this->phplistUrl  = 'http://phplist.pompdelux.dk/';
-        $this->httpReferer = 'http://www.pompdelux.dk/';
         $this->provider    = $provider;
         $this->cache       = $cache;
     }
@@ -50,12 +46,15 @@ class NewsletterApi
 
     /**
      * subscribe
+     *
      * @param string $email An valid e-mail
      * @param mixed $listid int or array of int's accepted
+     * @param array $extraData contains data about the subscriber
+     *
      * @return stdClass
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function subscribe( $email, $list_id  )
+    public function subscribe( $email, $list_id, Array $extraData = [] )
     {
         if (is_array($list_id))
         {
@@ -63,7 +62,10 @@ class NewsletterApi
             $list_id = array_shift($list_id);
         }
 
-        $response = $this->provider->subscriberCreate($email, $list_id);
+        // Map external data to something the provider understands
+        $params = $this->mapExtraDataToProvider($extraData);
+
+        $response = $this->provider->subscriberCreate($email, $list_id, $params);
 
         // Wrap response in something the rest of the system expects
         $combatibleResponse               = new \stdClass();
@@ -225,6 +227,49 @@ class NewsletterApi
         $this->cache->set($cache_id, $combatibleResponse);
 
         return $combatibleResponse;
+    }
+
+    /**
+     * mapExtraDataToProvider
+     *
+     * @param array $data
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function mapExtraDataToProvider($data)
+    {
+        $params = [];
+
+        $knownFields = [
+            'name'     => 1,
+            'shoesize' => 2,
+            ];
+
+        /**
+         * Create a array looking like this:
+         *
+         * $params = [
+         *     'customfields' => [
+         *         'item' => [
+         *             ['2', 'tester'],
+         *             ['3', 'tester'],
+         *         ]
+         *         ],
+         *     ];
+         *
+         *  The first element in item is the field id in MailPlatform, the other is the value
+         *
+         */
+        foreach ($knownFields as $fieldName => $fieldId)
+        {
+            if (isset($data[$fieldName]))
+            {
+                $params['customfields']['item'][] = [$fieldId, $data[$fieldName]];
+            }
+        }
+
+        return $params;
     }
 
 } // END class NewsletterApi
