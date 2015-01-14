@@ -66,10 +66,10 @@ class NewsletterApi
         $response = $this->provider->subscriberCreate($email, $list_id);
 
         // Wrap response in something the rest of the system expects
-        $combatibleResponse = new \stdClass();
-        $combatibleResponse->is_error = $response->isError();
-        $combatibleResponse->content = new \stdClass();
-        $combatibleResponse->content->msg = 'ok';
+        $combatibleResponse               = new \stdClass();
+        $combatibleResponse->is_error     = $response->isError();
+        $combatibleResponse->content      = new \stdClass();
+        $combatibleResponse->content->msg = $response->isError() ? $response->getErrorMessage() : 'ok';
 
         return $combatibleResponse;
     }
@@ -93,10 +93,10 @@ class NewsletterApi
         $response = $this->provider->subscriberDelete($email, $list_id);
 
         // Wrap response in something the rest of the system expects
-        $combatibleResponse = new \stdClass();
-        $combatibleResponse->is_error = $response->isError();
-        $combatibleResponse->content = new \stdClass();
-        $combatibleResponse->content->msg = 'ok';
+        $combatibleResponse               = new \stdClass();
+        $combatibleResponse->is_error     = $response->isError();
+        $combatibleResponse->content      = new \stdClass();
+        $combatibleResponse->content->msg = $response->isError() ? $response->getErrorMessage() : 'ok';
 
         return $combatibleResponse;
     }
@@ -186,10 +186,10 @@ class NewsletterApi
         $data = $response->getData();
 
         // Wrap response in something the rest of the system expects
-        $combatibleResponse = new \stdClass();
-        $combatibleResponse->is_error = $response->isError();
-        $combatibleResponse->content = new \stdClass();
-        $combatibleResponse->content->msg = 'ok';
+        $combatibleResponse                 = new \stdClass();
+        $combatibleResponse->is_error       = $response->isError();
+        $combatibleResponse->content        = new \stdClass();
+        $combatibleResponse->content->msg   = $response->isError() ? $response->getErrorMessage() : 'ok';
         $combatibleResponse->content->lists = [];
 
         foreach ($data['list_info'] as $list)
