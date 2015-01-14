@@ -8,6 +8,7 @@ abstract class BaseResponse
     const REQUEST_UNKNOWN_RESPONSE = 400;
     const REQUEST_NOT_FOUND        = 404;
     const REQUEST_FAILED           = 500;
+    const REQUEST_ERROR_IN_RETURN  = 501;
 
     /**
      * Is the response a success or an error, and if so, what type of error
