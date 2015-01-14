@@ -52,13 +52,35 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $email = 'hf+mailplatform2@bellcom.dk';
+        $email = 'hf+mailplatform@bellcom.dk';
         $list_id = 1908;
-        $mail = new MailPlatformProvider();
-        // $mail->listsGet([]);
+
+        $api = $this->getContainer()->get('newsletterapi');
+        // $response = $api->getAllLists($email);
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        $response = $api->subscribe($email, $list_id);
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        $response = $api->unsubscribe($email, 'ALL');
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        // $list_id = 1802;
+        // $mail = new MailPlatformProvider();
+        // $response = $mail->listsGet();
         // $mail->subscriberAddToList($email, $list_id);
         // $mail->subscriberDelete($email, $list_id);
-        $mail->subscriberGet($email);
+        /*
+         * $params = [
+         *     'customfields' => [
+         *         'item' => [
+         *             ['2', 'tester'],
+         *             ['3', 'tester'],
+         *         ]
+         *         ],
+         *     ];
+         */
+        // $response = $mail->subscriberCreate($email, $list_id, $params);
+        // $response = $mail->subscriberGet($email);
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response->getData(), 1)); // hf@bellcom.dk debugging
         // $mail->subscriberIsSubscribed($email, [$list_id]);
 
         //$stock = $this->getContainer()->get('stock');
