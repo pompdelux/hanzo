@@ -85,7 +85,6 @@ class MailPlatformRequest
     public function execute()
     {
         $requestData = $this->buildRequest();
-        error_log(__LINE__.':'.__FILE__.' '.$requestData); // hf@bellcom.dk debugging
         $request = $this->client->post($this->query);
         $request->setBody($requestData);
         $rawResponse = $request->send();
