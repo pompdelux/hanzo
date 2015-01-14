@@ -184,7 +184,7 @@
             </trans-unit>
             <trans-unit id="events.type.label">
                 <source>events.type.label</source>
-                <target>Typpi</target>
+                <target>Tyyppi</target>
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>

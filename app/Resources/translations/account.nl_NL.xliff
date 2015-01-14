@@ -455,10 +455,10 @@ Wil je een artikel retourneren of ruilen , klik dan op het icoontje naast je bes
 Retourneer je een artikel omdat je het wilt ruilen of heb je een verkeerd artikel ontvangen, stuur dan het artikel terug en we zullen je een nieuw artikel zenden – voor jou is dit natuurlijk gratis. Is het artikel inmiddels uitverkocht, dan betalen we je de prijs van het artikel terug. Meer informatie vind je onder onze Algemene Voorwaarden.
 <br><br>
       <b>Retourformulier</b><br>
-      Kun je het artikel dat je wilt terugsturen niet vinden op het interactieve retourformulier, dan kun je hier op de link klikken en het retourformulier handmatig printen. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf">» Retourformulier (PDF)</a>
+      Kun je het artikel dat je wilt terugsturen niet vinden op het interactieve retourformulier, dan kun je hier op de link klikken en het retourformulier handmatig printen. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">» Retourformulier (PDF)</a>
       <br><br>
       <b>Retourlabel</b><br>
-      Klik op het icoontje naast je bestelling om een retourlabel te printen. Als je ons retourlabel gebruikt, dan trekken we slechts €7,00  van de waarde van de geretourneerde artikelen af. Het retourlabel opent in een nieuw venster. </p>  ]]></target>
+      Klik op het icoontje naast je bestelling om een retourlabel te printen. Als je ons retourlabel gebruikt, dan trekken we slechts €7,00  van de waarde van de geretourneerde artikelen af. Het <a href="https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140" target="_blank">retourlabel</a> opent in een nieuw venster. </p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter">
                 <source>newsletter</source>
