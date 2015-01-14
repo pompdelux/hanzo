@@ -176,10 +176,12 @@ class MailPlatformProvider extends BaseProvider
         $baseUrl = 'http://client2.mailmailmail.net';
         $query   = 'xml.php';
 
+
         /*
          * $baseUrl = 'http://requestb.in';
-         * $query   = 'pagkqjpa';
+         * $query   = '1fcdfnk1';
          */
+
 
         $client   = new \Guzzle\Http\Client($baseUrl);
         $request  = new MailPlatformRequest($username, $token, $query, $client);
