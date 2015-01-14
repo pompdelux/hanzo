@@ -1,7 +1,10 @@
 parameters:
     newsletterapi.class: Hanzo\Bundle\NewsletterBundle\NewsletterApi
+    newsletterprovider.class: Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformProvider
 
 services:
     newsletterapi:
         class: %newsletterapi.class%
-        arguments: [@mail_manager]
+        arguments: [@mail_manager, @newsletterprovider, @pdl.phpredis.main]
+    newsletterprovider:
+        class: %newsletterprovider.class%
