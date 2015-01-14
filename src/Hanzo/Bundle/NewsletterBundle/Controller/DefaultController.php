@@ -149,7 +149,9 @@ class DefaultController extends CoreController
             }
         }
 
-        $result = $api->subscribe($email, $active);
+        $extraData = ['name' => $name];
+
+        $result = $api->subscribe($email, $active, $extraData);
         $api->sendNotificationEmail('subscribe', $email, $name);
 
         return $this->json_response([
