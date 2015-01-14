@@ -2,15 +2,14 @@
 
 namespace Hanzo\Bundle\NewsletterBundle\Providers;
 
-use Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformRequest,
-    Guzzle\Http\Client;
+use Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformRequest
     ;
 
 class MailPlatformProvider extends BaseProvider
 {
     public function subscriberCreate($subscriber_id, $list_id, Array $params = [])
     {
-        $this->subscriberAddToList($subscriber_id, $list_id, $params);
+        return $this->subscriberAddToList($subscriber_id, $list_id, $params);
     }
 
     public function subscriberUpdate($subscriber_id, $list_id, Array $params = [])
@@ -31,24 +30,30 @@ class MailPlatformProvider extends BaseProvider
         $requestBody = $this->getOptionalParams($optionalParams, $params, $requestBody);
 
         $request->body = $requestBody;
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
-    public function subscriberDelete($subscriber_id, $list_id)
+    public function subscriberDelete($subscriber_id, $list_id = false)
     {
         $request         = $this->getRequest();
         $request->type   = 'subscribers';
         $request->method = 'delete';
-        $request->body   = [
+
+        if ($list_id === false)
+        {
+            $list_id = '';
+        }
+
+        $requestBody = [
             'details' => [
                 'emailaddress' => $subscriber_id,
                 'listid'       => $list_id,
                 ],
         ];
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        $request->body = $requestBody;
+
+        return $request->execute();
     }
 
     public function subscriberGet($subscriber_id)
@@ -61,17 +66,8 @@ class MailPlatformProvider extends BaseProvider
                 'emailaddress' => $subscriber_id,
                 ],
         ];
-        /*
-         * $request->method = 'GetSubscribers';
-         * $request->body   = [
-         *     'details' => [
-         *         'searchinfo' => [ 'Email' => [ 'data' => $subscriber_id, 'exactly' => true ] ]
-         *         ],
-         * ];
-         */
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
     public function subscriberActivate($subscriber_id, $list_id)
@@ -88,8 +84,7 @@ class MailPlatformProvider extends BaseProvider
         $request->method = 'listid';
         $request->body   = $requestBody;
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
     public function subscriberIsSubscribed($subscriber_id, Array $list_ids)
@@ -112,8 +107,7 @@ class MailPlatformProvider extends BaseProvider
         $request->method = 'IsSubscriberOnList';
         $request->body   = $requestBody;
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
     public function subscriberAddToList($subscriber_id, $list_id, $params = [])
@@ -136,8 +130,7 @@ class MailPlatformProvider extends BaseProvider
         $request->method = 'AddSubscriberToList';
         $request->body   = $requestBody;
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
     public function subscriberGetSubscribedLists($subscriber_id)
@@ -151,11 +144,10 @@ class MailPlatformProvider extends BaseProvider
                 ],
         ];
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
-    public function listsGet($params)
+    public function listsGet(Array $params = [])
     {
         $request         = $this->getRequest();
         $request->type   = 'lists';
@@ -171,10 +163,9 @@ class MailPlatformProvider extends BaseProvider
 
         $requestBody = $this->getOptionalParams($optionalParams, $params, $requestBody);
 
-        $request->body   = $requestBody;
+        $request->body = $requestBody;
 
-        $response = $request->execute();
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response->xml(), 1)); // hf@bellcom.dk debugging
+        return $request->execute();
     }
 
     protected function getRequest()
@@ -182,10 +173,17 @@ class MailPlatformProvider extends BaseProvider
         // FIXME:
         $username = 'pompdelux_dk';
         $token    = 'c4bfaa0026f352e13aab064ea623e6cec3703e64';
-        $url      = 'http://client2.mailmailmail.net/';
-        // $url ='http://requestb.in/';
-        $client   = new Client($url);
-        $request = new MailPlatformRequest($username, $token, $url, $client);
+        $baseUrl = 'http://client2.mailmailmail.net';
+        $query   = 'xml.php';
+
+        /*
+         * $baseUrl = 'http://requestb.in';
+         * $query   = 'pagkqjpa';
+         */
+
+        $client   = new \Guzzle\Http\Client($baseUrl);
+        $request  = new MailPlatformRequest($username, $token, $query, $client);
+
         //$request = $this->container->get('MailPlatformRequest');
 
         return $request;
@@ -193,11 +191,11 @@ class MailPlatformProvider extends BaseProvider
 
     protected function getOptionalParams($optionalParams, $params, $requestBody)
     {
-        foreach($optionalParams as $index => $value)
+        foreach ($optionalParams as $fieldName)
         {
-            if (isset($params[$index]))
+            if (isset($params[$fieldName]))
             {
-                $requestBody['details'][$index] = $value;
+                $requestBody['details'][$fieldName] = $params[$fieldName];
             }
         }
 

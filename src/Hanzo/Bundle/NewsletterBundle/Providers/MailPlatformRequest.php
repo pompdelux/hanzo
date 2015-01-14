@@ -19,11 +19,11 @@ class MailPlatformRequest
     protected $token;
 
     /**
-     * MailPlatform base url
+     * MailPlatform query
      *
      * @var string
      */
-    protected $url;
+    protected $query;
 
     /**
      * Request type
@@ -55,11 +55,11 @@ class MailPlatformRequest
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    public function __construct($username, $token, $url, $client)
+    public function __construct($username, $token, $query, $client)
     {
         $this->username = $username;
         $this->token    = $token;
-        $this->url      = $url;
+        $this->query    = $query;
         $this->client   = $client;
     }
 
@@ -84,12 +84,16 @@ class MailPlatformRequest
 
     public function execute()
     {
-        xdebug_break();
         $requestData = $this->buildRequest();
-        // $request = $this->client->post('1gpjt4v1',['Content-Type' => 'text/xml; charset=UTF8']);
-        $request = $this->client->post('xml.php');
+        error_log(__LINE__.':'.__FILE__.' '.$requestData); // hf@bellcom.dk debugging
+        $request = $this->client->post($this->query);
         $request->setBody($requestData);
-        return $request->send();
+        $rawResponse = $request->send();
+
+        $parser = new MailPlatformResponseParser($rawResponse, $this);
+        $response = $parser->parse();
+
+        return $response;
     }
 
     /**
@@ -101,24 +105,56 @@ class MailPlatformRequest
      */
     protected function arrayToXML($params, &$xml)
     {
+        /**
+         * As we can't use use the same key multiple times in an array, only the values are defined and then matched against this variable
+         * So we loop over the field, e.g. 'customfields', and count how many sub elements ('item') it contains
+         * For each of those sub elements a new xml child is added, and then looped over again
+         *
+         */
+        $multipleValueFields = ['customfields' => ['item' => ['fieldid','value']]];
+
         foreach($params as $key => $value)
         {
-            if (is_array($value))
+            if (isset($multipleValueFields[$key]))
             {
-                if (!is_numeric($key))
+                $subnode = $xml->addChild($key);
+
+                foreach ($params[$key] as $subKey => $subFields)
                 {
-                    $subnode = $xml->addChild("$key");
-                    $this->arrayToXML($value, $subnode);
-                }
-                else
-                {
-                    $subnode = $xml->addChild("item$key");
-                    $this->arrayToXML($value, $subnode);
+                    $subFieldCount = count($params[$key][$subKey]);
+
+                    for ($i = 0; $i < $subFieldCount; $i++)
+                    {
+                        $subsubnode = $subnode->addChild($subKey);
+
+                        foreach ($subFields as $index => $subsubField)
+                        {
+                            $fieldName = $multipleValueFields[$key][$subKey][$index];
+
+                            $subsubnode->addChild($fieldName,$subsubField[$index]);
+                        }
+                    }
                 }
             }
             else
             {
-                $xml->addChild("$key",htmlspecialchars("$value"));
+                if (is_array($value))
+                {
+                    if (!is_numeric($key))
+                    {
+                        $subnode = $xml->addChild("$key");
+                        $this->arrayToXML($value, $subnode);
+                    }
+                    else
+                    {
+                        $subnode = $xml->addChild("item$key");
+                        $this->arrayToXML($value, $subnode);
+                    }
+                }
+                else
+                {
+                    $xml->addChild("$key",htmlspecialchars("$value"));
+                }
             }
         }
     }
