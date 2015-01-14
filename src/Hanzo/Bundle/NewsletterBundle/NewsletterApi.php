@@ -2,8 +2,9 @@
 
 namespace Hanzo\Bundle\NewsletterBundle;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools
+    ;
 
 /**
  * undocumented class
@@ -13,23 +14,27 @@ use Hanzo\Core\Tools;
  **/
 class NewsletterApi
 {
-    protected $domainKey       = null;
-    protected $mailer          = null;
-    protected $phplistUrl      = null;
-    protected $httpReferer     = null;
+    protected $domainKey   = null;
+    protected $mailer      = null;
+    protected $phplistUrl  = null;
+    protected $httpReferer = null;
+    protected $provider    = null;
+    protected $cache       = null;
 
     /**
      * __construct
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct( $mailer )
+    public function __construct( $mailer, $provider, $cache )
     {
-        $this->mailer = $mailer;
-        $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
         // TODO: priority: low, hardcoded vars
-        $this->phplistUrl = 'http://phplist.pompdelux.dk/';
+        $this->mailer      = $mailer;
+        $this->domainKey   = Hanzo::getInstance()->get('core.domain_key');
+        $this->phplistUrl  = 'http://phplist.pompdelux.dk/';
         $this->httpReferer = 'http://www.pompdelux.dk/';
+        $this->provider    = $provider;
+        $this->cache       = $cache;
     }
 
     /**
@@ -39,26 +44,7 @@ class NewsletterApi
      **/
     public function sendNotificationEmail( $action, $email, $name = '' )
     {
-        switch ($action)
-        {
-            case 'subscribe':
-                $tpl = 'newsletter.subscribe';
-                break;
-            case 'unsubscribe':
-                $tpl = 'newsletter.unsubscribe';
-                break;
-            default:
-                return false;
-                break;
-        }
-
-        $this->mailer->setMessage($tpl, array(
-            'name'  => $name,
-            'email' => $email,
-        ));
-
-        $this->mailer->setTo( $email, $name );
-        $this->mailer->send();
+        // Deprecated as MailPlatform does this by it self
         return true;
     }
 
@@ -69,71 +55,50 @@ class NewsletterApi
      * @return stdClass
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function subscribe( $email, $listid  )
+    public function subscribe( $email, $list_id  )
     {
-        // Url is also hardcoded in NewsletterBundle:Default:js and in events.js
-
-        if (!is_array($listid)) {
-            $listid = [$listid];
+        if (is_array($list_id))
+        {
+            // Error, you can only subscribe to one mailing list at the time
+            $list_id = array_shift($list_id);
         }
 
-        $ids = '';
-        foreach ($listid as $id) {
-            $ids .= '&lists[]='.$id;
-        }
+        $response = $this->provider->subscriberCreate($email, $list_id);
 
-        $ch = curl_init( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.urlencode( $email ).$ids.'&_='.time() );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
-        $result = curl_exec($ch);
-        curl_close($ch);
+        // Wrap response in something the rest of the system expects
+        $combatibleResponse = new \stdClass();
+        $combatibleResponse->is_error = $response->isError();
+        $combatibleResponse->content = new \stdClass();
+        $combatibleResponse->content->msg = 'ok';
 
-        return $this->jsonp_decode( $result );
+        return $combatibleResponse;
     }
 
 
     public function unsubscribe($email, $list_id)
     {
-        if ($list_id == 'ALL') {
-            $lists = $this->getAllLists($email);
-            if (isset($lists->content->lists)) {
-                $list_id = array_keys($lists->content->lists);
+        if ($list_id === 'ALL')
+        {
+            $list_id = false;
+        }
+        else
+        {
+            if (is_array($list_id))
+            {
+                // Error, you can only subscribe to one mailing list at the time
+                $list_id = array_shift($list_id);
             }
         }
 
-        if (!is_array($list_id)) {
-            $list_id = [$list_id];
-        }
+        $response = $this->provider->subscriberDelete($email, $list_id);
 
-        $ids = '';
-        foreach ($list_id as $id) {
-            $ids .= '&lists[]='.$id;
-        }
+        // Wrap response in something the rest of the system expects
+        $combatibleResponse = new \stdClass();
+        $combatibleResponse->is_error = $response->isError();
+        $combatibleResponse->content = new \stdClass();
+        $combatibleResponse->content->msg = 'ok';
 
-        $ch = curl_init( $this->phplistUrl.'/integration/json.php?method=subscriptions:unsubscribe&email='.urlencode( $email ).$ids.'&_='.time() );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        return $this->jsonp_decode( $result );
-    }
-
-
-    /**
-     * jsonp_decode from http://felix-kling.de/blog/2011/01/11/php-and-jsonp/
-     *
-     * @param string $jsonp
-     * @param bool $assoc
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    protected function jsonp_decode($jsonp, $assoc = false) {
-        // PHP 5.3 adds "depth" as third parameter to json_decode
-        if($jsonp[0] !== '[' && $jsonp[0] !== '{') { // we have JSONP
-            $jsonp = substr($jsonp, strpos($jsonp, '('));
-        }
-        return json_decode(trim($jsonp,'();'), $assoc);
+        return $combatibleResponse;
     }
 
     /**
@@ -155,7 +120,7 @@ class NewsletterApi
         {
             case 'SalesDK':
             case 'DK':
-                $listid = 1;
+                $listid = 2002;
                 break;
             case 'COM':
                 $listid = 2;
@@ -195,44 +160,59 @@ class NewsletterApi
 
 
     public function getUserByEmail($email) {
-        $wsdl = 'http://phplist.bellcom.dk/integration/phplist.pompdelux.dk/wsdl';
-        $client = new \Soapclient( $wsdl );
-        return $client->getUserByEmail($email);
+        // Deprecated
+        return false;
     }
 
     public function getSubscriptionStateByEmail($email, $list_id)
     {
-        $user = $this->getUserByEmail($email);
-
-        if (is_array($user)) {
-            return in_array($list_id, $user['subscribedLists']);
-        }
-
+        // Deprecated
         return false;
     }
 
     public function getAllLists($email)
     {
-        $ch = curl_init( $this->phplistUrl.'/integration/json.php?'.http_build_query([
-            'method' => 'lists:get',
-            'email' => $email
-        ]));
+        // is_subscribed is not set, so $email is ignored
+        $cache_id = $this->cache->generateKey([__CLASS__,__FUNCTION__]);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $cacheResult = $this->cache->get($cache_id);
 
-        $result = $this->jsonp_decode($result);
-
-        if (empty($result)) {
-            $result = new \stdClass();
-            $result->content = new \stdClass();
-            $result->content->lists = [];
+        if (is_object($cacheResult))
+        {
+            return $cacheResult;
         }
 
+        $response = $this->provider->listsGet();
+        $data = $response->getData();
+
+        // Wrap response in something the rest of the system expects
+        $combatibleResponse = new \stdClass();
+        $combatibleResponse->is_error = $response->isError();
+        $combatibleResponse->content = new \stdClass();
+        $combatibleResponse->content->msg = 'ok';
+        $combatibleResponse->content->lists = [];
+
+        foreach ($data['list_info'] as $list)
+        {
+            $mapped                  = [];
+            $mapped['id']            = $list['listid'];
+            $mapped['name']          = $list['name'];
+            $mapped['description']   = $list['name'];
+            $mapped['entered']       = date('Y-m-d H:i:s', $list['createdate']);
+            $mapped['listorder']     = 0;
+            $mapped['prefix']        = '';
+            $mapped['rssfeed']       = '';
+            $mapped['modified']      = date('Y-m-d H:i:s', $list['createdate']);
+            $mapped['active']        = 1;
+            $mapped['owner']         = $list['ownerid'];
+            $mapped['is_subscribed'] = false;
+
+            $combatibleResponse->content->lists[] = (object)$mapped;
+        }
+
+        // Why is this needed?
         $reindexed = [];
-        foreach ($result->content->lists as $index => $list) {
+        foreach ($combatibleResponse->content->lists as $list) {
             if ('pdl_' == substr(strtolower($list->name), 0, 4)) {
                 continue;
             }
@@ -240,8 +220,11 @@ class NewsletterApi
             $reindexed[$list->id] = $list;
         }
 
-        $result->content->lists = $reindexed;
-        return $result;
+        $combatibleResponse->content->lists = $reindexed;
+
+        $this->cache->set($cache_id, $combatibleResponse);
+
+        return $combatibleResponse;
     }
 
 } // END class NewsletterApi
