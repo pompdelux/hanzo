@@ -54,14 +54,17 @@ class TestCommand extends ContainerAwareCommand
     {
         $email = 'hf+mailplatform@bellcom.dk';
         $list_id = 1908;
+        $extraData = ['name' => 'tester', 'shoesize' => 45];
 
         $api = $this->getContainer()->get('newsletterapi');
         // $response = $api->getAllLists($email);
         // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
-        $response = $api->subscribe($email, $list_id);
+        $response = $api->subscribe($email, $list_id, $extraData);
         error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
-        $response = $api->unsubscribe($email, 'ALL');
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        // $response = $api->subscribe($email, $list_id);
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        // $response = $api->unsubscribe($email, 'ALL');
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
         // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
         // $list_id = 1802;
         // $mail = new MailPlatformProvider();
