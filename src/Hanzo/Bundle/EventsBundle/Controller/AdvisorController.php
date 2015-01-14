@@ -173,7 +173,9 @@ class AdvisorController extends CoreController
         foreach ($result as $record) {
             $info   = $record['info'];
             $avatar = '';
+            $matches = [];
 
+            // Sometimes the info field will contain extra junk (aka html), so this might break
             if ($type == 'hus') {
                 preg_match('/\<img[^>]+\>/', $info, $matches);
 
@@ -187,6 +189,7 @@ class AdvisorController extends CoreController
             }
 
             $info = str_replace('src="/', 'src="' . $cdn, $info);
+            $avatar = str_replace('src="/', 'src="' . $cdn, $avatar);
 
             if ($info == 'null') {
                 $info = '';
@@ -253,7 +256,7 @@ class AdvisorController extends CoreController
                     continue;
                 }
 
-                foreach ($items as $j => $event) {
+                foreach ($items as $event) {
                     $data[$consultantId]['events'][] = $event;
                 }
 
