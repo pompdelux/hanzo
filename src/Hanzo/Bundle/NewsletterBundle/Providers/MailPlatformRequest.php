@@ -120,17 +120,18 @@ class MailPlatformRequest
 
                 foreach ($params[$key] as $subKey => $subFields)
                 {
-                    $subFieldCount = count($params[$key][$subKey]);
+                    $subFieldCount = count($subFields);
 
+                    // Adds one "item" element pr. fieldid/value group
                     for ($i = 0; $i < $subFieldCount; $i++)
                     {
                         $subsubnode = $subnode->addChild($subKey);
 
-                        foreach ($subFields as $index => $subsubField)
+                        // Add item[$i] elements
+                        foreach ($subFields[$i] as $subsubFieldKey => $subsubField)
                         {
-                            $fieldName = $multipleValueFields[$key][$subKey][$index];
-
-                            $subsubnode->addChild($fieldName,$subsubField[$index]);
+                            $fieldName = $multipleValueFields[$key][$subKey][$subsubFieldKey];
+                            $subsubnode->addChild($fieldName,$subsubField);
                         }
                     }
                 }
