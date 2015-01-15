@@ -634,6 +634,12 @@ Därefter kan du enkelt shoppa vidare.<br></p>
                 <source>wishlist.all.items.deleted</source>
                 <target>Alla varor är nu borttagna från din shoppinglista.</target>
             </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>HUSK!</strong> Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
