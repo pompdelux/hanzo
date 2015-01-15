@@ -117,7 +117,6 @@ class NewsletterApi
     {
         $listid = 0;
 
-        // TODO: priority: low, hardcoded vars
         switch ($this->domainKey)
         {
             case 'SalesDK':
@@ -125,35 +124,35 @@ class NewsletterApi
                 $listid = 2002;
                 break;
             case 'COM':
-                $listid = 2;
+                $listid = 2056;
                 break;
             case 'SalesSE':
             case 'SE':
-                $listid = 4;
+                $listid = 2054;
                 break;
             case 'SalesNO':
             case 'NO':
-                $listid = 5;
+                $listid = 2053;
                 break;
             case 'SalesNL':
             case 'NL':
-                $listid = 20;
+                $listid = 2048;
                 break;
             case 'SalesFI':
             case 'FI':
-                $listid = 30;
+                $listid = 2047;
                 break;
             case 'SalesDE':
             case 'DE':
-                $listid = 53;
+                $listid = 2045;
                 break;
             case 'SalesAT':
             case 'AT':
-                $listid = 54;
+                $listid = 2042;
                 break;
             case 'SalesCH':
             case 'CH':
-                $listid = 55;
+                $listid = 2044;
                 break;
         }
 
@@ -175,7 +174,7 @@ class NewsletterApi
     public function getAllLists($email)
     {
         // is_subscribed is not set, so $email is ignored
-        $cache_id = $this->cache->generateKey([__CLASS__,__FUNCTION__]);
+        $cache_id = $this->cache->generateKey([__METHOD__]);
 
         $cacheResult = $this->cache->get($cache_id);
 
@@ -241,13 +240,36 @@ class NewsletterApi
     {
         $params = [];
 
+        // TODO: Dropdown/date is not supported as it requires a sub key element
+        // see http://mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=Update
+
+        // Comment is: fieldtype, fieldname, description of content
         $knownFields = [
-            'name'     => 1,
-            'shoesize' => 2,
+            'title'           => 1,   // dropdown, Title,
+            'first_name'      => 2,   // text, First Name
+            'last_name'       => 3,   // text, Last Name
+            'phone'           => 4,   // text, Phone
+            'mobile'          => 5,   // text, Mobile
+            'fax'             => 6,   // text, Fax
+            'birthdate'       => 7,   // date, Birth Date
+            'city'            => 8,   // text, City
+            'state'           => 9,   // text, State
+            'zip_code'        => 10,  // text, Postal/Zip Code
+            'country'         => 11,  // dropdown, Country
+            'name'            => 944, // txt, Navn
+            'barn_1'          => 939, // radiobutton, Barn 1, pige/dreng
+            'barn_1_bday'     => 933, // date, Barn 1 fødselsdag
+            'barn_2'          => 940, // radiobutton, Barn 1, pige/dreng
+            'barn_2_bday'     => 937, // date, Barn 1 fødselsdag
+            'barn_3'          => 938, // radiobutton, Barn 3, pige/dreng
+            'barn_3_bday'     => 941, // date, Barn 3 fødselsdag
+            'barn_4'          => 942, // radiobutton, Barn 3, pige/dreng
+            'barn_4_bday'     => 943, // date, Barn 3 fødselsdag
+            'email_frequency' => 921, // radiobutton, Email frequency
             ];
 
         /**
-         * Create a array looking like this:
+         * Creates an array that looks like this:
          *
          * $params = [
          *     'customfields' => [
