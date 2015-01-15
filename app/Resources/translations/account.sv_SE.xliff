@@ -608,7 +608,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Skicka Shoppinglistan till någon du känner</target>
+                <target>Sänd listan til någon du känner</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
