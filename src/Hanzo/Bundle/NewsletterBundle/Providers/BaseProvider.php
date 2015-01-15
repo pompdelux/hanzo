@@ -81,7 +81,7 @@ abstract class BaseProvider
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    abstract public function subscriberAddToList($subscriber_id, $list_id, $params = []);
+    abstract public function subscriberAddToList($subscriber_id, $list_id, Array $params = []);
 
     /**
      * subscriberGetSubscribedLists
