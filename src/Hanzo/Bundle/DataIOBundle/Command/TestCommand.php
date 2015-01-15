@@ -52,9 +52,14 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $email = 'hf+mailplatform@bellcom.dk';
+        $email = 'hf+mailplatform5@bellcom.dk';
         $list_id = 1908;
-        $extraData = ['name' => 'tester', 'shoesize' => 45];
+        $extraData = [
+            'name'   => 'My name',
+            'phone'  => 12345678,
+            'mobile' => 87654321,
+            'city'   => 'My city',
+        ];
 
         $api = $this->getContainer()->get('newsletterapi');
         // $response = $api->getAllLists($email);
@@ -63,14 +68,13 @@ class TestCommand extends ContainerAwareCommand
         error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
         // $response = $api->subscribe($email, $list_id);
         // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+
         // $response = $api->unsubscribe($email, 'ALL');
         // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
-        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+
         // $list_id = 1802;
-        // $mail = new MailPlatformProvider();
         // $response = $mail->listsGet();
-        // $mail->subscriberAddToList($email, $list_id);
-        // $mail->subscriberDelete($email, $list_id);
+
         /*
          * $params = [
          *     'customfields' => [
@@ -81,10 +85,15 @@ class TestCommand extends ContainerAwareCommand
          *         ],
          *     ];
          */
-        // $response = $mail->subscriberCreate($email, $list_id, $params);
-        // $response = $mail->subscriberGet($email);
-        // error_log(__LINE__.':'.__FILE__.' '.print_r($response->getData(), 1)); // hf@bellcom.dk debugging
-        // $mail->subscriberIsSubscribed($email, [$list_id]);
+
+        /*
+         * $mail = new MailPlatformProvider();
+         * $response = $mail->subscriberGet($email);
+         * $data     = $response->getData();
+         * $ext_id   = $data['list_info'][$list_id]['subscriberid'];
+         * $response = $mail->loadCustomFields($ext_id);
+         * error_log(__LINE__.':'.__FILE__.' '.print_r($response->getData(), 1)); // hf@bellcom.dk debugging
+         */
 
         //$stock = $this->getContainer()->get('stock');
         //$stock->check(123);
