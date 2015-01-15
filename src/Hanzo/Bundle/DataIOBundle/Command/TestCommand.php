@@ -30,6 +30,8 @@ use Hanzo\Model\Orders,
     Hanzo\Model\GothiaAccountsQuery
     ;
 
+use Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformProvider;
+
 use Exception;
 
 class TestCommand extends ContainerAwareCommand
@@ -38,7 +40,7 @@ class TestCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:dataio:test')
             ->setDescription('For testing')
-        ;
+            ;
     }
 
     /**
@@ -50,16 +52,58 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $email = 'hf+mailplatform5@bellcom.dk';
+        $list_id = 1908;
+        $extraData = [
+            'name'   => 'My name',
+            'phone'  => 12345678,
+            'mobile' => 87654321,
+            'city'   => 'My city',
+        ];
 
-$stock = $this->getContainer()->get('stock');
-$stock->check(123);
+        $api = $this->getContainer()->get('newsletterapi');
+        // $response = $api->getAllLists($email);
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        $response = $api->subscribe($email, $list_id, $extraData);
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        // $response = $api->subscribe($email, $list_id);
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
 
-return;
+        // $response = $api->unsubscribe($email, 'ALL');
+        // error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+
+        // $list_id = 1802;
+        // $response = $mail->listsGet();
+
+        /*
+         * $params = [
+         *     'customfields' => [
+         *         'item' => [
+         *             ['2', 'tester'],
+         *             ['3', 'tester'],
+         *         ]
+         *         ],
+         *     ];
+         */
+
+        /*
+         * $mail = new MailPlatformProvider();
+         * $response = $mail->subscriberGet($email);
+         * $data     = $response->getData();
+         * $ext_id   = $data['list_info'][$list_id]['subscriberid'];
+         * $response = $mail->loadCustomFields($ext_id);
+         * error_log(__LINE__.':'.__FILE__.' '.print_r($response->getData(), 1)); // hf@bellcom.dk debugging
+         */
+
+        //$stock = $this->getContainer()->get('stock');
+        //$stock->check(123);
+
+        return;
 
         $redis = $this->getContainer()->get('pdl.phpredis.stock');
-//        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
-//        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
-//        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2013-12-01' => 1,  'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2000-11-01' => 12, 'id' => '123']);
+        //        $redis->hMset('products_id.123', ['2013-12-12' => 3,  'id' => '123']);
 
         $stock = [];
         $redis->multi();
@@ -80,8 +124,8 @@ return;
                 ];
             }
         }
-print_r($stock);
-return;
+        print_r($stock);
+        return;
         foreach ($redis->exec() as $record) {
             $stock[$id] = [
                 'total' => 0,
@@ -102,19 +146,19 @@ return;
 
         print_r($stock);
 
-//        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
-//        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
-//        //print_r($soap->__getFunctions());
-//        //
-//
-//        $data = new \stdClass();
-//        $data->eOrderNumber = 1013569;
-//        $data->amount = -10.00;
-//        $data->initials = 'un';
-//        $result = $soap->SalesOrderCaptureOrRefund($data);
-//
-//
-//        print_r($result);
+        //        $soap = new \SoapClient('http://pdl.un/da_DK/soap/v1/ECommerceServices/?wsdl');
+        //        $soap->__setLocation('http://pdl.un/da_DK/soap/v1/ECommerceServices/');
+        //        //print_r($soap->__getFunctions());
+        //        //
+        //
+        //        $data = new \stdClass();
+        //        $data->eOrderNumber = 1013569;
+        //        $data->amount = -10.00;
+        //        $data->initials = 'un';
+        //        $result = $soap->SalesOrderCaptureOrRefund($data);
+        //
+        //
+        //        print_r($result);
 
         // $accounts = GothiaAccountsQuery::create()
         //     ->find();
