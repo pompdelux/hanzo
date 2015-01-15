@@ -5,16 +5,16 @@ namespace Hanzo\Bundle\NewsletterBundle\Providers;
 class MailPlatformResponseParser
 {
     /**
-     * undocumented class variable
+     * The response from Guzzle
      *
-     * @var string
+     * @var Guzzle
      */
     protected $rawResponse;
 
     /**
-     * undocumented class variable
+     * The baserequest with method and type
      *
-     * @var string
+     * @var BaseRequest
      */
     public $originalRequest;
 
@@ -69,10 +69,45 @@ class MailPlatformResponseParser
           case 'getlists':
               $response = $this->parseGetLists($xml, $response);
               break;
+          case 'loadsubscribercustomfields':
+              $response = $this->parseLoadCustomFields($xml, $response);
+              break;
           default:
               error_log(__LINE__.':'.__FILE__.' Parse does not know the method'. strtolower($this->originalRequest->method)); // hf@bellcom.dk debugging
               $response->setStatus(BaseResponse::REQUEST_FAILED);
               break;
+        }
+
+        return $response;
+    }
+
+    /**
+     * parseLoadCustomFields
+     *
+     * @param SimpleXMLElement $xml
+     * @param BaseResponse $response
+     *
+     * @return BaseResponse
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function parseLoadCustomFields($xml, $response)
+    {
+        $responseData                    = [];
+        $responseData['field_info']      = [];
+
+        if ((string)$xml->status === 'SUCCESS' && isset($xml->data->item))
+        {
+            foreach ($xml->data->item as $item)
+            {
+                $data = [];
+                $data['fieldid']   = (string)$item->fieldid;
+                $data['data']      = (string)$item->data;
+                $data['fieldtype'] = (string)$item->fieldtype;
+                $data['fieldname'] = (string)$item->fieldname;
+
+                $responseData['field_info'][] = $data;
+            }
+            $response->setData($responseData);
         }
 
         return $response;
@@ -149,6 +184,10 @@ class MailPlatformResponseParser
             {
                 $response->setStatus(BaseResponse::REQUEST_SUCCESS);
             }
+        }
+        elseif ((string)$xml->status === 'SUCCESS')
+        {
+            $response->setStatus(BaseResponse::REQUEST_SUCCESS);
         }
 
         return $response;
