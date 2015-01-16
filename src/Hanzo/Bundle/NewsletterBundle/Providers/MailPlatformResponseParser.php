@@ -250,5 +250,7 @@ class MailPlatformResponseParser
                 $response->setData($responseData);
             }
         }
+
+        return $response;
     }
 }
