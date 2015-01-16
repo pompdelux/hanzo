@@ -608,7 +608,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Skicka Shoppinglistan till någon du känner</target>
+                <target>Sänd listan til någon du känner</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
@@ -633,6 +633,12 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="wishlist.all.items.deleted">
                 <source>wishlist.all.items.deleted</source>
                 <target>Alla varor är nu borttagna från din shoppinglista.</target>
+            </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>Obs!</strong>Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.
+                ]]></target>
             </trans-unit>
         </body>
     </file>

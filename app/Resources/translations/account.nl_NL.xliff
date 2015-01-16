@@ -638,6 +638,12 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                 <source>wishlist.all.items.deleted</source>
                 <target>Alle artikelen zijn nu van je shoppinglijst verwijderd.</target>
             </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>LET OP!</strong>Je hebt je bestelling pas geplaatst als je Shopping Advisor het nummer van je shoppinglijst heeft ingevoerd en jij een orderbevestiging hebt ontvangen. De artikelen op je shoppinglijst zijn niet gereserveerd, al heb je ze aan je lijstje toegevoegd. Het kan dus helaas voorkomen dat een artikel uitverkocht is.
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
