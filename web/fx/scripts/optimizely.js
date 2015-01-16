@@ -4,7 +4,9 @@ $(document).ready(function(){
   if ( $('body.body-frontpage').length > 0 ) {
     // Track clicks on homepage banners
     $('div#main a').click(function(e) {
+
       ga('send', 'event', 'Homepage Banner Click', this.href.split('?')[0], this.childNodes[0].getAttribute('src').split('?')[0]);
+
       if (this.target != '_blank') {
         e.preventDefault();
         var url = this.href;
@@ -37,10 +39,22 @@ $(document).ready(function(){
     if(this.href.indexOf('#') == -1) {
       ga('send', 'event', 'Main Navigation Click', this.href.split('/')[4], this.innerHTML);
     }
-    if(this.target != '_blank') {
-      e.preventDefault();
-      var url = this.href;
-      setTimeout(function() { location.href = url; }, 150);
+    /* Workaround for mobile pages, only open pages which are a sub element of a ul.open else each menu item will reload the page */
+    if ($("body.is-mobile").length > 0 ) {
+      if ( $(this).closest("ul.open").length > 0 && this.href.indexOf('#') == -1 ) {
+        if(this.target != '_blank') {
+          e.preventDefault();
+          var url = this.href;
+          setTimeout(function() { location.href = url; }, 150);
+        }
+      }
+    }
+    else {
+      if(this.target != '_blank') {
+        e.preventDefault();
+        var url = this.href;
+        setTimeout(function() { location.href = url; }, 150);
+      }
     }
   });
 });
