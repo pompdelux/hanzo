@@ -636,6 +636,12 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
                 <source>wishlist.all.items.deleted</source>
                 <target>Kaikki tuotteet on nyt poistettu ostoslistaltasi.</target>
             </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>HUOM!</strong>Huomaa, että tilaus on tehty vasta, kun Shopping Advisorisi on antanut Ostoslistasi numeron ja olet saanut tilausvahvistuksen. Ostoslistan tuotteet eivät ole varattuina, vaikka ne olisi lisätty, joten joissakin tapauksissa ne saattavat valitettavasti olla loppuunmyytyjä.
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
