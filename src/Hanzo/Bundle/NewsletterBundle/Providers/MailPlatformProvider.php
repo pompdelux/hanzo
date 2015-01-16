@@ -200,7 +200,6 @@ class MailPlatformProvider extends BaseProvider
     /**
      * subscriberAddToList
      * - Subscribes a user to a list
-     * - if they should not be automaticly confirmed set params['confirmed'] = 0
      * - http://mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=AddSubscriberToList
      *
      * @param string $subscriber_id
@@ -217,7 +216,7 @@ class MailPlatformProvider extends BaseProvider
                 'emailaddress' => $subscriber_id,
                 'mailinglist'  => $list_id,
                 'format'       => 'html',
-                'confirmed'    => 1,
+                'confirmed'    => 0,
                 ],
         ];
 
