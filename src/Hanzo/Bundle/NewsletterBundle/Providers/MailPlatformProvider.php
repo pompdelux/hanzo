@@ -216,7 +216,7 @@ class MailPlatformProvider extends BaseProvider
                 'emailaddress' => $subscriber_id,
                 'mailinglist'  => $list_id,
                 'format'       => 'html',
-                'confirmed'    => 0,
+                'confirmed'    => 'false',
                 ],
         ];
 
