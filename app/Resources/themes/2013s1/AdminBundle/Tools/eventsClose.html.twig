@@ -1,5 +1,8 @@
 {% extends '::adminbase.html.twig' %}
 {% block content %}
+
+<div id="msg" class="alert alert-success" style="display:none"></div>
+
 <h1>Luk arrangementer</h1>
 
     <form action="#" method="get" id="consultant-export" class="form-inline">
@@ -29,6 +32,8 @@
         $.ajax({
           url: '{{ path('admin_tools_events_close') }}',
           data: {run: true}
+        }).done(function(data) {
+          $('#msg').html(data.msg).show();
         });
       });
       $(".js-event-close-range").click(function(e) {
@@ -38,6 +43,8 @@
         $.ajax({
           url: '{{ path('admin_tools_events_close') }}',
           data: {run: true, start: start, end: end}
+        }).done(function(data) {
+          $('#msg').html(data.msg).show();
         });
       });
     });
