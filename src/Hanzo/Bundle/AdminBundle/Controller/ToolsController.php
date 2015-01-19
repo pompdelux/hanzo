@@ -397,8 +397,8 @@ class ToolsController extends CoreController
         }
 
         return $this->render('AdminBundle:Tools:eventsClose.html.twig',[
-            'start' => date('d-m-Y'),
-            'end'   => date('d-m-Y', strtotime("+1 Year")),
+            'start' => date('d-m-Y', strtotime("-1 Year")),
+            'end'   => date('d-m-Y'),
         ]);
     }
 }
