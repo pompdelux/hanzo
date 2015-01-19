@@ -1,5 +1,6 @@
 {% extends '::adminbase.html.twig' %}
 {% block content %}
+<h1>Luk arrangementer</h1>
 
     <form action="#" method="get" id="consultant-export" class="form-inline">
         <div class="form-group">
@@ -10,9 +11,10 @@
             <label for="end">{{ 'admin.consultant.export.end.label'|trans({}, 'admin') }}</label>
             <input type="text" id="end" name="end" value="{{ end }}" class="datepicker">
         </div>
-        <input class="button btn btn-success js-event-close-range" type="submit" value="Luk">
+        <input class="button btn btn-success js-event-close-range" type="submit" value="Luk alle i tidsrum">
         <br>
         <br>
+        <hr>
         <br>
         <input class="button btn btn-success js-event-close-all" type="submit" value="Luk alle åbne">
     </form>
