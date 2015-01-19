@@ -83,3 +83,5 @@ consignor:
                   country_iso2: DK
                   email: mail@pompdelux.dk
                   phone: "+45 8678 7871"
+google:
+    analytics_code: UA-58710543-1
