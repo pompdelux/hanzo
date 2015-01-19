@@ -388,11 +388,10 @@ class ToolsController extends CoreController
             }
 
             $con    = \Propel::getConnection();
-            $query  = "UPDATE events SET is_open = 0".$timeRange;
-            $con->query($query);
-            error_log(__LINE__.':'.__FILE__.' '.$query); // hf@bellcom.dk debugging
+            $query  = "UPDATE events SET is_open = 0".$timeRange. ' AND is_open = 1';
+            $result = $con->query($query);
 
-            $data = ['msg' => 'ok'];
+            $data = ['msg' => sprintf('Lukkede %s arrangementer', $result->rowCount())];
             return $this->json_response($data);
         }
 
