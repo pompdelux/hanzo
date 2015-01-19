@@ -369,4 +369,36 @@ class ToolsController extends CoreController
 
         return $this->redirect($this->generateUrl('admin_tools'));
     }
+
+    /**
+     * eventCloseAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function eventsCloseAction(Request $request)
+    {
+        if ($request->query->get('run')) {
+            $timeRange = '';
+
+            if ($request->query->get('start'))
+            {
+                $start = date('Y-m-d', strtotime($request->query->get('start')));
+                $end   = date('Y-m-d', strtotime($request->query->get('end')));
+                $timeRange = sprintf(" where event_date >= '%s 00:00:00' AND event_date <= '%s 23:59:59'", $start, $end);
+            }
+
+            $con    = \Propel::getConnection();
+            $query  = "UPDATE events SET is_open = 0".$timeRange;
+            $con->query($query);
+            error_log(__LINE__.':'.__FILE__.' '.$query); // hf@bellcom.dk debugging
+
+            $data = ['msg' => 'ok'];
+            return $this->json_response($data);
+        }
+
+        return $this->render('AdminBundle:Tools:eventsClose.html.twig',[
+            'start' => date('d-m-Y'),
+            'end'   => date('d-m-Y', strtotime("+1 Year")),
+        ]);
+    }
 }
