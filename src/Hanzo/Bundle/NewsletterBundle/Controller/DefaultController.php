@@ -156,7 +156,7 @@ class DefaultController extends CoreController
         // EN, DK, DE, NO, SE
 
         $domainKey = Hanzo::getInstance()->get('core.domain_key');
-        switch ($this->domainKey)
+        switch ($domainKey)
         {
             case 'SalesDK':
             case 'DK':
