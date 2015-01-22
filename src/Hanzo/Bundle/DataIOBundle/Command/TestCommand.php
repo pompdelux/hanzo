@@ -52,7 +52,7 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $email = 'hf+mailplatform127@bellcom.dk';
+        $email = 'hf+mailplatform131@bellcom.dk';
         $list_id = 2002;
         $extraData = [
             'name'   => 'My name',
