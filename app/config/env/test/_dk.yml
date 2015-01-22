@@ -83,3 +83,6 @@ consignor:
                   country_iso2: DK
                   email: mail@pompdelux.dk
                   phone: "+45 8678 7871"
+
+google:
+    google_tag_manager_id: "GTM-5H6VB7"
