@@ -208,7 +208,7 @@ namespace :deploy do
   desc "Restarting supervisor hanzo beanstalkd job"
   task :restart_beanstalkd_worker, :roles => :redis do
     capifony_pretty_print "--> Restarting supervisor hanzo beanstalkd job"
-    run("supervisorctl restart hanzo:hanzo_ax_beanstalk_worker")
+    run("supervisorctl restart hanzo:*")
     capifony_puts_ok
   end
 # post deploy to graphite

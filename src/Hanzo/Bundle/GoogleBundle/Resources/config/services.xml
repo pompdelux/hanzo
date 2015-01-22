@@ -14,6 +14,7 @@
             <argument type="string">%google.analytics_code%</argument>
             <argument type="string">%google.conversion_id%</argument>
             <argument type="string">%google.site_verification%</argument>
+            <argument type="string">%google.google_tag_manager_id%</argument>
             <tag name="twig.extension"></tag>
             <call method="serviceInjection">
                 <argument type="string">addwords_conversion</argument>
