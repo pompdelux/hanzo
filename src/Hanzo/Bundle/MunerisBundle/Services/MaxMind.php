@@ -27,8 +27,8 @@ class MaxMind
         if (empty($ip)) {
             $ip = $this->container->get('request')->getClientIp();
         }
-
-        if (preg_match('/^(127.0.0.|192.168.|0.0.)/', $ip)) {
+        // Local host, internal and IP used by docker
+        if (preg_match('/^(127.0.0.|192.168.|0.0.|172.17.)/', $ip)) {
             $ip = '90.185.206.100';
         }
 

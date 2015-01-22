@@ -635,6 +635,12 @@ After this you can easily continue shopping.<br></p>
                 <source>wishlist.all.items.deleted</source>
                 <target>All the products was removed from your Shoppinglist.</target>
             </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>PLEASE NOTE!</strong>Your order is only valid when your Shopping Advisor has registered your Shopping List number and you have received the order confirmation. The items on your Shopping List are not reserved automatically when you add them to your list, so you can experience that an item has been sold out in the meantime. 
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

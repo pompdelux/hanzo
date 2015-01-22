@@ -173,13 +173,17 @@ class AdvisorController extends CoreController
         foreach ($result as $record) {
             $info   = $record['info'];
             $avatar = '';
+            $matches = [];
+            $fallBackAvatarSet = false;
 
+            // Sometimes the info field will contain extra junk (aka html), so this might break
             if ($type == 'hus') {
                 preg_match('/\<img[^>]+\>/', $info, $matches);
 
                 // do we need a fallback avatar ?
                 if (empty($matches[0])) {
                     $matches[0] = '<img src="'.$cdn.'/images/debitorDK/JohnDoe.jpg" width="100" height="75">';
+                    $fallBackAvatarSet = true;
                 }
 
                 $avatar = $matches[0];
@@ -187,6 +191,11 @@ class AdvisorController extends CoreController
             }
 
             $info = str_replace('src="/', 'src="' . $cdn, $info);
+            // Url allready contains cdn if true
+            if ($fallBackAvatarSet === false)
+            {
+                $avatar = str_replace('src="/', 'src="' . $cdn, $avatar);
+            }
 
             if ($info == 'null') {
                 $info = '';
@@ -253,7 +262,7 @@ class AdvisorController extends CoreController
                     continue;
                 }
 
-                foreach ($items as $j => $event) {
+                foreach ($items as $event) {
                     $data[$consultantId]['events'][] = $event;
                 }
 

@@ -442,7 +442,7 @@
       <b>Under behandling</b><br>
       Din order packas på vårt lager och kommer att skickas inom 1–2 dagar. Det är inte längre möjligt att redigera eller radera din order.<br><br>
       <b>Fakturerad</b><br>
-      Din order är skickad från vårt lager. Inom 24 timmar kan du se fakturan som pdf-fil under fakturakulmnen.<br><br>
+      Din order är skickad från vårt lager. Inom 24 timmar kan du se fakturan som pdf-fil under fakturakolumnen.<br><br>
       <b>När paketet har skickats/tagits emot visas följande alternativ:</b><br><br>
       <b>Spåra ditt paket</b><br>
       Klicka på ikonen vid sidan av din order om du vill spåra paketet. Sidan Track and Trace öppnas i ett nytt fönster.<br><br>
@@ -564,14 +564,14 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-evenemang. Shoppinglistan sparas automatiskt.</p>
+                    <p>Här kan du skapa en lista med de plagg du vill beställa på ett Home Shopping- eller Öppet hus-arrangemang. Shoppinglistan sparas automatiskt.</p>
                     <ul>
                         <li>Klicka på ”Min shoppinglista” Din lista får ett unikt nummer som din Shopping Advisor sedan använder.</li>
                         <li>Lägg till de plagg du vill köpa.</li>
                         <li>Ge shoppinglistans nummer till din Shopping Advisor så behandlar han/hon din beställning.</li>
-                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en beställningsbekräftelse.</li>
+                        <li>Lagerstatus kontrolleras och beställningen genomförs tillsammans med din Shopping Advisor. Därefter får du en orderbekräftelse.</li>
                     </ul>
-                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
+                    <p>Obs! Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en ordrebekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="wishlist.add.to.list">
@@ -596,7 +596,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+                <target><![CDATA[Shoppinglista Nr: <span>%number%</span>]]></target>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
@@ -608,7 +608,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Skicka Shoppinglistan till någon du känner</target>
+                <target>Sänd listan til någon du känner</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
@@ -633,6 +633,12 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             <trans-unit id="wishlist.all.items.deleted">
                 <source>wishlist.all.items.deleted</source>
                 <target>Alla varor är nu borttagna från din shoppinglista.</target>
+            </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>Obs!</strong>Tänk på att beställningen inte är klar förrän din Shopping Advisor har läst in shoppinglistans nummer och du har fått en beställningsbekräftelse. Varor som du lägger till på din shoppinglista reserveras inte. Tyvärr kan det därför hända att en vara är slutsåld.
+                ]]></target>
             </trans-unit>
         </body>
     </file>

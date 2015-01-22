@@ -2,7 +2,7 @@
 # Hanzo / Pompdelux deploy - common stuff used by both production, testing and dev
 #
 
-# needed to get verbose output. -v doesnt work. Use below to see commands run if deploy fails
+# Use below to get more verbose output. Will show all commands
 # logger.level = Logger::MAX_LEVEL
 
 set :update_vendors, false
@@ -65,7 +65,7 @@ set :deploydiff, "Nothing - Rollback maybe?"
 # own rules for running tasks after deploy
 after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:restart_beanstalkd_worker', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
 # send_email moved here. dont want a deploy email on rollback
-after 'deploy', 'deploy:send_email'
+after 'deploy', 'deploy:send_email', 'deploy:graphite_notify'
 ## also clear redis and varnish when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear', 'symfony:cache:varnish_clear', 'deploy:update_permissions', 'deploy:update_permissions_releases'
 # mail after rollback and warn about clearing cache. Doesn't seem to work with "after 'deploy:rollback", because it tries to clear the old current dir
@@ -175,18 +175,18 @@ namespace :deploy do
   desc "Send email after deploy"
   task :send_email do
     capifony_pretty_print "--> Sending deploy status mail"
-    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c cc@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{stage} deployed' -c hd@pompdelux.dk -c cc@pompdelux.dk pdl@bellcom.dk"
     capifony_puts_ok
   end
   desc "Send email after rollback"
   task :send_email_rollback do
     capifony_pretty_print "--> Sending rollback status mail"
-    run_locally "echo 'Rollback of hanzo branch: #{branch}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): (#{hosts})' | mail -s 'Hanzo #{branch} rolled back' -c -c hd@pompdelux.dk -c cc@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): (#{hosts})' | mail -s 'Hanzo #{stage} rolled back' -c hd@pompdelux.dk -c cc@pompdelux.dk pdl@bellcom.dk"
     capifony_puts_ok
   end
   desc "Rollback warning"
   task :rollback_warning do
-    puts "ROLLBACK! The autoloader and cache might need to be cleared? Run:";puts "cap #{branch} symfony:composer:dump_autoload";puts "cap #{branch} symfony:cache:clear"
+    puts "ROLLBACK! The autoloader and cache might need to be cleared? Run:";puts "cap #{stage} symfony:composer:dump_autoload";puts "cap #{stage} symfony:cache:clear"
   end
 # create symlinks
   desc "Create logs and public_html symlinks"
@@ -208,9 +208,17 @@ namespace :deploy do
   desc "Restarting supervisor hanzo beanstalkd job"
   task :restart_beanstalkd_worker, :roles => :redis do
     capifony_pretty_print "--> Restarting supervisor hanzo beanstalkd job"
-    run("supervisorctl restart hanzo:hanzo_ax_beanstalk_worker")
+    run("supervisorctl restart hanzo:*")
     capifony_puts_ok
   end
+# post deploy to graphite
+  desc "Send deploy to Graphite"
+  task :graphite_notify do
+    capifony_pretty_print "--> Sending deploy info to Graphite"
+    run_locally("echo \"deploys.#{stage}.pompdelux:1|c\" | nc -w 1 -u 10.0.0.51 8125")
+    capifony_puts_ok
+  end
+
 end
 
 namespace :symfony do
