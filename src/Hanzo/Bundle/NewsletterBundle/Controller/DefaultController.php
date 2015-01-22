@@ -151,52 +151,6 @@ class DefaultController extends CoreController
 
         $extraData = ['name' => $name];
 
-        // Set language for confirmation mail
-        $language = 'EN';
-        // EN, DK, DE, NO, SE
-
-        $domainKey = Hanzo::getInstance()->get('core.domain_key');
-        switch ($domainKey)
-        {
-            case 'SalesDK':
-            case 'DK':
-                $language = 'DK';
-                break;
-            case 'COM':
-                $language = 'EN';
-                break;
-            case 'SalesSE':
-            case 'SE':
-                $language = 'SE';
-                break;
-            case 'SalesNO':
-            case 'NO':
-                $language = 'NO';
-                break;
-            case 'SalesNL':
-            case 'NL':
-                $language = 'EN';
-                break;
-            case 'SalesFI':
-            case 'FI':
-                $language = 'EN';
-                break;
-            case 'SalesDE':
-            case 'DE':
-                $language = 'DE';
-                break;
-            case 'SalesAT':
-            case 'AT':
-                $language = 'DE';
-                break;
-            case 'SalesCH':
-            case 'CH':
-                $language = 'EN';
-                break;
-        }
-
-        $extraData['confirm_language'] = $language;
-
         $result = $api->subscribe($email, $active, $extraData);
         $api->sendNotificationEmail('subscribe', $email, $name);
 
