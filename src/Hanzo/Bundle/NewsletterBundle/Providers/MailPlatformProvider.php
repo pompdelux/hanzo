@@ -213,14 +213,15 @@ class MailPlatformProvider extends BaseProvider
     {
         $requestBody = [
             'details' => [
-                'emailaddress' => $subscriber_id,
-                'mailinglist'  => $list_id,
-                'format'       => 'html',
-                'confirmed'    => 'false',
+                'emailaddress'     => $subscriber_id,
+                'mailinglist'      => $list_id,
+                'format'           => 'html',
+                'confirmed'        => 'false',
+                'confirm_language' => 'EN',
                 ],
         ];
 
-        $optionalParams = ['format', 'confirmed', 'add_to_autoresponders', 'customfields'];
+        $optionalParams = ['format', 'confirmed', 'confirm_language', 'add_to_autoresponders', 'customfields'];
 
         $requestBody = $this->getOptionalParams($optionalParams, $params, $requestBody);
 
