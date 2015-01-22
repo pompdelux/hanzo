@@ -65,6 +65,52 @@ class NewsletterApi
         // Map external data to something the provider understands
         $params = $this->mapExtraDataToProvider($extraData);
 
+        // Set language for confirmation mail
+        $language = 'EN';
+        // EN, DK, DE, NO, SE
+
+        $domainKey = Hanzo::getInstance()->get('core.domain_key');
+        switch ($domainKey)
+        {
+            case 'SalesDK':
+            case 'DK':
+                $language = 'DK';
+                break;
+            case 'COM':
+                $language = 'EN';
+                break;
+            case 'SalesSE':
+            case 'SE':
+                $language = 'SE';
+                break;
+            case 'SalesNO':
+            case 'NO':
+                $language = 'NO';
+                break;
+            case 'SalesNL':
+            case 'NL':
+                $language = 'EN';
+                break;
+            case 'SalesFI':
+            case 'FI':
+                $language = 'EN';
+                break;
+            case 'SalesDE':
+            case 'DE':
+                $language = 'DE';
+                break;
+            case 'SalesAT':
+            case 'AT':
+                $language = 'DE';
+                break;
+            case 'SalesCH':
+            case 'CH':
+                $language = 'EN';
+                break;
+        }
+
+        $params['confirm_language'] = $language;
+
         $response = $this->provider->subscriberCreate($email, $list_id, $params);
 
         // Wrap response in something the rest of the system expects
