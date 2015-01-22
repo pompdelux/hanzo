@@ -638,6 +638,12 @@ Deretter kan du bare shoppe videre.</p><br>
                 <source>wishlist.all.items.deleted</source>
                 <target>Alle produktene er nå fjernet fra  shoppinglisten din.</target>
             </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>HUSK!</strong>Vær oppmerksom på at du først har avgitt din ordre når Shopping Advisor har lest inn Shoppingliste-nummeret ditt, og du har fått en ordrebekreftelse. Varene på din Shoppingliste er ikke reservert selv om de er tilføyd. Det kan være at en vare dessverre er utsolgt.
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

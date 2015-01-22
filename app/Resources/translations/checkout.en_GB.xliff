@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternative delivery address</target>
+        <target>Delivery address</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
