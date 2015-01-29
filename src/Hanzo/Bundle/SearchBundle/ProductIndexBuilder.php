@@ -3,7 +3,8 @@
 namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\SearchProductsTagsQuery,
-    Hanzo\Model\ProductsQuery
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Core\Hanzo
     ;
 
 class ProductIndexBuilder extends IndexBuilder
@@ -196,6 +197,8 @@ class ProductIndexBuilder extends IndexBuilder
     /**
      * getCustomTokensForCategories
      *
+     * Based on code from Model/CmsI18n and Hanzo\Bundle\SearchBundle\ProductAndCategoryIndexBuilder
+     *
      * The following has to be added to the cms.$locale.xliff file om the XXX.settings block
      * Each number refers to a category
      *
@@ -218,43 +221,34 @@ class ProductIndexBuilder extends IndexBuilder
     {
         $tokensToCategories = [];
 
-        $sql = sprintf("
-            SELECT
-                i18n.settings
-            FROM
-                cms_i18n i18n,
-                cms
-            WHERE
-                cms.type = 'heading'
-            AND
-                i18n.locale = '%s'
-            AND
-                i18n.settings IS NOT NULL
-            AND
-                cms.id = i18n.id
-            AND
-                i18n.is_active = 1
-            ",
-            $locale);
+        $catalog = $this->getTranslationCatalogue('cms', $locale);
 
-        $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $query->execute();
-        $query->setFetchMode(\PDO::FETCH_ASSOC);
+        foreach ($catalog->all('cms') as $key => $msg)
+        {
+            if (!preg_match('/([0-9]+).settings/i', $key, $matches))
+            {
+                continue;
+            }
 
-        while ($record = $query->fetch()) {
-            $settings = json_decode($record['settings']);
-            if (isset($settings->tokens)) {
-                $tokens = (array) $settings->tokens;
-                foreach ($tokens as $key => $categories)
-                {
-                    if (!isset($tokensToCategories[$key]))
+            $msg = trim($msg);
+
+            if (is_scalar($msg) && substr($msg, 0, 1) == '{')
+            {
+                $settings = json_decode(stripcslashes($msg));
+                if (isset($settings->tokens)) {
+                    $tokens = (array) $settings->tokens;
+                    foreach ($tokens as $key => $categories)
                     {
-                        $tokensToCategories[$key] = [];
+                        if (!isset($tokensToCategories[$key]))
+                        {
+                            $tokensToCategories[$key] = [];
+                        }
+                        $tokensToCategories[$key] = array_merge($tokensToCategories[$key], $categories);
                     }
-                    $tokensToCategories[$key] = array_merge($tokensToCategories[$key], $categories);
                 }
             }
         }
+
 
         return $tokensToCategories;
     }
