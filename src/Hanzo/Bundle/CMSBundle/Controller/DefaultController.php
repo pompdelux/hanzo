@@ -145,6 +145,23 @@ class DefaultController extends CoreController
 
             $html = $category->getContent();
         }
+        // Support for multiple arguments
+        // Note that the template just is displayed multiple times
+        elseif (isset($settings->embedded_page_id) && strpos($settings->embedded_page_id,',') !== false)
+        {
+            $ids = explode(',', $settings->embedded_page_id);
+            if (is_array($ids))
+            {
+                $ids = array_map('trim', $ids);
+
+                foreach ($ids as $id)
+                {
+                    $category = $this->forward('CategoryBundle:Default:listCategoryProducts', ['cms_id' => $id, 'show' => 'look']);
+
+                    $html .= $category->getContent();
+                }
+            }
+        }
 
         return $html;
     }
