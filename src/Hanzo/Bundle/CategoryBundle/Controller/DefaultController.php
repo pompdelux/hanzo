@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use     Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -296,8 +296,10 @@ class DefaultController extends CoreController
             }
 
             foreach ($request->query->get('size', []) as $size) {
-                $size_filter[] = $size;
-                $use_filter = true;
+                if (isset($size_mapping[$size])) {
+                    $size_filter = array_merge($size_filter, $size_mapping[$size]);
+                    $use_filter = true;
+                }
             }
 
         }
@@ -512,7 +514,7 @@ class DefaultController extends CoreController
         ];
 
         $data['color_mapping'] = array_keys($color_mapping);
-        $data['size_mapping']  = $size_mapping;
+        $data['size_mapping']  = array_keys($size_mapping);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
