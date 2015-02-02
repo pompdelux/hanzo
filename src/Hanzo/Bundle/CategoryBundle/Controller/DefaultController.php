@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use     Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -280,8 +280,18 @@ class DefaultController extends CoreController
         $color_mapping = [];
         $size_mapping  = [];
         if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
+            // When casting objects to arrays with numeric attributes, everything goes belly up
+            // The fix should be to pass true to json_decode http://php.net/json_decode
+            // but that breaks other stuff :), so there for the extra foreach after this
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
+        }
+
+        $tmp = $size_mapping;
+        $size_mapping = [];
+        foreach ($tmp as $key => $value)
+        {
+            $size_mapping[$key] = $value;
         }
 
         $use_filter   = false;
@@ -304,8 +314,10 @@ class DefaultController extends CoreController
             }
 
             foreach ($request->query->get('size', []) as $size) {
-                $filters['size'][] = $size;
-                $use_filter = true;
+                if (isset($size_mapping[$size])) {
+                    $filters['size'] = array_merge($filters['size'], $size_mapping[$size]);
+                    $use_filter = true;
+                }
             }
 
             foreach ($request->query->get('eco', []) as $eco) {
@@ -499,7 +511,7 @@ class DefaultController extends CoreController
         ];
 
         $data['color_mapping'] = array_keys($color_mapping);
-        $data['size_mapping']  = $size_mapping;
+        $data['size_mapping']  = array_keys($size_mapping);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
