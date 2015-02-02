@@ -279,8 +279,18 @@ class DefaultController extends CoreController
         $color_mapping = [];
         $size_mapping  = [];
         if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
+            // When casting objects to arrays with numeric attributes, everything goes belly up
+            // The fix should be to pass true to json_decode http://php.net/json_decode
+            // but that breaks other stuff :), so there for the extra foreach after this
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
+        }
+
+        $tmp = $size_mapping;
+        $size_mapping = [];
+        foreach ($tmp as $key => $value)
+        {
+            $size_mapping[$key] = $value;
         }
 
         $use_filter   = false;
@@ -304,7 +314,7 @@ class DefaultController extends CoreController
 
             foreach ($request->query->get('size', []) as $size) {
                 if (isset($size_mapping[$size])) {
-                    $size_filter = array_merge($size_filter, $size_mapping[$size]);
+                    $filters['size'] = array_merge($filters['size'], $size_mapping[$size]);
                     $use_filter = true;
                 }
             }
@@ -338,6 +348,16 @@ class DefaultController extends CoreController
         $show_by_look = (bool) ($show === 'look');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
+        // Use embedded_category_id if exists, else fallback to category_id. This way we can support multiple categories on the same page
+        if (isset($settings->embedded_category_id))
+        {
+            $category_ids_for_filter = $settings->embedded_category_id;
+        }
+        else
+        {
+            $category_ids_for_filter = $settings->category_id;
+        }
+
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
             ->useProductsQuery()
@@ -357,7 +377,7 @@ class DefaultController extends CoreController
                 ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
-            ->filterByCategoriesId($settings->category_id);
+            ->filterByCategoriesId($category_ids_for_filter);
 
         // If there are any colors in the settings to order from, add the order column here.
         // Else order by normal Sort in db
