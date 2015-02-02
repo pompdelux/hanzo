@@ -27,7 +27,7 @@ class DefaultController extends CoreController
      */
     public function categoryAction(Request $request, $id)
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo      = Hanzo::getInstance();
 
         // if webshop is closed, disable search
         if (1 == $hanzo->get('webshop.closed')) {
@@ -43,6 +43,7 @@ class DefaultController extends CoreController
         $no_accessories = $categories;
         $accessories    = array_shift($no_accessories);
         $category_sort  = implode(',', $no_accessories);
+        //$container      = $hanzo->container;
 
         // TODO: figure out a way to avoid this..
         // setup size grouping
@@ -242,12 +243,21 @@ class DefaultController extends CoreController
             }
         }
 
+        // Define classes to the body, dependently on the context of the category.
+        $classes = '';
+        if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
+            $classes .= ' category-girl';
+        } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
+            $classes .= ' category-boy';
+        }
+
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
             'content'   => $page->getContent(),
             'title'     => $page->getTitle(),
             'result'    => $result_set,
+            'body_classes' => $classes,
             'sizes'     => (is_array($sizes) ? $sizes : array()),
             'route'     => $request->get('_route'),
             'selected'  => $request->get('size', ''),

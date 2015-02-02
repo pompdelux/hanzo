@@ -43,7 +43,6 @@ class DefaultController extends CoreController
     public function viewAction(Request $request, $cms_id, $show, $pager = 1)
     {
         $hanzo     = Hanzo::getInstance();
-        $container = $hanzo->container;
         $locale    = $hanzo->get('core.locale');
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
@@ -117,23 +116,23 @@ class DefaultController extends CoreController
 
                 // Define classes to the body, dependently on the context of the category.
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-                if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+                if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
                     $classes .= ' category-girl';
-                } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
+                } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
                     $classes .= ' category-boy';
                 }
 
-                $this->get('twig')->addGlobal('route', $container->get('request')->get('_route'));
+                $this->get('twig')->addGlobal('route', $request->get('_route'));
 
                 $twig = $this->get('twig');
-                $twig->addGlobal('route', $container->get('request')->get('_route'));
+                $twig->addGlobal('route', $request->get('_route'));
                 $twig->addGlobal('page_type', 'category-'.$settings->category_id);
                 $twig->addGlobal('body_classes', 'body-category category-'.$settings->category_id.' body-'.$show.' '.$classes);
                 $twig->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
                 $twig->addGlobal('cms_id', $cms_page->getParentId());
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
-
+                
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
