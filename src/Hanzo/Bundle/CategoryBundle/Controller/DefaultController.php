@@ -337,6 +337,16 @@ class DefaultController extends CoreController
         $show_by_look = (bool) ($show === 'look');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
+        // Use embedded_category_id if exists, else fallback to category_id. This way we can support multiple categories on the same page
+        if (isset($settings->embedded_category_id))
+        {
+            $category_ids_for_filter = $settings->embedded_category_id;
+        }
+        else
+        {
+            $category_ids_for_filter = $settings->category_id;
+        }
+
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
             ->useProductsQuery()
@@ -356,7 +366,7 @@ class DefaultController extends CoreController
                 ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
-            ->filterByCategoriesId($settings->category_id);
+            ->filterByCategoriesId($category_ids_for_filter);
 
         // If there are any colors in the settings to order from, add the order column here.
         // Else order by normal Sort in db
