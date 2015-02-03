@@ -2846,9 +2846,8 @@ a.button.button-full-width,
   width: 100%;
   overflow: hidden;
 }
-.near-you-container .info {
-  width: 50%;
-  float: right;
+.near-you-container .note strong {
+  display: block;
 }
 .near-you-container .note i {
   display: block;

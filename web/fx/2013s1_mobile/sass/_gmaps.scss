@@ -9,11 +9,10 @@
 .near-you-container {
     width: 100%;
     overflow: hidden;
-    .info {
-        width: 50%;
-        float: right;
-    }
     .note {
+        strong {
+            display: block;
+        }
         i {
             display: block;
         }
