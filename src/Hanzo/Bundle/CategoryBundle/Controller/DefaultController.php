@@ -297,6 +297,7 @@ class DefaultController extends CoreController
         $filters      = [];
         // Used later on, but also joined into $filters
         $color_filter = [];
+        $size_filter  = [];
 
         // we need this "hack" to prevent url pollution..
         $escapes = [
@@ -314,7 +315,7 @@ class DefaultController extends CoreController
 
             foreach ($request->query->get('size', []) as $size) {
                 if (isset($size_mapping[$size])) {
-                    $filters['size'] = array_merge($filters['size'], $size_mapping[$size]);
+                    $size_filter = array_merge($size_filter, $size_mapping[$size]);
                     $use_filter = true;
                 }
             }
@@ -334,6 +335,11 @@ class DefaultController extends CoreController
         }
 
         $filters['color'] = $color_filter;
+
+        if (!empty($size_filter))
+        {
+            $filters['size'] = $size_filter;
+        }
 
         $route = $request->get('_route');
 
