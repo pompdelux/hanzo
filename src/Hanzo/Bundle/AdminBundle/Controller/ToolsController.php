@@ -234,6 +234,21 @@ class ToolsController extends CoreController
     }
 
     /**
+     * clearSearchIndexAction
+     * @param Request $request
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearSearchIndexAction(Request $request)
+    {
+        $this->container->get('hanzo_search.product.index_builder')->clear();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
+
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    /**
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
