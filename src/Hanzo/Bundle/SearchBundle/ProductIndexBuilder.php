@@ -22,6 +22,36 @@ class ProductIndexBuilder extends IndexBuilder
         }
 
     }
+
+    /**
+     * clear
+     * Truncates the search_products_tags table for each connection
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clear()
+    {
+        foreach ($this->getConnections() as $name => $x) {
+            $connection = $this->getConnection($name);
+
+            foreach ($this->getLocales($connection) as $locale) {
+                $this->truncate($locale, $connection);
+            }
+        }
+    }
+
+    /**
+     * truncate
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    private function truncate($locale, $connection)
+    {
+        $sql = "TRUNCATE TABLE search_products_tags";
+        $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $query->execute();
+    }
+
     /**
      * Update product search tags
      *
