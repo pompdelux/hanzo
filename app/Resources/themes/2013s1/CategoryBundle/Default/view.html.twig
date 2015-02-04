@@ -28,9 +28,13 @@
   })) }}
 </div>
 
+<div class="grid_8 alpha omega row js-filters filters-selected">
+  Dit valg: <span>98 <a href="98">&#10005;</a></span> <span>116 <a href="116">&#10005;</a></span> <span>Rose <a href="Rose">&#10005;</a></span>
+</div>
+
 <div class="grid_8 alpha omega row">
   <div class="grid_2 alpha sub-menu menu">
-      <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
+    <form action="{{ url(app.request.attributes.get('_route')) }}"{# class="js-faceted-form" #}>
           <div class="grid_2 alpha sub-menu menu">
               {{ render(controller('CMSBundle:Menu:menu', {
                   'type': 'sub',
@@ -39,6 +43,7 @@
                   'include_self' : true
               })) }}
 
+              {#
               <ul class="js-faceted-container">
                   <li class="heading item">
                       <a class="heading">Colours</a>
@@ -68,6 +73,7 @@
                       </ul>
                   </li>
               </ul>
+              #}
 
           </div>
       </form>
