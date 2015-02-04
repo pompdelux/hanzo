@@ -24,7 +24,12 @@
                         <a href="{{ order.track_n_trace }}" title="{{ 'account.trackntrace.link'|trans({}, 'account') }}" class="sprite trackntrace js-external"></a>
                     {% endif %}
                     {% if order.return_lable_url %}
-                        <a href="{{ order.return_lable_url }}" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel js-external"></a>
+                        {# As pr. issue #559 at lables are generated directly through dhl. #}
+                        {% set return_lable_url = order.return_lable_url %}
+                        {% if app.request.locale == 'de_AT' %}
+                            {% set return_lable_url = 'https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140' %}
+                        {% endif %}
+                        <a href="{{ return_lable_url }}" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel js-external"></a>
                     {% endif %}
                     {% if order.can_modify %}
                         <a href="{{ path('_account_delete_order', { 'order_id': order.id }) }}" title="{{ 'order.delete.title'|trans({}, 'account') }}" class="sprite delete"></a>
