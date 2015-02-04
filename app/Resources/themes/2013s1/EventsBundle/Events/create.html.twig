@@ -61,13 +61,15 @@
         $startEventDate.prop('readonly', true);
         $endEventDate.prop('readonly', true);
 
-        $.timepicker.datetimeRange(
-            $startEventDate,
-            $endEventDate, {
-                minDate     : new Date("{{ 'today 1am'|date('r') }}"),
-                minInterval : (1000*60*60), // 1hr
-                stepMinute  : 15,
-                controlType : 'select'
+        $startEventDate.datetimepicker({
+            numberOfMonths  : 1,
+            minDate         : new Date("{{ 'today 1am'|date('r') }}"),
+            maxDate         : 365,
+            minInterval     : (1000*60*60), // 1hr
+            stepMinute      : 15,
+            controlType     : 'select',
+            start           : {},
+            end             : {}
         });
 
         if ('HUS' !== $('#events_type', $form).val()) {
