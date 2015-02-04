@@ -984,7 +984,7 @@ ul.breadcrumb li.last i.arrow-right {
 #body-pensio-wait .main header hgroup h6,
 #body-pensio-wait .main header hgroup a,
 #body-pensio-wait .main header hgroup p {
-  color: #444;
+  color: #fff;
 }
 
 #new-basket-item {
@@ -2414,7 +2414,7 @@ a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbutto
 }
 .product-list .block a .out-of-stock {
   position: absolute;
-  bottom: 0;
+  bottom: 11px;
   left: 0;
   text-indent: -999px;
 }

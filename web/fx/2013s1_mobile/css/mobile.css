@@ -764,7 +764,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 }
 .product-list .block a .out-of-stock {
   position: absolute;
-  bottom: 0;
+  bottom: 11px;
   left: 0;
   text-indent: -999px;
 }
@@ -3096,6 +3096,9 @@ a.button.button-full-width,
   width: 50%;
   float: right;
 }
+.near-you-container .note strong {
+  display: block;
+}
 .near-you-container .note i {
   display: block;
 }
@@ -3234,6 +3237,9 @@ footer .copy li {
   position: absolute;
   bottom: 0;
   right: 0;
+  font-size: 0;
+  line-height: 0;
+  background-color: #fff;
 }
 .body-product .main .show-size-guide {
   display: block;

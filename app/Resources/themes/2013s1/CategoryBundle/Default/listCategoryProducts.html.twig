@@ -56,7 +56,7 @@
 
     {% else %}
         <div class="no-products-in-category">
-            {{ 'all.products.out.of.stock'|trans }}
+            {{ 'all.products.out.of.stock'|trans|raw }}
         </div>
     {% endif %}
 
