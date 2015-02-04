@@ -252,15 +252,15 @@ class DefaultController extends CoreController
 
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
-            'page_type' => 'category-search',
-            'content'   => $page->getContent(),
-            'title'     => $page->getTitle(),
-            'result'    => $result_set,
-            'body_classes' => $classes,
-            'sizes'     => (is_array($sizes) ? $sizes : array()),
-            'route'     => $request->get('_route'),
-            'selected'  => $request->get('size', ''),
-            'cms_id'    => $page->getParentId()
+            'page_type'     => 'category-search',
+            'content'       => $page->getContent(),
+            'title'         => $page->getTitle(),
+            'result'        => $result_set,
+            'body_classes'  => $classes,
+            'sizes'         => (is_array($sizes) ? $sizes : array()),
+            'route'         => $request->get('_route'),
+            'selected'      => $request->get('size', ''),
+            'cms_id'        => $page->getParentId()
         ));
     }
 
