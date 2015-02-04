@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
-use Hanzo\Model\EventsParticipants;
-use Hanzo\Model\EventsParticipantsQuery;
 
 /**
  * Class SmsController
@@ -95,6 +93,14 @@ class SmsController extends CoreController
      */
     public function sendtestAction()
     {
+        $p = \Hanzo\Model\EventsParticipantsQuery::create()->findOneById(387);
+
+        $p->setPhone('01778800117');
+        $p = $this->container->get('sms_manager')->sendEventInvite($p);
+
+        return $this->response('<pre>'.print_r($p, 1).'</pre>');
+
+
         // http://..../events/sms/test-123
         // dansk.: 29927366 / 1231
         // svensk: 0739415117 / 72445

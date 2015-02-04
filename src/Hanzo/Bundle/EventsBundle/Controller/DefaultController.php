@@ -39,10 +39,9 @@ class DefaultController extends CoreController
 
         // if the customer has been adding stuff to the basket, use that information here.
         $customerId = $request->request->get('id');
-        $hanzo      = Hanzo::getInstance();
-        $domainKey  = $hanzo->get('core.domain_key');
-        $errors     = '';
-
+        $hanzo     = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+        $errors    = '';
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         // If order is for the hostess, find her and use the Customer

@@ -29,6 +29,7 @@ class GoogleExtension extends Extension
         $container->setParameter('google.analytics_code', $config['analytics_code']);
         $container->setParameter('google.conversion_id', $config['conversion_id']);
         $container->setParameter('google.site_verification', $config['site_verification']);
+        $container->setParameter('google.google_tag_manager_id', $config['google_tag_manager_id']);
 
         $addwords_params = [
             'id'               => '',

@@ -78,7 +78,7 @@
           {% endif %}
         {% else %}
           <div class="out-of-stock">
-            {{ 'all.products.out.of.stock'|trans }}
+            {{ 'all.products.out.of.stock'|trans|raw }}
           </div>
         {% endfor %}
       </div>

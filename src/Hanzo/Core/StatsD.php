@@ -99,6 +99,7 @@ class StatsD
     }
 
     /**
+     * Add arbitrary gauge values
      * Updates one stat gauges by arbitrary amounts.
      *
      * @param string $variable
@@ -115,7 +116,7 @@ class StatsD
      * @param string $variable
      * @param float  $value
      */
-    public function measure($variable, $value)
+    public function count($variable, $value)
     {
         $this->data[] = "{$this->prefix}{$variable}:{$value}|c";
     }
