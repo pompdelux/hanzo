@@ -194,7 +194,7 @@
             });
         }
 
-        $("input[type='checkbox']", $faceted).on('change', function(event) {
+        $("input[type='checkbox']", $faceted).on('change', function(event) {;
             event.preventDefault();
 
             $(".js-pager-container li a").each(function(index, a) {
@@ -221,6 +221,7 @@
   category.initPager();
   category.initFlip();
   category.initHeader();
-  category.initFaceted();
+  // category.initFaceted();
+  filters.init();
 
 })(document, jQuery);
