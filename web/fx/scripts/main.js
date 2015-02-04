@@ -109,7 +109,7 @@
                     $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
                 }
 
-                $(".outer > li").hover(function() {
+                $(".menu .outer > li").hover(function() {
                     $(this).addClass("open");
                 },function() {
                     $(this).removeClass("open");
