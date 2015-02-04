@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alla varor i denna kategori är utsålda.</target>
+                <target>Det finns tyvärr inga varor i den valda kategorin, då vi just nu förbereder inför en ny säsong. Vår nya SPRING/SUMMER15 kollektion har release hos våra Shopping Advisors den 12 februari och i webshoppen den 16 februari.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
