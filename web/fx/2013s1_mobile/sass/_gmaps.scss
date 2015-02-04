@@ -14,6 +14,9 @@
         float: right;
     }
     .note {
+        strong {
+            display: block;
+        }
         i {
             display: block;
         }
