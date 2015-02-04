@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use     Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\SearchProductsTagsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -43,7 +43,6 @@ class DefaultController extends CoreController
     public function viewAction(Request $request, $cms_id, $show, $pager = 1)
     {
         $hanzo     = Hanzo::getInstance();
-        $container = $hanzo->container;
         $locale    = $hanzo->get('core.locale');
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
@@ -69,6 +68,7 @@ class DefaultController extends CoreController
 
         $size_filter  = [];
         $color_filter = [];
+        $eco_filter   = [];
 
         // we need this "hack" to prevent url pollution..
         $escapes = [
@@ -90,6 +90,12 @@ class DefaultController extends CoreController
             }
 
             $cache_id = array_merge($cache_id, $size_filter);
+
+            foreach ($request->query->get('eco', []) as $eco) {
+                $eco_filter[] = $eco;
+            }
+
+            $cache_id = array_merge($cache_id, $eco_filter);
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
@@ -110,23 +116,23 @@ class DefaultController extends CoreController
 
                 // Define classes to the body, dependently on the context of the category.
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-                if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+                if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
                     $classes .= ' category-girl';
-                } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
+                } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
                     $classes .= ' category-boy';
                 }
 
-                $this->get('twig')->addGlobal('route', $container->get('request')->get('_route'));
+                $this->get('twig')->addGlobal('route', $request->get('_route'));
 
                 $twig = $this->get('twig');
-                $twig->addGlobal('route', $container->get('request')->get('_route'));
+                $twig->addGlobal('route', $request->get('_route'));
                 $twig->addGlobal('page_type', 'category-'.$settings->category_id);
                 $twig->addGlobal('body_classes', 'body-category category-'.$settings->category_id.' body-'.$show.' '.$classes);
                 $twig->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
                 $twig->addGlobal('cms_id', $cms_page->getParentId());
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
-
+                
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
@@ -273,12 +279,23 @@ class DefaultController extends CoreController
         $color_mapping = [];
         $size_mapping  = [];
         if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
+            // When casting objects to arrays with numeric attributes, everything goes belly up
+            // The fix should be to pass true to json_decode http://php.net/json_decode
+            // but that breaks other stuff :), so there for the extra foreach after this
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
         }
 
+        $tmp = $size_mapping;
+        $size_mapping = [];
+        foreach ($tmp as $key => $value)
+        {
+            $size_mapping[$key] = $value;
+        }
+
         $use_filter   = false;
-        $size_filter  = [];
+        $filters      = [];
+        // Used later on, but also joined into $filters
         $color_filter = [];
 
         // we need this "hack" to prevent url pollution..
@@ -296,10 +313,16 @@ class DefaultController extends CoreController
             }
 
             foreach ($request->query->get('size', []) as $size) {
-                $size_filter[] = $size;
-                $use_filter = true;
+                if (isset($size_mapping[$size])) {
+                    $filters['size'] = array_merge($filters['size'], $size_mapping[$size]);
+                    $use_filter = true;
+                }
             }
 
+            foreach ($request->query->get('eco', []) as $eco) {
+                $filters['eco'][] = $eco;
+                $use_filter = true;
+            }
         }
 
         $settings = $cms_page->getSettings(null, false);
@@ -309,6 +332,8 @@ class DefaultController extends CoreController
                 $color_filter = explode(',', $settings->colors);
             }
         }
+
+        $filters['color'] = $color_filter;
 
         $route = $request->get('_route');
 
@@ -322,6 +347,16 @@ class DefaultController extends CoreController
         $domain_id = $hanzo->get('core.domain_id');
         $show_by_look = (bool) ($show === 'look');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
+
+        // Use embedded_category_id if exists, else fallback to category_id. This way we can support multiple categories on the same page
+        if (isset($settings->embedded_category_id))
+        {
+            $category_ids_for_filter = $settings->embedded_category_id;
+        }
+        else
+        {
+            $category_ids_for_filter = $settings->category_id;
+        }
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
@@ -342,61 +377,24 @@ class DefaultController extends CoreController
                 ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
-            ->filterByCategoriesId($settings->category_id);
+            ->filterByCategoriesId($category_ids_for_filter);
 
         // If there are any colors in the settings to order from, add the order column here.
         // Else order by normal Sort in db
 
         if ($use_filter) {
-            $sql = '';
+            $con     = \Propel::getConnection();
 
-            $con = \Propel::getConnection();
-            if ($color_filter && $size_filter) {
-                $color_filter_values = implode(', ', array_map(array($con, 'quote'), $color_filter));
-                $size_filter_values = implode(', ', array_map(array($con, 'quote'), $size_filter));
+            $sql = "
+                SELECT
+                    C1.master_products_id AS master_products_id
+                FROM
+                    search_products_tags AS C1\n";
 
-                $sql = "
-                    SELECT
-                        C1.master_products_id AS master_products_id
-                    FROM
-                        search_products_tags AS C1
-                    JOIN
-                        search_products_tags AS C2
-                        ON (C1.products_id = C2.products_id)
-                    WHERE
-                        C1.token IN ({$color_filter_values})
-                        AND
-                            C2.token IN ({$size_filter_values})
-                    GROUP BY
-                        C1.master_products_id
-                ";
-            } elseif ($color_filter) {
-                $color_filter_values = implode(', ', array_map(array($con, 'quote'), $color_filter));
+            $sql .= $this->searchProductsFilterBuilder($filters);
 
-                $sql = "
-                    SELECT
-                        C1.master_products_id AS master_products_id
-                    FROM
-                        search_products_tags AS C1
-                    WHERE
-                        C1.token IN ({$color_filter_values})
-                    GROUP BY
-                        C1.master_products_id
-                ";
-            } elseif ($size_filter) {
-                $size_filter_values = implode(', ', array_map(array($con, 'quote'), $size_filter));
-
-                $sql = "
-                    SELECT
-                        C1.master_products_id AS master_products_id
-                    FROM
-                        search_products_tags AS C1
-                    WHERE
-                        C1.token IN ({$size_filter_values})
-                    GROUP BY
-                        C1.master_products_id
-                ";
-            }
+            $sql .= "\nGROUP BY
+                C1.master_products_id";
 
             if ($sql) {
                 $statement = $con->prepare($sql);
@@ -512,7 +510,7 @@ class DefaultController extends CoreController
         ];
 
         $data['color_mapping'] = array_keys($color_mapping);
-        $data['size_mapping']  = $size_mapping;
+        $data['size_mapping']  = array_keys($size_mapping);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
@@ -523,5 +521,42 @@ class DefaultController extends CoreController
         }
 
         return $data;
+    }
+
+    /**
+     * searchProductsFilterBuilder
+     *
+     * @param array $filters
+     * @return string
+     *
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function searchProductsFilterBuilder($filters)
+    {
+        $sql     = '';
+        $joins   = [];
+        $wheres  = [];
+        $counter = 2;
+        $con     = \Propel::getConnection();
+
+        if (count($filters) > 1) {
+            foreach ($filters as $filter)
+            {
+                $filter_values = implode(', ', array_map(array($con, 'quote'), $filter));
+                $joins[] = "JOIN
+                    search_products_tags AS C{$counter}
+                    ON (C1.products_id = C{$counter}.products_id)";
+
+                $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
+                $counter++;
+            }
+        }
+        else {
+            $filter_values = implode(', ', array_map(array($con, 'quote'), array_shift($filters)));
+            $wheres[] = "\nC1.token IN ({$filter_values})";
+        }
+
+        $sql = implode("\n", $joins)."\nWHERE".implode("\nAND", $wheres);
+        return $sql;
     }
 }

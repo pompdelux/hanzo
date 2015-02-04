@@ -52,6 +52,10 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $builder = $this->getContainer()->get('hanzo_search.product.index_builder');
+        $builder->build();
+
+        return;
         $email = 'hf+mailplatform131@bellcom.dk';
         $list_id = 2002;
         $extraData = [

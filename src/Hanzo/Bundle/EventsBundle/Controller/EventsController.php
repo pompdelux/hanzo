@@ -2,28 +2,27 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-
 use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
 use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
-use Hanzo\Model\EventsQuery;
-use Hanzo\Model\Events;
-use Hanzo\Model\EventsParticipantsQuery;
-use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\EventsParticipants;
-use Hanzo\Model\CustomersQuery;
-use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Events;
+use Hanzo\Model\EventsParticipants;
+use Hanzo\Model\EventsParticipantsQuery;
+use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 use Propel;
 use Symfony\Component\Form\FormError;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class EventsController
@@ -682,6 +681,8 @@ class EventsController extends CoreController
      * @param Request $request
      *
      * @return Response
+     * @throws \Exception
+     * @throws \PropelException
      */
     public function myEventsAction(Request $request)
     {

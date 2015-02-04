@@ -33,11 +33,13 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
 
+<script src="//cdn.optimizely.com/js/2297790626.js"></script>
 <!--[if lt IE 9]>
 <script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
+{{ google_tag_manager() }}
 {% include '::inlineEditMenu.html.twig' %}
 
 <div class="top-bar"></div>

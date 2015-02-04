@@ -3,14 +3,10 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Criteria;
-
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\EventsParticipantsQuery;
-
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
-
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 /**
@@ -103,7 +99,9 @@ class SmsService
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();
-        $provider->addMessage($to, utf8_decode($message));
+        $provider->addMessage($to, utf8_decode($message), [
+            'overwrite_appnr' => true
+        ]);
 
         $response = $provider->send();
 

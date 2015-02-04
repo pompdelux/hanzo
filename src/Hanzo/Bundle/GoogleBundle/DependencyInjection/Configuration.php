@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                         ->then(function($v) { return [$v]; })
                     ->end()
                 ->end()
+                ->scalarNode('google_tag_manager_id')->defaultNull()->end()
                 ->arrayNode('addwords')
                     ->children()
                         ->arrayNode('conversion')
