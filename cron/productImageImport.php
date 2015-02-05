@@ -19,7 +19,7 @@ if (empty($images_found)) {
 }
 
 // hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541 -->>
-$renamedImages = [];
+/* $renamedImages = [];
 foreach ($images_found as $file) {
     $path = dirname($file);
     $newName = $path .'/'.strtolower(basename($file));
@@ -35,7 +35,7 @@ foreach ($images_found as $file) {
     $renamedImages[] = $newName;
 }
 
-$images_found = $renamedImages;
+$images_found = $renamedImages; */
 // <<-- hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541
 
 $images = array();
