@@ -5316,3 +5316,35 @@ ul.form-errors li {
 .filters-selected span a {
   color: #000;
 }
+
+.faceted-dropdowns {
+  /*
+   * &:nth-child(1) {
+   *   background-color: #f00;
+   *   margin-left: 0;
+   * }
+   * &:nth-child(3) {
+   *   background-color: #ff0;
+   *   margin-right: 0;
+   * }
+   */
+}
+.faceted-dropdowns div {
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+  /* height: 34px; */
+  /* line-height: 34px; */
+  text-transform: uppercase;
+  width: 312px;
+  text-align: center;
+  color: #fff;
+  background-color: #a2a2a2;
+}
+.faceted-dropdowns ul {
+  /*
+   * position: relative;
+   * height: auto;
+   * z-index: 100;
+   */
+}
