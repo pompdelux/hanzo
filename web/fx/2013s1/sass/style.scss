@@ -74,7 +74,9 @@ $basket-color:       white;
 $basket-font-size:   14px;
 $basket-font-weight: normal;
 
-$category-menu-hover-bg-color: #a2a2a2;
+$warm-gray: #a2a2a2;
+$category-menu-hover-bg-color: $warm-gray;
+$filter-dropdown-hover-bg-color: $warm-gray;
 
 // @import "../../css/font-awesome-4.0.3/scss/font-awesome.scss";
 @import "sprites";
