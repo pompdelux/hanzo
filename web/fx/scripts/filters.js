@@ -1,3 +1,4 @@
+/* jshint unused:false */
 var filters = (function ($) {
   'use strict';
   var pub = {};
@@ -11,14 +12,18 @@ var filters = (function ($) {
 
     setValuesFromUrl();
 
-    $(".js-filters span a").click(function(e) {
+    $(".js-filters").on('click', 'span a', function(e) {
       e.preventDefault();
       handleFilterRemove($(this).attr('href'));
     });
 
-    $("input[type='checkbox']", $faceted).on('change', function(event) {
-      console.log($(this));
-      updateUrl();
+    $("input[type='checkbox']", $faceted).on('change', function() {
+      if ($(this).prop( "checked" ) === true) {
+        handleFilterAdded($(this).val());
+      }
+      else {
+        handleFilterRemove($(this).val());
+      }
     });
   };
 
@@ -51,31 +56,31 @@ var filters = (function ($) {
 
   function handleFilterRemove(value) {
     $(".js-filters span a[href='"+value+"']").parent().remove();
+    $("input[value='"+value+"']", $faceted).prop('checked', false);
     updateUrl();
   }
 
-  function addSelectedFilterBox(value) {
+  function handleFilterAdded(value) {
     var element = ' <span>'+value+' <a href="'+value+'">&#10005;</a></span>';
 
     $(".js-filters").append(element);
+    $("input[value='"+value+"']", $faceted).prop('checked', true);
     updateUrl();
   }
 
   function setValuesFromUrl() {
     var $url = $.url();
 
-    if ($url.param('filter') == 'on') {
+    if ($url.param('filter') === 'on') {
       $.each($url.param(), function(name, values) {
-        if (name == 'filter') {
+        if (name === 'filter') {
           return;
         }
-        if (typeof values == 'string') {
-          // $("input[value='"+values+"']", $faceted).prop('checked', true);
-          addSelectedFilterBox(values);
+        if (typeof values === 'string') {
+          handleFilterAdded(values);
         } else if ($.isArray(values)) {
           $.each(values, function(x, value) {
-            addSelectedFilterBox(values);
-            // $("input[value='"+value+"']", $faceted).prop('checked', true);
+            handleFilterAdded(value);
           });
         }
       });
