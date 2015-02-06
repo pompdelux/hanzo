@@ -5324,34 +5324,33 @@ ul.form-errors li {
   color: #000;
 }
 
-.faceted-dropdowns {
-  /*
-   * &:nth-child(1) {
-   *   background-color: #f00;
-   *   margin-left: 0;
-   * }
-   * &:nth-child(3) {
-   *   background-color: #ff0;
-   *   margin-right: 0;
-   * }
-   */
+nav.filters-dropdowns {
+  background-color: transparent;
+  margin-bottom: 6px;
 }
-.faceted-dropdowns div {
-  float: left;
-  margin-left: 3px;
-  margin-right: 3px;
-  /* height: 34px; */
-  /* line-height: 34px; */
+nav.filters-dropdowns .outer > li.first div {
+  margin-right: 6px;
+}
+nav.filters-dropdowns .outer > li.last div {
+  margin-left: 6px;
+}
+nav.filters-dropdowns .outer > li > ul {
+  width: 314px;
+  background-color: #a2a2a2;
+}
+nav.filters-dropdowns .outer > li > ul label {
+  color: #fff;
+  margin-top: 2px;
+  vertical-align: top;
+}
+nav.filters-dropdowns .outer > li > ul > li {
+  width: 298px;
+}
+nav.filters-dropdowns .outer > li > div {
   text-transform: uppercase;
-  width: 312px;
+  width: 294px;
   text-align: center;
   color: #fff;
   background-color: #a2a2a2;
-}
-.faceted-dropdowns ul {
-  /*
-   * position: relative;
-   * height: auto;
-   * z-index: 100;
-   */
+  padding: 10px 20px 10px 0;
 }
