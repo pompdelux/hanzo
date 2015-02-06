@@ -15,6 +15,7 @@ var filters = (function ($) {
     $(".js-filters").on('click', 'span a', function(e) {
       e.preventDefault();
       handleFilterRemove($(this).attr('href'));
+      updateUrl();
     });
 
     $("input[type='checkbox']", $faceted).on('change', function() {
@@ -24,6 +25,16 @@ var filters = (function ($) {
       else {
         handleFilterRemove($(this).val());
       }
+      updateUrl();
+    });
+
+    $(".js-filter-clear-dropdown").click(function(e) {
+      e.preventDefault();
+      var filterType = $(this).attr('href');
+      $(".js-filter-type-"+filterType+" input").each(function(index, element) {
+        handleFilterRemove($(this).val());
+      });
+      updateUrl();
     });
   };
 
@@ -57,7 +68,6 @@ var filters = (function ($) {
   function handleFilterRemove(value) {
     $(".js-filters span a[href='"+value+"']").parent().remove();
     $("input[value='"+value+"']", $faceted).prop('checked', false);
-    updateUrl();
   }
 
   function handleFilterAdded(value) {
@@ -67,7 +77,6 @@ var filters = (function ($) {
 
     $(".js-filters").append(element);
     $("input[value='"+value+"']", $faceted).prop('checked', true);
-    updateUrl();
   }
 
   function setValuesFromUrl() {
@@ -87,6 +96,8 @@ var filters = (function ($) {
         }
       });
     }
+
+    updateUrl();
   }
 
   return pub;
