@@ -3188,7 +3188,10 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 */
 nav.main-menu {
   background: #484a4d;
-  padding: 0 10px;
+  padding: 0;
+}
+nav.main-menu ul.topmenu.outer {
+  margin: 0 auto;
 }
 nav.main-menu ul {
   z-index: 210;
@@ -3199,7 +3202,6 @@ nav.main-menu ul {
 }
 nav.main-menu ul.outer {
   display: table;
-  margin: 0 auto;
 }
 nav.main-menu > ul > li {
   float: left;
@@ -3260,6 +3262,20 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   text-decoration: none;
   padding: 3px 0 3px 0px;
   cursor: default;
+}
+
+nav.category-menu ul.outer .open {
+  background-color: #a2a2a2;
+}
+nav.category-menu > ul > li a {
+  margin-left: 10px;
+}
+nav.category-menu > ul > li > ul {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  /* box-shadow: none; */
+  /* @include box-shadow(#676767 2px 8px 7px, #676767 -2px 8px 7px); */
+  background-color: #a2a2a2;
 }
 
 .consultant nav.main-menu > ul > li > a {
@@ -5294,4 +5310,48 @@ ul.form-errors li {
 
 .ui-timepicker-rtl dl dd {
   margin: 0 40% 10px 10px;
+}
+
+.filters-selected {
+  text-transform: uppercase;
+}
+.filters-selected span {
+  background-color: #969799;
+  color: #fff;
+  padding: 2px 6px;
+}
+.filters-selected span a {
+  color: #000;
+}
+
+.faceted-dropdowns {
+  /*
+   * &:nth-child(1) {
+   *   background-color: #f00;
+   *   margin-left: 0;
+   * }
+   * &:nth-child(3) {
+   *   background-color: #ff0;
+   *   margin-right: 0;
+   * }
+   */
+}
+.faceted-dropdowns div {
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+  /* height: 34px; */
+  /* line-height: 34px; */
+  text-transform: uppercase;
+  width: 312px;
+  text-align: center;
+  color: #fff;
+  background-color: #a2a2a2;
+}
+.faceted-dropdowns ul {
+  /*
+   * position: relative;
+   * height: auto;
+   * z-index: 100;
+   */
 }

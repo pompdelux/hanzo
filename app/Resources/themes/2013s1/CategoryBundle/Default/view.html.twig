@@ -10,6 +10,40 @@
 
 {% block content %}
 
+<form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form faceted-dropdowns">
+  <div>
+    Sizes
+    <ul>
+      {% for size in size_mapping %}
+      <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}"/><label for="size_{{ size|tag_safe }}"> {{ size }}</label></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div>
+    Colors
+    <ul>
+      {% for color in color_mapping %}
+      <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}"/><label for="color_{{ color|tag_safe }}"> {{ color }}</label></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div>
+    Eco stuff
+    <ul>
+      <li><input type="checkbox" name="color[]" value="token-gots" id="token_gots"/><label for="token-gots">Gots</label></li>
+      <li><input type="checkbox" name="color[]" value="token-oekotex" id="token-oekotex"/><label for="token-oekotex">Oekotex</label></li>
+    </ul>
+  </div>
+</form>
+
+{#
+<input type="checkbox" name="show_all" value="1" id="form_show_all">
+<label for="form_show_all">{{ 'faceted.show.out.of.stock'|trans }}</label>
+<a class="" href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.reset.filter'|trans }}</a>
+#}
+
 <header class="grid_8 alpha omega">
     <hgroup>
         <!-- {{ 'headers.'~page_type }} -->
@@ -28,49 +62,22 @@
   })) }}
 </div>
 
+<div class="grid_8 alpha omega row js-filters filters-selected">
+  {{ 'faceted.selected_filters'|trans({}, 'category') }}: 
+</div>
+
 <div class="grid_8 alpha omega row">
   <div class="grid_2 alpha sub-menu menu">
-      <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
-          <div class="grid_2 alpha sub-menu menu">
-              {{ render(controller('CMSBundle:Menu:menu', {
-                  'type': 'sub',
-                  'offset': cms_id,
-                  'thread' : 20,
-                  'include_self' : true
-              })) }}
-
-              <ul class="js-faceted-container">
-                  <li class="heading item">
-                      <a class="heading">Colours</a>
-                      <ul class="sub">
-
-                      {% for color in color_mapping %}
-                          <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}"/><label for="color_{{ color|tag_safe }}"> {{ color }}</label></li>
-                      {% endfor %}
-                      </ul>
-                  </li>
-                  <li class="heading item">
-                      <a class="heading">Sizes</a>
-                      <ul class="sub">
-                          {% for size in size_mapping %}
-                              <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}"/><label for="size_{{ size|tag_safe }}"> {{ size }}</label></li>
-                          {% endfor %}
-                      </ul>
-                  </li>
-
-                  <li>
-                      <ul>
-                          <li>
-                              <input type="checkbox" name="show_all" value="1" id="form_show_all">
-                              <label for="form_show_all">{{ 'faceted.show.out.of.stock'|trans }}</label>
-                          </li>
-                          <li><a class="" href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.reset.filter'|trans }}</a></li>
-                      </ul>
-                  </li>
-              </ul>
-
-          </div>
-      </form>
+    <form action="{{ url(app.request.attributes.get('_route')) }}">
+      <div class="grid_2 alpha sub-menu menu">
+          {{ render(controller('CMSBundle:Menu:menu', {
+              'type': 'sub',
+              'offset': cms_id,
+              'thread' : 20,
+              'include_self' : true
+          })) }}
+      </div>
+    </form>
   </div>
   {% include 'CategoryBundle:Default:listCategoryProducts.html.twig' %}
 </div>

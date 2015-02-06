@@ -109,6 +109,11 @@
                     $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
                 }
 
+                $(".menu .outer > li").hover(function() {
+                    $(this).addClass("open");
+                },function() {
+                    $(this).removeClass("open");
+                });
 
                 $('> ul > li > a', $menu).click(function (event) {
                     var $this = $(this).parent();
