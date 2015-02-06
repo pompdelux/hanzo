@@ -549,6 +549,10 @@ class DefaultController extends CoreController
         if (count($filters) > 1) {
             foreach ($filters as $filter)
             {
+                if (empty($filter))
+                {
+                    continue;
+                }
                 $filter_values = implode(', ', array_map(array($con, 'quote'), $filter));
                 $joins[] = "JOIN
                     search_products_tags AS C{$counter}
