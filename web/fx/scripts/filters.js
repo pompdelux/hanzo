@@ -61,7 +61,9 @@ var filters = (function ($) {
   }
 
   function handleFilterAdded(value) {
-    var element = ' <span>'+value+' <a href="'+value+'">&#10005;</a></span>';
+    var name = value.replace('token-', '');
+
+    var element = ' <span>'+name+' <a href="'+value+'">&#10005;</a></span>';
 
     $(".js-filters").append(element);
     $("input[value='"+value+"']", $faceted).prop('checked', true);
