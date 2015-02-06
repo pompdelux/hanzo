@@ -128,6 +128,456 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="807.settings">
+                <source>807.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "12",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="739.settings">
+                <source>739.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "13",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="560.settings">
+                <source>560.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "14",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="557.settings">
+                <source>557.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "15",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="780.settings">
+                <source>780.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "16",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="555.settings">
+                <source>555.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "17",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="554.settings">
+                <source>554.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "18",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="779.settings">
+                <source>779.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "19",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="670.settings">
+                <source>670.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "21",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="556.settings">
+                <source>556.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "45",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="559.settings">
+                <source>559.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "46",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="672.settings">
+                <source>672.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "79",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="671.settings">
+                <source>671.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "81",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="564.settings">
+                <source>564.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "112",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="566.settings">
+                <source>566.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "113",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="751.settings">
+                <source>571.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "114",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="558.settings">
+                <source>558.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "115",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="565.settings">
+                <source>565.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "127",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="809.settings">
+                <source>809.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "131",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="810.settings">
+                <source>810.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "136",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="562.settings">
+                <source>562.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "137",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="811.settings">
+                <source>811.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "142",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="812.settings">
+                <source>812.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "143",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="834.settings">
+                <source>834.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "144",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="813.settings">
+                <source>813.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "145",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="814.settings">
+                <source>814.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "146",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="815.settings">
+                <source>815.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "147",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="820.settings">
+                <source>820.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "5",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="740.settings">
+                <source>740.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "6",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="573.settings">
+                <source>573.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "7",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="570.settings">
+                <source>570.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "8",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="569.settings">
+                <source>569.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "9",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="747.settings">
+                <source>747.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "11",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="571.settings">
+                <source>571.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "43",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="572.settings">
+                <source>572.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "44",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="752.settings">
+                <source>752.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "83",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="576.settings">
+                <source>576.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "84",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="577.settings">
+                <source>577.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "116",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="575.settings">
+                <source>575.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "117",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="574.settings">
+                <source>574.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "118",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="679.settings">
+                <source>679.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "119",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="821.settings">
+                <source>821.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "120",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="822.settings">
+                <source>822.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "128",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="823.settings">
+                <source>823.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "132",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="824.settings">
+                <source>824.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "135",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="825.settings">
+                <source>825.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "148",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="829.settings">
+                <source>829.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "149",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="830.settings">
+                <source>830.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "150",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="831.settings">
+                <source>831.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "151",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="832.settings">
+                <source>832s.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "152",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
