@@ -80,15 +80,60 @@ nav.filters-dropdowns {
       padding: 10px 10px 10px 0;
     }
 
-    &.open > div > span {
-      background-image: none;
+    &.open {
+
+      .filter-dropdown-arrow-down {
+        /* Can not use Display:none, since there is a margin */
+
+        &:before {
+          border-top-color: #a2a2a2; /* Need to make it the same as bg color of parent instead */
+        }
+      }
     }
   }
 }
 
-.dropdown-indicator {
-  width: 10px;
-  height: 10px;
-  margin-top: 2px;
+.filter-dropdown-arrow {
+  display: block;
   float: right;
+  background-color: transparent;
+  padding: 0;
+  width: 0;
+  height: 0;
+  margin-right: 2px;
+
+  &:before,
+  &:after {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:after {
+    border-color: transparent;
+    border-width: 3px;
+    margin-left: -3px;
+    border-top-color: #a2a2a2;
+  }
+
+  &:before {
+    border-color: transparent;
+    border-width: 5px;
+    margin-left: -5px;
+    border-top-color: #000;
+  }
+
+  &.filter-dropdown-arrow-down {
+    margin-top: 5px;
+  }
+
+  &.filter-dropdown-arrow-up {
+    margin-top: 8px;
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+  }
 }
