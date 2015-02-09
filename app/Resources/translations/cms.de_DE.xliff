@@ -570,7 +570,7 @@
                 ]]></target>
             </trans-unit>
             <trans-unit id="832.settings">
-                <source>832s.settings</source>
+                <source>832.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "152",
