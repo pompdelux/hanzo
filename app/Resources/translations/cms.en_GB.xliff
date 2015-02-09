@@ -9,64 +9,98 @@
                         "colormap": {
                             "Rose": [
                                 "Rose",
+								"Light Rose",
+								"Dark Rose",
+								"Eggplant/Rose",
+								"Rose/Black",
+								"Rose/Navy",
 								"Rose/Grey",
-								"Rose/Eggplant",
-								"Eggplant/Rose",
-								"Grey/Rose/Eggplant",
-								"Navy/Rose"
+								"Rose Melange",
+								"Rose/Off White",
+								"Copper/Black"
+								
                             ],
-                           "Eggplant": [
-                                "Eggplant",
-								"Rose/Eggplant",
-								"Eggplant/Rose",
-								"Grey/Rose/Eggplant",
-								"Eggplant/Grey",
-								"Eggplant/Mustard",
-								"Mustard"
+                           "Blue": [
+                                "Dusty Blue",
+								"Blue",
+								"Navy",
+								"Navy/Petrol",
+								"Navy/Blue",
+								"Navy/Camel",
+								"Navy/Off White",
+								"Blue/Off White",
+								"Light Blue",
+								"Blue Melange",
+								"Grey/Blue",
+								"Navy/Palm",
+								"Navy/Shoe",
+								"Blue/Star",
+								"Navy Melange Block",
+								"Navy Melange Stripe",
+								"Navy Melange",
+								"Navy/Green"
+			
+                            ],
+                            "White": [
+                                "Off White",
+								"Off White/Blue",
+								"White"
 
                             ],
+                            "Black": [
+                                "Black",
+								"Rose/Black",
+								"Black/Off White",
+								"Black Melange",
+								"Copper/Black"
+
+                            ],
+                            "Yellow": [
+                                "Yellow",
+								"Grey Melange",
+								"Yellow/Off White"
+								
+							],
                             "Peach": [
                                 "Peach",
-								"Grey/Peach",
-								"Black"
-
-                            ],
-                            "Petrol & Blue": [
-                                "Petrol",
-								"Blue/Petrol",
-								"Grey/Petrol",
-								"Blue",
-								"Blue/Off White",
-								"Navy",
-								"Navy/Rose",
-								"Blue/Mustard"
-
-                            ],
-                            "Black & Grey": [
+								"Copper/Black"
+								
+							],
+                            "Grey": [
                                 "Grey",
 								"Grey Melange",
-								"Grey/Off White",
-								"Black",
-								"Cream",
-								"Off White",
-								"White",
-								"Grey Melange/Black"
-							] 
+								"Rose/Grey",
+								"Grey/Blue"
+								
+							],
+                            "Eggplant": [
+                                "Eggplant"
+								
+							],
+                            "Denim": [
+                                "Blue Denim",
+								"Light Blue Denim"
+								
+							],
+                            "Aqua": [
+                                "Aqua",
+								"Aqua Melange"	
+                            ]
                         },
-                         "sizes": {
-                            "80": ["80","80-86"],
-                            "86": ["86","80-86"],
-                            "92": ["92","92-98"],
-                            "98": ["98","92-98"],
-                            "104": ["104","104-110"],
-                            "110": ["110","104-110","110-116"],
-                            "116": ["116","110-116"],
-                            "122": ["122","122-128"],
-                            "128": ["128","122-128"],
-                            "134": ["134","134-140"],
-                            "140": ["140","134-140"],
-                            "146": ["146","146-152"],
-                            "152": ["152","146-152"]
+						"sizes": {
+                            "80": ["80","80-86","50","52","XS","S"],
+                            "86": ["86","80-86","50","52","XS","S"],
+                            "92": ["92","92-98","50","52","XS","S"],
+                            "98": ["98","92-98","52","54","S","M"],
+                            "104": ["104","104-110","52","54","S","M"],
+                            "110": ["110","104-110","110-116","52","54","S","M"],
+                            "116": ["116","110-116","52","54","S","M"],
+                            "122": ["122","122-128","54","56","M","L"],
+                            "128": ["128","122-128","54","56","M","L"],
+                            "134": ["134","134-140","54","56","M","L"],
+                            "140": ["140","134-140","54","56","M","L"],
+                            "146": ["146","146-152","54","56","M","L"],
+                            "152": ["152","146-152","54","56","M","L"]
                         }
                     }
                 ]]></target>
@@ -76,54 +110,86 @@
                 <target><![CDATA[
                    {
                         "colormap": {
-                             "Navy, Wine & Mustard": [
-                                "Navy",
-								"Mustard",
-								"Navy/Mustard",
-								"Navy/Wine",
-								"Wine"
+                             "Blue": [
+                                "Dusty Blue",
+								"Blue",
+								"Navy",
+								"Navy/Petrol",
+								"Navy/Blue",
+								"Navy/Camel",
+								"Navy/Off White",
+								"Blue/Off White",
+								"Light Blue",
+								"Blue Melange",
+								"Grey/Blue",
+								"Navy/Palm",
+								"Navy/Shoe",
+								"Blue/Star",
+								"Navy Melange Block",
+								"Navy Melange Stripe",
+								"Navy Melange",
+								"Navy/Green"
 
                             ],
                             "Green": [
 								"Green",
-								"Olive",
-								"Brown"
+								"Navy/Green"
 
                             ],
-                            "Blue": [
-                                "Blue",
-								"Blue Denim",
-								"Yellow",
-								"Orange",
-								"Lime"
+                            "White": [
+                                "White",
+								"Off White",
+								"Off White/Blue",
+								"White"
 
                             ],
-                            "Petrol": [
-                                "Petrol",
-								"Turquoise"
+                            "Black": [
+                                "Black",
+								"Rose/Black",
+								"Black/Off White",
+								"Black Melange",
+								"Copper/Black"
 
                             ],
-                            "Grey": [
+                            "Yellow": [
+                                "Yellow",
+								"Yellow/Off White"
+							]
+							"Grey": [
                                 "Grey",
 								"Grey Melange",
-								"Black",
-								"White"
-							]
+								"Rose/Grey",
+								"Grey/Blue"
+								
+							],
+                            "Denim": [
+                                "Blue Denim",
+								"Light Blue Denim"
+								
+							],
+                            "Sand/Khaki": [
+                                "Khaki",
+								"Sand",
+								"Hazelnut"
+								
+							],
+                            "Red": [
+                                "Red"
                         },
-                         "sizes": {
-                            "80": ["80","80-86"],
-                            "86": ["86","80-86"],
-                            "92": ["92","92-98"],
-                            "98": ["98","92-98"],
-                            "104": ["104","104-110"],
-                            "110": ["110","104-110","110-116"],
-                            "116": ["116","110-116"],
-                            "122": ["122","122-128"],
-                            "128": ["128","122-128"],
-                            "134": ["134","134-140"],
-                            "140": ["140","134-140"],
-                            "146": ["146","146-152"],
-                            "152": ["152","146-152"]
+                       "sizes": {
+                              "80": ["80","80-86","50","52","XS","S"],
+                            "86": ["86","80-86","50","52","XS","S"],
+                            "92": ["92","92-98","50","52","XS","S"],
+                            "98": ["98","92-98","52","54","S","M"],
+                            "104": ["104","104-110","52","54","S","M"],
+                            "110": ["110","104-110","110-116","52","54","S","M"],
+                            "116": ["116","110-116","52","54","S","M"],
+                            "122": ["122","122-128","54","56","M","L"],
+                            "128": ["128","122-128","54","56","M","L"],
+                            "134": ["134","134-140","54","56","M","L"],
+                            "140": ["140","134-140","54","56","M","L"],
+                            "146": ["146","146-152","54","56","M","L"],
+                            "152": ["152","146-152","54","56","M","L"]
                         }
                     }
                 ]]></target>
