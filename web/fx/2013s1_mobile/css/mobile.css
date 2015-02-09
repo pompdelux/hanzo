@@ -63,8 +63,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-repeat: no-repeat;
 }
 
-.icons-sprite, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-arrow_up, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-wishlist, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, form.buy .sizeguide, form.buy .add-buttons a.wishlist, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
-  background-image: url('/fx/mobile/../images/icons/icons-s31a0d6a270.png');
+.icons-sprite, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_down_triangle_with_notch, .icons-arrow_left, .icons-arrow_left_triangle_with_notch, .icons-arrow_right, .icons-arrow_right_triangle_with_notch, .icons-arrow_up, .icons-arrow_up_triangle_with_notch, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-wishlist, .icons-zoom, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, form.buy .sizeguide, form.buy .add-buttons a.wishlist, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+  background-image: url('/fx/mobile/../images/icons/icons-s87f9230c58.png');
   background-repeat: no-repeat;
 }
 
@@ -108,188 +108,204 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-position: 0 -350px;
 }
 
-.icons-arrow_left {
+.icons-arrow_down_triangle_with_notch {
   background-position: 0 -359px;
 }
 
-.icons-arrow_right {
+.icons-arrow_left {
   background-position: 0 -369px;
 }
 
-.icons-arrow_up {
+.icons-arrow_left_triangle_with_notch {
   background-position: 0 -379px;
 }
 
+.icons-arrow_right {
+  background-position: 0 -389px;
+}
+
+.icons-arrow_right_triangle_with_notch {
+  background-position: 0 -399px;
+}
+
+.icons-arrow_up {
+  background-position: 0 -409px;
+}
+
+.icons-arrow_up_triangle_with_notch {
+  background-position: 0 -418px;
+}
+
 .icons-arrowbox_left {
-  background-position: 0 -388px;
+  background-position: 0 -428px;
 }
 
 .icons-arrowbox_right {
-  background-position: 0 -423px;
+  background-position: 0 -463px;
 }
 
 .icons-basket-grey {
-  background-position: 0 -458px;
+  background-position: 0 -498px;
 }
 
 .icons-basket {
-  background-position: 0 -508px;
+  background-position: 0 -548px;
 }
 
 .icons-button-left-black {
-  background-position: 0 -558px;
+  background-position: 0 -598px;
 }
 
 .icons-button-left {
-  background-position: 0 -577px;
+  background-position: 0 -617px;
 }
 
 .icons-button-right-black {
-  background-position: 0 -596px;
+  background-position: 0 -636px;
 }
 
 .icons-button-right {
-  background-position: 0 -615px;
+  background-position: 0 -655px;
 }
 
 .icons-catwalk {
-  background-position: 0 -634px;
+  background-position: 0 -674px;
 }
 
 .icons-checkout {
-  background-position: 0 -664px;
+  background-position: 0 -704px;
 }
 
 .icons-close {
-  background-position: 0 -754px;
+  background-position: 0 -794px;
 }
 
 .icons-delete {
-  background-position: 0 -774px;
+  background-position: 0 -814px;
 }
 
 .icons-delete_black {
-  background-position: 0 -800px;
+  background-position: 0 -840px;
 }
 
 .icons-delete_icon {
-  background-position: 0 -810px;
+  background-position: 0 -850px;
 }
 
 .icons-delete_white {
-  background-position: 0 -842px;
+  background-position: 0 -882px;
 }
 
 .icons-divider {
-  background-position: 0 -852px;
+  background-position: 0 -892px;
 }
 
 .icons-divider_left {
-  background-position: 0 -867px;
-}
-
-.icons-divider_right {
-  background-position: 0 -887px;
-}
-
-.icons-edit {
   background-position: 0 -907px;
 }
 
+.icons-divider_right {
+  background-position: 0 -927px;
+}
+
+.icons-edit {
+  background-position: 0 -947px;
+}
+
 .icons-edit_icon {
-  background-position: 0 -933px;
+  background-position: 0 -973px;
 }
 
 .icons-facebook {
-  background-position: 0 -968px;
+  background-position: 0 -1008px;
 }
 
 .icons-faq_icon {
-  background-position: 0 -1000px;
+  background-position: 0 -1040px;
 }
 
 .icons-gots {
-  background-position: 0 -1032px;
+  background-position: 0 -1072px;
 }
 
 .icons-gplus {
-  background-position: 0 -1092px;
+  background-position: 0 -1132px;
 }
 
 .icons-instagram {
-  background-position: 0 -1124px;
+  background-position: 0 -1164px;
 }
 
 .icons-kurv {
-  background-position: 0 -1156px;
+  background-position: 0 -1196px;
 }
 
 .icons-magnifier {
-  background-position: 0 -1206px;
+  background-position: 0 -1246px;
 }
 
 .icons-newsletter {
-  background-position: 0 -1222px;
+  background-position: 0 -1262px;
 }
 
 .icons-newsletter_2 {
-  background-position: 0 -1308px;
-}
-
-.icons-pdf {
   background-position: 0 -1348px;
 }
 
+.icons-pdf {
+  background-position: 0 -1388px;
+}
+
 .icons-pinterest {
-  background-position: 0 -1374px;
+  background-position: 0 -1414px;
 }
 
 .icons-print {
-  background-position: 0 -1406px;
+  background-position: 0 -1446px;
 }
 
 .icons-return {
-  background-position: 0 -1422px;
+  background-position: 0 -1462px;
 }
 
 .icons-returnlabel {
-  background-position: 0 -1448px;
-}
-
-.icons-search {
-  background-position: 0 -1474px;
-}
-
-.icons-shopping-bag {
   background-position: 0 -1488px;
 }
 
+.icons-search {
+  background-position: 0 -1514px;
+}
+
+.icons-shopping-bag {
+  background-position: 0 -1528px;
+}
+
 .icons-show {
-  background-position: 0 -1531px;
+  background-position: 0 -1571px;
 }
 
 .icons-sizeguide {
-  background-position: 0 -1557px;
+  background-position: 0 -1597px;
 }
 
 .icons-trackntrace {
-  background-position: 0 -1583px;
+  background-position: 0 -1623px;
 }
 
 .icons-twitter {
-  background-position: 0 -1608px;
+  background-position: 0 -1648px;
 }
 
 .icons-video {
-  background-position: 0 -1640px;
+  background-position: 0 -1680px;
 }
 
 .icons-wishlist {
-  background-position: 0 -1672px;
+  background-position: 0 -1712px;
 }
 
 .icons-zoom {
-  background-position: 0 -1698px;
+  background-position: 0 -1738px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock, body.fi .subscribe-button {
@@ -898,7 +914,7 @@ ul.tabs li a i {
   float: left;
   margin-right: 20px;
   margin-top: 2px;
-  background-position: 0 -369px;
+  background-position: 0 -389px;
   height: 10px;
   width: 9px;
 }
@@ -933,7 +949,7 @@ div.panes > div {
   padding-left: 25px;
   margin-left: -25px;
   line-height: 1.3em;
-  background-position: 0 -1698px;
+  background-position: 0 -1738px;
   height: 19px;
   width: 19px;
 }
@@ -947,7 +963,7 @@ a.video-popper, #video-player-container a.video {
   margin-top: 20px;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -634px;
+  background-position: 0 -674px;
   height: 29px;
   width: 234px;
 }
@@ -998,13 +1014,13 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 }
 .body-product .main .productimage-large .prev {
   left: 0;
-  background-position: 0 -388px;
+  background-position: 0 -428px;
   height: 35px;
   width: 35px;
 }
 .body-product .main .productimage-large .next {
   right: 0;
-  background-position: 0 -423px;
+  background-position: 0 -463px;
   height: 35px;
   width: 35px;
 }
@@ -1036,7 +1052,7 @@ form.buy #dialoug-message {
 }
 form.buy .sizeguide {
   display: block;
-  background-position: 0 -1557px;
+  background-position: 0 -1597px;
   line-height: 26px;
   padding-left: 34px;
 }
@@ -1047,7 +1063,7 @@ form.buy .add-buttons {
 }
 form.buy .add-buttons a.wishlist {
   display: inline-block;
-  background-position: 0 -1672px;
+  background-position: 0 -1712px;
   line-height: 26px;
   padding-left: 33px;
 }
@@ -2579,7 +2595,7 @@ table#order-status tr.off {
   display: none;
 }
 table#order-status td a.trigger {
-  background-position: 0 -1206px;
+  background-position: 0 -1246px;
   width: 16px;
   height: 16px;
 }
@@ -3125,7 +3141,7 @@ footer .newsletter-block {
   position: relative;
 }
 footer .newsletter-block .sprite {
-  background-position: 0 -1222px;
+  background-position: 0 -1262px;
   height: 86px;
   width: 86px;
   position: absolute;
@@ -3195,7 +3211,7 @@ footer .copy li {
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
-  background-position: 0 -508px;
+  background-position: 0 -548px;
   height: 50px;
   width: 50px;
 }
@@ -3346,7 +3362,7 @@ a.product-color {
 }
 
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -1640px;
+  background-position: 0 -1680px;
   height: 31px;
   width: 31px;
 }
@@ -3597,34 +3613,34 @@ table.horizontal th {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -774px;
+  background-position: 0 -814px;
   height: 26px;
   width: 26px;
 }
 .sprite.edit {
-  background-position: 0 -907px;
+  background-position: 0 -947px;
   height: 26px;
   width: 26px;
 }
 .sprite.show {
-  background-position: 0 -1531px;
+  background-position: 0 -1571px;
   height: 26px;
   width: 26px;
 }
 .sprite.pdf {
-  background-position: 0 -1348px;
+  background-position: 0 -1388px;
   height: 26px;
   width: 26px;
 }
 .sprite.arrow-right {
   margin-left: 6px;
-  background-position: 0 -369px;
+  background-position: 0 -389px;
   height: 10px;
   width: 9px;
 }
 .sprite.arrow-left {
   margin-right: 6px;
-  background-position: 0 -359px;
+  background-position: 0 -369px;
   height: 10px;
   width: 9px;
 }
