@@ -21,7 +21,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}"/> <label for="size_{{ size|tag_safe }}"> {{ size }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="size" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
+          <li><a href="#size" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
         </ul>
       </li>
 
@@ -32,7 +32,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}"/> <label for="color_{{ color|tag_safe }}"> {{ color }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="color" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
+          <li><a href="#color" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
         </ul>
       </li>
 
@@ -43,7 +43,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input type="checkbox" name="eco[]" value="token-{{ token|tag_safe({' & ': ' - '}) }}" id="token_{{ token|tag_safe }}"/> <label for="token_{{ token|tag_safe }}"> {{ token }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="eco" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
+          <li><a href="#eco" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="icons-arrow_up_triangle_with_notch sprite dropdown-indicator"></span></li>
         </ul>
       </li>
 
