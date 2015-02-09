@@ -136,6 +136,51 @@
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p>For at fuldende dit barns garderobe kan kollektionen kombineres med vores mange skønne accessories. POMPdeLUX har alt lige fra strømpebukser, strømper, leggings, hårpynt, seler, badetøj og bælter til vanter, huer og halstørklæder. Vores populære accessories matcher resten af kollektionen, og kan derfor kombineres med smarte kjoler, lækre cardigans og seje bukser. Vores bælter, seler, vanter, huer, halstørklæder og hårpynt kan bruges af piger i alle aldre, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-5">
+                <source>headers.category-5</source>
+                <target><![CDATA[<h1>Fleecejakker</h1>
+                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-6">
+                <source>headers.category-6</source>
+                <target><![CDATA[<h1>Jakker</h1>
+                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-7">
+                <source>headers.category-7</source>
+                <target><![CDATA[<h1>Skaljakker og skalbukser</h1>
+                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-8">
+                <source>headers.category-8</source>
+                <target><![CDATA[<h1>Softshell</h1>
+                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-9">
+                <source>headers.category-9</source>
+                <target><![CDATA[<h1>Bluser</h1>
+                <p>Tshirts kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små drenge. Vores tshirts er i lækre bløde kvaliteter, og med mange fine detaljer og print. Find din favorit tshirt til hverdag eller en sej polo til festlige lejligheder. Vores tshirts går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-11">
+                <source>headers.category-11</source>
+                <target><![CDATA[<h1>Cardigans</h1>
+                <p>Til kolde vinterdage og kølige sommeraftener er det dejligt med en varm trøje eller cardigan. POMPdeLUX har både striktrøjer, cardigans og pullovers i lækre bløde kvaliteter, og du finder et bredt udvalg af farver og modeller. Find din favorit blandt fleecetrøjer, cardigans, bluser, sweats, slipovers og pullovers. Vores pullovers og cardigans går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Poloshirts</h1>
+                <p>Skjorter og poloer er smarte til enhver dreng. POMPdeLUX laver mange forskellige modeller, mønstre og farver, som er med til at fuldende garderoben til både den lille og den store dreng. Især fokuserer vi på de mange fine detaljer såsom brystlommer, kraver, knapper og print. Find den skjorte eller polo som din dreng er vild med, og kombiner med en pullover, slipover, cardigan eller sweat. Vores skjorter og poloer går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-44">
+                <source>headers.category-44</source>
+                <target><![CDATA[<h1>Skjorter</h1>
+                <p>Skjorter og poloer er smarte til enhver dreng. POMPdeLUX laver mange forskellige modeller, mønstre og farver, som er med til at fuldende garderoben til både den lille og den store dreng. Især fokuserer vi på de mange fine detaljer såsom brystlommer, kraver, knapper og print. Find den skjorte eller polo som din dreng er vild med, og kombiner med en pullover, slipover, cardigan eller sweat. Vores skjorter og poloer går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-83">
+                <source>headers.category-83</source>
+                <target><![CDATA[<h1>Sportsjakker</h1>
+                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

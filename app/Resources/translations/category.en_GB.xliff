@@ -137,6 +137,46 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-5">
+                <source>headers.category-5</source>
+                <target><![CDATA[<h1>Fleece jackets</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-6">
+                <source>headers.category-6</source>
+                <target><![CDATA[<h1>Jackets</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-7">
+                <source>headers.category-7</source>
+                <target><![CDATA[<h1>Shell jackets and shell pants</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-8">
+                <source>headers.category-8</source>
+                <target><![CDATA[<h1>Softshell</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-9">
+                <source>headers.category-9</source>
+                <target><![CDATA[<h1>Blouses</h1>
+                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-11">
+                <source>headers.category-11</source>
+                <target><![CDATA[<h1>Cardigans</h1>
+                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper or cardigan. POMPdeLUX has pullovers, cardigans and slipovers in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats, slipovers and pullovers. Our pullovers and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Polo shirts</h1>
+                <p>Shirts and polos are smart on any boy. POMPdeLUX makes many different models, patterns and colours which complete both the small and the big boy’s wardrobe. We focus especially on the many fine details such as breast pocket, collars, buttons and print. Find the shirt or polo your boy will love and combine it with a pullover, slipover, cardigan or sweatshirt. Our shirts and polos start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-44">
+                <source>headers.category-44</source>
+                <target><![CDATA[<h1>Shirts</h1>
+                <p>Shirts and polos are smart on any boy. POMPdeLUX makes many different models, patterns and colours which complete both the small and the big boy’s wardrobe. We focus especially on the many fine details such as breast pocket, collars, buttons and print. Find the shirt or polo your boy will love and combine it with a pullover, slipover, cardigan or sweatshirt. Our shirts and polos start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
