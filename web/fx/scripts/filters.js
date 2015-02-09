@@ -30,7 +30,7 @@ var filters = (function ($) {
 
     $(".js-filter-clear-dropdown").click(function(e) {
       e.preventDefault();
-      var filterType = $(this).attr('href').replace('#','');
+      var filterType = $(this).attr('href');
       $(".js-filter-type-"+filterType+" input").each(function(index, element) {
         handleFilterRemove($(this).val());
       });
