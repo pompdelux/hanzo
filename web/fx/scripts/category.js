@@ -97,9 +97,11 @@
           });
         });
 
-        $('html, body').animate({
-          scrollTop: $target.offset().top - 100
-        }, 500);
+        /*
+         * $('html, body').animate({
+         *   scrollTop: $target.offset().top - 100
+         * }, 500);
+         */
 
         // setup pager links
         if(typeof current.paginate !== "undefined" && current.paginate !== null){

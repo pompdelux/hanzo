@@ -279,15 +279,18 @@ class DefaultController extends CoreController
 
         $color_mapping = [];
         $size_mapping  = [];
+        $token_mapping = [];
+
         if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
             // When casting objects to arrays with numeric attributes, everything goes belly up
             // The fix should be to pass true to json_decode http://php.net/json_decode
             // but that breaks other stuff :), so there for the extra foreach after this
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
+            $token_mapping = (array) $parent_settings->tokens;
         }
 
-        $tmp = $size_mapping;
+        $tmp          = $size_mapping;
         $size_mapping = [];
         foreach ($tmp as $key => $value)
         {
@@ -518,6 +521,7 @@ class DefaultController extends CoreController
 
         $data['color_mapping'] = array_keys($color_mapping);
         $data['size_mapping']  = array_keys($size_mapping);
+        $data['token_mapping'] = array_keys($token_mapping);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths

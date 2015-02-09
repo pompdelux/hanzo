@@ -14,36 +14,81 @@ nav.filters-dropdowns {
   background-color: transparent;
   margin-bottom: 6px;
 
+  ul {
+    z-index: 180;
+  }
+
   .outer > li {
     &.first div {
       margin-right: 6px
     }
 
-    &.last div {
-      margin-left: 6px
-    }
-    
+    &.last {
+      /* The dropdowns are the same width as their "parent" so no need to move the last to the left */
+      &:hover {
+        > ul.floaded-right {
+          margin-left: 6px;
+        }
+      }
+      > ul {
+        margin-left: 6px;
+      }
+      div {
+        margin-left: 6px;
+      }
+    }    
+
     > ul {
+      @include opacity(1);
       width: 314px;
       background-color: $filter-dropdown-hover-bg-color;
+      padding-top: 1em;
 
       label {
         color: #fff;
         margin-top: 2px;
         vertical-align: top;
+        width: auto;
+      }
+
+      input {
+        background-color: $filter-dropdown-hover-bg-color;
+        padding: 0;
+        margin: 3px 0 0 0;
       }
 
       > li {
-        width: 298px;
+        &:last-child {
+          width: 296px;
+        }
+        &.item {
+          &:nth-child(odd) {
+            margin-left: 40px;
+          }
+          padding: 5px 8px;
+          width: 111px;
+          float: left;
+        }
       }
     }
     > div {
       text-transform: uppercase;
-      width: 294px;
+      width: 304px;
       text-align: center;
       color: #fff;
       background-color: $filter-dropdown-hover-bg-color;
-      padding: 10px 20px 10px 0;
+      padding: 10px 10px 10px 0;
+    }
+
+    &.open > div > span {
+      background-image: none;
     }
   }
+}
+
+.dropdown-indicator {
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+  float: right;
 }
