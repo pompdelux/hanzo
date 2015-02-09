@@ -14,6 +14,10 @@ nav.filters-dropdowns {
   background-color: transparent;
   margin-bottom: 6px;
 
+  ul {
+    z-index: 180;
+  }
+
   .outer > li {
     &.first div {
       margin-right: 6px
@@ -24,17 +28,30 @@ nav.filters-dropdowns {
     }
     
     > ul {
+      @include opacity(1);
       width: 314px;
       background-color: $filter-dropdown-hover-bg-color;
+      padding-top: 1em;
 
       label {
         color: #fff;
         margin-top: 2px;
         vertical-align: top;
+        width: auto;
       }
 
       > li {
-        width: 298px;
+        &:last-child {
+          width: 298px;
+        }
+        &.item {
+          &:nth-child(odd) {
+            margin-left: 40px;
+          }
+          padding: 5px 8px;
+          width: 111px;
+          float: left;
+        }
       }
     }
     > div {
