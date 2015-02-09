@@ -35,7 +35,6 @@ var filters = (function ($) {
         handleFilterRemove($(this).val());
       });
       updateUrl();
-      return false;
     });
   };
 
