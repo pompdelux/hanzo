@@ -144,6 +144,7 @@ class ProductIndexBuilder extends IndexBuilder
      * updateCustomTokensIndex
      * - Some products are tagged with some custom tokens, i.e. eco
      * - This will find all products in the configured categories @see getCustomTokensForCategories and add them to the search table
+     * - The value is stored in the db prefixed with 'token-' to avoid clash with category names
      *
      * @param string $locale
      * @param PropelPDO
@@ -152,7 +153,7 @@ class ProductIndexBuilder extends IndexBuilder
      **/
     private function updateCustomTokensIndex($locale, $connection)
     {
-        $tokensToCategories = $this->getCustomTokensForCategories($locale, $connection);
+        $tokensToCategories = $this->getCustomTokensForCategories($locale);
 
         foreach ($tokensToCategories as $token => $categories)
         {
@@ -171,6 +172,8 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($products as $product)
                 {
+                    $tokenValue = 'token-'.$token;
+
                     $sql = sprintf("
                         INSERT INTO
                             search_products_tags (
@@ -183,7 +186,7 @@ class ProductIndexBuilder extends IndexBuilder
                     ",
                     $masterProduct->getId(),
                     $product->getId(),
-                    $token,
+                    $tokenValue,
                     $locale);
 
                     $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
@@ -191,7 +194,6 @@ class ProductIndexBuilder extends IndexBuilder
                 }
             }
         }
-
     }
 
     /**
@@ -203,21 +205,21 @@ class ProductIndexBuilder extends IndexBuilder
      * Each number refers to a category
      *
      * "tokens": {
-     *   "gots": [
+     *   "Gots": [
      *     "212",
      *     "214"
      *   ],
-     *   "oekotex": [
+     *   "Oekotex": [
      *     "212"
      *   ]
      * }
+     *
      * @param string $locale
-     * @param PropelPDO $connection
      *
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    private function getCustomTokensForCategories($locale, $connection)
+    private function getCustomTokensForCategories($locale)
     {
         $tokensToCategories = [];
 
