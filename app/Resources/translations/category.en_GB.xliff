@@ -2,38 +2,58 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="headers.category-14">
-                <source>headers.category-14</source>
-                <target><![CDATA[<h1>Dresses</h1>
-                <p>POMPdeLUX has dresses in many different colours and cuts. You can find dresses for parties and special occasions and dresses that are perfect for everyday wear and play. At POMPdeLUX we have dresses for all girls – both big and small. All you have to do is pick your favourite. Our dresses start from size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            <trans-unit id="headers.category-12">
+                <source>headers.category-12</source>
+                <target><![CDATA[<h1>Fleece jackets</h1>
+               <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p> ]]></target>
             </trans-unit>
-             <trans-unit id="headers.category-35">
-                <source>headers.category-35</source>
-                <target><![CDATA[<h1>T-shirts</h1>
-                <p>T-shirts and tops can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirths and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality and have many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-19">
-                <source>headers.category-19</source>
-                <target><![CDATA[<h1>Tunics / Blouses</h1>
-                <p>POMPdeLUX has a wide range of tunics and blouses for big and small girls. Here you can find many different models and colours and there is something for all tastes. Find both basic blouses for everyday wear and festive tunics for special occasions. Our tunics and blouses start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-13">
+             <trans-unit id="headers.category-13">
                 <source>headers.category-13</source>
-                <target><![CDATA[<h1>Knitwear / Cardigans</h1>
-                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper. POMPdeLUX has both sweaters and cardigans in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats and jumpers. Our sweaters and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+                <target><![CDATA[<h1>Jackets</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-80">
-                <source>headers.category-80</source>
-                <target><![CDATA[<h1>Waistcoats</h1>
-                <p>Every outfit is gorgeous with a waistcoat. POMPdeLUX has both chic knitted waistcoats and beautiful warm waistcoats for the cold winter days. Combine your waistcoat with a pair of jeans and a t-shirt for everyday wear and wear it over a dress for more festive occasions. Our vests start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+			<trans-unit id="headers.category-14">
+                <source>headers.category-14</source>
+                <target><![CDATA[<h1>Shell jackets and shell pants</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-81">
-                <source>headers.category-81</source>
-                <target><![CDATA[<h1>Jumpsuits</h1>
-                <p>A jumpsuit is a smart choice for both everyday play and for more festive occasions. POMPdeLUX has chosen the loveliest jumpsuits for both big and small girls. Here you will find exactly your favourite model and colour. Use your jumpsuit over a basic t-shirt or combine it with lovely sweaters and accessories. Our jumpsuits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+			<trans-unit id="headers.category-15">
+                <source>headers.category-15</source>
+                <target><![CDATA[<h1>Softshell</h1>
+                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-16">
+                <source>headers.category-16</source>
+                <target><![CDATA[<h1>Blouses</h1>
+                <p>POMPdeLUX has a wide range of tunics and blouses for big and small girls. Here you can find many different models and colours and there is something for all tastes. Find both a basic blouse for everyday wear and a festive tunic for special occasions. Our tunics and blouses start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-17">
                 <source>headers.category-17</source>
+                <target><![CDATA[<h1>Cardigans</h1>
+                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper. POMPdeLUX has both sweaters and cardigans in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats and jumpers. Our sweaters and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-18">
+                <source>headers.category-18</source>
+                <target><![CDATA[<h1>Dresses</h1>
+                <p>POMPdeLUX has dresses in many different colours and cuts. You can find dresses for parties and special occasions and dresses that are perfect for everyday wear and play. At POMPdeLUX we have dresses for all girls – both big and small. All you have to do is pick your favourite. Our dresses start from size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-19">
+                <source>headers.category-19</source>
+                <target><![CDATA[<h1>Sweatshirts</h1>
+                <p>Sweat pants and sweat shirts are very popular! Choose between lovely soft jumpers, jackets, pants and jumpsuits. Our sweat is always high quality, and your child will love wearing it and at the same time look really cool. Our sweat shirts and sweat pants are available for both boys and girls in sizes 80-152 cm.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-21">
+                <source>headers.category-21</source>
+                <target><![CDATA[<h1>Tops</h1>
+                <p>T-shirts and tops can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirths and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality and have many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-45">
+                <source>headers.category-45</source>
+                <target><![CDATA[<h1>T-Shirts</h1>
+                <p>T-shirts and tops can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirths and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality and have many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-46">
+                <source>headers.category-46</source>
                 <target><![CDATA[<h1>Pants</h1>
                 <p>At POMPdeLUX you will find trousers with the best fit to your child. We have a wide range of colours and models – regardless whether you prefer jeggings, jeans, baggy or slimfit trousers. Our trousers are made from lovely materials including sweat and knit fabric and you will find trousers for all occasions. Our trousers start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
@@ -42,330 +62,80 @@
                 <target><![CDATA[<h1>Jeans</h1>
                 <p>Jeans come in many different models and colours. POMPdeLUX has just the fit that suits your child best. There are baggy, slimift and jeggings for both big and small girls. Our jeans have lots of great details and are strong for everyday play. Combine your favourite jeans or jeggings with a gorgeous tunic and boost up your outfit. Our trousers, jeggings and jeans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-18">
-                <source>headers.category-18</source>
-                <target><![CDATA[<h1>Shorts / Skirts</h1>
-                <p>POMPdeLUX has shorts and skirts for all girls. Choose amongst many different models and gorgeous colours and notice all the great details with print and tulle. Combine both shorts and skirts with bottoms such as leggings or tights and tops such as t-shirts, sweaters and cardigans. Our shorts and skirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-16">
-                <source>headers.category-16</source>
-                <target><![CDATA[<h1>Outerwear / Fleece</h1>
-                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-15">
-                <source>headers.category-15</source>
-                <target><![CDATA[<h1>Socks / Tights / Leggings</h1>
-                <p>Socks, tights and leggings are a stable part of your child’s basic wardrobe. POMPdeLUX has Socks, tights and leggings in lovely soft materials which all girls enjoy wearing. Use leggings under a dress, skirt or shorts and do not forget our basic tops which go perfectly with our leggings. Our leggings start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-82">
-                <source>headers.category-82</source>
-                <target><![CDATA[<h1>Socks / Tights</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, swinsuit, bikini, swin trunks, swimwear, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-21">
-                <source>headers.category-21</source>
-                <target><![CDATA[<h1>Underwear / Nightwear</h1>
-                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you can find underpants, hipsters, panties, undershirts, night dresses and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target></trans-unit>
-			<trans-unit id="headers.category-12">
-                <source>headers.category-12</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-45">
-                <source>headers.category-45</source>
-                <target><![CDATA[<h1>Oeko-Tex</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our socks, underwear, nightwear and a number of our t-shirts, sweats, cardigans, polos and trousers are Oekotex certified. Oekotex label is your guarantee that our products are approved by the international Oeko-tex standard. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-46">
-                <source>headers.category-46</source>
-                <target><![CDATA[<h1>Organic / GOTS</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our underpants, boxers, undershirts, bodies, sleepers and pyjamas are GOTS certified. This means that we work with organic textiles, where at least 95% of the materials are organic, and also that the production is run in environmentally and socially responsible manner. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-112">
-                <source>headers.category-112</source>
-                <target><![CDATA[<h1>Adventure</h1>
-                <p>Functional outerwear consisting of shell jacket, shell pants, soft shell suit and fleece. The styles will keep your child warm and dry in all kinds of weather. The shell and soft shell collection is water and windproof and has a waterproof rating of 10,000 mm. At POMPdeLUX you will find the best outerwear currently available for your child – recommended by both children and parents. The Adventure collection is available in sizes from 80 cm up to 152 cm. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-115">
-                <source>headers.category-115</source>
-                <target><![CDATA[<h1>Basic</h1>
-                <p>In our collection of basic styles you will find lovely tops, t-shirts, blouses and leggings. Our basic styles are made from lovely soft materials, and can easily be used together with all our pants, skirts, shorts and dresses. You will be certain of getting the same high quality each time and great value for money. Our basic styles are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-127">
-                <source>headers.category-127</source>
-                <target><![CDATA[<h1>Rainwear</h1>
-                <p>With our lovely soft shell and shell styles you are getting practical outerwear, which are far better than the traditional rainwear. Our rainwear has a waterproof rating of 10,000 mm and breathable 3,000 mvp. The lovely styles are therefore a great alternative to rainwear and thermal wear – perfect for all kinds of weather. Our rainwear is available in sizes from 80 cm up to 152 cm and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-114">
-                <source>headers.category-114</source>
-                <target><![CDATA[<h1>Tops</h1>
-                <p>T-shirts and tops can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirths and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality and have many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-113">
-                <source>headers.category-113</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
-                <p>T-shirts and tops can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirths and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality and have many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-10">
-                <source>headers.category-10</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
-                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-8">
-                <source>headers.category-8</source>
-                <target><![CDATA[<h1>Shirts / Polo shirts</h1>
-                <p>Shirts and polos are smart on any boy. POMPdeLUX makes many different models, patterns and colours which complete both the small and the big boy’s wardrobe. We focus especially on the many fine details such as breast pocket, collars, buttons and print. Find the shirt or polo your boy will love and combine it with a pullover, slipover, cardigan or sweatshirt. Our shirts and polos start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-9">
-                <source>headers.category-9</source>
-                <target><![CDATA[<h1>Knitwear / Cardigans</h1>
-                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper or cardigan. POMPdeLUX has pullovers, cardigans and slipovers in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats, slipovers and pullovers. Our pullovers and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-83">
-                <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
-                <p>Sweat pants and sweat shirts are very popular! Choose between lovely soft jumpers, jackets, pants and jumpsuits. Our sweat is always high quality, and your child will love wearing it and at the same time look really cool. Our sweat shirts and sweat pants are available for both boys and girls in sizes 80-152 cm.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-7">
-                <source>headers.category-7</source>
-                <target><![CDATA[<h1>Pants</h1>
-                <p>At POMPdeLUX you will find trousers with the best fit to your child. We have a wide selection of colours and models – regardless whether you prefer baggy, regular, slimfit, sweatpants, chinos or jeans. Our trousers are made from lovely materials including sweat and cotton and there are trousers for all occasions. Our trousers, chinos and jeans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-84">
-                <source>headers.category-84</source>
-                <target><![CDATA[<h1>Jeans</h1>
-                <p>Jeans must be comfortable to wear and therefore it is important to find exactly the right jeans for your child. At POMPdeLUX you will find jeans in different colours and models. Choose between baggy, regular, slimfit, sweatpants, chinos or jeans. Our trousers are made from lovely materials including sweat and cotton and there are jeans for all occasions. Our trousers, chinos and jeans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-6">
-                <source>headers.category-6</source>
-                <target><![CDATA[<h1>Outerwear / Fleece</h1>
-                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-11">
-                <source>headers.category-11</source>
-                <target><![CDATA[<h1>Underwear / Nightwear</h1>
-                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you will find underpants, boxers, undershirts and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-5">
-                <source>headers.category-5</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, swinsuit, bikini, swin trunks, swimwear, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-43">
-                <source>headers.category-43</source>
-                <target><![CDATA[<h1>Oeko-Tex</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our socks, underwear, nightwear and a number of our t-shirts, sweats, cardigans, polos and trousers are Oekotex certified. Oekotex label is your guarantee that our products are approved by the international Oeko-tex standard. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-44">
-                <source>headers.category-44</source>
-                <target><![CDATA[<h1>Organic / GOTS</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our underpants, boxers, undershirts, bodies, sleepers and pyjamas are GOTS certified. This means that we work with organic textiles, where at least 95% of the materials are organic, and also that the production is run in environmentally and socially responsible manner. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-116">
-                <source>headers.category-116</source>
-                <target><![CDATA[<h1>Adventure</h1>
-                <p>Functional outerwear consisting of shell jacket, shell pants, soft shell suit and fleece. The styles will keep your child warm and dry in all kinds of weather. The shell and soft shell collection is water and windproof and has a waterproof rating of 10,000 mm. At POMPdeLUX you will find the best outerwear currently available for your child – recommended by both children and parents. The Adventure collection is available in sizes from 80 cm up to 152 cm. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-119">
-                <source>headers.category-119</source>
-                <target><![CDATA[<h1>Basic</h1>
-                <p>In our collection of basic styles you will find lovely tops, t-shirts, blouses and leggings. Our basic styles are made from lovely soft materials, and can easily be used together with all our pants, skirts, shorts and dresses. You will be certain of getting the same high quality each time and great value for money. Our basic styles are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-128">
-                <source>headers.category-128</source>
-                <target><![CDATA[<h1>Rainwear</h1>
-                <p>With our lovely soft shell and shell styles you are getting practical outerwear, which are far better than the traditional rainwear. Our rainwear has a waterproof rating of 10,000 mm and breathable 3,000 mvp. The lovely styles are therefore a great alternative to rainwear and thermal wear – perfect for all kinds of weather. Our rainwear is available in sizes from 80 cm up to 152 cm and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-120">
-                <source>headers.category-120</source>
-                <target><![CDATA[<h1>Shorts</h1>
-                <p>At POMPdeLUX you will find a large selection of lovely shorts, knickers and swim shorts. Choose between long and short styles in both sweat, denim and cotton. Your boy will be so ready for summer, beach and outdoor play. All our shorts can be combined with a cool shirt, a soft t-shirt or a smart top. Our shorts and knickers are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-		<trans-unit id="headers.category-117">
-                <source>headers.category-117</source>
-                <target><![CDATA[<h1>T-shirts, long sleeve</h1>
-                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-118">
-                <source>headers.category-118</source>
-                <target><![CDATA[<h1>T-shirts, short sleeve</h1>
-                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-31">
-                <source>headers.category-31</source>
-                <target><![CDATA[<h1>Dresses</h1>
-                <p>POMPdeLUX has dresses in many different colours and cuts. You can find dresses for parties and special occasions and dresses that are perfect for everyday wear and play. At POMPdeLUX we have dresses for all girls – both big and small. All you have to do is pick your favourite. Our dresses start from size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-36">
-                <source>headers.category-36</source>
-                <target><![CDATA[<h1>T-shirts</h1>
-                <p>T-shirts and tops can be used all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts and tops in many different colours and models as well as something for both big and small girls. Our t-shirts and tops are lovely soft quality with many great details. Find your favourite t-shirt for everyday wear or a pretty top for more festive occasions. Our t-shirts and tops sizes start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-37">
-                <source>headers.category-37</source>
-                <target><![CDATA[<h1>Tunics / Blouses</h1>
-                <p>POMPdeLUX has a wide range of tunics and blouses for big and small girls. Here you can find many different models and colours and there is something for all tastes. Find both a basic blouse for everyday wear and a festive tunic for special occasions. Our tunics and blouses start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-30">
-                <source>headers.category-30</source>
-                <target><![CDATA[<h1>Knitwear / Cardigans</h1>
-                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper. POMPdeLUX has both sweaters and cardigans in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats and jumpers. Our sweaters and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-85">
-                <source>headers.category-85</source>
+			<trans-unit id="headers.category-81">
+                <source>headers.category-81</source>
                 <target><![CDATA[<h1>Jumpsuits</h1>
                 <p>A jumpsuit is a smart choice for both everyday play and for more festive occasions. POMPdeLUX has chosen the loveliest jumpsuits for both big and small girls. Here you will find exactly your favourite model and colour. Use your jumpsuit over a basic t-shirt or combine it with lovely sweaters and accessories. Our jumpsuits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-34">
-                <source>headers.category-34</source>
-                <target><![CDATA[<h1>Pants / Jeans</h1>
-                <p>At POMPdeLUX you will find trousers with the best fit to your child. We have a wide range of colours and models – regardless whether you prefer jeggings, jeans, baggy or slimfit trousers. Our trousers are made from lovely materials including sweat and knitted fabric and you will find trousers for all occasions. Our trousers start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+			<trans-unit id="headers.category-112">
+                <source>headers.category-112</source>
+                <target><![CDATA[<h1>Leggings</h1>
+                <p>Socks, tights and leggings are a stable part of your child’s basic wardrobe. POMPdeLUX has Socks, tights and leggings in lovely soft materials which all girls enjoy wearing. Use leggings under a dress, skirt or shorts and do not forget our basic tops which go perfectly with our leggings. Our leggings start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-86">
-                <source>headers.category-86</source>
-                <target><![CDATA[<h1>Shorts / Skirts</h1>
+			<trans-unit id="headers.category-113">
+                <source>headers.category-113</source>
+                <target><![CDATA[<h1>Skirts</h1>
                 <p>POMPdeLUX has shorts and skirts for all girls. Choose amongst many different models and gorgeous colours and notice all the great details with print and tulle. Combine both shorts and skirts with bottoms such as leggings or tights and tops such as t-shirts, sweaters and cardigans. Our shorts and skirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-33">
-                <source>headers.category-33</source>
-                <target><![CDATA[<h1>Outerwear / Fleece</h1>
-                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.  </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-32">
-                <source>headers.category-32</source>
-                <target><![CDATA[<h1>Leggings</h1>
-                <p>Leggings are a stable part of your child’s basic wardrobe. POMPdeLUX has leggings in lovely soft materials which all girls enjoy wearing. Use leggings under a dress, skirt or shorts and do not forget our basic tops which go perfectly with our leggings. Our leggings start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-87">
-                <source>headers.category-87</source>
-                <target><![CDATA[<h1>Socks / Tights / Leggings</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-38">
-                <source>headers.category-38</source>
-                <target><![CDATA[<h1>Underwear / Nightwear</h1>
-                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you will find underpants, bodies, undershirts, night dresses, sleepers and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-29">
-                <source>headers.category-29</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-49">
-                <source>headers.category-49</source>
-                <target><![CDATA[<h1>Oeko-Tex</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our socks, underwear, nightwear and a number of our t-shirts, sweats, cardigans, polos and trousers are Oekotex certified. Oekotex label is your guarantee that our products are approved by the international Oeko-tex standard. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-50">
-                <source>headers.category-50</source>
-                <target><![CDATA[<h1>Organic / GOTS
-</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our underpants, boxers, undershirts, bodies, sleepers and pyjamas are GOTS certified. This means that we work with organic textiles, where at least 95% of the materials are organic, and also that the production is run in environmentally and socially responsible manner. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-121">
-                <source>headers.category-121</source>
-                <target><![CDATA[<h1>Adventure</h1>
-                <p>Functional outerwear consisting of shell jacket, shell pants, soft shell suit and fleece. The styles will keep your child warm and dry in all kinds of weather. The shell and soft shell collection is water and windproof and has a waterproof rating of 10,000 mm. At POMPdeLUX you will find the best outerwear currently available for your child – recommended by both children and parents. The Adventure collection is available in sizes from 80 cm up to 152 cm. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-122">
-                <source>headers.category-122</source>
-                <target><![CDATA[<h1>Basic</h1>
-                <p>In our collection of basic styles you will find lovely tops, t-shirts, blouses and leggings. Our basic styles are made from lovely soft materials, and can easily be used together with all our pants, skirts, shorts and dresses. You will be certain of getting the same high quality each time and great value for money. Our basic styles are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-129">
-                <source>headers.category-129</source>
-                <target><![CDATA[<h1>Rainwear</h1>
-                <p>With our lovely soft shell and shell styles you are getting practical outerwear, which are far better than the traditional rainwear. Our rainwear has a waterproof rating of 10,000 mm and breathable 3,000 mvp. The lovely styles are therefore a great alternative to rainwear and thermal wear – perfect for all kinds of weather. Our rainwear is available in sizes from 80 cm up to 152 cm and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-27">
-                <source>headers.category-27</source>
-                <target><![CDATA[<h1>T-shirts, long sleeve</h1>
-                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-26">
-                <source>headers.category-26</source>
-                <target><![CDATA[<h1>Shirts / Polo shirts</h1>
-                <p>Shirts and polos are smart on any boy. POMPdeLUX makes many different models, patterns and colours which complete both the small and the big boy’s wardrobe. We focus especially on the many fine details such as breast pocket, collars, buttons and print. Find the shirt or polo your boy will love and combine it with a pullover, slipover, cardigan or sweatshirt. Our shirts and polos start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-23">
-                <source>headers.category-23</source>
-                <target><![CDATA[<h1>Knitwear / Cardigans</h1>
-                <p>For cold winter days and chilly summer evenings it is nice to have a warm jumper or cardigan. POMPdeLUX has pullovers, cardigans and slipovers in lovely soft quality and you can find a wide selection of colours and models. Find your favourite amongst fleece jackets, cardigans, blouses, sweats, slipovers and pullovers. Our pullovers and cardigans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-88">
-                <source>headers.category-88</source>
-                <target><![CDATA[<h1>Sweatshirts / Sweatpants</h1>
-                <p>Sweat pants and sweat shirts are very popular! Choose between lovely soft jumpers, jackets, pants and jumpsuits. Our sweat is always high quality, and your child will love wearing it and at the same time look really cool. Our sweat shirts and sweat pants are available for both boys and girls in sizes 80-152 cm.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-89">
-                <source>headers.category-89</source>
-                <target><![CDATA[<h1>Jumpsuits</h1>
-                <p>A jumpsuit is smart for both everyday activities and play as well as for comfy moments at home. POMPdeLUX has chosen the loveliest jumpsuits for both big and small boys. Here you will find exactly your favourite model and colour. Combine your jumpsuit with gorgeous sweaters and you are ready for an active day. Our jumpsuits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-25">
-                <source>headers.category-25</source>
-                <target><![CDATA[<h1>Pants</h1>
-                <p>At POMPdeLUX you will find trousers with the best fit to your child. We have a wide selection of colours and models – regardless whether you prefer baggy, sweatpants, chinos or jeans. Our trousers are made from lovely materials including sweat and cotton so they are comfortable to wear. Our trousers, chinos and jeans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-90">
-                <source>headers.category-90</source>
-                <target><![CDATA[<h1>Jeans</h1>
-                <p>Jeans must be comfortable to wear and therefore it is important to find exactly the right jeans for your child. At POMPdeLUX you will find jeans in different colours and models. Choose between baggy, sweatpants, chinos or jeans. Our trousers are made from lovely materials including sweat and cotton and there are trousers and jeans for all occasions – all with adjustable waist. Our trousers, chinos and jeans start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-24">
-                <source>headers.category-24</source>
-                <target><![CDATA[<h1>Outerwear / Fleece</h1>
-                <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, down gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-28">
-                <source>headers.category-28</source>
-                <target><![CDATA[<h1>Underwear / Nightwear</h1>
-                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you will find bodies, undershirts, boxers, undershirts, sleepers and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-22">
-                <source>headers.category-22</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-47">
-                <source>headers.category-47</source>
-                <target><![CDATA[<h1>Oeko-Tex</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our socks, underwear, nightwear and a number of our t-shirts, sweats, cardigans, polos and trousers are Oekotex certified. Oekotex label is your guarantee that our products are approved by the international Oeko-tex standard. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-48">
-                <source>headers.category-48</source>
-                <target><![CDATA[<h1>Organic / GOTS</h1>
-                <p>At POMPdeLUX we love high quality clothing and your child must naturally have the best. This is why our underpants, boxers, undershirts, bodies, sleepers and pyjamas are GOTS certified. This means that we work with organic textiles, where at least 95% of the materials are organic, and also that the production is run in environmentally and socially responsible manner. We therefore guarantee lovely high quality materials to children of all ages.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-123">
-                <source>headers.category-123</source>
-                <target><![CDATA[<h1>Adventure</h1>
-                <p>Functional outerwear consisting of shell jacket, shell pants, soft shell suit and fleece. The styles will keep your child warm and dry in all kinds of weather. The shell and soft shell collection is water and windproof and has a waterproof rating of 10,000 mm. At POMPdeLUX you will find the best outerwear currently available for your child – recommended by both children and parents. The Adventure collection is available in sizes from 80 cm up to 152 cm. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-126">
-                <source>headers.category-126</source>
-                <target><![CDATA[<h1>Basic</h1>
-                <p>In our collection of basic styles you will find lovely tops, t-shirts, blouses and leggings. Our basic styles are made from lovely soft materials, and can easily be used together with all our pants, skirts, shorts and dresses. You will be certain of getting the same high quality each time and great value for money. Our basic styles are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-130">
-                <source>headers.category-130</source>
-                <target><![CDATA[<h1>Rainwear</h1>
-                <p>With our lovely soft shell and shell styles you are getting practical outerwear, which are far better than the traditional rainwear. Our rainwear has a waterproof rating of 10,000 mm and breathable 3,000 mvp. The lovely styles are therefore a great alternative to rainwear and thermal wear – perfect for all kinds of weather. Our rainwear is available in sizes from 80 cm up to 152 cm and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-125">
-                <source>headers.category-125</source>
+			<trans-unit id="headers.category-114">
+                <source>headers.category-114</source>
                 <target><![CDATA[<h1>Shorts</h1>
-                <p>At POMPdeLUX you will find a large selection of lovely shorts, knickers and swim shorts. Choose between long and short styles in both sweat, denim and cotton. Your boy will be so ready for summer, beach and outdoor play. All our shorts can be combined with a cool shirt, a soft t-shirt or a smart top. Our shorts and knickers are available in sizes from 80 cm up to 152 cm, and there is lots of inspiration to be discovered for your children’s wardrobe.</p>]]></target>
+                <p>POMPdeLUX has shorts and skirts for all girls. Choose amongst many different models and gorgeous colours and notice all the great details with print and tulle. Combine both shorts and skirts with bottoms such as leggings or tights and tops such as t-shirts, sweaters and cardigans. Our shorts and skirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-124">
-                <source>headers.category-124</source>
-                <target><![CDATA[<h1>T-shirts, short sleeve</h1>
-                <p>T-shirts can be worn all year round and they are lovely both in summer and winter. POMPdeLUX has t-shirts in many different colours and models as well as something for both big and small boys. Our t-shirts are lovely soft quality and have many great details and prints. Find your favourite t-shirt for everyday wear or a cool polo for festive occasions. Our t-shirts start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+			<trans-unit id="headers.category-115">
+                <source>headers.category-115</source>
+                <target><![CDATA[<h1>Tights</h1>
+                <p>Socks, tights and leggings are a stable part of your child’s basic wardrobe. POMPdeLUX has Socks, tights and leggings in lovely soft materials which all girls enjoy wearing. Use leggings under a dress, skirt or shorts and do not forget our basic tops which go perfectly with our leggings. Our leggings start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
             </trans-unit>
-			<trans-unit id="headers.category-137">
+			<trans-unit id="headers.category-127">
+                <source>headers.category-127</source>
+                <target><![CDATA[<h1>Bodysuits</h1>
+                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you can find underpants, hipsters, panties, undershirts, night dresses and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+				</trans-unit>
+				<trans-unit id="headers.category-131">
+                <source>headers.category-131</source>
+                <target><![CDATA[<h1>Nightwear</h1>
+                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you can find underpants, hipsters, panties, undershirts, night dresses and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+				</trans-unit>
+				<trans-unit id="headers.category-136">
+                <source>headers.category-136</source>
+                <target><![CDATA[<h1>Underwear</h1>
+                <p>At POMPdeLUX we make underwear and nightwear that is nice to wear. This is why we use soft materials that are of high quality and which your child will love wearing. Underwear and nightwear must not only be practical but also have a great design. In the collection you can find underpants, hipsters, panties, undershirts, night dresses and pyjamas. Our underwear and nightwear start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
+				</trans-unit>
+				<trans-unit id="headers.category-137">
                 <source>headers.category-137</source>
-                <target><![CDATA[<h1>SWEATPANTS/SWEATSHIRTS</h1>
-                <p>Sweat pants and sweat shirts are very popular! Choose between lovely soft jumpers, jackets, pants and jumpsuits. Our sweat is always high quality, and your child will love wearing it and at the same time look really cool. Our sweat shirts and sweat pants are available for both boys and girls in sizes 80-152 cm.</p>]]></target>
+                <target><![CDATA[<h1>Swimwear</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-142">
+                <source>headers.category-142</source>
+                <target><![CDATA[<h1>Belts</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-143">
+                <source>headers.category-143</source>
+                <target><![CDATA[<h1>Hats</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-144">
+                <source>headers.category-144</source>
+                <target><![CDATA[<h1>Hair deco</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-145">
+                <source>headers.category-145</source>
+                <target><![CDATA[<h1>Socks</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-146">
+                <source>headers.category-146</source>
+                <target><![CDATA[<h1>Scarfs</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-147">
+                <source>headers.category-147</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
             </trans-unit>
         </body>
     </file>
