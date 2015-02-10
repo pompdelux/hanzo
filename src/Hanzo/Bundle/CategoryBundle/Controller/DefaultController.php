@@ -56,9 +56,20 @@ class DefaultController extends CoreController
         // TODO: should not be set here !!
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
 
+        /**
+         * Ugly hack to traverse to top item
+         * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
+         */
+        $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
+
+        while ($topLevel->getParentId() != NULL)
+        {
+            $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
+        }
+
         $parent_settings = CmsI18nQuery::create()
             ->filterByLocale($locale)
-            ->filterById($cms_page->getParentId())
+            ->filterById($topLevel->getId())
             ->findOne()->getSettings(false)
         ;
 
@@ -271,9 +282,20 @@ class DefaultController extends CoreController
             return [];
         }
 
+        /**
+         * Ugly hack to traverse to top item
+         * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
+         */
+        $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
+
+        while ($topLevel->getParentId() != NULL)
+        {
+            $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
+        }
+
         $parent_settings = CmsI18nQuery::create()
             ->filterByLocale($locale)
-            ->filterById($cms_page->getParentId())
+            ->filterById($topLevel->getId())
             ->findOne()->getSettings(false)
         ;
 
@@ -287,7 +309,7 @@ class DefaultController extends CoreController
             // but that breaks other stuff :), so there for the extra foreach after this
             $color_mapping = (array) $parent_settings->colormap;
             $size_mapping  = (array) $parent_settings->sizes;
-            $token_mapping = (array) $parent_settings->tokens;
+            $token_mapping = (isset($parent_settings->tokens)) ? (array) $parent_settings->tokens : [];
         }
 
         $tmp          = $size_mapping;
