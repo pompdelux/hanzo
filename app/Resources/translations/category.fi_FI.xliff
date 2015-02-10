@@ -137,6 +137,121 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
-        </body>
+			<trans-unit id="headers.category-5">
+                <source>headers.category-5</source>
+                <target><![CDATA[<h1>Fleece </h1>
+                <p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-6">
+                <source>headers.category-6</source>
+                <target><![CDATA[<h1>Takit</h1>
+                <p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-7">
+                <source>headers.category-7</source>
+                <target><![CDATA[<h1>Kuoritakki ja kuorihousut</h1>
+                <p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-8">
+                <source>headers.category-8</source>
+                <target><![CDATA[<h1>Softshell</h1>
+                <p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-9">
+                <source>headers.category-9</source>
+                <target><![CDATA[<h1>Puserot</h1>
+                <p>T-paitoja voi käyttää ympäri vuoden ja ne ovat kauniita sekä kesällä että talvella. POMPdeLUXilla on T-paitoja monessa eri värissä ja mallissa, joten valikoimasta löytyy jotain sekä isoille että pienille pojille. T-paitamme ovat ihanan pehmeää materiaalia, ja niissä on paljon hienoja painatuksia. Löydä oma suosikkipaitasi arkeen tai siisti pikeepaita juhlavampiin tilaisuuksiin. Meiltä löytyy T-paitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-11">
+                <source>headers.category-11</source>
+                <target><![CDATA[<h1>Neuletakit</h1>
+                <p>Lämmin pusero tai neuletakki tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on neulepuseroita ja -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecepuseroiden, neuletakkien, puseroiden, collegepaitojen ja neulepuseroiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-43">
+                <source>headers.category-43</source>
+                <target><![CDATA[<h1>Pikèpaidat</h1>
+                <p>Kauluspaidat ja pikeepaidat sopivat joka pojalle. POMPdeLUXilla on monia eri malleja, kuoseja ja värejä, jotka täydentävät hienosti sekä pienten että isojen poikien vaatevarastoa. Keskitymme erityisesti moniin hienoihin yksityiskohtiin, kuten rintataskuihin, kauluksiin, nappeihin ja painatuksiin. Löydä kauluspaita tai pikeepaita, joka on poikasi suosikki ja yhdistä siihen neulepusero, slipoveri, neuletakki tai collegepaita. Meiltä löytyy kauluspaitoja ja pikeepaitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-44">
+                <source>headers.category-44</source>
+                <target><![CDATA[<h1>Paidat</h1>
+                <p>Kauluspaidat ja pikeepaidat sopivat joka pojalle. POMPdeLUXilla on monia eri malleja, kuoseja ja värejä, jotka täydentävät hienosti sekä pienten että isojen poikien vaatevarastoa. Keskitymme erityisesti moniin hienoihin yksityiskohtiin, kuten rintataskuihin, kauluksiin, nappeihin ja painatuksiin. Löydä kauluspaita tai pikeepaita, joka on poikasi suosikki ja yhdistä siihen neulepusero, slipoveri, neuletakki tai collegepaita. Meiltä löytyy kauluspaitoja ja pikeepaitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-83">
+                <source>headers.category-83</source>
+                <target><![CDATA[<h1>Urheilutakit</h1>
+                <p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-84">
+                <source>headers.category-84</source>
+                <target><![CDATA[<h1>Neulepaidat</h1>
+                <p>Lämmin pusero tai neuletakki tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on neulepuseroita ja -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecepuseroiden, neuletakkien, puseroiden, collegepaitojen ja neulepuseroiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-116">
+                <source>headers.category-116</source>
+                <target><![CDATA[<h1>Colleget</h1>
+                <p>Collegehousut ja collegepuserot ovat suosittuja! Valitse omasi ihanan pehmeistä puseroista, takeista, housuista ja haalareista. Collegevaatteemme ovat aina ihanaa materiaalia, joka tuntuu mukavalta lapsen päällä ja samalla näyttää coolilta. Collegepuserojamme ja collegehousujamme on saatavana koossa 80–152 cm sekä tytöille että pojille.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-117">
+                <source>headers.category-117</source>
+                <target><![CDATA[<h1>T-Paidat</h1>
+                <p>T-paitoja voi käyttää ympäri vuoden ja ne ovat kauniita sekä kesällä että talvella. POMPdeLUXilla on T-paitoja monessa eri värissä ja mallissa, joten valikoimasta löytyy jotain sekä isoille että pienille pojille. T-paitamme ovat ihanan pehmeää materiaalia, ja niissä on paljon hienoja painatuksia. Löydä oma suosikkipaitasi arkeen tai siisti pikeepaita juhlavampiin tilaisuuksiin. Meiltä löytyy T-paitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-118">
+                <source>headers.category-118</source>
+                <target><![CDATA[<h1>Liivit</h1>
+                <p>Lämmin pusero tai neuletakki tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on neulepuseroita ja -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecepuseroiden, neuletakkien, puseroiden, collegepaitojen ja neulepuseroiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-119">
+                <source>headers.category-119</source>
+                <target><![CDATA[<h1>Housut</h1>
+                <p>POMPdeLUXilta löydät housuja, jotka sopivat lapsellesi parhaiten. Meillä on suuri valikoima värejä ja malleja – pidätpä sitten eniten baggyista, regular- tai slimfitmallista, collegehousuista, chinoista tai farkuista. Housumme on valmistettu ihanista materiaaleista aina collegesta puuvillaan, ja meillä on housuja joka tilaisuuteen. Meiltä löytyy housuja, chinoja ja farkkuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+<trans-unit id="headers.category-120">
+                <source>headers.category-120</source>
+                <target><![CDATA[<h1>Farkut</h1>
+                <p>Farkkujen pitää tuntua päällä mukavilta ja on tärkeää löytää juuri oikeat farkut lapsellesi. POMPdeLUXilta löydät farkkuja eri väreissä ja malleissa. Voit valita baggyt, regular- tai slimfit-farkut, collegehousut, chinot tai farkut. Housumme on valmistettu ihanista materiaaleista aina collegesta puuvillaan, ja meillä on housuja ja farkkuja joka tilaisuuteen. Meiltä löytyy housuja, chinoja ja farkkuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-128">
+                <source>headers.category-128</source>
+                <target><![CDATA[<h1>Shortsit</h1>
+                <p>POMPdeLUXilta löydät suuren valikoiman ihania shortseja ja uimashortseja. Valitse pidempi tai lyhyempi malli ja materiaaliksi college, denim tai puuvilla. Poikasi on valmiina kesään, rannalle ja ulkoleikkeihin. Kaikkiin shortseihimme voidaan yhdistää siisti paita, pehmeä T-paita tai tyylikäs aluspaita. Meiltä löytyy shortseja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-132">
+                <source>headers.category-132</source>
+                <target><![CDATA[<h1>Bodyt</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-135">
+                <source>headers.category-135</source>
+                <target><![CDATA[<h1>Yöasut</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+        <trans-unit id="headers.category-148">
+                <source>headers.category-148</source>
+                <target><![CDATA[<h1>Alusvaatteet</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+		<trans-unit id="headers.category-149">
+                <source>headers.category-149</source>
+                <target><![CDATA[<h1>Uima-asut</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+		<trans-unit id="headers.category-150">
+                <source>headers.category-150</source>
+                <target><![CDATA[<h1>Hatut</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+		<trans-unit id="headers.category-151">
+                <source>headers.category-151</source>
+                <target><![CDATA[<h1>Sukat</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+		<trans-unit id="headers.category-152">
+                <source>headers.category-152</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+            </trans-unit>
+		</body>
     </file>
 </xliff>
