@@ -2,8 +2,8 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-		 <trans-unit id="603.settings">
-                <source>603.settings</source>
+		 <trans-unit id="735.settings">
+                <source>735.settings</source>
                 <target><![CDATA[
                     {
                         "colormap": {
@@ -102,11 +102,19 @@
                             "146": ["146","146-152","54","56","M","L"],
                             "152": ["152","146-152","54","56","M","L"]
                         }
+						"tokens": {
+  						"Gots": [
+    							"154"
+  								],
+  					"Oekotex": [
+    							"153"
+  									]
+									}
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="604.settings">
-                <source>604.settings</source>
+			<trans-unit id="736.settings">
+                <source>736.settings</source>
                 <target><![CDATA[
                    {
                         "colormap": {
@@ -191,6 +199,14 @@
                             "146": ["146","146-152","54","56","M","L"],
                             "152": ["152","146-152","54","56","M","L"]
                         }
+						"tokens": {
+  						"Gots": [
+    							"156"
+  								],
+  					"Oekotex": [
+    							"155"
+  									]
+									}
                     }
                 ]]></target>
             </trans-unit>
