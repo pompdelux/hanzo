@@ -680,6 +680,15 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="997.settings">
+                <source>997.settings</source>
+                <target><![CDATA[
+                    {
+						"embedded_category_id": ["149","150","151","152"]
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="1005.settings">
                 <source>1005.settings</source>
                 <target><![CDATA[
