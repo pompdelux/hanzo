@@ -103,12 +103,8 @@
                             "152": ["152","146-152","54","56","M","L"]
                         }
                     "tokens": {
-  						"Gots": [
-    							"154"
-  								],
-  					"Oekotex": [
-    							"153"
-  									]
+  						"Gots": ["154"],
+  					"Oekotex": ["153"]
 									}
 					}
                 ]]></target>
@@ -200,12 +196,8 @@
                             "152": ["152","146-152","54","56","M","L"]
                         }
 						"tokens": {
-  						"Gots": [
-    							"156"
-  								],
-  					"Oekotex": [
-    							"155"
-  									]
+  						"Gots": ["156"],
+  					"Oekotex": ["155"]
 									}
                     }
                 ]]></target>
@@ -214,7 +206,7 @@
                 <source>959.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["12","13","14","15"]
+						"embedded_category_id": ["12","13","14","15"],
                         "colors": ""
                     }
                 ]]></target>
@@ -259,7 +251,7 @@
                 <source>962.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["16","17","18","19","21","45"]
+						"embedded_category_id": ["16","17","18","19","21","45"],
                         "colors": ""
                     }
                 ]]></target>
@@ -322,7 +314,7 @@
                 <source>963.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["46","79","81","112","113","114","115"]
+						"embedded_category_id": ["46","79","81","112","113","114","115"],
                         "colors": ""
                     }
                 ]]></target>
@@ -394,7 +386,7 @@
                 <source>964.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["127","131","136"]
+						"embedded_category_id": ["127","131","136"],
                         "colors": ""
                     }
                 ]]></target>
@@ -430,7 +422,7 @@
                 <source>965.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["137","142","143","144","145","146","147"]
+						"embedded_category_id": ["137","142","143","144","145","146","147"],
                         "colors": ""
                     }
                 ]]></target>
@@ -502,7 +494,7 @@
                 <source>993.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["5","6","7","8"]
+						"embedded_category_id": ["5","6","7","8"],
                         "colors": ""
                     }
                 ]]></target>
@@ -547,7 +539,7 @@
                 <source>994.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["9","11","43","44","83","84","116","117","118"]
+						"embedded_category_id": ["9","11","43","44","83","84","116","117","118"],
                         "colors": ""
                     }
                 ]]></target>
@@ -637,7 +629,7 @@
                 <source>995.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["119","120","128"]
+						"embedded_category_id": ["119","120","128"],
                         "colors": ""
                     }
                 ]]></target>
@@ -700,7 +692,7 @@
                 <source>997.settings</source>
                 <target><![CDATA[
                     {
-						"embedded_category_id": ["149","150","151","152"]
+						"embedded_category_id": ["149","150","151","152"],
                         "colors": ""
                     }
                 ]]></target>
