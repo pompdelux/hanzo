@@ -40,6 +40,8 @@
         "web/fx/scripts/events.js",
         "web/fx/scripts/maps.js",
         "web/fx/scripts/faq.js",
+        "web/fx/scripts/filters.js",
+        "web/fx/2013s1_mobile/scripts/category.js",
         "web/fx/2013s1_mobile/scripts/frontpage.js",
         "web/fx/2013s1_mobile/scripts/colorbox.js",
         "web/fx/2013s1_mobile/scripts/jquery.hammer.js",
