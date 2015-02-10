@@ -97,9 +97,11 @@
           });
         });
 
-        $('html, body').animate({
-          scrollTop: $target.offset().top - 100
-        }, 500);
+        /*
+         * $('html, body').animate({
+         *   scrollTop: $target.offset().top - 100
+         * }, 500);
+         */
 
         // setup pager links
         if(typeof current.paginate !== "undefined" && current.paginate !== null){
@@ -171,56 +173,12 @@
       });
     };
 
-    pub.initFaceted = function() {
-        if (0 === $(".js-faceted-container").length) {
-            return;
-        }
-
-        var $faceted = $(".js-faceted-form");
-        var $url     = $.url();
-
-        if ($url.param('filter') == 'on') {
-            $.each($url.param(), function(name, values) {
-                if (name == 'filter') {
-                    return;
-                }
-                if (typeof values == 'string') {
-                    $("input[value='"+values+"']", $faceted).prop('checked', true);
-                } else if ($.isArray(values)) {
-                    $.each(values, function(x, value) {
-                        $("input[value='"+value+"']", $faceted).prop('checked', true);
-                    });
-                }
-            });
-        }
-
-        $("input[type='checkbox']", $faceted).on('change', function(event) {
-            event.preventDefault();
-
-            $(".js-pager-container li a").each(function(index, a) {
-                var $a  = $(a);
-                if ($a.length) {
-                    var href = $a.attr('href').split('?')[0];
-                }
-
-                var filter = $faceted.serialize();
-
-                if (filter) {
-                    href += '?filter=on&'+filter;
-                }
-
-                $a.attr('href', href);
-                $a.click();
-            });
-        });
-    };
-
     return pub;
   })(jQuery);
 
   category.initPager();
   category.initFlip();
   category.initHeader();
-  category.initFaceted();
+  filters.init();
 
 })(document, jQuery);
