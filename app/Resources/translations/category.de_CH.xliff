@@ -262,7 +262,7 @@
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX/ORGANIC</target>
+        <target>OEKO-TEX / BIO-PRODUKTE</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>
