@@ -272,6 +272,56 @@
         <source>faceted.clear_all</source>
         <target>Clear all</target>
       </trans-unit>
+	   <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Oberbekleidung</h1>
+                <p></p>]]></target>
+            </trans-unit>
+	  <trans-unit id="headers.category-158">
+                <source>headers.category-158</source>
+                <target><![CDATA[<h1>Oberteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-159">
+                <source>headers.category-159</source>
+                <target><![CDATA[<h1>Unterteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-160">
+                <source>headers.category-160</source>
+                <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-161">
+                <source>headers.category-161</source>
+                <target><![CDATA[<h1>Accesoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			 <trans-unit id="headers.category-162">
+                <source>headers.category-162</source>
+                <target><![CDATA[<h1>Oberbekleidung</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-163">
+                <source>headers.category-163</source>
+                <target><![CDATA[<h1>Oberteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-164">
+                <source>headers.category-164</source>
+                <target><![CDATA[<h1>Unterteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-165">
+                <source>headers.category-165</source>
+                <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-166">
+                <source>headers.category-166</source>
+                <target><![CDATA[<h1>Accesoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
