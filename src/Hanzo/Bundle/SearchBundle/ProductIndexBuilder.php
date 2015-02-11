@@ -202,7 +202,7 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($products as $product)
                 {
-                    $tokenValue = 'token-'.$token;
+                    $tokenValue = 'token-'.Tools::stripText($token);
 
                     $sql = sprintf("
                         INSERT INTO

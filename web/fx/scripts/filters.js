@@ -20,7 +20,7 @@ var filters = (function ($) {
 
     $("input[type='checkbox']", $faceted).on('change', function() {
       if ($(this).prop( "checked" ) === true) {
-        handleFilterAdded($(this).val());
+        handleFilterAdded($(this).val(), $(this).data('name'));
       }
       else {
         handleFilterRemove($(this).val());
@@ -62,7 +62,6 @@ var filters = (function ($) {
       $a.attr('href', href);
       $a.click();
     });
-
   }
 
   function handleFilterRemove(value) {
@@ -70,9 +69,7 @@ var filters = (function ($) {
     $("input[value='"+value+"']", $faceted).prop('checked', false);
   }
 
-  function handleFilterAdded(value) {
-    var name = value.replace('token-', '');
-
+  function handleFilterAdded(value, name) {
     var element = ' <span>'+name+' <a href="'+value+'">&#10005;</a></span>';
 
     $(".js-filters").append(element);
@@ -80,7 +77,8 @@ var filters = (function ($) {
   }
 
   function setValuesFromUrl() {
-    var $url = $.url();
+    var $url = $.url(),
+        name = '';
 
     if ($url.param('filter') === 'on') {
       $.each($url.param(), function(name, values) {
@@ -88,16 +86,16 @@ var filters = (function ($) {
           return;
         }
         if (typeof values === 'string') {
-          handleFilterAdded(values);
+          name = $("input[value='"+values+"']", $faceted).data('name');
+          handleFilterAdded(values, name);
         } else if ($.isArray(values)) {
           $.each(values, function(x, value) {
-            handleFilterAdded(value);
+            name = $("input[value='"+value+"']", $faceted).data('name');
+            handleFilterAdded(value, name);
           });
         }
       });
     }
-
-    updateUrl();
   }
 
   return pub;

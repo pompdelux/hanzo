@@ -543,7 +543,14 @@ class DefaultController extends CoreController
 
         $data['color_mapping'] = array_keys($color_mapping);
         $data['size_mapping']  = array_keys($size_mapping);
-        $data['token_mapping'] = array_keys($token_mapping);
+
+        // Workaround random text in token
+        $escapedTokens = [];
+        foreach (array_keys($token_mapping) as $rawToken)
+        {
+            $escapedTokens[] = ['name' => $rawToken, 'value' => Tools::stripText($rawToken)];
+        }
+        $data['token_mapping'] = $escapedTokens;
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
