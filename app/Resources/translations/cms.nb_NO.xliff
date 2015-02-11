@@ -2,8 +2,8 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-		<trans-unit id="603.settings">
-                <source>603.settings</source>
+		<trans-unit id="731.settings">
+                <source>731.settings</source>
                 <target><![CDATA[
                    {
                         "colormap": {
@@ -109,8 +109,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="604.settings">
-                <source>604.settings</source>
+			<trans-unit id="732.settings">
+                <source>732.settings</source>
                 <target><![CDATA[
                   {
                         "colormap": {
