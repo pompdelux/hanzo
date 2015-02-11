@@ -206,7 +206,6 @@
                 <source>807.settings</source>
                 <target><![CDATA[
                     {	
-						"category_id": "157",
 						"embedded_category_id": ["12","13","14","15"],
                         "colors": ""
                     }

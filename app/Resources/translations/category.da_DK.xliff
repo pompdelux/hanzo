@@ -269,7 +269,7 @@
         <target>OEKO-TEX/ØKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters: ">
-        <source>faceted.selected_filters: </source>
+        <source>faceted.selected_filters:</source>
         <target>Dit valg</target>
       </trans-unit>
         </body>
