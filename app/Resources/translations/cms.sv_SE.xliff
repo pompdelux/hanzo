@@ -252,6 +252,7 @@
                 <source>810.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "158",
 						"embedded_category_id": ["16","17","18","19","21","45"],
                         "colors": ""
                     }
@@ -315,6 +316,7 @@
                 <source>811.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "159",
 						"embedded_category_id": ["46","79","81","112","113","114","115"],
                         "colors": ""
                     }
@@ -387,6 +389,7 @@
                 <source>812.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "160",
 						"embedded_category_id": ["127","131","136"],
                         "colors": ""
                     }
@@ -423,6 +426,7 @@
                 <source>813.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "161",
 						"embedded_category_id": ["137","142","143","144","145","146","147"],
                         "colors": ""
                     }
@@ -495,6 +499,7 @@
                 <source>824.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "162",
 						"embedded_category_id": ["5","6","7","8"],
                         "colors": ""
                     }
@@ -540,6 +545,7 @@
                 <source>825.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "163",
 						"embedded_category_id": ["9","11","43","44","83","84","116","117","118"],
                         "colors": ""
                     }
@@ -630,6 +636,7 @@
                 <source>826.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "164",
 						"embedded_category_id": ["119","120","128"],
                         "colors": ""
                     }
@@ -666,6 +673,7 @@
                 <source>827.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "165",
 						"embedded_category_id": ["132","135","148"],
                         "colors": ""
                     }
@@ -702,6 +710,7 @@
                 <source>828.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "166",
 						"embedded_category_id": ["149","150","151","152"],
                         "colors": ""
                     }
