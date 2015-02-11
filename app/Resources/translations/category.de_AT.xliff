@@ -252,6 +252,26 @@
                 <target><![CDATA[<h1>Accesoires</h1>
                 <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings über Haarschmuck, Badebekleidung, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>Size</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>Colour</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>OEKO-TEX/ORGANIC</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Your choice</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Clear all</target>
+      </trans-unit>
         </body>
     </file>
 </xliff>

@@ -252,6 +252,26 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler, badetøy og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>Size</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>Colour</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>OEKO-TEX/ORGANIC</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Your choice</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Clear all</target>
+      </trans-unit>
         </body>
     </file>
 </xliff>

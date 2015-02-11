@@ -252,6 +252,26 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>Size</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>Colour</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>OEKO-TEX/ORGANIC</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Your choice</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Clear all</target>
+      </trans-unit>
 		</body>
     </file>
 </xliff>
