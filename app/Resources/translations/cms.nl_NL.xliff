@@ -133,19 +133,16 @@
 								"Navy Melange Stripe",
 								"Navy Melange",
 								"Navy/Green"
-
                             ],
                             "Green": [
 								"Green",
 								"Navy/Green"
-
                             ],
                             "White": [
                                 "White",
 								"Off White",
 								"Off White/Blue",
 								"White"
-
                             ],
                             "Black": [
                                 "Black",
@@ -153,12 +150,11 @@
 								"Black/Off White",
 								"Black Melange",
 								"Copper/Black"
-
                             ],
                             "Yellow": [
                                 "Yellow",
 								"Yellow/Off White"
-							]
+							],
 							"Grey": [
                                 "Grey",
 								"Grey Melange",
@@ -179,6 +175,7 @@
 							],
                             "Red": [
                                 "Red"
+								]
                         },
                        "sizes": {
                               "80": ["80","80-86","50","52","XS","S"],
