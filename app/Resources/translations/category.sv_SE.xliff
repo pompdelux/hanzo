@@ -252,6 +252,26 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, badkläder, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>Sizes</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>Colours</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>OEKO-TEX/ORGANIC</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Your choice</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Clear all</target>
+      </trans-unit>
         </body>
     </file>
 </xliff>
