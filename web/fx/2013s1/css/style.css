@@ -5334,51 +5334,13 @@ nav.filters-dropdowns .outer > li > div {
   background-color: #a2a2a2;
   padding: 10px 10px 10px 0;
 }
-nav.filters-dropdowns .outer > li.open .filter-dropdown-arrow-down {
-  /* Can not use Display:none, since there is a margin */
-}
-nav.filters-dropdowns .outer > li.open .filter-dropdown-arrow-down:before {
-  border-top-color: #a2a2a2;
-  /* Need to make it the same as bg color of parent instead */
-}
-
-.filter-dropdown-arrow {
-  display: block;
+nav.filters-dropdowns .outer > li .fa-angle-up,
+nav.filters-dropdowns .outer > li .fa-angle-down {
   float: right;
-  background-color: transparent;
-  padding: 0;
-  width: 0;
-  height: 0;
   margin-right: 2px;
+  color: #000;
 }
-.filter-dropdown-arrow:before, .filter-dropdown-arrow:after {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-.filter-dropdown-arrow:after {
-  border-color: transparent;
-  border-width: 3px;
-  margin-left: -3px;
-  border-top-color: #a2a2a2;
-}
-.filter-dropdown-arrow:before {
-  border-color: transparent;
-  border-width: 5px;
-  margin-left: -5px;
-  border-top-color: #000;
-}
-.filter-dropdown-arrow.filter-dropdown-arrow-down {
-  margin-top: 5px;
-}
-.filter-dropdown-arrow.filter-dropdown-arrow-up {
-  margin-top: 8px;
-  -ms-transform: rotate(180deg);
-  /* IE 9 */
-  -webkit-transform: rotate(180deg);
-  /* Chrome, Safari, Opera */
-  transform: rotate(180deg);
+nav.filters-dropdowns .outer > li.open .fa-angle-down {
+  /* Can not use Display:none, since there is a margin */
+  color: #a2a2a2;
 }
