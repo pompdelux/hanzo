@@ -205,7 +205,8 @@
 			            <trans-unit id="959.settings">
                 <source>959.settings</source>
                 <target><![CDATA[
-                    {
+                    {	
+						"category_id": "12",
 						"embedded_category_id": ["12","13","14","15"],
                         "colors": ""
                     }
