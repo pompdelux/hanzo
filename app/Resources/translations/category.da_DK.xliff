@@ -2,7 +2,12 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="headers.category-12">
+            <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Overtøj</h1>
+               <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-12">
                 <source>headers.category-12</source>
                 <target><![CDATA[<h1>Fleecejakker</h1>
                <p>En vigtig del af dit barns garderobe er overtøj. Find din favorit dunjakke, fleecejakke, vest eller flyverdragt blandt mange farver og modeller. Alt vores overtøj er designet til at holde dit barn varm og tør i al slags vejr. Især er vores tekniske overtøj af høj kvalitet og stor sikkerhed, og er derfor både vandtæt, vindtæt og åndbart. Se også de mange detaljer såsom reflekser, aftagelig hætte, vindfang, fodstrop og lommer. Vores jakker, overtræksbukser, fleecejakker og flyverdragt går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
