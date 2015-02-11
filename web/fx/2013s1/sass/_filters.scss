@@ -80,8 +80,19 @@ nav.filters-dropdowns {
       padding: 10px 10px 10px 0;
     }
 
+    .fa-angle-up,
+    .fa-angle-down {
+      float: right;
+      margin-right: 2px;
+      color: #000;
+    }
+
     &.open {
 
+      .fa-angle-down {
+        /* Can not use Display:none, since there is a margin */
+        color: #a2a2a2;
+      }
     }
   }
 }
