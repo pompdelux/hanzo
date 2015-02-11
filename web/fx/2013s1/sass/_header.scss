@@ -245,6 +245,10 @@ ul.menu,
 	}
 }
 
+.consultant .sub-menu > ul > li > a {
+    display: inline;
+}
+
 // horizontal helper. Lets all list get horizontal
 ul.horizontal,
 .horizontal > ul{
