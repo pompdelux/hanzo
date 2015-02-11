@@ -254,11 +254,11 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>Size</target>
+        <target>Grösse</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>Colour</target>
+        <target>Farbe</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
@@ -266,11 +266,11 @@
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>
-        <target>Your choice</target>
+        <target>Ihre Wahl</target>
       </trans-unit>
 	  <trans-unit id="faceted.clear_all">
         <source>faceted.clear_all</source>
-        <target>Clear all</target>
+        <target>Alles zurücksetzen</target>
       </trans-unit>
 	   <trans-unit id="headers.category-157">
                 <source>headers.category-157</source>
