@@ -3231,18 +3231,62 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   cursor: default;
 }
 
+nav.category-menu ul.outer {
+  width: 100%;
+}
 nav.category-menu ul.outer .open {
   background-color: #a2a2a2;
 }
+nav.category-menu ul.outer > .last {
+  float: right;
+}
 nav.category-menu > ul > li a {
   margin-left: 10px;
+  color: #fff;
+}
+nav.category-menu > ul > li > a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
+  display: inline-block;
+  margin-left: 0.5em;
 }
 nav.category-menu > ul > li > ul {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  /* box-shadow: none; */
-  /* @include box-shadow(#676767 2px 8px 7px, #676767 -2px 8px 7px); */
   background-color: #a2a2a2;
+  padding: 2em 0 2em 2em;
+  width: 62em;
+}
+nav.category-menu > ul > li > ul:after {
+  content: "\f106";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+}
+nav.category-menu > ul > li > ul > li {
+  width: 11em;
+  float: left;
+  padding: 0 1em 0 0;
+}
+nav.category-menu > ul > li > ul > li > a {
+  font-weight: bold;
+}
+nav.category-menu > ul > li > ul > li a {
+  margin: 0;
+}
+nav.category-menu > ul > li > ul > li > ul {
+  padding-top: 0.5em;
+}
+nav.category-menu > ul > li > ul > li > ul li {
+  padding: 0 0 0.5em;
 }
 
 .consultant nav.main-menu > ul > li > a {
