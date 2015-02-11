@@ -75,16 +75,13 @@
 
 <div class="grid_8 alpha omega row">
   <div class="grid_2 alpha sub-menu menu">
-    <form action="{{ url(app.request.attributes.get('_route')) }}">
-      <div class="grid_2 alpha sub-menu menu">
-          {{ render(controller('CMSBundle:Menu:menu', {
-              'type': 'sub',
-              'offset': cms_id,
-              'thread' : 20,
-              'include_self' : true
-          })) }}
-      </div>
-    </form>
+    <div class="grid_2 alpha sub-menu menu">
+        {{ render(controller('CMSBundle:Menu:menu', {
+            'type': 'sub',
+            'thread' : 20,
+            'include_self' : true
+        })) }}
+    </div>
   </div>
   {% include 'CategoryBundle:Default:listCategoryProducts.html.twig' %}
 </div>
