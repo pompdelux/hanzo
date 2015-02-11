@@ -252,6 +252,7 @@
                 <source>962.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "158",
 						"embedded_category_id": ["16","17","18","19","21","45"],
                         "colors": ""
                     }

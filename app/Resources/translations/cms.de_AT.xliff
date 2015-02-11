@@ -206,6 +206,7 @@
                 <source>819.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "161",
 						"embedded_category_id": ["12","13","14","15"],
                         "colors": ""
                     }
@@ -251,6 +252,7 @@
                 <source>820.settings</source>
                 <target><![CDATA[
                     {
+						"category_id": "162",
 						"embedded_category_id": ["16","17","18","19","21","45"],
                         "colors": ""
                     }
