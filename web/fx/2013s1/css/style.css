@@ -801,6 +801,10 @@ ul.menu.right .dropdown,
   display: block;
 }
 
+.consultant .sub-menu > ul > li > a {
+  display: inline;
+}
+
 ul.horizontal,
 .horizontal > ul {
   list-style: none;
