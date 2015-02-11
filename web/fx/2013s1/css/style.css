@@ -554,7 +554,7 @@ body.sv .subscribe-button {
 
 /**
 | _header
-*/
+ */
 #logo {
   margin-top: 6px;
 }
@@ -703,7 +703,7 @@ ul.menu li a:hover,
 .menu > ul li.active > a,
 .menu > ul li.active-trail > a,
 .menu > ul li a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 nav > ul .dropdown,
 ul.menu .dropdown,
@@ -733,7 +733,6 @@ ul.menu.right .dropdown,
   right: 0;
 }
 
-ul.sub-menu,
 .sub-menu > ul {
   color: #444;
   font-size: 12px;
@@ -741,45 +740,65 @@ ul.sub-menu,
   font-weight: normal;
   line-height: 14px;
   text-transform: uppercase;
+  /* Show active menus */
 }
-ul.sub-menu li,
 .sub-menu > ul li {
   padding: 0 0 6px 0;
   line-height: 18px;
 }
-ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
 }
-ul.sub-menu li.item a.search,
 .sub-menu > ul li.item a.search {
   font-weight: bold;
   margin: 6px 0 0;
 }
-ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
-.sub-menu > ul li.heading > a,
-.sub-menu > ul li.self-included > a {
+.sub-menu > ul li.heading > a, .sub-menu > ul li.self-included > a {
   font-weight: bold;
-  display: block;
   line-height: 18px;
   text-decoration: none;
   cursor: default;
 }
-ul.sub-menu li.active-trail > a,
-.sub-menu > ul li.active-trail > a {
+.sub-menu > ul li.active > a, .sub-menu > ul li.active-trail > a {
+  font-weight: bold;
+}
+.sub-menu > ul li.active > a:hover, .sub-menu > ul li.active-trail > a:hover {
   text-decoration: none;
 }
-ul.sub-menu li.active-trail > a:hover,
-.sub-menu > ul li.active-trail > a:hover {
-  text-decoration: underline;
+.sub-menu > ul > li {
+  /* Hide first level */
 }
-ul.sub-menu li ul,
-.sub-menu > ul li ul {
-  padding: 6px 0 0 12px;
+.sub-menu > ul > li > a {
+  display: none;
 }
-ul.sub-menu li ul a,
-.sub-menu > ul li ul a {
+.sub-menu > ul > li > ul > li {
+  margin-bottom: 1em;
+  /* Else use caret-right */
+  /* Inactive menus are hidden */
+}
+.sub-menu > ul > li > ul > li.active, .sub-menu > ul > li > ul > li.active-trail {
+  /* Show caret-down when "open" */
+}
+.sub-menu > ul > li > ul > li.active > a:before, .sub-menu > ul > li > ul > li.active-trail > a:before {
+  content: "\f0d7";
+}
+.sub-menu > ul > li > ul > li > a:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
   display: inline-block;
+  width: 24px;
+}
+.sub-menu > ul > li > ul > li > ul {
+  padding: 6px 0 0 36px;
+  display: none;
+}
+.sub-menu > ul li.active-trail > ul,
+.sub-menu > ul li.active ul {
+  display: block;
 }
 
 ul.horizontal,
@@ -2419,7 +2438,6 @@ html.touch .product-list .buy-set {
   text-decoration: underline;
 }
 
-.body-category .sub-menu > ul li ul,
 .body-bycolour .sub-menu > ul li ul,
 .body-page-861 .sub-menu > ul li ul,
 .body-page-862 .sub-menu > ul li ul,
@@ -2427,8 +2445,6 @@ html.touch .product-list .buy-set {
 .body-page-864 .sub-menu > ul li ul {
   padding-left: 0;
 }
-.body-category .sub-menu > ul li ul li.active a,
-.body-category .sub-menu > ul li ul li a:hover,
 .body-bycolour .sub-menu > ul li ul li.active a,
 .body-bycolour .sub-menu > ul li ul li a:hover,
 .body-page-861 .sub-menu > ul li ul li.active a,
