@@ -94,28 +94,70 @@ nav.main-menu {
 }
 
 nav.category-menu {
-  ul {
-    &.outer {
-      .open {
-        background-color: $category-menu-hover-bg-color;
-      }
+    ul {
+        &.outer {
+            width: 100%;
+            .open {
+                background-color: $category-menu-hover-bg-color;
+            }
+            > .last {
+                float: right;
+            }
+        }
     }
-  }
-  > ul > li {
-    a {
-      margin-left: 10px;
+    > ul > li {
+        a {
+            margin-left: 10px;
+            color: #fff;
+        }
+        > a:after {
+            content: "\f107";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            font-size: 18px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        > {
+            ul {
+                @include opacity(1);
+                background-color: $category-menu-hover-bg-color;
+                padding: 2em 0 2em 2em;
+                width: 62em;
+                &:after {
+                    content: "\f106";
+                    font-family: FontAwesome;
+                    font-style: normal;
+                    font-weight: normal;
+                    text-decoration: inherit;
+                    font-size: 18px;
+                    position: absolute;
+                    bottom: 0;
+                }
+                > li {
+                    width: 11em;
+                    float: left;
+                    padding: 0 1em 0 0;
+                    > a {
+                        font-weight: bold;
+                    }
+                    a {
+                        margin: 0;
+                    }
+                    > ul {
+                        padding-top: 0.5em;
+                        li {
+                            padding: 0 0 0.5em;
+                        }
+                    }
+                }
+            }
+        }
     }
-    > {
-      ul {
-        @include opacity(1);
-        /* box-shadow: none; */
-        /* @include box-shadow(#676767 2px 8px 7px, #676767 -2px 8px 7px); */
-        background-color: $category-menu-hover-bg-color;
-      }
-    }
-  }
 }
 
 .consultant nav.main-menu > ul > li > a {
-  font-size: $font-size;
+    font-size: $font-size;
 }
