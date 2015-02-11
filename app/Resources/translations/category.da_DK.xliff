@@ -268,9 +268,13 @@
         <source>faceted.dropdown.eco</source>
         <target>OEKO-TEX/ØKOLOGI</target>
       </trans-unit>
-	  <trans-unit id="faceted.selected_filters:">
-        <source>faceted.selected_filters:</source>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
         <target>Dit valg</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Ryd alt</target>
       </trans-unit>
         </body>
     </file>
