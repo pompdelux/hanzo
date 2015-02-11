@@ -4,7 +4,8 @@ namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\SearchProductsTagsQuery,
     Hanzo\Model\ProductsQuery,
-    Hanzo\Core\Hanzo
+    Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools
     ;
 
 class ProductIndexBuilder extends IndexBuilder
