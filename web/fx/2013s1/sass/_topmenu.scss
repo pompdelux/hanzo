@@ -44,6 +44,7 @@ nav.main-menu {
     }
     > {
       a {
+        letter-spacing: .8px;
         padding: 10px 20px 10px 0;
         display: block;
         font-size: 14px;
@@ -61,7 +62,7 @@ nav.main-menu {
         font-size: $side-menu-size;
         line-height: $side-menu-line-height;
         @include opacity(0.95);
-        @include box-shadow(#676767 2px 2px 8px);
+        @include box-shadow(#676767 2px 2px 2px);
         > li {
           float: none;
           padding: 10px 8px;
@@ -103,12 +104,22 @@ nav.category-menu {
             > .last {
                 float: right;
             }
+            > .first {
+                padding-left: 5px;
+            }
         }
     }
     > ul > li {
+        &.last {
+            margin-right: 10px;
+        }
         a {
             margin-left: 10px;
             color: #fff;
+            letter-spacing: 1px;
+            &:hover {
+                text-decoration: underline;
+            }
         }
         > a:after {
             content: "\f107";
@@ -124,7 +135,7 @@ nav.category-menu {
             ul {
                 @include opacity(1);
                 background-color: $category-menu-hover-bg-color;
-                padding: 2em 0 2em 2em;
+                padding: 2em 0 2em 3em;
                 width: 62em;
                 &:after {
                     content: "\f106";
@@ -140,8 +151,10 @@ nav.category-menu {
                     width: 11em;
                     float: left;
                     padding: 0 1em 0 0;
+                    letter-spacing: 1.5px;
                     > a {
                         font-weight: bold;
+
                     }
                     a {
                         margin: 0;
@@ -152,6 +165,23 @@ nav.category-menu {
                             padding: 0 0 0.5em;
                         }
                     }
+                }
+
+                &.floaded-right {
+                    width: inherit;
+
+                    li {
+                        float: none;
+                        white-space: nowrap;
+
+                        a {
+                            font-weight: normal;
+                            line-height: 2em;
+                            letter-spacing: 1.3px;
+                            text-transform: none;
+                        }
+                    }
+
                 }
             }
         }

@@ -196,7 +196,7 @@ ul.menu,
 		}
 		&.active > a,
 		&.active-trail > a {
-            font-weight: bold; 
+            font-weight: bold;
 		    &:hover {
 		        text-decoration:none;
 		    }
@@ -217,7 +217,7 @@ ul.menu,
                 > a:before {
                     content: "\f0d7";
                 }
-            } 
+            }
 
             /* Else use caret-right */
             > a:before {
@@ -338,11 +338,12 @@ ul.breadcrumb {
 .container .main header{
 	display: table;
 	min-height: 100px;
-	background: #d2c3c6;
-	height: 100px;
-	margin-bottom: 28px;
+    height: 100px;
+    background: #d2c3c6;
+	margin-bottom: 20px;
     overflow: hidden;
-	hgroup{
+
+    hgroup {
 	    color: white;
 	    padding: 10px;
 	    display: table-cell;
