@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Unfortunately there are no items available in the chosen category, as we are getting ready for the new season. Our new SPRING/SUMMER15 collection will be released in the online shop on the 16th February.</target>
+                <target>Unfortunately there are no products available in this category. Please remove one or more of your search criterias. If your search still does not show any results the category might be out of stock.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
