@@ -8,6 +8,7 @@ var filters = (function ($) {
     if ($(".js-filters").length === 0) {
       return;
     }
+
     $faceted = $(".js-faceted-form");
 
     setValuesFromUrl();
@@ -30,8 +31,16 @@ var filters = (function ($) {
 
     $(".js-filter-clear-dropdown").click(function(e) {
       e.preventDefault();
+
       var filterType = $(this).attr('href');
-      $(".js-filter-type-"+filterType+" input").each(function(index, element) {
+      var selector;
+      if ('all' == $(this).attr('href')) {
+        selector = "input";
+      } else {
+        selector = ".js-filter-type-"+filterType+" input";
+      }
+
+      $(selector, $faceted).each(function(index, element) {
         handleFilterRemove($(this).val());
       });
       updateUrl();
@@ -65,15 +74,28 @@ var filters = (function ($) {
   }
 
   function handleFilterRemove(value) {
+    if ('all' == value) {
+      return;
+    }
+
     $(".js-filters span a[href='"+value+"']").parent().remove();
     $("input[value='"+value+"']", $faceted).prop('checked', false);
+
+    if ($(".js-filters span").length == 1) {
+      $(".js-filters").addClass('off');
+    }
   }
 
   function handleFilterAdded(value, name) {
     var element = ' <span>'+name+' <a href="'+value+'">&#10005;</a></span>';
 
-    $(".js-filters").append(element);
+    $(".js-filters .last").before(element);
     $("input[value='"+value+"']", $faceted).prop('checked', true);
+
+
+    if ($(".js-filters span").length > 1) {
+      $(".js-filters").removeClass('off');
+    }
   }
 
   function setValuesFromUrl() {
