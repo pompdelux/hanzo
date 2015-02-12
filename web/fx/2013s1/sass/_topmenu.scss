@@ -117,9 +117,6 @@ nav.category-menu {
             margin-left: 10px;
             color: #fff;
             letter-spacing: 1px;
-            &:hover {
-                text-decoration: underline;
-            }
         }
         > a:after {
             content: "\f107";
@@ -154,10 +151,12 @@ nav.category-menu {
                     letter-spacing: 1.5px;
                     > a {
                         font-weight: bold;
-
                     }
                     a {
                         margin: 0;
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                     > ul {
                         padding-top: 0.5em;
