@@ -520,8 +520,8 @@
                     }
                 ]]></target>
             </trans-unit>
-            <trans-unit id="794.settings">
-                <source>794.settings</source>
+            <trans-unit id="594.settings">
+                <source>594.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "7",
