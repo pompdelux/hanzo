@@ -3256,9 +3256,6 @@ nav.category-menu > ul > li a {
   color: #fff;
   letter-spacing: 1px;
 }
-nav.category-menu > ul > li a:hover {
-  text-decoration: underline;
-}
 nav.category-menu > ul > li > a:after {
   content: "\f107";
   font-family: FontAwesome;
@@ -3297,6 +3294,9 @@ nav.category-menu > ul > li > ul > li > a {
 }
 nav.category-menu > ul > li > ul > li a {
   margin: 0;
+}
+nav.category-menu > ul > li > ul > li a:hover {
+  text-decoration: underline;
 }
 nav.category-menu > ul > li > ul > li > ul {
   padding-top: 0.5em;
