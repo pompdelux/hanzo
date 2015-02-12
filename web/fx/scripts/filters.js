@@ -82,7 +82,7 @@ var filters = (function ($) {
     $("input[value='"+value+"']", $faceted).prop('checked', false);
 
     if ($(".js-filters span").length == 1) {
-      $(".js-filters").addClass('off');
+      $(".js-filters .last").addClass('off');
     }
   }
 
@@ -94,7 +94,7 @@ var filters = (function ($) {
 
 
     if ($(".js-filters span").length > 1) {
-      $(".js-filters").removeClass('off');
+      $(".js-filters .last").removeClass('off');
     }
   }
 
