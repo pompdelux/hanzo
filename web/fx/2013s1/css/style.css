@@ -3285,6 +3285,7 @@ nav.category-menu > ul > li > ul > li > a {
 }
 nav.category-menu > ul > li > ul > li a {
   margin: 0;
+  white-space: normal;
 }
 nav.category-menu > ul > li > ul > li > ul {
   padding-top: 0.5em;
