@@ -11,6 +11,7 @@ var quickorder = (function($) {
         yatzy.compile('quickOrderItemTpl');
 
         $_searchField.typeahead({
+            limit      : 12,
             name       : "sku",
             remote     : {
                 url: base_url + "quickorder/get-sku?name=%QUERY",
