@@ -130,7 +130,7 @@ class DefaultController extends CoreController
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
                 if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-girl';
-                } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $container->get('request')->getPathInfo())) {
+                } elseif (preg_match('/(dreng|boy|kille|poika|gutt|junge)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-boy';
                 }
 
