@@ -1,0 +1,56 @@
+.filters-selected {
+  text-transform: uppercase;
+
+  font-family: $font-sans;
+  font-size: $side-menu-size;
+  line-height: $side-menu-line-height;
+
+  span {
+    background-color: #969799;
+    color: #fff;
+    padding: 2px 6px;
+    line-height: 1.8em;
+    white-space: nowrap;
+
+    a {
+      color: #000;
+      /* font-size: 0.6em; */
+      font-weight: bold;
+      vertical-align: bottom;
+      text-decoration: none;
+    }
+
+    &.last {
+      background-color: inherit;
+      a {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+    }
+  }
+}
+
+nav.filters-dropdowns {
+    .outer > li {
+        > ul {
+            label {
+                width: auto;
+            }
+            input {
+                margin-left: 30px;
+            }
+            > li {
+                &.item {
+                    /*
+                     * &:nth-child(odd) {
+                     *     margin-left: 40px;
+                     * }
+                     */
+                    padding: 0;
+                    width: 50%;
+                    float: left;
+                }
+            }
+        }
+    }
+}
