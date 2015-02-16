@@ -259,10 +259,10 @@
                 lookup.fail(function (jqXHR, textStatus) {});
             });
 
-            $form.on('submit', function (event) {
+            $("form.buy").on('submit', function (event) {
                 event.preventDefault();
 
-                //var $form = $(this);
+                var $form = $(this);
                 if ($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()) {
                     var lookup = $.ajax({
                         url: $form.attr('action'),
