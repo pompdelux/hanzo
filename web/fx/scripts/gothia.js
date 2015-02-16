@@ -30,6 +30,7 @@ var gothia = (function ($) {
                     if (data.status === true) {
                         $("#gothia-payment-step-3 form").submit();
                     } else {
+                        $.colorbox.close();
                         $errorBlock.removeClass('off').html(data.message);
                     }
                 },

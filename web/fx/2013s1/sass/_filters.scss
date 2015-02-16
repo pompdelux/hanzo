@@ -1,13 +1,37 @@
 .filters-selected {
   text-transform: uppercase;
+
+  font-family: $font-sans;
+  font-size: $side-menu-size;
+  line-height: $side-menu-line-height;
+
   span {
     background-color: #969799;
     color: #fff;
     padding: 2px 6px;
+    line-height: 1.8em;
+    white-space: nowrap;
+
     a {
       color: #000;
+      font-size: 0.6em;
+      font-weight: bold;
+      vertical-align: bottom;
+    }
+
+    &.last {
+      background-color: inherit;
+      a {
+        font-size: inherit;
+        font-weight: inherit;
+      }
     }
   }
+}
+
+.main > .grid_8.filters-selected {
+  margin-bottom: 12px;
+  margin-top: 0;
 }
 
 nav.filters-dropdowns {
@@ -36,7 +60,7 @@ nav.filters-dropdowns {
       div {
         margin-left: 6px;
       }
-    }    
+    }
 
     > ul {
       @include opacity(1);
@@ -80,15 +104,19 @@ nav.filters-dropdowns {
       padding: 10px 10px 10px 0;
     }
 
-    &.open > div > span {
-      background-image: none;
+    .fa-angle-up,
+    .fa-angle-down {
+      float: right;
+      margin-right: 2px;
+      color: #000;
+    }
+
+    &.open {
+
+      .fa-angle-down {
+        /* Can not use Display:none, since there is a margin */
+        color: #a2a2a2;
+      }
     }
   }
-}
-
-.dropdown-indicator {
-  width: 10px;
-  height: 10px;
-  margin-top: 2px;
-  float: right;
 }

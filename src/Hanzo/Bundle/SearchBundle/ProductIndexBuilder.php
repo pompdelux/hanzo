@@ -4,7 +4,8 @@ namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\SearchProductsTagsQuery,
     Hanzo\Model\ProductsQuery,
-    Hanzo\Core\Hanzo
+    Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools
     ;
 
 class ProductIndexBuilder extends IndexBuilder
@@ -202,7 +203,7 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($products as $product)
                 {
-                    $tokenValue = 'token-'.$token;
+                    $tokenValue = 'token-'.Tools::stripText($token);
 
                     $sql = sprintf("
                         INSERT INTO

@@ -8,6 +8,7 @@ var filters = (function ($) {
     if ($(".js-filters").length === 0) {
       return;
     }
+
     $faceted = $(".js-faceted-form");
 
     setValuesFromUrl();
@@ -20,7 +21,7 @@ var filters = (function ($) {
 
     $("input[type='checkbox']", $faceted).on('change', function() {
       if ($(this).prop( "checked" ) === true) {
-        handleFilterAdded($(this).val());
+        handleFilterAdded($(this).val(), $(this).data('name'));
       }
       else {
         handleFilterRemove($(this).val());
@@ -30,8 +31,16 @@ var filters = (function ($) {
 
     $(".js-filter-clear-dropdown").click(function(e) {
       e.preventDefault();
+
       var filterType = $(this).attr('href');
-      $(".js-filter-type-"+filterType+" input").each(function(index, element) {
+      var selector;
+      if ('all' == $(this).attr('href')) {
+        selector = "input";
+      } else {
+        selector = ".js-filter-type-"+filterType+" input";
+      }
+
+      $(selector, $faceted).each(function(index, element) {
         handleFilterRemove($(this).val());
       });
       updateUrl();
@@ -62,25 +71,36 @@ var filters = (function ($) {
       $a.attr('href', href);
       $a.click();
     });
-
   }
 
   function handleFilterRemove(value) {
+    if ('all' == value) {
+      return;
+    }
+
     $(".js-filters span a[href='"+value+"']").parent().remove();
     $("input[value='"+value+"']", $faceted).prop('checked', false);
+
+    if ($(".js-filters span").length == 1) {
+      $(".js-filters .last").addClass('off');
+    }
   }
 
-  function handleFilterAdded(value) {
-    var name = value.replace('token-', '');
-
+  function handleFilterAdded(value, name) {
     var element = ' <span>'+name+' <a href="'+value+'">&#10005;</a></span>';
 
-    $(".js-filters").append(element);
+    $(".js-filters .last").before(element);
     $("input[value='"+value+"']", $faceted).prop('checked', true);
+
+
+    if ($(".js-filters span").length > 1) {
+      $(".js-filters .last").removeClass('off');
+    }
   }
 
   function setValuesFromUrl() {
-    var $url = $.url();
+    var $url = $.url(),
+        name = '';
 
     if ($url.param('filter') === 'on') {
       $.each($url.param(), function(name, values) {
@@ -88,16 +108,16 @@ var filters = (function ($) {
           return;
         }
         if (typeof values === 'string') {
-          handleFilterAdded(values);
+          name = $("input[value='"+values+"']", $faceted).data('name');
+          handleFilterAdded(values, name);
         } else if ($.isArray(values)) {
           $.each(values, function(x, value) {
-            handleFilterAdded(value);
+            name = $("input[value='"+value+"']", $faceted).data('name');
+            handleFilterAdded(value, name);
           });
         }
       });
     }
-
-    updateUrl();
   }
 
   return pub;

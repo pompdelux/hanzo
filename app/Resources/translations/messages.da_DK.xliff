@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Der er desværre ingen varer i den valgte kategori, da vi er i gang med at gøre klar til en ny sæson. Vores nye SPRING/SUMMER15 kollektion har release hos vores Shopping Advisors den 12. februar, og i webshoppen den 16. februar.</target>
+                <target>Der er desværre ingen produkter at vise i denne kategori. Prøv at fravælge et eller flere af dine søgekriterier. Giver søgningen fortsat ingen resultater kan kategorien være udsolgt.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
