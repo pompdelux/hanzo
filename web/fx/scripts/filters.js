@@ -1,18 +1,28 @@
 /* jshint unused:false */
 var filters = (function ($) {
   'use strict';
-  var pub = {};
-  var $faceted;
+  var pub = {},
+      $faceted,
+      isMobile = false,
+      FORCE_RELOAD = true;
 
   pub.init = function() {
     if ($(".js-filters").length === 0) {
       return;
     }
 
+    if ($("body.is-mobile").length !== 0) {
+      isMobile = true;
+    }
+
     $faceted = $(".js-faceted-form");
 
     setValuesFromUrl();
+    eventHandlersSetup();
+    mobileSetup();
+  };
 
+  function eventHandlersSetup() {
     $(".js-filters").on('click', 'span a', function(e) {
       e.preventDefault();
       handleFilterRemove($(this).attr('href'));
@@ -32,8 +42,9 @@ var filters = (function ($) {
     $(".js-filter-clear-dropdown").click(function(e) {
       e.preventDefault();
 
-      var filterType = $(this).attr('href');
-      var selector;
+      var filterType = $(this).attr('href'),
+          selector;
+
       if ('all' == $(this).attr('href')) {
         selector = "input";
       } else {
@@ -43,20 +54,57 @@ var filters = (function ($) {
       $(selector, $faceted).each(function(index, element) {
         handleFilterRemove($(this).val());
       });
-      updateUrl();
+      updateUrl(FORCE_RELOAD);
     });
-  };
+  }
+
+  function mobileSetup() {
+    if (!isMobile) {
+      return;
+    }
+
+    $(".js-filter-open").click(function(e) {
+      $(".js-faceted-form").addClass('faceted-form-open');
+      $(".js-filter-hide").hide();
+      $(".js-filter-show-products").show();
+    });
+  }
+
+  function updateUrl(reload) {
+    if (isMobile) {
+      updateUrlMobile(reload);
+    }
+    else {
+      updateUrlDesktop();
+    }
+  }
 
   /**
    * Updates pager element from listCategoryProducts.html.twig
    */
-  function updateUrl() {
-    var $a,
-        href,
-        filter;
+  function updateUrlDesktop() {
+    var $a;
 
     $(".js-pager-container li a").each(function(index, a) {
       $a = $(a);
+      updateHref($a);
+      window.location = $a.attr('href');
+    });
+  }
+
+  function updateUrlMobile(reload) {
+    reload = (typeof reload === "undefined") ? false : reload;
+
+    var $a = $(".js-filter-show-products a");
+    updateHref($a);
+    if (reload) {
+      window.location = $a.attr('href');
+    }
+  }
+
+  function updateHref($a) {
+      var href,
+          filter;
 
       if ($a.length) {
         href = $a.attr('href').split('?')[0];
@@ -69,8 +117,6 @@ var filters = (function ($) {
       }
 
       $a.attr('href', href);
-      $a.click();
-    });
   }
 
   function handleFilterRemove(value) {
