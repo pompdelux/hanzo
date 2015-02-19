@@ -42,7 +42,8 @@ class MenuController extends CoreController
             (int) $request->attributes->get('admin_enabled'),
             'menu',
             $type,
-            $stripped_uri
+            $stripped_uri,
+            $this->device
         ];
 
         $html = $this->getCache($cache_id);
