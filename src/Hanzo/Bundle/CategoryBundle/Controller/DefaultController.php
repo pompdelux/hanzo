@@ -469,7 +469,7 @@ class DefaultController extends CoreController
 
                     ))
                     // We already to this?
-                    // ->filterByColor($color_filter)
+                    ->filterByColor($color_filter)
                     ->endUse();
             } else {
                 $result = $result->useProductsImagesQuery()
