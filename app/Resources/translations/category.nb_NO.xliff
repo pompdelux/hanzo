@@ -254,15 +254,15 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>STØRRELSE</target>
+        <target>VELG STØRRELSE</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>FARGE</target>
+        <target>VELG FARGE</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX/ØKOLOGI</target>
+        <target>VELG OEKO-TEX/ØKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

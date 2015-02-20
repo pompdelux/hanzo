@@ -199,7 +199,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-118">
                 <source>headers.category-118</source>
-                <target><![CDATA[<h1>Vesten</h1>
+                <target><![CDATA[<h1>Veste</h1>
                 <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-119">
@@ -254,15 +254,15 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>MAAT</target>
+        <target>KIES MAAT</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>KLEUR</target>
+        <target>KIES KLEUR</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX/Ecologi</target>
+        <target>KIES OEKO-TEX/Ecologi</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

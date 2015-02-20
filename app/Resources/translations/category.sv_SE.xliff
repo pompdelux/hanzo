@@ -29,7 +29,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-17">
                 <source>headers.category-17</source>
-                <target><![CDATA[<h1>Cardigans</h1>
+                <target><![CDATA[<h1>Koftor</h1>
                 <p>Under kalla vinterdagar och svala sommarkvällar är det skönt med en varm tröja. POMPdeLUX har både stickade tröjor och koftor i härliga, mjuka material i ett brett urval färger och modeller. Hitta din favorit bland fleecetröjor, koftor, blusar, sweatshirts och jumprar. Våra stickade tröjor och koftor finns i storlekarna 80–152 cm och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-18">
@@ -134,7 +134,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-147">
                 <source>headers.category-147</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Accessoarer</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, badkläder, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			 <trans-unit id="headers.category-5">
@@ -249,20 +249,20 @@
             </trans-unit>
 		<trans-unit id="headers.category-152">
                 <source>headers.category-152</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Accessoarer</h1>
                 <p>För att fullända ditt barns garderob kan kollektionen kombineras med våra många läckra accessoarer. POMPdeLUX har allt från strumpor och strumpbyxor, hårattiraljer, badkläder, hängslen och skärp till vantar, mössor och halsdukar. Våra populära tillbehör matchar resten av kollektionen och kan därför kombineras med snygga klänningar, fina koftor och coola byxor. Våra skärp, hängslen, vantar, mössor, halsdukar och hårattiraljer kan bäras av tjejer i alla åldrar och här finns massor av inspiration att hämta till barnens garderob.</p>]]></target>
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>STORLEK</target>
+        <target>VÄLJ STORLEK</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>FÄRG</target>
+        <target>VÄLJ FÄRG</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX/EKOLOGI</target>
+        <target>VÄLJ OEKO-TEX/EKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>
