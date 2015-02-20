@@ -272,6 +272,10 @@
         <source>faceted.clear_all</source>
         <target>Alles zurücksetzen</target>
       </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Vis resultat</target>
+      </trans-unit>
 	   <trans-unit id="headers.category-161">
                 <source>headers.category-161</source>
                 <target><![CDATA[<h1>Oberbekleidung</h1>

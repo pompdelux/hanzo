@@ -271,6 +271,10 @@
         <source>faceted.clear_all</source>
         <target>Ryd alt</target>
       </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Vis resultat</target>
+      </trans-unit>
 	  <trans-unit id="headers.category-157">
                 <source>headers.category-157</source>
                 <target><![CDATA[<h1>Overtøj</h1>
