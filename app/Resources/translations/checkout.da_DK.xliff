@@ -84,11 +84,11 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
