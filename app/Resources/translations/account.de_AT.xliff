@@ -539,7 +539,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Rücksendeetikett drucken</target>
+                <target>DHL Rücksendelabel erstellen</target>
             </trans-unit>
             <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
@@ -643,7 +643,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
 			 <trans-unit id="wishlist.footer.description">
                 <source>wishlist.footer.description</source>
                 <target><![CDATA[
-                    <strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist. 
+                    <strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist.
                 ]]></target>
             </trans-unit>
         </body>
