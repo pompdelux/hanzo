@@ -3400,6 +3400,73 @@ video img  {
   border-bottom: 1px solid #000;
 }
 
+.filters-selected {
+  text-transform: uppercase;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+}
+.filters-selected span {
+  background-color: #969799;
+  color: #fff;
+  padding: 2px 6px;
+  line-height: 1.8em;
+  white-space: nowrap;
+}
+.filters-selected span a {
+  color: #000;
+  font-weight: bold;
+  vertical-align: bottom;
+  text-decoration: none;
+}
+.filters-selected span.last {
+  background-color: inherit;
+}
+.filters-selected span.last a {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.filter-show-products {
+  text-transform: uppercase;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  background-color: #969799;
+  padding: 2px 6px;
+  line-height: 1.8em;
+  text-align: center;
+}
+.filter-show-products a {
+  color: #fff;
+  font-weight: bold;
+  vertical-align: bottom;
+  text-decoration: none;
+}
+
+.faceted-form-open {
+  background-color: #fff;
+  display: block;
+  position: static;
+  top: 0;
+  z-index: 1;
+}
+
+nav.filters-dropdowns .outer > li > ul label {
+  width: auto;
+}
+nav.filters-dropdowns .outer > li > ul input {
+  margin-left: 20px;
+}
+nav.filters-dropdowns .outer > li > ul input:nth-child(odd) {
+  margin-left: 10px;
+}
+nav.filters-dropdowns .outer > li > ul > li.item {
+  padding: 0;
+  width: 50%;
+  float: left;
+}
+
 /* Selection colours (easy to forget) */
 ::selection {
   background: #CCCCCC;
