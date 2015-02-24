@@ -391,20 +391,40 @@ class DefaultController extends CoreController
         }
 
         $result = ProductsImagesCategoriesSortQuery::create()
-            ->joinWithProducts()
-            ->useProductsQuery()
+            ->joinWithProducts();
+
+        if ($use_filter)
+        {
+            // Ignore products.MASTER IS NULL, and check stock
+            $result->useProductsQuery()
                 ->filterByRange($product_range)
                 ->joinProductsI18n()
-                ->where('products.MASTER IS NULL')
-                // ->filterByIsOutOfStock(FALSE)
+                ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($domain_id)
                 ->endUse()
                 ->useProductsI18nQuery()
                     ->filterByLocale($locale)
                 ->endUse()
-            ->endUse()
-            ->useProductsImagesQuery()
+            ->endUse();
+        }
+        else
+        {
+            // Only master products, and show all
+            $result->useProductsQuery()
+                ->filterByRange($product_range)
+                ->joinProductsI18n()
+                ->where('products.MASTER IS NULL')
+                ->useProductsDomainsPricesQuery()
+                    ->filterByDomainsId($domain_id)
+                ->endUse()
+                ->useProductsI18nQuery()
+                    ->filterByLocale($locale)
+                ->endUse()
+            ->endUse();
+        }
+
+        $result->useProductsImagesQuery()
                 ->filterByType($show_by_look ? 'set' : 'overview')
                 ->groupByImage()
             ->endUse()
