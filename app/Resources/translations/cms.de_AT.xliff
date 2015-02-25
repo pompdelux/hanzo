@@ -105,7 +105,10 @@
   						"Bio-Produkte (GOTS)": ["158"],
   					"Oekotex": ["157"]
 									}
-                    }
+                    },
+					{
+    "embedded_page_id": "554"
+}
                 ]]></target>
             </trans-unit>
 			<trans-unit id="720.settings">
