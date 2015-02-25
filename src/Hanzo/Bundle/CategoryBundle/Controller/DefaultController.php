@@ -183,8 +183,8 @@ class DefaultController extends CoreController
                 ->endUse()
             ->endUse()
             ->joinWithProductsToCategories()
-            ->orderBySku()
-            ->groupBySku()
+                ->orderByTitle()
+                ->groupBySku()
             ->find();
 
         $records = array();
