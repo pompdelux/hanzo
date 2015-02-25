@@ -393,38 +393,21 @@ class DefaultController extends CoreController
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts();
 
-        if ($use_filter)
-        {
-            // Ignore products.MASTER IS NULL, and check stock
-            $result->useProductsQuery()
-                ->filterByRange($product_range)
-                ->joinProductsI18n()
-                ->filterByIsOutOfStock(FALSE)
-                ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId($domain_id)
-                ->endUse()
-                ->useProductsI18nQuery()
-                    ->filterByLocale($locale)
-                ->endUse()
-            ->endUse();
-        }
-        else
-        {
-            // Only master products, and show all
-            $result->useProductsQuery()
+        $result = ProductsImagesCategoriesSortQuery::create()
+            ->joinWithProducts()
+            ->useProductsQuery()
                 ->filterByRange($product_range)
                 ->joinProductsI18n()
                 ->where('products.MASTER IS NULL')
+                // ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($domain_id)
                 ->endUse()
                 ->useProductsI18nQuery()
                     ->filterByLocale($locale)
                 ->endUse()
-            ->endUse();
-        }
-
-        $result->useProductsImagesQuery()
+            ->endUse()
+            ->useProductsImagesQuery()
                 ->filterByType($show_by_look ? 'set' : 'overview')
                 ->groupByImage()
             ->endUse()
@@ -441,9 +424,11 @@ class DefaultController extends CoreController
                 SELECT
                     C1.master_products_id AS master_products_id
                 FROM
+                    products AS p,
                     search_products_tags AS C1\n";
 
             $sql .= $this->searchProductsFilterBuilder($filters);
+            $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id";
 
             $sql .= "\nGROUP BY
                 C1.master_products_id";
@@ -470,12 +455,12 @@ class DefaultController extends CoreController
                 ->_or()
                 ->filterByIsOutOfStock(true)
                 ->endUse()
-            ;
+                ;
         } else {
             $result = $result->useProductsQuery()
                 ->filterByIsOutOfStock(false)
                 ->endUse()
-            ;
+                ;
         }
 
         if ($color_filter) {
@@ -499,7 +484,7 @@ class DefaultController extends CoreController
                         "'".implode("','", $color_filter)."'"
 
                     ))
-                ->endUse();
+                    ->endUse();
             }
         } else {
             $result = $result->orderBySort();
@@ -612,8 +597,8 @@ class DefaultController extends CoreController
                     search_products_tags AS C{$counter}
                     ON (C1.products_id = C{$counter}.products_id)";
 
-                $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
-                $counter++;
+            $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
+            $counter++;
             }
         }
         else {
