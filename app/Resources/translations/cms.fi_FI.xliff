@@ -748,6 +748,24 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="738.settings">
+                <source>738.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "562",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="739.settings">
+                <source>739.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "751",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
