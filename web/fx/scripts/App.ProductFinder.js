@@ -4,14 +4,8 @@ App.register('ProductFinder', function() {
     var publicMethods = {};
 
     // private jquery elements.
-    var $_form;
     var $_element;
-    var $_searchField;
-    var $_masterField;
-    var $_productIdField;
-    var $_sizeSelect;
-    var $_colorSelect;
-    var $_quantitySelect;
+    var $_identifiers;
 
     /**
      * Initirat
@@ -19,14 +13,15 @@ App.register('ProductFinder', function() {
      */
     publicMethods.init = function($element) {
         $_element = $element;
-        $_form    = $('form', $element);
 
-        $_searchField    = $('input[name="q"]', $_form);
-        $_masterField    = $('input[name="master"]', $_form);
-        $_productIdField = $('input[name="product_id"]', $_form);
-        $_sizeSelect     = $('select[name="size"]', $_form);
-        $_colorSelect    = $('select[name="color"]', $_form);
-        $_quantitySelect = $('select[name="quantity"]', $_form);
+        $_identifiers = {
+            searchField: 'input[name="q"]',
+            masterField: 'input[name="master"]',
+            productIdField: 'input[name="product_id"]',
+            sizeSelect: 'select[name="size"]',
+            colorSelect: 'select[name="color"]',
+            quantitySelect: 'select[name="quantity"]'
+        };
 
         setupSearch();
         setupListeners();
@@ -35,23 +30,39 @@ App.register('ProductFinder', function() {
     /**
      * Reset the form elements this module cares about.
      */
-    publicMethods.resetForm = function() {
-        var $_ttdd = $('.tt-dropdown-menu', $_form);
-        $_ttdd.html('');
-        $_ttdd.css('display', 'none');
+    publicMethods.resetForm = function($scope) {
 
-        $_searchField.val('');
-        $_masterField.val('');
-        $_productIdField.val('');
+        var $form_object
 
-        $_sizeSelect.prop('disabled', true);
-        $('option:first', $_sizeSelect).prop('selected', true);
+        if($scope.is('form')) {
+            console.log('is form');
+            $form_object = $scope;
+        }
+        else {
+            console.log('not form');
+            $form_object = $scope.parents('form');
+        }
 
-        $_colorSelect.prop('disabled', true);
-        $('option:first', $_colorSelect).prop('selected', true);
+        var $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
+            $colorSelect_object = $($_identifiers.colorSelect, $form_object),
+            $quantitySelect_object = $($_identifiers.quantitySelect, $form_object),
+            $ttdd = $('.tt-dropdown-menu', $form_object);
 
-        $_quantitySelect.prop('disabled', true);
-        $('option:first', $_quantitySelect).prop('selected', true);
+        $ttdd.html('');
+        $ttdd.css('display', 'none');
+
+        $($_identifiers.searchField).val('');
+        $($_identifiers.masterField).val('');
+        $($_identifiers.productIdField).val('');
+
+        $sizeSelect_object.prop('disabled', true);
+        $('option:first', $sizeSelect_object).prop('selected', true);
+
+        $colorSelect_object.prop('disabled', true);
+        $('option:first', $colorSelect_object).prop('selected', true);
+
+        $quantitySelect_object.prop('disabled', true);
+        $('option:first', $quantitySelect_object).prop('selected', true);
     };
 
 
@@ -59,8 +70,9 @@ App.register('ProductFinder', function() {
      * Setup the search form
      */
     var setupSearch = function() {
+
         // setup typeahead search
-        $_searchField.typeahead({
+        $($_identifiers.searchField).typeahead({
             name   : "sku",
             remote : {
                 url: base_url + "quickorder/get-sku?name=%QUERY",
@@ -87,34 +99,45 @@ App.register('ProductFinder', function() {
      * Setup listeners
      */
     var setupListeners = function() {
+
         // handle typeahead requests
-        $_searchField.on('typeahead:autocompleted typeahead:selected', function(event, item) {
-            $_masterField.val(item.name);
-            publicMethods.stockCheck({master: item.name}, 'size');
+        $($_identifiers.searchField).on('typeahead:autocompleted typeahead:selected', function(event, item) {
+            var $scope = $(this),
+                $form_object = $scope.parents('form'),
+                $masterField_object = $($_identifiers.masterField, $form_object);
+
+            console.log(item.name);
+            $masterField_object.val(item.name);
+            publicMethods.stockCheck({master: item.name}, 'size', $scope);
         });
 
         // handle found products ...
         $_element.on('on-products-found', function(event, data) {
-            var $target;
-            var label;
+            var $target_object,
+                label,
+                $scope = data.scope,
+                $form_object = $scope.parents('form'),
+                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
+                $colorSelect_object = $($_identifiers.colorSelect, $form_object);
 
             switch (data.target) {
                 case 'size':
-                    $target = $_sizeSelect;
+                    $target_object = $sizeSelect_object;
                     label   = Translator.trans('wishlist.select.size');
                     break;
                 case 'color':
-                    $target = $_colorSelect;
+                    $target_object = $colorSelect_object;
                     label   = Translator.trans('wishlist.select.color');
                     break;
             }
 
-            $('option', $target).remove();
+            $('option', $target_object).remove();
 
-            $target.append('<option value="">'+label+'</option>');
-            $target.prop("disabled", false);
+            $target_object.append('<option value="">'+label+'</option>');
+            $target_object.prop("disabled", false);
 
             $.each(data.data.products, function(key, value) {
+
                 // we need this to filter out dubbs
                 if ($('option[value="'+value[data.target]+'"]').length) {
                     return;
@@ -126,10 +149,10 @@ App.register('ProductFinder', function() {
                     label = value.size_label || value[data.target];
                 }
 
-                $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+label+'</option>');
+                $target_object.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+label+'</option>');
             });
 
-            $target.focus();
+            $target_object.focus();
         });
 
         // handle not-found cases
@@ -137,19 +160,29 @@ App.register('ProductFinder', function() {
             console.log(data);
         });
 
+        // Size select
         // look up colors from a master and a size
-        $_sizeSelect.on('change', function() {
+        $($_identifiers.sizeSelect).on('change', function() {
+            var $scope = $(this),
+                $form_object = $scope.parents('form'),
+                $masterField_object = $($_identifiers.masterField, $form_object),
+                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object);
+
             publicMethods.stockCheck({
-                master : $_masterField.val(),
-                size   : $_sizeSelect.val()
-            }, 'color');
+                master : $masterField_object.val(),
+                size   : $sizeSelect_object.val()
+            }, 'color', $scope);
         });
 
         // set field state and focus
-        $_colorSelect.on('change', function() {
-            $_productIdField.val($(':selected', $_colorSelect).data('productId'));
-            $_quantitySelect.prop('disabled', false);
-            $_quantitySelect.focus();
+        $($_identifiers.colorSelect).on('change', function() {
+            var $scope = $(this),
+                $form_object = $scope.parents('form'),
+                $quantitySelect_object = $($_identifiers.quantitySelect, $form_object),
+                $productIdField_object = $($_identifiers.productIdField, $form_object);
+
+            $productIdField_object.val($(':selected', $scope).data('productId'));
+            $quantitySelect_object.prop('disabled', false).focus();
         });
     };
 
@@ -159,7 +192,7 @@ App.register('ProductFinder', function() {
      * @param data
      * @param target
      */
-    publicMethods.stockCheck = function(data, target) {
+    publicMethods.stockCheck = function(data, target, scope) {
         var xhr = $.ajax({
             url      : base_url + "stock-check",
             dataType : 'json',
@@ -170,6 +203,7 @@ App.register('ProductFinder', function() {
 
         xhr.done(function(response) {
             response.target = target;
+            response.scope = scope;
             if (response.status) {
                 return $_element.trigger('on-products-found', response);
             }

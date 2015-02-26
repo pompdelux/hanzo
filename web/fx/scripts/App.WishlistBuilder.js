@@ -44,7 +44,7 @@ App.register('WishlistBuilder', function() {
                     });
                 }
 
-                App.ProductFinder.resetForm();
+                App.ProductFinder.resetForm($_form);
 
                 // show resetter link and shoppinglist number below list when not empty.
                 $_resetter.removeClass('off');
