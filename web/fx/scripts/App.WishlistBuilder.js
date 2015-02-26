@@ -1,4 +1,4 @@
-App.register('WishlistBuilder', function() {
+App.register('WishlistBuilder', function () {
     "use strict";
 
     var publicMethods = {};
@@ -10,27 +10,27 @@ App.register('WishlistBuilder', function() {
     var $_masterField;
     var $_resetter;
 
-    publicMethods.init = function($element) {
-        $_element     = $element;
-        $_form        = $('form', $element);
-        $_target      = $('.js-wishlist-target');
+    publicMethods.init = function ($element) {
+        $_element = $element;
+        $_form = $('form', $element);
+        $_target = $('.js-wishlist-target');
         $_searchField = $('input[name="q"]', $_form);
         $_masterField = $('input[name="master"]', $_form);
-        $_resetter    = $('.js-wishlist-flush-list', $_target);
+        $_resetter = $('.js-wishlist-flush-list', $_target);
 
         setupListeners();
         yatzy.compile('wishlistItemTpl');
     };
 
-    var setupListeners = function() {
-        $_form.on('submit', function(event) {
+    var setupListeners = function () {
+        $_form.on('submit', function (event) {
             event.preventDefault();
 
             var xhr = $.post($_form.attr('action'), $_form.serialize());
 
-            xhr.done(function(response) {
-                if ($('#js-wishlist-'+response.data.id, $_target).length) {
-                    var $product = $('#js-wishlist-'+response.data.id, $_target);
+            xhr.done(function (response) {
+                if ($('#js-wishlist-' + response.data.id, $_target).length) {
+                    var $product = $('#js-wishlist-' + response.data.id, $_target);
 
                     $('.js-in-edit', $_target).removeClass('js-in-edit');
 
@@ -39,8 +39,8 @@ App.register('WishlistBuilder', function() {
                 } else {
                     $_target.prepend(yatzy.render('wishlistItemTpl', response.data));
 
-                    $('.js-in-edit', $_target).fadeOut(function() {
-                       $(this).remove();
+                    $('.js-in-edit', $_target).fadeOut(function () {
+                        $(this).remove();
                     });
                 }
 
@@ -52,16 +52,16 @@ App.register('WishlistBuilder', function() {
                 $_searchField.focus();
             });
 
-            xhr.fail(function() {
+            xhr.fail(function () {
                 console.log(arguments);
             });
         });
 
-        $_resetter.on('click', function(event) {
+        $_resetter.on('click', function (event) {
             event.preventDefault();
             var href = this.href;
 
-            dialoug.confirm('OBS !', $(this).data('confirmMessage'), function(state) {
+            dialoug.confirm('OBS !', $(this).data('confirmMessage'), function (state) {
                 if (state == 'ok') {
                     $.post(href);
 
@@ -72,10 +72,10 @@ App.register('WishlistBuilder', function() {
             });
         });
 
-        $(document).on('click', 'a.js-wishlist-edit-item-trigger', function(event) {
+        $(document).on('click', 'a.js-wishlist-edit-item-trigger', function (event) {
             event.preventDefault();
 
-            var $article    = $(this).closest('article');
+            var $article = $(this).closest('article');
             var bailOnReset = false;
 
             if ($article.hasClass('js-in-edit')) {
@@ -96,7 +96,7 @@ App.register('WishlistBuilder', function() {
             $_masterField.val(data.master);
             $_searchField.val(data.title);
             App.ProductFinder.stockCheck({
-                master : data.master
+                master: data.master
             }, 'size');
 
             $('html,body').animate({
@@ -104,7 +104,7 @@ App.register('WishlistBuilder', function() {
             });
         });
 
-        $(document).on('click', '.js-wishlist-delete-item-trigger', function(event) {
+        $(document).on('click', '.js-wishlist-delete-item-trigger', function (event) {
             event.preventDefault();
 
             $.post(this.href);

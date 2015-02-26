@@ -2,7 +2,7 @@
  * We hook into the ProductFinder to handle lokups and stock checks.
  * Here we just toggles the right elements in the form.
  */
-App.register('RmaBuilder', function() {
+App.register('RmaBuilder', function () {
     "use strict";
 
     var publicMethods = {};
@@ -10,10 +10,10 @@ App.register('RmaBuilder', function() {
     var $_element;
     var $_identifiers;
 
-    publicMethods.init = function($element) {
-        $_element     = $element;
+    publicMethods.init = function ($element) {
+        $_element = $element;
         $_identifiers = {
-            sizeSelect: 'select[name="size"]',
+            sizeSelect : 'select[name="size"]',
             colorSelect: 'select[name="color"]',
             resetButton: 'input.reset'
         };
@@ -21,9 +21,9 @@ App.register('RmaBuilder', function() {
         setupListeners();
     };
 
-    var setupListeners = function() {
+    var setupListeners = function () {
         // when products are found update the visibility and focus of the dropdowns
-        $_element.on('on-products-found', function(event, data) {
+        $_element.on('on-products-found', function (event, data) {
             var $scope = data.scope,
                 $form_object = $scope.parents('form'),
                 $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
