@@ -421,9 +421,11 @@ class DefaultController extends CoreController
                 SELECT
                     C1.master_products_id AS master_products_id
                 FROM
+                    products AS p,
                     search_products_tags AS C1\n";
 
             $sql .= $this->searchProductsFilterBuilder($filters);
+            $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id";
 
             $sql .= "\nGROUP BY
                 C1.master_products_id";
@@ -450,12 +452,12 @@ class DefaultController extends CoreController
                 ->_or()
                 ->filterByIsOutOfStock(true)
                 ->endUse()
-            ;
+                ;
         } else {
             $result = $result->useProductsQuery()
                 ->filterByIsOutOfStock(false)
                 ->endUse()
-            ;
+                ;
         }
 
         if ($color_filter) {
@@ -479,7 +481,7 @@ class DefaultController extends CoreController
                         "'".implode("','", $color_filter)."'"
 
                     ))
-                ->endUse();
+                    ->endUse();
             }
         } else {
             $result = $result->orderBySort();
@@ -592,8 +594,8 @@ class DefaultController extends CoreController
                     search_products_tags AS C{$counter}
                     ON (C1.products_id = C{$counter}.products_id)";
 
-                $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
-                $counter++;
+            $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
+            $counter++;
             }
         }
         else {
