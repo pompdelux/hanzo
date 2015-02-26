@@ -253,24 +253,33 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
             // Collect all errors to add into the Exception.
             $errorMessages = [
-                $t->trans('We were unable to approve your payment with Gothia Invoice service.', [], 'gothia')
+                $t->trans('gothia.response.error.before', [], 'gothia')
             ];
 
             $clientError = $client->getError();
 
-            if (!empty($clientError)) {
+            if (!empty($clientError))
+            {
                 array_push($errorMessages, $t->trans($clientError, [], 'gothia'));
             }
 
-            if (is_array($gothiaApiCallResponse->errors)) {
-                foreach ($gothiaApiCallResponse->errors as $error) {
-                    if (!empty($error) && !in_array($t->trans($error, [], 'gothia'), $errorMessages)) {
-                        array_push($errorMessages, $t->trans($error, [], 'gothia'));
+            if (is_array($gothiaApiCallResponse->errors))
+            {
+                foreach ($gothiaApiCallResponse->errors as $error)
+                {
+                    if (!empty($error) )
+                    {
+                        $msg_id = 'gothia.response.'.$error['id'];
+
+                        if (!isset($errorMessages[$msg_id]))
+                        {
+                            $errorMessages[$msg_id] = $t->trans($msg_id, [], 'gothia');
+                        }
                     }
                 }
             }
 
-            array_push($errorMessages, $t->trans('Please contact POMPdeLUX customer service if you keep receiving this error.', [], 'gothia'));
+            array_push($errorMessages, $t->trans('gothia.response.error.after', [], 'gothia'));
 
             Tools::debug('Gothia Response Error', __METHOD__, [
                 'Transaction id' => $gothiaApiCallResponse->transactionId,
