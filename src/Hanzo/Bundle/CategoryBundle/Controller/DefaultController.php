@@ -391,9 +391,6 @@ class DefaultController extends CoreController
         }
 
         $result = ProductsImagesCategoriesSortQuery::create()
-            ->joinWithProducts();
-
-        $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
             ->useProductsQuery()
                 ->filterByRange($product_range)
