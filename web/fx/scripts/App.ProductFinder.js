@@ -41,7 +41,8 @@ App.register('ProductFinder', function () {
             $form_object = $scope.parents('form');
         }
 
-        var $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
+        var $searchField_object = $($_identifiers.searchField, $form_object),
+            $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
             $colorSelect_object = $($_identifiers.colorSelect, $form_object),
             $quantitySelect_object = $($_identifiers.quantitySelect, $form_object),
             $ttdd = $('.tt-dropdown-menu', $form_object);
@@ -61,17 +62,25 @@ App.register('ProductFinder', function () {
 
         $quantitySelect_object.prop('disabled', true);
         $('option:first', $quantitySelect_object).prop('selected', true);
+
+        $searchField_object.typeahead('destroy');
+        setupSearch($searchField_object);
+
     };
 
 
     /**
      * Setup the search form
      */
-    var setupSearch = function () {
+    var setupSearch = function ($searchField_object) {
+
+        if(!$searchField_object) {
+            var $searchField_object = $($_identifiers.searchField);
+        }
         var $scope,
             $integer = 0;
 
-        $($_identifiers.searchField).each(function(index) {
+        $searchField_object.each(function(index) {
             $scope = $(this);
 
             // setup typeahead search
