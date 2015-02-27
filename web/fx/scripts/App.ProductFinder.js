@@ -35,11 +35,9 @@ App.register('ProductFinder', function () {
         var $form_object;
 
         if ($scope.is('form')) {
-            console.log('is form');
             $form_object = $scope;
         }
         else {
-            console.log('not form');
             $form_object = $scope.parents('form');
         }
 
@@ -70,28 +68,47 @@ App.register('ProductFinder', function () {
      * Setup the search form
      */
     var setupSearch = function () {
+        var $scope,
+            $integer = 0;
 
-        // setup typeahead search
-        $($_identifiers.searchField).typeahead({
-            name  : "sku",
-            remote: {
-                url       : base_url + "quickorder/get-sku?name=%QUERY",
-                beforeSend: function (jqXHR, settings) {
-                    var query = settings.url.split('?')[1];
-                    var params = {};
-                    $.each(query.split('&'), function (index, element) {
-                        var x = element.split('=');
-                        params[x[0]] = x[1];
-                    });
+        $($_identifiers.searchField).each(function(index) {
+            $scope = $(this);
 
-                    if ((typeof params.name === "undefined") ||
-                        (params.name.length < 3) ||
-                        (params.name.indexOf(' ') !== -1)
-                    ) {
-                        return false;
+            // setup typeahead search
+            $scope.typeahead({
+                name  : "sku" + $integer,
+                remote: {
+                    url       : base_url + "quickorder/get-sku?name=%QUERY",
+                    beforeSend: function (jqXHR, settings) {
+                        var query = settings.url.split('?')[1];
+                        var params = {};
+                        $.each(query.split('&'), function (index, element) {
+                            var x = element.split('=');
+                            params[x[0]] = x[1];
+                        });
+
+                        if ((typeof params.name === "undefined") ||
+                            (params.name.length < 3) ||
+                            (params.name.indexOf(' ') !== -1)
+                        ) {
+                            return false;
+                        }
                     }
                 }
-            }
+            });
+
+            // event
+            $scope.on('typeahead:autocompleted typeahead:selected', function (event, item) {
+                var $scope = $(this),
+                    $form_object = $scope.parents('form'),
+                    $masterField_object = $($_identifiers.masterField, $form_object);
+
+                $masterField_object.val(item.name);
+
+                publicMethods.stockCheck({master: item.name}, 'size', $scope);
+            });
+
+            $integer++;
         });
     };
 
@@ -99,17 +116,6 @@ App.register('ProductFinder', function () {
      * Setup listeners
      */
     var setupListeners = function () {
-
-        // handle typeahead requests
-        $($_identifiers.searchField).on('typeahead:autocompleted typeahead:selected', function (event, item) {
-            var $scope = $(this),
-                $form_object = $scope.parents('form'),
-                $masterField_object = $($_identifiers.masterField, $form_object);
-
-            console.log(item.name);
-            $masterField_object.val(item.name);
-            publicMethods.stockCheck({master: item.name}, 'size', $scope);
-        });
 
         // handle found products ...
         $_element.on('on-products-found', function (event, data) {
@@ -198,6 +204,7 @@ App.register('ProductFinder', function () {
             dataType: 'json',
             type    : 'GET',
             data    : data,
+            cache   : false,
             async   : false
         });
 
