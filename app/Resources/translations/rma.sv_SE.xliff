@@ -13,7 +13,7 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>Hos POMPdeLUX &auml;r det l&auml;tt att byta eller returnera en vara. Det enklaste s&auml;ttet att g&ouml;ra detta &auml;r att fylla i och bifoga retursedeln i paketet. Det vill vara en stor hj&auml;lp f&ouml;r oss att du returnerar varan i originalf&ouml;rpackning, med etiketter p&aring;, etc.<br><br>F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
+                    <p>Hos POMPdeLUX &auml;r det l&auml;tt att byta eller returnera en vara. Det enklaste s&auml;ttet att g&ouml;ra detta &auml;r att fylla i och bifoga retursedeln i paketet. Det vill vara en stor hj&auml;lp f&ouml;r oss att du returnerar varan i originalf&ouml;rpackning, med etiketter p&aring;, etc.<br><br><h2 style="color:#A10000">Om du upplever problem med att fylla i eller skriva ut retursedeln kan du istället skriva ut en <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf">» här</a> – Returetiketten kan du skriva ut <a href="https://www.pompdelux.com/sv_SE/account"><i class="sprite returnlabel">här </i></a></h2><br><br>F&ouml;r att kunna se retursedeln, ska du ha gratis programmet Adobe Reader. Om du inte har Adobe Reader installerat, kan du ladda ner programmet h&auml;r.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
