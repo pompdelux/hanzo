@@ -117,6 +117,8 @@ App.register('ProductFinder', function() {
                 $sizeSelect = $(identifiers.sizeSelect, $form),
                 $colorSelect = $(identifiers.colorSelect, $form);
 
+            console.log(event);
+
             switch (data.target) {
                 case 'size':
                     $target = $sizeSelect;
@@ -186,7 +188,7 @@ App.register('ProductFinder', function() {
     };
 
     /**
-     * Perform the stockcheck
+     * Perform the stock check
      *
      * @param data
      * @param target
@@ -204,6 +206,7 @@ App.register('ProductFinder', function() {
         xhr.done(function(response) {
             response.target = target;
             response.scope = scope;
+            console.log(response);
             if (response.status) {
                 return $_element.trigger('on-products-found', response);
             }
