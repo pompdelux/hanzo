@@ -7,46 +7,64 @@ App.register('RmaBuilder', function() {
 
     var publicMethods = {};
 
-    var $_form;
-    var $_element;
-    var $_sizeSelect;
-    var $_colorSelect;
-    var $_resetButton;
+    var $_element,
+        identifiers;
 
     publicMethods.init = function($element) {
         $_element     = $element;
-        $_form        = $('form', $element);
-        $_sizeSelect  = $('select[name="size"]', $_form);
-        $_colorSelect = $('select[name="color"]', $_form);
-        $_resetButton = $('input.reset', $_form);
+
+        identifiers = {
+            form          : 'form.rma-form',
+            searchField   : 'input[name="q"]',
+            masterField   : 'input[name="master"]',
+            productIdField: 'input[name="product_id"]',
+            sizeSelect    : 'select[name="size"]',
+            colorSelect   : 'select[name="color"]',
+            quantitySelect: 'select[name="quantity"]',
+            resetButton   : 'input.reset'
+        };
 
         setupListeners();
     };
 
     var setupListeners = function() {
+
         // when products are found update the visibility and focus of the dropdowns
         $_element.on('on-products-found', function(event, data) {
+
+            var $scope       = data.scope,
+                $form        = $scope.parents(identifiers.form),
+                $sizeSelect  = $(identifiers.sizeSelect, $form),
+                $colorSelect = $(identifiers.colorSelect, $form);
+
             switch (data.target) {
                 case 'size':
-                    $_sizeSelect.parent().show();
-                    $_sizeSelect.focus();
+                    $sizeSelect.parent().show();
+                    $sizeSelect.focus();
                     break;
                 case 'color':
-                    $_colorSelect.parent().show();
-                    $_colorSelect.focus();
+                    $colorSelect.parent().show();
+                    $colorSelect.focus();
                     break;
             }
 
-            $('input.reset', $_form).show();
+            $('input.reset', $form).show();
         });
 
         // reset the form when reset is clicked.
-        $_resetButton.on('click', function () {
-            $('.rma-productreplacement option:not(":first")', $_form).remove();
-            $_sizeSelect.parent().hide();
-            $_colorSelect.parent().hide();
-            $_resetButton.hide();
-            App.ProductFinder.resetForm();
+        $_element.find(identifiers.resetButton).on('click', function () {
+
+            var $scope       = $(this),
+                $form        = $scope.parents(identifiers.form),
+                $sizeSelect  = $(identifiers.sizeSelect, $form),
+                $colorSelect = $(identifiers.colorSelect, $form),
+                $resetButton = $(identifiers.resetButton, $form);
+
+            $('.rma-productreplacement option:not(":first")', $form).remove();
+            $sizeSelect.parent().hide();
+            $colorSelect.parent().hide();
+            $resetButton.hide();
+            App.ProductFinder.resetForm($form);
         });
     };
 
