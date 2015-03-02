@@ -1,3 +1,4 @@
+/* global App:false, Translator:false, dialoug:false, base_url:false */
 App.register('ProductFinder', function () {
     "use strict";
 
@@ -75,7 +76,8 @@ App.register('ProductFinder', function () {
      */
     var setupSearch = function () {
 
-        var $searchField_object = $($_identifiers.searchField),
+      // @TODO: also finds search field
+        var $searchField_object = $($_identifiers.searchField, $('.rma-form')),
             $scope,
             $integer = 0;
 
