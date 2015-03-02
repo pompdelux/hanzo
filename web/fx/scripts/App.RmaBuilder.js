@@ -1,4 +1,4 @@
-/**
+/* global App:false
  * We hook into the ProductFinder to handle lokups and stock checks.
  * Here we just toggles the right elements in the form.
  */
