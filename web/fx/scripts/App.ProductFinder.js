@@ -50,21 +50,22 @@ App.register('ProductFinder', function () {
         $ttdd.html('');
         $ttdd.css('display', 'none');
 
+        // Empty fields
         $($_identifiers.searchField).val('');
         $($_identifiers.masterField).val('');
         $($_identifiers.productIdField).val('');
 
+        // Size
         $sizeSelect_object.prop('disabled', true);
         $('option:first', $sizeSelect_object).prop('selected', true);
 
+        // Color
         $colorSelect_object.prop('disabled', true);
         $('option:first', $colorSelect_object).prop('selected', true);
 
+        // Quantity
         $quantitySelect_object.prop('disabled', true);
         $('option:first', $quantitySelect_object).prop('selected', true);
-
-        $searchField_object.typeahead('destroy');
-        setupSearch($searchField_object);
 
     };
 
@@ -72,12 +73,10 @@ App.register('ProductFinder', function () {
     /**
      * Setup the search form
      */
-    var setupSearch = function ($searchField_object) {
+    var setupSearch = function () {
 
-        if(!$searchField_object) {
-            var $searchField_object = $($_identifiers.searchField);
-        }
-        var $scope,
+        var $searchField_object = $($_identifiers.searchField),
+            $scope,
             $integer = 0;
 
         $searchField_object.each(function(index) {
@@ -87,6 +86,7 @@ App.register('ProductFinder', function () {
             $scope.typeahead({
                 name  : "sku" + $integer,
                 remote: {
+                    cache     : false,
                     url       : base_url + "quickorder/get-sku?name=%QUERY",
                     beforeSend: function (jqXHR, settings) {
                         var query = settings.url.split('?')[1];
@@ -115,6 +115,10 @@ App.register('ProductFinder', function () {
                 $masterField_object.val(item.name);
 
                 publicMethods.stockCheck({master: item.name}, 'size', $scope);
+
+                $scope.typeahead('destroy');
+                setupSearch($scope);
+
             });
 
             $integer++;
