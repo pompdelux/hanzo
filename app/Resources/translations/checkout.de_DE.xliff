@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternative Lieferadresse </target>
+        <target>Lieferadresse </target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>

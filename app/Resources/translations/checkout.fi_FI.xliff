@@ -65,7 +65,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Vaihtoehtoinen toimitusosoite </target>
+        <target>Toimitusosoite</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
