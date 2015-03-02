@@ -5,8 +5,8 @@ App.register('ProductFinder', function () {
     var publicMethods = {};
 
     // private jquery elements.
-    var $_element;
-    var $_identifiers;
+    var $_element,
+        identifiers;
 
     /**
      * Initirat
@@ -15,7 +15,8 @@ App.register('ProductFinder', function () {
     publicMethods.init = function ($element) {
         $_element = $element;
 
-        $_identifiers = {
+        identifiers = {
+            form          : 'form.rma-form',
             searchField   : 'input[name="q"]',
             masterField   : 'input[name="master"]',
             productIdField: 'input[name="product_id"]',
@@ -39,22 +40,21 @@ App.register('ProductFinder', function () {
             $form_object = $scope;
         }
         else {
-            $form_object = $scope.parents('form');
+            $form_object = $scope.parents(identifiers.form);
         }
 
-        var $searchField_object = $($_identifiers.searchField, $form_object),
-            $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
-            $colorSelect_object = $($_identifiers.colorSelect, $form_object),
-            $quantitySelect_object = $($_identifiers.quantitySelect, $form_object),
+        var $sizeSelect_object = $(identifiers.sizeSelect, $form_object),
+            $colorSelect_object = $(identifiers.colorSelect, $form_object),
+            $quantitySelect_object = $(identifiers.quantitySelect, $form_object),
             $ttdd = $('.tt-dropdown-menu', $form_object);
 
         $ttdd.html('');
         $ttdd.css('display', 'none');
 
         // Empty fields
-        $($_identifiers.searchField).val('');
-        $($_identifiers.masterField).val('');
-        $($_identifiers.productIdField).val('');
+        $(identifiers.searchField).val('');
+        $(identifiers.masterField).val('');
+        $(identifiers.productIdField).val('');
 
         // Size
         $sizeSelect_object.prop('disabled', true);
@@ -76,54 +76,41 @@ App.register('ProductFinder', function () {
      */
     var setupSearch = function () {
 
-      // @TODO: also finds search field
-        var $searchField_object = $($_identifiers.searchField, $('.rma-form')),
-            $scope,
-            $integer = 0;
+        var $searchField_object = $(identifiers.searchField, $_element);
 
-        $searchField_object.each(function(index) {
-            $scope = $(this);
+        // Setup typeahead search
+        $searchField_object.typeahead({
+            remote: {
+                url       : base_url + "quickorder/get-sku?name=%QUERY",
+                beforeSend: function (jqXHR, settings) {
+                    var query = settings.url.split('?')[1];
+                    var params = {};
+                    $.each(query.split('&'), function (index, element) {
+                        var x = element.split('=');
+                        params[x[0]] = x[1];
+                    });
 
-            // setup typeahead search
-            $scope.typeahead({
-                name  : "sku" + $integer,
-                remote: {
-                    cache     : false,
-                    url       : base_url + "quickorder/get-sku?name=%QUERY",
-                    beforeSend: function (jqXHR, settings) {
-                        var query = settings.url.split('?')[1];
-                        var params = {};
-                        $.each(query.split('&'), function (index, element) {
-                            var x = element.split('=');
-                            params[x[0]] = x[1];
-                        });
-
-                        if ((typeof params.name === "undefined") ||
-                            (params.name.length < 3) ||
-                            (params.name.indexOf(' ') !== -1)
-                        ) {
-                            return false;
-                        }
+                    if ((typeof params.name === "undefined") ||
+                        (params.name.length < 3) ||
+                        (params.name.indexOf(' ') !== -1)
+                    ) {
+                        return false;
                     }
                 }
-            });
+            }
+        });
 
-            // event
-            $scope.on('typeahead:autocompleted typeahead:selected', function (event, item) {
-                var $scope = $(this),
-                    $form_object = $scope.parents('form'),
-                    $masterField_object = $($_identifiers.masterField, $form_object);
+        // Event
+        $searchField_object.on('typeahead:autocompleted typeahead:selected', function (event, item) {
 
-                $masterField_object.val(item.name);
+            var $scope = $(this),
+                $form_object = $scope.parents(identifiers.form),
+                $masterField_object = $(identifiers.masterField, $form_object);
 
-                publicMethods.stockCheck({master: item.name}, 'size', $scope);
+            $masterField_object.val(item.name);
 
-                $scope.typeahead('destroy');
-                setupSearch($scope);
+            publicMethods.stockCheck({master: item.name}, 'size');
 
-            });
-
-            $integer++;
         });
     };
 
@@ -136,10 +123,9 @@ App.register('ProductFinder', function () {
         $_element.on('on-products-found', function (event, data) {
             var $target_object,
                 label,
-                $scope = data.scope,
-                $form_object = $scope.parents('form'),
-                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
-                $colorSelect_object = $($_identifiers.colorSelect, $form_object);
+                $form_object = $(this).find(identifiers.form),
+                $sizeSelect_object = $(identifiers.sizeSelect, $form_object),
+                $colorSelect_object = $(identifiers.colorSelect, $form_object);
 
             switch (data.target) {
                 case 'size':
@@ -183,24 +169,24 @@ App.register('ProductFinder', function () {
 
         // Size select
         // look up colors from a master and a size
-        $($_identifiers.sizeSelect).on('change', function () {
+        $(identifiers.sizeSelect, $_element).on('change', function () {
             var $scope = $(this),
-                $form_object = $scope.parents('form'),
-                $masterField_object = $($_identifiers.masterField, $form_object),
-                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object);
+                $form_object = $scope.parents(identifiers.form),
+                $masterField_object = $(identifiers.masterField, $form_object),
+                $sizeSelect_object = $(identifiers.sizeSelect, $form_object);
 
             publicMethods.stockCheck({
                 master: $masterField_object.val(),
                 size  : $sizeSelect_object.val()
-            }, 'color', $scope);
+            }, 'color');
         });
 
         // set field state and focus
-        $($_identifiers.colorSelect).on('change', function () {
+        $(identifiers.colorSelect, $_element).on('change', function () {
             var $scope = $(this),
-                $form_object = $scope.parents('form'),
-                $quantitySelect_object = $($_identifiers.quantitySelect, $form_object),
-                $productIdField_object = $($_identifiers.productIdField, $form_object);
+                $form_object = $scope.parents(identifiers.form),
+                $quantitySelect_object = $(identifiers.quantitySelect, $form_object),
+                $productIdField_object = $(identifiers.productIdField, $form_object);
 
             $productIdField_object.val($(':selected', $scope).data('productId'));
             $quantitySelect_object.prop('disabled', false).focus();
@@ -213,7 +199,7 @@ App.register('ProductFinder', function () {
      * @param data
      * @param target
      */
-    publicMethods.stockCheck = function (data, target, scope) {
+    publicMethods.stockCheck = function (data, target) {
         var xhr = $.ajax({
             url     : base_url + "stock-check",
             dataType: 'json',
@@ -225,7 +211,6 @@ App.register('ProductFinder', function () {
 
         xhr.done(function (response) {
             response.target = target;
-            response.scope = scope;
             if (response.status) {
                 return $_element.trigger('on-products-found', response);
             }

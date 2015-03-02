@@ -8,11 +8,12 @@ App.register('RmaBuilder', function () {
     var publicMethods = {};
 
     var $_element;
-    var $_identifiers;
+    var identifiers;
 
     publicMethods.init = function ($element) {
         $_element = $element;
-        $_identifiers = {
+        identifiers = {
+            form       : 'form.rma-form',
             sizeSelect : 'select[name="size"]',
             colorSelect: 'select[name="color"]',
             resetButton: 'input.reset'
@@ -22,13 +23,15 @@ App.register('RmaBuilder', function () {
     };
 
     var setupListeners = function () {
+
         // when products are found update the visibility and focus of the dropdowns
         $_element.on('on-products-found', function (event, data) {
-            var $scope = data.scope,
-                $form_object = $scope.parents('form'),
-                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
-                $colorSelect_object = $($_identifiers.colorSelect, $form_object),
-                $resetButton_object = $($_identifiers.resetButton, $form_object);
+
+            var $sizeSelect_object = $(identifiers.sizeSelect, $_element),
+                $colorSelect_object = $(identifiers.colorSelect, $_element),
+                $resetButton_object = $(identifiers.resetButton, $_element);
+
+            console.log($sizeSelect_object);
 
             switch (data.target) {
                 case 'size':
@@ -45,19 +48,17 @@ App.register('RmaBuilder', function () {
         });
 
         // reset the form when reset is clicked.
-        $($_identifiers.resetButton).on('click', function () {
+        $(identifiers.resetButton, $_element).on('click', function () {
 
-            var $scope = $(this),
-                $form_object = $scope.parents('form'),
-                $sizeSelect_object = $($_identifiers.sizeSelect, $form_object),
-                $colorSelect_object = $($_identifiers.colorSelect, $form_object),
-                $resetButton_object = $($_identifiers.resetButton, $form_object);
+            var $sizeSelect_object = $(identifiers.sizeSelect, $_element),
+                $colorSelect_object = $(identifiers.colorSelect, $_element),
+                $resetButton_object = $(identifiers.resetButton, $_element);
 
-            $('.rma-productreplacement option:not(":first")', $form_object).remove();
+            $('.rma-productreplacement option:not(":first")', $_element).remove();
             $sizeSelect_object.parent().hide();
             $colorSelect_object.parent().hide();
             $resetButton_object.hide();
-            App.ProductFinder.resetForm($scope);
+            App.ProductFinder.resetForm($(this));
         });
     };
 
