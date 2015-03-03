@@ -28,7 +28,7 @@ App.register('ProductFinder', function() {
     };
 
     /**
-     * Reset the form elements this module cares about.
+     * Reset the form elements this module cares about
      */
     publicMethods.resetForm = function($form) {
 

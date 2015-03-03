@@ -27,8 +27,7 @@ App.register('WishlistBuilder', function() {
             event.preventDefault();
 
 
-            var xhr = $.post($_form.attr('action'), $_form.serialize()),
-                $form = $(this).parents('form');
+            var xhr = $.post($_form.attr('action'), $_form.serialize());
 
             xhr.done(function(response) {
                 if ($('#js-wishlist-'+response.data.id, $_target).length) {
@@ -46,12 +45,13 @@ App.register('WishlistBuilder', function() {
                     });
                 }
 
-                App.ProductFinder.resetForm($form);
+                App.ProductFinder.resetForm($_form);
 
-                // show resetter link and shoppinglist number below list when not empty.
+                // show resetter link and shoppinglist number below lis.t when not empty
                 $_resetter.removeClass('off');
                 $('.list-number.last').removeClass('off');
                 $_searchField.focus();
+                console.log('XHR');
             });
 
             xhr.fail(function() {
