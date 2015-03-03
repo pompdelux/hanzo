@@ -33,7 +33,7 @@ App.register('ProductFinder', function() {
     publicMethods.resetForm = function($form) {
 
         if(!$form) {
-            return;
+            return false;
         }
 
         var $sizeSelect  = $(identifiers.sizeSelect, $form),
