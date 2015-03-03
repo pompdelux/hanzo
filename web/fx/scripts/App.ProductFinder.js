@@ -110,47 +110,8 @@ App.register('ProductFinder', function() {
 
         // handle found products ...
         $_element.on('on-products-found', function(event, data) {
-            var $target,
-                label,
-                $scope = data.scope,
-                $form = $scope.parents(identifiers.form),
-                $sizeSelect = $(identifiers.sizeSelect, $form),
-                $colorSelect = $(identifiers.colorSelect, $form);
-
-            console.log(event);
-
-            switch (data.target) {
-                case 'size':
-                    $target = $sizeSelect;
-                    label   = Translator.trans('wishlist.select.size');
-                    break;
-                case 'color':
-                    $target = $colorSelect;
-                    label   = Translator.trans('wishlist.select.color');
-                    break;
-            }
-
-            $('option', $target).remove();
-
-            $target.append('<option value="">'+label+'</option>');
-            $target.prop("disabled", false);
-
-            $.each(data.data.products, function(key, value) {
-                // we need this to filter out dubbs
-                if ($('option[value="'+value[data.target]+'"]').length) {
-                    return;
-                }
-
-                var label = value[data.target];
-
-                if ('size' === data.target) {
-                    label = value.size_label || value[data.target];
-                }
-
-                $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+label+'</option>');
-            });
-
-            $target.focus();
+            // insert products
+            publicMethods.insertProducts(data);
         });
 
         // handle not-found cases
@@ -206,7 +167,6 @@ App.register('ProductFinder', function() {
         xhr.done(function(response) {
             response.target = target;
             response.scope = scope;
-            console.log(response);
             if (response.status) {
                 return $_element.trigger('on-products-found', response);
             }
@@ -217,6 +177,61 @@ App.register('ProductFinder', function() {
         xhr.fail(function() {
             dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
         });
+    };
+
+    /**
+     * Perform the stock check
+     *
+     * @param data
+     * @param target
+     */
+    publicMethods.insertProducts = function(data) {
+        var $target,
+            label,
+            $scope = data.scope,
+            $form = $scope.parents(identifiers.form),
+            $sizeSelect = $(identifiers.sizeSelect, $form),
+            $colorSelect = $(identifiers.colorSelect, $form);
+
+        switch (data.target) {
+            case 'size':
+                $target = $sizeSelect;
+                label   = Translator.trans('wishlist.select.size');
+                break;
+            case 'color':
+                $target = $colorSelect;
+                label   = Translator.trans('wishlist.select.color');
+                break;
+        }
+
+        console.log('Pre');
+        console.log($target);
+        console.log('List');
+
+        $('option', $target).remove();
+
+        $target.append('<option value="">'+label+'</option>');
+        $target.prop('disabled', false);
+
+        $.each(data.data.products, function(key, value) {
+
+            // we need this to filter out dubbs
+            if ($('option[value="'+value[data.target]+'"]').length) {
+                return;
+            }
+
+            var labelOption = value[data.target];
+
+            if ('size' === data.target) {
+                labelOption = value.size_label || value[data.target];
+            }
+
+            console.log($target);
+
+            $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+labelOption+'</option>');
+        });
+
+        $target.focus();
     };
 
     return publicMethods;
