@@ -26,6 +26,7 @@ App.register('WishlistBuilder', function() {
         $_form.on('submit', function(event) {
             event.preventDefault();
 
+
             var xhr = $.post($_form.attr('action'), $_form.serialize());
 
             xhr.done(function(response) {
@@ -44,12 +45,13 @@ App.register('WishlistBuilder', function() {
                     });
                 }
 
-                App.ProductFinder.resetForm();
+                App.ProductFinder.resetForm($_form);
 
-                // show resetter link and shoppinglist number below list when not empty.
+                // show resetter link and shoppinglist number below lis.t when not empty
                 $_resetter.removeClass('off');
                 $('.list-number.last').removeClass('off');
                 $_searchField.focus();
+                console.log('XHR');
             });
 
             xhr.fail(function() {
@@ -75,15 +77,16 @@ App.register('WishlistBuilder', function() {
         $(document).on('click', 'a.js-wishlist-edit-item-trigger', function(event) {
             event.preventDefault();
 
-            var $article    = $(this).closest('article');
-            var bailOnReset = false;
+            var $article    = $(this).closest('article'),
+                bailOnReset = false,
+                $scope      = $(this);
 
             if ($article.hasClass('js-in-edit')) {
                 bailOnReset = true;
             }
 
             $('article', $_target).removeClass('js-in-edit');
-            App.ProductFinder.resetForm();
+            App.ProductFinder.resetForm($_form);
 
             if (bailOnReset) {
                 return;
@@ -97,7 +100,7 @@ App.register('WishlistBuilder', function() {
             $_searchField.val(data.title);
             App.ProductFinder.stockCheck({
                 master : data.master
-            }, 'size');
+            }, 'size', $scope);
 
             $('html,body').animate({
                 scrollTop: $_searchField.offset().top - 50
