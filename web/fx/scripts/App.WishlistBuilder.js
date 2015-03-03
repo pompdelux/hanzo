@@ -75,8 +75,9 @@ App.register('WishlistBuilder', function() {
         $(document).on('click', 'a.js-wishlist-edit-item-trigger', function(event) {
             event.preventDefault();
 
-            var $article    = $(this).closest('article');
-            var bailOnReset = false;
+            var $article    = $(this).closest('article'),
+                bailOnReset = false,
+                $scope      = $(this);
 
             if ($article.hasClass('js-in-edit')) {
                 bailOnReset = true;
@@ -97,7 +98,7 @@ App.register('WishlistBuilder', function() {
             $_searchField.val(data.title);
             App.ProductFinder.stockCheck({
                 master : data.master
-            }, 'size');
+            }, 'size', $scope);
 
             $('html,body').animate({
                 scrollTop: $_searchField.offset().top - 50
