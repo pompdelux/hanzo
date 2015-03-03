@@ -14,7 +14,7 @@ App.register('ProductFinder', function() {
     publicMethods.init = function($element) {
         $_element = $element;
         identifiers = {
-            form           : 'form.rma-form',
+            form           : 'form',
             searchField    : 'input[name="q"]',
             masterField    : 'input[name="master"]',
             productIdField : 'input[name="product_id"]',
@@ -110,8 +110,45 @@ App.register('ProductFinder', function() {
 
         // handle found products ...
         $_element.on('on-products-found', function(event, data) {
-            // insert products
-            publicMethods.insertProducts(data);
+            var $target,
+                label,
+                $scope = data.scope,
+                $form = $scope.parents(identifiers.form),
+                $sizeSelect = $(identifiers.sizeSelect, $form),
+                $colorSelect = $(identifiers.colorSelect, $form);
+
+            switch (data.target) {
+                case 'size':
+                    $target = $sizeSelect;
+                    label   = Translator.trans('wishlist.select.size');
+                    break;
+                case 'color':
+                    $target = $colorSelect;
+                    label   = Translator.trans('wishlist.select.color');
+                    break;
+            }
+
+            $('option', $target).remove();
+
+            $target.append('<option value="">'+label+'</option>');
+            $target.prop('disabled', false);
+
+            $.each(data.data.products, function(key, value) {
+                // we need this to filter out dubbs
+                if ($('option[value="'+value[data.target]+'"]', $target).length) {
+                    return true;
+                }
+
+                var labelOption = value[data.target];
+
+                if ('size' === data.target) {
+                    labelOption = value.size_label || value[data.target];
+                }
+
+                $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+labelOption+'</option>');
+            });
+
+            $target.focus();
         });
 
         // handle not-found cases
@@ -177,61 +214,6 @@ App.register('ProductFinder', function() {
         xhr.fail(function() {
             dialoug.error(Translator.trans('notice'), Translator.trans('an.error.occurred'));
         });
-    };
-
-    /**
-     * Perform the stock check
-     *
-     * @param data
-     * @param target
-     */
-    publicMethods.insertProducts = function(data) {
-        var $target,
-            label,
-            $scope = data.scope,
-            $form = $scope.parents(identifiers.form),
-            $sizeSelect = $(identifiers.sizeSelect, $form),
-            $colorSelect = $(identifiers.colorSelect, $form);
-
-        switch (data.target) {
-            case 'size':
-                $target = $sizeSelect;
-                label   = Translator.trans('wishlist.select.size');
-                break;
-            case 'color':
-                $target = $colorSelect;
-                label   = Translator.trans('wishlist.select.color');
-                break;
-        }
-
-        console.log('Pre');
-        console.log($target);
-        console.log('List');
-
-        $('option', $target).remove();
-
-        $target.append('<option value="">'+label+'</option>');
-        $target.prop('disabled', false);
-
-        $.each(data.data.products, function(key, value) {
-
-            // we need this to filter out dubbs
-            if ($('option[value="'+value[data.target]+'"]').length) {
-                return;
-            }
-
-            var labelOption = value[data.target];
-
-            if ('size' === data.target) {
-                labelOption = value.size_label || value[data.target];
-            }
-
-            console.log($target);
-
-            $target.append('<option value="'+value[data.target]+'" data-master="'+value.master+'" data-product-id="'+value.product_id+'">'+labelOption+'</option>');
-        });
-
-        $target.focus();
     };
 
     return publicMethods;
