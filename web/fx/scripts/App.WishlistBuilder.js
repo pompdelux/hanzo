@@ -36,16 +36,10 @@ App.register('WishlistBuilder', function() {
         $_form.on('submit', function(event) {
             event.preventDefault();
 
-            // is new
-
-            // is edit
-
             var $form = $(this),
                 xhr = $.post($form.attr('action'), $form.serialize());
 
             xhr.done(function(response) {
-
-                console.log(response);
 
                 if ($('#js-wishlist-'+response.data.id, $_target).length) {
                     var $product = $('#js-wishlist-'+response.data.id, $_target);
