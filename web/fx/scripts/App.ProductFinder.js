@@ -176,7 +176,7 @@ App.register('ProductFinder', function() {
             var $scope          = $(this),
                 $form           = $scope.parents(identifiers.form),
                 $productIdField = $(identifiers.productIdField, $form),
-                $colorSelect    = $(this),
+                $colorSelect    = $scope,
                 $quantitySelect = $(identifiers.quantitySelect, $form);
 
             $productIdField.val($(':selected', $colorSelect).data('productId'));
