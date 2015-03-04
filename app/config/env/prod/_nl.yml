@@ -24,6 +24,7 @@ consignor:
 
 google:
     google_tag_manager_id: "GTM-56Q35L"
+    analytics_code: ~
     conversion_id:     976104979
     site_verification:
         - "OPkXRDSUZqEJM56eo2rk4tApaxiQUjQjHcoXGOk_EIU"

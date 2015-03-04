@@ -40,6 +40,7 @@ consignor:
 
 google:
     google_tag_manager_id: "GTM-TS42FM"
+    analytics_code: ~
     conversion_id:     976104979
     site_verification:
         - "i-GTUV7HLYYWlH1qe3eO9rSythi037P722GF5w4zk_w"

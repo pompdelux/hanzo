@@ -36,6 +36,7 @@ consignor:
 
 google:
     google_tag_manager_id: "GTM-5Z5LLV"
+    analytics_code: ~
     conversion_id:     976104979
     site_verification:
         - "idm5dDOLlFrLJl2npZ8fgvE3j0a_OlYPK3O-j37DxLI"
