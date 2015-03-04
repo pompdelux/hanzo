@@ -273,7 +273,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
                         if (!isset($errorMessages[$msg_id]))
                         {
-                            $errorMessages[$msg_id] = $t->trans($msg_id, [], 'gothia');
+                            // If there is no translated string, just return nothing
+                            $translated = $t->trans($msg_id, [], 'gothia');
+                            if ($msg_id != $translated)
+                            {
+                                $errorMessages[$msg_id] = $translated;
+                            }
                         }
                     }
                 }
