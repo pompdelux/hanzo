@@ -242,16 +242,25 @@ class DefaultController extends CoreController
             }
         }
 
+        // Define classes to the body, dependently on the context of the category.
+        $classes = '';
+        if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
+            $classes .= ' category-girl';
+        } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
+            $classes .= ' category-boy';
+        }
+
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
-            'page_type' => 'category-search',
-            'content'   => $page->getContent(),
-            'title'     => $page->getTitle(),
-            'result'    => $result_set,
-            'sizes'     => (is_array($sizes) ? $sizes : array()),
-            'route'     => $request->get('_route'),
-            'selected'  => $request->get('size', ''),
-            'cms_id'    => $page->getParentId()
+            'page_type'     => 'category-search',
+            'content'       => $page->getContent(),
+            'title'         => $page->getTitle(),
+            'result'        => $result_set,
+            'body_classes'  => $classes,
+            'sizes'         => (is_array($sizes) ? $sizes : array()),
+            'route'         => $request->get('_route'),
+            'selected'      => $request->get('size', ''),
+            'cms_id'        => $page->getParentId()
         ));
     }
 

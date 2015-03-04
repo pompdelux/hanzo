@@ -1,6 +1,15 @@
 {% extends layout %}
 {% block content %}
 
+  <header class="grid_8 alpha omega">
+    <hgroup>
+      <!-- {{ 'headers.'~page_type }} -->
+      {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+        {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+      {% endif %}
+    </hgroup>
+  </header>
+
   <div class="grid_8 alpha omega">
     <div class="grid_2 alpha sub-menu menu">
       {{ render(controller('CMSBundle:Menu:menu', {

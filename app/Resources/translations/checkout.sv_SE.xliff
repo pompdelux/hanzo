@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveransadress </target>
+        <target>Leveransadress</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
@@ -349,7 +349,11 @@
         <source>discount.gift</source>
         <target>Rabatt:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+      <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>TJEJ</target>
       </trans-unit>

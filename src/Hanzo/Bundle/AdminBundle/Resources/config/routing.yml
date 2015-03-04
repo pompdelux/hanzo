@@ -819,6 +819,11 @@ admin_tools_sync_categories:
     defaults:
         _controller: AdminBundle:Tools:syncCategories
 
+admin_tools_search_clear:
+    pattern: /admin/tools/search-index/clear
+    defaults:
+        _controller: AdminBundle:Tools:clearSearchIndex
+          
 admin_tools_faceted_search_indexer:
     pattern: /admin/tools/search-index/faceted/update
     defaults:

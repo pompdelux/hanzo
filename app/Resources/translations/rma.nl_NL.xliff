@@ -13,7 +13,9 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
+                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br><h2 style="color:#A10000">Lukt het niet om het retourformulier in te vullen en/of te uit te printen, kun je het in plaats daarvan <br>
+<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">» hier uitprinten.</a> <br>
+<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>

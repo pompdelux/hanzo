@@ -32,7 +32,7 @@
 			}
 			.out-of-stock{
 				position: absolute;
-				bottom:0;
+				bottom:11px;
 				left:0;
 				text-indent: -999px;
 			}
@@ -94,7 +94,6 @@ html.touch .product-list .buy-set{display: inline-block;}
 	text-decoration: underline;
 }
 
-.body-category,
 .body-bycolour,
 // Hardcoded category landingpage pages.
 // TODO: not to do it.

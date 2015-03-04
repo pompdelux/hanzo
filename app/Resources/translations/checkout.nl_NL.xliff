@@ -74,7 +74,7 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternatief verzendadres </target>
+        <target>Alternatief verzendadres erzendadres </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
@@ -339,7 +339,11 @@
         <source>discount.gift</source>
         <target>Korting:</target>
       </trans-unit>
-            <trans-unit id="product.group.g">
+            <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+			<trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>GIRL</target>
       </trans-unit>

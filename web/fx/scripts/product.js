@@ -169,9 +169,8 @@
         pub.initPurchase = function () {
             _resetForm();
             var in_progress = false;
-            var $form = $('form.buy');
 
-            $('select.size, select.color', $form).on('change', function () {
+            $('form.buy select.size, form.buy select.color').on('change', function () {
                 if (in_progress) {
                     return;
                 }
@@ -187,7 +186,7 @@
                     _resetForm(name);
                 }
 
-                //var $form = $(this).closest('form');
+                var $form = $(this).closest('form');
 
                 var lookup = $.ajax({
                     url: base_url + 'stock-check',
@@ -260,10 +259,10 @@
                 lookup.fail(function (jqXHR, textStatus) {});
             });
 
-            $form.on('submit', function (event) {
+            $("form.buy").on('submit', function (event) {
                 event.preventDefault();
 
-                //var $form = $(this);
+                var $form = $(this);
                 if ($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()) {
                     var lookup = $.ajax({
                         url: $form.attr('action'),

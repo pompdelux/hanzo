@@ -1,6 +1,6 @@
 /**
 | _header
-*/
+ */
 
 $topbar-color: #dcd8d2;
 
@@ -38,7 +38,7 @@ nav.first.main-menu {
         margin-left: 10px;
 
         &.topmenu {
-          padding-right: 234px;
+            padding-right: 234px;
         }
         &.right {
             position: absolute;
@@ -113,16 +113,16 @@ form.search-form {
         font-family: $font-sans;
 
         &::-webkit-input-placeholder { /* WebKit browsers */
-          color: #444;
+            color: #444;
         }
         &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-          color: #444;
+            color: #444;
         }
         &::-moz-placeholder { /* Mozilla Firefox 19+ */
-          color: #444;
+            color: #444;
         }
         &:-ms-input-placeholder { /* Internet Explorer 10+ */
-          color: #444;
+            color: #444;
         }
     }
     input[type="submit"] {
@@ -149,7 +149,7 @@ ul.menu,
 		&.active > a,
 		&.active-trail > a,
 		a:hover{
-			text-decoration: underline;
+			text-decoration: none;
 		}
 	}
 	.dropdown{
@@ -171,15 +171,15 @@ ul.menu,
 		}
 	}
 }
-ul.sub-menu,
-.sub-menu > ul{
+
+.sub-menu > ul {
 	@include side-menu-style;
 	text-transform: uppercase;
-	li{
+	li {
 		padding: 0 0 6px 0;
 		line-height: 18px;
-		&.item{
-			a{
+		&.item {
+			a {
 				line-height: 18px;
                 &.search {
                     font-weight: bold;
@@ -188,25 +188,65 @@ ul.sub-menu,
 			}
 		}
 		&.heading > a,
-		&.self-included > a{
+		&.self-included > a {
 			font-weight: bold;
-			display: block;
 			line-height: 18px;
 			text-decoration: none;
 			cursor: default;
 		}
-		&.active-trail > a{
-			text-decoration: none;
-			&:hover{text-decoration:underline;}
+		&.active > a,
+		&.active-trail > a {
+            font-weight: bold;
+		    &:hover {
+		        text-decoration:none;
+		    }
 		}
+    }
 
-		ul{
-			padding:6px 0 0 12px;
-			a{
-				display: inline-block;
-			}
-		}
+    > li {
+        /* Hide first level */
+        > a {
+            display: none;
+        }
+        > ul > li {
+            margin-bottom: 1em;
+
+            &.active,
+            &.active-trail {
+                /* Show caret-down when "open" */
+                > a:before {
+                    content: "\f0d7";
+                }
+            }
+
+            /* Else use caret-right */
+            > a:before {
+                content: "\f0da";
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: inherit;
+                font-size: 18px;
+                display: inline-block;
+                width: 24px;
+            }
+	        /* Inactive menus are hidden */
+	        > ul {
+	            padding: 6px 0 0 36px;
+	            display: none;
+	        }
+        }
+    }
+
+    /* Show active menus */
+	li.active-trail > ul,
+	li.active ul {
+	    display: block;
 	}
+}
+
+.consultant .sub-menu > ul > li > a {
+    display: inline;
 }
 
 // horizontal helper. Lets all list get horizontal
@@ -214,7 +254,7 @@ ul.horizontal,
 .horizontal > ul{
 	list-style: none;
 	li{
-		display: inline-block;
+	    display: inline-block;
 	}
 }
 
@@ -243,7 +283,7 @@ div header.row {
         }
         a{
             text-transform: uppercase;
-		}
+	    }
 	}
     ul.first {
         border-bottom: 1px dashed white;
@@ -252,7 +292,7 @@ div header.row {
         }
     }
 	ul.second{
-		z-index: 1;
+	    z-index: 1;
         a {
             color: $basket-color;
             font-size: $basket-font-size;
@@ -269,60 +309,61 @@ ul.breadcrumb {
 	color:$side-menu-color;
     margin-bottom:12px;
 	li {
-		display: inline-block;
-		padding: 0 3px;
-		&.first{
-			padding: 0 3px 0 0;
-		}
-		a{
-			color:$font-color;
-			text-decoration: none;
-		}
-		&.active > a,
-		&.active-trail > a,
-		a:hover{
-			text-decoration: underline;
-		}
-		&.heading{
-			a:hover{
-				text-decoration:none;
-				cursor: default;}
-		}
-		i.arrow-right{
-			margin-top: 3px;
-		}
-		&.last i.arrow-right{display:none;}
+	    display: inline-block;
+	    padding: 0 3px;
+	    &.first{
+		    padding: 0 3px 0 0;
+	    }
+	    a{
+		    color:$font-color;
+		    text-decoration: none;
+	    }
+	    &.active > a,
+	    &.active-trail > a,
+	    a:hover{
+		    text-decoration: underline;
+	    }
+	    &.heading{
+		    a:hover{
+		        text-decoration:none;
+		    cursor: default;}
+	    }
+	    i.arrow-right{
+		    margin-top: 3px;
+	    }
+	    &.last i.arrow-right{display:none;}
 	}
 }
 
 .container .main header{
 	display: table;
 	min-height: 100px;
-	background: #d2c3c6;
-	height: 100px;
-	margin-bottom: 28px;
+    height: 100px;
+    background: #d2c3c6;
+	margin-bottom: 20px;
     overflow: hidden;
-	hgroup{
-		color: white;
-		padding: 10px;
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-		h1,h2,h3,h4,h5{
-			text-transform: uppercase;
-			padding: 0 0 10px;
-			font-size: 21px;
-			color: white;
-			font-weight: normal;
-		}
-		h6{
-			font-size: $font-size;
-			font-weight: normal;
-			color: white;
-		}
-		a,p{
-			color: white;
-		}
+
+    hgroup {
+	    color: white;
+	    padding: 10px;
+	    display: table-cell;
+	    vertical-align: middle;
+	    text-align: center;
+	    h1,h2,h3,h4,h5{
+		    text-transform: uppercase;
+		    padding: 0 0 10px;
+		    font-size: 21px;
+		    color: white;
+		    font-weight: normal;
+	    }
+	    h6{
+		    font-size: $font-size;
+		    font-weight: normal;
+		    color: white;
+	    }
+	    a,p{
+		    color: white;
+	    }
 	}
 }
 
@@ -348,9 +389,9 @@ ul.breadcrumb {
 	background: url('/fx/images/headers/Kategori_Min_side_960x100.jpg') no-repeat top center;
 
     hgroup {
-		h1,h2,h3,h4,h5,h6,a,p{
-			color: #444;
-		}
+	    h1,h2,h3,h4,h5,h6,a,p{
+		    color: #fff;
+	    }
 	}
 }
 
@@ -366,8 +407,8 @@ ul.breadcrumb {
 
     border: 1px solid rgb(202, 202, 202);
     -webkit-border-radius: 0 0 0 20px;
-       -moz-border-radius: 0 0 0 20px;
-            border-radius: 0 0 0 20px;
+    -moz-border-radius: 0 0 0 20px;
+    border-radius: 0 0 0 20px;
 
     img {
         float: left;
