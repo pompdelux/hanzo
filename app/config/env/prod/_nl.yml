@@ -23,7 +23,7 @@ consignor:
     shipment_server: ~
 
 google:
-    analytics_code:    UA-1793665-5
+    google_tag_manager_id: "GTM-56Q35L"
     conversion_id:     976104979
     site_verification:
         - "OPkXRDSUZqEJM56eo2rk4tApaxiQUjQjHcoXGOk_EIU"

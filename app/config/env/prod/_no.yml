@@ -39,7 +39,7 @@ consignor:
                 phone: "+47 22742600"
 
 google:
-    analytics_code:    UA-1793665-4
+    google_tag_manager_id: "GTM-5KWWM7"
     conversion_id:     976104979
     site_verification:
         - "idm5dDOLlFrLJl2npZ8fgvE3j0a_OlYPK3O-j37DxLI"

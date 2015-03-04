@@ -39,7 +39,7 @@ consignor:
                 phone: "09-34870870"
 
 google:
-    analytics_code:    UA-1793665-6
+    google_tag_manager_id: "GTM-NT4PP4"
     conversion_id:     976104979
     site_verification:
         - "AXKJxgYZdJP9NLgDW1isf5JEH3PoTUxLK6vdNWHB8po"

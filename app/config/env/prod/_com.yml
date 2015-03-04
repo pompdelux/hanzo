@@ -23,7 +23,7 @@ consignor:
     shipment_server: ~
 
 google:
-    analytics_code:    UA-1793665-2
+    google_tag_manager_id: "GTM-KTKM5M"
     conversion_id:     976104979
     site_verification:
         - "pHWJ1LeG5mq3mITyz1TcTCpCpdNA72sr-UJ6cElk6B0"

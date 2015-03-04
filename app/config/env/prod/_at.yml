@@ -35,7 +35,7 @@ consignor:
                 phone: "01/5350375"
 
 google:
-    analytics_code:    UA-1793665-9
+    google_tag_manager_id: "GTM-5Z5LLV"
     conversion_id:     976104979
     site_verification:
         - "idm5dDOLlFrLJl2npZ8fgvE3j0a_OlYPK3O-j37DxLI"
