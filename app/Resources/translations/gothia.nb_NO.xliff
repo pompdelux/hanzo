@@ -89,6 +89,10 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
         <source>gothia.response.error.after</source>
         <target>Kontakt vennligst arvato Finance AS Kundeservice: 2287 8970, hvis feilen gjentar seg.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Det kan ikke opprettes forbindelse til arvato Finance AS Faktura Servise akkurat nå. Prøv vennligst senere.</target>

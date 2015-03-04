@@ -88,6 +88,10 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
         <source>gothia.response.error.after</source>
         <target>Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795, hvis fejlen gentager sig.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Der kan ikke forbindes til arvato Finance A/S Faktura Service på nuværende tidspunkt. Prøv venligst igen senere.</target>

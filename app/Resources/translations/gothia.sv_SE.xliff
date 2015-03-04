@@ -89,6 +89,10 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
         <source>gothia.response.error.after</source>
         <target>Vänligen kontakta arvato Finance AB kundservice på: 0340-664444 om felet kvarstår.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Det finns ingen förbindelse till arvato Finance AB Faktura Service just nu. Försök igen senare.</target>

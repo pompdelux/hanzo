@@ -87,6 +87,10 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
         <source>gothia.response.error.after</source>
         <target>Pyydämme teitä ottamaan  yhteyttä arvato Financen asiakaspalveluun puh. 0207 229 462,  Jos virhe toistuu.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Tällä hetkellä emme saa yhteyttä arvato Financen laskupalveluun. Yritä ystävällisesti myöhemmin uudelleen.</target>

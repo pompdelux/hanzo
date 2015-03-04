@@ -88,6 +88,10 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
         <source>gothia.response.error.after</source>
         <target>Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22, als deze fout zich herhaald.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Er is op dit moment geen verbinding mogelijk met Gothia Factuur Service. Probeer het later nog eens.</target>

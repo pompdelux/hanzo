@@ -104,6 +104,10 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>gothia.response.error.after</source>
         <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
         <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es später erneut.</target>
