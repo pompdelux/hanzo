@@ -11,3 +11,4 @@ cms:
 
 google:
     google_tag_manager_id: "GTM-KV65DG"
+    analytics_code: ~
