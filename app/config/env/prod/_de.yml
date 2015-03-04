@@ -39,7 +39,7 @@ consignor:
                 phone: "040-3571 5072"
 
 google:
-    analytics_code:    UA-1793665-7
+    google_tag_manager_id: "GTM-M3DZCT"
     conversion_id:     967270518
     site_verification:
         - "URU_P3h0jo598hqu49Bc-wB7PKEUg9rNRFJTdF7w1fg"

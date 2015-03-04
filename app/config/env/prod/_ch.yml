@@ -35,7 +35,7 @@ consignor:
                 phone: "044 201 33 33"
 
 google:
-    analytics_code:    UA-1793665-8
+    google_tag_manager_id: "GTM-5HKLX5"
     conversion_id:     972329147
     site_verification:
         - "3fafy3BakvvcWFWLva7D16MtGZfhuqfx5Bt32sjGms4"

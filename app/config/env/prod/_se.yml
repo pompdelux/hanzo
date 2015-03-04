@@ -39,7 +39,7 @@ consignor:
                 phone: "+46 8-6117103"
 
 google:
-    analytics_code:    UA-1793665-3
+    google_tag_manager_id: "GTM-TS42FM"
     conversion_id:     976104979
     site_verification:
         - "i-GTUV7HLYYWlH1qe3eO9rSythi037P722GF5w4zk_w"
