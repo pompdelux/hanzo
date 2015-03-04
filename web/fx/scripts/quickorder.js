@@ -241,7 +241,8 @@ var quickorder = (function($) {
                             size: size,
                             color: color,
                             quantity: quantity,
-                            latest: response.latest
+                            latest: response.latest,
+                            base_url: base_url
                         }));
 
                         $('tfoot td.total', $_itemContainerTable).html(response.data);

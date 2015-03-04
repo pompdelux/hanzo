@@ -80,28 +80,40 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
         <target>Henkilötunnus:</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
-        <source>We were unable to approve your payment with arvato Finance Invoice service.</source>
+        <source>gothia.response.error.before</source>
         <target>Valitettavasti emme voi hyväksyä tilaustasi arvato Finance laskuvaihtoehdolla.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
-        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <source>gothia.response.error.after</source>
         <target>Pyydämme teitä ottamaan  yhteyttä arvato Financen asiakaspalveluun puh. 0207 229 462,  Jos virhe toistuu.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
-        <source>We are unable to connect to arvato Finance Invoice service, please try again later.</source>
+        <source>gothia.response.5000</source>
         <target>Tällä hetkellä emme saa yhteyttä arvato Financen laskupalveluun. Yritä ystävällisesti myöhemmin uudelleen.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10004">
-        <source>We couldn't find you in arvato Finance Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10004</source>
         <target>Emme valitettavasti löydä asiakastietojasi arvato Financen laskupalvelusta, ovatko tietosi kirjoitettu oikein?</target>
       </trans-unit>
       <trans-unit id="gothia.response.10005">
-        <source>We couldn't find you in arvato Finance Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10005</source>
         <target>Emme valitettavasti löydä asiakastietojasi arvato Financen laskupalvelusta, ovatko tietosi kirjoitettu oikein?</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.10036">
-        <source>The reservation was not approved at arvato Finance Invoice Service. You may have exceeded the limit of reservations at arvato Finance.</source>
+        <source>gothia.response.10036</source>
         <target>arvato Financen laskupalvelu ei valitettavasti hyväksy ostoasi. Syynä voi olla luottorajan ylittyminen.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
       </trans-unit>
     </body>
   </file>

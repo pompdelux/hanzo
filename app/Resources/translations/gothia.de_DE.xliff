@@ -1,153 +1,165 @@
 <?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="json_err10">
-                <source>json.ssn.not_numeric</source>
-                <target>Der eingegebene Geburtstag darf nur Ziffern enthalten</target>
-            </trans-unit>
-            <trans-unit id="json_err20">
-                <source>json.ssn.to_short</source>
-                <target>Der eingegebene Geburtstag ist zu kurz, er muss das Format TTMMJJJJ erfüllen.</target>
-            </trans-unit>
-            <trans-unit id="json.ssn.to_long">
-                <source>json.ssn.to_long</source>
-                <target>Der eingegebene Geburtstag ist zu lang, er muss das Format TTMMJJJJ erfüllen.</target>
-            </trans-unit>
-            <trans-unit id="json_err30">
-                <source>json.checkcustomer.failed</source>
-                <target>%msg%</target>
-            </trans-unit>
-            <trans-unit id="json_err35">
-                <source>json.checkcustomer.error</source>
-                <target><![CDATA[
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="json_err10">
+        <source>json.ssn.not_numeric</source>
+        <target>Der eingegebene Geburtstag darf nur Ziffern enthalten</target>
+      </trans-unit>
+      <trans-unit id="json_err20">
+        <source>json.ssn.to_short</source>
+        <target>Der eingegebene Geburtstag ist zu kurz, er muss das Format TTMMJJJJ erf&#xFC;llen.</target>
+      </trans-unit>
+      <trans-unit id="json.ssn.to_long">
+        <source>json.ssn.to_long</source>
+        <target>Der eingegebene Geburtstag ist zu lang, er muss das Format TTMMJJJJ erf&#xFC;llen.</target>
+      </trans-unit>
+      <trans-unit id="json_err30">
+        <source>json.checkcustomer.failed</source>
+        <target>%msg%</target>
+      </trans-unit>
+      <trans-unit id="json_err35">
+        <source>json.checkcustomer.error</source>
+        <target><![CDATA[
                     <b>Die Reservierung konnte nicht erstellt werden</b><br>Dies kann daran liegen, dass Ihr Kreditmaximum von 3.000,- Euro erreicht wurde. Wenden Sie sich bitte an den Kundendienst von GFG Finanz: 06131-9075259<br>Bei anderen Zulassungsfehlern – wenden Sie sich bitte an den Kundendienst von POMPdeLUX: 040-35715072
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="json_err40">
-                <source>json.checkcustomer.purchasestop</source>
-                <target>Ihre Bestellung wurde nicht akzeptiert</target>
-            </trans-unit>
-            <trans-unit id="json_err50">
-                <source>json.cancelreservation.failed</source>
-                <target>%msg%</target>
-            </trans-unit>
-            <trans-unit id="json_err60">
-                <source>json.cancelreservation.error</source>
-                <target>Ihre existierende Bestellung konnte nicht storniert werden</target>
-            </trans-unit>
-            <trans-unit id="json_err70">
-                <source>json.placereservation.failed</source>
-                <target>%msg%</target>
-            </trans-unit>
-            <trans-unit id="json_err80">
-                <source>json.placereservation.error</source>
-                <target>Sehr geehrter Kunde, die Bezahlarten Rechnung und Lastschrift stehen Ihnen leider nicht zur Verfügung. Dies kann daran liegen, dass Sie an der angegebenen Adresse nicht bekannt sind, mit dieser Bestellung das Kundenlimit überschreiten würden oder über keine ausreichende Bonität verfügen. Bitte prüfen Sie, ob Sie Ihre Personendaten korrekt angegeben haben und wählen Sie ggf. eine andere Bezahlart. Vielen Dank für Ihr Verständnis.</target>
-            </trans-unit>
-            <trans-unit id="json_err90">
-                <source>json.order.state_pre_payment.locked</source>
-                <target>Ihre Bestellung wird bezahlt. Bitte warten</target>
-            </trans-unit>
-            <trans-unit id="page_txt10">
-                <source>page.heading</source>
-                <target>GFG Finanz-Zahlung</target>
-            </trans-unit>
-            <trans-unit id="page_txt20">
-                <source>page.heading_step1</source>
-                <target>Kunden bei GFG Finanz erstellen</target>
-            </trans-unit>
-            <trans-unit id="page_txt30">
-                <source>page.heading_step2</source>
-                <target>Zahlung bestätigen</target>
-            </trans-unit>
-            <trans-unit id="page_txt40">
-                <source>page.help_text</source>
-                <target><![CDATA[Folgende Informationen werden verwendet, um Sie bei GFG Finanz zu suchen.<br>Wenn Ihre Adresse nicht mit den Informationen bei GFG Finanz übereinstimmt, müssen Sie sie auf Meine Seite ändern.]]></target>
-            </trans-unit>
-            <trans-unit id="form_txt10">
-                <source>form.submit_step1</source>
-                <target>Weiter</target>
-            </trans-unit>
-            <trans-unit id="form_txt20">
-                <source>form.submit_step2</source>
-                <target>Weiter</target>
-            </trans-unit>
-            <trans-unit id="form_txt30">
-                <source>form.cancel</source>
-                <target>Zahlung abbrechen</target>
-            </trans-unit>
-            <trans-unit id="social_security_num">
-                <source>social_security_num</source>
-                <target>Geburtstag (TTMMJJJJ):</target>
-            </trans-unit>
-            <trans-unit id="bank_account_no">
-                <source>bank_account_no</source>
-                <target>IBAN-Nummer</target>
-            </trans-unit>
-            <trans-unit id="bank_id">
-                <source>bank_id</source>
-                <target>BIC-Nummer</target>
-            </trans-unit>
-            <trans-unit id="json.bank_account_no.to_long">
-                <source>json.bank_account_no.to_long</source>
-                <target>The entered IBAN number must be less than 34 characters.</target>
-            </trans-unit>
-            <trans-unit id="json.bank_id.to_long">
-                <source>json.bank_id.to_long</source>
-                <target>The entered BIC number must be 11 characters long.</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.5000">
-                <source>We are unable to connect to GFG Finanz Invoice service, please try again later.</source>
-                <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es später erneut.</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.error.before">
-                <source>We were unable to approve your payment with GFG Finanz Invoice service.</source>
-                <target>Die Bestellung konnte nicht bei GFG Finanz Invoice registriert werden.</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.error.after">
-                <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-                <target>Wenden Sie sich bitte an den Kundendienst von GFG Finanz: 06131-9075259 wenn dieser Fehler nochmals auftritt.</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.10004">
-                <source>We couldn't find you in GFG Finanz Invoice Service. Please be sure that all your details are correct on your profile page.</source>
-                <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.10005">
-                <source>We couldn't find you in GFG Finanz Invoice Service. Please be sure that all your details are correct on your profile page.</source>
-                <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.10036">
-                <source>The reservation was not approved at GFG Finanz Invoice Service. You may have exceeded the limit of reservations at GFG Finanz.</source>
-                <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierfür kann sein, dass Sie Ihr Limit erreicht haben.</target>
-            </trans-unit>
-            <trans-unit id="GFG Finanz.response.10041">
-                <source>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</source>
-                <target>Ihre Kontodaten sind nicht korrekt. Bitte kontrollieren Sie, ob Sie die richtige BLZ- und Kontonummer eingegeben haben.</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.error.before">
-                <source>We were unable to approve your payment with Gothia Invoice service.</source>
-                <target>Die Bestellung konnte nicht bei Gothia Invoice registriert werden.</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.error.after">
-                <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
-                <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.5000">
-                <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
-                <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es später erneut.</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.10004">
-                <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
-                <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.10005">
-                <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
-                <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
-            </trans-unit>
-            <trans-unit id="gothia.response.10036">
-                <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
-                <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierfür kann sein, dass Sie Ihr Limit erreicht haben.</target>
-            </trans-unit>
-        </body>
-    </file>
+      </trans-unit>
+      <trans-unit id="json_err40">
+        <source>json.checkcustomer.purchasestop</source>
+        <target>Ihre Bestellung wurde nicht akzeptiert</target>
+      </trans-unit>
+      <trans-unit id="json_err50">
+        <source>json.cancelreservation.failed</source>
+        <target>%msg%</target>
+      </trans-unit>
+      <trans-unit id="json_err60">
+        <source>json.cancelreservation.error</source>
+        <target>Ihre existierende Bestellung konnte nicht storniert werden</target>
+      </trans-unit>
+      <trans-unit id="json_err70">
+        <source>json.placereservation.failed</source>
+        <target>%msg%</target>
+      </trans-unit>
+      <trans-unit id="json_err80">
+        <source>json.placereservation.error</source>
+        <target>Sehr geehrter Kunde, die Bezahlarten Rechnung und Lastschrift stehen Ihnen leider nicht zur Verf&#xFC;gung. Dies kann daran liegen, dass Sie an der angegebenen Adresse nicht bekannt sind, mit dieser Bestellung das Kundenlimit &#xFC;berschreiten w&#xFC;rden oder &#xFC;ber keine ausreichende Bonit&#xE4;t verf&#xFC;gen. Bitte pr&#xFC;fen Sie, ob Sie Ihre Personendaten korrekt angegeben haben und w&#xE4;hlen Sie ggf. eine andere Bezahlart. Vielen Dank f&#xFC;r Ihr Verst&#xE4;ndnis.</target>
+      </trans-unit>
+      <trans-unit id="json_err90">
+        <source>json.order.state_pre_payment.locked</source>
+        <target>Ihre Bestellung wird bezahlt. Bitte warten</target>
+      </trans-unit>
+      <trans-unit id="page_txt10">
+        <source>page.heading</source>
+        <target>GFG Finanz-Zahlung</target>
+      </trans-unit>
+      <trans-unit id="page_txt20">
+        <source>page.heading_step1</source>
+        <target>Kunden bei GFG Finanz erstellen</target>
+      </trans-unit>
+      <trans-unit id="page_txt30">
+        <source>page.heading_step2</source>
+        <target>Zahlung best&#xE4;tigen</target>
+      </trans-unit>
+      <trans-unit id="page_txt40">
+        <source>page.help_text</source>
+        <target><![CDATA[Folgende Informationen werden verwendet, um Sie bei GFG Finanz zu suchen.<br>Wenn Ihre Adresse nicht mit den Informationen bei GFG Finanz übereinstimmt, müssen Sie sie auf Meine Seite ändern.]]></target>
+      </trans-unit>
+      <trans-unit id="form_txt10">
+        <source>form.submit_step1</source>
+        <target>Weiter</target>
+      </trans-unit>
+      <trans-unit id="form_txt20">
+        <source>form.submit_step2</source>
+        <target>Weiter</target>
+      </trans-unit>
+      <trans-unit id="form_txt30">
+        <source>form.cancel</source>
+        <target>Zahlung abbrechen</target>
+      </trans-unit>
+      <trans-unit id="social_security_num">
+        <source>social_security_num</source>
+        <target>Geburtstag (TTMMJJJJ):</target>
+      </trans-unit>
+      <trans-unit id="bank_account_no">
+        <source>bank_account_no</source>
+        <target>IBAN-Nummer</target>
+      </trans-unit>
+      <trans-unit id="bank_id">
+        <source>bank_id</source>
+        <target>BIC-Nummer</target>
+      </trans-unit>
+      <trans-unit id="json.bank_account_no.to_long">
+        <source>json.bank_account_no.to_long</source>
+        <target>The entered IBAN number must be less than 34 characters.</target>
+      </trans-unit>
+      <trans-unit id="json.bank_id.to_long">
+        <source>json.bank_id.to_long</source>
+        <target>The entered BIC number must be 11 characters long.</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.5000">
+        <source>We are unable to connect to GFG Finanz Invoice service, please try again later.</source>
+        <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es sp&#xE4;ter erneut.</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.error.before">
+        <source>We were unable to approve your payment with GFG Finanz Invoice service.</source>
+        <target>Die Bestellung konnte nicht bei GFG Finanz Invoice registriert werden.</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.error.after">
+        <source>gothia.response.error.after</source>
+        <target>Wenden Sie sich bitte an den Kundendienst von GFG Finanz: 06131-9075259 wenn dieser Fehler nochmals auftritt.</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.10004">
+        <source>We couldn't find you in GFG Finanz Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.10005">
+        <source>We couldn't find you in GFG Finanz Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.10036">
+        <source>The reservation was not approved at GFG Finanz Invoice Service. You may have exceeded the limit of reservations at GFG Finanz.</source>
+        <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierf&#xFC;r kann sein, dass Sie Ihr Limit erreicht haben.</target>
+      </trans-unit>
+      <trans-unit id="GFG Finanz.response.10041">
+        <source>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</source>
+        <target>Ihre Kontodaten sind nicht korrekt. Bitte kontrollieren Sie, ob Sie die richtige BLZ- und Kontonummer eingegeben haben.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.before">
+        <source>gothia.response.error.before</source>
+        <target>Die Bestellung konnte nicht bei Gothia Invoice registriert werden.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.error.after">
+        <source>gothia.response.error.after</source>
+        <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Authentication failed</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.5000">
+        <source>gothia.response.5000</source>
+        <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es sp&#xE4;ter erneut.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10004">
+        <source>gothia.response.10004</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10005">
+        <source>gothia.response.10005</source>
+        <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10036">
+        <source>gothia.response.10036</source>
+        <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierf&#xFC;r kann sein, dass Sie Ihr Limit erreicht haben.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
