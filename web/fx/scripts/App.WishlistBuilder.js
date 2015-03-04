@@ -3,33 +3,50 @@ App.register('WishlistBuilder', function() {
 
     var publicMethods = {};
 
-    var $_form;
-    var $_element;
-    var $_target;
-    var $_searchField;
-    var $_masterField;
-    var $_resetter;
+    var $_element,
+        identifiers,
+        $_target,
+        $_resetter,
+        $_form,
+        $_masterField,
+        $_searchField;
 
     publicMethods.init = function($element) {
         $_element     = $element;
-        $_form        = $('form', $element);
-        $_target      = $('.js-wishlist-target');
-        $_searchField = $('input[name="q"]', $_form);
-        $_masterField = $('input[name="master"]', $_form);
-        $_resetter    = $('.js-wishlist-flush-list', $_target);
+        identifiers = {
+            form           : 'form',
+            target         : '.js-wishlist-target',
+            resetter       : '.js-wishlist-flush-list',
+            searchField    : 'input[name="q"]',
+            masterField    : 'input[name="master"]'
+        };
+        $_target      = $(identifiers.target);
+        $_resetter    = $(identifiers.resetter, $_target);
+        $_form        = $(identifiers.form),
+        $_masterField = $(identifiers.masterField, $_form),
+        $_searchField = $(identifiers.searchField, $_form);
 
         setupListeners();
         yatzy.compile('wishlistItemTpl');
     };
 
     var setupListeners = function() {
+
+        // submit
         $_form.on('submit', function(event) {
             event.preventDefault();
 
+            // is new
 
-            var xhr = $.post($_form.attr('action'), $_form.serialize());
+            // is edit
+
+            var $form = $(this),
+                xhr = $.post($form.attr('action'), $form.serialize());
 
             xhr.done(function(response) {
+
+                console.log(response);
+
                 if ($('#js-wishlist-'+response.data.id, $_target).length) {
                     var $product = $('#js-wishlist-'+response.data.id, $_target);
 
@@ -51,7 +68,6 @@ App.register('WishlistBuilder', function() {
                 $_resetter.removeClass('off');
                 $('.list-number.last').removeClass('off');
                 $_searchField.focus();
-                console.log('XHR');
             });
 
             xhr.fail(function() {
@@ -59,33 +75,37 @@ App.register('WishlistBuilder', function() {
             });
         });
 
+        // reset
         $_resetter.on('click', function(event) {
             event.preventDefault();
-            var href = this.href;
+            var $scope = $(this),
+                href = this.href;
 
             dialoug.confirm('OBS !', $(this).data('confirmMessage'), function(state) {
                 if (state == 'ok') {
                     $.post(href);
 
                     $('article', $_target).remove();
-                    $_resetter.addClass('off');
+                    $scope.addClass('off');
                     $('.list-number.last').addClass('off');
                 }
             });
         });
 
-        $(document).on('click', 'a.js-wishlist-edit-item-trigger', function(event) {
+        // edit
+        $(document).on('click', '.js-wishlist-edit-item-trigger', function(event) {
             event.preventDefault();
 
-            var $article    = $(this).closest('article'),
-                bailOnReset = false,
-                $scope      = $(this);
+            var $scope      = $(this),
+                $article    = $scope.parents('article'),
+                bailOnReset = false;
 
             if ($article.hasClass('js-in-edit')) {
                 bailOnReset = true;
             }
 
             $('article', $_target).removeClass('js-in-edit');
+
             App.ProductFinder.resetForm($_form);
 
             if (bailOnReset) {
@@ -98,15 +118,17 @@ App.register('WishlistBuilder', function() {
 
             $_masterField.val(data.master);
             $_searchField.val(data.title);
+
             App.ProductFinder.stockCheck({
                 master : data.master
-            }, 'size', $scope);
+            }, 'size', $_searchField);
 
             $('html,body').animate({
                 scrollTop: $_searchField.offset().top - 50
             });
         });
 
+        // delete
         $(document).on('click', '.js-wishlist-delete-item-trigger', function(event) {
             event.preventDefault();
 
