@@ -128,11 +128,11 @@
             </trans-unit>
             <trans-unit id="51">
                 <source>First name</source>
-                <target>Förnamn</target>
+                <target>Förnamn (ditt fullständiga förnamn)</target>
             </trans-unit>
             <trans-unit id="52">
                 <source>Last name</source>
-                <target>Efternamn</target>
+                <target>Efternamn (ditt fullständiga efternamn)</target>
             </trans-unit>
             <trans-unit id="53" >
                 <source>Initials</source>
