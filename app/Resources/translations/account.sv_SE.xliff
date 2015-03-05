@@ -34,7 +34,10 @@
                 <source>account.details</source>
                 <target>Visa eller ändra mina kontoupplysningar.</target>
             </trans-unit>
-
+			<trans-unit id="create.account.header">
+                <source>create.account.header</source>
+                <target><![CDATA[<h1>Välkommen – registrera dig som kund</h1>]]></target>
+            </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
                 <target>Ny kund</target>
