@@ -53,6 +53,8 @@ class GoogleExtension extends \Twig_Extension
     /**
      * Google analytics tag, will only be displayed if a key is found
      *
+     * @DEPRECATED Google Tag Manager loads this script
+     *
      * @param array $context
      * @return string
      */
@@ -62,16 +64,38 @@ class GoogleExtension extends \Twig_Extension
             return '';
         }
 
+        $output = <<<DOC
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '{$this->analytics_code}', 'auto');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+</script>
+DOC;
+
+        return $output;
+    }
+
+    /**
+     * @param $context
+     * @param $params
+     * @return string
+     */
+    public function getEcommerceCode($context)
+    {
         $ecommerce = '';
 
         $context['page_type'] = empty($context['page_type'])
             ? ''
             : $context['page_type']
-        ;
+            ;
 
         /**
-         * if we are on the checkout success page,
-         * we will inject analytics/commerce tracking
+         * If we are on the checkout success page we will inject e-commerce tracking
          */
         if ('checkout-success' == $context['page_type']) {
             $order = $context['order'];
@@ -102,25 +126,12 @@ ga('ecommerce:addItem', {
             $ecommerce .= "
 ga('ecommerce:send');
 ";
+
+        $ecommerce = '<script>'.$ecommerce.'</script>';
         }
 
-        $output = <<<DOC
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', '{$this->analytics_code}', 'auto');
-ga('require', 'displayfeatures');
-ga('send', 'pageview');
-{$ecommerce}
-</script>
-DOC;
-
-        return $output;
+        return $ecommerce;
     }
-
 
     /**
      * @param $context
@@ -197,8 +208,9 @@ DOC;
     public function getAllTags($context)
     {
         $out = '';
-        $out .= $this->getAnalyticsTag($context);
+        // $out .= $this->getAnalyticsTag($context);
         $out .= $this->getConversionTag();
+        $out .= $this->getEcommerceCode($context);
 
         return $out;
     }
