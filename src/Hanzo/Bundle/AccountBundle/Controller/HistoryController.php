@@ -134,11 +134,6 @@ class HistoryController extends CoreController
             $trackntrace_url = $this->container->getParameter('account.consignor.trackntrace_url');
         }
 
-        $return_lable_route = '';
-        if ($submit_shipment = $this->container->get('consignor.service.submit_shipment')) {
-            $return_lable_route = $submit_shipment->getRoute();
-        }
-
         $orders = [];
         foreach ($result as $record) {
             $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
@@ -153,16 +148,14 @@ class HistoryController extends CoreController
             }
 
             $track_n_trace = '';
-            $return_lable_url = '';
+            $return_label_url = '';
 
             if (Orders::STATE_SHIPPED === $record->getState()) {
                 if ($trackntrace_url) {
                     $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
                 }
 
-                if ($return_lable_route) {
-                    $return_lable_url = $router->generate($return_lable_route, ['id' => $record->getId()]);
-                }
+                $return_label_url = $this->getReturnLabelUrl($record->getId());
             }
 
             $orders[] = [
@@ -174,7 +167,7 @@ class HistoryController extends CoreController
                 'total'            => $record->getTotalPrice(),
                 'attachments'      => $attachments,
                 'track_n_trace'    => $track_n_trace,
-                'return_lable_url' => $return_lable_url,
+                'return_label_url' => $return_label_url,
             ];
         }
 
@@ -238,5 +231,45 @@ class HistoryController extends CoreController
         }
 
         return $this->redirect($this->generateUrl('_account'));
+    }
+
+    /**
+     * getReturnLabelUrl
+     * @param int $orderId
+     *
+     * @return mixed
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function getReturnLabelUrl($orderId)
+    {
+        $router                 = $this->get('router');
+        $url                    = '';
+        $return_label_route     = '';
+        static $submit_shipment = '';
+        $hanzo                  = Hanzo::getInstance();
+        $domainKey              = str_replace('Sales', '', $hanzo->get('core.domain_key'));
+
+        if (empty($submit_shipment)) {
+            if ($submit_shipment = $this->container->get('consignor.service.submit_shipment')) {
+                $return_label_route = $submit_shipment->getRoute();
+            }
+        }
+
+        if ($return_label_route) {
+            $url = $router->generate($return_label_route, ['id' => $orderId]);
+        }
+
+        // Use direct link for some domains, scrumdo:#917
+        if (empty($url)) {
+            switch ($domainKey)
+            {
+              case 'AT':
+              case 'NL':
+                $url = 'https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140';
+                break;
+            }
+        }
+
+        return $url;
     }
 }
