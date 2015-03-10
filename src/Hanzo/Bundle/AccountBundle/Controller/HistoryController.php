@@ -249,9 +249,13 @@ class HistoryController extends CoreController
         $hanzo                  = Hanzo::getInstance();
         $domainKey              = str_replace('Sales', '', $hanzo->get('core.domain_key'));
 
+        // Only load service once as function is called in loop
         if (empty($submit_shipment)) {
             if ($submit_shipment = $this->container->get('consignor.service.submit_shipment')) {
                 $return_label_route = $submit_shipment->getRoute();
+            }
+            else {
+                $submit_shipment = 'disabled';
             }
         }
 
