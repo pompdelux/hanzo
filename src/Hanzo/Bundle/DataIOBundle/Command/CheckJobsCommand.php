@@ -42,7 +42,7 @@ class CheckJobsCommand extends ContainerAwareCommand
             );
 
             mail(
-                'hd@pompdelux.dk,jm@pompdelux.dk',
+                'hd@pompdelux.dk,sc@pompdelux.dk',
                 'Fejl i cronjob', "Fejlbesked:\n" . implode("\n", $this->errors) . "\n\n-- \nMr. Miyagi",
                 implode("\r\n", $header),
                 '-fpompdelux@pompdelux.dk'
