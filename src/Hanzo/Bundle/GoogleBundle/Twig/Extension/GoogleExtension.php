@@ -127,7 +127,9 @@ ga('ecommerce:addItem', {
 ga('ecommerce:send');
 ";
 
-        $ecommerce = '<script>'.$ecommerce.'</script>';
+            $ecommerce = '<script>$( document ).ready(function() {'.
+                $ecommerce.'
+});</script>';
         }
 
         return $ecommerce;
