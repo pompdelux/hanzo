@@ -250,6 +250,7 @@ DOC;
      * https://developers.google.com/tag-manager/devguide#datalayer
      * https://support.google.com/tagmanager/answer/6107169?hl=en
      * https://support.google.com/ds/answer/6026116#JSON-format
+     * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data
      *
      * @return string
      */
