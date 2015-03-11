@@ -47,6 +47,7 @@ class GoogleExtension extends \Twig_Extension
             new \Twig_SimpleFunction('google_analytics_tag', [$this, 'getAnalyticsTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
             new \Twig_SimpleFunction('google_site_verification_tag', [$this, 'getSiteVerificationTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
             new \Twig_SimpleFunction('google_tag_manager', [$this, 'getGoogleTagManagerTag'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
+            new \Twig_SimpleFunction('google_data_layer', [$this, 'getGoogleDataLayer'], ['pre_escape' => 'html', 'is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
 
@@ -212,7 +213,7 @@ DOC;
         $out = '';
         // $out .= $this->getAnalyticsTag($context);
         $out .= $this->getConversionTag();
-        $out .= $this->getEcommerceCode($context);
+        // $out .= $this->getEcommerceCode($context);
 
         return $out;
     }
@@ -239,6 +240,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer',"{$this->google_tag_manager_id}");</script>
 <!-- End Google Tag Manager -->
 DOC;
+
+        return $html;
+    }
+
+    /**
+     * @param mixed $context
+     * - Generates dataLayer for Google Tag Manager
+     * https://developers.google.com/tag-manager/devguide#datalayer
+     * https://support.google.com/tagmanager/answer/6107169?hl=en
+     * https://support.google.com/ds/answer/6026116#JSON-format
+     *
+     * @return string
+     */
+    public function getGoogleDataLayer($context)
+    {
+        $html = '';
+        $dataLayer = [];
+
+        if ('checkout-success' == $context['page_type']) {
+            $order = $context['order'];
+
+            $purchase = [];
+            $purchase['actionField'] = [
+                'id'         =>  $order['id'],
+                'affiliation'=>  $order['store_name'],
+                'revenue'    =>  $order['total'],
+                'shipping'   =>  $order['shipping'],
+                'tax'        =>  $order['tax'],
+                'currency'   =>  $order['currency'],
+                ];
+
+            $purchase['products'] = [];
+            foreach ($order['lines'] as $line) {
+                $product = [
+                    'id'       => $order['id'],
+                    'name'     => $line['name'],
+                    'sku'      => $line['sku'],
+                    'category' => $line['variation'],
+                    'price'    => $line['price'],
+                    'quantity' => $line['quantity'],
+                    ];
+
+                $purchase['products'][] = $product;
+            }
+
+            $dataLayer[] = ['ecommerce' => [ 'purchase' => $purchase ]];
+        }
+
+        error_log(__LINE__.':'.__FILE__.' '.print_r($dataLayer, 1)); // hf@bellcom.dk debugging
+        if (!empty($dataLayer)) {
+            $html = '<script>dataLayer = '.json_encode($dataLayer).'</script>';
+        }
 
         return $html;
     }
