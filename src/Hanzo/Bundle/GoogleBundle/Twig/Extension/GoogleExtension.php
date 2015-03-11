@@ -288,8 +288,8 @@ DOC;
             $dataLayer[] = ['ecommerce' => [ 'purchase' => $purchase ]];
         }
 
-        error_log(__LINE__.':'.__FILE__.' '.print_r($dataLayer, 1)); // hf@bellcom.dk debugging
         if (!empty($dataLayer)) {
+            error_log(__LINE__.':'.__FILE__.' '.print_r($dataLayer, 1)); // hf@bellcom.dk debugging
             $html = '<script>dataLayer = '.json_encode($dataLayer).'</script>';
         }
 
