@@ -19,20 +19,7 @@ propel:
                 attributes:           {}
 
 consignor:
-    shipment_server:
-        options:
-            actor: 206
-            product_concept_id: 1904
-            service_id: ""
-            key: PDLAT
-            to_address:
-                name: "POMPdeLUX A GmbH"
-                address_line_1: "Paketfach 10"
-                postal_code: "6965"
-                city: "Wolfurt-Bahnhof"
-                country_iso2: AT
-                email: mailat@pompdelux.com
-                phone: "01/5350375"
+    shipment_server: ~
 
 google:
     google_tag_manager_id: "GTM-5Z5LLV"
