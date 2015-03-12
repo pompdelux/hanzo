@@ -554,7 +554,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                         <li><i class="sprite show"></i><span>Ihre Bestellung ansehen</span></li>
                         <li><i class="sprite pdf"></i><span>Rechnung (pdf)</span></li>
                         <li><i class="sprite return"></i><span>Eine Ware zurücksenden</span></li>
-                        <li><i class="sprite returnlabel"></i><span>Rücksendeetikett</span></li>
+                        <li><i class="sprite returnlabel"></i><span>DHL Rücksendelabel erstellen</span></li>
                         <li><i class="sprite trackntrace"></i><span>Ihr Paket nachverfolgen</span></li>
                     </ul>
                     ]]></target>

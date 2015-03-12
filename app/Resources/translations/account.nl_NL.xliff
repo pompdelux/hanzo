@@ -553,6 +553,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                         <li><i class="sprite show"></i><span>Bekijk je order</span></li>
                         <li><i class="sprite pdf"></i><span>Factuur (pdf)</span></li>
                         <li><i class="sprite return"></i><span>Retoursturen van een artikel</span></li>
+                        <li><i class="sprite returnlabel"></i><span>DHL retourlabel</span></li>
                         <li><i class="sprite trackntrace"></i><span>Volg je bestelling</span></li>
                     </ul>
                     ]]></target>
