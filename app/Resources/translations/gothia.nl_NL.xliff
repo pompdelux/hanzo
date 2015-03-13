@@ -90,7 +90,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>De verificatie is mislukt</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -106,7 +106,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>We kunnen je gegevens helaas op dit moment niet laten identificeren bij Gothia Nederland Factuurbetaling. Controleer of je klantengegevens juist zijn op POMPdeLUX/Mijn Pagina.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -114,7 +114,7 @@ Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij a
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>De bankgegevens zijn onjuist. Controleer of je de juiste bankcode (BIC) en het juiste rekeningnummer hebt ingevuld.</target>
       </trans-unit>
     </body>
   </file>

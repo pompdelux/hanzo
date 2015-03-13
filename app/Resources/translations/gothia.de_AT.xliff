@@ -106,7 +106,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>Keine Bestätigung erhalten</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -122,7 +122,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>Wir konnten Sie leider nicht bei BFS finance GmbH identifizieren. Bitte prüfen Sie, ob alle Informationen auf Ihrer POMPdeLUX-Kundenseite korrekt sind.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -130,7 +130,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>Ihre Kontoinformationen sind nicht korrekt. Bitte überprüfen Sie, ob Sie die korrekte Bankverbindung eingegeben haben.</target>
       </trans-unit>
     </body>
   </file>

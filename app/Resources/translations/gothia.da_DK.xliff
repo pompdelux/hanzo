@@ -90,7 +90,7 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>Godkendelsen mislykkedes</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -106,7 +106,7 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>Vi kunne ikke finde dig i Gothia Invoice Service. Tjek venligst at alle informationerne på din profil er korrekte.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -114,7 +114,7 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>Din konto information er ikke korrekt. Tjek venligst at du har indtastet den korrekte bank kode og konto nummer.</target>
       </trans-unit>
     </body>
   </file>
