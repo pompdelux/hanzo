@@ -85,4 +85,12 @@ consignor:
                   phone: "+45 8678 7871"
 
 google:
-    google_tag_manager_id: "GTM-P6N84R"
+    tag_manager:
+        gtm_id:             "GTM-P6N84R"
+        enabled_datalayers:
+            - Ecommerce
+            - Remarketing
+        analytics_code:     UA-58710543-1
+        addwords:
+            conversion_id: 000000001
+            conversion_label: Test
