@@ -102,8 +102,3 @@ google:
         gtm_id:             "GTM-NKC8X3"
         enabled_datalayers:
             - Ecommerce
-            - Remarketing
-        analytics_code:     ~
-        addwords:
-            conversion_id: 976104979
-            conversion_label: VxRuCK2O_goQk9y40QM

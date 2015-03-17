@@ -23,9 +23,10 @@ consignor:
     shipment_server: ~
 
 google:
-    google_tag_manager_id: "GTM-KTKM5M"
-    analytics_code: ~
-    conversion_id:     976104979
     site_verification:
         - "pHWJ1LeG5mq3mITyz1TcTCpCpdNA72sr-UJ6cElk6B0"
         - "3t8Aa9P5lTTfUpxHcKkfIdsanDXc6xUQ3e5m9TUrF3M" #katrine
+    tag_manager:
+        gtm_id: "GTM-KTKM5M"
+        enabled_datalayers:
+            - Ecommerce
