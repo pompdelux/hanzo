@@ -2,10 +2,6 @@
 
 namespace Hanzo\Bundle\GoogleBundle\Services;
 
-use Hanzo\Bundle\GoogleBundle\DataLayer\Ecommerce,
-    Hanzo\Bundle\GoogleBundle\DataLayer\Remarketing
-    ;
-
 class GoogleTagManager
 {
     protected $gtm_id = '';
@@ -16,9 +12,10 @@ class GoogleTagManager
 
     protected $data_layer = [];
 
-    public function __construct($gtm_id)
+    public function __construct($params)
     {
-        $this->gtm_id = $gtm_id;
+        $this->gtm_id = $params['gtm_id'];
+        $this->params = $params;
     }
 
     public function setContext(Array $context = [])
@@ -51,6 +48,17 @@ class GoogleTagManager
      */
     public function extractDataLayers()
     {
+        if (isset($this->params['enabled_datalayers']))
+        {
+            foreach ($this->params['enabled_datalayers'] as $name)
+            {
+                $classWithNS = "Hanzo\\Bundle\\GoogleBundle\\DataLayer\\".$name;
+                $dataLayer   = new $classWithNS($this->page_type, $this->context, $this->params);
+                $data        = $dataLayer->getData();
+
+                $this->data_layer = array_merge($this->data_layer, $data);
+            }
+        }
     }
 
     /**
@@ -71,7 +79,7 @@ class GoogleTagManager
 
         if (!empty($this->data_layer))
         {
-            $html .= '<script>dataLayer = '.json_encode($dataLayer).'</script>';
+            $html .= '<script>dataLayer = ['.json_encode($this->data_layer).']</script>';
         }
 
         $html .= <<<DOC
