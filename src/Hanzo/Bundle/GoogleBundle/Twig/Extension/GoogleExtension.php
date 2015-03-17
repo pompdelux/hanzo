@@ -5,17 +5,11 @@ namespace Hanzo\Bundle\GoogleBundle\Twig\Extension;
 class GoogleExtension extends \Twig_Extension
 {
     /**
-     * @param string $analytics_code
-     * @param string $conversion_id
      * @param array  $site_verification
-     * @param string $google_tag_manager_id
      */
-    public function __construct($analytics_code, $conversion_id, array $site_verification, $google_tag_manager_id)
+    public function __construct(array $site_verification)
     {
-        $this->analytics_code        = $analytics_code;
-        $this->conversion_id         = $conversion_id;
-        $this->site_verification     = $site_verification;
-        $this->google_tag_manager_id = $google_tag_manager_id;
+        $this->site_verification  = $site_verification;
     }
 
     /**
@@ -24,6 +18,11 @@ class GoogleExtension extends \Twig_Extension
     public function getName()
     {
         return 'google';
+    }
+
+    public function setGoogleTagManager($service)
+    {
+        $this->gtm = $service;
     }
 
     /**
@@ -63,10 +62,15 @@ class GoogleExtension extends \Twig_Extension
     {
         $html = '';
 
-        $gtm = $this->get('google.');
-        $gtm->setContext($context);
-        $gtm->setPageType('page_type');
-        $html = $gtm->getHtml();
+        /**
+         * Good stuff in $context
+         * - locale / html_lang
+         * - domain_key
+         * - is_mobile_layout
+         */
+        $this->gtm->setContext($context);
+        $this->gtm->setPageType($context['page_type']);
+        $html = $this->gtm->getHtml();
 
         return $html;
     }
