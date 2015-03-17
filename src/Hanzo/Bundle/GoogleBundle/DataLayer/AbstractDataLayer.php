@@ -6,7 +6,7 @@ abstract class AbstractDataLayer
 {
     protected $data = [];
 
-    abstract public function __construct($page_type = '', Array $context = []);
+    abstract public function __construct($page_type = '', Array $context = [], Array $params = []);
 
     public function getData()
     {
