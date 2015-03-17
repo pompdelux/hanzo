@@ -90,7 +90,6 @@ google:
         enabled_datalayers:
             - Ecommerce
             - Remarketing
-        analytics_code:     UA-58710543-1
         addwords:
             conversion_id: 000000001
             conversion_label: Test
