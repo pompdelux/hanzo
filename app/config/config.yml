@@ -200,7 +200,6 @@ google:
     tag_manager:
         gtm_id:             ~
         enabled_datalayers: ~
-        analytics_code:     ~
         addwords:
             conversion_id: ~
             conversion_label: ~
