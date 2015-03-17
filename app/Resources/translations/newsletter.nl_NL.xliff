@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="newsletter_1">
         <source>block.subscribe.newsletter_heading</source>
-        <target>Aanmelden Nieuwbrief</target>
+        <target>Aanmelden Nieuwsbrief</target>
       </trans-unit>
       <trans-unit id="block.subscribe.teaser">
         <source>block.subscribe.teaser</source>
