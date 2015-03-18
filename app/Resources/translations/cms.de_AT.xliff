@@ -6,106 +6,224 @@
                 <source>719.settings</source>
                 <target><![CDATA[
                     {
-                        "colormap": {
-                            "Rose": [
-                                "Rose",
-								"Light Rose",
-								"Dark Rose",
-								"Eggplant/Rose",
-								"Rose/Black",
-								"Rose/Navy",
-								"Rose/Grey",
-								"Rose Melange",
-								"Rose/Off White",
-								"Copper/Black"
-								
-                            ],
-                           "Blue": [
-                                "Dusty Blue",
-								"Blue",
-								"Navy",
-								"Navy/Petrol",
-								"Navy/Blue",
-								"Navy/Camel",
-								"Navy/Off White",
-								"Blue/Off White",
-								"Light Blue",
-								"Blue Melange",
-								"Grey/Blue",
-								"Navy/Palm",
-								"Navy/Shoe",
-								"Blue/Star",
-								"Navy Melange Block",
-								"Navy Melange Stripe",
-								"Navy Melange",
-								"Navy/Green"
-			
-                            ],
-                            "White": [
-                                "Off White",
-								"Off White/Blue",
-								"White"
-
-                            ],
-                            "Black": [
-                                "Black",
-								"Rose/Black",
-								"Black/Off White",
-								"Black Melange",
-								"Copper/Black"
-
-                            ],
-                            "Yellow": [
-                                "Yellow",
-								"Yellow/Off White"
-								
-							],
-                            "Peach": [
-                                "Peach",
-								"Copper/Black"
-								
-							],
-                            "Grey": [
-                                "Grey",
-								"Grey Melange",
-								"Rose/Grey",
-								"Grey/Blue"
-								
-							],
-                            "Eggplant": [
-                                "Eggplant"
-								
-							],
-                            "Denim": [
-                                "Blue Denim",
-								"Light Blue Denim"
-								
-							],
-                            "Aqua": [
-                                "Aqua",
-								"Aqua Melange"	
-                            ]
-                        },
-						"sizes": {
-                            "80": ["80","80-86","50","52","XS","S"],
-                            "86": ["86","80-86","86-92","50","52","XS","S"],
-                            "92": ["92","86-92","50","52","XS","S"],
-                            "98": ["98","98-104","52","54","S","M"],
-                            "104": ["104","98-104","52","54","S","M"],
-                            "110": ["110","110-116","52","54","S","M"],
-                            "116": ["116","110-116","52","54","S","M"],
-                            "122": ["122","122-128","54","56","M","L"],
-                            "128": ["128","122-128","54","56","M","L"],
-                            "134": ["134","134-140","54","56","M","L"],
-                            "140": ["140","134-140","54","56","M","L"],
-                            "146": ["146","146-152","54","56","M","L"],
-                            "152": ["152","146-152","54","56","M","L"]
-                        },
-                    "tokens": {
-  						"Bio-Produkte (GOTS)": ["158"],
-  					"Oekotex": ["157"]
-									}
-                    }
+    "category_id": "157",
+    "embedded_category_id": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "21",
+        "45",
+        "46",
+        "79",
+        "81",
+        "112",
+        "113",
+        "114",
+        "115",
+        "127",
+        "131",
+        "136",
+        "137",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147"
+    ],
+    "colors": "",
+    "colormap": {
+        "Rose": [
+            "Rose",
+            "Light Rose",
+            "Dark Rose",
+            "Eggplant/Rose",
+            "Rose/Black",
+            "Rose/Navy",
+            "Rose/Grey",
+            "Rose Melange",
+            "Rose/Off White",
+            "Copper/Black"
+        ],
+        "Blue": [
+            "Dusty Blue",
+            "Blue",
+            "Navy",
+            "Navy/Petrol",
+            "Navy/Blue",
+            "Navy/Camel",
+            "Navy/Off White",
+            "Blue/Off White",
+            "Light Blue",
+            "Blue Melange",
+            "Grey/Blue",
+            "Navy/Palm",
+            "Navy/Shoe",
+            "Blue/Star",
+            "Navy Melange Block",
+            "Navy Melange Stripe",
+            "Navy Melange",
+            "Navy/Green"
+        ],
+        "White": [
+            "Off White",
+            "Off White/Blue",
+            "White"
+        ],
+        "Black": [
+            "Black",
+            "Rose/Black",
+            "Black/Off White",
+            "Black Melange",
+            "Copper/Black"
+        ],
+        "Yellow": [
+            "Yellow",
+            "Yellow/Off White"
+        ],
+        "Peach": [
+            "Peach",
+            "Copper/Black"
+        ],
+        "Grey": [
+            "Grey",
+            "Grey Melange",
+            "Rose/Grey",
+            "Grey/Blue"
+        ],
+        "Eggplant": [
+            "Eggplant"
+        ],
+        "Denim": [
+            "Blue Denim",
+            "Light Blue Denim"
+        ],
+        "Aqua": [
+            "Aqua",
+            "Aqua Melange"
+        ]
+    },
+    "sizes": {
+        "80": [
+            "80",
+            "80-86",
+            "50",
+            "52",
+            "XS",
+            "S"
+        ],
+        "86": [
+            "86",
+            "80-86",
+            "86-92",
+            "50",
+            "52",
+            "XS",
+            "S"
+        ],
+        "92": [
+            "92",
+            "86-92",
+            "50",
+            "52",
+            "XS",
+            "S"
+        ],
+        "98": [
+            "98",
+            "98-104",
+            "52",
+            "54",
+            "S",
+            "M"
+        ],
+        "104": [
+            "104",
+            "98-104",
+            "52",
+            "54",
+            "S",
+            "M"
+        ],
+        "110": [
+            "110",
+            "110-116",
+            "52",
+            "54",
+            "S",
+            "M"
+        ],
+        "116": [
+            "116",
+            "110-116",
+            "52",
+            "54",
+            "S",
+            "M"
+        ],
+        "122": [
+            "122",
+            "122-128",
+            "54",
+            "56",
+            "M",
+            "L"
+        ],
+        "128": [
+            "128",
+            "122-128",
+            "54",
+            "56",
+            "M",
+            "L"
+        ],
+        "134": [
+            "134",
+            "134-140",
+            "54",
+            "56",
+            "M",
+            "L"
+        ],
+        "140": [
+            "140",
+            "134-140",
+            "54",
+            "56",
+            "M",
+            "L"
+        ],
+        "146": [
+            "146",
+            "146-152",
+            "54",
+            "56",
+            "M",
+            "L"
+        ],
+        "152": [
+            "152",
+            "146-152",
+            "54",
+            "56",
+            "M",
+            "L"
+        ]
+    },
+    "tokens": {
+        "Bio-Produkte (GOTS)": [
+            "158"
+        ],
+        "Oekotex": [
+            "157"
+        ]
+    }
+}
                 ]]></target>
             </trans-unit>
 			<trans-unit id="720.settings">
