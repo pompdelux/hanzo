@@ -196,10 +196,13 @@ stock:
             - nb_NO
 
 google:
-    conversion_id:         ~
     site_verification:     ~
-    analytics_code:        ~
-    google_tag_manager_id: ~
+    tag_manager:
+        gtm_id:             ~
+        enabled_datalayers: ~
+        addwords:
+            conversion_id: ~
+            conversion_label: ~
 
 # un: 2014.09.29 - removed to see if new-relics own sf support is better.
 ## @see https://github.com/ekino/EkinoNewRelicBundle

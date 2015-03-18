@@ -1,0 +1,15 @@
+parameters:
+    google.twig_extension.class: Hanzo\Bundle\GoogleBundle\Twig\Extension\GoogleExtension
+    google.tag_manager.class: Hanzo\Bundle\GoogleBundle\Services\GoogleTagManager
+
+services:
+    google.twig_extension:
+        class: %google.twig_extension.class%
+        tags:
+            - { name: twig.extension }
+        arguments: [%google.site_verification%]
+        calls:
+            - [setGoogleTagManager, ["@google.tag_manager"]]
+    google.tag_manager:
+        class: %google.tag_manager.class%
+        arguments: [%google.tag_manager.params%]

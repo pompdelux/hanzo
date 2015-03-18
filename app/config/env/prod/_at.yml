@@ -22,10 +22,11 @@ consignor:
     shipment_server: ~
 
 google:
-    google_tag_manager_id: "GTM-5Z5LLV"
-    analytics_code: ~
-    conversion_id:     976104979
     site_verification:
         - "idm5dDOLlFrLJl2npZ8fgvE3j0a_OlYPK3O-j37DxLI"
         - "XQd3QHxI9Xa9d5d-ExR5LZEz6JO9--7l1d9LAhwnGcg" # Heinrich
         - "SBOj-_vTXS3T6HczLxCmAwi-cAn5h1OrIuz_c5DmK8M" # Katrine
+    tag_manager:
+        gtm_id: "GTM-5Z5LLV"
+        enabled_datalayers:
+            - Ecommerce
