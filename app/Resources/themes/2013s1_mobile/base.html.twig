@@ -10,7 +10,6 @@
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} is-mobile">
 {# Must be right after body tag: https://developers.google.com/tag-manager/devguide#datalayer #}
-{{ google_data_layer() }}
 {{ google_tag_manager() }}
 
 <div id="container" class="container container_8">
