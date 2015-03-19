@@ -39,14 +39,11 @@ consignor:
                 phone: "040-3571 5072"
 
 google:
-    google_tag_manager_id: "GTM-M3DZCT"
-    analytics_code: ~
-    conversion_id:     967270518
     site_verification:
         - "URU_P3h0jo598hqu49Bc-wB7PKEUg9rNRFJTdF7w1fg"
         - "fcjM6pv4RppzbiCcV-A1zGuLF8OnMKbmfeB8RIUnLqA" # Heinrich
         - "taoGTV73AZz7EsPr0ZkbE70HERE12nSM1z8PCx7pIog" # Katrine
-    addwords:
-        conversion:
-            id: 976104979
-            label: -A9aCK26vQkQk9y40QM
+    tag_manager:
+        gtm_id: "GTM-M3DZCT"
+        enabled_datalayers:
+            - Ecommerce

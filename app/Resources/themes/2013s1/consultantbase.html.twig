@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} consultant {{ html_lang }}">
+{# Must be right after body tag: https://developers.google.com/tag-manager/devguide#datalayer #}
+{{ google_tag_manager() }}
 
 <div id="container" class="container container_8">
   <header class="grid_8 row">
@@ -132,7 +134,5 @@
   }
 </script>
 {% endif %}
-
-{{ google_tags() }}
 </body>
 </html>

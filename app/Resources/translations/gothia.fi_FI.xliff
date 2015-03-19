@@ -89,7 +89,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>Vahvistus epäonnistui</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -105,7 +105,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>Emme löytäneet sinua arvato-laskupalvelusta. Varmista, että kaikki tietosi ovat oikein profiilisivullasi.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -113,7 +113,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä arvato Financen asiakaspalv
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>Tilitietosi ovat väärin. Varmista, että olet antanut oikean henkilötunnuksen.</target>
       </trans-unit>
     </body>
   </file>

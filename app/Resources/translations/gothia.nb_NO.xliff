@@ -91,7 +91,7 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>Godkjenning feilet</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -107,7 +107,7 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>Vi kunne ikke finne deg hos avarto fakturaservice. Kontroller at du har opgitt riktig fødselsnummer.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -115,7 +115,7 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>Kontroller at du bruker samme e-postadresse som tidligere.</target>
       </trans-unit>
     </body>
   </file>

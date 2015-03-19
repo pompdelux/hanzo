@@ -18,20 +18,3 @@
 </div>
 
 {% endblock %}
-
-{% block javascript %}
-<script>
-  var google_conversion_id       = 1056677768;
-  var google_conversion_language = "en";
-  var google_conversion_format   = "1";
-  var google_conversion_color    = "666666";
-  var google_conversion_label    = "purchase";
-</script>
-<script src="//www.googleadservices.com/pagead/conversion.js"></script>
-<noscript>
-  <img height="1" width="1" border="0" src="//www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
-</noscript>
-
-{{ google_addwords_conversion_tag({value: order.total}) }}
-
-{% endblock javascript %}

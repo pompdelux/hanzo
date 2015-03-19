@@ -91,7 +91,7 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
       </trans-unit>
       <trans-unit id="gothia.response.1003">
         <source>gothia.response.1003</source>
-        <target>Authentication failed</target>
+        <target>Verifiering misslyckades</target>
       </trans-unit>
       <trans-unit id="gothia.response.5000">
         <source>gothia.response.5000</source>
@@ -107,7 +107,7 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
       </trans-unit>
       <trans-unit id="gothia.response.10006">
         <source>gothia.response.10006</source>
-        <target>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</target>
+        <target>Vi kunde inte hitta dig hos avarto Invoice Service. Vänligen se till att alla dina uppgifter är korrekt ifyllda på din kundsida samt att du angivit rätt personnummer.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10036">
         <source>gothia.response.10036</source>
@@ -115,7 +115,7 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
       </trans-unit>
       <trans-unit id="gothia.response.10041">
         <source>gothia.response.10041</source>
-        <target>Your account information is incorrect. Please check that you have entered the correct bank code and account number.</target>
+        <target>Du har loggat in på en annan kundsida (en annan mailadress) än vad Gothia tidigare registrerat dig på. Vänligen logga in med den mail som du använt tidigare när du handlat med faktura hos oss.</target>
       </trans-unit>
     </body>
   </file>
