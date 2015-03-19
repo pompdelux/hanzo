@@ -44,7 +44,7 @@ class DefaultController extends CoreController
     {
         $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $locale    = $hanzo->get('core.locale');
+        $locale = $this->getRequest()->getLocale();
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
@@ -56,16 +56,7 @@ class DefaultController extends CoreController
         // TODO: should not be set here !!
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
 
-        /**
-         * Ugly hack to traverse to top item
-         * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
-         */
-        $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
-
-        while ($topLevel->getParentId() != NULL)
-        {
-            $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
-        }
+        $topLevel = $this->getTopLevelCMSPage($cms_page);
 
         $parent_settings = CmsI18nQuery::create()
             ->filterByLocale($locale)
@@ -282,16 +273,7 @@ class DefaultController extends CoreController
             return [];
         }
 
-        /**
-         * Ugly hack to traverse to top item
-         * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
-         */
-        $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
-
-        while ($topLevel->getParentId() != NULL)
-        {
-            $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
-        }
+        $topLevel = $this->getTopLevelCMSPage($cms_page);
 
         $parent_settings = CmsI18nQuery::create()
             ->filterByLocale($locale)
@@ -605,5 +587,30 @@ class DefaultController extends CoreController
 
         $sql = implode("\n", $joins)."\nWHERE".implode("\nAND", $wheres);
         return $sql;
+    }
+
+    /**
+     * @param mixed $cms_page
+     * Ugly hack to traverse to top item
+     * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
+     */
+    public function getTopLevelCMSPage($cms_page)
+    {
+        $locale   = $this->getRequest()->getLocale();
+        $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
+
+        if (is_null($topLevel))
+        {
+            $topLevel = $cms_page;
+        }
+        else
+        {
+            while ($topLevel->getParentId() != NULL)
+            {
+                $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
+            }
+        }
+
+        return $topLevel;
     }
 }
