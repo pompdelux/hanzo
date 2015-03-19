@@ -5353,34 +5353,33 @@ ul.form-errors li {
   margin: 0 40% 10px 10px;
 }
 
-.filters-selected {
+.filter-text {
   text-transform: uppercase;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.8em;
 }
-.filters-selected span {
+.filter-text span {
   background-color: #969799;
   color: #fff;
   padding: 2px 6px;
-  line-height: 1.8em;
   white-space: nowrap;
 }
-.filters-selected span a {
+.filter-text span a {
   color: #000;
   font-size: 0.6em;
   font-weight: bold;
   vertical-align: bottom;
 }
-.filters-selected span.last {
+.filter-text span.last {
   background-color: inherit;
 }
-.filters-selected span.last a {
+.filter-text span.last a {
   font-size: inherit;
   font-weight: inherit;
 }
 
-.main > .grid_8.filters-selected {
+.main > .grid_6.filter-text {
   margin-bottom: 12px;
   margin-top: 0;
 }
@@ -5407,10 +5406,13 @@ nav.filters-dropdowns .outer > li.last > ul {
 nav.filters-dropdowns .outer > li.last div {
   margin-left: 6px;
 }
+nav.filters-dropdowns .outer > li.fix-long-eco-name > ul > li.item {
+  width: 200px;
+}
 nav.filters-dropdowns .outer > li > ul {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  width: 314px;
+  width: 234px;
   background-color: #a2a2a2;
   padding-top: 1em;
 }
@@ -5425,20 +5427,23 @@ nav.filters-dropdowns .outer > li > ul input {
   padding: 0;
   margin: 3px 0 0 0;
 }
+nav.filters-dropdowns .outer > li > ul > li {
+  /* "Clear all ^" element */
+}
 nav.filters-dropdowns .outer > li > ul > li:last-child {
-  width: 296px;
+  width: 216px;
 }
 nav.filters-dropdowns .outer > li > ul > li.item {
   padding: 5px 8px;
-  width: 111px;
+  width: 100px;
   float: left;
 }
 nav.filters-dropdowns .outer > li > ul > li.item:nth-child(odd) {
-  margin-left: 40px;
+  margin-left: 0;
 }
 nav.filters-dropdowns .outer > li > div {
   text-transform: uppercase;
-  width: 304px;
+  width: 224px;
   text-align: center;
   color: #fff;
   background-color: #a2a2a2;
