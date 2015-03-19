@@ -3,6 +3,7 @@ var filters = (function ($) {
   'use strict';
   var pub = {},
       $faceted,
+      $selected,
       isMobile = false,
       FORCE_RELOAD = true;
 
@@ -15,12 +16,21 @@ var filters = (function ($) {
       isMobile = true;
     }
 
+    $selected = $(".js-filter-selected-values");
     $faceted = $(".js-faceted-form");
 
     setValuesFromUrl();
     eventHandlersSetup();
     mobileSetup();
   };
+
+  function showSelectedValues() {
+    $selected.show();
+  }
+
+  function hideSelectedValues() {
+    $selected.hide();
+  }
 
   function eventHandlersSetup() {
     $(".js-filters").on('click', 'span a', function(e) {
@@ -128,7 +138,7 @@ var filters = (function ($) {
     $("input[value='"+value+"']", $faceted).prop('checked', false);
 
     if ($(".js-filters span").length == 1) {
-      $(".js-filters .last").addClass('off');
+      hideSelectedValues();
     }
   }
 
@@ -140,7 +150,7 @@ var filters = (function ($) {
 
 
     if ($(".js-filters span").length > 1) {
-      $(".js-filters .last").removeClass('off');
+      showSelectedValues();
     }
   }
 
