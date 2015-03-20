@@ -4,6 +4,7 @@ var filters = (function ($) {
   var pub = {},
       $faceted,
       $selected,
+      $menuLinks,
       isMobile = false,
       FORCE_RELOAD = true;
 
@@ -19,6 +20,7 @@ var filters = (function ($) {
     $.cookie.json = true;
     $selected = $(".js-filter-selected-values");
     $faceted = $(".js-faceted-form");
+    $menuLinks = $("nav.category-menu a.category");
 
     setSavedValues();
     eventHandlersSetup();
@@ -88,6 +90,7 @@ var filters = (function ($) {
     else {
       updateUrlDesktop();
     }
+    updateMenuLinks();
     updateCookie();
   }
 
@@ -147,6 +150,21 @@ var filters = (function ($) {
       $a.attr('href', href);
   }
 
+  function updateMenuLinks() {
+    var sizeFilter,
+        baseHref;
+
+    // Currently we only do this for size
+    sizeFilter = $(".js-filter-type-size input", $faceted).serialize();
+    $menuLinks.attr('href',function(i,str) {
+      baseHref = str.split('?')[0];
+      if (sizeFilter) {
+        return baseHref + '?filter=on&'+sizeFilter;
+      }
+      return baseHref;
+    });
+  }
+
   function handleFilterRemove(value) {
     if ('all' == value) {
       return;
@@ -173,9 +191,8 @@ var filters = (function ($) {
 
   function setSavedValues() {
     var $url = $.url(),
-        filterCookie = $.cookie('filters-selected-values'),
-        refresh = false,
-        name = '';
+      filterCookie = $.cookie('filters-selected-values'),
+      name = '';
 
     // Take values from url if any, else from cookie
     if ($url.param('filter') === 'on') {
@@ -203,16 +220,12 @@ var filters = (function ($) {
             if (index != 'size') {
               return true;
             }
-            refresh = true;
             $.each(filterCookie[index], function(x, value) {
               name = $("input[value='"+value+"']", $faceted).data('name');
               handleFilterAdded(value, name);
             });
           }
         });
-        if (refresh === true) {
-          updateSelectedValues();
-        }
       }
     }
   }
