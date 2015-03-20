@@ -18,9 +18,9 @@ var filters = (function ($) {
     }
 
     $.cookie.json = true;
-    $selected = $(".js-filter-selected-values");
-    $faceted = $(".js-faceted-form");
-    $menuLinks = $("nav.category-menu a.category");
+    $selected     = $(".js-filter-selected-values");
+    $faceted      = $(".js-faceted-form");
+    $menuLinks    = $("nav.category-menu a.category");
 
     setSavedValues();
     eventHandlersSetup();
