@@ -174,6 +174,7 @@ var filters = (function ($) {
   function setSavedValues() {
     var $url = $.url(),
         filterCookie = $.cookie('filters-selected-values'),
+        refresh = false,
         name = '';
 
     // Take values from url if any, else from cookie
@@ -202,14 +203,17 @@ var filters = (function ($) {
             if (index != 'size') {
               return true;
             }
+            refresh = true;
             $.each(filterCookie[index], function(x, value) {
               name = $("input[value='"+value+"']", $faceted).data('name');
               handleFilterAdded(value, name);
             });
           }
         });
+        if (refresh === true) {
+          updateSelectedValues();
+        }
       }
-      updateSelectedValues();
     }
   }
 
