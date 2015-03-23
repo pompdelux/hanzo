@@ -324,6 +324,16 @@
                 <target><![CDATA[<h1>Tilbehør</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Pige</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Dreng</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
