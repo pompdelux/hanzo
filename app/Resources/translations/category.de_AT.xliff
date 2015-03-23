@@ -326,6 +326,11 @@
                 <target><![CDATA[<h1>Accesoires</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-171">
+                <source>headers.category-171</source>
+                <target><![CDATA[<h1>Mädchen</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
