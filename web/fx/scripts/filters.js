@@ -5,6 +5,7 @@ var filters = (function ($) {
       $faceted,
       $selected,
       $menuLinks,
+      $subMenuLinks,
       isMobile = false,
       FORCE_RELOAD = true;
 
@@ -21,6 +22,7 @@ var filters = (function ($) {
     $selected     = $(".js-filter-selected-values");
     $faceted      = $(".js-faceted-form");
     $menuLinks    = $("nav.category-menu a.category");
+    $subMenuLinks = $("div.sub-menu a.category");
 
     setSavedValues();
     eventHandlersSetup();
@@ -163,6 +165,13 @@ var filters = (function ($) {
       }
       return baseHref;
     });
+    $subMenuLinks.attr('href',function(i,str) {
+      baseHref = str.split('?')[0];
+      if (sizeFilter) {
+        return baseHref + '?filter=on&'+sizeFilter;
+      }
+      return baseHref;
+    });
   }
 
   function handleFilterRemove(value) {
@@ -211,6 +220,8 @@ var filters = (function ($) {
           });
         }
       });
+      // Allways update main/sub category links if filter is set in url to avoid extra reload
+      updateMenuLinks();
     }
     else {
       if (typeof filterCookie != 'undefined') {
@@ -226,6 +237,7 @@ var filters = (function ($) {
             });
           }
         });
+        updateSelectedValues();
       }
     }
   }
