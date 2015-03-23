@@ -6,87 +6,118 @@
                 <source>861.settings</source>
                 <target><![CDATA[
                     {
-                        "colormap": {
+                    "category_id": "157",
+                    "embedded_category_id": [
+                        "12",
+                        "13",
+                        "14",
+                        "15",
+                        "16",
+                        "17",
+                        "18",
+                        "19",
+                        "21",
+                        "45",
+                        "46",
+                        "79",
+                        "81",
+                        "112",
+                        "113",
+                        "114",
+                        "115",
+                        "127",
+                        "131",
+                        "136",
+                        "137",
+                        "142",
+                        "143",
+                        "144",
+                        "145",
+                        "146",
+                        "147"
+                    ],
+                    "colors": "",
+                    "colormap": {
                             "Rose": [
                                 "Rose",
-								"Light Rose",
-								"Dark Rose",
-								"Eggplant/Rose",
-								"Rose/Black",
-								"Rose/Navy",
-								"Rose/Grey",
-								"Rose Melange",
-								"Rose/Off White",
-								"Copper/Black"
-								
+                                "Light Rose",
+                                "Dark Rose",
+                                "Eggplant/Rose",
+                                "Rose/Black",
+                                "Rose/Navy",
+                                "Rose/Grey",
+                                "Rose Melange",
+                                "Rose/Off White",
+                                "Copper/Black"
+
                             ],
                            "Blue": [
                                 "Dusty Blue",
-								"Blue",
-								"Navy",
-								"Navy/Petrol",
-								"Navy/Blue",
-								"Navy/Camel",
-								"Navy/Off White",
-								"Blue/Off White",
-								"Light Blue",
-								"Blue Melange",
-								"Grey/Blue",
-								"Navy/Palm",
-								"Navy/Shoe",
-								"Blue/Star",
-								"Navy Melange Block",
-								"Navy Melange Stripe",
-								"Navy Melange",
-								"Navy/Green"
-			
+                                "Blue",
+                                "Navy",
+                                "Navy/Petrol",
+                                "Navy/Blue",
+                                "Navy/Camel",
+                                "Navy/Off White",
+                                "Blue/Off White",
+                                "Light Blue",
+                                "Blue Melange",
+                                "Grey/Blue",
+                                "Navy/Palm",
+                                "Navy/Shoe",
+                                "Blue/Star",
+                                "Navy Melange Block",
+                                "Navy Melange Stripe",
+                                "Navy Melange",
+                                "Navy/Green"
+
                             ],
                             "White": [
                                 "Off White",
-								"Off White/Blue",
-								"White"
+                                "Off White/Blue",
+                                "White"
 
                             ],
                             "Black": [
                                 "Black",
-								"Rose/Black",
-								"Black/Off White",
-								"Black Melange",
-								"Copper/Black"
+                                "Rose/Black",
+                                "Black/Off White",
+                                "Black Melange",
+                                "Copper/Black"
 
                             ],
                             "Yellow": [
                                 "Yellow",
-								"Yellow/Off White"
-								
-							],
+                                "Yellow/Off White"
+
+                            ],
                             "Peach": [
                                 "Peach",
-								"Copper/Black"
-								
-							],
+                                "Copper/Black"
+
+                            ],
                             "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"Rose/Grey",
-								"Grey/Blue"
-								
-							],
+                                "Grey Melange",
+                                "Rose/Grey",
+                                "Grey/Blue"
+
+                            ],
                             "Eggplant": [
                                 "Eggplant"
-								
-							],
+
+                            ],
                             "Denim": [
                                 "Blue Denim",
-								"Light Blue Denim"
-								
-							],
+                                "Light Blue Denim"
+
+                            ],
                             "Aqua": [
                                 "Aqua",
-								"Aqua Melange"	
+                                "Aqua Melange"
                             ]
                         },
-						"sizes": {
+                        "sizes": {
                             "80": ["80","80-86","50","52","XS","S"],
                             "86": ["86","80-86","86-92","50","52","XS","S"],
                             "92": ["92","86-92","50","52","XS","S"],
@@ -102,10 +133,10 @@
                             "152": ["152","146-152","54","56","M","L"]
                         },
                     "tokens": {
-  						"Økologi (GOTS)": ["154"],
-  					"Oekotex": ["153"]
-									}
-					}
+                        "Økologi (GOTS)": ["154"],
+                    "Oekotex": ["153"]
+                                    }
+                    }
                 ]]></target>
             </trans-unit>
             <trans-unit id="862.settings">
@@ -115,63 +146,63 @@
                         "colormap": {
                              "Blue": [
                                 "Dusty Blue",
-								"Blue",
-								"Navy",
-								"Navy/Petrol",
-								"Navy/Blue",
-								"Navy/Camel",
-								"Navy/Off White",
-								"Blue/Off White",
-								"Light Blue",
-								"Blue Melange",
-								"Grey/Blue",
-								"Navy/Palm",
-								"Navy/Shoe",
-								"Blue/Star",
-								"Navy Melange Block",
-								"Navy Melange Stripe",
-								"Navy Melange",
-								"Navy/Green"
+                                "Blue",
+                                "Navy",
+                                "Navy/Petrol",
+                                "Navy/Blue",
+                                "Navy/Camel",
+                                "Navy/Off White",
+                                "Blue/Off White",
+                                "Light Blue",
+                                "Blue Melange",
+                                "Grey/Blue",
+                                "Navy/Palm",
+                                "Navy/Shoe",
+                                "Blue/Star",
+                                "Navy Melange Block",
+                                "Navy Melange Stripe",
+                                "Navy Melange",
+                                "Navy/Green"
                             ],
                             "Green": [
-								"Green",
-								"Navy/Green"
+                                "Green",
+                                "Navy/Green"
                             ],
                             "White": [
                                 "White",
-								"Off White",
-								"Off White/Blue",
-								"White"
+                                "Off White",
+                                "Off White/Blue",
+                                "White"
                             ],
                             "Black": [
                                 "Black",
-								"Rose/Black",
-								"Black/Off White",
-								"Black Melange",
-								"Copper/Black"
+                                "Rose/Black",
+                                "Black/Off White",
+                                "Black Melange",
+                                "Copper/Black"
                             ],
                             "Yellow": [
                                 "Yellow",
-								"Yellow/Off White"
-							],
-							"Grey": [
+                                "Yellow/Off White"
+                            ],
+                            "Grey": [
                                 "Grey",
-								"Grey Melange",
-								"Rose/Grey",
-								"Grey/Blue"
-							],
+                                "Grey Melange",
+                                "Rose/Grey",
+                                "Grey/Blue"
+                            ],
                             "Denim": [
                                 "Blue Denim",
-								"Light Blue Denim"
-							],
+                                "Light Blue Denim"
+                            ],
                             "Sand/Khaki": [
                                 "Khaki",
-								"Sand",
-								"Hazelnut"
-							],
+                                "Sand",
+                                "Hazelnut"
+                            ],
                             "Red": [
                                 "Red"
-								]
+                                ]
                         },
                        "sizes": {
                             "80": ["80","80-86","50","52","XS","S"],
@@ -188,24 +219,24 @@
                             "146": ["146","146-152","54","56","M","L"],
                             "152": ["152","146-152","54","56","M","L"]
                         },
-						"tokens": {
-  						"Økologi (GOTS)": ["156"],
-  					"Oekotex": ["155"]
-									}
+                        "tokens": {
+                        "Økologi (GOTS)": ["156"],
+                    "Oekotex": ["155"]
+                                    }
                     }
                 ]]></target>
             </trans-unit>
-			            <trans-unit id="959.settings">
+                        <trans-unit id="959.settings">
                 <source>959.settings</source>
                 <target><![CDATA[
-                    {	
-						"category_id": "157",
-						"embedded_category_id": ["12","13","14","15"],
+                    {
+                        "category_id": "157",
+                        "embedded_category_id": ["12","13","14","15"],
                         "colors": ""
                     }
                 ]]></target>
             </trans-unit>
-						<trans-unit id="966.settings">
+                        <trans-unit id="966.settings">
                 <source>966.settings</source>
                 <target><![CDATA[
                     {
@@ -241,12 +272,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="962.settings">
+             <trans-unit id="962.settings">
                 <source>962.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "158",
-						"embedded_category_id": ["16","17","18","19","21","45"],
+                        "category_id": "158",
+                        "embedded_category_id": ["16","17","18","19","21","45"],
                         "colors": ""
                     }
                 ]]></target>
@@ -305,12 +336,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="963.settings">
+            <trans-unit id="963.settings">
                 <source>963.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "159",
-						"embedded_category_id": ["46","79","81","112","113","114","115"],
+                        "category_id": "159",
+                        "embedded_category_id": ["46","79","81","112","113","114","115"],
                         "colors": ""
                     }
                 ]]></target>
@@ -378,12 +409,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="964.settings">
+            <trans-unit id="964.settings">
                 <source>964.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "160",
-						"embedded_category_id": ["127","131","136"],
+                        "category_id": "160",
+                        "embedded_category_id": ["127","131","136"],
                         "colors": ""
                     }
                 ]]></target>
@@ -415,12 +446,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="965.settings">
+            <trans-unit id="965.settings">
                 <source>965.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "161",
-						"embedded_category_id": ["137","142","143","144","145","146","147"],
+                        "category_id": "161",
+                        "embedded_category_id": ["137","142","143","144","145","146","147"],
                         "colors": ""
                     }
                 ]]></target>
@@ -492,13 +523,13 @@
                 <source>993.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "162",
-						"embedded_category_id": ["5","6","7","8"],
+                        "category_id": "162",
+                        "embedded_category_id": ["5","6","7","8"],
                         "colors": ""
                     }
                 ]]></target>
             </trans-unit>
-		    <trans-unit id="870.settings">
+            <trans-unit id="870.settings">
                 <source>870.settings</source>
                 <target><![CDATA[
                     {
@@ -534,12 +565,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="994.settings">
+            <trans-unit id="994.settings">
                 <source>994.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "163",
-						"embedded_category_id": ["9","11","43","44","83","84","116","117","118"],
+                        "category_id": "163",
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","118"],
                         "colors": ""
                     }
                 ]]></target>
@@ -553,7 +584,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="922.settings">
+             <trans-unit id="922.settings">
                 <source>922.settings</source>
                 <target><![CDATA[
                     {
@@ -562,7 +593,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="628.settings">
+             <trans-unit id="628.settings">
                 <source>628.settings</source>
                 <target><![CDATA[
                     {
@@ -625,12 +656,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="995.settings">
+            <trans-unit id="995.settings">
                 <source>995.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "164",
-						"embedded_category_id": ["119","120","128"],
+                        "category_id": "164",
+                        "embedded_category_id": ["119","120","128"],
                         "colors": ""
                     }
                 ]]></target>
@@ -662,12 +693,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="996.settings">
+            <trans-unit id="996.settings">
                 <source>996.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "165",
-						"embedded_category_id": ["132","135","148"],
+                        "category_id": "165",
+                        "embedded_category_id": ["132","135","148"],
                         "colors": ""
                     }
                 ]]></target>
@@ -699,12 +730,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="997.settings">
+            <trans-unit id="997.settings">
                 <source>997.settings</source>
                 <target><![CDATA[
                     {
-						"category_id": "166",
-						"embedded_category_id": ["149","150","151","152"],
+                        "category_id": "166",
+                        "embedded_category_id": ["149","150","151","152"],
                         "colors": ""
                     }
                 ]]></target>
