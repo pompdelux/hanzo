@@ -393,7 +393,7 @@
       </trans-unit>
       <trans-unit id="address.copy">
          <source>address.copy</source>
-         <target>The deliveryaddress is the same as my Privateaddress</target>
+         <target>Leveringsadressen er den samme som betalingsadressen</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
