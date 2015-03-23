@@ -724,7 +724,7 @@
             <trans-unit id="842.settings">
                 <source>842.settings</source>
                 <target><![CDATA[
-                    {
+					{
                         "category_id": "150",
                         "colors": ""
                     }
