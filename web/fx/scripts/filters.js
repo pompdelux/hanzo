@@ -4,6 +4,7 @@ var filters = (function ($) {
   var pub = {},
       $faceted,
       $selected,
+      $menuLinks,
       isMobile = false,
       FORCE_RELOAD = true;
 
@@ -16,10 +17,12 @@ var filters = (function ($) {
       isMobile = true;
     }
 
-    $selected = $(".js-filter-selected-values");
-    $faceted = $(".js-faceted-form");
+    $.cookie.json = true;
+    $selected     = $(".js-filter-selected-values");
+    $faceted      = $(".js-faceted-form");
+    $menuLinks    = $("nav.category-menu a.category");
 
-    setValuesFromUrl();
+    setSavedValues();
     eventHandlersSetup();
     mobileSetup();
   };
@@ -36,7 +39,7 @@ var filters = (function ($) {
     $(".js-filters").on('click', 'span a', function(e) {
       e.preventDefault();
       handleFilterRemove($(this).attr('href'));
-      updateUrl();
+      updateSelectedValues();
     });
 
     $("input[type='checkbox']", $faceted).on('change', function() {
@@ -46,7 +49,7 @@ var filters = (function ($) {
       else {
         handleFilterRemove($(this).val());
       }
-      updateUrl();
+      updateSelectedValues();
     });
 
     $(".js-filter-clear-dropdown").click(function(e) {
@@ -64,7 +67,7 @@ var filters = (function ($) {
       $(selector, $faceted).each(function(index, element) {
         handleFilterRemove($(this).val());
       });
-      updateUrl(FORCE_RELOAD);
+      updateSelectedValues(FORCE_RELOAD);
     });
   }
 
@@ -80,13 +83,26 @@ var filters = (function ($) {
     });
   }
 
-  function updateUrl(reload) {
+  function updateSelectedValues(reload) {
     if (isMobile) {
       updateUrlMobile(reload);
     }
     else {
       updateUrlDesktop();
     }
+    updateMenuLinks();
+    updateCookie();
+  }
+
+  function updateCookie() {
+    var values = { size: [], color: [], eco: [] },
+        group;
+    $.each($('input:checked',$faceted), function() {
+      group = $(this).data('group');
+      values[group].push($(this).val());
+    });
+
+    $.cookie('filters-selected-values', values);
   }
 
   /**
@@ -98,10 +114,15 @@ var filters = (function ($) {
     $(".js-pager-container li a").each(function(index, a) {
       $a = $(a);
       updateHref($a);
-      window.location = $a.attr('href');
+      // Use pager logic in category.js to ajax load products
+      $a.click();
     });
   }
 
+  /**
+   * On mobile we only perform a page load when the user requests it
+   *
+   */
   function updateUrlMobile(reload) {
     reload = (typeof reload === "undefined") ? false : reload;
 
@@ -129,6 +150,21 @@ var filters = (function ($) {
       $a.attr('href', href);
   }
 
+  function updateMenuLinks() {
+    var sizeFilter,
+        baseHref;
+
+    // Currently we only do this for size
+    sizeFilter = $(".js-filter-type-size input", $faceted).serialize();
+    $menuLinks.attr('href',function(i,str) {
+      baseHref = str.split('?')[0];
+      if (sizeFilter) {
+        return baseHref + '?filter=on&'+sizeFilter;
+      }
+      return baseHref;
+    });
+  }
+
   function handleFilterRemove(value) {
     if ('all' == value) {
       return;
@@ -148,18 +184,20 @@ var filters = (function ($) {
     $(".js-filters .last").before(element);
     $("input[value='"+value+"']", $faceted).prop('checked', true);
 
-
     if ($(".js-filters span").length > 1) {
       showSelectedValues();
     }
   }
 
-  function setValuesFromUrl() {
+  function setSavedValues() {
     var $url = $.url(),
-        name = '';
+      filterCookie = $.cookie('filters-selected-values'),
+      name = '';
 
+    // Take values from url if any, else from cookie
     if ($url.param('filter') === 'on') {
       $.each($url.param(), function(name, values) {
+        // Skip filter parameter
         if (name === 'filter') {
           return;
         }
@@ -173,6 +211,22 @@ var filters = (function ($) {
           });
         }
       });
+    }
+    else {
+      if (typeof filterCookie != 'undefined') {
+        $.each(filterCookie, function(index) {
+          if ($.isArray(filterCookie[index]) && filterCookie[index].length > 0) {
+            // Currently only do this for size
+            if (index != 'size') {
+              return true;
+            }
+            $.each(filterCookie[index], function(x, value) {
+              name = $("input[value='"+value+"']", $faceted).data('name');
+              handleFilterAdded(value, name);
+            });
+          }
+        });
+      }
     }
   }
 
