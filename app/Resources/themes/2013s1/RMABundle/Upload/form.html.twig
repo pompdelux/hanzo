@@ -1,0 +1,14 @@
+FIXME: use cdn var
+<form id="hest" action="http://static.pompdelux.hf/rma_upload.php" method="post" accept-charset="utf-8" encoding="multipart/form-data">
+  <p>
+    <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+    <input type="hidden" name="callback_url" value="{{ url('rma_upload_complete', {'_locale' : app.request.locale}) }}">
+    <input type="file" name="pictures[]" />
+    <input type="file" name="pictures[]" />
+    <input type="file" name="pictures[]" />
+    <input type="file" name="pictures[]" />
+    <input type="file" name="pictures[]" />
+  </p>
+
+  <p><input type="submit" value="Continue &rarr;" /></p>
+</form>
