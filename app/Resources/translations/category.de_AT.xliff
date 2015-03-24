@@ -328,12 +328,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-171">
                 <source>headers.category-171</source>
-                <target><![CDATA[<h1>Mädchen</h1>
+                <target><![CDATA[<h1>Mädchen - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-172">
                 <source>headers.category-172</source>
-                <target><![CDATA[<h1>Junge</h1>
+                <target><![CDATA[<h1>Junge - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
                 <p></p>]]></target>
             </trans-unit>
         </body>
