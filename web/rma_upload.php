@@ -1,32 +1,59 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
 
 $uploadsDir = __DIR__.'/images/upload/'.date('mY').'/';
 $filePrefix = uniqid();
 $fileNames = [];
 $errors = [];
 
-foreach ($_FILES["pictures"]["error"] as $key => $error)
+xdebug_break();
+if (isset($_FILES) && !empty($_FILES))
 {
-    if ($error == UPLOAD_ERR_OK)
+    foreach ($_FILES["pictures"]["error"] as $key => $error)
     {
-        if (!is_dir($uploadsDir))
+        if ($error == UPLOAD_ERR_OK)
         {
-            mkdir($uploadsDir,0700, true);
+            if (!is_dir($uploadsDir))
+            {
+                mkdir($uploadsDir,0700, true);
+            }
+
+            $tmpName = $_FILES["pictures"]["tmp_name"][$key];
+            $name    = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
+            $dest = "$uploadsDir/$name";
+
+            while (file_exists($dest))
+            {
+                $filePrefix = uniqid();
+                $name       = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
+                $dest       = "$uploadsDir/$name";
+            }
+
+            $fileNames[] = $name;
+
+            move_uploaded_file($tmpName, $dest);
         }
-
-        $tmpName = $_FILES["pictures"]["tmp_name"][$key];
-        $name     = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
-
-        $fileNames[] = $name;
-
-        move_uploaded_file($tmpName, "$uploadsDir/$name");
     }
 }
 
+$verifiedData = [];
+$requiredFields = ['name', 'customer_number', 'order_number', 'product_info', 'description', 'contact'];
+
+foreach ($requiredFields as $field)
+{
+    if (!isset($_POST[$field]))
+    {
+        $errors[] = ['type' => 'missing_field', 'value' => $field ];
+        break;
+    }
+
+    // TODO: simple data validation
+    $verifiedData[] = $_POST[$field];
+}
 
 // Send data back to symfony so it can send mails
-$data = ['files' => $fileNames, 'data' => $_POST, 'errors' => $errors];
+$data = ['files' => $fileNames, 'data' => $verifiedData, 'errors' => $errors];
 $url  = $_POST['callback_url'];
 
 $content = json_encode( $data );
@@ -40,3 +67,5 @@ curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 
 $json_response = curl_exec($curl);
+
+die($json_response);
