@@ -124,8 +124,8 @@
                             "152": ["152","146-152","54","56","M","L","One Size"]
                         },
     "tokens": {
-        "Bio-Produkte (GOTS)": ["158"],
-        "Oekotex": ["157"]
+        "Bio-Produkte (GOTS)": ["154"],
+        "Oekotex": ["153"]
     }
 }
                 ]]></target>
@@ -241,8 +241,8 @@
                             "152": ["152","146-152","54","56","M","L","One Size"]
                        },
 						"tokens": {
-  						"Bio-Produkte (GOTS)": ["155"],
-  					"Oekotex": ["156"]
+  						"Bio-Produkte (GOTS)": ["156"],
+  					"Oekotex": ["155"]
 									}
                     }
                 ]]></target>
