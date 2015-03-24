@@ -327,12 +327,12 @@
             </trans-unit>
 			<trans-unit id="headers.category-168">
                 <source>headers.category-168</source>
-                <target><![CDATA[<h1>Meisje</h1>
+                <target><![CDATA[<h1>Meisje - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-169">
                 <source>headers.category-169</source>
-                <target><![CDATA[<h1>Jongen</h1>
+                <target><![CDATA[<h1>Jongen - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
                 <p></p>]]></target>
             </trans-unit>
 			</body>
