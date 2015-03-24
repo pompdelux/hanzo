@@ -326,6 +326,16 @@
                 <target><![CDATA[<h1>Accesoires</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Mädchen - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Junge - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

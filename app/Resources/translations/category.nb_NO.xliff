@@ -14,7 +14,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-14">
                 <source>headers.category-14</source>
-                <target><![CDATA[<h1>Skalljakke og skalbukser</h1>
+                <target><![CDATA[<h1>Skalljakke og skallbukser</h1>
                 <p>En viktig del av ditt barns garderobe er yttertøyet. Finn din favoritt dunjakke, fleecejakke, vest eller parkdress blant mange farger og modeller. Alt vårt yttertøy er designet til å holde barnet ditt varm og tørt i all slags vær. Spesielt er vårt tekniske yttertøy i høy kvalitet og stor sikkerhet, og er derfor både vanntett, vindtett og pustende. Se også de mange detaljene som reflekser, avtakbar hette, vindfang, fotstropp og lommer. Våre jakker, overtrekksbukser, fleecejakker og parkdresser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-15">
@@ -149,7 +149,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-7">
                 <source>headers.category-7</source>
-                <target><![CDATA[<h1>Skalljakke og skalbukser</h1>
+                <target><![CDATA[<h1>Skalljakke og skallbukser</h1>
                 <p>En viktig del av ditt barns garderobe er yttertøyet. Finn din favoritt dunjakke, fleecejakke, vest eller parkdress blant mange farger og modeller. Alt vårt yttertøy er designet til å holde barnet ditt varm og tørt i all slags vær. Spesielt er vårt tekniske yttertøy i høy kvalitet og stor sikkerhet, og er derfor både vanntett, vindtett og pustende. Se også de mange detaljene som reflekser, avtakbar hette, vindfang, fotstropp og lommer. Våre jakker, overtrekksbukser, fleecejakker og parkdresser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-8">
@@ -323,6 +323,16 @@
 			<trans-unit id="headers.category-166">
                 <source>headers.category-166</source>
                 <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Jente - SØK PÅ BARNETS STØRRELSE HER</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Gutt - SØK PÅ BARNETS STØRRELSE HER</h1>
                 <p></p>]]></target>
             </trans-unit>
         </body>

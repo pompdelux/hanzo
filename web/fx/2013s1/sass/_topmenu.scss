@@ -35,9 +35,7 @@ nav.main-menu {
       z-index: 150;
     }
     &.last:hover > ul.floaded-right {
-      margin-left: -70px;
       left: initial;
-      right: 0;
     }
     &.last > a {
       padding-right: 0;
@@ -109,6 +107,16 @@ nav.category-menu {
             }
         }
     }
+    /* element injected using js */
+    .menu-close {
+        padding: 0;
+        width: 929px;
+        text-align: right;
+        a {
+            font-weight: normal;
+            font-size: 18px;
+        }
+    }
     > ul > li {
         &.last {
             margin-right: 10px;
@@ -132,18 +140,8 @@ nav.category-menu {
             ul {
                 @include opacity(1);
                 background-color: $category-menu-hover-bg-color;
-                padding: 2em 0 2em 3em;
-                width: 62em;
-                &:after {
-                    content: "\f106";
-                    font-family: FontAwesome;
-                    font-style: normal;
-                    font-weight: normal;
-                    text-decoration: inherit;
-                    font-size: 18px;
-                    position: absolute;
-                    bottom: 0;
-                }
+                padding: 2em 0 1em 15px;
+                width: 939px;
                 > li {
                     width: 11em;
                     float: left;
@@ -169,8 +167,6 @@ nav.category-menu {
                 }
 
                 &.floaded-right {
-                    width: inherit;
-
                     li {
                         float: none;
                         white-space: nowrap;
@@ -191,4 +187,9 @@ nav.category-menu {
 
 .consultant nav.main-menu > ul > li > a {
     font-size: $font-size;
+}
+
+/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
+nav.category-menu > ul > li {
+    position: initial;
 }

@@ -3185,9 +3185,7 @@ nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   z-index: 150;
 }
 nav.main-menu > ul > li.last:hover > ul.floaded-right {
-  margin-left: -70px;
   left: initial;
-  right: 0;
 }
 nav.main-menu > ul > li.last > a {
   padding-right: 0;
@@ -3236,6 +3234,9 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
   cursor: default;
 }
 
+nav.category-menu {
+  /* element injected using js */
+}
 nav.category-menu ul.outer {
   width: 100%;
 }
@@ -3247,6 +3248,15 @@ nav.category-menu ul.outer > .last {
 }
 nav.category-menu ul.outer > .first {
   padding-left: 5px;
+}
+nav.category-menu .menu-close {
+  padding: 0;
+  width: 929px;
+  text-align: right;
+}
+nav.category-menu .menu-close a {
+  font-weight: normal;
+  font-size: 18px;
 }
 nav.category-menu > ul > li.last {
   margin-right: 10px;
@@ -3270,18 +3280,8 @@ nav.category-menu > ul > li > ul {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   background-color: #a2a2a2;
-  padding: 2em 0 2em 3em;
-  width: 62em;
-}
-nav.category-menu > ul > li > ul:after {
-  content: "\f106";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  font-size: 18px;
-  position: absolute;
-  bottom: 0;
+  padding: 2em 0 1em 15px;
+  width: 939px;
 }
 nav.category-menu > ul > li > ul > li {
   width: 11em;
@@ -3305,9 +3305,6 @@ nav.category-menu > ul > li > ul > li > ul {
 nav.category-menu > ul > li > ul > li > ul li {
   padding: 0 0 0.5em;
 }
-nav.category-menu > ul > li > ul.floaded-right {
-  width: inherit;
-}
 nav.category-menu > ul > li > ul.floaded-right li {
   float: none;
   white-space: nowrap;
@@ -3321,6 +3318,11 @@ nav.category-menu > ul > li > ul.floaded-right li a {
 
 .consultant nav.main-menu > ul > li > a {
   font-size: 14px;
+}
+
+/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
+nav.category-menu > ul > li {
+  position: initial;
 }
 
 .inject-notice-box {

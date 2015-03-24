@@ -131,9 +131,24 @@
                     }
                 });
 
+
                 $('html').click(function (event) {
-                    $('.on', $menu).removeClass('on');
+                  $('.on', $menu).removeClass('on');
                 });
+
+                // Insert close link in menu. A bit tricky to do in CategoryBundle:Menu:Menu
+                // TODO: #944
+/*
+ *                 var menuCloseElement = '<li class="js-menu-close menu-close"><a href="#"><i class="fa fa-angle-up"></i></a></li>';
+ *
+ *                 $("nav.category-menu > ul > li > ul").append(menuCloseElement);
+ *
+ *                 $(".js-menu-close").click(function(event) {
+ *                   event.stopPropagation();
+ *                   event.preventDefault();
+ *                   $('.on', $menu).removeClass('on');
+ *                 });
+ */
             }
 
             // handeling mobile->pc->mobile view switching
