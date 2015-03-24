@@ -165,4 +165,14 @@ class DefaultController extends CoreController
         return $this->redirect($this->generateUrl('rma_form', ['order_id' => $order_id]));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function uploadCompleteAction(Request $request)
+    {
+        $json = json_decode($request->getContent());
+        error_log(__LINE__.':'.__FILE__.' '.print_r($json, 1)); // hf@bellcom.dk debugging
+
+        return new Response('Ok', 200, []);
+    }
 }
