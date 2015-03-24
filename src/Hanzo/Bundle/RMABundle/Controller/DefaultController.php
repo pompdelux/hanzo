@@ -173,6 +173,53 @@ class DefaultController extends CoreController
         $json = json_decode($request->getContent());
         error_log(__LINE__.':'.__FILE__.' '.print_r($json, 1)); // hf@bellcom.dk debugging
 
-        return new Response('Ok', 200, []);
+        $hanzo = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+
+        switch ($domainKey)
+        {
+          case 'AT':
+              $reciever = 'claimat@pompdelux.com';
+            break;
+          case 'CH':
+              $reciever = 'claimch@pompdelux.com';
+            break;
+          case 'COM':
+              $reciever = 'claimcom@pompdelux.com';
+            break;
+          case 'DE':
+              $reciever = 'claimde@pompdelux.com';
+            break;
+          case 'DK':
+              $reciever = 'claimdk@pompdelux.com';
+            break;
+          case 'FI':
+              $reciever = 'claimfi@pompdelux.com';
+            break;
+          case 'NL':
+              $reciever = 'claimnl@pompdelux.com';
+            break;
+          case 'NO':
+              $reciever = 'claimno@pompdelux.com';
+            break;
+          case 'SE':
+              $reciever = 'claimse@pompdelux.com';
+            break;
+        }
+        try {
+            $mail = $this->container->get('mail_manager');
+            $mail->setTo($reciever, 'Claims');
+
+            $mail->setMessage('order.rma', [
+                'order_id'      => $order_id,
+                'customer_name' => $order->getCustomersName(),
+            ]);
+
+            $mail->send();
+        } catch (\Exception $e) {
+        }
+
+        $response = ['error' => false];
+        return $this->json_response( $response );
     }
 }
