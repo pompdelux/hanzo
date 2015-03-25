@@ -49,22 +49,36 @@ var rma = (function ($) {
     };
 
     pub.uploadInit = function() {
-      $("#hest").on('submit',(function(e) {
+      var $form = $("form#rma_claims");
+      $form.on('submit',(function(e) {
         e.preventDefault();
-
-        var url = $(this).attr('action');
+        var $message = $(".message"),
+            url = $(this).attr('action');
 
         $.ajax({
-          url: url,       // Url to which the request is send
-          type: "POST",                   // Type of request to be send, called as method
-          data:  new FormData(this),      // Data sent to server, a set of key/value pairs representing form fields and values
-          contentType: false,             // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
-          cache: false,                   // To unable request pages to be cached
-          processData:false              // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
-        }).done(function() {
-          console.log("YEAH");
+          url:          url,
+          type:         "POST",
+          data:         new FormData(this),
+          contentType:  false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+          cache:        false,
+          processData:  false  // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+        }).done(function(data) {
+          if (data.error === true) {
+            $message.html(data.error_msg).addClass('error').removeClass('hidden');
+          }
+          else {
+            $message.html(data.msg).addClass('success').removeClass('hidden');
+            $form.trigger('reset');
+          }
+        }).fail(function() {
+            $message.html("An unexpected error occurred").addClass('error').removeClass('hidden');
         });
       }));
+
+      // Show next element if file has been selected
+      $("input[type='file']", $form).change(function() {
+        $(this).next().removeClass('hidden');
+      });
     };
 
     function generatePdf() {
@@ -140,6 +154,6 @@ var rma = (function ($) {
 if ($('#body-rma').length) {
     rma.init();
 }
-if ($("#hest").length) {
+if ($("form#rma_claims").length) {
   rma.uploadInit();
 }
