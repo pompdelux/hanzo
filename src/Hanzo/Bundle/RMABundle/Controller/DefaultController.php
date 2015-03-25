@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RMABundle\Controller;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
@@ -170,56 +171,84 @@ class DefaultController extends CoreController
      */
     public function uploadCompleteAction(Request $request)
     {
-        $json = json_decode($request->getContent());
-        error_log(__LINE__.':'.__FILE__.' '.print_r($json, 1)); // hf@bellcom.dk debugging
+        $json       = json_decode($request->getContent());
+        $response   = ['error' => false, 'error_msg' => '', 'msg' => ''];
+        $translator = $this->get('translator');
 
-        $hanzo = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-
-        switch ($domainKey)
+        // rma_upload.php checks the fields and reports any errors
+        // If we at some point want to expose the detailed upload error, change error type upload in rma_upload.php to upload_XXX
+        if (isset($json->errors) && !empty($json->errors))
         {
-          case 'AT':
-              $reciever = 'claimat@pompdelux.com';
-            break;
-          case 'CH':
-              $reciever = 'claimch@pompdelux.com';
-            break;
-          case 'COM':
-              $reciever = 'claimcom@pompdelux.com';
-            break;
-          case 'DE':
-              $reciever = 'claimde@pompdelux.com';
-            break;
-          case 'DK':
-              $reciever = 'claimdk@pompdelux.com';
-            break;
-          case 'FI':
-              $reciever = 'claimfi@pompdelux.com';
-            break;
-          case 'NL':
-              $reciever = 'claimnl@pompdelux.com';
-            break;
-          case 'NO':
-              $reciever = 'claimno@pompdelux.com';
-            break;
-          case 'SE':
-              $reciever = 'claimse@pompdelux.com';
-            break;
-        }
-        try {
-            $mail = $this->container->get('mail_manager');
-            $mail->setTo($reciever, 'Claims');
-
-            $mail->setMessage('order.rma', [
-                'order_id'      => $order_id,
-                'customer_name' => $order->getCustomersName(),
-            ]);
-
-            $mail->send();
-        } catch (\Exception $e) {
+            $response['error'] = true;
+            foreach ($json->errors as $error)
+            {
+                $response['error_msg'][] = $translator->trans('rma.claims.error.'.$error['type'], [], 'rma');
+            }
         }
 
-        $response = ['error' => false];
+        // Checks if rma_upload.php has returned the correct data
+        $fields = ['files', 'data'];
+        foreach ($fields as $field)
+        {
+            if (!isset($json->{$field}))
+            {
+                $response['error'] = true;
+                $response['error_msg'][] = $translator->trans('rma.claims.error.missing_data', [], 'rma');
+            }
+        }
+
+        if ( $response['error'] !== true )
+        {
+            $hanzo     = Hanzo::getInstance();
+            $domainKey = $hanzo->get('core.domain_key');
+
+            switch ($domainKey)
+            {
+                case 'AT':
+                    $reciever = 'claimat@pompdelux.com';
+                    break;
+                case 'CH':
+                    $reciever = 'claimch@pompdelux.com';
+                    break;
+                case 'COM':
+                    $reciever = 'claimcom@pompdelux.com';
+                    break;
+                case 'DE':
+                    $reciever = 'claimde@pompdelux.com';
+                    break;
+                case 'DK':
+                    $reciever = 'claimdk@pompdelux.com';
+                    break;
+                case 'FI':
+                    $reciever = 'claimfi@pompdelux.com';
+                    break;
+                case 'NL':
+                    $reciever = 'claimnl@pompdelux.com';
+                    break;
+                case 'NO':
+                    $reciever = 'claimno@pompdelux.com';
+                    break;
+                case 'SE':
+                    $reciever = 'claimse@pompdelux.com';
+                    break;
+            }
+
+            try {
+                $mail = $this->container->get('mail_manager');
+                $mail->setTo($reciever, 'Claims');
+
+                $mail->setMessage('rma.claims', [
+                    'data' => $json->data,
+                    'files' => $json->files,
+                ]);
+
+                $mail->send();
+
+                $response['msg'] = $translator->trans('rma.claims.success', [], 'rma');
+            } catch (\Exception $e) {
+            }
+        }
+
         return $this->json_response( $response );
     }
 }
