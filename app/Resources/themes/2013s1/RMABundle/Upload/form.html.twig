@@ -1,21 +1,50 @@
-FIXME: use cdn var
-<form id="hest" action="http://static.pompdelux.hf/rma_upload.php" method="post" accept-charset="utf-8" encoding="multipart/form-data">
-  <p>
-    <input type="text" name="name" value="" />
-    <input type="text" name="customer_number" value="" />
-    <input type="text" name="order_number" value="" />
-    <input type="text" name="product_info" value="" />
-    <textarea name="description" rows="8" cols="40"></textarea>
-    <input type="radio" name="contact" value="phone" />
-    <input type="radio" name="contact" value="email" />
-    <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
-    <input type="hidden" name="callback_url" value="{{ url('rma_upload_complete', {'_locale' : app.request.locale}) }}">
-    <input type="file" name="pictures[]" />
-    <input type="file" name="pictures[]" />
-    <input type="file" name="pictures[]" />
-    <input type="file" name="pictures[]" />
-    <input type="file" name="pictures[]" />
-  </p>
+<div class="hidden message"></div>
 
-  <p><input type="submit" value="Continue &rarr;" /></p>
+<form id="rma_claims" action="{{ cdn }}rma_upload.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+  <div class="grid_6 alpha omega">
+    <label>
+      {{ 'rma.claims.form.name_label'|trans({}, 'rma') }}:
+      <input type="text" name="name" value="" required/>
+    </label>
+    <label>
+      {{ 'rma.claims.form.customer_number_label'|trans({}, 'rma') }}:
+      <input type="text" name="customer_number" value="" required/>
+    </label>
+    <label>
+      {{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}:
+      <input type="text" name="order_number" value="" required/>
+    </label>
+    <label>
+      {{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}:
+      <input type="text" name="product_info" value="" required/>
+    </label>
+    <label>
+      {{ 'rma.claims.form.description_label'|trans({}, 'rma') }}:
+      <textarea name="description" rows="6" cols="30" required></textarea>
+    </label>
+
+    <p>{{ 'rma.claims.form.file_heading'|trans({}, 'rma') }}
+      <input type="file" name="pictures[]" />
+      <input type="file" name="pictures[]" class="hidden" />
+      <input type="file" name="pictures[]" class="hidden" />
+      <input type="file" name="pictures[]" class="hidden" />
+      <input type="file" name="pictures[]" class="hidden" />
+    </p>
+
+    <p>{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
+      <label>
+        <input type="radio" name="contact" value="phone" />
+        {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
+      </label>
+      <label>
+        <input type="radio" name="contact" value="email" checked="checked"/>
+        {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
+      </label>
+    </p>
+
+    <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+    <input type="hidden" name="callback_url" value="{{ url('rma_upload_complete', {'_locale' : app.request.locale}) }}">
+
+    <p><input class="button" type="submit" value="{{ 'rma.claims.form.send'|trans({}, 'rma') }}" /></p>
+  </div>
 </form>
