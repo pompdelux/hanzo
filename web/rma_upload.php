@@ -2,42 +2,63 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
-$uploadsDir = __DIR__.'/images/upload/'.date('mY').'/';
+$dir               = 'images/upload/'.date('mY');
+$uploadsDirWebPath = $dir;
+$uploadsDir        = __DIR__.'/'.$dir;
 $filePrefix = uniqid();
-$fileNames = [];
-$errors = [];
+$fileNames  = [];
+$errors     = [];
 
-xdebug_break();
 if (isset($_FILES) && !empty($_FILES))
 {
     foreach ($_FILES["pictures"]["error"] as $key => $error)
     {
-        if ($error == UPLOAD_ERR_OK)
+        switch ($error)
         {
-            if (!is_dir($uploadsDir))
-            {
-                mkdir($uploadsDir,0700, true);
-            }
+            case UPLOAD_ERR_OK:
+                if (!is_dir($uploadsDir))
+                {
+                    mkdir($uploadsDir,0700, true);
+                }
 
-            $tmpName = $_FILES["pictures"]["tmp_name"][$key];
-            $name    = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
-            $dest = "$uploadsDir/$name";
+                $tmpName = $_FILES["pictures"]["tmp_name"][$key];
+                $name    = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
+                $dest    = "$uploadsDir/$name";
 
-            while (file_exists($dest))
-            {
-                $filePrefix = uniqid();
-                $name       = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
-                $dest       = "$uploadsDir/$name";
-            }
+                while (file_exists($dest))
+                {
+                    $filePrefix = uniqid();
+                    $name       = $filePrefix.'_'. $_FILES["pictures"]["name"][$key];
+                    $dest       = "$uploadsDir/$name";
+                }
 
-            $fileNames[] = $name;
+                $fileNames[] = $uploadsDirWebPath.'/'.$name;
 
-            move_uploaded_file($tmpName, $dest);
+                move_uploaded_file($tmpName, $dest);
+                break;
+            case UPLOAD_ERR_CANT_WRITE:
+                $errors[] = ['type' => 'upload', 'value' => UPLOAD_ERR_CANT_WRITE ];
+                break;
+            case UPLOAD_ERR_NO_TMP_DIR:
+                $errors[] = ['type' => 'upload', 'value' => UPLOAD_ERR_NO_TMP_DIR ];
+                break;
+            case UPLOAD_ERR_NO_FILE:
+                // Just ignore :)
+                break;
+            case UPLOAD_ERR_PARTIAL:
+                $errors[] = ['type' => 'upload', 'value' => UPLOAD_ERR_PARTIAL ];
+                break;
+            case UPLOAD_ERR_FORM_SIZE:
+                $errors[] = ['type' => 'upload', 'value' => UPLOAD_ERR_FORM_SIZE ];
+                break;
+            case UPLOAD_ERR_INI_SIZE:
+                $errors[] = ['type' => 'upload', 'value' => UPLOAD_ERR_INI_SIZE ];
+                break;
         }
     }
 }
 
-$verifiedData = [];
+$verifiedData   = [];
 $requiredFields = ['name', 'customer_number', 'order_number', 'product_info', 'description', 'contact'];
 
 foreach ($requiredFields as $field)
@@ -49,7 +70,7 @@ foreach ($requiredFields as $field)
     }
 
     // TODO: simple data validation
-    $verifiedData[] = $_POST[$field];
+    $verifiedData[$field] = $_POST[$field];
 }
 
 // Send data back to symfony so it can send mails
