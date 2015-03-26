@@ -336,6 +336,11 @@
                 <target><![CDATA[<h1>Junge - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Angebot</h1>
+                <p></p>]]></target>
+            </trans-unit>
 	</body>
     </file>
 </xliff>
