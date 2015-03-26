@@ -96,17 +96,15 @@ class QuantityDiscountHandler
         }
 
         // disable quantity discount for shopping advisors and employees - if there personal discounts is in effect.
-        // hf@bellcom.dk: disable for Sales for now
-        if ( strpos( strtolower(Hanzo::getInstance()->get('core.domain_key')), 'sales' ) === false );
-        {
-            $customer = $this->order->getCustomers();
-            if (($customer instanceof Customers) &&
-                (1 < $customer->getGroupsId()) &&
-                (0 == Hanzo::getInstance()->get('webshop.disable_discounts'))
-            ) {
-                return $this->order;
-            }
-        }
+            /*
+             * $customer = $this->order->getCustomers();
+             * if (($customer instanceof Customers) &&
+             *     (1 < $customer->getGroupsId()) &&
+             *     (0 == Hanzo::getInstance()->get('webshop.disable_discounts'))
+             * ) {
+             *     return $this->order;
+             * }
+             */
 
         $ids = ProductsQuery::create()->select('Id')->findByMaster($master)->toArray();
 
