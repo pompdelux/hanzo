@@ -163,6 +163,59 @@ Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du bru
                 <source>rma.slip.color</source>
                 <target><![CDATA[Farge]]></target>
             </trans-unit>
+
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Navn*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-ordrenummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Varens navn (se navn på din faktura)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Beskrivelse av reklamasjonen*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Last opp bilder av reklamasjonen:<br>(maks. 5 bilder på i alt 10MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_heading">
+              <source>rma.claims.form.contact_heading</source>
+              <target>Hvordan vil du helst kontaktes?</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_phone_label">
+              <source>rma.claims.form.contact_phone_label</source>
+              <target>Telefonnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_email_label">
+              <source>rma.claims.form.contact_email_label</source>
+              <target>E-post*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Send reklamasjonsskjemaet</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Skal fylles ut</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Din reklamasjonsformular er nå sendt, og vi kontakter deg innenfor noen dager med tilbakemelding om saken.</p>
+                <p>Hvis du har spørsmål, vennligst kontakt kundeservice på tlf. (+45) 8678 7871.</p>
+                ]]>
+              </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
