@@ -3,27 +3,35 @@
 <form id="rma_claims" action="{{ cdn }}rma_upload.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
   <div class="grid_6 alpha omega">
     <label>
-      {{ 'rma.claims.form.name_label'|trans({}, 'rma') }}:
-      <input type="text" name="name" value="" required/>
+      <div class="row">
+        <span>{{ 'rma.claims.form.name_label'|trans({}, 'rma') }}</span>
+        <input type="text" name="name" value="" required/>
+      </div>
     </label>
     <label>
-      {{ 'rma.claims.form.customer_number_label'|trans({}, 'rma') }}:
-      <input type="text" name="customer_number" value="" required/>
+      <div class="row">
+        <span>{{ 'rma.claims.form.customer_number_label'|trans({}, 'rma') }}</span>
+        <input type="text" name="customer_number" value="" required/>
+      </div>
     </label>
     <label>
-      {{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}:
-      <input type="text" name="order_number" value="" required/>
+      <div class="row">
+        <span>{{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}</span>
+        <input type="text" name="order_number" value="" required/>
+      </div>
     </label>
     <label>
-      {{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}:
+      {{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}
       <input type="text" name="product_info" value="" required/>
     </label>
     <label>
-      {{ 'rma.claims.form.description_label'|trans({}, 'rma') }}:
+      {{ 'rma.claims.form.description_label'|trans({}, 'rma') }}
       <textarea name="description" rows="6" cols="30" required></textarea>
     </label>
+    <br>
+    <br>
 
-    <p>{{ 'rma.claims.form.file_heading'|trans({}, 'rma') }}
+    <p>{{ 'rma.claims.form.file_heading'|trans({}, 'rma')|raw }}
       <input type="file" name="pictures[]" />
       <input type="file" name="pictures[]" class="hidden" />
       <input type="file" name="pictures[]" class="hidden" />
@@ -42,9 +50,12 @@
       </label>
     </p>
 
-    <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
     <input type="hidden" name="callback_url" value="{{ url('rma_upload_complete', {'_locale' : app.request.locale}) }}">
+    <br>
+    <br>
 
     <p><input class="button" type="submit" value="{{ 'rma.claims.form.send'|trans({}, 'rma') }}" /></p>
+    <p>{{ 'rma.claims.form.required'|trans({}, 'rma') }}</p>
   </div>
 </form>
