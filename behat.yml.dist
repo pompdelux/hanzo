@@ -1,0 +1,28 @@
+# MinkExtension options:
+# https://github.com/Behat/MinkExtension/blob/master/doc/index.rst
+# Profile override based on old 2.5 doc: http://behat.readthedocs.org/en/v2.5/guides/7.config.html#profiles
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Behat\MinkExtension\Context\MinkContext
+      filters:
+        tags: ~@consultant
+  extensions:
+    Behat\Symfony2Extension: ~
+    Behat\MinkExtension:
+      base_url: 'http://pompdelux.com/da_DK/'
+      sessions:
+        default:
+          selenium2:
+            wd_host: 'http://172.17.42.1:8643/wd/hub'
+
+consultant:
+  suites:
+    default:
+      filters:
+        tags: @consultant
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://c.pompdelux.com/da_DK/'
