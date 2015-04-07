@@ -9,8 +9,8 @@
   <p>{{ 'description'|trans({}, 'search') }}</p>
 
   <form action="{{ path(route) }}" method="get" class="search">
-    <input name="q" type="text" value="{{ app.request.get('q') }}">
-    <input type="submit" value="{{ "button.label"|trans({}, 'search') }}" class="button loading" data-info="loading.search">
+    <input id="advanched_search_query" name="q" type="text" value="{{ app.request.get('q') }}">
+    <input name="perform_search" type="submit" value="{{ "button.label"|trans({}, 'search') }}" class="button loading" data-info="loading.search">
   </form>
 
   {% if result is not empty %}
