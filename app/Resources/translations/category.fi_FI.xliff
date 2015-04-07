@@ -335,6 +335,11 @@
                 <target><![CDATA[<h1>Poika - HAE LAPSESI KOKOA TÄÄLLÄ</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>TARJOUS TUOTTEET</h1>
+                <p></p>]]></target>
+            </trans-unit>
 		</body>
     </file>
 </xliff>

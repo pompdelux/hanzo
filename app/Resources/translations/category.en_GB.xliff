@@ -335,6 +335,11 @@
                 <target><![CDATA[<h1>Boy - Choose your child’s size here</h1>
                 <p></p>]]></target>
             </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Offers</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

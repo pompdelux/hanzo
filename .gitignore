@@ -34,6 +34,7 @@
 /web/images/translate/
 /web/images/Video/
 /web/images/xhjkpiydjns/
+/web/images/upload/
 /web/uploads/
 .sass-cache
 /node_modules/*
@@ -43,3 +44,5 @@
 .vagrant
 .idea/
 /app/**/_local*.yml
+behat.yml
+/bin/behat
