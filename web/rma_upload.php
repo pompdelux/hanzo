@@ -89,4 +89,9 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 
 $json_response = curl_exec($curl);
 
+if ( $json_response === false)
+{
+    $json_response = json_encode( ['error' => true, 'error_msg' => curl_error($curl)] );
+}
+
 die($json_response);
