@@ -46,3 +46,4 @@
 /app/**/_local*.yml
 behat.yml
 /bin/behat
+/tools/docker/nginx/nginx.vhost.conf
