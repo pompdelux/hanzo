@@ -59,11 +59,17 @@ if (isset($_FILES) && !empty($_FILES))
 }
 
 $verifiedData   = [];
-$requiredFields = ['name', 'customer_number', 'order_number', 'product_info', 'description', 'contact'];
+$requiredFields = ['name', 'order_number', 'product_info', 'description', 'contact'];
+
+// If contact is phone then phone_value is required and email => email_value
+if (isset($_POST['contact']))
+{
+    $requiredFields[] = $_POST['contact'].'_value';
+}
 
 foreach ($requiredFields as $field)
 {
-    if (!isset($_POST[$field]))
+    if (!isset($_POST[$field]) || empty($_POST[$field]))
     {
         $errors[] = ['type' => 'missing_field', 'value' => $field ];
         break;
@@ -71,6 +77,12 @@ foreach ($requiredFields as $field)
 
     // TODO: simple data validation
     $verifiedData[$field] = $_POST[$field];
+
+    if ($field == 'contact')
+    {
+        $name = $_POST[$field].'_value';
+        $verifiedData['contact_value'] = $_POST[$name];
+    }
 }
 
 // Send data back to symfony so it can send mails
