@@ -5,13 +5,14 @@ Feature: RMA Claims form
   Scenario: Fill out claims forms
       When I fill in the following:
         | name            | Mit navn            |
-        | customer_number | 100000              |
         | order_number    | 100                 |
         | product_info    | En style            |
         | description     | En kort beskrivelse |
         | contact         | email               |
-      And I attach the file "Lorem-ipsum.pdf" to "pictures[]"
+        | email_value     | test@bellcom.dk     |
+      And I attach the file "Lorem-ipsum.pdf" to "picture_1"
       And I press "Send reklamationsformular"
+      And I wait until Ajax is done
       Then I should see "Din reklamationsformular er nu sendt"
 
   @wip
