@@ -182,7 +182,7 @@ class DefaultController extends CoreController
             $response['error'] = true;
             foreach ($json->errors as $error)
             {
-                $response['error_msg'][] = $translator->trans('rma.claims.error.'.$error['type'], [], 'rma');
+                $response['error_msg'][] = $translator->trans('rma.claims.error.'.$error->type, [], 'rma');
             }
         }
 
@@ -237,6 +237,18 @@ class DefaultController extends CoreController
                 $mail = $this->container->get('mail_manager');
                 $mail->setTo($reciever, 'Claims');
 
+                if ( isset($json->data->contact) &&
+                    $json->data->contact == 'email' &&
+                    isset($json->data->contact_value) &&
+                    filter_var($json->data->contact_value, FILTER_VALIDATE_EMAIL)
+                )
+                {
+                    $sender       = $json->data->contact_value;
+                    $name         = $json->data->name;
+                    $asReturnPath = TRUE;
+                $mail->setSender($sender, $name, $asReturnPath);
+                }
+
                 $mail->setMessage('rma.claims', [
                     'data' => $json->data,
                     'files' => $json->files,
@@ -246,6 +258,8 @@ class DefaultController extends CoreController
 
                 $response['msg'] = $translator->trans('rma.claims.success', [], 'rma');
             } catch (\Exception $e) {
+                $response['error'] = true;
+                $response['error_msg'][] = 'Failed sending claim';
             }
         }
 
