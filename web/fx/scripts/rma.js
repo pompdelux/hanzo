@@ -72,12 +72,22 @@ var rma = (function ($) {
           }
         }).fail(function() {
             $message.html("An unexpected error occurred").addClass('error').removeClass('hidden');
+        }).always(function() {
+            $('html,body').animate({scrollTop: 0});
         });
       }));
 
       // Show next element if file has been selected
       $("input[type='file']", $form).change(function() {
         $(this).next().removeClass('hidden');
+      });
+
+      // Show input fields if radio button selected
+      $("input[name='contact']", $form).change(function() {
+        var name = $(this).val();
+
+        $(".contact_methods input[type='text']", $form).addClass('hidden');
+        $("input[name='"+name+"_value']", $form).removeClass('hidden');
       });
     };
 
