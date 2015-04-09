@@ -113,4 +113,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $urlParts = parse_url($this->getMinkParameter('base_url'));
         $this->getSession()->visit( $urlParts['scheme'].'://'.$urlParts['host'] );
     }
+
+    /**
+     * @When I wait until Ajax is done
+     */
+    public function iWaitUntilAjaxIsDone()
+    {
+        $time = 5000; // time should be in milliseconds
+        $this->getSession()->wait($time, '(0 === jQuery.active)');
+    }
 }
