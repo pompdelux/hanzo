@@ -10,12 +10,6 @@
     </label>
     <label>
       <div class="row">
-        <span>{{ 'rma.claims.form.customer_number_label'|trans({}, 'rma') }}</span>
-        <input type="text" name="customer_number" value="" required/>
-      </div>
-    </label>
-    <label>
-      <div class="row">
         <span>{{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}</span>
         <input type="text" name="order_number" value="" required/>
       </div>
@@ -32,22 +26,25 @@
     <br>
 
     <p>{{ 'rma.claims.form.file_heading'|trans({}, 'rma')|raw }}
-      <input type="file" name="pictures[]" />
-      <input type="file" name="pictures[]" class="hidden" />
-      <input type="file" name="pictures[]" class="hidden" />
-      <input type="file" name="pictures[]" class="hidden" />
-      <input type="file" name="pictures[]" class="hidden" />
+      <input type="file" name="pictures[]" id="picture_1"/>
+      <input type="file" name="pictures[]" id="picture_2" class="hidden" />
+      <input type="file" name="pictures[]" id="picture_3" class="hidden" />
+      <input type="file" name="pictures[]" id="picture_4" class="hidden" />
+      <input type="file" name="pictures[]" id="picture_5" class="hidden" />
     </p>
 
-    <p>{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
+    <p class="contact_methods">{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
       <label>
         <input type="radio" name="contact" value="phone" />
         {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
       </label>
+      <input type="text" name="phone_value" value="" class="hidden" />
+
       <label>
         <input type="radio" name="contact" value="email" checked="checked"/>
         {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
       </label>
+      <input type="text" name="email_value" value="" />
     </p>
 
     <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
