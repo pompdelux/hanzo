@@ -13,6 +13,7 @@ default:
     Behat\Symfony2Extension: ~
     Behat\MinkExtension:
       base_url: 'http://pompdelux.com/da_DK/'
+      files_path: %paths.base%/features/test_files/
       sessions:
         default:
           selenium2:
