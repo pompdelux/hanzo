@@ -245,8 +245,8 @@ class DefaultController extends CoreController
                 {
                     $sender       = $json->data->contact_value;
                     $name         = $json->data->name;
-                    $asReturnPath = TRUE;
-                $mail->setSender($sender, $name, $asReturnPath);
+                    $mail->setReplyTo($sender, $name)
+                    ->setSender($sender, $name);
                 }
 
                 $mail->setMessage('rma.claims', [
