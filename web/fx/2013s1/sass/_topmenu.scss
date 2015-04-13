@@ -141,7 +141,8 @@ nav.category-menu {
                 @include opacity(1);
                 background-color: $category-menu-hover-bg-color;
                 padding: 2em 0 1em 15px;
-                width: 939px;
+                width: 100%;
+
                 > li {
                     width: 11em;
                     float: left;
