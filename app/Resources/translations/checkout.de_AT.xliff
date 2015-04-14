@@ -258,10 +258,10 @@
           <source>no.such.product.in.cart</source>
           <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
       </trans-unit>
-      <trans-unit id="late.delivery.notice">
+      <!--<trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
         <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
-      </trans-unit>
+      </trans-unit>-->
       <trans-unit id="button.back">
         <source>button.back</source>
         <target>Zurück</target>
