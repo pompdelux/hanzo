@@ -473,7 +473,7 @@ Sie müssen Waren hinzufügen.
         </trans-unit>
 <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong> ]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
     </body>
   </file>
