@@ -471,6 +471,10 @@ Sie müssen Waren hinzufügen.
                 <a href="/de_AT/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
         </trans-unit>
+<trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong> ]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
