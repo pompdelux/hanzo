@@ -3171,6 +3171,7 @@ nav.main-menu > ul > li {
 }
 nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
   left: 0;
+  right: 0;
   top: auto;
   z-index: 150;
 }
@@ -3225,19 +3226,113 @@ nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.sel
 }
 
 nav.category-menu {
+  background: #484a4d;
+  padding: 0;
   /* element injected using js */
 }
-nav.category-menu ul.outer {
+nav.category-menu > ul.outer {
+  position: relative;
   width: 100%;
 }
-nav.category-menu ul.outer .open {
+nav.category-menu > ul.outer > li {
+  position: static;
+  float: left;
+}
+nav.category-menu > ul.outer > li a {
+  display: block;
+  color: #fff;
+  letter-spacing: 1px;
+}
+nav.category-menu > ul.outer > li > a {
+  font-size: 14px;
+  letter-spacing: .8px;
+  padding: 10px 15px;
+}
+nav.category-menu > ul.outer > li > a:after {
+  content: "\f107";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
+  margin-left: 0.5em;
+}
+nav.category-menu > ul.outer > li:hover > ul,
+nav.category-menu > ul.outer > li ul.on {
+  display: block;
+}
+nav.category-menu > ul.outer > li > ul {
+  display: none;
+  position: absolute;
+  list-style: none;
+  top: 100%;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: #676767 2px 2px 2px;
+  -moz-box-shadow: #676767 2px 2px 2px;
+  box-shadow: #676767 2px 2px 2px;
+  background-color: #a2a2a2;
+  padding: 2em 0 1em 0;
+  z-index: 150;
+}
+nav.category-menu > ul.outer > li > ul > li {
+  width: 11em;
+  float: left;
+  padding: 0 1em 0 0;
+  letter-spacing: 1.5px;
+}
+nav.category-menu > ul.outer > li > ul > li > a {
+  font-weight: bold;
+}
+nav.category-menu > ul.outer > li > ul > li a {
+  font-size: 12px;
+  margin: 0;
+  padding-left: 15px;
+  white-space: normal;
+}
+nav.category-menu > ul.outer > li > ul > li a:hover, nav.category-menu > ul.outer > li > ul > li a:focus {
+  text-decoration: underline;
+}
+nav.category-menu > ul.outer > li > ul > li > ul {
+  padding-top: 0.5em;
+}
+nav.category-menu > ul.outer > li > ul > li > ul li {
+  padding: 0 0 0.5em;
+}
+nav.category-menu > ul.outer > li.last {
+  float: right;
+  position: relative;
+}
+nav.category-menu > ul.outer > li.last > a {
+  padding-right: 15px;
+}
+nav.category-menu > ul.outer > li.last > ul {
+  left: auto;
+  min-width: 200px;
+}
+nav.category-menu > ul.outer > li.last > ul > li {
+  display: block;
+  float: none;
+  padding: 0 0 0.5em;
+  width: auto;
+}
+nav.category-menu > ul.outer > li.last > ul > li > a {
+  display: block;
+  font-weight: normal;
+  text-transform: none;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+nav.category-menu > ul.outer > li.open {
   background-color: #a2a2a2;
 }
-nav.category-menu ul.outer > .last {
-  float: right;
+nav.category-menu > ul.outer:before, nav.category-menu > ul.outer:after {
+  content: " ";
+  display: table;
 }
-nav.category-menu ul.outer > .first {
-  padding-left: 5px;
+nav.category-menu > ul.outer:after {
+  clear: both;
 }
 nav.category-menu .menu-close {
   padding: 0;
@@ -3248,73 +3343,12 @@ nav.category-menu .menu-close a {
   font-weight: normal;
   font-size: 18px;
 }
-nav.category-menu > ul > li.last {
-  margin-right: 10px;
-}
-nav.category-menu > ul > li a {
-  margin-left: 10px;
-  color: #fff;
-  letter-spacing: 1px;
-}
-nav.category-menu > ul > li > a:after {
-  content: "\f107";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  font-size: 18px;
-  display: inline-block;
-  margin-left: 0.5em;
-}
-nav.category-menu > ul > li > ul {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-  background-color: #a2a2a2;
-  padding: 2em 0 1em 15px;
-  width: 100%;
-}
-nav.category-menu > ul > li > ul > li {
-  width: 11em;
-  float: left;
-  padding: 0 1em 0 0;
-  letter-spacing: 1.5px;
-}
-nav.category-menu > ul > li > ul > li > a {
-  font-weight: bold;
-}
-nav.category-menu > ul > li > ul > li a {
-  margin: 0;
-  white-space: normal;
-}
-nav.category-menu > ul > li > ul > li a:hover {
-  text-decoration: underline;
-}
-nav.category-menu > ul > li > ul > li > ul {
-  padding-top: 0.5em;
-}
-nav.category-menu > ul > li > ul > li > ul li {
-  padding: 0 0 0.5em;
-}
-nav.category-menu > ul > li > ul.floaded-right li {
-  float: none;
-  white-space: nowrap;
-}
-nav.category-menu > ul > li > ul.floaded-right li a {
-  font-weight: normal;
-  line-height: 2em;
-  letter-spacing: 1.3px;
-  text-transform: none;
-}
 
 .consultant nav.main-menu > ul > li > a {
   font-size: 14px;
 }
 
-/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
-nav.category-menu > ul > li {
-  position: initial;
-}
-
+/* Category menu should be full width, this makes sure this happens. Position relative is needed for the other menus */
 .inject-notice-box {
   padding: 3px;
 }

@@ -101,14 +101,6 @@
                     $element.css('width', (menu_width * count));
                 });
 
-                // Add a class to the last megamenu, if it is all to the right.
-                // TODO: This should be done on each megamenu, and be able to determine
-                //       if it is possible to fit inside the container.
-                $main_menu = $menu.not('.first');
-                if ($main_menu.outerWidth() - $('>ul', $main_menu).width() < 150) {
-                    $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
-                }
-
                 $(".menu .outer > li").hover(function() {
                     $(this).addClass("open");
                 },function() {
