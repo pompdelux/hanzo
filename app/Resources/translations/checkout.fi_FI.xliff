@@ -225,8 +225,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[
-          <strong>Huomaa:</strong> Tilauksesi lähetetään vasta, kun kaikkia tuotteita on varastossa.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
