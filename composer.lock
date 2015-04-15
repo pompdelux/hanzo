@@ -407,7 +407,7 @@
         },
         {
             "name": "drak/native-session",
-            "version": "dev-master",
+            "version": "~1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drak/NativeSession.git",
