@@ -202,7 +202,7 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function listCategoryProductsAction($cms_id, $show, $pager = 1)
+    public function listCategoryProductsAction($cms_id, $show, $pager = 1, $route = null)
     {
         $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -222,6 +222,7 @@ class DefaultController extends CoreController
         $data = null;
         if (!$html) {
             $data = $this->getCategoryProducts($cms_id, $show, $pager);
+            $data['route'] = $route;
 
             if ($this->getFormat() == 'json') {
                 $this->setCache($cache_id, $data, 5);
