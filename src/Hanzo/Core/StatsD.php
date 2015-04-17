@@ -10,8 +10,8 @@
 
 namespace Hanzo\Core;
 
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -170,11 +170,11 @@ class StatsD
      *
      * If the request is a http request, we add the buildtime for the request to the outgoing payload.
      *
-     * @param Event                         $event
-     * @param string                        $eventName
-     * @param ContainerAwareEventDispatcher $eventDispatcher
+     * @param Event                    $event
+     * @param string                   $eventName
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function flush(Event $event, $eventName, ContainerAwareEventDispatcher $eventDispatcher = null)
+    public function flush(Event $event, $eventName, EventDispatcherInterface $eventDispatcher = null)
     {
         if (false === $this->enabled) {
             return;
