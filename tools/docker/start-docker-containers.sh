@@ -27,5 +27,5 @@ else
   # -d detach
   echo "Starting new docker with name $NAME"
   docker run -d -h pompdelux-db -v $(pwd)/mysql/wheezy:/var/lib/mysql --name pompdelux-db bellcom/pompdelux-db:wheezy
-  docker run -d -h pompdelux-web --link pompdelux-db:pompdelux-db -i -t -p 80:80 -p 443:443 -v $(pwd)/../../:/var/www/pompdelux -v $(pwd)/nginx:/etc/nginx/sites-enabled/ --name $NAME $IMAGE
+  docker run -d -h pompdelux-web --link pompdelux-db:pompdelux-db -i -t -p 80:80 -p 443:443 -p 9000:9000 -v $(pwd)/../../:/var/www/pompdelux -v $(pwd)/nginx:/etc/nginx/sites-enabled/ --name $NAME $IMAGE
 fi
