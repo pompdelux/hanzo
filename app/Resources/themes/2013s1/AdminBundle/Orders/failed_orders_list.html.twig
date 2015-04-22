@@ -21,7 +21,7 @@
           <td nowrap>{{ order.ordersId }}</td>
           <td nowrap>{{ order.createdAt|date('d/m/Y H:i') }}</td>
           <td>{{ order.comment|replace({'--->' : '<br>--->'})|raw }}</td>
-          <td>{{ order.data.action }}</td>
+          <td>{{ order.data.action|default('') }}</td>
           <td nowrap>
           {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('admin_orders_sync_log_delete', {'orders_id': order.ordersId, 'state': order.state}) }}" class="delete-order-log" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at fjerne ordrenummer: {{ order.ordersId }} fra errorloggen" title="Slet ordren fra loggen"><span class="glyphicon glyphicon-fire"></span></a>
@@ -31,7 +31,7 @@
                title="Slet ordren permanent"><span class="glyphicon glyphicon-remove-circle"></span></a>
           {% endif %}
             <a href="{{ path('admin_orders_preview', {order_id : order.ordersId}) }}" class="preview-order" title="Gennemse"><span class="glyphicon glyphicon-search"></span></a>
-          {% if is_granted('ROLE_ADMIN') and order.data.action == 'create' %}
+          {% if is_granted('ROLE_ADMIN') and order.data.action|default('') == 'create' %}
             <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order" title="Gensend"><span class="glyphicon glyphicon-refresh"></span></a>
           {% endif %}
           </td>
