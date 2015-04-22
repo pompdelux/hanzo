@@ -6,6 +6,9 @@ Hanzo\Model\Events:
             - Length:
                 min: 2
                 minMessage: host.required
+        event_date:
+            - NotBlank:
+                message: event_date.required
         address_line_1:
             - NotBlank:
                 message: address_line_1.required
