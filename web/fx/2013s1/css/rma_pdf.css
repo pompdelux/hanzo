@@ -1,20 +1,51 @@
 /**
 | rma_pdf
 */
-table th { font-weight: bold; }
+table th {
+  font-weight: bold;
+}
 
-table.rma_products thead { font-weight: bold; font-size: 21px; }
-table.rma_products tbody tr { border-bottom: 1px solid gray; padding: 20px 0; }
-table.rma_products tbody .title { font-weight: bold; }
+table.rma_products thead {
+  font-weight: bold;
+  font-size: 21px;
+}
+table.rma_products tbody tr {
+  border-bottom: 1px solid gray;
+  padding: 20px 0;
+}
+table.rma_products tbody .title {
+  font-weight: bold;
+}
 
-h1 { font-size: 40px; font-weight: 100; text-transform: uppercase; padding: 40px 0 20px; font-family: Tahoma, Geneva, Verdana, sans-serif; }
+h1 {
+  font-size: 40px;
+  font-weight: 100;
+  text-transform: uppercase;
+  padding: 40px 0 20px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
 
-h2 { font-size: 25px; }
+h2 {
+  font-size: 25px;
+}
 
-p { padding: 0 0 20px; font-size: 20px; line-height: 20px; }
+p {
+  padding: 0 0 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
 
-.company_details #logo { float: left; }
-.company_details ul { display: inline-block; margin: 10px; }
-.company_details ul li { margin-bottom: 10px; }
+.company_details #logo {
+  float: left;
+}
+.company_details ul {
+  display: inline-block;
+  margin: 10px;
+}
+.company_details ul li {
+  margin-bottom: 10px;
+}
 
-.barcode { height: 50px; }
+.barcode {
+  height: 50px;
+}
