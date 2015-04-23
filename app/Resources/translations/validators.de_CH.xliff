@@ -46,6 +46,10 @@
                 <source>host.required</source>
                 <target>Bitte eine Gastgeberin angeben</target>
             </trans-unit>
+            <trans-unit id="event_date.required">
+                <source>event_date.required</source>
+                <target>Du skal udfylde en dato</target>
+            </trans-unit>
             <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Bitte Adresse ausfüllen|Bitte Adresse ausfüllen</target>
