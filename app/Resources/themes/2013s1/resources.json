@@ -48,6 +48,7 @@
         "web/fx/scripts/flowplayer.js",
         "web/fx/scripts/video.js",
         "web/fx/scripts/main.js",
+        "web/fx/scripts/navigation.js",
         "web/fx/scripts/social-buttons.js",
         "web/fx/scripts/filters.js",
         "web/fx/scripts/category.js",

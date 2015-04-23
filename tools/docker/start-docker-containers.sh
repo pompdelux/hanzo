@@ -1,17 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-IMAGE='hf/pompdelux-web:wheezy'
+IMAGE='bellcom/pompdelux-web:wheezy'
 NAME="pompdelux-web"
 
 echo "Stopping existing containers"
 RUNNING_CONTAINERS=$(docker ps -q)
 
-if [[ command -v mailcatcher >/dev/null 2>&1 ]]; then
-  MAILCATCHER_IS_RUNNING=`netstat -tna | grep 1025 | wc -l`
-  if [[ $MAILCATCHER_IS_RUNNING == 0 ]]; then
-    mailcatcher --smtp-ip 172.17.42.1
-  fi
-fi
+# if [[ command -v mailcatcher >/dev/null 2>&1 ]]; then
+#   MAILCATCHER_IS_RUNNING=`netstat -tna | grep 1025 | wc -l`
+#   if [[ $MAILCATCHER_IS_RUNNING == 0 ]]; then
+#     mailcatcher --smtp-ip 172.17.42.1
+#   fi
+# fi
 
 if [[ -n $RUNNING_CONTAINERS ]]; then
   docker stop $RUNNING_CONTAINERS
@@ -26,6 +26,6 @@ if [[ $CONTAINER_EXIST > 0 ]]; then
 else
   # -d detach
   echo "Starting new docker with name $NAME"
-  docker run -d -h pompdelux-db -v $(pwd)/mysql/wheezy:/var/lib/mysql --name pompdelux-db hf/pompdelux-db:wheezy
-  docker run -d -h pompdelux-web --link pompdelux-db:pompdelux-db -i -t -p 80:80 -p 443:443 -v $(pwd)/www:/var/www -v $(pwd)/nginx:/etc/nginx/sites-enabled/ --name $NAME $IMAGE
+  docker run -d -h pompdelux-db -v $(pwd)/mysql/wheezy:/var/lib/mysql --name pompdelux-db bellcom/pompdelux-db:wheezy
+  docker run -d -h pompdelux-web --link pompdelux-db:pompdelux-db -i -t -p 80:80 -p 443:443 -v $(pwd)/../../:/var/www/pompdelux -v $(pwd)/nginx:/etc/nginx/sites-enabled/ --name $NAME $IMAGE
 fi

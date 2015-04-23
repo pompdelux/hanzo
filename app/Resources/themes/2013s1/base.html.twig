@@ -45,9 +45,7 @@
 <div class="top-bar"></div>
 <div id="container" class="container container_8">
     <nav class="first grid_8 row main-menu">
-        {{ render(controller('CMSBundle:Menu:byTitle', {
-            'title':'topmenu'
-        })) }}
+        {{ render(controller('CMSBundle:Menu:byTitle', { 'title':'topmenu' })) }}
 
         <ul class="right horizontal">
             <li>
@@ -105,7 +103,7 @@
             {% endif %}
         {% endif %}
 
-        <nav class="menu main-menu category-menu clearfix">
+        <nav class="menu category-menu clearfix">
             {{ render(controller('CMSBundle:Menu:menu', {
                 'type':   left_menu.type,
                 'thread': left_menu.thread,
