@@ -102,4 +102,7 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 @import "wishlist";
 @import "ie";
 @import "base";
-@import "filters"
+@import "filters";
+@import "navigation/navigation-main";
+@import "navigation/navigation-top";
+@import "navigation/navigation-category";

@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     var files = {
         scss : [
             'web/fx/2013s1/sass/*.scss',
+            'web/fx/2013s1/sass/**/*.scss',
             'web/fx/2013s1_mobile/sass/*.scss'
         ],
 

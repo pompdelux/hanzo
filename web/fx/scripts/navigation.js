@@ -52,4 +52,27 @@ $(document).ready(function() {
             });
     }
 
+    // Main navigation
+    if(!Modernizr.touch) {
+
+        // Configuration
+        var navigation = $('nav.category-menu'),
+            navigation_link_container = navigation.find('ul.outer');
+
+        // Link is clicked (first layer links)
+        navigation_link_container.find('> li > a').on('click', function(event) {
+            var parent = $(this).parent(),
+                dropdown_menu = $(this).parent().find('> ul');
+
+            // Link has a submenu
+            if(dropdown_menu.length > 0) {
+
+                // Toggle 'open' class
+                parent.toggleClass('open');
+
+                // Don't follow links href
+                event.preventDefault();
+            }
+        });
+    }
 });
