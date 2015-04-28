@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="create.account.header">
                 <source>create.account.header</source>
-                <target>Welcome - Create your account</target>
+                <target>Welkom – Registreer je als klant</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -553,6 +553,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
                         <li><i class="sprite show"></i><span>Bekijk je order</span></li>
                         <li><i class="sprite pdf"></i><span>Factuur (pdf)</span></li>
                         <li><i class="sprite return"></i><span>Retoursturen van een artikel</span></li>
+                        <li><i class="sprite returnlabel"></i><span>DHL retourlabel</span></li>
                         <li><i class="sprite trackntrace"></i><span>Volg je bestelling</span></li>
                     </ul>
                     ]]></target>

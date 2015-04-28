@@ -81,28 +81,40 @@ Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795<br>Ved andre godkend
         <target>Fødselsdato (DDMMYYYY):</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
-        <source>We were unable to approve your payment with arvato Finance A/S Invoice service.</source>
+        <source>gothia.response.error.before</source>
         <target>Vi havde ikke mulighed for, at godkende ordren ved arvato Finance A/S Invoice service.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
-        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <source>gothia.response.error.after</source>
         <target>Kontakt venligst arvato Finance A/S Kundeservice: 7027 2795, hvis fejlen gentager sig.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Godkendelsen mislykkedes</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
-        <source>We are unable to connect to arvato Finance A/S Invoice service, please try again later.</source>
+        <source>gothia.response.5000</source>
         <target>Der kan ikke forbindes til arvato Finance A/S Faktura Service på nuværende tidspunkt. Prøv venligst igen senere.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10004">
-        <source>We couldn't find you in arvato Finance A/S Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10004</source>
         <target>Vi kunne ikke finde dig i arvato Finance A/S Faktura Service, er du sikker på at alle dine informationer er korrekte?</target>
       </trans-unit>
       <trans-unit id="gothia.response.10005">
-        <source>We couldn't find you in arvato Finance A/S Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10005</source>
         <target>Vi kunne ikke finde dig i arvato Finance A/S Faktura Service, er du sikker på at alle dine informationer er korrekte?</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>Vi kunne ikke finde dig i Gothia Invoice Service. Tjek venligst at alle informationerne på din profil er korrekte.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.10036">
-        <source>The reservation was not approved at arvato Finance A/S Invoice Service. You may have exceeded the limit of reservations at arvato Finance A/S.</source>
+        <source>gothia.response.10036</source>
         <target>Købet blev ikke godkendt hos arvato Finance A/S Faktura service. Det kan skyldes at du har opnået dit maximum.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>Din konto information er ikke korrekt. Tjek venligst at du har indtastet den korrekte bank kode og konto nummer.</target>
       </trans-unit>
     </body>
   </file>

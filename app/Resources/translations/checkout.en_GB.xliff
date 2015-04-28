@@ -232,7 +232,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Note:</strong> Your order will be sent when all items are in stock.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -329,7 +329,11 @@
         <source>discount.gift</source>
         <target>Discount:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+       <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>Girl</target>
       </trans-unit>

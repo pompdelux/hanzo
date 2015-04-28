@@ -119,16 +119,20 @@ class CMSRouterLoader implements LoaderInterface
 
                     $routes->add($productPath, $route);
 
-                    // category route
+                    /**
+                     * category route
+                     * The restriction on show is needed else categories like /pige/kjoler will match this
+                     */
                     $route = new Route("/{$path}/{show}/{pager}", [
                             '_controller'   => 'CategoryBundle:Default:view',
                             '_format'       => 'html',
                             'cms_id'        => $id,
                             'category_id'   => $settings->category_id,
                             'pager'         => 1,
-                            'show'          => 'overview',
+                            'show'          => 'look',
                             'ip_restricted' => true,
                         ], [
+                            'show' => 'look|overview',
                             '_format' => 'html|json',
                     ]);
                     $routes->add($categoryPath, $route);

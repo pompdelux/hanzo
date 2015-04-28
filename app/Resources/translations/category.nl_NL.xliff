@@ -79,7 +79,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-114">
                 <source>headers.category-114</source>
-                <target><![CDATA[<h1>Shorts/h1>
+                <target><![CDATA[<h1>Shorts</h1>
                 <p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-115">
@@ -199,7 +199,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-118">
                 <source>headers.category-118</source>
-                <target><![CDATA[<h1>Vesten</h1>
+                <target><![CDATA[<h1>Slipover</h1>
                 <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-119">
@@ -251,6 +251,94 @@
                 <source>headers.category-152</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>KIES MAAT</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>KIES KLEUR</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>KIES OEKO-TEX/Ecologi</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>JOUW KEUZE</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>WIS ALLES</target>
+      </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Toon resultaten</target>
+      </trans-unit>
+	   <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Buitenkleding</h1>
+                <p></p>]]></target>
+            </trans-unit><trans-unit id="headers.category-158">
+                <source>headers.category-158</source>
+                <target><![CDATA[<h1>Bovenkleding</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-159">
+                <source>headers.category-159</source>
+                <target><![CDATA[<h1>Onderkleding</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-160">
+                <source>headers.category-160</source>
+                <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-161">
+                <source>headers.category-161</source>
+                <target><![CDATA[<h1>Accessoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			 <trans-unit id="headers.category-162">
+                <source>headers.category-162</source>
+                <target><![CDATA[<h1>Buitenkleding</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-163">
+                <source>headers.category-163</source>
+                <target><![CDATA[<h1>Bovenkleding</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-164">
+                <source>headers.category-164</source>
+                <target><![CDATA[<h1>Onderkleding</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-165">
+                <source>headers.category-165</source>
+                <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-166">
+                <source>headers.category-166</source>
+                <target><![CDATA[<h1>Accessoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Meisje - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Jongen - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>AANBIEDINGEN</h1>
+                <p></p>]]></target>
             </trans-unit>
 			</body>
     </file>

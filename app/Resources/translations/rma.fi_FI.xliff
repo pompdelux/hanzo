@@ -13,7 +13,10 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>Pyyd&auml;mme sinua valitsemaan toiminnon ja syyn jokaiselle palautettavalle tuotteelle.<br>Kirjoita my&ouml;s kunkin tuotteen osalta mahdolliset kommentit. Jos palautat tuotteita useasta eri tilauksesta, t&auml;yt&auml; yksi palautuslomake tilausta kohti. L&auml;het&auml; palautettavat tuotteet kuitenkin samassa paketissa, vaikka ne olisivat eri tilauksista. Muista liitt&auml;&auml; palautuslomake/-lomakkeet mukaan pakettiisi. Lue lis&auml;&auml; palautuksesta palautuslomakkeesta, joka luodaan, kun napsautat Laadi palautuslomake -painiketta.<br><br>Lomakkeen avaamiseksi tarvitset ilmaisen Adobe Reader -ohjelman, jonka voit tarvittaessa ladata t&auml;st&auml;.<br />
+                    <p>Pyyd&auml;mme sinua valitsemaan toiminnon ja syyn jokaiselle palautettavalle tuotteelle.<br>Kirjoita my&ouml;s kunkin tuotteen osalta mahdolliset kommentit. Jos palautat tuotteita useasta eri tilauksesta, t&auml;yt&auml; yksi palautuslomake tilausta kohti. L&auml;het&auml; palautettavat tuotteet kuitenkin samassa paketissa, vaikka ne olisivat eri tilauksista. Muista liitt&auml;&auml; palautuslomake/-lomakkeet mukaan pakettiisi. Lue lis&auml;&auml; palautuksesta palautuslomakkeesta, joka luodaan, kun napsautat Laadi palautuslomake -painiketta.<br><br><h2 style="color:#A10000">Jos sinulla on ongelmia palautuslomakkeen täyttämisen tai tulostamisen kanssa, niin voit tulostaa sen <br>
+<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_FI.pdf">» täältä. </a> <br>
+Palautusetiketin saat tulostettua täältä <a href="https://www.pompdelux.com/fi_FI/"><i class="sprite returnlabel"></i></a></h2>
+<br><br>Lomakkeen avaamiseksi tarvitset ilmaisen Adobe Reader -ohjelman, jonka voit tarvittaessa ladata t&auml;st&auml;.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -123,7 +126,7 @@
 				On tärkeää, että tuote palautetaan tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai koko ostosumman takaisin.<br><br> 
 <b>Palautus, vaihto, reklamaatio</b><br>
 Jos haluat palauttaa tuotteen, voit käyttää palautusetikettiämme, jonka löydät Omilta Sivuilta ja jolla palautus on maksutonta.<br><br> 
-Jos haluat vaihtaa toiseen kokoon, väriin tai kokonaan toiseen tuotteeseen, palautuslähetys on maksuton, jos käytät palautusetikettiämme. Huomaa, että voit vaihtaa vain tuotteeseen, jonka hinta ei ylitä palautettavan tuotteen hintaa.<br><br> 
+Jos haluat vaihtaa toiseen kokoon, väriin tai kokonaan toiseen tuotteeseen, palautuslähetys on maksuton, jos käytät palautusetikettiämme. Huomaa, että voit vaihtaa vain tuotteeseen, jonka hinta ei ylitä palautettavan tuotteen hintaa. Huomaathan, ettei tuotteelle tule varausta.<br><br> 
 Palautuslähetys on maksuton myös siinä tapauksessa, jos haluat palauttaa reklamoitavan tai väärin toimitetun tuotteen ja käytät palautusetikettiämme.<br><br> 
 <b>Takaisinmaksu<b>
 Jos olet maksanut kortilla, palautussumma siirretään maksukortille, jota olet käyttänyt tilauksen yhteydessä.<br><br>
@@ -163,6 +166,58 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
                 <target><![CDATA[V&auml;ri]]></target>
+            </trans-unit>
+
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Nimi*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-tilausnumero*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Tuotteen nimi (katso nimi laskusta)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Reklamaatiokuvaus*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Lataa kuvia reklamaatiosta:<br>(enintään 5 kuvaa, yhteensä 10 Mt)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_heading">
+              <source>rma.claims.form.contact_heading</source>
+              <target>Hvordan vil du helst kontaktes?</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_phone_label">
+              <source>rma.claims.form.contact_phone_label</source>
+              <target>Puhelinnumero*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_email_label">
+              <source>rma.claims.form.contact_email_label</source>
+              <target>Sähköposti*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Lähetä reklamaatiolomake</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Pakollinen tieto</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Reklamaatiolomakkeesi on nyt lähetetty. Palaamme asiaan muutaman päivän kuluessa.</p>
+<p>Jos sinulla on kysyttävää, voit aina ottaa yhteyttä asiakaspalveluun, puh. (+45) 8678 7871.</p>]]>
+              </target>
             </trans-unit>
         </body>
     </file>

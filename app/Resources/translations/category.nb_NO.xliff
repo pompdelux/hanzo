@@ -14,7 +14,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-14">
                 <source>headers.category-14</source>
-                <target><![CDATA[<h1>Skalljakke og skalbukser</h1>
+                <target><![CDATA[<h1>Skalljakke og skallbukser</h1>
                 <p>En viktig del av ditt barns garderobe er yttertøyet. Finn din favoritt dunjakke, fleecejakke, vest eller parkdress blant mange farger og modeller. Alt vårt yttertøy er designet til å holde barnet ditt varm og tørt i all slags vær. Spesielt er vårt tekniske yttertøy i høy kvalitet og stor sikkerhet, og er derfor både vanntett, vindtett og pustende. Se også de mange detaljene som reflekser, avtakbar hette, vindfang, fotstropp og lommer. Våre jakker, overtrekksbukser, fleecejakker og parkdresser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-15">
@@ -149,7 +149,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-7">
                 <source>headers.category-7</source>
-                <target><![CDATA[<h1>Skalljakke og skalbukser</h1>
+                <target><![CDATA[<h1>Skalljakke og skallbukser</h1>
                 <p>En viktig del av ditt barns garderobe er yttertøyet. Finn din favoritt dunjakke, fleecejakke, vest eller parkdress blant mange farger og modeller. Alt vårt yttertøy er designet til å holde barnet ditt varm og tørt i all slags vær. Spesielt er vårt tekniske yttertøy i høy kvalitet og stor sikkerhet, og er derfor både vanntett, vindtett og pustende. Se også de mange detaljene som reflekser, avtakbar hette, vindfang, fotstropp og lommer. Våre jakker, overtrekksbukser, fleecejakker og parkdresser går fra størrelse 80 cm til 152 cm, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-8">
@@ -251,6 +251,94 @@
                 <source>headers.category-152</source>
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>For å fullende ditt barns garderobe kan kolleksjonen kombineres med våre mange skjønne accessories. POMPdeLUX har alt fra strømper, strømpebukser, leggings, hårpynt, seler, badetøy og belter til vanter, luer og skjerf. Vårt populære tilbehør matcher resten av kolleksjonen, og kan derfor kombineres med tøffe kjoler, lekre cardigans og kule bukser. Våre belter, seler, vanter, luer, skjerf og hårpynt kan brukes av jenter i alle aldre, og det er masse inspirasjon å hente til barnas garderobe.</p>]]></target>
+            </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>VELG STØRRELSE</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>VELG FARGE</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>VELG OEKO-TEX/ØKOLOGI</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>DITT VALG</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>RYDD ALT</target>
+      </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Vis resultat</target>
+      </trans-unit>
+	   <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Ytterklær</h1>
+                <p></p>]]></target>
+            </trans-unit><trans-unit id="headers.category-158">
+                <source>headers.category-158</source>
+                <target><![CDATA[<h1>Overdeler</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-159">
+                <source>headers.category-159</source>
+                <target><![CDATA[<h1>Underdeler</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-160">
+                <source>headers.category-160</source>
+                <target><![CDATA[<h1>Undertøy / Nattøy</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-161">
+                <source>headers.category-161</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			 <trans-unit id="headers.category-162">
+                <source>headers.category-162</source>
+                <target><![CDATA[<h1>Ytterklær</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-163">
+                <source>headers.category-163</source>
+                <target><![CDATA[<h1>Overdeler</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-164">
+                <source>headers.category-164</source>
+                <target><![CDATA[<h1>Underdeler</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-165">
+                <source>headers.category-165</source>
+                <target><![CDATA[<h1>Undertøy / Nattøy</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-166">
+                <source>headers.category-166</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Jente - SØK PÅ BARNETS STØRRELSE HER</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Gutt - SØK PÅ BARNETS STØRRELSE HER</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Tilbud</h1>
+                <p></p>]]></target>
             </trans-unit>
         </body>
     </file>

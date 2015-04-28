@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\LanguagesQuery;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Translation\Loader\XliffFileLoader;
 
 class IndexBuilder
 {
@@ -42,6 +43,24 @@ class IndexBuilder
             ->select('locale')
             ->find($connection)
         ;
+    }
+
+    /**
+     * Get translations from Catalogue
+     *
+     * @param $type
+     * @param $locale
+     * @return \Symfony\Component\Translation\MessageCatalogue
+     */
+    protected function getTranslationCatalogue($type, $locale)
+    {
+        $file = $this->translation_dir.$type.'.'.$locale.'.xliff';
+        if (!is_file($file)) {
+            return;
+        }
+
+        $parser = new XliffFileLoader();
+        return $parser->load($file, $locale, $type);
     }
 
 

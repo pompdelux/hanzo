@@ -67,5 +67,13 @@
         "branch-alias": {
             "dev-master": "2.5-dev"
         }
+    },
+    "require-dev": {
+        "behat/behat": "~3.0",
+        "behat/symfony2-extension": "~2.0",
+        "behat/mink-selenium2-driver": "~1.2",
+        "behat/mink": "~1.6",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-browserkit-driver": "~1.2"
     }
 }

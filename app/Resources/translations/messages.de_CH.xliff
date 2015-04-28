@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Leider sind keine Waren in der gewählten Kategorie mehr vorhanden, da wir uns auf eine neue Saison vorbereiten. Unsere neue SPRING/SUMMER15 Kollektion ist ab 12. Februar bei unseren Shopping Advisors und ab 16. Februar im Webshop erhältlich.</target>
+                <target>Es sind leider keine Produkte in dieser Kategorie zu finden. Bitte stellen Sie eine oder mehrere Ihrer Suchkriterien zurück. Sollte Ihre Suche dennoch keine Ergebnisse liefern, kann es sein, dass die Kategorie ausverkauft ist.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>

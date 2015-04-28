@@ -161,5 +161,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['compass', 'cssmin', 'modernizr', 'uglify']);
+    grunt.registerTask('build-css', ['compass', 'cssmin']);
+    grunt.registerTask('build-js', ['modernizr', 'uglify']);
 };
 

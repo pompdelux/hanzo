@@ -103,7 +103,7 @@ class DefaultController extends CoreController
             'page_type'        => $type,
             'body_classes'     => 'body-' . $type . ' body-page-' . $id . ' ' . $class,
             'page'             => $page,
-            'embedded_content' => $this->getEmbeddedContent($page),
+            'embedded_content' => $this->getEmbeddedContent($page, $request),
             'parent_id'        => ($page->getParentId()) ? $page->getParentId() : $id,
             'browser_title'    => $page->getTitle(),
         ]);
@@ -134,16 +134,37 @@ class DefaultController extends CoreController
      * @return string
      * @throws \Exception
      */
-    protected function getEmbeddedContent(Cms $page)
+    protected function getEmbeddedContent(Cms $page, Request $request)
     {
         $html = '';
         // Get any embedded cms/categories.
         $settings = $page->getSettings(null, false);
 
         if (isset($settings->embedded_page_id) && is_numeric($settings->embedded_page_id)) {
-            $category = $this->forward('CategoryBundle:Default:listCategoryProducts', ['cms_id' => $settings->embedded_page_id, 'show' => 'look']);
+            $category = $this->forward('CategoryBundle:Default:listCategoryProducts', [
+                'cms_id' => $settings->embedded_page_id,
+                'show'   => 'look',
+                'route'  => $request->get('_route'),
+            ]);
 
             $html = $category->getContent();
+        }
+        // Support for multiple arguments
+        // Note that the template just is displayed multiple times
+        elseif (isset($settings->embedded_page_id) && strpos($settings->embedded_page_id,',') !== false)
+        {
+            $ids = explode(',', $settings->embedded_page_id);
+            if (is_array($ids))
+            {
+                $ids = array_map('trim', $ids);
+
+                foreach ($ids as $id)
+                {
+                    $category = $this->forward('CategoryBundle:Default:listCategoryProducts', ['cms_id' => $id, 'show' => 'look']);
+
+                    $html .= $category->getContent();
+                }
+            }
         }
 
         return $html;

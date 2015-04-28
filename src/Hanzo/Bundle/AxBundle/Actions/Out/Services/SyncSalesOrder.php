@@ -313,11 +313,11 @@ class SyncSalesOrder extends BaseService
             }
 
             $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                'ItemId'          => 'POMPBIGBAGAW14',
+                'ItemId'          => 'POMPBIGBAGSS15',
                 'SalesPrice'      => $bigBagPrice,
                 'LineDiscPercent' => 100,
                 'SalesQty'        => 1,
-                'InventColorId'   => 'Off White',
+                'InventColorId'   => 'Grey',
                 'InventSizeId'    => 'One Size',
                 'SalesUnit'       => 'Stk.',
             ];
@@ -339,9 +339,11 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            // mellem 19/2'14 og 19/5'14
-            if (((20140828 <= $date) && (20141127 >= $date)) ||
-                ($this->inEdit && (20141127 >= $this->order->getCreatedAt('Ymd')))
+            $fromDate = 20150210;
+            $toDate   = 20151210;
+
+            if ((($fromDate <= $date) && ($toDate >= $date)) ||
+                ($this->inEdit && ($toDate >= $this->order->getCreatedAt('Ymd')))
             ) {
                 $bagPrice  = 0.00;
                 switch($domainKey) {
@@ -363,11 +365,11 @@ class SyncSalesOrder extends BaseService
                 }
 
                 $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                    'ItemId'          => 'POMPBAGAW14',
+                    'ItemId'          => 'POMPBAGSS15',
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
                     'SalesQty'        => 1,
-                    'InventColorId'   => 'Off White',
+                    'InventColorId'   => 'Grey',
                     'InventSizeId'    => 'One Size',
                     'SalesUnit'       => 'Stk.',
                 ];

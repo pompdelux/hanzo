@@ -1,0 +1,130 @@
+.filter-text {
+    text-transform: uppercase;
+
+    font-family: $font-sans;
+    font-size: $side-menu-size;
+    line-height: 1.8em;
+
+    span {
+        background-color: #969799;
+        color: #fff;
+        padding: 2px 6px;
+        white-space: nowrap;
+
+        a {
+            color: #000;
+            font-size: 0.6em;
+            font-weight: bold;
+            vertical-align: bottom;
+        }
+
+        &.last {
+            background-color: inherit;
+            a {
+                font-size: inherit;
+                font-weight: inherit;
+            }
+        }
+    }
+}
+
+.main > .grid_6.filter-text {
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+nav.filters-dropdowns {
+    background-color: transparent;
+    margin-bottom: 6px;
+
+    ul {
+        z-index: 180;
+    }
+
+    .outer > li {
+        &.first div {
+            margin-right: 6px
+        }
+
+        &.last {
+            /* The dropdowns are the same width as their "parent" so no need to move the last to the left */
+            &:hover {
+                > ul.floaded-right {
+                    margin-left: 6px;
+                }
+            }
+            > ul {
+                margin-left: 6px;
+            }
+            div {
+                margin-left: 6px;
+            }
+        }
+
+        &.fix-long-eco-name {
+            > ul {
+                > li.item {
+                    width: 200px;
+                }
+            }
+        }
+
+        > ul {
+            @include opacity(1);
+            width: 234px;
+            background-color: $filter-dropdown-hover-bg-color;
+            padding-top: 1em;
+
+            label {
+                color: #fff;
+                margin-top: 2px;
+                vertical-align: top;
+                width: auto;
+            }
+
+            input {
+                background-color: $filter-dropdown-hover-bg-color;
+                padding: 0;
+                margin: 3px 0 0 0;
+            }
+
+            > li {
+                /* "Clear all ^" element */
+                &:last-child {
+                    width: 216px;
+                }
+                &.item {
+                    &:nth-child(odd) {
+                        margin-left: 0;
+                    }
+                    padding: 5px 8px;
+                    width: 100px;
+                    float: left;
+                }
+            }
+        }
+        > div {
+            text-transform: uppercase;
+            width: 224px;
+            text-align: center;
+            color: #fff;
+            background-color: $filter-dropdown-hover-bg-color;
+            padding: 10px 10px 10px 0;
+        }
+
+        .fa-angle-up,
+        .fa-angle-down {
+            float: right;
+            margin-right: 2px;
+            color: #000;
+        }
+
+        &.open {
+
+            .fa-angle-down {
+                /* Can not use Display:none, since there is a margin */
+                color: #a2a2a2;
+            }
+        }
+    }
+}

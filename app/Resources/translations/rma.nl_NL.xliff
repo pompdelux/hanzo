@@ -13,7 +13,9 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
+                    <p>Voor elk artikel dat je wilt retourneren moet je een activiteit en oorzaak vermelden. Noteer bij elk artikel eventuele opmerkingen. Retourneer je artikelen van verschillende orders, dan moet je voor elke order een afzonderlijk retourformulier invullen. Je retourartikelen stuur je natuurlijk in één pakketje, ongeacht of het hierbij om verschillende orders gaat. Denk eraan om het (de) retourformulier(en) bij je pakketje te doen. Lees meer over retourneren op het retourformulier dat je maakt door op de knop “Retourformulier maken” te klikken.<br><br><h2 style="color:#A10000">Lukt het niet om het retourformulier in te vullen en/of te uit te printen, kun je het in plaats daarvan <br>
+<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NL.pdf" target="_blank">» hier uitprinten.</a> <br>
+<br><br>Om het formulier te kunnen zien, moet je het gratis programma Adobe Reader hebben. Heb je dat niet op je computer geïnstalleerd, dan kun je het programma hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -119,7 +121,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bij POMPdeLUX is het eenvoudig om te ruilen en retourneren. <br>Wil je artikelen retourneren naar POMPdeLUX, vul dan graag het meegestuurde retourformulier in en stuur het in de oorspronkelijke verpakking met de prijskaartjes enz. eraan terug.<br><br>Retourneer je een beschadigd of verkeerd geleverd artikel, dan betaal je geen verzendkosten. <br><br>Wil je ruilen voor een andere maat, kleur of artikel, dan is dat ook gratis.<br><br>Het nieuwe artikel mag niet duurder zijn dan het artikel dat je hebt teruggestuurd. Als het artikel dat je wilt hebben is uitverkocht, betalen we je je geld terug. Heb je betaald met een creditcard, dan wordt het bedrag teruggestort op de creditcard die je voor de bestelling hebt gebruikt.<br><br><em>Heb je gebruik gemaakt van PayPal, wordt het bedrag terug gestort op je PayPal-account.</em>Heb je PayByBill gebruikt, dan verzoeken we je contact op te nemen met Gothia BV - Klantenservice via tel: 078 - 751 80 22 of e-mail: <a href="afsinfo.nl@gothiagroup.com" target="_blank">afsinfo.nl@gothiagroup.com</a><br><b>Let op:</b>hoewel je voor je retourzending een creditnota zult ontvangen, moet je je factuur nog steeds binnen de 30 dagen betalen. Voor meer informatie zie: <a href="/nl_NL/" target="_blank">www.pompdelux.nl</a></p>]]></target>
+                <target><![CDATA[<p>Bij POMPdeLUX is het eenvoudig om te ruilen en retourneren. <br>Wil je artikelen retourneren naar POMPdeLUX, vul dan graag het meegestuurde retourformulier in en stuur het in de oorspronkelijke verpakking met de prijskaartjes enz. eraan terug.<br><br>Retourneer je een beschadigd of verkeerd geleverd artikel, dan betaal je geen verzendkosten. <br><br>Wil je ruilen voor een andere maat, kleur of artikel, dan is dat ook gratis.<br><br>Het nieuwe artikel mag niet duurder zijn dan het artikel dat je hebt teruggestuurd. Wees er op attent, dat het artikel niet gereserveerd kan worden. Als het artikel dat je wilt hebben is uitverkocht, betalen we je je geld terug. Heb je betaald met een creditcard, dan wordt het bedrag teruggestort op de creditcard die je voor de bestelling hebt gebruikt.<br><br><em>Heb je gebruik gemaakt van PayPal, wordt het bedrag terug gestort op je PayPal-account.</em>Heb je PayByBill gebruikt, dan verzoeken we je contact op te nemen met Gothia BV - Klantenservice via tel: 078 - 751 80 22 of e-mail: <a href="afsinfo.nl@gothiagroup.com" target="_blank">afsinfo.nl@gothiagroup.com</a><br><b>Let op:</b>hoewel je voor je retourzending een creditnota zult ontvangen, moet je je factuur nog steeds binnen de 30 dagen betalen. Voor meer informatie zie: <a href="/nl_NL/" target="_blank">www.pompdelux.nl</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
@@ -152,6 +154,58 @@
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
                 <target><![CDATA[Kleur]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Naam*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-ordrenummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Naam artikel (deze naam staat op je factuur)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Beschrijving reclamatie*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Upload foto’s van de reclamatie:<br>(maximaal 5 foto’s van totaal 10MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_heading">
+              <source>rma.claims.form.contact_heading</source>
+              <target>Hvordan vil du helst kontaktes?</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_phone_label">
+              <source>rma.claims.form.contact_phone_label</source>
+              <target>Telefoonnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.contact_email_label">
+              <source>rma.claims.form.contact_email_label</source>
+              <target>E-mail*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Verstuur het reclamatieformulier</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Verplichte velden</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Je reclamatieformulier is nu verzonden en we zullen binnen een paar dagen contact met je opnemen over je reclamatie.</p>
+<p>Heb je nog vragen, dan kun je altijd contact opnemen met onze klantenservice op telefoonnummer 085-3001100.</p>
+                ]]>
+              </target>
             </trans-unit>
         </body>
     </file>

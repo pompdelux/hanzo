@@ -252,6 +252,94 @@
                 <target><![CDATA[<h1>Accessories</h1>
                 <p>To complete your child’s wardrobe the collection can be combined with our many cute accessories. POMPdeLUX has everything from socks, leggings, tights, hair accessories, swimwear, suspenders and belts to mittens, hats and scarves. Our popular accessories match the rest of the collection and can therefore be combined with smart dresses, lovely cardigans and cool trousers. Our belts, suspenders, mittens, hats, scarves and hair accessories can be used by girls of all ages and there is lots of inspiration to be discovered for children’s wardrobe. </p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>CHOOSE SIZE</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>CHOOSE COLOUR</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>CHOOSE OEKO-TEX/ORGANIC</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Your choice</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Clear all</target>
+      </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Show results</target>
+      </trans-unit>
+	     <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Outerwear</h1>
+                <p></p>]]></target>
+            </trans-unit><trans-unit id="headers.category-158">
+                <source>headers.category-158</source>
+                <target><![CDATA[<h1>Top clothing</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-159">
+                <source>headers.category-159</source>
+                <target><![CDATA[<h1>Bottom clothing</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-160">
+                <source>headers.category-160</source>
+                <target><![CDATA[<h1>Underwear and nightwear</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-161">
+                <source>headers.category-161</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			 <trans-unit id="headers.category-162">
+                <source>headers.category-162</source>
+                <target><![CDATA[<h1>Outerwear</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-163">
+                <source>headers.category-163</source>
+                <target><![CDATA[<h1>Top clothing</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-164">
+                <source>headers.category-164</source>
+                <target><![CDATA[<h1>Bottom clothing</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-165">
+                <source>headers.category-165</source>
+                <target><![CDATA[<h1>Underwear and nightwear</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-166">
+                <source>headers.category-166</source>
+                <target><![CDATA[<h1>Accessories</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Girl - Choose your child’s size here</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Boy - Choose your child’s size here</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Offers</h1>
+                <p></p>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

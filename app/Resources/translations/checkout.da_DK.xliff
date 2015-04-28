@@ -84,11 +84,11 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bemærk:</strong> Din ordre bliver først afsendt, når alle varer er på lager.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -357,7 +357,11 @@
         <source>discount.gift</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+       <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>PIGE</target>
       </trans-unit>

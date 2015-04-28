@@ -30,7 +30,7 @@
 
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
 
 <!--[if lt IE 9]>
@@ -38,6 +38,8 @@
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
+{# Must be right after body tag: https://developers.google.com/tag-manager/devguide#datalayer #}
+{{ google_tag_manager() }}
 {% include '::inlineEditMenu.html.twig' %}
 
 <div class="top-bar"></div>
@@ -103,7 +105,7 @@
             {% endif %}
         {% endif %}
 
-        <nav class="menu main-menu clearfix">
+        <nav class="menu main-menu category-menu clearfix">
             {{ render(controller('CMSBundle:Menu:menu', {
                 'type':   left_menu.type,
                 'thread': left_menu.thread,

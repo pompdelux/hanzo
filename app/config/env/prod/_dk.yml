@@ -94,13 +94,11 @@ consignor:
                 phone: "+45 8678 7871"
 
 google:
-    analytics_code: UA-1793665-1
-    conversion_id:  976104979
     site_verification:
         - "UofA3REZ5SFYNzo-zNzIHkhOUDo3qblDAQadaNRk_2s"
         - "V6U4jsJtOJKEOK7J3Hkw9mTz344Yb7FYsNpjbCm3dQg"
         - "wLHjgqyCGImP2YG1fA_y_rggXUwLHJ1M0ym2Omxj95Q" # katrine
-    addwords:
-        conversion:
-            id: 976104979
-            label: VxRuCK2O_goQk9y40QM
+    tag_manager:
+        gtm_id:             "GTM-NKC8X3"
+        enabled_datalayers:
+            - Ecommerce

@@ -252,6 +252,95 @@
                 <target><![CDATA[<h1>Accesoires</h1>
                 <p>Um die Garderobe Ihres Kindes zu vervollständigen, kann die Kollektion mit unseren vielen schönen Accessoires kombiniert werden. POMPdeLUX hat von Strumpfhosen, Leggings über Haarschmuck, Badebekleidung, Hosenträger und Gürtel zu Handschuhen, Mützen und Schals alles da. Unsere beliebten Accessoires passen zur übrigen Kollektion und können daher mit smarten Kleidern, schicken Cardigans und coolen Hosen kombiniert werden. Unsere Gürtel, Hosenträger, Handschuhe, Mützen, Schals und Haarschmuck können von Mädchen jeden Alters verwendet werden und es gibt viele Anregungen für die Garderobe Ihrer Kinder.</p>]]></target>
             </trans-unit>
+			<trans-unit id="faceted.dropdown.size">
+        <source>faceted.dropdown.size</source>
+        <target>Grösse wählen</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.color">
+        <source>faceted.dropdown.color</source>
+        <target>Farbe wählen</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.eco">
+        <source>faceted.dropdown.eco</source>
+        <target>OEKO-TEX / BIO-PRODUKTE wählen</target>
+      </trans-unit>
+	  <trans-unit id="faceted.selected_filters">
+        <source>faceted.selected_filters</source>
+        <target>Ihre Wahl</target>
+      </trans-unit>
+	  <trans-unit id="faceted.clear_all">
+        <source>faceted.clear_all</source>
+        <target>Alles zurücksetzen</target>
+      </trans-unit>
+	  <trans-unit id="faceted.show_results">
+        <source>faceted.show_results</source>
+        <target>Ergebnisse anzeigen</target>
+      </trans-unit>
+	  <trans-unit id="headers.category-157">
+                <source>headers.category-157</source>
+                <target><![CDATA[<h1>Oberbekleidung</h1>
+                <p></p>]]></target>
+            </trans-unit>
+	  <trans-unit id="headers.category-158">
+                <source>headers.category-158</source>
+                <target><![CDATA[<h1>Oberteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-159">
+                <source>headers.category-159</source>
+                <target><![CDATA[<h1>Unterteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-160">
+                <source>headers.category-160</source>
+                <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-161">
+                <source>headers.category-161</source>
+                <target><![CDATA[<h1>Accesoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			 <trans-unit id="headers.category-162">
+                <source>headers.category-162</source>
+                <target><![CDATA[<h1>Oberbekleidung</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-163">
+                <source>headers.category-163</source>
+                <target><![CDATA[<h1>Oberteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-164">
+                <source>headers.category-164</source>
+                <target><![CDATA[<h1>Unterteile</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-165">
+                <source>headers.category-165</source>
+                <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-166">
+                <source>headers.category-166</source>
+                <target><![CDATA[<h1>Accesoires</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-168">
+                <source>headers.category-168</source>
+                <target><![CDATA[<h1>Mädchen - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-169">
+                <source>headers.category-169</source>
+                <target><![CDATA[<h1>Junge - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>
+                <p></p>]]></target>
+            </trans-unit>
+			<trans-unit id="headers.category-141">
+                <source>headers.category-141</source>
+                <target><![CDATA[<h1>Angebot</h1>
+                <p></p>]]></target>
+            </trans-unit>
 	</body>
     </file>
 </xliff>
