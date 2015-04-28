@@ -21,7 +21,7 @@ ADD ./add-files/dotdeb.list /etc/apt/sources.list.d/dotdeb.list
 
 RUN apt-get -q -y update;\
   apt-get -q -y upgrade;\
-  apt-get -q -y install ssh vim pwgen locales mysql-server-5.5 mysql-client-5.5 redis-server redis-tools beanstalkd
+  apt-get -q -y install ssh vim pwgen locales mysql-server-5.5 redis-server redis-tools beanstalkd
 
 # Locales
 RUN sed -i -e 's/# da_DK.UTF-8/da_DK.UTF-8/' /etc/locale.gen;\

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --rm -t hf/pompdelux-web:wheezy .
+docker build --rm -t bellcom/pompdelux-web:wheezy .
