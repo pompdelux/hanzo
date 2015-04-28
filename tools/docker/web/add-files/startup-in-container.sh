@@ -6,4 +6,11 @@ service nginx start
 
 mailcatcher
 
+
+# Create logs directory
+if [[ ! -d /var/www/logs ]]; then
+    mkdir /var/www/logs
+    chown -R www-data: /var/www/logs
+fi
+
 tail -f /var/log/dmesg

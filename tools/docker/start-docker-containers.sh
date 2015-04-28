@@ -17,6 +17,11 @@ if [[ -n $RUNNING_CONTAINERS ]]; then
   docker stop $RUNNING_CONTAINERS
 fi
 
+# Create logs directory
+if [[ ! -d ../../../../logs ]]; then
+    mkdir ../../../../logs
+fi
+
 # Not the prettiest way, but the output changes to much to cut -c is usefull, and using word delimiters in grep also fails if the name is used in the image name
 CONTAINER_EXIST=`docker ps -a | grep -c " $NAME "`
 if [[ $CONTAINER_EXIST > 0 ]]; then
