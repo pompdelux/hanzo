@@ -445,8 +445,14 @@ class MiscExtension extends Twig_Extension
                     return $html;
                 }
                 break;
+
             case "rma_form":
-                $template = 'RMABundle:Upload:form.html.twig';
+                $template   = 'RMABundle:Upload:form.html.twig';
+                $parameters = [];
+                break;
+
+            case 'job_application_form':
+                $template   = 'CMSBundle:Twig:job_application_form.html.twig';
                 $parameters = [];
                 break;
         }
