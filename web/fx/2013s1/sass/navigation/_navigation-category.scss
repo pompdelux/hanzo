@@ -1,0 +1,210 @@
+// Library import
+@import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
+
+// Category menu
+nav.category-menu {
+    background-color: #484a4d;
+    padding: 0;
+
+    // Outer
+    > ul.outer {
+        position: relative;
+        width: 100%;
+
+        // List item (first layer only)
+        > li {
+            position: static;
+            float: left;
+
+            // Link (all)
+            a {
+                display: block;
+                color: #fff;
+                letter-spacing: 1px;
+            }
+
+            // Link (first layer)
+            > a {
+                font-size: 14px;
+                letter-spacing: .8px;
+                padding: 10px 15px;
+
+                // After
+                &:after {
+                    content: "\f107";
+                    display: inline-block;
+                    font-family: FontAwesome;
+                    font-style: normal;
+                    font-weight: normal;
+                    text-decoration: inherit;
+                    font-size: 18px;
+                    margin-left: 0.5em;
+                }
+            }
+
+            // Dropdown menu
+            > ul {
+                display: none;
+                position: absolute;
+                list-style: none;
+                top: 100%;
+                left: 0;
+                right: 0;
+                @include box-shadow(#676767 2px 2px 2px);
+                background-color: $category-menu-hover-bg-color;
+                padding: 2em 0 1em 0;
+                z-index: 150;
+
+                // List item
+                > li {
+                    width: 11em;
+                    float: left;
+                    padding: 0 1em 0 0;
+                    letter-spacing: 1.5px;
+
+                    // Link
+                    > a {
+                        font-weight: bold;
+                    }
+
+                    // Link (all)
+                    a {
+                        font-size: $main-menu-size;
+                        margin: 0;
+                        padding-left: 15px;
+                        white-space: normal;
+
+                        // Hover and focus state
+                        &:hover,
+                        &:focus {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    // Secondary list
+                    > ul {
+                        padding-top: 0.5em;
+
+                        // List item
+                        li {
+                            padding: 0 0 0.5em;
+                        }
+                    }
+                }
+            }
+
+            // Last list item
+            &.last {
+                float: right;
+                position: relative;
+
+                // Link
+                > a {
+                    padding-right: 15px;
+                }
+
+                // Dropdown menu
+                > ul {
+                    left: auto;
+                    min-width: 200px;
+
+                    // List item
+                    > li {
+                        display: block;
+                        float: none;
+                        padding: 0 0 0.5em;
+                        width: auto;
+
+                        // Link
+                        > a {
+                            display: block;
+                            font-weight: normal;
+                            text-transform: none;
+                            white-space: nowrap;
+                            padding-right: 15px;
+                        }
+                    }
+                }
+            }
+
+            // List item with open dropdown menu
+            &.open {
+                background-color: $category-menu-hover-bg-color;
+            }
+        }
+
+        // Clearfix hack taken from Bootstrap
+        &:before,
+        &:after {
+            content: " "; // 1
+            display: table; // 2
+        }
+        &:after {
+            clear: both;
+        }
+    }
+
+    /* element injected using js */
+    .menu-close {
+        padding: 0;
+        width: 929px;
+        text-align: right;
+        a {
+            font-weight: normal;
+            font-size: 18px;
+        }
+    }
+}
+
+// Touch
+.touch {
+
+  // Category menu
+  nav.category-menu {
+
+    // Outer
+    > ul.outer {
+
+      // List item (first layer only)
+      > li {
+
+        // Open
+        &.open {
+          background-color: $category-menu-hover-bg-color;
+
+          // Dropdown menu
+          > ul {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+// No touch
+.no-touch {
+
+  // Category menu
+  nav.category-menu {
+
+    // Outer
+    > ul.outer {
+
+      // List item (first layer only)
+      > li {
+
+        // Open
+        &:hover {
+          background-color: $category-menu-hover-bg-color;
+
+          // Dropdown menu
+          > ul {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
