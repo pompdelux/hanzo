@@ -60,7 +60,38 @@ switch ($request->get('action')) {
         $errors    = [];
 
         /** @var UploadedFile $upload */
+        // Images
         foreach ($request->files->get('images') as $upload) {
+            if (!$upload instanceof UploadedFile) {
+                continue;
+            }
+
+            if (UPLOAD_ERR_OK === $upload->getError()) {
+                if (!is_dir($uploadsDir)) {
+                    mkdir($uploadsDir, 0700, true);
+                }
+
+                $name = uniqid() . '_' . $upload->getClientOriginalName();
+
+                while (file_exists($uploadsDir . '/' . $name)) {
+                    $name = uniqid() . '_' . $upload->getClientOriginalName();
+                }
+
+                $fileNames[] = $uploadsDirWebPath.'/'.$name;
+
+                $upload->move($uploadsDir, $name);
+                continue;
+            }
+
+            // if not ok, error ...
+            $errors[] = [
+                'type'  => 'upload',
+                'value' => $upload->getError()
+            ];
+        }
+
+        // Resumes
+        foreach ($request->files->get('resumes') as $upload) {
             if (!$upload instanceof UploadedFile) {
                 continue;
             }
