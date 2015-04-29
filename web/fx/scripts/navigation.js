@@ -58,12 +58,12 @@ $(document).ready(function() {
         // Configuration
         var navigation = $('nav.category-menu'),
             navigation_container = navigation.find('> ul.outer'),
-            toggle_links = navigation_container.find('> li > a');
+            toggle = navigation_container.find('> li > a');
 
-        // Click on visible link (toggle)
-        toggle_links.on('click', function(event) {
+        // Click on toggle
+        toggle.on('click', function(event) {
 
-            // Get configurations
+            // Configuration
             var parent = $(this).parent(),
                 dropdown_menu = $(this).parent().find('> ul');
 
@@ -79,27 +79,19 @@ $(document).ready(function() {
         });
     }
 
-    //    navigation_link_container = navigation.find('ul.outer');
-    //
-    //// Link is clicked (first layer links)
-    //navigation_link_container.find('> li > a').on('click', function(event) {
-    //    var parent = $(this).parent(),
-    //        dropdown_menu = $(this).parent().find('> ul');
-    //
-    //    // Link has a submenu
-    //    if(dropdown_menu.length > 0) {
-    //
-    //        // Toggle 'open' class
-    //        parent.toggleClass('open');
-    //
-    //        // Don't follow links href
-    //        event.preventDefault();
-    //    }
-    //});
-
     // Filters
     if(Modernizr.touch) {
 
-        
+        // Configuration
+        var filter = $('nav.filter-dropdown'),
+            filter_container = filter.find('> ul.outer'),
+            toggle = filter_container.find('> li');
+
+        // Click on toggle
+        toggle.on('click', function() {
+
+            // Toggle 'open' class
+            $(this).toggleClass('open');
+        });
     }
 });
