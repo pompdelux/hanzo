@@ -162,7 +162,7 @@ class DefaultController extends CoreController
 
         switch (strtolower($request->getLocale())) {
             case 'da_dk':
-                $to = 'mn@bellcom.dk';
+                $to = 'jobdk@pompdelux.com';
                 break;
             case 'de_de':
                 $to = 'jobde@pompdelux.com';
