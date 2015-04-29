@@ -119,7 +119,7 @@ switch ($request->get('action')) {
         // Send data back to Symfony so it can send mails
         $data = ['files' => $fileNames, 'data' => $verifiedData, 'errors' => $errors];
         $url  = $_POST['callback_url'];
-error_log($url);
+
         $guzzleClient = new \Guzzle\Http\Client();
         $response = $guzzleClient->post($url, ['Content-type' => 'application/json'], json_encode($data))->send();
 
