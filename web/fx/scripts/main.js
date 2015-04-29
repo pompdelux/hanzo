@@ -297,7 +297,6 @@
                 });
 
                 xhr.done(function(data) {
-                    console.log(data);
                     if (data.error === true) {
                         $message.html(data.error_msg).addClass('error').removeClass('hidden');
                     } else {
@@ -307,7 +306,6 @@
                 });
 
                 xhr.fail(function(err) {
-                    console.log(err);
                     $message.html("An unexpected error occurred").addClass('error').removeClass('hidden');
                 });
 
@@ -352,5 +350,9 @@
     gui.initBasket();
     gui.initToTop();
     gui.initSearchForm();
+
+    if ($("form#job-application-form").length) {
+        gui.initJobApplication();
+    }
 
 })(jQuery, document);
