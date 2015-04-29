@@ -8,7 +8,7 @@ default:
         - FeatureContext
         - Behat\MinkExtension\Context\MinkContext
       filters:
-        tags: ~@consultant
+        tags: ~@consultant&&~@de_DE
   extensions:
     Behat\Symfony2Extension: ~
     Behat\MinkExtension:
@@ -27,3 +27,12 @@ consultant:
   extensions:
     Behat\MinkExtension:
       base_url: 'https://c.pompdelux.com/da_DK/'
+
+de_DE:
+  suites:
+    default:
+      filters:
+        tags: @de_DE
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://pompdelux.com/de_DE/'
