@@ -2711,6 +2711,30 @@ abstract class BaseCms extends BaseObject implements Persistent
         return $this;
     }
 
+
+        /**
+         * Get the [only_mobile] column value.
+         *
+         * @return boolean
+         */
+        public function getOnlyMobile()
+        {
+        return $this->getCurrentTranslation()->getOnlyMobile();
+    }
+
+
+        /**
+         * Set the value of [only_mobile] column.
+         *
+         * @param  boolean $v new value
+         * @return CmsI18n The current object (for fluent API support)
+         */
+        public function setOnlyMobile($v)
+        {    $this->getCurrentTranslation()->setOnlyMobile($v);
+
+        return $this;
+    }
+
     // timestampable behavior
 
     /**
