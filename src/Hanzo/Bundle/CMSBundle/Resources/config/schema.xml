@@ -330,7 +330,7 @@
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="name" type="VARCHAR" size="32" required="true"/>
         <column name="local_name" type="VARCHAR" size="45" required="true"/>
-        <column name="locale" type="VARCHAR" size="5" required="true"/>
+        <column name="locale" type="VARCHAR" size="12" required="true"/>
         <column name="iso2" type="VARCHAR" size="2" required="true"/>
         <column name="direction" type="VARCHAR" size="3" required="true" defaultValue="ltr"/>
         <index name="languages_index_3">
