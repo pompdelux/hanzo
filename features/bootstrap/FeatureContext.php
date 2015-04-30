@@ -122,4 +122,28 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $time = 5000; // time should be in milliseconds
         $this->getSession()->wait($time, '(0 === jQuery.active)');
     }
+
+    /**
+     * @When /^I hover over the element "([^"]*)"$/
+     */
+    public function iHoverOverTheElement($locator)
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
+        }
+
+        // ok, let's hover it
+        $element->mouseOver();
+    }
+    /**
+     * @Given the following menu items exist:
+     */
+    public function theFollowingMenuItemsExist(TableNode $table)
+    {
+        throw new PendingException();
+    }
 }
