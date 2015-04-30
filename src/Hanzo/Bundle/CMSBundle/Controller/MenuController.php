@@ -559,11 +559,15 @@ class MenuController extends CoreController
      */
     public function byTitleAction($title, $parent_id = null)
     {
+        $request     = $this->get('request');
+        $this->device = $request->attributes->get('_x_device');
+
         $cache_id = [
             (int) $this->getRequest()->attributes->get('admin_enabled'),
             'menu',
             $title,
-            $this->getRequest()->getRequestUri()
+            $this->getRequest()->getRequestUri(),
+            $this->device,
         ];
         $html = $this->getCache($cache_id);
 
@@ -595,7 +599,6 @@ class MenuController extends CoreController
         if (!$locale) {
             $request     = $this->get('request');
             $current_uri = $request->getPathInfo();
-            $this->device = $request->attributes->get('_x_device');
             $locale      = $request->getLocale();
         }
 
