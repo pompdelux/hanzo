@@ -1,0 +1,406 @@
+// Library import
+@import "../../../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/box-shadow";
+@import "../../../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/opacity";
+
+// Main navigation
+nav.navigation-main {
+  background-color: #484a4d;
+  padding: 0;
+
+  // Outer
+  > ul.outer {
+    position: relative;
+    width: 100%;
+
+    // List item (first layer only)
+    > li {
+      position: static;
+      float: left;
+
+      // Link (all)
+      a {
+        display: block;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      // Link (first layer)
+      > a {
+        font-size: 14px;
+        letter-spacing: .8px;
+        padding: 10px 15px;
+
+        // After
+        &:after {
+          content: "\f107";
+          display: inline-block;
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+          font-size: 18px;
+          margin-left: 0.5em;
+        }
+      }
+
+      // Dropdown menu
+      > ul {
+        display: none;
+        position: absolute;
+        list-style: none;
+        top: 100%;
+        left: 0;
+        right: 0;
+        @include box-shadow(#676767 2px 2px 2px);
+        background-color: $category-menu-hover-bg-color;
+        padding: 2em 0 1em 0;
+        z-index: 150;
+
+        // List item
+        > li {
+          width: 11em;
+          float: left;
+          padding: 0 1em 0 0;
+          letter-spacing: 1.5px;
+
+          // Link
+          > a {
+            font-weight: bold;
+          }
+
+          // Link (all)
+          a {
+            font-size: $main-menu-size;
+            margin: 0;
+            padding-left: 15px;
+            white-space: normal;
+
+            // Hover and focus state
+            &:hover,
+            &:focus {
+              text-decoration: underline;
+            }
+          }
+
+          // Secondary list
+          > ul {
+            padding-top: 0.5em;
+
+            // List item
+            li {
+              padding: 0 0 0.5em;
+            }
+          }
+        }
+      }
+
+      // Last list item
+      &.last {
+        float: right;
+        position: relative;
+
+        // Link
+        > a {
+          padding-right: 15px;
+        }
+
+        // Dropdown menu
+        > ul {
+          left: auto;
+          min-width: 200px;
+
+          // List item
+          > li {
+            display: block;
+            float: none;
+            padding: 0 0 0.5em;
+            width: auto;
+
+            // Link
+            > a {
+              display: block;
+              font-weight: normal;
+              text-transform: none;
+              white-space: nowrap;
+              padding-right: 15px;
+            }
+          }
+        }
+      }
+
+      // List item with open dropdown menu
+      &.open {
+        background-color: $category-menu-hover-bg-color;
+      }
+    }
+
+    // Clearfix hack taken from Bootstrap
+    &:before,
+    &:after {
+      content: " "; // 1
+      display: table; // 2
+    }
+    &:after {
+      clear: both;
+    }
+  }
+
+  /* element injected using js */
+  .menu-close {
+    padding: 0;
+    width: 929px;
+    text-align: right;
+    a {
+      font-weight: normal;
+      font-size: 18px;
+    }
+  }
+}
+
+// Touch
+.touch {
+
+  // Main navigation
+  nav.navigation-main {
+
+    // Outer
+    > ul.outer {
+
+      // List item (first layer only)
+      > li {
+
+        // Open
+        &.open {
+          background-color: $category-menu-hover-bg-color;
+
+          // Dropdown menu
+          > ul {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+// No touch
+.no-touch {
+
+  // Main navigation
+  nav.navigation-main {
+
+    // Outer
+    > ul.outer {
+
+      // List item (first layer only)
+      > li {
+
+        // Open
+        &:hover {
+          background-color: $category-menu-hover-bg-color;
+
+          // Dropdown menu
+          > ul {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+| _topmenu
+*/
+@import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
+
+nav.main-menu {
+  background: #484a4d;
+  padding: 0;
+  ul.topmenu {
+    &.outer {
+      margin: 0 auto;
+    }
+  }
+  ul {
+    z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    &.outer {
+      display: table;
+    }
+  }
+  // Main menu-items
+  > ul > li {
+    float: left;
+    width: auto;
+    position: relative;
+    // Hover effect on sub-menus. .on class are used on touch devices.
+    > ul.on,
+    &:hover > ul {
+      left: 0;
+      top: auto;
+      z-index: 150;
+    }
+    &.last:hover > ul.floaded-right {
+      left: initial;
+    }
+    &.last > a {
+      padding-right: 0;
+    }
+    > {
+      a {
+        letter-spacing: .8px;
+        padding: 10px 20px 10px 0;
+        display: block;
+        font-size: 14px;
+        color: white;
+      }
+      // Sub menu-items
+      ul {
+        position: absolute;
+        left: -9999px;
+        border-top: 0;
+        width: 250px;
+        z-index: 1;
+        background-color: #fff;
+        font-family: $font-sans;
+        font-size: $side-menu-size;
+        line-height: $side-menu-line-height;
+        @include opacity(0.95);
+        @include box-shadow(#676767 2px 2px 2px);
+        > li {
+          float: none;
+          padding: 10px 8px;
+          width: 200px;
+          // Sub Sub menu-items
+          > ul {
+            li {
+              float: none;
+              padding-top: 12px;
+            }
+          }
+        }
+        li {
+          &.floaded {
+            float: left;
+          }
+          &.heading > a,
+          &.self-included > a{
+            font-weight: bold;
+            display: block;
+            line-height: 18px;
+            text-decoration: none;
+            padding: 3px 0 3px 0px;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+nav.category-menu {
+  ul {
+    &.outer {
+      width: 100%;
+      .open {
+        background-color: $category-menu-hover-bg-color;
+      }
+      > .last {
+        float: right;
+      }
+      > .first {
+        padding-left: 5px;
+      }
+    }
+  }
+  /* element injected using js */
+  .menu-close {
+    padding: 0;
+    width: 929px;
+    text-align: right;
+    a {
+      font-weight: normal;
+      font-size: 18px;
+    }
+  }
+  > ul > li {
+    &.last {
+      margin-right: 10px;
+    }
+    a {
+      margin-left: 10px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    > a:after {
+      content: "\f107";
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      font-size: 18px;
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+    > {
+      ul {
+        @include opacity(1);
+        background-color: $category-menu-hover-bg-color;
+        padding: 2em 0 1em 15px;
+        width: 939px;
+        > li {
+          width: 11em;
+          float: left;
+          padding: 0 1em 0 0;
+          letter-spacing: 1.5px;
+          > a {
+            font-weight: bold;
+          }
+          a {
+            margin: 0;
+            white-space: normal;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          > ul {
+            padding-top: 0.5em;
+            li {
+              padding: 0 0 0.5em;
+            }
+          }
+        }
+
+        &.floaded-right {
+          li {
+            float: none;
+            white-space: nowrap;
+
+            a {
+              font-weight: normal;
+              line-height: 2em;
+              letter-spacing: 1.3px;
+              text-transform: none;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.consultant nav.main-menu > ul > li > a {
+  font-size: $font-size;
+}
+
+/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
+nav.category-menu > ul > li {
+  position: initial;
+}
