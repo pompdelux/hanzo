@@ -56,7 +56,7 @@ $(document).ready(function() {
     if(Modernizr.touch) {
 
         // Configuration
-        var navigation = $('nav.category-menu'),
+        var navigation = $('nav.navigation-main'),
             navigation_container = navigation.find('> ul.outer'),
             toggle = navigation_container.find('> li > a');
 
