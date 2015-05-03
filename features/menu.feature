@@ -17,3 +17,9 @@ Feature: Menu
     Given I am on the homepage
     When I hover over the element "li a.page-609"
     Then I should not see "VisibleMobileOnly"
+
+  @mobile
+  Scenario: See mobile only element
+    Given I am on the homepage
+    When I click the element "Menu"
+    Then I should see "VisibleMobileOnly"
