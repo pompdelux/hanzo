@@ -13,6 +13,9 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
+use Hanzo\Model\CmsI18n;
+use Hanzo\Model\CmsI18nQuery;
+
 /**
  * Defines application features from the specific context.
  */
@@ -139,11 +142,38 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         // ok, let's hover it
         $element->mouseOver();
     }
+
+    /**
+     * @Transform table:name,active,on_mobile,only_mobile
+     * @param TableNode $menuItemsTable
+     */
+    public function castMenuItemsTable(TableNode $menuItemsTable)
+    {
+        $menuItems = [];
+        foreach ($menuItemsTable->getHash() as $menuItemHash)
+        {
+            $cmsNode = CmsI18nQuery::create()->findOneByTitle($menuItemHash['name']);
+
+            if (!$cmsNode instanceOf CmsI18n)
+            {
+                // $cmsNode = new CmsI18n
+            }
+
+            $menuItems[] = $cmsNode;
+
+        }
+        return $menuItems;
+    }
+
     /**
      * @Given the following menu items exist:
      */
-    public function theFollowingMenuItemsExist(TableNode $table)
+    public function theFollowingMenuItemsExist(array $menuItems)
     {
-        throw new PendingException();
+        foreach ($menuItems as $menuItem)
+        {
+          error_log(__LINE__.':'.__FILE__.' '.print_r($menuItem, 1)); // hf@bellcom.dk debugging
+        }
+        // throw new PendingException();
     }
 }
