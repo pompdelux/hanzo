@@ -1,3 +1,6 @@
+// This file is mainly used for the purpose if the following screenstates:
+// - desktop
+// - desktop touch
 $(document).ready(function() {
 
     // Main navigation
@@ -41,7 +44,6 @@ $(document).ready(function() {
 
                 // Don't track
                 event.stopPropagation();
-
             });
         });
 
@@ -74,7 +76,6 @@ $(document).ready(function() {
 
         // Don't follow href
         event.preventDefault();
-
     });
 
     // Touch devices
@@ -93,7 +94,6 @@ $(document).ready(function() {
 
                 // Remove open class
                 $container.removeClass('open');
-
             }
 
             // Closed - open it
@@ -104,7 +104,6 @@ $(document).ready(function() {
 
                 // Add open class
                 $container.addClass('open');
-
             }
 
         });
@@ -114,7 +113,6 @@ $(document).ready(function() {
 
             // Don't track this click (in HTML click)
             event.stopPropagation();
-
         });
 
         // Click on close icon
@@ -122,7 +120,6 @@ $(document).ready(function() {
 
             // Remove open class from all other
             $link_containers.removeClass('open');
-
         });
 
         // Click on HTML
