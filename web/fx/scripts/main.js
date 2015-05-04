@@ -75,6 +75,69 @@
                 window.open(this.href);
             });
 
+            // menu handeling
+            if (false === $('body').hasClass('is-mobile')) {
+                var $menu = $('nav.main-menu');
+
+                // set parent li's class to active for active elements.
+                $('nav.first.main-menu .active')
+                    .parents('li')
+                    .toggleClass('active inactive')
+                ;
+
+                var menu_width = 0;
+                $('> ul > li > ul > li.heading', $menu).each(function (index, element) {
+                    var $element = $(element);
+                    var tmp_width = $element.outerWidth();
+                    if (menu_width < tmp_width) {
+                        menu_width = tmp_width;
+                    }
+
+                    $element.addClass('floaded');
+                });
+                $('> ul > li > ul > li.heading', $menu).closest('ul').each(function (index, element) {
+                    var $element = $(element);
+                    var count = $('> li', $element).length;
+                    $element.css('width', (menu_width * count));
+                });
+
+                // Add a class to the last megamenu, if it is all to the right.
+                // TODO: This should be done on each megamenu, and be able to determine
+                //       if it is possible to fit inside the container.
+                $main_menu = $menu.not('.first');
+                if ($main_menu.outerWidth() - $('>ul', $main_menu).width() < 150) {
+                    $('> ul > li.last > ul', $main_menu).addClass('floaded-right');
+                }
+
+                $(".menu .outer > li").hover(function() {
+                    $(this).addClass("open");
+                },function() {
+                    $(this).removeClass("open");
+                });
+
+                // For the topmenu only
+                $('> ul > li > a', $menu).click(function (event) {
+                    var $this = $(this).parent();
+                    var $element = $('> ul', $this);
+
+                    if ($('html').hasClass('touch') && $element.hasClass('on') === false && $element.length) {
+                        if ((!navigator.userAgent.match(/iPhone/i)) && (!navigator.userAgent.match(/iPod/i)) && (!navigator.userAgent.match(/iPad/i))) {
+                            event.stopPropagation();
+
+                            $('> ul > li > ul.on', $menu).removeClass('on');
+                            $element.toggleClass('on');
+
+                            event.preventDefault();
+                        }
+                    }
+                });
+
+
+                $('html').on('click', function (event) {
+                    $('.on', $menu).removeClass('on');
+                });
+            }
+
             // handeling mobile->pc->mobile view switching
             $.cookie.defaults = {
                 domain: cookie_params.domain,

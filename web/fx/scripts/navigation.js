@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Main navigation
-    if(Modernizr.touch) {
+    if(! Modernizr.touch) {
 
         // Configuration
         var navigation = $('nav.navigation-main'),
@@ -35,12 +35,28 @@ $(document).ready(function() {
                 // Don't follow link
                 event.preventDefault();
             }
+
+            // Add click event to dropdown menu, so that we are sure that a click on the background won't close it
+            dropdown_menu.on('click', function(event) {
+
+                // Don't track
+                event.stopPropagation();
+            });
         });
 
         // Click on HTML
-        $('html').click(function (event) {
-            console.log('CLICK');
-            $(navigation, '> ul > li.open').removeClass('open');
+        $('html').on('click', function (event) {
+            $('> ul > li.open', navigation).removeClass('open');
+        });
+
+        // Add menu close icon
+        var $close_icon = $('<i />').addClass('fa').addClass('fa-angle-up'),
+            $list_item = $('<li />').addClass('js-menu-close').addClass('menu-close').append($close_icon);
+        navigation_container.find('> li > ul').append($list_item);
+
+        // Click on close
+        navigation.find('.js-menu-close').on('click', function(event) {
+            $('> ul > li.open', navigation).removeClass('open');
         });
     }
 
@@ -48,15 +64,12 @@ $(document).ready(function() {
     if(Modernizr.touch) {
 
         // Configuration
-        var filter = $('nav.filter-dropdown'),
-            filter_container = filter.find('> ul.outer'),
-            toggle = filter_container.find('> li');
+        var filter = $('nav.filters-dropdowns');
 
-        // Click on toggle
-        toggle.on('click', function() {
-
-            // Toggle 'open' class
-            $(this).toggleClass('open');
+        // Click on close
+        filter.find('.js-menu-close').on('click', function(event) {
+            //$('nav.filters-dropdowns > ul.outer > li');
+            console.log('CLICK');
         });
     }
 });

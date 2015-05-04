@@ -1,6 +1,6 @@
 // Library import
-@import "../../../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/box-shadow";
-@import "../../../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/opacity";
+@import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
 
 // Main navigation
 nav.navigation-main {
@@ -91,6 +91,15 @@ nav.navigation-main {
               padding: 0 0 0.5em;
             }
           }
+
+          &.menu-close {
+
+            .fa {
+              position: absolute;
+              right: 10px;
+              bottom: 10px;
+            }
+          }
         }
       }
 
@@ -142,17 +151,6 @@ nav.navigation-main {
     }
     &:after {
       clear: both;
-    }
-  }
-
-  /* element injected using js */
-  .menu-close {
-    padding: 0;
-    width: 929px;
-    text-align: right;
-    a {
-      font-weight: normal;
-      font-size: 18px;
     }
   }
 }
@@ -239,7 +237,6 @@ nav.main-menu {
     width: auto;
     position: relative;
     // Hover effect on sub-menus. .on class are used on touch devices.
-    > ul.on,
     &:hover > ul {
       left: 0;
       top: auto;
@@ -289,7 +286,7 @@ nav.main-menu {
             float: left;
           }
           &.heading > a,
-          &.self-included > a{
+          &.self-included > a {
             font-weight: bold;
             display: block;
             line-height: 18px;
@@ -318,16 +315,16 @@ nav.category-menu {
       }
     }
   }
-  /* element injected using js */
-  .menu-close {
-    padding: 0;
-    width: 929px;
-    text-align: right;
-    a {
-      font-weight: normal;
-      font-size: 18px;
-    }
-  }
+//  /* element injected using js */
+//  .menu-close {
+//    padding: 0;
+//    width: 929px;
+//    text-align: right;
+//    a {
+//      font-weight: normal;
+//      font-size: 18px;
+//    }
+//  }
   > ul > li {
     &.last {
       margin-right: 10px;
