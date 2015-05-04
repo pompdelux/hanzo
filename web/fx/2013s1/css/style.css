@@ -4334,6 +4334,10 @@ form.load-wishlist {
   display: inline-block;
 }
 
+#rma_claims label span {
+  display: block;
+}
+
 aside.js-slider {
   margin-bottom: 10px;
   border-bottom: 1px solid #000;

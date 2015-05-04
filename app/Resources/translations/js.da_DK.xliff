@@ -428,7 +428,7 @@
             </trans-unit>
             <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
-                <target><![CDATA[Der er desværre opstået en fejl – kontakt venligst Kundeservice på 8678 7871.]]></target>
+                <target><![CDATA[Når du vælger pakkeboks som levering, skal du huske at udfylde dit mobilnummer korrekt.]]></target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
