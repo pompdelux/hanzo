@@ -3154,177 +3154,6 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
   text-decoration: underline;
 }
 
-/**
-| _topmenu
-*/
-nav.main-menu {
-  background: #484a4d;
-  padding: 0;
-}
-nav.main-menu ul.topmenu.outer {
-  margin: 0 auto;
-}
-nav.main-menu ul {
-  z-index: 210;
-  position: relative;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-nav.main-menu ul.outer {
-  display: table;
-}
-nav.main-menu > ul > li {
-  float: left;
-  width: auto;
-  position: relative;
-}
-nav.main-menu > ul > li > ul.on, nav.main-menu > ul > li:hover > ul {
-  left: 0;
-  top: auto;
-  z-index: 150;
-}
-nav.main-menu > ul > li.last:hover > ul.floaded-right {
-  left: initial;
-}
-nav.main-menu > ul > li.last > a {
-  padding-right: 0;
-}
-nav.main-menu > ul > li > a {
-  letter-spacing: .8px;
-  padding: 10px 20px 10px 0;
-  display: block;
-  font-size: 14px;
-  color: white;
-}
-nav.main-menu > ul > li > ul {
-  position: absolute;
-  left: -9999px;
-  border-top: 0;
-  width: 250px;
-  z-index: 1;
-  background-color: #fff;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
-  line-height: 14px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
-  opacity: 0.95;
-  -moz-box-shadow: #676767 2px 2px 2px;
-  -webkit-box-shadow: #676767 2px 2px 2px;
-  box-shadow: #676767 2px 2px 2px;
-}
-nav.main-menu > ul > li > ul > li {
-  float: none;
-  padding: 10px 8px;
-  width: 200px;
-}
-nav.main-menu > ul > li > ul > li > ul li {
-  float: none;
-  padding-top: 12px;
-}
-nav.main-menu > ul > li > ul li.floaded {
-  float: left;
-}
-nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
-  font-weight: bold;
-  display: block;
-  line-height: 18px;
-  text-decoration: none;
-  padding: 3px 0 3px 0px;
-  cursor: default;
-}
-
-nav.category-menu {
-  /* element injected using js */
-}
-nav.category-menu ul.outer {
-  width: 100%;
-}
-nav.category-menu ul.outer .open {
-  background-color: #a2a2a2;
-}
-nav.category-menu ul.outer > .last {
-  float: right;
-}
-nav.category-menu ul.outer > .first {
-  padding-left: 5px;
-}
-nav.category-menu .menu-close {
-  padding: 0;
-  width: 929px;
-  text-align: right;
-}
-nav.category-menu .menu-close a {
-  font-weight: normal;
-  font-size: 18px;
-}
-nav.category-menu > ul > li.last {
-  margin-right: 10px;
-}
-nav.category-menu > ul > li a {
-  margin-left: 10px;
-  color: #fff;
-  letter-spacing: 1px;
-}
-nav.category-menu > ul > li > a:after {
-  content: "\f107";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  font-size: 18px;
-  display: inline-block;
-  margin-left: 0.5em;
-}
-nav.category-menu > ul > li > ul {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  background-color: #a2a2a2;
-  padding: 2em 0 1em 15px;
-  width: 939px;
-}
-nav.category-menu > ul > li > ul > li {
-  width: 11em;
-  float: left;
-  padding: 0 1em 0 0;
-  letter-spacing: 1.5px;
-}
-nav.category-menu > ul > li > ul > li > a {
-  font-weight: bold;
-}
-nav.category-menu > ul > li > ul > li a {
-  margin: 0;
-  white-space: normal;
-}
-nav.category-menu > ul > li > ul > li a:hover {
-  text-decoration: underline;
-}
-nav.category-menu > ul > li > ul > li > ul {
-  padding-top: 0.5em;
-}
-nav.category-menu > ul > li > ul > li > ul li {
-  padding: 0 0 0.5em;
-}
-nav.category-menu > ul > li > ul.floaded-right li {
-  float: none;
-  white-space: nowrap;
-}
-nav.category-menu > ul > li > ul.floaded-right li a {
-  font-weight: normal;
-  line-height: 2em;
-  letter-spacing: 1.3px;
-  text-transform: none;
-}
-
-.consultant nav.main-menu > ul > li > a {
-  font-size: 14px;
-}
-
-/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
-nav.category-menu > ul > li {
-  position: initial;
-}
-
 .inject-notice-box {
   padding: 3px;
 }
@@ -5359,6 +5188,289 @@ ul.form-errors li {
   margin: 0 40% 10px 10px;
 }
 
+nav.navigation-main {
+  background-color: #484a4d;
+  padding: 0;
+}
+nav.navigation-main > ul.outer {
+  position: relative;
+  width: 100%;
+}
+nav.navigation-main > ul.outer > li {
+  position: static;
+  float: left;
+}
+nav.navigation-main > ul.outer > li a {
+  display: block;
+  color: #fff;
+  letter-spacing: 1px;
+}
+nav.navigation-main > ul.outer > li > a {
+  font-size: 14px;
+  letter-spacing: .8px;
+  padding: 10px 15px;
+}
+nav.navigation-main > ul.outer > li > a:after {
+  content: "\f107";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
+  margin-left: 0.5em;
+}
+nav.navigation-main > ul.outer > li > ul {
+  display: none;
+  position: absolute;
+  list-style: none;
+  top: 100%;
+  left: 0;
+  right: 0;
+  -moz-box-shadow: #676767 2px 2px 2px;
+  -webkit-box-shadow: #676767 2px 2px 2px;
+  box-shadow: #676767 2px 2px 2px;
+  background-color: #a2a2a2;
+  padding: 2em 0 1em 0;
+  z-index: 150;
+}
+nav.navigation-main > ul.outer > li > ul > li {
+  width: 11em;
+  float: left;
+  padding: 0 1em 0 0;
+  letter-spacing: 1.5px;
+}
+nav.navigation-main > ul.outer > li > ul > li > a {
+  font-weight: bold;
+}
+nav.navigation-main > ul.outer > li > ul > li a {
+  font-size: 12px;
+  margin: 0;
+  padding-left: 15px;
+  white-space: normal;
+}
+nav.navigation-main > ul.outer > li > ul > li a:hover, nav.navigation-main > ul.outer > li > ul > li a:focus {
+  text-decoration: underline;
+}
+nav.navigation-main > ul.outer > li > ul > li > ul {
+  padding-top: 0.5em;
+}
+nav.navigation-main > ul.outer > li > ul > li > ul li {
+  padding: 0 0 0.5em;
+}
+nav.navigation-main > ul.outer > li > ul > li.menu-close .fa {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+nav.navigation-main > ul.outer > li.last {
+  float: right;
+  position: relative;
+}
+nav.navigation-main > ul.outer > li.last > a {
+  padding-right: 15px;
+}
+nav.navigation-main > ul.outer > li.last > ul {
+  left: auto;
+  min-width: 200px;
+}
+nav.navigation-main > ul.outer > li.last > ul > li {
+  display: block;
+  float: none;
+  padding: 0 0 0.5em;
+  width: auto;
+}
+nav.navigation-main > ul.outer > li.last > ul > li > a {
+  display: block;
+  font-weight: normal;
+  text-transform: none;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+nav.navigation-main > ul.outer > li.open {
+  background-color: #a2a2a2;
+}
+nav.navigation-main > ul.outer:before, nav.navigation-main > ul.outer:after {
+  content: " ";
+  display: table;
+}
+nav.navigation-main > ul.outer:after {
+  clear: both;
+}
+
+.touch nav.navigation-main > ul.outer > li.open {
+  background-color: #a2a2a2;
+}
+.touch nav.navigation-main > ul.outer > li.open > ul {
+  display: block;
+}
+
+.no-touch nav.navigation-main > ul.outer > li:hover {
+  background-color: #a2a2a2;
+}
+.no-touch nav.navigation-main > ul.outer > li:hover > ul {
+  display: block;
+}
+
+/**
+| _topmenu
+*/
+nav.main-menu {
+  background: #484a4d;
+  padding: 0;
+}
+nav.main-menu ul.topmenu.outer {
+  margin: 0 auto;
+}
+nav.main-menu ul {
+  z-index: 210;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav.main-menu ul.outer {
+  display: table;
+}
+nav.main-menu > ul > li {
+  float: left;
+  width: auto;
+  position: relative;
+}
+nav.main-menu > ul > li:hover > ul {
+  left: 0;
+  top: auto;
+  z-index: 150;
+}
+nav.main-menu > ul > li.last:hover > ul.floaded-right {
+  left: initial;
+}
+nav.main-menu > ul > li.last > a {
+  padding-right: 0;
+}
+nav.main-menu > ul > li > a {
+  letter-spacing: .8px;
+  padding: 10px 20px 10px 0;
+  display: block;
+  font-size: 14px;
+  color: white;
+}
+nav.main-menu > ul > li > ul {
+  position: absolute;
+  left: -9999px;
+  border-top: 0;
+  width: 250px;
+  z-index: 1;
+  background-color: #fff;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
+  opacity: 0.95;
+  -moz-box-shadow: #676767 2px 2px 2px;
+  -webkit-box-shadow: #676767 2px 2px 2px;
+  box-shadow: #676767 2px 2px 2px;
+}
+nav.main-menu > ul > li > ul > li {
+  float: none;
+  padding: 10px 8px;
+  width: 200px;
+}
+nav.main-menu > ul > li > ul > li > ul li {
+  float: none;
+  padding-top: 12px;
+}
+nav.main-menu > ul > li > ul li.floaded {
+  float: left;
+}
+nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
+  font-weight: bold;
+  display: block;
+  line-height: 18px;
+  text-decoration: none;
+  padding: 3px 0 3px 0px;
+  cursor: default;
+}
+
+nav.category-menu ul.outer {
+  width: 100%;
+}
+nav.category-menu ul.outer .open {
+  background-color: #a2a2a2;
+}
+nav.category-menu ul.outer > .last {
+  float: right;
+}
+nav.category-menu ul.outer > .first {
+  padding-left: 5px;
+}
+nav.category-menu > ul > li.last {
+  margin-right: 10px;
+}
+nav.category-menu > ul > li a {
+  margin-left: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+nav.category-menu > ul > li > a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 18px;
+  display: inline-block;
+  margin-left: 0.5em;
+}
+nav.category-menu > ul > li > ul {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  background-color: #a2a2a2;
+  padding: 2em 0 1em 15px;
+  width: 939px;
+}
+nav.category-menu > ul > li > ul > li {
+  width: 11em;
+  float: left;
+  padding: 0 1em 0 0;
+  letter-spacing: 1.5px;
+}
+nav.category-menu > ul > li > ul > li > a {
+  font-weight: bold;
+}
+nav.category-menu > ul > li > ul > li a {
+  margin: 0;
+  white-space: normal;
+}
+nav.category-menu > ul > li > ul > li a:hover {
+  text-decoration: underline;
+}
+nav.category-menu > ul > li > ul > li > ul {
+  padding-top: 0.5em;
+}
+nav.category-menu > ul > li > ul > li > ul li {
+  padding: 0 0 0.5em;
+}
+nav.category-menu > ul > li > ul.floaded-right li {
+  float: none;
+  white-space: nowrap;
+}
+nav.category-menu > ul > li > ul.floaded-right li a {
+  font-weight: normal;
+  line-height: 2em;
+  letter-spacing: 1.3px;
+  text-transform: none;
+}
+
+.consultant nav.main-menu > ul > li > a {
+  font-size: 14px;
+}
+
+/* Category menu should be full width, this makes sure this happens. Postion relative is needed for the other menus */
+nav.category-menu > ul > li {
+  position: initial;
+}
+
 .filter-text {
   text-transform: uppercase;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -5391,77 +5503,110 @@ ul.form-errors li {
 }
 
 nav.filters-dropdowns {
-  background-color: transparent;
   margin-bottom: 6px;
 }
-nav.filters-dropdowns ul {
-  z-index: 180;
+nav.filters-dropdowns ul.outer {
+  width: 100%;
 }
-nav.filters-dropdowns .outer > li.first div {
-  margin-right: 6px;
+nav.filters-dropdowns ul.outer > li {
+  float: left;
+  width: 33%;
 }
-nav.filters-dropdowns .outer > li.last {
-  /* The dropdowns are the same width as their "parent" so no need to move the last to the left */
-}
-nav.filters-dropdowns .outer > li.last:hover > ul.floaded-right {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.last > ul {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.last div {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.fix-long-eco-name > ul > li.item {
-  width: 200px;
-}
-nav.filters-dropdowns .outer > li > ul {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  width: 234px;
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container {
+  display: block;
+  position: relative;
+  margin-right: 5px;
   background-color: #a2a2a2;
-  padding-top: 1em;
 }
-nav.filters-dropdowns .outer > li > ul label {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a {
+  display: block;
+  padding: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  cursor: default;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a .fa {
+  float: right;
+  margin-right: 2px;
+  color: #000;
+  text-align: center;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  -moz-box-shadow: #676767 2px 2px 2px;
+  -webkit-box-shadow: #676767 2px 2px 2px;
+  box-shadow: #676767 2px 2px 2px;
+  background-color: #a2a2a2;
+  z-index: 200;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li {
+  float: left;
+  width: 50%;
+  padding: 5px 0;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li label {
+  font-size: 12px;
   color: #fff;
   margin-top: 2px;
   vertical-align: top;
   width: auto;
 }
-nav.filters-dropdowns .outer > li > ul input {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li input {
   background-color: #a2a2a2;
   padding: 0;
-  margin: 3px 0 0 0;
+  margin-left: 10px;
+  margin-right: 3px;
 }
-nav.filters-dropdowns .outer > li > ul > li {
-  /* "Clear all ^" element */
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child {
+  width: 100%;
+  padding-top: 10px;
 }
-nav.filters-dropdowns .outer > li > ul > li:last-child {
-  width: 216px;
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child > a {
+  font-size: 12px;
+  margin-left: 10px;
 }
-nav.filters-dropdowns .outer > li > ul > li.item {
-  padding: 5px 8px;
-  width: 100px;
-  float: left;
-}
-nav.filters-dropdowns .outer > li > ul > li.item:nth-child(odd) {
-  margin-left: 0;
-}
-nav.filters-dropdowns .outer > li > div {
-  text-transform: uppercase;
-  width: 224px;
-  text-align: center;
-  color: #fff;
-  background-color: #a2a2a2;
-  padding: 10px 10px 10px 0;
-}
-nav.filters-dropdowns .outer > li .fa-angle-up,
-nav.filters-dropdowns .outer > li .fa-angle-down {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child .fa {
   float: right;
-  margin-right: 2px;
+  margin-right: 10px;
   color: #000;
+  cursor: hand;
+  cursor: pointer;
 }
-nav.filters-dropdowns .outer > li.open .fa-angle-down {
-  /* Can not use Display:none, since there is a margin */
+nav.filters-dropdowns ul.outer > li:last-child {
+  width: 34%;
+}
+nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container {
+  margin-right: 0;
+}
+nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container > ul > li {
+  width: 100%;
+}
+nav.filters-dropdowns ul.outer:before, nav.filters-dropdowns ul.outer:after {
+  content: " ";
+  display: table;
+}
+nav.filters-dropdowns ul.outer:after {
+  clear: both;
+}
+
+.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > a > .fa {
   color: #a2a2a2;
+}
+.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > ul {
+  display: block;
+}
+
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > a > .fa {
+  color: #a2a2a2;
+}
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul {
+  display: block;
+}
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul > li:last-child .fa {
+  display: none;
 }
