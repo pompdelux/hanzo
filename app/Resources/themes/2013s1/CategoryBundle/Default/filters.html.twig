@@ -1,7 +1,7 @@
 {# Remember to update the mobile version #}
 {% if app.request.attributes.get('_route') %}
 <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
-  <nav class="menu clearfix main-menu filters-dropdowns">
+  <nav class="main-menu filters-dropdowns">
     <ul class="outer">
 
       <li class="first">
@@ -11,7 +11,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="size" data-name="{{ size }}" type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}"/> <label for="size_{{ size|tag_safe }}"> {{ size }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="size" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up"></span></li>
+          <li><a href="size" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up js-menu-close"></span></li>
         </ul>
       </li>
 
@@ -22,7 +22,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="color" data-name="{{ color }}" type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}"/> <label for="color_{{ color|tag_safe }}"> {{ color }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="color" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up"></span></li>
+          <li><a href="color" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up js-menu-close"></span></li>
         </ul>
       </li>
 
@@ -33,7 +33,7 @@
           <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="eco" data-name="{{ token.name }}" type="checkbox" name="eco[]" value="token-{{ token.value|tag_safe({' & ': ' - '}) }}" id="token_{{ token.name|tag_safe }}"/> <label for="token_{{ token.name|tag_safe }}"> {{ token.name }}</label></li>
           {% endfor %}
           <li class="clearfix"></li>
-          <li><a href="eco" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up"></span></li>
+          <li><a href="eco" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a><span class="fa fa-angle-up js-menu-close"></span></li>
         </ul>
       </li>
 
