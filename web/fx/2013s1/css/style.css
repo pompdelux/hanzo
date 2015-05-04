@@ -5503,77 +5503,110 @@ nav.category-menu > ul > li {
 }
 
 nav.filters-dropdowns {
-  background-color: transparent;
   margin-bottom: 6px;
 }
-nav.filters-dropdowns ul {
-  z-index: 180;
+nav.filters-dropdowns ul.outer {
+  width: 100%;
 }
-nav.filters-dropdowns .outer > li.first div {
-  margin-right: 6px;
+nav.filters-dropdowns ul.outer > li {
+  float: left;
+  width: 33%;
 }
-nav.filters-dropdowns .outer > li.last {
-  /* The dropdowns are the same width as their "parent" so no need to move the last to the left */
-}
-nav.filters-dropdowns .outer > li.last:hover > ul.floaded-right {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.last > ul {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.last div {
-  margin-left: 6px;
-}
-nav.filters-dropdowns .outer > li.fix-long-eco-name > ul > li.item {
-  width: 200px;
-}
-nav.filters-dropdowns .outer > li > ul {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  width: 234px;
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container {
+  display: block;
+  position: relative;
+  margin-right: 5px;
   background-color: #a2a2a2;
-  padding-top: 1em;
 }
-nav.filters-dropdowns .outer > li > ul label {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a {
+  display: block;
+  padding: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  cursor: default;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a .fa {
+  float: right;
+  margin-right: 2px;
+  color: #000;
+  text-align: center;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  -moz-box-shadow: #676767 2px 2px 2px;
+  -webkit-box-shadow: #676767 2px 2px 2px;
+  box-shadow: #676767 2px 2px 2px;
+  background-color: #a2a2a2;
+  z-index: 200;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li {
+  float: left;
+  width: 50%;
+  padding: 5px 0;
+}
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li label {
+  font-size: 12px;
   color: #fff;
   margin-top: 2px;
   vertical-align: top;
   width: auto;
 }
-nav.filters-dropdowns .outer > li > ul input {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li input {
   background-color: #a2a2a2;
   padding: 0;
-  margin: 3px 0 0 0;
+  margin-left: 10px;
+  margin-right: 3px;
 }
-nav.filters-dropdowns .outer > li > ul > li {
-  /* "Clear all ^" element */
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child {
+  width: 100%;
+  padding-top: 10px;
 }
-nav.filters-dropdowns .outer > li > ul > li:last-child {
-  width: 216px;
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child > a {
+  font-size: 12px;
+  margin-left: 10px;
 }
-nav.filters-dropdowns .outer > li > ul > li.item {
-  padding: 5px 8px;
-  width: 100px;
-  float: left;
-}
-nav.filters-dropdowns .outer > li > ul > li.item:nth-child(odd) {
-  margin-left: 0;
-}
-nav.filters-dropdowns .outer > li > div {
-  text-transform: uppercase;
-  width: 224px;
-  text-align: center;
-  color: #fff;
-  background-color: #a2a2a2;
-  padding: 10px 10px 10px 0;
-}
-nav.filters-dropdowns .outer > li .fa-angle-up,
-nav.filters-dropdowns .outer > li .fa-angle-down {
+nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child .fa {
   float: right;
-  margin-right: 2px;
+  margin-right: 10px;
   color: #000;
+  cursor: hand;
+  cursor: pointer;
 }
-nav.filters-dropdowns .outer > li.open .fa-angle-down {
-  /* Can not use Display:none, since there is a margin */
+nav.filters-dropdowns ul.outer > li:last-child {
+  width: 34%;
+}
+nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container {
+  margin-right: 0;
+}
+nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container > ul > li {
+  width: 100%;
+}
+nav.filters-dropdowns ul.outer:before, nav.filters-dropdowns ul.outer:after {
+  content: " ";
+  display: table;
+}
+nav.filters-dropdowns ul.outer:after {
+  clear: both;
+}
+
+.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > a > .fa {
   color: #a2a2a2;
+}
+.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > ul {
+  display: block;
+}
+
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > a > .fa {
+  color: #a2a2a2;
+}
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul {
+  display: block;
+}
+.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul > li:last-child .fa {
+  display: none;
 }
