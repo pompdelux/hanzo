@@ -29,6 +29,7 @@ nav.navigation-main {
         font-size: 14px;
         letter-spacing: .8px;
         padding: 10px 15px;
+        text-transform: uppercase;
 
         // After
         &:after {
@@ -129,7 +130,6 @@ nav.navigation-main {
             > a {
               display: block;
               font-weight: normal;
-              text-transform: none;
               white-space: nowrap;
               padding-right: 15px;
             }
@@ -315,16 +315,6 @@ nav.category-menu {
       }
     }
   }
-//  /* element injected using js */
-//  .menu-close {
-//    padding: 0;
-//    width: 929px;
-//    text-align: right;
-//    a {
-//      font-weight: normal;
-//      font-size: 18px;
-//    }
-//  }
   > ul > li {
     &.last {
       margin-right: 10px;
@@ -383,10 +373,8 @@ nav.category-menu {
               font-weight: normal;
               line-height: 2em;
               letter-spacing: 1.3px;
-              text-transform: none;
             }
           }
-
         }
       }
     }
