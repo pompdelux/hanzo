@@ -3428,6 +3428,7 @@ video img {
 
 .filter-show-products {
   text-transform: uppercase;
+  margin-top: -2px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   line-height: 14px;
