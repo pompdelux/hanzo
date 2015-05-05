@@ -693,7 +693,6 @@ ul.menu li a,
 .menu > ul li a {
   color: #444;
   text-decoration: none;
-  text-transform: uppercase;
 }
 nav > ul li.active > a, nav > ul li.active-trail > a,
 nav > ul li a:hover,
@@ -739,7 +738,6 @@ ul.menu.right .dropdown,
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
   line-height: 14px;
-  text-transform: uppercase;
   /* Show active menus */
 }
 .sub-menu > ul li {
@@ -5209,6 +5207,7 @@ nav.navigation-main > ul.outer > li > a {
   font-size: 14px;
   letter-spacing: .8px;
   padding: 10px 15px;
+  text-transform: uppercase;
 }
 nav.navigation-main > ul.outer > li > a:after {
   content: "\f107";
@@ -5283,7 +5282,6 @@ nav.navigation-main > ul.outer > li.last > ul > li {
 nav.navigation-main > ul.outer > li.last > ul > li > a {
   display: block;
   font-weight: normal;
-  text-transform: none;
   white-space: nowrap;
   padding-right: 15px;
 }
@@ -5459,7 +5457,6 @@ nav.category-menu > ul > li > ul.floaded-right li a {
   font-weight: normal;
   line-height: 2em;
   letter-spacing: 1.3px;
-  text-transform: none;
 }
 
 .consultant nav.main-menu > ul > li > a {
