@@ -773,22 +773,22 @@ ul.menu.right .dropdown,
 }
 .sub-menu > ul > li > ul > li {
   margin-bottom: 1em;
-  /* Else use caret-right */
+  /* Else use angle-right */
   /* Inactive menus are hidden */
 }
 .sub-menu > ul > li > ul > li.active, .sub-menu > ul > li > ul > li.active-trail {
-  /* Show caret-down when "open" */
+  /* Show angle-down when "open" */
 }
 .sub-menu > ul > li > ul > li.active > a:before, .sub-menu > ul > li > ul > li.active-trail > a:before {
-  content: "\f0d7";
+  content: "\f107";
 }
 .sub-menu > ul > li > ul > li > a:before {
-  content: "\f0da";
+  content: "\f105";
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
-  font-size: 18px;
+  font-size: 16px;
   display: inline-block;
   width: 24px;
 }
