@@ -213,20 +213,20 @@ ul.menu,
 
             &.active,
             &.active-trail {
-                /* Show caret-down when "open" */
+                /* Show angle-down when "open" */
                 > a:before {
-                    content: "\f0d7";
+                    content: "\f107";
                 }
             }
 
-            /* Else use caret-right */
+            /* Else use angle-right */
             > a:before {
-                content: "\f0da";
+                content: "\f105";
                 font-family: FontAwesome;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: inherit;
-                font-size: 18px;
+                font-size: 16px;
                 display: inline-block;
                 width: 24px;
             }
