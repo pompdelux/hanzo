@@ -13,6 +13,9 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
+use Hanzo\Model\CmsI18n;
+use Hanzo\Model\CmsI18nQuery;
+
 /**
  * Defines application features from the specific context.
  */
@@ -121,5 +124,56 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         $time = 5000; // time should be in milliseconds
         $this->getSession()->wait($time, '(0 === jQuery.active)');
+    }
+
+    /**
+     * @When /^I hover over the element "([^"]*)"$/
+     */
+    public function iHoverOverTheElement($locator)
+    {
+        $session = $this->getSession(); // get the mink session
+        $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
+
+        // errors must not pass silently
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
+        }
+
+        // ok, let's hover it
+        $element->mouseOver();
+    }
+
+    /**
+     * @Transform table:name,active,on_mobile,only_mobile
+     * @param TableNode $menuItemsTable
+     */
+    public function castMenuItemsTable(TableNode $menuItemsTable)
+    {
+        $menuItems = [];
+        foreach ($menuItemsTable->getHash() as $menuItemHash)
+        {
+            $cmsNode = CmsI18nQuery::create()->findOneByTitle($menuItemHash['name']);
+
+            if (!$cmsNode instanceOf CmsI18n)
+            {
+                // $cmsNode = new CmsI18n
+            }
+
+            $menuItems[] = $cmsNode;
+
+        }
+        return $menuItems;
+    }
+
+    /**
+     * @Given the following menu items exist:
+     */
+    public function theFollowingMenuItemsExist(array $menuItems)
+    {
+        foreach ($menuItems as $menuItem)
+        {
+          error_log(__LINE__.':'.__FILE__.' '.print_r($menuItem, 1)); // hf@bellcom.dk debugging
+        }
+        // throw new PendingException();
     }
 }

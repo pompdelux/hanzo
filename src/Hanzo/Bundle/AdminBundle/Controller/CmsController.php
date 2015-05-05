@@ -315,7 +315,7 @@ class CmsController extends CoreController
                             ],
                         ],
                         'is_active' => [
-                            'label'              => 'Online -',
+                            'label'              => 'Online (Synlig) -',
                             'options'            => [
                                 'translation_domain' => 'admin',
                             ],
@@ -329,7 +329,14 @@ class CmsController extends CoreController
                             'type'               => 'checkbox'
                         ],
                         'on_mobile' => [
-                            'label'              => 'Vises på mobilsitet -',
+                            'label'              => 'Vises også på mobilsitet -',
+                            'options'            => [
+                                'translation_domain' => 'admin',
+                            ],
+                            'type'               => 'checkbox'
+                        ],
+                        'only_mobile' => [
+                            'label'              => 'Vises kun på mobilsitet -',
                             'options'            => [
                                 'translation_domain' => 'admin',
                             ],
