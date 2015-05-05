@@ -144,7 +144,6 @@ ul.menu,
         a {
             color: $font-color;
             text-decoration: none;
-            text-transform: uppercase;
 		}
 		&.active > a,
 		&.active-trail > a,
@@ -174,7 +173,7 @@ ul.menu,
 
 .sub-menu > ul {
 	@include side-menu-style;
-	text-transform: uppercase;
+
 	li {
 		padding: 0 0 6px 0;
 		line-height: 18px;
