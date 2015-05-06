@@ -17,6 +17,7 @@
         'type': 'breadcrumb',
         'thread': 20
     })) }}
+    <div class="clearfix"></div>
 </div>
 
 <div class="grid_8 alpha omega row js-filters filters-selected">
@@ -122,7 +123,7 @@
             </div>
           {% endif %}
         {% else %}
-          <div class="out-of-stock">
+          <div>
             {{ 'all.products.out.of.stock'|trans|raw }}
           </div>
         {% endfor %}
