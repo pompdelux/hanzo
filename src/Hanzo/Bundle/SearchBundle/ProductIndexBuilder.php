@@ -68,12 +68,14 @@ class ProductIndexBuilder extends IndexBuilder
                     master_products_id,
                     products_id,
                     token,
+                    type,
                     locale
                 )
             SELECT
                 p1.id,
                 p2.id,
                 p2.color,
+                'product',
                 '".$locale."'
             FROM
                 products AS p1
@@ -86,6 +88,7 @@ class ProductIndexBuilder extends IndexBuilder
                 p1.id,
                 p2.id,
                 p2.size,
+                'product',
                 '".$locale."'
             FROM
                 products AS p1
@@ -115,12 +118,14 @@ class ProductIndexBuilder extends IndexBuilder
                     master_products_id,
                     products_id,
                     token,
+                    type,
                     locale
                 )
             SELECT
                 p1.id,
                 p2.id,
                 c.title,
+                'category',
                 c.locale
             FROM
                 products AS p1
@@ -145,6 +150,7 @@ class ProductIndexBuilder extends IndexBuilder
                 p1.id,
                 p2.id,
                 c.context,
+                'category',
                 '".$locale."'
             FROM
                 products AS p1
@@ -211,13 +217,15 @@ class ProductIndexBuilder extends IndexBuilder
                                 master_products_id,
                                 products_id,
                                 token,
+                                type,
                                 locale
                             )
-                        VALUES(%d, %d, '%s', '%s')
+                        VALUES(%d, %d, '%s', '%s', '%s')
                     ",
                     $masterProduct->getId(),
                     $product->getId(),
                     $tokenValue,
+                    'tag',
                     $locale);
 
                     $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
