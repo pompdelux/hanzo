@@ -70,8 +70,8 @@ var rma = (function ($) {
             $message.html(data.msg).addClass('success').removeClass('hidden');
             $form.trigger('reset');
           }
-        }).fail(function() {
-            $message.html("An unexpected error occurred").addClass('error').removeClass('hidden');
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
         }).always(function() {
             $('html,body').animate({scrollTop: 0});
         });
