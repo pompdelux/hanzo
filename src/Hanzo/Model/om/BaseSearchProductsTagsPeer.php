@@ -32,13 +32,13 @@ abstract class BaseSearchProductsTagsPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\SearchProductsTagsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 5;
+    const NUM_COLUMNS = 6;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /** the column name for the id field */
     const ID = 'search_products_tags.id';
@@ -51,6 +51,9 @@ abstract class BaseSearchProductsTagsPeer
 
     /** the column name for the token field */
     const TOKEN = 'search_products_tags.token';
+
+    /** the column name for the type field */
+    const TYPE = 'search_products_tags.type';
 
     /** the column name for the locale field */
     const LOCALE = 'search_products_tags.locale';
@@ -74,12 +77,12 @@ abstract class BaseSearchProductsTagsPeer
      * e.g. SearchProductsTagsPeer::$fieldNames[SearchProductsTagsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'MasterProductsId', 'ProductsId', 'Token', 'Locale', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'masterProductsId', 'productsId', 'token', 'locale', ),
-        BasePeer::TYPE_COLNAME => array (SearchProductsTagsPeer::ID, SearchProductsTagsPeer::MASTER_PRODUCTS_ID, SearchProductsTagsPeer::PRODUCTS_ID, SearchProductsTagsPeer::TOKEN, SearchProductsTagsPeer::LOCALE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'MASTER_PRODUCTS_ID', 'PRODUCTS_ID', 'TOKEN', 'LOCALE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'master_products_id', 'products_id', 'token', 'locale', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'MasterProductsId', 'ProductsId', 'Token', 'Type', 'Locale', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'masterProductsId', 'productsId', 'token', 'type', 'locale', ),
+        BasePeer::TYPE_COLNAME => array (SearchProductsTagsPeer::ID, SearchProductsTagsPeer::MASTER_PRODUCTS_ID, SearchProductsTagsPeer::PRODUCTS_ID, SearchProductsTagsPeer::TOKEN, SearchProductsTagsPeer::TYPE, SearchProductsTagsPeer::LOCALE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'MASTER_PRODUCTS_ID', 'PRODUCTS_ID', 'TOKEN', 'TYPE', 'LOCALE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'master_products_id', 'products_id', 'token', 'type', 'locale', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -89,12 +92,12 @@ abstract class BaseSearchProductsTagsPeer
      * e.g. SearchProductsTagsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'MasterProductsId' => 1, 'ProductsId' => 2, 'Token' => 3, 'Locale' => 4, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'masterProductsId' => 1, 'productsId' => 2, 'token' => 3, 'locale' => 4, ),
-        BasePeer::TYPE_COLNAME => array (SearchProductsTagsPeer::ID => 0, SearchProductsTagsPeer::MASTER_PRODUCTS_ID => 1, SearchProductsTagsPeer::PRODUCTS_ID => 2, SearchProductsTagsPeer::TOKEN => 3, SearchProductsTagsPeer::LOCALE => 4, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'MASTER_PRODUCTS_ID' => 1, 'PRODUCTS_ID' => 2, 'TOKEN' => 3, 'LOCALE' => 4, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'master_products_id' => 1, 'products_id' => 2, 'token' => 3, 'locale' => 4, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'MasterProductsId' => 1, 'ProductsId' => 2, 'Token' => 3, 'Type' => 4, 'Locale' => 5, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'masterProductsId' => 1, 'productsId' => 2, 'token' => 3, 'type' => 4, 'locale' => 5, ),
+        BasePeer::TYPE_COLNAME => array (SearchProductsTagsPeer::ID => 0, SearchProductsTagsPeer::MASTER_PRODUCTS_ID => 1, SearchProductsTagsPeer::PRODUCTS_ID => 2, SearchProductsTagsPeer::TOKEN => 3, SearchProductsTagsPeer::TYPE => 4, SearchProductsTagsPeer::LOCALE => 5, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'MASTER_PRODUCTS_ID' => 1, 'PRODUCTS_ID' => 2, 'TOKEN' => 3, 'TYPE' => 4, 'LOCALE' => 5, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'master_products_id' => 1, 'products_id' => 2, 'token' => 3, 'type' => 4, 'locale' => 5, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -172,12 +175,14 @@ abstract class BaseSearchProductsTagsPeer
             $criteria->addSelectColumn(SearchProductsTagsPeer::MASTER_PRODUCTS_ID);
             $criteria->addSelectColumn(SearchProductsTagsPeer::PRODUCTS_ID);
             $criteria->addSelectColumn(SearchProductsTagsPeer::TOKEN);
+            $criteria->addSelectColumn(SearchProductsTagsPeer::TYPE);
             $criteria->addSelectColumn(SearchProductsTagsPeer::LOCALE);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.master_products_id');
             $criteria->addSelectColumn($alias . '.products_id');
             $criteria->addSelectColumn($alias . '.token');
+            $criteria->addSelectColumn($alias . '.type');
             $criteria->addSelectColumn($alias . '.locale');
         }
     }
