@@ -1105,7 +1105,7 @@ footer .footer-menu .newsletter {
   position: relative;
 }
 footer .footer-menu .newsletter h2 {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 19px;
   font-weight: normal;
 }
@@ -1230,7 +1230,7 @@ ul.tabs li {
   margin-right: 15px;
 }
 ul.tabs li a {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 ul.tabs li a i {
   display: inline;
@@ -1305,7 +1305,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main h2.title,
 .body-product .main .prices {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 18px;
@@ -2361,7 +2361,7 @@ a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbutto
 */
 .product-list .block a {
   border: none;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 12px;
   line-height: 18px;
   color: #444;
@@ -2848,7 +2848,7 @@ div.invalid-order {
 .basket table.edit-element th,
 #cart-edit-element table.product-table th,
 #cart-edit-element table.edit-element th {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 400;
   padding: 12px 6px;
 }
@@ -2856,7 +2856,7 @@ div.invalid-order {
 .basket table.edit-element tfoot,
 #cart-edit-element table.product-table tfoot,
 #cart-edit-element table.edit-element tfoot {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 .basket table.product-table tfoot td,
 .basket table.edit-element tfoot td,
@@ -2889,7 +2889,7 @@ div.invalid-order {
 .basket table.edit-element .title,
 #cart-edit-element table.product-table .title,
 #cart-edit-element table.edit-element .title {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 900;
 }
 .basket table.product-table .date span.not-in-stock,
@@ -3255,7 +3255,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
   background-image: url(/fx/images/newsletter_overlay/bg.png);
 }
 #newsletterModal.type1 h2 {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 #newsletterModal.type1 .wrapper {
   background-image: url(/fx/images/newsletter_overlay/letters.png);
@@ -3574,7 +3574,7 @@ body.domain-at #newsletterModal.type3 .wrapper form input.button {
 .body-pages .newsletter-form-simple .container input[type=submit] {
   float: right;
   font-size: 12px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   letter-spacing: 0;
 }
 .body-pages .newsletter-form-simple .sprite {
@@ -4524,7 +4524,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 h1 {
   color: #444;
   font-size: 16px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 900;
   line-height: 22px;
   padding: 6px 0;
@@ -4541,7 +4541,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 400;
   font-size: 16px;
   padding: 6px 0 12px;
@@ -4550,7 +4550,7 @@ h3 {
 h4 {
   color: #444;
   font-size: 12px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 900;
   line-height: 14px;
 }
@@ -4599,7 +4599,7 @@ blockquote {
   margin-left: 0;
   line-height: 22px;
   font-size: 18px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   margin: 12px 0;
 }
 
@@ -4636,7 +4636,7 @@ form select {
   padding: 6px 5px;
   margin: 2px 0;
   color: #444;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   background: #FFF;
 }
 form textarea,
@@ -4694,7 +4694,7 @@ a.button.text-button,
   background: transparent;
   color: #444 !important;
   font-size: 14px;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -4775,7 +4775,7 @@ table tfoot {
   border-top: 1px solid #444;
 }
 table thead {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 table thead th {
   padding: 3px 6px;
