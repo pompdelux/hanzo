@@ -12,7 +12,7 @@ class ProductIndexBuilder extends IndexBuilder
 {
     public function build()
     {
-        foreach ($this->getConnections() as $name => $x) {
+        foreach (array_keys($this->getConnections()) as $name) {
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
@@ -32,7 +32,7 @@ class ProductIndexBuilder extends IndexBuilder
      **/
     public function clear()
     {
-        foreach ($this->getConnections() as $name => $x) {
+        foreach (array_keys($this->getConnections()) as $name) {
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
