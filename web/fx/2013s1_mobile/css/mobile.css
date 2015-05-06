@@ -754,7 +754,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 */
 .product-list .block a {
   border: none;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 12px;
   line-height: 18px;
   color: #444;
@@ -903,7 +903,7 @@ ul.tabs li {
   margin-right: 15px;
 }
 ul.tabs li a {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 ul.tabs li a i {
   display: inline;
@@ -978,7 +978,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main h2.title,
 .body-product .main .prices {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 18px;
@@ -3565,7 +3565,7 @@ table tfoot {
   border-top: 1px solid #444;
 }
 table thead {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 table thead th {
   padding: 3px 6px;
