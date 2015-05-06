@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\SearchProductsTagsQuery,
     Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsDomainsPricesPeer,
     Hanzo\Core\Hanzo,
     Hanzo\Core\Tools
     ;
@@ -19,6 +20,7 @@ class ProductIndexBuilder extends IndexBuilder
                 $this->updateProductIndex($locale, $connection);
                 $this->updateCategoryIndex($locale, $connection);
                 $this->updateCustomTokensIndex($locale, $connection);
+                $this->updateDiscountIndex($locale, $connection);
             }
         }
 
@@ -292,5 +294,71 @@ class ProductIndexBuilder extends IndexBuilder
 
 
         return $tokensToCategories;
+    }
+
+    /*
+     * Index all discounted products
+     *
+     */
+    private function updateDiscountIndex($locale, $connection)
+    {
+        $hanzo = Hanzo::getInstance();
+
+        $products = ProductsQuery::create()
+            ->useProductsI18nQuery()
+                ->filterByLocale($hanzo->get('core.locale'))
+            ->endUse()
+            ->filterByIsActive(true)
+            ->filterByRange($hanzo->container->get('hanzo_product.range')->getCurrentRange())
+            ->useProductsDomainsPricesQuery()
+                ->filterByDomainsId($hanzo->get('core.domain_id'))
+                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                ->where(array('c1', 'c2'), 'AND')
+            ->endUse()
+            ->joinWithProductsImages()
+            ->find()
+        ;
+
+        $product_ids = [];
+        $records     = [];
+
+        foreach ($products as $product)
+        {
+            $product_ids[] = $product->getId();
+            $records[] = ['id' => $product->getId()];
+        }
+
+        // get product prices
+        $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
+        // attach the prices to the products
+        foreach ($records as $data) {
+            if (isset($prices[$data['id']]) && isset($prices[$data['id']]['sales'])) {
+
+                $discountPct = $prices[$data['id']]['sales']['sales_pct'];
+
+                $sql = sprintf("
+                    INSERT INTO
+                        search_products_tags (
+                            master_products_id,
+                            products_id,
+                            token,
+                            type,
+                            locale
+                        )
+                    VALUES(%d, %d, '%s', '%s', '%s')
+                ",
+                $data['id'], // We only select master products
+                $data['id'],
+                $discountPct,
+                'discount',
+                $locale);
+
+                $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+                $query->execute();
+            }
+        }
+
     }
 }
