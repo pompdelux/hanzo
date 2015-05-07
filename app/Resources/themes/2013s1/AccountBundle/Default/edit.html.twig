@@ -10,7 +10,7 @@
   </div>
 {% endif %}
 
-<div class="row grid_8 alpha omega">
+<article class="row grid_8 alpha omega">
   <div class="grid_5 alpha">
     <form action="{{ path('_account_edit') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
       <div id="customers" class="row grid_5 alpha omega">
@@ -42,5 +42,5 @@
   <div class="grid_2 push_1 omega">
     {{ include('AccountBundle:Default:aside.html.twig') }}
   </div>
-</div>
+</article>
 {% endblock %}

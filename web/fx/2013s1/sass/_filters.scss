@@ -33,98 +33,223 @@
     margin-top: 0;
 }
 
+// Filter dropdown
 nav.filters-dropdowns {
-    background-color: transparent;
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 
-    ul {
-        z-index: 180;
-    }
+  // Outer
+  ul.outer {
+    width: 100%;
 
-    .outer > li {
-        &.first div {
-            margin-right: 6px
-        }
+    // First layer (visible)
+    > li {
+      float: left;
+      width: 33%;
 
-        &.last {
-            /* The dropdowns are the same width as their "parent" so no need to move the last to the left */
-            &:hover {
-                > ul.floaded-right {
-                    margin-left: 6px;
-                }
-            }
-            > ul {
-                margin-left: 6px;
-            }
-            div {
-                margin-left: 6px;
-            }
-        }
+      // Container
+      > div.filters-dropdown-container {
+        display: block;
+        position: relative;
+        margin-right: 5px;
+        background-color: $filter-dropdown-hover-bg-color;
+      }
 
-        &.fix-long-eco-name {
-            > ul {
-                > li.item {
-                    width: 200px;
-                }
-            }
-        }
+      // Container
+      > div.filters-dropdown-container {
 
-        > ul {
-            @include opacity(1);
-            width: 234px;
-            background-color: $filter-dropdown-hover-bg-color;
-            padding-top: 1em;
+        // Link
+        > a {
+          display: block;
+          padding: 10px;
+          text-transform: uppercase;
+          color: #fff;
+          text-align: center;
+          cursor: default;
 
-            label {
-                color: #fff;
-                margin-top: 2px;
-                vertical-align: top;
-                width: auto;
-            }
-
-            input {
-                background-color: $filter-dropdown-hover-bg-color;
-                padding: 0;
-                margin: 3px 0 0 0;
-            }
-
-            > li {
-                /* "Clear all ^" element */
-                &:last-child {
-                    width: 216px;
-                }
-                &.item {
-                    &:nth-child(odd) {
-                        margin-left: 0;
-                    }
-                    padding: 5px 8px;
-                    width: 100px;
-                    float: left;
-                }
-            }
-        }
-        > div {
-            text-transform: uppercase;
-            width: 224px;
-            text-align: center;
-            color: #fff;
-            background-color: $filter-dropdown-hover-bg-color;
-            padding: 10px 10px 10px 0;
-        }
-
-        .fa-angle-up,
-        .fa-angle-down {
+          // Icon
+          .fa {
             float: right;
             margin-right: 2px;
             color: #000;
+            text-align: center;
+          }
         }
 
+        // Dropdown menu
+        > ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          @include box-shadow(#676767 2px 2px 2px);
+          background-color: $filter-dropdown-hover-bg-color;
+          z-index: 200;
+
+          // List item
+          > li {
+            float: left;
+            width: 50%;
+            padding: 5px 0;
+
+            // Label
+            label {
+              font-size: 12px;
+              color: #fff;
+              margin-top: 2px;
+              vertical-align: top;
+              width: auto;
+            }
+
+            // Input
+            input {
+              background-color: $filter-dropdown-hover-bg-color;
+              padding: 0;
+              margin-left: 10px;
+              margin-right: 3px;
+            }
+
+            // Last
+            &:last-child {
+              width: 100%;
+              padding-top: 10px;
+
+              // Link
+              > a {
+                font-size: 12px;
+                margin-left: 10px;
+              }
+
+              // Icon
+              .fa {
+                float: right;
+                margin-right: 10px;
+                color: #000;
+                cursor: hand;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      // Last list item
+      &:last-child {
+        width: 34%;
+
+        // Container
+        > div.filters-dropdown-container {
+          margin-right: 0;
+
+          // Dropdown menu
+          > ul {
+
+            // List item
+            > li {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    // Clearfix hack taken from Bootstrap
+    &:before,
+    &:after {
+      content: " "; // 1
+      display: table; // 2
+    }
+    &:after {
+      clear: both;
+    }
+  }
+}
+
+// Touch
+.touch {
+
+  // Filter dropdown
+  nav.filters-dropdowns {
+
+    // Outer
+    ul.outer {
+
+      // First layer (visible)
+      > li {
+
+        // Open
         &.open {
 
-            .fa-angle-down {
-                /* Can not use Display:none, since there is a margin */
-                color: #a2a2a2;
+          // Container
+          > div.filters-dropdown-container {
+
+            // Link
+            > a {
+
+              // Icon
+              > .fa {
+                color: $filter-dropdown-hover-bg-color;
+              }
             }
+
+            // Dropdown menu
+            > ul {
+              display: block;
+            }
+          }
         }
+      }
     }
+  }
+}
+
+// No touch
+.no-touch {
+
+  // Filter dropdown
+  nav.filters-dropdowns {
+
+    // Outer
+    ul.outer {
+
+      // First layer (visible)
+      > li {
+
+        // Hover
+        &:hover {
+
+          // Container
+          > div.filters-dropdown-container {
+
+            // Link
+            > a {
+
+              // Icon
+              > .fa {
+                color: $filter-dropdown-hover-bg-color;
+              }
+            }
+
+            // Dropdown menu
+            > ul {
+              display: block;
+
+              // List item
+              > li {
+
+                // Last
+                &:last-child {
+
+                  // Icon
+                  .fa {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

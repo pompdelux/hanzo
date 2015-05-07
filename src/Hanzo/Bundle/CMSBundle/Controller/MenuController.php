@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -38,15 +39,8 @@ class MenuController extends CoreController
         $stripped_uri = explode($request->getLocale().'/', $request_url);
         $stripped_uri = array_pop($stripped_uri);
 
-        $cache_id = [
-            (int) $request->attributes->get('admin_enabled'),
-            'menu',
-            $type,
-            $stripped_uri,
-            $this->device
-        ];
-
-        $html = $this->getCache($cache_id);
+        $cache_id = $this->getCacheId($request, 'menu', $type, $stripped_uri);
+        $html     = $this->getCache($cache_id);
 
         if (!$html) {
             $hanzo = Hanzo::getInstance();
@@ -191,7 +185,7 @@ class MenuController extends CoreController
             if ($this->getRequest()->attributes->get('admin_enabled')) {
                 $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
             } else {
-                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+                $query->useCmsI18nQuery()->filterByOnlyMobile(false)->filterByIsActive(true)->endUse();
             }
         } else {
             $query = CmsQuery::create()
@@ -300,7 +294,7 @@ class MenuController extends CoreController
             if ($this->getRequest()->attributes->get('admin_enabled')) {
                 $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
             } else {
-                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+                $query->useCmsI18nQuery()->filterByOnlyMobile(false)->filterByIsActive(true)->endUse();
             }
         } else {
             $query = CmsQuery::create()
@@ -409,7 +403,7 @@ class MenuController extends CoreController
             if ($this->getRequest()->attributes->get('admin_enabled')) {
                 $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
             } else {
-                $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
+                $query->useCmsI18nQuery()->filterByOnlyMobile(false)->filterByIsActive(true)->endUse();
             }
         } else {
             $query = CmsQuery::create()
@@ -559,13 +553,12 @@ class MenuController extends CoreController
      */
     public function byTitleAction($title, $parent_id = null)
     {
-        $cache_id = [
-            (int) $this->getRequest()->attributes->get('admin_enabled'),
-            'menu',
-            $title,
-            $this->getRequest()->getRequestUri()
-        ];
-        $html = $this->getCache($cache_id);
+        $request      = $this->get('request');
+        $this->device = $request->attributes->get('_x_device');
+        $uri          = $request->getRequestUri();
+
+        $cache_id = $this->getCacheId($request, 'menu', $title, $uri);
+        $html     = $this->getCache($cache_id);
 
         if (empty($html)) {
             $html = $this->byTitleBuilder($title);
@@ -589,14 +582,12 @@ class MenuController extends CoreController
     protected function byTitleBuilder($title, $parent_id = null)
     {
         static $current_uri;
-        static $device;
         static $locale;
         static $menu = '';
 
         if (!$locale) {
             $request     = $this->get('request');
             $current_uri = $request->getPathInfo();
-            $device      = $request->attributes->get('_x_device');
             $locale      = $request->getLocale();
         }
 
@@ -612,17 +603,18 @@ class MenuController extends CoreController
             ->groupById()
         ;
 
-        if ($this->getRequest()->attributes->get('admin_enabled')) {
-            $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+        if ('pc' == $this->device) {
+            if ($this->getRequest()->attributes->get('admin_enabled')) {
+                $query->useCmsI18nQuery()->filterByIsActive(true)->_or()->filterByIsRestricted(true)->endUse();
+            } else {
+                $query->useCmsI18nQuery()->filterByOnlyMobile(false)->filterByIsActive(true)->endUse();
+            }
         } else {
-            $query->useCmsI18nQuery()->filterByIsActive(true)->endUse();
-        }
-
-        if (false !== strpos($device, 'mobile')) {
             $query->useCmsI18nQuery()
-                    ->filterByOnMobile(true)
+                ->filterByOnMobile(true)
+                ->filterByIsActive(true)
                 ->endUse()
-            ;
+                ;
         }
 
         $result = $query->find();
@@ -671,4 +663,20 @@ class MenuController extends CoreController
         return $menu;
     }
 
+    /**
+     * Build Cache id the same way in different functions
+     * @param Request $request
+     */
+    protected function getCacheId(Request $request, $type, $subtype, $uri)
+    {
+        $cache_id = [
+            (int) $request->attributes->get('admin_enabled'),
+            $type,
+            $subtype,
+            $uri,
+            $this->device
+        ];
+
+        return $cache_id;
+    }
 }

@@ -1,7 +1,7 @@
 // Global Variables.
 $html-background-color  : #fff;
 
-$font-serif				: "Merriweather", serif;
+$font-serif				: Tahoma, serif;
 $font-sans				: Tahoma, Geneva, Verdana, sans-serif;
 $font-color				: #444;
 $font-size 				: 14px;
@@ -91,7 +91,6 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 @import "pensio";
 @import "basket";
 @import "social";
-@import "topmenu";
 @import "dialoug";
 @import "cms";
 @import "faq";
@@ -102,4 +101,5 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 @import "wishlist";
 @import "ie";
 @import "base";
-@import "filters"
+@import "navigation";
+@import "filters";
