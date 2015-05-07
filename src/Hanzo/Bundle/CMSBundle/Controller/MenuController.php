@@ -335,7 +335,7 @@ class MenuController extends CoreController
                 if ($record->getType() == 'url') {
 
                     // If URL is a absolute URL (containing http://, not http://www only, since our local environments, doesnt nescessarily contain www)
-                    if(strpos($path, 'http://')) {
+                    if ( strpos($path, 'http://') !== false ) {
 
                         // Split path - remove locale (da_DK)
                         $path = substr(parse_url($path, PHP_URL_PATH), 7);
@@ -353,23 +353,23 @@ class MenuController extends CoreController
                     // for fixing absolute URLs by URL CMS types.
                     // Since there was no trail (upwards) and the URL (absolute) doesnt match the pattern of $this->path (ex. pige)
                     // since it contains full path (http://www.***.xx/pige)
-                    if((count($this->trail) === 1) && ($path == trim($this->path, '/'))) {
+                    if ((count($this->trail) === 1) && ($path == trim($this->path, '/'))) {
                         $class = 'active-trail';
-                    }elseif($path == trim($this->path, '/')) {
+                    }elseif ($path == trim($this->path, '/')) {
                         $class = 'active';
                     }elseif ((isset($this->trail[$record->getId()]))){
                         $class = 'active-trail';
                     }
 
-                    if($result->isFirst()){
+                    if ($result->isFirst()){
                         $class .= ' first';
                     }
 
-                    if($result->isLast()){
+                    if ($result->isLast()){
                         $class .= ' last';
                     }
 
-                    if($include_self && $record->getId() === $parent_id){
+                    if ($include_self && $record->getId() === $parent_id){
                         $class .= ' self-included';
                     }
 
