@@ -2459,6 +2459,17 @@ aside.js-slider h3 span.open {
   margin-left: 10px;
 }
 
+#body-login .main > .grid_3 > .grid_3 {
+  border-bottom: 2px dotted #8D8D8D;
+  padding: 10px 0;
+}
+#body-login .main > .grid_3 > .grid_3:first-child {
+  border-top: 2px dotted #8D8D8D;
+}
+#body-login .main > .grid_3 > .grid_3:last-child {
+  border-bottom: none;
+}
+
 #account-block-newsletter-all h3 {
   border-top: 1px solid #000;
   cursor: pointer;
