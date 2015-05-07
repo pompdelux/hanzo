@@ -102,7 +102,7 @@
         <!-- Begin - upload -->
         <input type="hidden" name="action" value="upload-files" />
         <input type="hidden" name="_type" value="application" />
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
         <input type="hidden" name="callback_url" value="{{ url('job_application_callback', {'_locale' : app.request.locale}) }}">
         <!-- End - upload -->
 
