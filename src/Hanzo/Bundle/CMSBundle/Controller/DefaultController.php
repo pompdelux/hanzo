@@ -120,7 +120,7 @@ class DefaultController extends CoreController
     {
         $hanzo = Hanzo::getInstance();
         $route = $this->get('request')->get('_route');
-        //die(print_r($route));
+        die(print_r($route));
 
         if (!$page instanceof Cms){
             $page = CmsPeer::getByPK(1);
