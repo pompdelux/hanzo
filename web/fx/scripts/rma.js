@@ -67,6 +67,17 @@ var rma = (function ($) {
             $message.html(data.error_msg).addClass('error').removeClass('hidden');
           }
           else {
+
+              // Reset form
+              $form.trigger('reset');
+
+              // Remove body content
+              $('#rma_claims').hide();
+
+              // Apply new text
+              $message.html(data.msg).removeClass('hidden');
+
+
             $message.html(data.msg).addClass('success').removeClass('hidden');
             $form.trigger('reset');
           }
