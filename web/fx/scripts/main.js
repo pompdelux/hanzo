@@ -295,7 +295,7 @@
                         $('#job-application-form').hide();
 
                         // Apply new text
-                        $message.html(data.msg).addClass('success').removeClass('hidden');
+                        $message.html(data.msg).removeClass('hidden');
                     }
                 });
 
