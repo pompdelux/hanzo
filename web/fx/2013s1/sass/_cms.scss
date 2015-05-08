@@ -144,7 +144,8 @@ article div ul {
 }
 
 // Job application form
-#job-application-form {
+#job-application-form,
+#rma_claims {
   label span {
     display: block
   }
@@ -164,7 +165,7 @@ article div ul {
   }
   textarea,
   input[type="text"] {
-    width: 400px;
+    width: 80%;
   }
   textarea {
     height: 120px;
