@@ -1,6 +1,6 @@
-Feature: Job application form
+Feature: Job application
   Background:
-    Given I am on "jobansoegning"
+    Given I am on "test-jobansoegning"
 
   Scenario: Fill out form
       When I fill in the following:
@@ -15,9 +15,4 @@ Feature: Job application form
       And I attach the file "Lorem-ipsum.pdf" to "images_1"
       And I press "Send din ansøgning"
       And I wait until Ajax is done
-      Then I should see "Vi har nu modtaget din ansøgning ....."
-
-  @wip
-  Scenario: Fill out form
-      When I press "Send din ansøgning"
-      Then I should not see "Vi har nu modtaget din ansøgning ....."
+      Then I should see "Din ansøgning er nu sendt."
