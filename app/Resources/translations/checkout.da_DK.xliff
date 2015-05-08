@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[ <a href="https://certifikat.emaerket.dk/pompdelux.com"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a> ]]></target>
+        <target><![CDATA[ <a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a> ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
