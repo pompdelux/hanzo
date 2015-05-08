@@ -207,7 +207,8 @@ class DefaultController extends CoreController
 
             $mail->send();
 
-            $response['msg'] = $translator->trans('job_application.success', [], 'cms');
+            $response['msg'] = $translator->trans('job_application.success.title', [], 'cms');
+            $response['msg'] .= $translator->trans('job_application.success.message', [], 'cms');
         } catch (\Exception $e) {
 
             error_log($e->getMessage());
