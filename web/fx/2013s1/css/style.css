@@ -3681,6 +3681,35 @@ article div ul {
   width: 50%;
 }
 
+#job-application-form label span {
+  display: block;
+}
+#job-application-form span.help {
+  display: block;
+  font-size: 11px;
+}
+#job-application-form span.required {
+  display: inline-block;
+  font-size: 16px;
+  color: #cc0000;
+  padding: 0 4px;
+}
+#job-application-form textarea,
+#job-application-form input[type="text"] {
+  width: 400px;
+}
+#job-application-form textarea {
+  height: 120px;
+}
+#job-application-form input[type="file"] {
+  display: block;
+  clear: right;
+}
+#job-application-form input[type="file"].hidden {
+  visibility: hidden;
+  display: none;
+}
+
 /**
 | _faq
 */

@@ -816,6 +816,79 @@
                     }
                 ]]></target>
             </trans-unit>
+
+            <trans-unit id="job_application_form.name_label">
+                <source>job_application_form.name_label</source>
+                <target>Navn</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.address_label">
+                <source>job_application_form.address_label</source>
+                <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.zipcode_label">
+                <source>job_application_form.zipcode_label</source>
+                <target>Postnummer</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.city_label">
+                <source>job_application_form.city_label</source>
+                <target>By</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.phone_label">
+                <source>job_application_form.phone_label</source>
+                <target>Telefon nr.</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.email_label">
+                <source>job_application_form.email_label</source>
+                <target>E-mail adresse</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.describe_yourself_label">
+                <source>job_application_form.describe_yourself_label</source>
+                <target>Hvem er du?</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.describe_yourself_help">
+                <source>job_application_form.describe_yourself_help</source>
+                <target>(skriv lidt om dig selv. F.eks. alder, familie og interesser)</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.describe_motivation_label">
+                <source>job_application_form.describe_motivation_label</source>
+                <target>Hvorfor vil du gerne sælge POMPdeLUX børnetøj?</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.attach_image_label">
+                <source>job_application_form.attach_image_label</source>
+                <target>Vedhæft et vellignende billede af dig selv</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.attach_resume_label">
+                <source>job_application_form.attach_resume_label</source>
+                <target>Vedhæft dit CV</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.attach_resume_help">
+                <source>job_application_form.attach_resume_help</source>
+                <target>(valgfrit)</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.submit_value">
+                <source>job_application_form.submit_value</source>
+                <target>Send din ansøgning</target>
+            </trans-unit>
+            <trans-unit id="job_application_form.required">
+                <source>job_application_form.required</source>
+                <target>Skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="job_application.error.upload">
+                <source>job_application.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="job_application.error.missing_field">
+                <source>job_application.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="job_application.error.missing_data">
+                <source>job_application.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
+            <trans-unit id="job_application.success">
+                <source>job_application.success</source>
+                <target><![CDATA[Vi har nu modtaget din ansøgning .....]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
