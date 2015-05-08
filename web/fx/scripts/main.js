@@ -287,13 +287,20 @@
                     if (data.error === true) {
                         $message.html(data.error_msg).addClass('error').removeClass('hidden');
                     } else {
-                        $message.html(data.msg).addClass('success').removeClass('hidden');
+
+                        // Reset form
                         $form.trigger('reset');
+
+                        // Remove body content
+                        $('#job-application-form').hide();
+
+                        // Apply new text
+                        $message.html(data.msg).addClass('success').removeClass('hidden');
                     }
                 });
 
-                xhr.fail(function(err) {
-                    $message.html("An unexpected error occurred").addClass('error').removeClass('hidden');
+                xhr.fail(function(jqXHR, textStatus, errorThrown) {
+                    $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
                 });
 
                 xhr.always(function() {
