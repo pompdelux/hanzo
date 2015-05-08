@@ -207,13 +207,12 @@ class DefaultController extends CoreController
 
             $mail->send();
 
-            $response['msg'] = $translator->trans('job_application.success.title', [], 'cms');
-            $response['msg'] .= $translator->trans('job_application.success.message', [], 'cms');
+            $response['msg'] = $translator->trans('job_application.success', [], 'cms');
         } catch (\Exception $e) {
 
             error_log($e->getMessage());
             $response['error'] = true;
-            $response['error_msg'][] = 'Failed sending claim';
+            $response['error_msg'][] = 'Failed sending message';
         }
 
         return $this->json_response($response);
