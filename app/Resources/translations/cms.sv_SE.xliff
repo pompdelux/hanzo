@@ -884,13 +884,9 @@
                 <source>job_application.error.missing_data</source>
                 <target>Manglende data.</target>
             </trans-unit>
-            <trans-unit id="job_application.success.title">
-                <source>job_application.success.title</source>
-                <target><![CDATA[Din ansøgning er nu sendt.]]></target>
-            </trans-unit>
-            <trans-unit id="job_application.success.message">
-                <source>job_application.success.message</source>
-                <target><![CDATA[Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Majbrit Christensen på tlf. 87 36 13 29]]></target>
+            <trans-unit id="job_application.success">
+                <source>job_application.success</source>
+                <target><![CDATA[Din ansøgning er nu sendt.<br/><br/>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Majbrit Christensen på tlf. 87 36 13 29]]></target>
             </trans-unit>
         </body>
     </file>
