@@ -44,7 +44,8 @@ nav.filters-dropdowns {
     // First layer (visible)
     > li {
       float: left;
-      width: 33%;
+      width: 25%;
+      max-width: 25%;
 
       // Container
       > div.filters-dropdown-container {
@@ -52,19 +53,16 @@ nav.filters-dropdowns {
         position: relative;
         margin-right: 5px;
         background-color: $filter-dropdown-hover-bg-color;
-      }
-
-      // Container
-      > div.filters-dropdown-container {
 
         // Link
         > a {
           display: block;
-          padding: 10px;
+          padding: 10px 5px;
           text-transform: uppercase;
           color: #fff;
           text-align: center;
           cursor: default;
+          font-size: 13px;
 
           // Icon
           .fa {
@@ -251,5 +249,17 @@ nav.filters-dropdowns {
         }
       }
     }
+  }
+}
+
+// Dropdown menu
+nav.filters-dropdowns {
+
+  .filters-dropdown-menu-wrapper {
+
+  }
+
+  .filters-dropdown-menu {
+    background-color: #;
   }
 }

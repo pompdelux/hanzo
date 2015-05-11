@@ -253,15 +253,19 @@
             </trans-unit>
 		<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>Vælg størrelse</target>
+        <target>Størrelse</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>Vælg farve</target>
+        <target>Farve</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.discount">
+        <source>faceted.dropdown.discount</source>
+        <target>Rabat</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>Vælg OEKO-TEX/ØKOLOGI</target>
+        <target>OEKO-TEX/ØKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

@@ -69,9 +69,9 @@ class DefaultController extends CoreController
             $color_mapping = (array) $parent_settings->colormap;
         }
 
-        $size_filter  = [];
-        $color_filter = [];
-        $eco_filter   = [];
+        $size_filter        = [];
+        $color_filter       = [];
+        $eco_filter         = [];
 
         // we need this "hack" to prevent url pollution..
         $escapes = [
@@ -89,7 +89,7 @@ class DefaultController extends CoreController
             $cache_id = array_merge($cache_id, $color_filter);
 
             foreach ($request->query->get('size', []) as $size) {
-                $size_filter[] = $size;
+                $size_filter[]      = $size;
             }
 
             $cache_id = array_merge($cache_id, $size_filter);
@@ -135,7 +135,6 @@ class DefaultController extends CoreController
                 $twig->addGlobal('cms_id', $cms_page->getParentId());
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
-
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
@@ -529,6 +528,7 @@ class DefaultController extends CoreController
 
         $data['color_mapping'] = array_keys($color_mapping);
         $data['size_mapping']  = array_keys($size_mapping);
+        $data['discount_mapping']  = $data['color_mapping'];
 
         // Workaround random text in token
         $escapedTokens = [];
