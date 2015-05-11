@@ -3,7 +3,7 @@ Feature: Menu
   # All pages are created beneath "Kundeservice"
   Background:
     Given the following menu items exist:
-     | name              | active | on_mobile | only_mobile |
+     | title             | active | on_mobile | only_mobile |
      | VisibleAll        | 1      | 1         | 0           |
      | VisibleDesktop    | 1      | 0         | 0           |
      | VisibleMobileOnly | 1      | 1         | 1           |
@@ -21,5 +21,6 @@ Feature: Menu
   @mobile
   Scenario: See mobile only element
     Given I am on the homepage
-    When I click the element "Menu"
+    When I click on the element ".menu-trigger"
+     And I wait until the entire menu is visible
     Then I should see "VisibleMobileOnly"
