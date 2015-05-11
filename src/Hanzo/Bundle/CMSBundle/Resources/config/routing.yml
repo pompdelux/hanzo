@@ -9,3 +9,9 @@ view_page:
         page: null
     requirements:
         id: \d+
+
+job_application_callback:
+    pattern: /job-application-callback
+    defaults:
+        _controller: CMSBundle:Default:jobApplicationCallback
+    methods: [ POST ]
