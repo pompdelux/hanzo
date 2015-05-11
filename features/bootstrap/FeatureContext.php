@@ -13,6 +13,7 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
+use Hanzo\Model\Cms;
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
 
@@ -122,8 +123,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iWaitUntilAjaxIsDone()
     {
-        $time = 5000; // time should be in milliseconds
-        $this->getSession()->wait($time, '(0 === jQuery.active)');
+        $this->waitForJquery(5000);
     }
 
     /**
@@ -144,7 +144,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
-     * @Transform table:name,active,on_mobile,only_mobile
+     * @Transform table:title,active,on_mobile,only_mobile
      * @param TableNode $menuItemsTable
      */
     public function castMenuItemsTable(TableNode $menuItemsTable)
@@ -152,11 +152,25 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $menuItems = [];
         foreach ($menuItemsTable->getHash() as $menuItemHash)
         {
-            $cmsNode = CmsI18nQuery::create()->findOneByTitle($menuItemHash['name']);
+            $cmsNode = CmsI18nQuery::create()->findOneByTitle($menuItemHash['title']);
 
             if (!$cmsNode instanceOf CmsI18n)
             {
-                // $cmsNode = new CmsI18n
+                $cmsNode = new Cms();
+                $cmsNode->setType('page');
+                $cmsNode->setCmsThreadId(23);
+                $cmsNode->setParentId(NULL);
+
+                $cmsI18N = new CmsI18n();
+                $cmsI18N->setCms($cmsNode);
+                $cmsI18N->setTitle($menuItemHash['title']);
+                $cmsI18N->setLocale('da_DK');
+                $cmsI18N->setContent($menuItemHash['title']);
+                $cmsI18N->setOnMobile($menuItemHash['on_mobile']);
+                $cmsI18N->setOnlyMobile($menuItemHash['only_mobile']);
+
+                $cmsNode->save();
+                $cmsI18N->save();
             }
 
             $menuItems[] = $cmsNode;
@@ -170,10 +184,45 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function theFollowingMenuItemsExist(array $menuItems)
     {
-        foreach ($menuItems as $menuItem)
-        {
-          error_log(__LINE__.':'.__FILE__.' '.print_r($menuItem, 1)); // hf@bellcom.dk debugging
-        }
         // throw new PendingException();
+    }
+
+    /**
+     * @Given I am on a category page
+     */
+    public function iAmOnACategoryPage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I click on the element :locator
+     */
+    public function iClickOnTheElement($locator)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
+
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Cannot find element: "%s"', $locator));
+        }
+
+        $element->click();
+    }
+
+    /**
+     * @param mixed $duration
+     */
+    protected function waitForJquery($duration)
+    {
+        $this->getSession()->wait($duration, "(0 === jQuery.active && 0 === jQuery(':animated').length)");
+    }
+
+    /**
+     * @When I wait until the entire menu is visible
+     */
+    public function iWaitUntilTheEntireMenuIsVisible()
+    {
+        $this->waitForJquery(5000);
     }
 }
