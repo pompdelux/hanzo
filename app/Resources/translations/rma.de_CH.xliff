@@ -218,6 +218,10 @@ Bei Zahlung per Rechnung wenden Sie sich bitte an POMPdeLUX: 044 201 33 33. <br>
                 <p>Sollten Sie Fragen haben, kontaktieren Sie bitte unseren Kundenservice unter Tel: Tel.044 201 33 33.</p>]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Bitte beachten Sie, dass die Ware hiermit nicht reserviert ist.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

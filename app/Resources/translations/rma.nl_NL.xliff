@@ -207,6 +207,10 @@
                 ]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Wees er op attent, dat het artikel niet gereserveerd kan worden.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

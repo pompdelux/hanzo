@@ -219,6 +219,10 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
               <p>Hvis du har spørgsmål er du altid velkommen til at kontakte kundeservice på tlf. (+45) 8678 7871.</p>]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Vi gør opmærksom på, at varen ikke reserveres.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

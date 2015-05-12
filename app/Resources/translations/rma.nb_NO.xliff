@@ -216,6 +216,10 @@ Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du bru
                 ]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Vi gjør oppmerksom på at varen ikke blir reservert.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
