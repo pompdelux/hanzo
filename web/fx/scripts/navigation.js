@@ -65,66 +65,67 @@ $(document).ready(function() {
 
     // Filters
 
-    // Configuration
-    var $filter = $('nav.filters-dropdowns'),
-        $link_containers = $filter.find('ul.outer > li'),
-        $links = $link_containers.find('> div > a'),
-        $dropdown_menus = $link_containers.find('> div > ul');
-
-    // Click on link
-    $links.on('click', function(event) {
+    // Filter toggle click
+    $('ul.filter-dropdown a.filter-dropdown-toggle').on('click', function(event) {
 
         // Don't follow href
         event.preventDefault();
+
+        // Don't track this click (in HTML click)
+        event.stopPropagation();
+
+        // Grab parent element (li)
+        var $parent = $(this).parent();
+
+        // Is open - close it
+        if( $parent.hasClass('open') ) {
+
+            // Close all filters
+            close_all_filters();
+        }
+        // Is closed - open it
+        else {
+
+            // Close all filters
+            close_all_filters();
+
+            // Add 'open' class
+            $parent.addClass('open');
+        }
     });
 
-    // Touch devices
-    if(Modernizr.touch) {
+    // Click on filter close icon
+    $('ul.filter-dropdown a.js-filter-close').on('click', function(event) {
 
-        // Click on link
-        $links.on('click', function(event) {
+        // Don't follow href
+        event.preventDefault();
 
-            // Don't track this click (in HTML click)
-            event.stopPropagation();
+        // Close all filters
+        close_all_filters();
+    });
 
-            var $container = $(this).parent().parent();
+    // Click inside dropdown menu
+    $('ul.filter-dropdown div.filter-dropdown-menu').on('click', function (event) {
 
-            // Open
-            if($container.hasClass('open')) {
+        // Don't track this click (in HTML click)
+        event.stopPropagation();
+    });
 
-                // Remove open class
-                $container.removeClass('open');
-            }
+    // Click on HTML
+    $('html').on('click', function (event) {
 
-            // Closed - open it
-            else {
+        // Close all filters
+        close_all_filters();
+    });
 
-                // Remove open class from all other
-                $link_containers.removeClass('open');
+    // Close all filters
+    function close_all_filters() {
 
-                // Add open class
-                $container.addClass('open');
-            }
+        // Configuration
+        var $filter = $('ul.filter-dropdown'),
+            $list_items = $filter.find('> li.open');
 
-        });
-
-        // Click inside dropdown menus
-        $dropdown_menus.on('click', function(event) {
-
-            // Don't track this click (in HTML click)
-            event.stopPropagation();
-        });
-
-        // Click on close icon
-        $filter.find('.js-menu-close').on('click', function(event) {
-
-            // Remove open class from all other
-            $link_containers.removeClass('open');
-        });
-
-        // Click on HTML
-        $('html').on('click', function (event) {
-            $link_containers.removeClass('open');
-        });
+        // Remove 'open' class
+        $list_items.removeClass('open');
     }
 });
