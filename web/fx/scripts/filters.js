@@ -54,7 +54,7 @@ var filters = (function ($) {
       updateSelectedValues();
     });
 
-    $(".js-filter-clear-dropdown").click(function(e) {
+    $(".js-filter-clear").click(function(e) {
       e.preventDefault();
 
       var filterType = $(this).attr('href'),
