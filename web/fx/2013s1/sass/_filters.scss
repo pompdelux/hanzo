@@ -44,7 +44,8 @@ nav.filters-dropdowns {
     // First layer (visible)
     > li {
       float: left;
-      width: 33%;
+      width: 25%;
+      max-width: 25%;
 
       // Container
       > div.filters-dropdown-container {
@@ -52,19 +53,16 @@ nav.filters-dropdowns {
         position: relative;
         margin-right: 5px;
         background-color: $filter-dropdown-hover-bg-color;
-      }
-
-      // Container
-      > div.filters-dropdown-container {
 
         // Link
         > a {
           display: block;
-          padding: 10px;
+          padding: 10px 5px;
           text-transform: uppercase;
           color: #fff;
           text-align: center;
           cursor: default;
+          font-size: 13px;
 
           // Icon
           .fa {
@@ -253,3 +251,265 @@ nav.filters-dropdowns {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Filter dropdown
+ul.filter-dropdown {
+  width: 100%;
+  margin-bottom: 10px;
+
+  // List item (first layer)
+  > li {
+    position: relative;
+    float: left;
+    width: 25%;
+    max-width: 25%;
+
+    // Toggle
+    > a.filter-dropdown-toggle {
+      position: relative;
+      display: block;
+      margin-right: 5px;
+      padding: 10px 10px 10px 5px;
+      font-size: 13px;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: center;
+      background-color: $filter-dropdown-hover-bg-color;
+      text-decoration: none;
+      cursor: default;
+
+      // Icon
+      > .icon {
+        position: absolute;
+        right: 8px;
+        color: #000;
+        text-align: center;
+      }
+    }
+
+    // Last element
+    &:last-child {
+
+      // Toggle
+      > a.filter-dropdown-toggle {
+        margin-right: 0;
+      }
+    }
+
+    // Open
+    &.open {
+
+      // Toggle
+      > a.filter-dropdown-toggle {
+        background-color: $category-menu-bg-color;
+
+        // Icon
+        > .icon {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Clearfix hack taken from Bootstrap
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// No touch
+.no-touch {
+
+  // Filter dropdown
+  ul.filter-dropdown {
+
+    // List item (first layer)
+    > li {
+
+      // Open and hover state
+      &:hover {
+
+        // Toggle
+        > a.filter-dropdown-toggle {
+          background-color: $category-menu-bg-color;
+
+          // Icon
+          > .icon {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// Dropdown menu
+// --------------------------------------------------
+//
+// Information
+// -
+//
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+// Dropdown menu
+div.filter-dropdown-menu {
+  
+
+  // Dropdown list
+  ul.filter-dropdown-menu-list {
+
+    // List item (first layer)
+    > li {
+
+      // Dropdown menu
+      div.filter-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 5px;
+        z-index: 200;
+        @include box-shadow(#676767 2px 2px 2px);
+        background-color: $category-menu-bg-color;
+
+        // Dropdown menu list
+        ul.filter-dropdown-menu-list {
+
+          // List item
+          > li {
+            padding: 5px 0;
+
+            // Label
+            label {
+              font-size: 12px;
+              color: #fff;
+              margin-top: 2px;
+              vertical-align: top;
+              width: auto;
+            }
+
+            // Input
+            input {
+              background-color: $filter-dropdown-hover-bg-color;
+              padding: 0;
+              margin-left: 10px;
+              margin-right: 3px;
+            }
+
+            // Last list item
+            &:last-child {
+
+            }
+          }
+        }
+      }
+
+      // Last element
+      &:last-child {
+
+        // Dropdown menu
+        div.filter-dropdown-menu {
+          right: 0;
+        }
+      }
+
+      // Open
+      &.open {
+
+        // Dropdown menu
+        div.filter-dropdown-menu {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Dropdown menu
+//> ul {
+//
+//  // List item
+//  > li {
+//    float: left;
+//    width: 50%;
+//    padding: 5px 0;
+//
+//    // Label
+//    label {
+//      font-size: 12px;
+//      color: #fff;
+//      margin-top: 2px;
+//      vertical-align: top;
+//      width: auto;
+//    }
+//
+//    // Input
+//    input {
+//      background-color: $filter-dropdown-hover-bg-color;
+//      padding: 0;
+//      margin-left: 10px;
+//      margin-right: 3px;
+//    }
+//
+//    // Last
+//    &:last-child {
+//      width: 100%;
+//      padding-top: 10px;
+//
+//      // Link
+//      > a {
+//        font-size: 12px;
+//        margin-left: 10px;
+//      }
+//
+//      // Icon
+//      .fa {
+//        float: right;
+//        margin-right: 10px;
+//        color: #000;
+//        cursor: hand;
+//        cursor: pointer;
+//      }
+//    }
+//  }
+//}
