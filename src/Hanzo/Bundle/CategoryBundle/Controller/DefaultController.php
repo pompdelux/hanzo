@@ -58,16 +58,7 @@ class DefaultController extends CoreController
 
         $topLevel = $this->getTopLevelCMSPage($cms_page);
 
-        $parent_settings = CmsI18nQuery::create()
-            ->filterByLocale($locale)
-            ->filterById($topLevel->getId())
-            ->findOne()->getSettings(false)
-        ;
-
-        $color_mapping = [];
-        if ($parent_settings) {
-            $color_mapping = (array) $parent_settings->colormap;
-        }
+        $colorMapping = $this->getSettings($locale, $topLevel->getId(), 'colormap');
 
         $size_filter  = [];
         $color_filter = [];
@@ -79,10 +70,12 @@ class DefaultController extends CoreController
         ];
 
         if ($request->query->has('filter')) {
+            // A color, e.g. "Blue", can be mapped to many colors like "Dusty Blue" or "Navy"
+            // So this maps the color to all it's aliases
             foreach ($request->query->get('color', []) as $color) {
                 $color = strtr($color, $escapes);
-                if (isset($color_mapping[$color])) {
-                    $color_filter = array_merge($color_filter, $color_mapping[$color]);
+                if (isset($colorMapping[$color])) {
+                    $color_filter = array_merge($color_filter, $colorMapping[$color]);
                 }
             }
 
@@ -102,6 +95,8 @@ class DefaultController extends CoreController
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
+        // FIXME: testing
+        $html = false;
 
         /**
          *  If html wasn't cached retrieve a fresh set of data
@@ -276,25 +271,13 @@ class DefaultController extends CoreController
 
         $topLevel = $this->getTopLevelCMSPage($cms_page);
 
-        $parent_settings = CmsI18nQuery::create()
-            ->filterByLocale($locale)
-            ->filterById($topLevel->getId())
-            ->findOne()->getSettings(false)
-        ;
+        $color_mapping = $this->getSettings($locale, $topLevel->getId(), 'colormap');
+        $size_mapping  = $this->getSettings($locale, $topLevel->getId(), 'sizes');
+        $token_mapping = $this->getSettings($locale, $topLevel->getId(), 'tokens');
 
-        $color_mapping = [];
-        $size_mapping  = [];
-        $token_mapping = [];
-
-        if ($parent_settings && isset($parent_settings->colormap, $parent_settings->sizes)) {
-            // When casting objects to arrays with numeric attributes, everything goes belly up
-            // The fix should be to pass true to json_decode http://php.net/json_decode
-            // but that breaks other stuff :), so there for the extra foreach after this
-            $color_mapping = (array) $parent_settings->colormap;
-            $size_mapping  = (array) $parent_settings->sizes;
-            $token_mapping = (isset($parent_settings->tokens)) ? (array) $parent_settings->tokens : [];
-        }
-
+        // When casting objects to arrays with numeric attributes, everything goes belly up
+        // The fix should be to pass true to json_decode http://php.net/json_decode
+        // but that breaks other stuff :), so there for the extra foreach after this
         $tmp          = $size_mapping;
         $size_mapping = [];
         foreach ($tmp as $key => $value)
@@ -302,52 +285,14 @@ class DefaultController extends CoreController
             $size_mapping[$key] = $value;
         }
 
-        $use_filter   = false;
-        $filters      = [];
-        // Used later on, but also joined into $filters
-        $color_filter = [];
-        $size_filter  = [];
-
-        // we need this "hack" to prevent url pollution..
-        $escapes = [
-            ' - ' => ' & ',
-        ];
-
-        if ($request->query->has('filter')) {
-            foreach ($request->query->get('color', []) as $color) {
-                $color = strtr($color, $escapes);
-                if (isset($color_mapping[$color])) {
-                    $color_filter = array_merge($color_filter, $color_mapping[$color]);
-                    $use_filter = true;
-                }
-            }
-
-            foreach ($request->query->get('size', []) as $size) {
-                if (isset($size_mapping[$size])) {
-                    $size_filter = array_merge($size_filter, $size_mapping[$size]);
-                    $use_filter = true;
-                }
-            }
-
-            foreach ($request->query->get('eco', []) as $eco) {
-                $filters['eco'][] = $eco;
-                $use_filter = true;
-            }
-        }
-
         $settings = $cms_page->getSettings(null, false);
 
-        if (empty($color_filter)) {
-            if(!empty($settings->colors)){
-                $color_filter = explode(',', $settings->colors);
-            }
-        }
+        $use_filter   = false;
+        $filters      = [];
+        $filters = $this->getFilters($color_mapping, $size_mapping, $settings);
 
-        $filters['color'] = $color_filter;
-
-        if (!empty($size_filter))
-        {
-            $filters['size'] = $size_filter;
+        if (!empty($filters)) {
+            $use_filters = true;
         }
 
         $route = $request->get('_route');
@@ -443,25 +388,25 @@ class DefaultController extends CoreController
                 ;
         }
 
-        if ($color_filter) {
+        if ($filters['color']) {
             if ($use_filter) {
                 // when using filters we need descending order not ascending.
                 $result = $result->useProductsImagesQuery()
                     ->addDescendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
-                        "'".implode("','", $color_filter)."'"
+                        "'".implode("','", $filters['color'])."'"
 
                     ))
                     // We already to this?
-                    ->filterByColor($color_filter)
+                    ->filterByColor($filters['color'])
                     ->endUse();
             } else {
                 $result = $result->useProductsImagesQuery()
                     ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
-                        "'".implode("','", $color_filter)."'"
+                        "'".implode("','", $filters['color'])."'"
 
                     ))
                     ->endUse();
@@ -613,5 +558,82 @@ class DefaultController extends CoreController
         }
 
         return $topLevel;
+    }
+
+    /**
+     * Extracts the json from the CMS page (which again is loaded from the xliff files)
+     *
+     * @param string $locale
+     * @param int $id
+     * @param string $settingsName
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getSettings($locale, $cmsId, $settingsName)
+    {
+        $settings = [];
+
+        static $cache = [];
+
+        if (!isset($cache[$cmsId.'-'.$locale])) {
+            $parentSettings = CmsI18nQuery::create()
+                ->filterByLocale($locale)
+                ->filterById($cmsId)
+                ->findOne()->getSettings(false);
+
+            $cache[$cmsId.'-'.$locale] = $parentSettings;
+        } else {
+            $parentSettings = $cache[$cmsId.'-'.$locale];
+        }
+
+        if ($parentSettings && isset($parentSettings->{$settingsName})) {
+            $settings = (array) $parentSettings->{$settingsName};
+        }
+
+        return $settings;
+    }
+
+    protected function getFilters($color_mapping, $size_mapping, $settings)
+    {
+        $request    = $this->container->get('request');
+
+        $mappings    = ['color' => $color_mapping, 'size' => $size_mapping];
+        $filterTypes = ['color', 'size', 'eco', 'discount'];
+
+        $filters = [];
+
+        // we need this "hack" to prevent url pollution..
+        $escapes = [
+            ' - ' => ' & ',
+        ];
+
+        if ($request->query->has('filter')) {
+            foreach ($filterTypes as $filterName)
+            {
+                foreach ($request->query->get($filterName, []) as $value) {
+                    $value = strtr($value, $escapes);
+                    if (!isset($filters[$filterName])) {
+                       $filters[$filterName] = [];
+                    }
+                    if (isset($mappings[$filterName])) {
+                        if (isset($mappings[$filterName][$value])) {
+                            $filters[$filterName] = array_merge($filters[$filterName], $mappings[$filterName][$value]);
+                        }
+                    } else {
+                        $filters[$filterName][] = $value;
+                    }
+                }
+            }
+        }
+
+        // hf@bellcom.dk: still needed? 13-may-2015
+        if (empty($filters['color'])) {
+            if (!empty($settings->colors)) {
+                $filters['color'] = explode(',', $settings->colors);
+            }
+        }
+
+        return $filters;
     }
 }
