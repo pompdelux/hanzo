@@ -627,12 +627,11 @@ class DefaultController extends CoreController
         ];
 
         if ($request->query->has('filter')) {
-            foreach ($filterTypes as $filterName)
-            {
+            foreach ($filterTypes as $filterName) {
                 foreach ($request->query->get($filterName, []) as $value) {
                     $value = strtr($value, $escapes);
                     if (!isset($filters[$filterName])) {
-                       $filters[$filterName] = [];
+                        $filters[$filterName] = [];
                     }
                     if (isset($mappings[$filterName])) {
                         if (isset($mappings[$filterName][$value])) {
