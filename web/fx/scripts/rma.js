@@ -48,6 +48,60 @@ var rma = (function ($) {
 
     };
 
+    pub.uploadInit = function() {
+      var $form = $("form#rma_claims");
+      $form.on('submit',(function(e) {
+        e.preventDefault();
+        var $message = $(".message"),
+            url = $(this).attr('action');
+
+        $.ajax({
+          url:          url,
+          type:         "POST",
+          data:         new FormData(this),
+          contentType:  false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+          cache:        false,
+          processData:  false  // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+        }).done(function(data) {
+          if (data.error === true) {
+            $message.html(data.error_msg).addClass('error').removeClass('hidden');
+          }
+          else {
+
+              // Reset form
+              $form.trigger('reset');
+
+              // Remove body content
+              $('#rma_claims').hide();
+
+              // Apply new text
+              $message.html(data.msg).removeClass('hidden');
+
+
+            $message.html(data.msg).addClass('success').removeClass('hidden');
+            $form.trigger('reset');
+          }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
+        }).always(function() {
+            $('html,body').animate({scrollTop: 0});
+        });
+      }));
+
+      // Show next element if file has been selected
+      $("input[type='file']", $form).change(function() {
+        $(this).next().removeClass('hidden');
+      });
+
+      // Show input fields if radio button selected
+      $("input[name='contact']", $form).change(function() {
+        var name = $(this).val();
+
+        $(".contact_methods input[type='text']", $form).addClass('hidden');
+        $("input[name='"+name+"_value']", $form).removeClass('hidden');
+      });
+    };
+
     function generatePdf() {
 
         var has_errors = false;
@@ -119,6 +173,8 @@ var rma = (function ($) {
 })(jQuery);
 
 if ($('#body-rma').length) {
-
     rma.init();
+}
+if ($("form#rma_claims").length) {
+  rma.uploadInit();
 }

@@ -754,7 +754,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 */
 .product-list .block a {
   border: none;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 12px;
   line-height: 18px;
   color: #444;
@@ -903,7 +903,7 @@ ul.tabs li {
   margin-right: 15px;
 }
 ul.tabs li a {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 ul.tabs li a i {
   display: inline;
@@ -978,7 +978,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main h2.title,
 .body-product .main .prices {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 18px;
@@ -2459,6 +2459,17 @@ aside.js-slider h3 span.open {
   margin-left: 10px;
 }
 
+#body-login .main > .grid_3 > .grid_3 {
+  border-bottom: 2px dotted #8D8D8D;
+  padding: 10px 0;
+}
+#body-login .main > .grid_3 > .grid_3:first-child {
+  border-top: 2px dotted #8D8D8D;
+}
+#body-login .main > .grid_3 > .grid_3:last-child {
+  border-bottom: none;
+}
+
 #account-block-newsletter-all h3 {
   border-top: 1px solid #000;
   cursor: pointer;
@@ -3428,6 +3439,7 @@ video img {
 
 .filter-show-products {
   text-transform: uppercase;
+  margin-top: -2px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   line-height: 14px;
@@ -3564,7 +3576,7 @@ table tfoot {
   border-top: 1px solid #444;
 }
 table thead {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 table thead th {
   padding: 3px 6px;

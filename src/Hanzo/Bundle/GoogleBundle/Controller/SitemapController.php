@@ -29,7 +29,7 @@ class SitemapController extends Controller
     /**
      * @param Request $request
      *
-     * @Route("/google/sitemap.xml")
+     * @Route("/google/sitemap.xml", name="google_sitemap")
      * @author Henrik Farre <hf@bellcom.dk>
      *
      * @return Response

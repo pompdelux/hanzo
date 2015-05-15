@@ -8,11 +8,12 @@ default:
         - FeatureContext
         - Behat\MinkExtension\Context\MinkContext
       filters:
-        tags: ~@consultant
+        tags: ~@consultant&&~@de_DE&&~@mobile
   extensions:
     Behat\Symfony2Extension: ~
     Behat\MinkExtension:
       base_url: 'http://pompdelux.com/da_DK/'
+      files_path: %paths.base%/features/test_files/
       sessions:
         default:
           selenium2:
@@ -26,3 +27,22 @@ consultant:
   extensions:
     Behat\MinkExtension:
       base_url: 'https://c.pompdelux.com/da_DK/'
+
+de_DE:
+  suites:
+    default:
+      filters:
+        tags: @de_DE
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://pompdelux.com/de_DE/'
+
+# TODO: use mobilecontext?
+mobile:
+  suites:
+    default:
+      filters:
+        tags: @mobile
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://pompdelux.com/da_DK/'
