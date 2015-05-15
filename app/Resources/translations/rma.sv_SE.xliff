@@ -190,12 +190,12 @@ Obs! Även om du väntar på en kreditnota för dina returvaror ska du alltid be
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Ladda upp bilder på reklamationen:<br>(max 5 bilder på totalt 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">

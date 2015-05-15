@@ -179,12 +179,12 @@
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Upload foto’s van de reclamatie:<br>(maximaal 5 foto’s van totaal 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefoonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">

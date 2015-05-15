@@ -184,12 +184,12 @@ For further information, please visit: <a href="/en_GB/" target="_blank">www.pom
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Upload photos of the complaint<br>(maximum 5 photos totalling 10 MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telephone number*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
