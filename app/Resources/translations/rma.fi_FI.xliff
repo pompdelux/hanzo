@@ -192,10 +192,6 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Lataa kuvia reklamaatiosta:<br>(enintään 5 kuvaa, yhteensä 10 Mt)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
             <trans-unit id="rma.claims.form.contact_phone_label">
               <source>rma.claims.form.contact_phone_label</source>
               <target>Puhelinnumero*</target>
