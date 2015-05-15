@@ -273,10 +273,11 @@ class DefaultController extends CoreController
 
         // One color or size might cover many others, e.g. Blue => Navy
         // The tokens are not mapped, just extracted the same way and passed to the tpl
-        $mappings           = [];
-        $mappings['color']  = $this->getSettings($locale, $topLevel->getId(), 'colormap');
-        $mappings['size']   = $this->getSettings($locale, $topLevel->getId(), 'sizes', TRUE);
-        $mappings['tokens'] = $this->getSettings($locale, $topLevel->getId(), 'tokens');
+        $mappings             = [];
+        $mappings['color']    = $this->getSettings($locale, $topLevel->getId(), 'colormap');
+        $mappings['size']     = $this->getSettings($locale, $topLevel->getId(), 'sizes', true);
+        $mappings['tokens']   = $this->getSettings($locale, $topLevel->getId(), 'tokens');
+        $mappings['discount'] = $this->getSettings($locale, $topLevel->getId(), 'discount');
 
         $use_filter = false;
         $filters    = [];
