@@ -2,25 +2,25 @@
 
 <form id="rma_claims" action="{{ cdn }}rma_upload.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
   <div class="grid_6 alpha omega">
-    <label>
-      <div class="row">
-        <span>{{ 'rma.claims.form.name_label'|trans({}, 'rma') }}</span>
-        <input type="text" name="name" value="" required/>
-      </div>
-    </label>
-    <p class="contact_methods">{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
       <label>
-          <input type="radio" name="contact" value="phone" />
-          {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
+          <div class="row">
+              <span>{{ 'rma.claims.form.name_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="name" value="" required/>
+          </div>
       </label>
-      <input type="text" name="phone_value" value="" class="hidden" />
+      <label>
+          <div class="row">
+              <span>{{ 'rma.claims.form.phone_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="phone" value="" required />
+          </div>
+      </label>
 
       <label>
-          <input type="radio" name="contact" value="email" checked="checked"/>
-          {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
+          <div class="row">
+              <span>{{ 'rma.claims.form.email_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="email" value="" required />
+          </div>
       </label>
-      <input type="text" name="email_value" value="" />
-    </p>
     <label>
       <div class="row">
         <span>{{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}</span>
