@@ -271,25 +271,24 @@ class DefaultController extends CoreController
 
         $topLevel = $this->getTopLevelCMSPage($cms_page);
 
-        $color_mapping = $this->getSettings($locale, $topLevel->getId(), 'colormap');
-        $size_mapping  = $this->getSettings($locale, $topLevel->getId(), 'sizes');
-        $token_mapping = $this->getSettings($locale, $topLevel->getId(), 'tokens');
+        // One color or size might cover many others, e.g. Blue => Navy
+        // The tokens are not mapped, just extracted the same way and passed to the tpl
+        $mappings           = [];
+        $mappings['color']  = $this->getSettings($locale, $topLevel->getId(), 'colormap');
+        $mappings['size']   = $this->getSettings($locale, $topLevel->getId(), 'sizes', TRUE);
+        $mappings['tokens'] = $this->getSettings($locale, $topLevel->getId(), 'tokens');
 
-        // When casting objects to arrays with numeric attributes, everything goes belly up
-        // The fix should be to pass true to json_decode http://php.net/json_decode
-        // but that breaks other stuff :), so there for the extra foreach after this
-        $tmp          = $size_mapping;
-        $size_mapping = [];
-        foreach ($tmp as $key => $value)
-        {
-            $size_mapping[$key] = $value;
-        }
+        $use_filter = false;
+        $filters    = [];
+        $filters    = $this->getFilters($mappings);
 
         $settings = $cms_page->getSettings(null, false);
-
-        $use_filter   = false;
-        $filters      = [];
-        $filters = $this->getFilters($color_mapping, $size_mapping, $settings);
+        // hf@bellcom.dk: still needed? 13-may-2015
+        if (empty($filters['color'])) {
+            if (!empty($settings->colors)) {
+                $filters['color'] = explode(',', $settings->colors);
+            }
+        }
 
         if (!empty($filters)) {
             $use_filters = true;
@@ -472,12 +471,12 @@ class DefaultController extends CoreController
             'paginate' => null,
         ];
 
-        $data['color_mapping'] = array_keys($color_mapping);
-        $data['size_mapping']  = array_keys($size_mapping);
+        $data['color_mapping'] = array_keys($mappings['color']);
+        $data['size_mapping']  = array_keys($mappings['size']);
 
         // Workaround random text in token
         $escapedTokens = [];
-        foreach (array_keys($token_mapping) as $rawToken)
+        foreach (array_keys($mappings['tokens']) as $rawToken)
         {
             $escapedTokens[] = ['name' => $rawToken, 'value' => Tools::stripText($rawToken)];
         }
@@ -566,11 +565,12 @@ class DefaultController extends CoreController
      * @param string $locale
      * @param int $id
      * @param string $settingsName
+     * @param bool $fixNumeric Loop over array to fix key/value
      *
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    protected function getSettings($locale, $cmsId, $settingsName)
+    protected function getSettings($locale, $cmsId, $settingsName, $fixNumeric = false)
     {
         $settings = [];
 
@@ -591,14 +591,32 @@ class DefaultController extends CoreController
             $settings = (array) $parentSettings->{$settingsName};
         }
 
+        if ($fixNumeric === true) {
+            // When casting objects to arrays with numeric attributes, everything goes belly up
+            // The fix should be to pass true to json_decode http://php.net/json_decode
+            // but that breaks other stuff :), so there for the extra foreach after this
+            $tmp      = $settings;
+            $settings = [];
+            foreach ($tmp as $key => $value) {
+                $settings[$key] = $value;
+            }
+        }
+
         return $settings;
     }
 
-    protected function getFilters($color_mapping, $size_mapping, $settings)
+    /**
+     * Extracts filter values from url and performs mapping for color/size
+     *
+     * @param array $mappings Contains the mappings for color and size
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getFilters(Array $mappings)
     {
         $request    = $this->container->get('request');
 
-        $mappings    = ['color' => $color_mapping, 'size' => $size_mapping];
         $filterTypes = ['color', 'size', 'eco', 'discount'];
 
         $filters = [];
@@ -624,13 +642,6 @@ class DefaultController extends CoreController
                         $filters[$filterName][] = $value;
                     }
                 }
-            }
-        }
-
-        // hf@bellcom.dk: still needed? 13-may-2015
-        if (empty($filters['color'])) {
-            if (!empty($settings->colors)) {
-                $filters['color'] = explode(',', $settings->colors);
             }
         }
 
