@@ -273,11 +273,11 @@ class DefaultController extends CoreController
 
         // One color or size might cover many others, e.g. Blue => Navy
         // The tokens are not mapped, just extracted the same way and passed to the tpl
-        $mappings             = [];
-        $mappings['color']    = $this->getSettings($locale, $topLevel->getId(), 'colormap');
-        $mappings['size']     = $this->getSettings($locale, $topLevel->getId(), 'sizes', true);
-        $mappings['tokens']   = $this->getSettings($locale, $topLevel->getId(), 'tokens');
-        $mappings['discount'] = $this->getSettings($locale, $topLevel->getId(), 'discount');
+        $mappings              = [];
+        $mappings['color']     = $this->getSettings($locale, $topLevel->getId(), 'colormap');
+        $mappings['size']      = $this->getSettings($locale, $topLevel->getId(), 'sizes', true);
+        $mappings['tokens']    = $this->getSettings($locale, $topLevel->getId(), 'tokens');
+        $mappings['discounts'] = $this->getSettings($locale, $topLevel->getId(), 'discounts');
 
         $use_filter = false;
         $filters    = [];
@@ -390,7 +390,7 @@ class DefaultController extends CoreController
                 ;
         }
 
-        if ($filters['color']) {
+        if (isset($filters['color'])) {
             if ($use_filter) {
                 // when using filters we need descending order not ascending.
                 $result = $result->useProductsImagesQuery()
@@ -474,8 +474,9 @@ class DefaultController extends CoreController
             'paginate' => null,
         ];
 
-        $data['color_mapping'] = array_keys($mappings['color']);
-        $data['size_mapping']  = array_keys($mappings['size']);
+        $data['color_mapping']    = array_keys($mappings['color']);
+        $data['size_mapping']     = array_keys($mappings['size']);
+        $data['discount_mapping'] = array_keys($mappings['discounts']);
 
         // Workaround random text in token
         $escapedTokens = [];
@@ -620,7 +621,7 @@ class DefaultController extends CoreController
     {
         $request    = $this->container->get('request');
 
-        $filterTypes = ['color', 'size', 'eco', 'discount'];
+        $filterTypes = ['color', 'size', 'eco', 'discounts'];
 
         $filters = [];
 
