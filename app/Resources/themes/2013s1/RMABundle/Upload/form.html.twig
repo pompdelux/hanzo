@@ -8,6 +8,19 @@
         <input type="text" name="name" value="" required/>
       </div>
     </label>
+    <p class="contact_methods">{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
+      <label>
+          <input type="radio" name="contact" value="phone" />
+          {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
+      </label>
+      <input type="text" name="phone_value" value="" class="hidden" />
+
+      <label>
+          <input type="radio" name="contact" value="email" checked="checked"/>
+          {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
+      </label>
+      <input type="text" name="email_value" value="" />
+    </p>
     <label>
       <div class="row">
         <span>{{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}</span>
@@ -31,20 +44,6 @@
       <input type="file" name="pictures[]" id="picture_3" class="hidden" />
       <input type="file" name="pictures[]" id="picture_4" class="hidden" />
       <input type="file" name="pictures[]" id="picture_5" class="hidden" />
-    </p>
-
-    <p class="contact_methods">{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
-      <label>
-        <input type="radio" name="contact" value="phone" />
-        {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
-      </label>
-      <input type="text" name="phone_value" value="" class="hidden" />
-
-      <label>
-        <input type="radio" name="contact" value="email" checked="checked"/>
-        {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
-      </label>
-      <input type="text" name="email_value" value="" />
     </p>
 
     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
