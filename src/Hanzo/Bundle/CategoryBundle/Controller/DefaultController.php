@@ -280,7 +280,9 @@ class DefaultController extends CoreController
 
         $use_filter = false;
         $filters    = [];
-        $filters    = $this->getFilters($mappings);
+        if ($request->query->has('filter')) {
+            $filters = $this->getFilters($mappings);
+        }
 
         $settings = $cms_page->getSettings(null, false);
         // hf@bellcom.dk: still needed? 13-may-2015
@@ -626,20 +628,18 @@ class DefaultController extends CoreController
             ' - ' => ' & ',
         ];
 
-        if ($request->query->has('filter')) {
-            foreach ($filterTypes as $filterName) {
-                foreach ($request->query->get($filterName, []) as $value) {
-                    $value = strtr($value, $escapes);
-                    if (!isset($filters[$filterName])) {
-                        $filters[$filterName] = [];
+        foreach ($filterTypes as $filterName) {
+            foreach ($request->query->get($filterName, []) as $value) {
+                $value = strtr($value, $escapes);
+                if (!isset($filters[$filterName])) {
+                    $filters[$filterName] = [];
+                }
+                if (isset($mappings[$filterName])) {
+                    if (isset($mappings[$filterName][$value])) {
+                        $filters[$filterName] = array_merge($filters[$filterName], $mappings[$filterName][$value]);
                     }
-                    if (isset($mappings[$filterName])) {
-                        if (isset($mappings[$filterName][$value])) {
-                            $filters[$filterName] = array_merge($filters[$filterName], $mappings[$filterName][$value]);
-                        }
-                    } else {
-                        $filters[$filterName][] = $value;
-                    }
+                } else {
+                    $filters[$filterName][] = $value;
                 }
             }
         }
