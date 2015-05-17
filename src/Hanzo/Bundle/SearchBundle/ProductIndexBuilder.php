@@ -183,7 +183,6 @@ class ProductIndexBuilder extends IndexBuilder
      * updateCustomTokensIndex
      * - Some products are tagged with some custom tokens, i.e. eco
      * - This will find all products in the configured categories @see getCustomTokensForCategories and add them to the search table
-     * - The value is stored in the db prefixed with 'token-' to avoid clash with category names
      *
      * @param string $locale
      * @param PropelPDO
@@ -211,7 +210,7 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($products as $product)
                 {
-                    $tokenValue = 'token-'.Tools::stripText($token);
+                    $tokenValue = Tools::stripText($token);
 
                     $sql = sprintf("
                         INSERT INTO
