@@ -1,0 +1,123 @@
+<div class="hidden message unstyled"></div>
+
+<form id="job-application-form" action="{{ cdn }}tools.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div class="grid_6 alpha omega">
+
+        <!-- Begin - name -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.name_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="name" value="" required/>
+            </div>
+        </label>
+        <!-- End - name -->
+
+        <!-- Begin - address -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.address_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="address" value="" required/>
+            </div>
+        </label>
+        <!-- End - address -->
+
+        <!-- Begin - zipcode -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.zipcode_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="zipcode" value="" required/>
+            </div>
+        </label>
+        <!-- End - zipcode -->
+
+        <!-- Begin - city -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.city_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="city" value="" required/>
+            </div>
+        </label>
+        <!-- End - city -->
+
+        <!-- Begin - phone -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.phone_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="phone" value="" required/>
+            </div>
+        </label>
+        <!-- End - phone -->
+
+        <!-- Begin - email -->
+        <label>
+            <div class="row">
+                <span>{{ 'job_application_form.email_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <input type="text" name="email" value="" required/>
+            </div>
+        </label>
+        <!-- End - email -->
+
+        <!-- Begin - describe yourself -->
+        <label>
+            <span>{{ 'job_application_form.describe_yourself_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+            <span class="help">{{ 'job_application_form.describe_yourself_help'|trans({}, 'cms') }}</span>
+            <textarea name="describe_yourself" rows="4" cols="30" required></textarea>
+        </label>
+        <!-- End - describe yourself -->
+
+        <!-- Begin - describe motivation -->
+        <label>
+            <span>{{ 'job_application_form.describe_motivation_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+            <textarea name="describe_motivation" rows="4" cols="30" required></textarea>
+        </label>
+        <!-- End - describe motivation -->
+
+        <br/>
+
+        <!-- Begin - attach image -->
+        <p>{{ 'job_application_form.attach_image_label'|trans({}, 'cms')|raw }}
+            <input type="file" name="images[]" id="images_1"/>
+            <input type="file" name="images[]" id="images_2" class="hidden" />
+            <input type="file" name="images[]" id="images_3" class="hidden" />
+            <input type="file" name="images[]" id="images_4" class="hidden" />
+            <input type="file" name="images[]" id="images_5" class="hidden" />
+        </p>
+        <!-- End - attach image -->
+
+        <br/>
+
+        <!-- Begin - attach resume -->
+        <p>{{ 'job_application_form.attach_resume_label'|trans({}, 'cms')|raw }}
+            <span class="help">
+                {{ 'job_application_form.attach_resume_help'|trans({}, 'cms')|raw }}
+            </span>
+            <input type="file" name="resumes[]" id="resumes_1"/>
+            <input type="file" name="resumes[]" id="resumes_2" class="hidden" />
+            <input type="file" name="resumes[]" id="resumes_3" class="hidden" />
+            <input type="file" name="resumes[]" id="resumes_4" class="hidden" />
+            <input type="file" name="resumes[]" id="resumes_5" class="hidden" />
+        </p>
+        <!-- End - attach resume -->
+
+        <!-- Begin - upload -->
+        <input type="hidden" name="action" value="upload-files" />
+        <input type="hidden" name="_type" value="application" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+        <input type="hidden" name="callback_url" value="{{ url('job_application_callback', {'_locale' : app.request.locale}) }}">
+        <!-- End - upload -->
+
+        <br/>
+
+        <!-- Begin - submit -->
+        <p><input class="button" type="submit" value="{{ 'job_application_form.submit_value'|trans({}, 'cms') }}" /></p>
+        <!-- End - submit -->
+
+        <!-- Begin - description -->
+        <p class="description">
+            <span class="required">*</span>{{ 'job_application_form.required'|trans({}, 'cms') }}
+        </p>
+        <!-- End - description -->
+
+    </div>
+</form>
+

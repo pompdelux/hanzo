@@ -265,6 +265,63 @@
 
         };
 
+        pub.initJobApplication = function() {
+            var $form = $("form#job-application-form");
+
+            $form.on('submit',(function(e) {
+                e.preventDefault();
+
+                var $message = $(".message");
+                var url = $(this).attr('action');
+
+                var xhr = $.ajax({
+                    url:          url,
+                    type:         "POST",
+                    data:         new FormData(this),
+                    contentType:  false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                    cache:        false,
+                    processData:  false  // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                });
+
+                xhr.done(function(data) {
+                    if (data.error === true) {
+                        $message.html(data.error_msg).addClass('error').removeClass('hidden');
+                    } else {
+
+                        // Reset form
+                        $form.trigger('reset');
+
+                        // Remove body content
+                        $('#job-application-form').hide();
+
+                        // Apply new text
+                        $message.html(data.msg).removeClass('hidden');
+                    }
+                });
+
+                xhr.fail(function(jqXHR, textStatus, errorThrown) {
+                    $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
+                });
+
+                xhr.always(function() {
+                    $('html,body').animate({scrollTop: 0});
+                });
+            }));
+
+            // Show next element if file has been selected
+            $("input[type='file']", $form).change(function() {
+                $(this).next().removeClass('hidden');
+            });
+
+            // Show input fields if radio button selected
+            $("input[name='contact']", $form).change(function() {
+                var name = $(this).val();
+
+                $(".contact_methods input[type='text']", $form).addClass('hidden');
+                $("input[name='"+name+"_value']", $form).removeClass('hidden');
+            });
+        };
+
         var getDocHeight = function () {
             var D = document;
             return Math.max(Math.max(
@@ -287,5 +344,9 @@
     gui.initBasket();
     gui.initToTop();
     gui.initSearchForm();
+
+    if ($("form#job-application-form").length) {
+        gui.initJobApplication();
+    }
 
 })(jQuery, document);
