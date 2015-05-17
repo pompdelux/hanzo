@@ -3,10 +3,11 @@
     <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
         <ul class="filter-dropdown">
 
-            <!-- Begin - size -->
+            {% for filter in filters%}
+            <!-- Begin - {{ filter.id }} -->
             <li class="first">
-                <a href="#" class="filter-dropdown-toggle">{{ 'faceted.dropdown.size'|trans({}, 'category') }}<span class="icon fa fa-angle-down"></span></a>
-
+              <a href="#" class="filter-dropdown-toggle filter-{{ filter.id }}-toggle">{{ "faceted.dropdown.#{ filter.id }"|trans({}, 'category') }}<span class="icon fa fa-angle-down"></span></a>
+;
                 <!-- Begin - dropdown menu -->
                 <div class="filter-dropdown-menu">
 
@@ -14,12 +15,12 @@
                     <div class="filter-dropdown-menu-scrollbar-container">
 
                         <!-- Begin - dropdown menu list -->
-                        <ul class="js-filter-type-size filter-dropdown-menu-list">
-                            {% for size in size_mapping %}
+                        <ul class="js-filter-type-{{ filter.id }} filter-dropdown-menu-list">
+                            {% for filter_value in filter.filter_values %}
                                 <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
-                                    <label for="size_{{ size|tag_safe }}">
-                                        <input data-group="size" data-name="{{ size }}" type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}" />
-                                        {{ size }}
+                                    <label for="{{ filter.id }}_{{ filter_value.value|tag_safe }}">
+                                      <input data-group="{{ filter.id }}" data-name="{{ filter_value.value }}" type="checkbox" name="{{ filter.id }}[]" value="{{ filter_value.value }}" id="{{ filter.id }}_{{ filter_value.value|tag_safe }}" />
+                                        {{ filter_value.name }}
                                     </label>
                                 </li>
                             {% endfor %}
@@ -33,7 +34,7 @@
                     <div class="filter-button-container">
 
                         <!-- Begin - clear button -->
-                        <a href="size" class="js-filter-clear">
+                        <a href="{{ filter.id }}" class="js-filter-clear">
                             {{ 'faceted.clear_all'|trans({}, 'category') }}
                         </a>
                         <!-- End - clear button -->
@@ -51,159 +52,8 @@
                 <!-- End - dropdown menu -->
 
             </li>
-            <!-- End - size -->
-
-            <!-- Begin - color -->
-            <li>
-                <a href="#" class="filter-dropdown-toggle">{{ 'faceted.dropdown.color'|trans({}, 'category') }}<span class="icon fa fa-angle-down"></span></a>
-
-                <!-- Begin - dropdown menu -->
-                <div class="filter-dropdown-menu">
-
-                    <!-- Begin - scrollbar container -->
-                    <div class="filter-dropdown-menu-scrollbar-container">
-
-                        <!-- Begin - dropdown menu list -->
-                        <ul class="js-filter-type-color filter-dropdown-menu-list">
-                            {% for color in color_mapping %}
-                                <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
-                                    <label for="color_{{ color|tag_safe }}">
-                                        <input data-group="color" data-name="{{ color }}" type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}" />
-                                        {{ color }}
-                                    </label>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <!-- End - dropdown menu list -->
-
-                    </div>
-                    <!-- End - scrollbar container -->
-
-                    <!-- Begin - buttons -->
-                    <div class="filter-button-container">
-
-                        <!-- Begin - clear button -->
-                        <a href="color" class="js-filter-clear">
-                            {{ 'faceted.clear_all'|trans({}, 'category') }}
-                        </a>
-                        <!-- End - clear button -->
-
-                        <!-- Begin - close button -->
-                        <a href="close" class="js-filter-close">
-                            <span class="icon fa fa-angle-up js-menu-close"></span>
-                        </a>
-                        <!-- End - close button -->
-
-                    </div>
-                    <!-- End - buttons -->
-
-                </div>
-                <!-- End - dropdown menu -->
-
-            </li>
-            <!-- End - color -->
-
-            <!-- Begin - eco -->
-            <li>
-                <a href="#" class="filter-dropdown-toggle">{{ 'faceted.dropdown.eco'|trans({}, 'category') }}<span class="icon fa fa-angle-down"></span></a>
-
-                <!-- Begin - dropdown menu -->
-                <div class="filter-dropdown-menu">
-
-                    <!-- Begin - scrollbar container -->
-                    <div class="filter-dropdown-menu-scrollbar-container">
-
-                        <!-- Begin - dropdown menu list -->
-                        <ul class="js-filter-type-eco filter-dropdown-menu-list">
-                            {% for token in token_mapping %}{# Note: value is prefixed with 'token-' as this is the value in the
-                        db #}
-                                <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
-                                    <label for="token_{{ token.name|tag_safe }}">
-                                        <input data-group="eco" data-name="{{ token.name }}" type="checkbox" name="eco[]" value="token-{{ token.value|tag_safe({' & ': ' - '}) }}" id="token_{{ token.name|tag_safe }}" />
-                                        {{ token.name }}
-                                    </label>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <!-- End - dropdown menu list -->
-
-                    </div>
-                    <!-- End - scrollbar container -->
-
-                    <!-- Begin - buttons -->
-                    <div class="filter-button-container">
-
-                        <!-- Begin - clear button -->
-                        <a href="eco" class="js-filter-clear">
-                            {{ 'faceted.clear_all'|trans({}, 'category') }}
-                        </a>
-                        <!-- End - clear button -->
-
-                        <!-- Begin - close button -->
-                        <a href="close" class="js-filter-close">
-                            <span class="icon fa fa-angle-up js-menu-close"></span>
-                        </a>
-                        <!-- End - close button -->
-
-                    </div>
-                    <!-- End - buttons -->
-
-                </div>
-                <!-- End - dropdown menu -->
-
-            </li>
-            <!-- End - eco -->
-
-            <!-- Begin - discount -->
-            <li class="last">
-                <a href="#" class="filter-dropdown-toggle">{{ 'faceted.dropdown.discount'|trans({}, 'category') }}
-                    <span class="icon fa fa-angle-down"></span></a>
-
-                <!-- Begin - dropdown menu -->
-                <div class="filter-dropdown-menu">
-
-                    <!-- Begin - scrollbar container -->
-                    <div class="filter-dropdown-menu-scrollbar-container">
-
-                        <!-- Begin - dropdown menu list -->
-                        <ul class="js-filter-type-discount filter-dropdown-menu-list">
-                            {% for discount in discount_mapping %}
-                                <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
-                                    <label for="discount_{{ discount|tag_safe }}">
-                                        <input data-group="discount" data-name="{{ discount }}" type="checkbox" name="discount[]" value="{{ discount|tag_safe({' & ': ' - '}) }}" id="discount_{{ discount|tag_safe }}" />
-                                        {{ discount }}
-                                    </label>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <!-- End - dropdown menu list -->
-
-                    </div>
-                    <!-- End - scrollbar container -->
-
-                    <!-- Begin - buttons -->
-                    <div class="filter-button-container">
-
-                        <!-- Begin - close button -->
-                        <a href="close" class="js-filter-close">
-                            <span class="icon fa fa-angle-up"></span>
-                        </a>
-                        <!-- End - close button -->
-
-                        <!-- Begin - clear button -->
-                        <a href="discount" class="js-filter-clear">
-                            {{ 'faceted.clear_all'|trans({}, 'category') }}
-                        </a>
-                        <!-- End - clear button -->
-
-                    </div>
-                    <!-- End - buttons -->
-
-                </div>
-                <!-- End - dropdown menu -->
-
-            </li>
-            <!-- End - discount -->
+            <!-- End - {{ filter.id }} -->
+            {% endfor %}
 
         </ul>
     </form>
