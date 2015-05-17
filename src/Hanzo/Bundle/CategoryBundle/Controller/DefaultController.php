@@ -30,6 +30,8 @@ use Hanzo\Model\CmsPeer;
 
 class DefaultController extends CoreController
 {
+    // Contains setup for filters
+    protected $filterConfiguration = null;
 
     /**
      * handle category listings
@@ -63,6 +65,7 @@ class DefaultController extends CoreController
         $size_filter        = [];
         $color_filter       = [];
         $eco_filter         = [];
+        $discount_filter    = [];
 
         // we need this "hack" to prevent url pollution..
         $escapes = [
@@ -79,19 +82,19 @@ class DefaultController extends CoreController
                 }
             }
 
-            $cache_id = array_merge($cache_id, $color_filter);
-
             foreach ($request->query->get('size', []) as $size) {
                 $size_filter[]      = $size;
             }
-
-            $cache_id = array_merge($cache_id, $size_filter);
 
             foreach ($request->query->get('eco', []) as $eco) {
                 $eco_filter[] = $eco;
             }
 
-            $cache_id = array_merge($cache_id, $eco_filter);
+            foreach ($request->query->get('discount', []) as $discount) {
+                $discount_filter[] = $discount;
+            }
+
+            $cache_id = array_merge($cache_id, $size_filter, $color_filter, $eco_filter, $discount_filter);
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
@@ -141,8 +144,8 @@ class DefaultController extends CoreController
         }
 
         $this->setSharedMaxAge(1800);
-        return $this->response($html);
 
+        return $this->response($html);
     }
 
     public function listProductsAction($view = 'simple', $filter = 'G_')
@@ -268,23 +271,24 @@ class DefaultController extends CoreController
             return [];
         }
 
+        // We want mappings from the CMS pages at the top
         $topLevel = $this->getTopLevelCMSPage($cms_page);
 
         // One color or size might cover many others, e.g. Blue => Navy
         // The tokens are not mapped, just extracted the same way and passed to the tpl
-        $mappings              = [];
-        $mappings['color']     = $this->getSettings($locale, $topLevel->getId(), 'colormap');
-        $mappings['size']      = $this->getSettings($locale, $topLevel->getId(), 'sizes', true);
-        $mappings['tokens']    = $this->getSettings($locale, $topLevel->getId(), 'tokens');
-        $mappings['discounts'] = $this->getSettings($locale, $topLevel->getId(), 'discounts');
+        $mappings             = [];
+        $mappings['color']    = $this->getSettings($locale, $topLevel->getId(), 'colormap');
+        $mappings['size']     = $this->getSettings($locale, $topLevel->getId(), 'sizes', true);
+        $mappings['tokens']   = $this->getSettings($locale, $topLevel->getId(), 'tokens');
+        $mappings['discount'] = $this->getSettings($locale, $topLevel->getId(), 'discount');
 
-        $use_filter = false;
-        $filters    = [];
+        $filters = [];
         if ($request->query->has('filter')) {
             $filters = $this->getFilters($mappings);
         }
 
         $settings = $cms_page->getSettings(null, false);
+
         // hf@bellcom.dk: still needed? 13-may-2015
         if (empty($filters['color'])) {
             if (!empty($settings->colors)) {
@@ -292,9 +296,7 @@ class DefaultController extends CoreController
             }
         }
 
-        if (!empty($filters)) {
-            $use_filters = true;
-        }
+        $use_filter = !empty($filters);
 
         $route = $request->get('_route');
 
@@ -343,127 +345,108 @@ class DefaultController extends CoreController
         // If there are any colors in the settings to order from, add the order column here.
         // Else order by normal Sort in db
 
+        $filterNoResultsFound = false;
+
         if ($use_filter) {
-            $con     = \Propel::getConnection();
+            $ids = $this->getProductIdsMatchingFilters($filters);
 
-            $sql = "
-                SELECT
-                    C1.master_products_id AS master_products_id
-                FROM
-                    products AS p,
-                    search_products_tags AS C1\n";
-
-            $sql .= $this->searchProductsFilterBuilder($filters);
-            $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id";
-
-            $sql .= "\nGROUP BY
-                C1.master_products_id";
-
-            if ($sql) {
-                $statement = $con->prepare($sql);
-                $statement->execute();
-                $statement->setFetchMode(\PDO::FETCH_ASSOC);
-
-                $ids =  [];
-                while ($record = $statement->fetch()) {
-                    $ids[] = $record['master_products_id'];
-                }
-
-                if (!empty($ids)) {
-                    $result = $result->useProductsQuery()->filterById($ids)->endUse();
-                }
-            }
-        }
-
-        if ($request->query->get('show_all')) {
-            $result = $result->useProductsQuery()
-                ->filterByIsOutOfStock(false)
-                ->_or()
-                ->filterByIsOutOfStock(true)
-                ->endUse()
-                ;
-        } else {
-            $result = $result->useProductsQuery()
-                ->filterByIsOutOfStock(false)
-                ->endUse()
-                ;
-        }
-
-        if (isset($filters['color'])) {
-            if ($use_filter) {
-                // when using filters we need descending order not ascending.
-                $result = $result->useProductsImagesQuery()
-                    ->addDescendingOrderByColumn(sprintf(
-                        "FIELD(%s, %s)",
-                        ProductsImagesPeer::COLOR,
-                        "'".implode("','", $filters['color'])."'"
-
-                    ))
-                    // We already to this?
-                    ->filterByColor($filters['color'])
-                    ->endUse();
+            if (!empty($ids)) {
+                $result = $result->useProductsQuery()->filterById($ids)->endUse();
             } else {
-                $result = $result->useProductsImagesQuery()
-                    ->addAscendingOrderByColumn(sprintf(
-                        "FIELD(%s, %s)",
-                        ProductsImagesPeer::COLOR,
-                        "'".implode("','", $filters['color'])."'"
-
-                    ))
-                    ->endUse();
+                $filterNoResultsFound = true;
             }
-        } else {
-            $result = $result->orderBySort();
         }
-
-        $result = $result->find();
-
-        $product_route = str_replace('category_', 'product_', $route);
 
         $records = [];
         $product_ids = [];
 
-        foreach ($result as $record) {
-
-            $image = $record->getProductsImages()->getImage();
-
-            // Only use 01.
-            if (preg_match('/_01.[jpg|png]/', $image)) {
-                $product = $record->getProducts();
-
-                $product_ids[] = $product->getId();
-                $product->setLocale($locale);
-
-                $image_overview = str_replace('_set_', '_overview_', $image);
-                $image_set = str_replace('_overview_', '_set_', $image);
-
-                $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$settings->category_id, [], 'category'))).': '.$product->getTitle($request->getLocale());
-
-                $records[] = array(
-
-                    'sku'          => $product->getSku(),
-                    'out_of_stock' => $product->getIsOutOfStock(),
-                    'id'           => $product->getId(),
-                    'title'        => $product->getTitle(),
-                    'image'        => (($show_by_look) ? $image_set      : $image_overview),
-                    'image_flip'   => (($show_by_look) ? $image_overview : $image_set),
-                    'alt'          => $alt,
-                    'url'          => $router->generate($product_route, [
-                        'product_id' => $product->getId(),
-                        'title'      => Tools::stripText($product->getTitle()),
-                        'focus'      => $record->getProductsImages()->getId()
-                    ]),
-                );
+        if (!$filterNoResultsFound)
+        {
+            if ($request->query->get('show_all')) {
+                $result = $result->useProductsQuery()
+                    ->filterByIsOutOfStock(false)
+                    ->_or()
+                    ->filterByIsOutOfStock(true)
+                    ->endUse()
+                    ;
+            } else {
+                $result = $result->useProductsQuery()
+                    ->filterByIsOutOfStock(false)
+                    ->endUse()
+                    ;
             }
-        }
 
-        // get product prices
-        $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+            if (isset($filters['color'])) {
+                if ($use_filter) {
+                    // when using filters we need descending order not ascending.
+                    $result = $result->useProductsImagesQuery()
+                        ->addDescendingOrderByColumn(sprintf(
+                            "FIELD(%s, %s)",
+                            ProductsImagesPeer::COLOR,
+                            "'".implode("','", $filters['color'])."'"
 
-        // attach the prices to the products
-        foreach ($records as $i => $data) {
-            if (isset($prices[$data['id']])) {
-                $records[$i]['prices'] = $prices[$data['id']];
+                        ))
+                        // We already to this?
+                        ->filterByColor($filters['color'])
+                        ->endUse();
+                } else {
+                    $result = $result->useProductsImagesQuery()
+                        ->addAscendingOrderByColumn(sprintf(
+                            "FIELD(%s, %s)",
+                            ProductsImagesPeer::COLOR,
+                            "'".implode("','", $filters['color'])."'"
+
+                        ))
+                        ->endUse();
+                }
+            } else {
+                $result = $result->orderBySort();
+            }
+
+            $result = $result->find();
+
+            $product_route = str_replace('category_', 'product_', $route);
+
+            foreach ($result as $record) {
+                $image = $record->getProductsImages()->getImage();
+
+                // Only use 01.
+                if (preg_match('/_01.[jpg|png]/', $image)) {
+                    $product = $record->getProducts();
+
+                    $product_ids[] = $product->getId();
+                    $product->setLocale($locale);
+
+                    $image_overview = str_replace('_set_', '_overview_', $image);
+                    $image_set = str_replace('_overview_', '_set_', $image);
+
+                    $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$settings->category_id, [], 'category'))).': '.$product->getTitle($request->getLocale());
+
+                    $records[] = array(
+                        'sku'          => $product->getSku(),
+                        'out_of_stock' => $product->getIsOutOfStock(),
+                        'id'           => $product->getId(),
+                        'title'        => $product->getTitle(),
+                        'image'        => (($show_by_look) ? $image_set      : $image_overview),
+                        'image_flip'   => (($show_by_look) ? $image_overview : $image_set),
+                        'alt'          => $alt,
+                        'url'          => $router->generate($product_route, [
+                            'product_id' => $product->getId(),
+                            'title'      => Tools::stripText($product->getTitle()),
+                            'focus'      => $record->getProductsImages()->getId()
+                        ]),
+                    );
+                }
+            }
+
+            // get product prices
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
+            // attach the prices to the products
+            foreach ($records as $i => $data) {
+                if (isset($prices[$data['id']])) {
+                    $records[$i]['prices'] = $prices[$data['id']];
+                }
             }
         }
 
@@ -471,19 +454,10 @@ class DefaultController extends CoreController
             'title' => '',
             'products' => $records,
             'paginate' => null,
+            'filters' => null,
         ];
 
-        $data['color_mapping']    = array_keys($mappings['color']);
-        $data['size_mapping']     = array_keys($mappings['size']);
-        $data['discount_mapping'] = array_keys($mappings['discounts']);
-
-        // Workaround random text in token
-        $escapedTokens = [];
-        foreach (array_keys($mappings['tokens']) as $rawToken)
-        {
-            $escapedTokens[] = ['name' => $rawToken, 'value' => Tools::stripText($rawToken)];
-        }
-        $data['token_mapping'] = $escapedTokens;
+        $data['filters'] = $this->getFiltersForTemplate($mappings);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
@@ -496,6 +470,46 @@ class DefaultController extends CoreController
         return $data;
     }
 
+
+    protected function getFiltersForTemplate(Array $mappings)
+    {
+        $filters = null;
+
+        $this->setupFilterConfiguration();
+        $types = array_keys($this->filterConfiguration);
+
+        foreach ($types as $type) {
+            $filterValues = [];
+            if (isset($mappings[$type])) {
+                foreach ($mappings[$type] as $name => $value) {
+                    // Workaround random text in token
+                    // value is an array because all the other mappings are made that way
+                    switch ($type)
+                    {
+                        case 'tokens':
+                            $value = Tools::stripText($name);
+                            break;
+                        case 'discount':
+                            $value = array_shift($value);
+                            break;
+                        default:
+                            $value = $name;
+                            break;
+                    }
+                    $filterValues[] = ['name' => $name, 'value' => $value];
+                }
+            }
+
+            $filters[] = [
+                'name'          => $type,
+                'id'            => $this->filterConfiguration[$type]['id'],
+                'filter_values' => $filterValues,
+                ];
+        }
+
+        return $filters;
+    }
+
     /**
      * searchProductsFilterBuilder
      *
@@ -506,6 +520,12 @@ class DefaultController extends CoreController
      **/
     protected function searchProductsFilterBuilder($filters)
     {
+        $this->setupFilterConfiguration();
+        $types = array_keys($this->filterConfiguration);
+        foreach ($types as $type) {
+            $filterTypeMapping[$type] = $this->filterConfiguration[$type]['tag_type'];
+        }
+
         $sql     = '';
         $joins   = [];
         $wheres  = [];
@@ -513,27 +533,48 @@ class DefaultController extends CoreController
         $con     = \Propel::getConnection();
 
         if (count($filters) > 1) {
-            foreach ($filters as $filter)
-            {
-                if (empty($filter))
-                {
+            foreach ($filters as $filterType => $filter) {
+                if (empty($filter)) {
                     continue;
                 }
-                $filter_values = implode(', ', array_map(array($con, 'quote'), $filter));
+
+                $type = null;
+                if (isset($filterTypeMapping[$filterType])) {
+                    $type = $filterTypeMapping[$filterType];
+                }
+                $filterValues = implode(', ', array_map(array($con, 'quote'), $filter));
                 $joins[] = "JOIN
                     search_products_tags AS C{$counter}
                     ON (C1.products_id = C{$counter}.products_id)";
 
-            $wheres[] = "\nC{$counter}.token IN ({$filter_values})";
-            $counter++;
+                $where = "\nC{$counter}.token IN ({$filterValues})";
+
+                if (!is_null($type)) {
+                    $where .= " AND C{$counter}.type = '{$type}'";
+                }
+
+                $wheres[] = $where;
+                $counter++;
             }
-        }
-        else {
-            $filter_values = implode(', ', array_map(array($con, 'quote'), array_shift($filters)));
-            $wheres[] = "\nC1.token IN ({$filter_values})";
+        } else {
+            $type = null;
+            $filterType = array_shift(array_keys($filters));
+            if (isset($filterTypeMapping[$filterType])) {
+                $type = $filterTypeMapping[$filterType];
+            }
+
+            $filterValues = implode(', ', array_map(array($con, 'quote'), array_shift($filters)));
+            $where = "\nC1.token IN ({$filterValues})";
+
+            if (!is_null($type)) {
+                $where .= " AND C1.type = '{$type}'";
+            }
+
+            $wheres[] = $where;
         }
 
         $sql = implode("\n", $joins)."\nWHERE".implode("\nAND", $wheres);
+
         return $sql;
     }
 
@@ -620,7 +661,8 @@ class DefaultController extends CoreController
     {
         $request    = $this->container->get('request');
 
-        $filterTypes = ['color', 'size', 'eco', 'discounts'];
+        $this->setupFilterConfiguration();
+        $filterTypes = array_keys($this->filterConfiguration);
 
         $filters = [];
 
@@ -638,6 +680,8 @@ class DefaultController extends CoreController
                 if (isset($mappings[$filterName])) {
                     if (isset($mappings[$filterName][$value])) {
                         $filters[$filterName] = array_merge($filters[$filterName], $mappings[$filterName][$value]);
+                    } else {
+                        $filters[$filterName][] = $value;
                     }
                 } else {
                     $filters[$filterName][] = $value;
@@ -646,5 +690,45 @@ class DefaultController extends CoreController
         }
 
         return $filters;
+    }
+
+    protected function getProductIdsMatchingFilters($filters)
+    {
+        $ids = [];
+
+        $sql = "SELECT
+                  C1.master_products_id AS master_products_id
+                FROM
+                  products AS p,
+                  search_products_tags AS C1\n";
+
+        $sql .= $this->searchProductsFilterBuilder($filters);
+        $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id";
+
+        $sql .= "\nGROUP BY C1.master_products_id";
+
+        $con = \Propel::getConnection();
+        $statement = $con->prepare($sql);
+        $statement->execute();
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+        while ($record = $statement->fetch()) {
+            $ids[] = $record['master_products_id'];
+        }
+
+        return $ids;
+    }
+
+    protected function setupFilterConfiguration()
+    {
+        if (is_null($this->filterConfiguration)) {
+            $this->filterConfiguration = [
+                // tag_type: This matches the "type" column in the table, check Hanzo\Bundle\SearchBundle\ProductIndexBuilder
+                'color'    => [ 'tag_type' => 'product',  'id' => 'color',    'filters' => '' ],
+                'size'     => [ 'tag_type' => 'product',  'id' => 'size',     'filters' => '' ],
+                'tokens'   => [ 'tag_type' => 'tag',      'id' => 'eco',      'filters' => '' ],
+                'discount' => [ 'tag_type' => 'discount', 'id' => 'discount', 'filters' => '' ],
+                ];
+        }
     }
 }
