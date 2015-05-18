@@ -3681,31 +3681,40 @@ article div ul {
   width: 50%;
 }
 
-#job-application-form label span {
+#job-application-form label span,
+#rma_claims label span {
   display: block;
 }
-#job-application-form span.help {
+#job-application-form span.help,
+#rma_claims span.help {
   display: block;
   font-size: 11px;
 }
-#job-application-form span.required {
+#job-application-form span.required,
+#rma_claims span.required {
   display: inline-block;
   font-size: 16px;
   color: #cc0000;
   padding: 0 4px;
 }
 #job-application-form textarea,
-#job-application-form input[type="text"] {
-  width: 400px;
+#job-application-form input[type="text"],
+#rma_claims textarea,
+#rma_claims input[type="text"] {
+  width: 80%;
+  max-width: 370px;
 }
-#job-application-form textarea {
+#job-application-form textarea,
+#rma_claims textarea {
   height: 120px;
 }
-#job-application-form input[type="file"] {
+#job-application-form input[type="file"],
+#rma_claims input[type="file"] {
   display: block;
   clear: right;
 }
-#job-application-form input[type="file"].hidden {
+#job-application-form input[type="file"].hidden,
+#rma_claims input[type="file"].hidden {
   visibility: hidden;
   display: none;
 }
@@ -4188,10 +4197,6 @@ form.load-wishlist {
   font-size: 12px;
   height: 15px;
   display: inline-block;
-}
-
-#rma_claims label span {
-  display: block;
 }
 
 aside.js-slider {
@@ -4925,6 +4930,12 @@ button.right {
 }
 .msg.error, .message.error {
   border: 2px solid #c18185;
+}
+.msg.unstyled, .message.unstyled {
+  border: 0;
+  padding: 0;
+  font-weight: normal;
+  background-color: transparent;
 }
 
 .no-text {
