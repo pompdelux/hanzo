@@ -219,6 +219,10 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
 <p>Jos sinulla on kysyttävää, voit aina ottaa yhteyttä asiakaspalveluun, puh. (+45) 8678 7871.</p>]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Huomaathan, ettei tuotteelle tule varausta.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -211,6 +211,10 @@ For further information, please visit: <a href="/en_GB/" target="_blank">www.pom
 <p>If you have any further questions, please do not hesitate to contact Customer Service on telephone +45 8736 1000.</p>]]>
               </target>
             </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Please note that the item will not be reserved.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

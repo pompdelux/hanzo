@@ -100,10 +100,14 @@
                                                 <option value="">{{ 'wishlist.select.color'|trans({}, 'account') }}</option>
                                             </select>
                                         </label>
+                                        <div class="clearfix"></div>
                                         <input type="hidden" name="master" value="">
                                         <input type="hidden" name="product_id" value="">
                                         <input type="button" id="reset" name="reset" class="off reset" value="{{ 'delete'|trans }}" tabindex="-1">
                                     </div>
+
+                                    {# Message: not reserved #}
+                                    <p class="off rma-cause rma-productreplacement">{{ 'rma-form.message.not-reserved'|trans({}, 'rma') }}</p>
 
                                     {# Description #}
                                     <label class="off rma-description">
