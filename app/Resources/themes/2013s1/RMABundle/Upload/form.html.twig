@@ -28,12 +28,16 @@
       </div>
     </label>
     <label>
-      {{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}
-      <input type="text" name="product_info" value="" required/>
+        <div class="row">
+            <span>{{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}</span>
+            <input type="text" name="product_info" value="" required/>
+        </div>
     </label>
     <label>
-      {{ 'rma.claims.form.description_label'|trans({}, 'rma') }}
-      <textarea name="description" rows="6" cols="30" required></textarea>
+        <div class="row">
+            <span>{{ 'rma.claims.form.description_label'|trans({}, 'rma') }}</span>
+            <textarea name="description" rows="6" cols="30" required></textarea>
+        </div>
     </label>
     <br>
     <br>

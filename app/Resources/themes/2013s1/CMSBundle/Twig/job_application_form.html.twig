@@ -59,16 +59,20 @@
 
         <!-- Begin - describe yourself -->
         <label>
-            <span>{{ 'job_application_form.describe_yourself_label'|trans({}, 'cms') }}<span class="required">*</span></span>
-            <span class="help">{{ 'job_application_form.describe_yourself_help'|trans({}, 'cms') }}</span>
-            <textarea name="describe_yourself" rows="4" cols="30" required></textarea>
+            <div class="row">
+                <span>{{ 'job_application_form.describe_yourself_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <span class="help">{{ 'job_application_form.describe_yourself_help'|trans({}, 'cms') }}</span>
+                <textarea name="describe_yourself" rows="4" cols="30" required></textarea>
+            </div>
         </label>
         <!-- End - describe yourself -->
 
         <!-- Begin - describe motivation -->
         <label>
-            <span>{{ 'job_application_form.describe_motivation_label'|trans({}, 'cms') }}<span class="required">*</span></span>
-            <textarea name="describe_motivation" rows="4" cols="30" required></textarea>
+            <div class="row">
+                <span>{{ 'job_application_form.describe_motivation_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <textarea name="describe_motivation" rows="4" cols="30" required></textarea>
+            </div>
         </label>
         <!-- End - describe motivation -->
 
