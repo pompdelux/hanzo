@@ -26,11 +26,11 @@ var filters = (function ($) {
 
     setSavedValues();
     eventHandlersSetup();
-    nissenerenhest();
+    filterDropdownStateHandler();
     mobileSetup();
   };
 
-  function nissenerenhest() {
+  function filterDropdownStateHandler() {
     // Filter toggle click
     $('ul.filter-dropdown a.filter-dropdown-toggle').on('click', function(event) {
 
