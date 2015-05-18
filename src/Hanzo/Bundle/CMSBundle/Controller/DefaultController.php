@@ -191,14 +191,16 @@ class DefaultController extends CoreController
             $mail = $this->container->get('mail_manager');
             $mail->setTo($to, 'Job application');
 
-            if ((isset($json->data->email)) &&
-                (filter_var($json->data->email, FILTER_VALIDATE_EMAIL))
-            ) {
-                $sender = $json->data->email;
-                $name   = $json->data->name;
+            /* Does not work with amazon
+             * if ((isset($json->data->email)) &&
+             *     (filter_var($json->data->email, FILTER_VALIDATE_EMAIL))
+             * ) {
+             *     $sender = $json->data->email;
+             *     $name   = $json->data->name;
 
-                $mail->setReplyTo($sender, $name)->setSender($sender, $name);
-            }
+             *     $mail->setReplyTo($sender, $name)->setSender($sender, $name);
+             * }
+             */
 
             $mail->setMessage('cms.job_application', [
                 'data'  => $json->data,
