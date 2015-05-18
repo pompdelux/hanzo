@@ -180,16 +180,12 @@ Das Rücksendeetikett können Sie wie gewohnt hier<a href="https://www.pompdelux
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Laden Sie Bilder der Reklamation hoch:<br>(Max. 5 Bilder von Gesamtgröße 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-Mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
@@ -199,6 +195,18 @@ Das Rücksendeetikett können Sie wie gewohnt hier<a href="https://www.pompdelux
             <trans-unit id="rma.claims.form.required">
               <source>rma.claims.form.required</source>
               <target>* Pflichtfelder</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
             </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>

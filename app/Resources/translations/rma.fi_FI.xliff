@@ -192,16 +192,12 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Lataa kuvia reklamaatiosta:<br>(enintään 5 kuvaa, yhteensä 10 Mt)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Puhelinnumero*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>Sähköposti*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
@@ -211,6 +207,18 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
             <trans-unit id="rma.claims.form.required">
               <source>rma.claims.form.required</source>
               <target>* Pakollinen tieto</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
             </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
