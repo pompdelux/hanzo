@@ -325,6 +325,10 @@
         <source>payment.dibs.title</source>
         <target>Kreditkartenzahlung</target>
       </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
         <target>Dankort</target>

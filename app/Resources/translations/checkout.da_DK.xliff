@@ -313,6 +313,10 @@
         <source>payment.dibs.title</source>
         <target>Kreditkort</target>
       </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
         <target>Dankort (Gebyr DKK 0,00)</target>
