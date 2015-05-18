@@ -208,6 +208,18 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
               <source>rma.claims.form.required</source>
               <target>* Skal udfyldes</target>
             </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
               <target>

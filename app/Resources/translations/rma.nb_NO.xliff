@@ -204,6 +204,18 @@ Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du bru
               <source>rma.claims.form.required</source>
               <target>* Skal fylles ut</target>
             </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
               <target>
