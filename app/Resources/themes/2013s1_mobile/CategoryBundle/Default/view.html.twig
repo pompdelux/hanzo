@@ -20,8 +20,10 @@
     <div class="clearfix"></div>
 </div>
 
-<div class="grid_8 alpha omega row js-filters filters-selected">
-  <span class="last off"><a href="all" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+<div class="grid_8 alpha omega row js-filter-selected-values off">
+  <div class="grid_6 omega js-filters filter-text">
+    <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+  </div>
 </div>
 
 {% include 'CategoryBundle:Default:filters.html.twig' %}
