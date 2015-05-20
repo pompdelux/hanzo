@@ -818,75 +818,75 @@
 
             <trans-unit id="job_application_form.name_label">
                 <source>job_application_form.name_label</source>
-                <target>Navn</target>
+                <target>Name</target>
             </trans-unit>
             <trans-unit id="job_application_form.address_label">
                 <source>job_application_form.address_label</source>
-                <target>Adresse</target>
+                <target>Straße</target>
             </trans-unit>
             <trans-unit id="job_application_form.zipcode_label">
                 <source>job_application_form.zipcode_label</source>
-                <target>Postnummer</target>
+                <target>Postleitzahl</target>
             </trans-unit>
             <trans-unit id="job_application_form.city_label">
                 <source>job_application_form.city_label</source>
-                <target>By</target>
+                <target>Ort</target>
             </trans-unit>
             <trans-unit id="job_application_form.phone_label">
                 <source>job_application_form.phone_label</source>
-                <target>Telefon nr.</target>
+                <target>Tel.</target>
             </trans-unit>
             <trans-unit id="job_application_form.email_label">
                 <source>job_application_form.email_label</source>
-                <target>E-mail adresse</target>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Hvem er du?</target>
+                <target>Wer sind Sie?</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(skriv lidt om dig selv. F.eks. alder, familie og interesser)</target>
+                <target>(Schreiben Sie etwas über Ihre Person, z.B. Alter, Familie und Interessen)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Hvorfor vil du gerne sælge POMPdeLUX børnetøj?</target>
+                <target>Warum möchten Sie gerne POMPdeLUX Kindermode verkaufen?</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
-                <target>Vedhæft et vellignende billede af dig selv</target>
+                <target>Fügen Sie ein aussagekräftiges Bild von Ihnen ein</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_label">
                 <source>job_application_form.attach_resume_label</source>
-                <target>Vedhæft dit CV</target>
+                <target>Fügen Sie Ihren Lebenslauf ein</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_help">
                 <source>job_application_form.attach_resume_help</source>
-                <target>(valgfrit)</target>
+                <target>(optional)</target>
             </trans-unit>
             <trans-unit id="job_application_form.submit_value">
                 <source>job_application_form.submit_value</source>
-                <target>Send din ansøgning</target>
+                <target>Schicken Sie Ihre Bewerbung</target>
             </trans-unit>
             <trans-unit id="job_application_form.required">
                 <source>job_application_form.required</source>
-                <target>Skal udfyldes</target>
+                <target>Pflichtfelder</target>
             </trans-unit>
             <trans-unit id="job_application.error.upload">
                 <source>job_application.error.upload</source>
-                <target>Fejl med uploadede fil.</target>
+                <target>Fehler bei der hochgeladenen Datei</target>
             </trans-unit>
             <trans-unit id="job_application.error.missing_field">
                 <source>job_application.error.missing_field</source>
-                <target>Felt skal udfyldes.</target>
+                <target>Pflichtfelder.</target>
             </trans-unit>
             <trans-unit id="job_application.error.missing_data">
                 <source>job_application.error.missing_data</source>
-                <target>Manglende data.</target>
+                <target>Fehlende Daten.</target>
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansøgning er nu sendt.</p><br/><p>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Majbrit Christensen på tlf. 87 36 13 29</p>]]></target>
+                <target><![CDATA[<p>Ihre Bewerbung ist nun gesendet.</p><br/><p>Sollten Sie Fragen haben, wenden Sie sich bitte an unsere Sales Koordinatorin Kathrine Gjørup unter Tel.: 044 201 33 32 (deutschsprachig).</p>]]></target>
             </trans-unit>
         </body>
     </file>
