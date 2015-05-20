@@ -886,7 +886,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Ihre Bewerbung ist nun gesendet.</p><br/><p>Fragen haben, wenden Sie sich bitte an unsere Sales Koordinatorin Malene Christensen Leyer unter Tel.: 040/3571 8799 (deutschsprachig).</p>]]></target>
+                <target><![CDATA[<p>Ihre Bewerbung ist nun gesendet.</p><br/><p>Sollten Sie Fragen haben, wenden Sie sich bitte an unsere Sales Koordinatorin Malene Christensen Leyer unter Tel.: 040/3571 8799 (deutschsprachig).</p>]]></target>
             </trans-unit>
         </body>
     </file>
