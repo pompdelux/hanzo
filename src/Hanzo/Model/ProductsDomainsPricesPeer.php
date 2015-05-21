@@ -30,10 +30,8 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
     public static function getProductsPrices(array $products)
     {
         $hanzo     = Hanzo::getInstance();
-        $customer  = CustomersPeer::getCurrent();
         $domainId  = $hanzo->get('core.domain_id');
         $domainKey = $hanzo->get('core.domain_key');
-        $customer  = CustomersPeer::getCurrent();
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
@@ -51,6 +49,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $overrideVatPct = 0;
 
         if ('COM' == $domainKey) {
+            $customer  = CustomersPeer::getCurrent();
             if (!$customer->isNew()) {
                 $country = CountriesQuery::create()
                     ->useAddressesQuery()
