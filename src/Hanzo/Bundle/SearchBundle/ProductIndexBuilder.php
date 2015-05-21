@@ -11,19 +11,59 @@ use Hanzo\Model\SearchProductsTagsQuery,
 
 class ProductIndexBuilder extends IndexBuilder
 {
-    public function build()
+    /**
+     * Inserts data, remeber to ->clear() first
+     *
+     * @param Array $indexesToUpdate
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function build(Array $indexesToUpdate = [])
     {
+        if (empty($indexesToUpdate)) {
+            // Changes here should also be updated in buildProductSearchIndexAction
+            $indexesToUpdate = [
+                'product_index'      => true,
+                'category_index'     => true,
+                'custom_token_index' => true,
+                'discount_index'     => true,
+                ];
+        }
+
         foreach (array_keys($this->getConnections()) as $name) {
             $connection = $this->getConnection($name);
 
-            foreach ($this->getLocales($connection) as $locale) {
-                $this->updateProductIndex($locale, $connection);
-                $this->updateCategoryIndex($locale, $connection);
-                $this->updateCustomTokensIndex($locale, $connection);
-                $this->updateDiscountIndex($locale, $connection);
+            foreach ($indexesToUpdate as $index => $enabled) {
+                if ($enabled === true) {
+                    $this->performUpdate($index, $connection);
+                }
             }
         }
+    }
 
+    /**
+     * @param string $index
+     */
+    protected function performUpdate($index, $connection)
+    {
+        foreach ($this->getLocales($connection) as $locale) {
+            switch ($index)
+            {
+                case 'product_index':
+                    $this->updateProductIndex($locale, $connection);
+                    break;
+                case 'category_index':
+                    $this->updateCategoryIndex($locale, $connection);
+                    break;
+                case 'custom_token_index':
+                    $this->updateCustomTokensIndex($locale, $connection);
+                    break;
+                case 'discount_index':
+                    $this->updateDiscountIndex($locale, $connection);
+                    break;
+            }
+        }
     }
 
     /**
@@ -301,16 +341,18 @@ class ProductIndexBuilder extends IndexBuilder
      */
     private function updateDiscountIndex($locale, $connection)
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo    = Hanzo::getInstance();
+        $range    = $hanzo->container->get('hanzo_product.range')->getCurrentRange();
+        $domainId = $hanzo->get('core.domain_id');
 
         $products = ProductsQuery::create()
             ->useProductsI18nQuery()
-                ->filterByLocale($hanzo->get('core.locale'))
+                ->filterByLocale($locale)
             ->endUse()
             ->filterByIsActive(true)
-            ->filterByRange($hanzo->container->get('hanzo_product.range')->getCurrentRange())
+            ->filterByRange($range)
             ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($hanzo->get('core.domain_id'))
+                ->filterByDomainsId($domainId)
                 ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
                 ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
                 ->where(array('c1', 'c2'), 'AND')
