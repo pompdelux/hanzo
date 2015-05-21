@@ -98,8 +98,6 @@ class DefaultController extends CoreController
         }
 
         $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
-        // FIXME: testing
-        $html = false;
 
         /**
          *  If html wasn't cached retrieve a fresh set of data
@@ -500,11 +498,13 @@ class DefaultController extends CoreController
                 }
             }
 
-            $filters[] = [
-                'name'          => $type,
-                'id'            => $this->filterConfiguration[$type]['id'],
-                'filter_values' => $filterValues,
+            if (!empty($filterValues)) {
+                $filters[] = [
+                    'name'          => $type,
+                    'id'            => $this->filterConfiguration[$type]['id'],
+                    'filter_values' => $filterValues,
                 ];
+            }
         }
 
         return $filters;
@@ -724,10 +724,10 @@ class DefaultController extends CoreController
         if (is_null($this->filterConfiguration)) {
             $this->filterConfiguration = [
                 // tag_type: This matches the "type" column in the table, check Hanzo\Bundle\SearchBundle\ProductIndexBuilder
-                'color'    => [ 'tag_type' => 'product',  'id' => 'color',    'filters' => '' ],
-                'size'     => [ 'tag_type' => 'product',  'id' => 'size',     'filters' => '' ],
-                'tokens'   => [ 'tag_type' => 'tag',      'id' => 'eco',      'filters' => '' ],
-                'discount' => [ 'tag_type' => 'discount', 'id' => 'discount', 'filters' => '' ],
+                'size'     => [ 'tag_type' => 'product',  'id' => 'size',    ],
+                'color'    => [ 'tag_type' => 'product',  'id' => 'color',   ],
+                'tokens'   => [ 'tag_type' => 'tag',      'id' => 'eco',     ],
+                'discount' => [ 'tag_type' => 'discount', 'id' => 'discount',],
                 ];
         }
     }
