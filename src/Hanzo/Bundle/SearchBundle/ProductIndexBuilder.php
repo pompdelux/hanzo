@@ -358,7 +358,7 @@ class ProductIndexBuilder extends IndexBuilder
                 ->where(array('c1', 'c2'), 'AND')
             ->endUse()
             ->joinWithProductsImages()
-            ->find()
+            ->find($connection)
         ;
 
         $product_ids = [];

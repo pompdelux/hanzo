@@ -116,26 +116,34 @@ class ToolsController extends CoreController
     public function buildProductSearchIndexAction(Request $request)
     {
         if ($request->query->get('run')) {
-            $pheanstalkQueue = $this->get('leezy.pheanstalk');
+            $builder = $this->get('hanzo_search.product.index_builder');
 
-            $data = json_encode([
-                'action' => 'update',
-                'indexes_to_update' => [
-                    // Defined in Hanzo\Bundle\SearchBundle\ProductIndexBuilder:
-                    'product_index'      => true,
-                    'category_index'     => true,
-                    'custom_token_index' => true,
-                    'discount_index'     => true,
-                ],
-            ]);
+            $builder->build([ $request->query->get('index') => true]);
+            $request->getSession()->getFlashBag()->add('notice', 'Opdatering af søgeindekset "'.$request->query->get('index').'" gennemført.');
 
-            $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY;
-            $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY;
-
-            $queueId = $pheanstalkQueue->putInTube('search-index', $data, $priority, $delay);
-
-            $request->getSession()->getFlashBag()->add('notice', 'Job til opdatering af søgeindekset er nu lagt i kø med id "'.$queueId.'".');
-
+/*
+ * FIXME: temporly disabled until problem with db connection is fixed
+ *             $pheanstalkQueue = $this->get('leezy.pheanstalk');
+ *
+ *             $data = json_encode([
+ *                 'action' => 'update',
+ *                 'indexes_to_update' => [
+ *                     // Defined in Hanzo\Bundle\SearchBundle\ProductIndexBuilder:
+ *                     'product_index'      => true,
+ *                     'category_index'     => true,
+ *                     'custom_token_index' => true,
+ *                     'discount_index'     => true,
+ *                 ],
+ *             ]);
+ *
+ *             $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY;
+ *             $delay = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY;
+ *
+ *             $queueId = $pheanstalkQueue->putInTube('search-index', $data, $priority, $delay);
+ *
+ *             $request->getSession()->getFlashBag()->add('notice', 'Job til opdatering af søgeindekset er nu lagt i kø med id "'.$queueId.'".');
+ *
+ */
             return $this->redirect($this->generateUrl($request->get('_route')));
         }
 
