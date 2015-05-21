@@ -190,16 +190,12 @@ Obs! Även om du väntar på en kreditnota för dina returvaror ska du alltid be
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Ladda upp bilder på reklamationen:<br>(max 5 bilder på totalt 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
@@ -210,12 +206,28 @@ Obs! Även om du väntar på en kreditnota för dina returvaror ska du alltid be
               <source>rma.claims.form.required</source>
               <target>* ska fyllas i</target>
             </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
               <target>
                 <![CDATA[<p>Din reklamation är nu skickad, och vi återkommer till dig inom några dagar med svar, angående ditt ärende.</p>
                 <p>Om du har frågor är du alltid välkommen att kontakta oss i kundservice på telefon 08-611 71 03.</p>]]>
               </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Vänligen observera att varan inte reserveras.</target>
             </trans-unit>
         </body>
     </file>

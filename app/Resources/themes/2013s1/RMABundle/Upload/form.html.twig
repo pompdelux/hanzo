@@ -2,12 +2,25 @@
 
 <form id="rma_claims" action="{{ cdn }}rma_upload.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
   <div class="grid_6 alpha omega">
-    <label>
-      <div class="row">
-        <span>{{ 'rma.claims.form.name_label'|trans({}, 'rma') }}</span>
-        <input type="text" name="name" value="" required/>
-      </div>
-    </label>
+      <label>
+          <div class="row">
+              <span>{{ 'rma.claims.form.name_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="name" value="" required/>
+          </div>
+      </label>
+      <label>
+          <div class="row">
+              <span>{{ 'rma.claims.form.phone_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="phone" value="" required />
+          </div>
+      </label>
+
+      <label>
+          <div class="row">
+              <span>{{ 'rma.claims.form.email_label'|trans({}, 'rma') }}</span>
+              <input type="text" name="email" value="" required />
+          </div>
+      </label>
     <label>
       <div class="row">
         <span>{{ 'rma.claims.form.order_number_label'|trans({}, 'rma') }}</span>
@@ -15,12 +28,16 @@
       </div>
     </label>
     <label>
-      {{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}
-      <input type="text" name="product_info" value="" required/>
+        <div class="row">
+            <span>{{ 'rma.claims.form.product_info_label'|trans({}, 'rma') }}</span>
+            <input type="text" name="product_info" value="" required/>
+        </div>
     </label>
     <label>
-      {{ 'rma.claims.form.description_label'|trans({}, 'rma') }}
-      <textarea name="description" rows="6" cols="30" required></textarea>
+        <div class="row">
+            <span>{{ 'rma.claims.form.description_label'|trans({}, 'rma') }}</span>
+            <textarea name="description" rows="6" cols="30" required></textarea>
+        </div>
     </label>
     <br>
     <br>
@@ -31,20 +48,6 @@
       <input type="file" name="pictures[]" id="picture_3" class="hidden" />
       <input type="file" name="pictures[]" id="picture_4" class="hidden" />
       <input type="file" name="pictures[]" id="picture_5" class="hidden" />
-    </p>
-
-    <p class="contact_methods">{{ 'rma.claims.form.contact_heading'|trans({}, 'rma') }}
-      <label>
-        <input type="radio" name="contact" value="phone" />
-        {{ 'rma.claims.form.contact_phone_label'|trans({}, 'rma') }}
-      </label>
-      <input type="text" name="phone_value" value="" class="hidden" />
-
-      <label>
-        <input type="radio" name="contact" value="email" checked="checked"/>
-        {{ 'rma.claims.form.contact_email_label'|trans({}, 'rma') }}
-      </label>
-      <input type="text" name="email_value" value="" />
     </p>
 
     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />

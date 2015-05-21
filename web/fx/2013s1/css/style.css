@@ -1,92 +1,6 @@
-/*
-Error: Invalid CSS after "...kground-color: ": expected expression (e.g. 1px, bold), was "#;"
-        on line 263 of /home/morten/Web/pompdelux/web/fx/2013s1/sass/_filters.scss
-        from line 105 of /home/morten/Web/pompdelux/web/fx/2013s1/sass/style.scss
-
-258:   .filters-dropdown-menu-wrapper {
-259: 
-260:   }
-261: 
-262:   .filters-dropdown-menu {
-263:     background-color: #;
-264:   }
-265: }
-
-Backtrace:
-/home/morten/Web/pompdelux/web/fx/2013s1/sass/_filters.scss:263
-/home/morten/Web/pompdelux/web/fx/2013s1/sass/style.scss:105
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:1165:in `expected'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/script/lexer.rb:221:in `expected!'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/script/parser.rb:573:in `assert_expr'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/script/parser.rb:62:in `parse'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:1027:in `sass_script'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:880:in `value!'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:753:in `block in try_declaration'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:1141:in `call'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:1141:in `rethrow'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:766:in `try_declaration'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:696:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:661:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:650:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:642:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:661:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:653:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:642:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:635:in `ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:660:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:653:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:117:in `stylesheet'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/scss/parser.rb:42:in `parse'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/engine.rb:393:in `_to_tree'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/engine.rb:299:in `to_tree'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:323:in `block in visit_import'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `block in with_import'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `with_import'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `map'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:20:in `render'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/engine.rb:268:in `render'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `each'
-/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/sass_compiler.rb:40:in `compile!'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/update_project.rb:49:in `perform'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/bin/compass:44:in `call'
-/var/lib/gems/2.1.0/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
-/usr/local/bin/compass:23:in `load'
-/usr/local/bin/compass:23:in `<main>'
+/**
+| _sprites.
 */
-<<<<<<< HEAD
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...kground-color: \": expected expression (e.g. 1px, bold), was \"#;\"\A         on line 263 of /home/morten/Web/pompdelux/web/fx/2013s1/sass/_filters.scss\A         from line 105 of /home/morten/Web/pompdelux/web/fx/2013s1/sass/style.scss\A \A 258:   .filters-dropdown-menu-wrapper {\A 259: \A 260:   }\A 261: \A 262:   .filters-dropdown-menu {\A 263:     background-color: #;\A 264:   }\A 265: }"; }
-=======
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock, body.da .close-button, body.da .subscribe-button {
   background-image: url('/fx/2013s1/../images/icons/da-s3074b2fb37.png');
   background-repeat: no-repeat;
@@ -3767,31 +3681,40 @@ article div ul {
   width: 50%;
 }
 
-#job-application-form label span {
+#job-application-form label span,
+#rma_claims label span {
   display: block;
 }
-#job-application-form span.help {
+#job-application-form span.help,
+#rma_claims span.help {
   display: block;
   font-size: 11px;
 }
-#job-application-form span.required {
+#job-application-form span.required,
+#rma_claims span.required {
   display: inline-block;
   font-size: 16px;
   color: #cc0000;
   padding: 0 4px;
 }
 #job-application-form textarea,
-#job-application-form input[type="text"] {
-  width: 400px;
+#job-application-form input[type="text"],
+#rma_claims textarea,
+#rma_claims input[type="text"] {
+  width: 80%;
+  max-width: 370px;
 }
-#job-application-form textarea {
+#job-application-form textarea,
+#rma_claims textarea {
   height: 120px;
 }
-#job-application-form input[type="file"] {
+#job-application-form input[type="file"],
+#rma_claims input[type="file"] {
   display: block;
   clear: right;
 }
-#job-application-form input[type="file"].hidden {
+#job-application-form input[type="file"].hidden,
+#rma_claims input[type="file"].hidden {
   visibility: hidden;
   display: none;
 }
@@ -4274,10 +4197,6 @@ form.load-wishlist {
   font-size: 12px;
   height: 15px;
   display: inline-block;
-}
-
-#rma_claims label span {
-  display: block;
 }
 
 aside.js-slider {
@@ -5012,6 +4931,12 @@ button.right {
 .msg.error, .message.error {
   border: 2px solid #c18185;
 }
+.msg.unstyled, .message.unstyled {
+  border: 0;
+  padding: 0;
+  font-weight: normal;
+  background-color: transparent;
+}
 
 .no-text {
   line-height: 0;
@@ -5614,112 +5539,143 @@ nav.category-menu > ul > li {
   margin-top: 0;
 }
 
-nav.filters-dropdowns {
-  margin-bottom: 6px;
-}
-nav.filters-dropdowns ul.outer {
+ul.filter-dropdown {
   width: 100%;
+  margin-bottom: 10px;
 }
-nav.filters-dropdowns ul.outer > li {
-  float: left;
-  width: 33%;
+ul.filter-dropdown:before, ul.filter-dropdown:after {
+  content: " ";
+  display: table;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container {
-  display: block;
+ul.filter-dropdown:after {
+  clear: both;
+}
+ul.filter-dropdown > li {
   position: relative;
-  margin-right: 5px;
-  background-color: #a2a2a2;
+  float: left;
+  width: 25%;
+  max-width: 25%;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a {
+ul.filter-dropdown > li > a.filter-dropdown-toggle {
+  position: relative;
   display: block;
-  padding: 10px;
-  text-transform: uppercase;
+  margin-right: 5px;
+  padding: 10px 10px 10px 5px;
+  font-size: 13px;
   color: #fff;
+  text-transform: uppercase;
   text-align: center;
-  cursor: default;
+  background-color: #a2a2a2;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > a .fa {
-  float: right;
-  margin-right: 2px;
+ul.filter-dropdown > li > a.filter-dropdown-toggle > .icon {
+  position: absolute;
+  right: 8px;
   color: #000;
   text-align: center;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul {
+ul.filter-dropdown > li:last-child > a.filter-dropdown-toggle {
+  margin-right: 0;
+}
+ul.filter-dropdown > li.open > a.filter-dropdown-toggle > .icon {
+  display: none;
+}
+
+.no-touch ul.filter-dropdown > li:hover > a.filter-dropdown-toggle {
+  background-color: #484a4d;
+}
+.no-touch ul.filter-dropdown > li:hover.open > a.filter-dropdown-toggle {
+  background-color: #a2a2a2;
+}
+
+ul.filter-dropdown > li div.filter-dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
+  right: 5px;
+  z-index: 200;
   -moz-box-shadow: #676767 2px 2px 2px;
   -webkit-box-shadow: #676767 2px 2px 2px;
   box-shadow: #676767 2px 2px 2px;
   background-color: #a2a2a2;
-  z-index: 200;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li {
-  float: left;
-  width: 50%;
-  padding: 5px 0;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-dropdown-menu-scrollbar-container {
+  overflow-y: auto;
+  overflow-x: none;
+  max-height: 120px;
+  margin: 2px 10px 5px 10px;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li label {
-  font-size: 12px;
-  color: #fff;
-  margin-top: 2px;
-  vertical-align: top;
-  width: auto;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-dropdown-menu-scrollbar-container::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li input {
-  background-color: #a2a2a2;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-dropdown-menu-scrollbar-container::-webkit-scrollbar-thumb {
+  background: #484a4d;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-dropdown-menu-scrollbar-container::-webkit-scrollbar-track {
+  background: #898989;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-dropdown-menu-scrollbar-container {
+  scrollbar-face-color: #484a4d;
+  scrollbar-track-color: #898989;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li {
   padding: 0;
-  margin-left: 10px;
-  margin-right: 3px;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child {
-  width: 100%;
-  padding-top: 10px;
-}
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child > a {
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label {
+  display: block;
   font-size: 12px;
-  margin-left: 10px;
+  line-height: 16px;
+  color: #fff;
+  margin: 0;
+  padding: 3px 0;
 }
-nav.filters-dropdowns ul.outer > li > div.filters-dropdown-container > ul > li:last-child .fa {
-  float: right;
-  margin-right: 10px;
-  color: #000;
-  cursor: hand;
-  cursor: pointer;
-}
-nav.filters-dropdowns ul.outer > li:last-child {
-  width: 34%;
-}
-nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container {
-  margin-right: 0;
-}
-nav.filters-dropdowns ul.outer > li:last-child > div.filters-dropdown-container > ul > li {
-  width: 100%;
-}
-nav.filters-dropdowns ul.outer:before, nav.filters-dropdowns ul.outer:after {
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label:before, ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label:after {
   content: " ";
   display: table;
 }
-nav.filters-dropdowns ul.outer:after {
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label:after {
   clear: both;
 }
-
-.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > a > .fa {
-  color: #a2a2a2;
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label input[type='checkbox'] {
+  float: left;
+  margin: 0;
+  padding: 0;
+  background-color: #a2a2a2;
+  margin-right: 5px;
 }
-.touch nav.filters-dropdowns ul.outer > li.open > div.filters-dropdown-container > ul {
+ul.filter-dropdown > li:last-child div.filter-dropdown-menu {
+  right: 0;
+}
+ul.filter-dropdown > li.open div.filter-dropdown-menu {
   display: block;
 }
 
-.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > a > .fa {
-  color: #a2a2a2;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
 }
-.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul {
-  display: block;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container:before, ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container:after {
+  content: " ";
+  display: table;
 }
-.no-touch nav.filters-dropdowns ul.outer > li:hover > div.filters-dropdown-container > ul > li:last-child .fa {
-  display: none;
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container:after {
+  clear: both;
 }
->>>>>>> master
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container a.js-filter-clear {
+  float: left;
+  font-size: 12px;
+  line-height: inherit;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container a.js-filter-close {
+  float: right;
+  line-height: inherit;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu div.filter-button-container a.js-filter-close .icon {
+  font-size: 16px;
+  color: #000;
+}

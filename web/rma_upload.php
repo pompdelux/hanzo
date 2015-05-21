@@ -59,7 +59,7 @@ if (isset($_FILES) && !empty($_FILES))
 }
 
 $verifiedData   = [];
-$requiredFields = ['name', 'order_number', 'product_info', 'description', 'contact'];
+$requiredFields = ['name', 'phone', 'email', 'order_number', 'product_info', 'description'];
 
 // If contact is phone then phone_value is required and email => email_value
 if (isset($_POST['contact']))

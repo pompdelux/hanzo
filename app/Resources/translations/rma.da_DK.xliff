@@ -192,16 +192,12 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
               <target><![CDATA[Upload billeder af reklamationen:<br>
                 (max 5 billeder på i alt 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
@@ -212,12 +208,28 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
               <source>rma.claims.form.required</source>
               <target>* Skal udfyldes</target>
             </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
               <target>
                 <![CDATA[<p>Din reklamationsformular er nu sendt, og vi vender tilbage indenfor nogle dage med tilbagemelding om din sag.</p>
               <p>Hvis du har spørgsmål er du altid velkommen til at kontakte kundeservice på tlf. (+45) 8678 7871.</p>]]>
               </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Vi gør opmærksom på, at varen ikke reserveres.</target>
             </trans-unit>
         </body>
     </file>

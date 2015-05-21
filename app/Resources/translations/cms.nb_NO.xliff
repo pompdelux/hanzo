@@ -830,15 +830,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.city_label">
                 <source>job_application_form.city_label</source>
-                <target>By</target>
+                <target>Poststed</target>
             </trans-unit>
             <trans-unit id="job_application_form.phone_label">
                 <source>job_application_form.phone_label</source>
-                <target>Telefon nr.</target>
+                <target>Tlf.</target>
             </trans-unit>
             <trans-unit id="job_application_form.email_label">
                 <source>job_application_form.email_label</source>
-                <target>E-mail adresse</target>
+                <target>E-post</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
@@ -846,39 +846,39 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(skriv lidt om dig selv. F.eks. alder, familie og interesser)</target>
+                <target>(Skriv litt om deg selv, f.eks. alder, familie og interesser)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Hvorfor vil du gerne sælge POMPdeLUX børnetøj?</target>
+                <target>Hvorfor vil du selge POMPdeLUX barneklær?</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
-                <target>Vedhæft et vellignende billede af dig selv</target>
+                <target>Legg ved et tydelig bilde av deg selv</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_label">
                 <source>job_application_form.attach_resume_label</source>
-                <target>Vedhæft dit CV</target>
+                <target>Vedlegg CV-en din</target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_help">
                 <source>job_application_form.attach_resume_help</source>
-                <target>(valgfrit)</target>
+                <target>(valgfritt)</target>
             </trans-unit>
             <trans-unit id="job_application_form.submit_value">
                 <source>job_application_form.submit_value</source>
-                <target>Send din ansøgning</target>
+                <target>Send søknaden</target>
             </trans-unit>
             <trans-unit id="job_application_form.required">
                 <source>job_application_form.required</source>
-                <target>Skal udfyldes</target>
+                <target>Skal fylles ut</target>
             </trans-unit>
             <trans-unit id="job_application.error.upload">
                 <source>job_application.error.upload</source>
-                <target>Fejl med uploadede fil.</target>
+                <target>Feil med opplastet fil.</target>
             </trans-unit>
             <trans-unit id="job_application.error.missing_field">
                 <source>job_application.error.missing_field</source>
-                <target>Felt skal udfyldes.</target>
+                <target>Skal fylles ut.</target>
             </trans-unit>
             <trans-unit id="job_application.error.missing_data">
                 <source>job_application.error.missing_data</source>
@@ -886,7 +886,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansøgning er nu sendt.</p><br/><p>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Majbrit Christensen på tlf. 87 36 13 29</p>]]></target>
+                <target><![CDATA[<p>Søknaden din er sendt.</p><br/><p>Hvis du har spørsmål, kan du kontakte Sales Coordinator Heidi Bregendahl Poulsen på tlf. i Norge 22 74 27 00.</p>]]></target>
             </trans-unit>
         </body>
     </file>

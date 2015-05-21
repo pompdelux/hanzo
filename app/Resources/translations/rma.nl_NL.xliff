@@ -179,16 +179,12 @@
               <source>rma.claims.form.file_heading</source>
               <target><![CDATA[Upload foto’s van de reclamatie:<br>(maximaal 5 foto’s van totaal 10MB)]]></target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_heading">
-              <source>rma.claims.form.contact_heading</source>
-              <target>Hvordan vil du helst kontaktes?</target>
-            </trans-unit>
-            <trans-unit id="rma.claims.form.contact_phone_label">
-              <source>rma.claims.form.contact_phone_label</source>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
               <target>Telefoonnummer*</target>
             </trans-unit>
-            <trans-unit id="rma.claims.form.contact_email_label">
-              <source>rma.claims.form.contact_email_label</source>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
               <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
@@ -199,6 +195,18 @@
               <source>rma.claims.form.required</source>
               <target>* Verplichte velden</target>
             </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fejl med uploadede fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Felt skal udfyldes.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
               <target>
@@ -206,6 +214,10 @@
 <p>Heb je nog vragen, dan kun je altijd contact opnemen met onze klantenservice op telefoonnummer 085-3001100.</p>
                 ]]>
               </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Wees er op attent, dat het artikel niet gereserveerd kan worden.</target>
             </trans-unit>
         </body>
     </file>
