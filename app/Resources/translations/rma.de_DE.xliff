@@ -198,15 +198,15 @@ Das Rücksendeetikett können Sie wie gewohnt hier<a href="https://www.pompdelux
             </trans-unit>
             <trans-unit id="rma.claims.error.upload">
                 <source>rma.claims.error.upload</source>
-                <target>Fejl med uploadede fil.</target>
+                <target>Fehler bei der hochgeladenen Datei.</target>
             </trans-unit>
             <trans-unit id="rma.claims.error.missing_field">
                 <source>rma.claims.error.missing_field</source>
-                <target>Felt skal udfyldes.</target>
+                <target>Füllen Sie bitte dieses Feld aus.</target>
             </trans-unit>
             <trans-unit id="rma.claims.error.missing_data">
                 <source>rma.claims.error.missing_data</source>
-                <target>Manglende data.</target>
+                <target>Fehlende Daten.</target>
             </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>

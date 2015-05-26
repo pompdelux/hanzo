@@ -197,15 +197,15 @@
             </trans-unit>
             <trans-unit id="rma.claims.error.upload">
                 <source>rma.claims.error.upload</source>
-                <target>Fejl med uploadede fil.</target>
+                <target>Fout met het geüploade bestand.</target>
             </trans-unit>
             <trans-unit id="rma.claims.error.missing_field">
                 <source>rma.claims.error.missing_field</source>
-                <target>Felt skal udfyldes.</target>
+                <target>Gelieve dit veld in te vullen.</target>
             </trans-unit>
             <trans-unit id="rma.claims.error.missing_data">
                 <source>rma.claims.error.missing_data</source>
-                <target>Manglende data.</target>
+                <target>Ontbrekende data.</target>
             </trans-unit>
             <trans-unit id="rma.claims.success">
               <source>rma.claims.success</source>
