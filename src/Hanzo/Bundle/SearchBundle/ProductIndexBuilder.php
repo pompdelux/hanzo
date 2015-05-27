@@ -385,9 +385,9 @@ class ProductIndexBuilder extends IndexBuilder
 
         // attach the prices to the products
         foreach ($records as $data) {
-            if (isset($prices[$data['id']]) && isset($prices[$data['id']]['sales'])) {
+            if (isset($prices[$data['master_id']]) && isset($prices[$data['master_id']]['sales'])) {
 
-                $discountPct = $prices[$data['id']]['sales']['sales_pct'];
+                $discountPct = $prices[$data['master_id']]['sales']['sales_pct'];
 
                 foreach ($data['styles'] as $style)
                 {
