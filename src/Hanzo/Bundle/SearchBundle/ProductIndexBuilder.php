@@ -345,7 +345,7 @@ class ProductIndexBuilder extends IndexBuilder
         $range    = $hanzo->container->get('hanzo_product.range')->getCurrentRange();
         $domainId = $hanzo->get('core.domain_id');
 
-        $products = ProductsQuery::create()
+        $masterProducts = ProductsQuery::create()
             ->useProductsI18nQuery()
                 ->filterByLocale($locale)
             ->endUse()
@@ -364,10 +364,20 @@ class ProductIndexBuilder extends IndexBuilder
         $product_ids = [];
         $records     = [];
 
-        foreach ($products as $product)
+        foreach ($masterProducts as $masterProduct)
         {
-            $product_ids[] = $product->getId();
-            $records[] = ['id' => $product->getId()];
+            // Find all styles
+            $sql = "SELECT id FROM products WHERE master = :sku";
+            $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $stmt->execute(['sku' => $masterProduct->getSku()]);
+
+            $styles = [];
+            while ($style = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $styles[] = $style['id'];
+            }
+
+            $product_ids[] = $masterProduct->getId();
+            $records[] = ['master_id' => $masterProduct->getId(), 'styles' => $styles];
         }
 
         // get product prices
@@ -379,25 +389,28 @@ class ProductIndexBuilder extends IndexBuilder
 
                 $discountPct = $prices[$data['id']]['sales']['sales_pct'];
 
-                $sql = sprintf("
-                    INSERT INTO
-                        search_products_tags (
-                            master_products_id,
-                            products_id,
-                            token,
-                            type,
-                            locale
-                        )
-                    VALUES(%d, %d, '%s', '%s', '%s')
-                ",
-                $data['id'], // We only select master products
-                $data['id'],
-                $discountPct,
-                'discount',
-                $locale);
+                foreach ($data['styles'] as $style)
+                {
+                    $sql = sprintf("
+                        INSERT INTO
+                            search_products_tags (
+                                master_products_id,
+                                products_id,
+                                token,
+                                type,
+                                locale
+                            )
+                        VALUES(%d, %d, '%s', '%s', '%s')
+                    ",
+                    $data['master_id'],
+                    $style,
+                    $discountPct,
+                    'discount',
+                    $locale);
 
-                $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-                $query->execute();
+                    $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+                    $query->execute();
+                }
             }
         }
 
