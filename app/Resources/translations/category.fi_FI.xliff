@@ -262,7 +262,7 @@
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.discount">
         <source>faceted.dropdown.discount</source>
-        <target>TARJOUS TUOTTEET</target>
+        <target>ALE</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
