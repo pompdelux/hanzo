@@ -261,7 +261,7 @@
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.discount">
         <source>faceted.dropdown.discount</source>
-        <target>Rabat</target>
+        <target>Udsalg</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>

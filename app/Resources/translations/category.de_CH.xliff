@@ -254,15 +254,19 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>Grösse wählen</target>
+        <target>Grösse</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>Farbe wählen</target>
+        <target>Farbe</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.discount">
+        <source>faceted.dropdown.discount</source>
+        <target>Angebot</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX / BIO-PRODUKTE wählen</target>
+        <target>OEKO-TEX / BIO-PRODUKTE</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

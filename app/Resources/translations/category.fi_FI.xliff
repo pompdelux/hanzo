@@ -254,15 +254,19 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>VALITSE KOKO</target>
+        <target>KOKO</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>VALITSE VÄRI</target>
+        <target>VÄRI</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.discount">
+        <source>faceted.dropdown.discount</source>
+        <target>TARJOUS TUOTTEET</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>VALITSE OEKO-TEX/EKOLOGI</target>
+        <target>OEKO-TEX/EKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>
