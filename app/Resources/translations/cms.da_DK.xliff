@@ -6,7 +6,7 @@
                 <source>861.settings</source>
                 <target><![CDATA[
                     {
-					"category_id": "168",
+                    "category_id": "168",
                     "embedded_category_id": [
                         "12",
                         "13",
@@ -132,10 +132,12 @@
                             "146": ["146","146-152","54","56","M","L","One Size","20-22","23-26","27-30","31-34","35-38"],
                             "152": ["152","146-152","54","56","M","L","One Size","20-22","23-26","27-30","31-34","35-38"]
                         },
-                    "tokens": {
-                        "Økologi (GOTS)": ["154"],
-                    "Oekotex": ["153"]
-                                    }
+                        "tokens": {
+                            "Økologi (GOTS)": ["154"],
+                            "Oekotex": ["153"]
+                            },
+                        "discount": {
+                        }
                     }
                 ]]></target>
             </trans-unit>
@@ -143,7 +145,7 @@
                 <source>862.settings</source>
                 <target><![CDATA[
                     {
-					"category_id": "169",
+                    "category_id": "169",
                     "embedded_category_id": [
                         "5",
                         "6",
@@ -247,9 +249,11 @@
                             "152": ["152","146-152","54","56","M","L","One Size","20-22","23-26","27-30","31-34","35-38"]
                         },
                         "tokens": {
-                        "Økologi (GOTS)": ["156"],
-                    "Oekotex": ["155"]
-                                    }
+                          "Økologi (GOTS)": ["156"],
+                          "Oekotex": ["155"]
+                        },
+                        "discount": {
+                        }
                     }
                 ]]></target>
             </trans-unit>
@@ -803,7 +807,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="1021.settings">
+            <trans-unit id="1021.settings">
                 <source>1021.settings</source>
                 <target><![CDATA[
                     {
