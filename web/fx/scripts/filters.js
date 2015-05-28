@@ -26,8 +26,74 @@ var filters = (function ($) {
 
     setSavedValues();
     eventHandlersSetup();
+    filterDropdownStateHandler();
     mobileSetup();
   };
+
+  function filterDropdownStateHandler() {
+    // Filter toggle click
+    $('ul.filter-dropdown a.filter-dropdown-toggle').on('click', function(event) {
+
+        // Don't follow href
+        event.preventDefault();
+
+        // Don't track this click (in HTML click)
+        event.stopPropagation();
+
+        // Grab parent element (li)
+        var $parent = $(this).parent();
+
+        // Is open - close it
+        if( $parent.hasClass('open') ) {
+
+            // Close all filters
+            close_all_filters();
+        }
+        // Is closed - open it
+        else {
+
+            // Close all filters
+            close_all_filters();
+
+            // Add 'open' class
+            $parent.addClass('open');
+        }
+    });
+
+    // Click on filter close icon
+    $('ul.filter-dropdown a.js-filter-close').on('click', function(event) {
+
+        // Don't follow href
+        event.preventDefault();
+
+        // Close all filters
+        close_all_filters();
+    });
+
+    // Click inside dropdown menu
+    $('ul.filter-dropdown div.filter-dropdown-menu').on('click', function (event) {
+
+        // Don't track this click (in HTML click)
+        event.stopPropagation();
+    });
+
+    // Click on HTML
+    $('html').on('click', function (event) {
+        // Close all filters
+        close_all_filters();
+    });
+  }
+
+  // Close all filters
+  function close_all_filters() {
+
+    // Configuration
+    var $filter = $('ul.filter-dropdown'),
+      $list_items = $filter.find('> li.open');
+
+    // Remove 'open' class
+    $list_items.removeClass('open');
+  }
 
   function showSelectedValues() {
     $selected.show();
@@ -54,7 +120,7 @@ var filters = (function ($) {
       updateSelectedValues();
     });
 
-    $(".js-filter-clear-dropdown").click(function(e) {
+    $(".js-filter-clear").click(function(e) {
       e.preventDefault();
 
       var filterType = $(this).attr('href'),

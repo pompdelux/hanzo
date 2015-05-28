@@ -46,6 +46,7 @@ class SearchProductsTagsTableMap extends TableMap
         $this->addForeignKey('master_products_id', 'MasterProductsId', 'INTEGER', 'products', 'id', true, null, null);
         $this->addForeignKey('products_id', 'ProductsId', 'INTEGER', 'products', 'id', true, null, null);
         $this->addColumn('token', 'Token', 'VARCHAR', true, 128, null);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, 128, null);
         $this->addColumn('locale', 'Locale', 'VARCHAR', true, 12, null);
         // validators
     } // initialize()

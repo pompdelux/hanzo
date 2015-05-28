@@ -61,14 +61,14 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
 
             $page               = $this->minkContext->getSession()->getPage()->getContent();
             $screenshot         = $driver->getScreenshot();
-            $screenshotFileName = date('d-m-y') . '-' . uniqid() . '.png';
-            $pageFileName       = date('d-m-y') . '-' . uniqid() . '.html';
-            $filePath           = $this->getContainer()->get('kernel')->getRootdir() . '/../../';
+            $screenshotFileName = date('d-m-y').'-'.uniqid().'.png';
+            $pageFileName       = date('d-m-y').'-'.uniqid().'.html';
+            $filePath           = $this->getContainer()->get('kernel')->getRootdir().'/../../';
 
             file_put_contents($filePath.$screenshotFileName, $screenshot);
             file_put_contents($filePath.$pageFileName, $page);
-            print 'Screenshot at: ' . $filePath.$screenshotFileName."\n";
-            print 'HTML dump at: ' . $filePath.$pageFileName."\n";
+            print 'Screenshot at: '.$filePath.$screenshotFileName."\n";
+            print 'HTML dump at: '.$filePath.$pageFileName."\n";
         }
     }
 
@@ -184,7 +184,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function theFollowingMenuItemsExist(array $menuItems)
     {
-        // throw new PendingException();
+        // Not sure what to do here :)
     }
 
     /**
@@ -192,19 +192,21 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iAmOnACategoryPage()
     {
-        throw new PendingException();
+        $categoryUrl = $this->getMinkParameter('base_url');
+        $this->getSession()->visit($categoryUrl.'pige/undertoej');
     }
 
     /**
-     * @When I click on the element :locator
+     * @When /^I click the element "([^"]*)"$/
      */
-    public function iClickOnTheElement($locator)
+    public function iClickTheElement($locator)
     {
-        $session = $this->getSession();
+        $session = $this->getSession(); // get the mink session
         $element = $session->getPage()->find('css', $locator); // runs the actual query and returns the element
 
+        // errors must not pass silently
         if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Cannot find element: "%s"', $locator));
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS selector: "%s"', $locator));
         }
 
         $element->click();

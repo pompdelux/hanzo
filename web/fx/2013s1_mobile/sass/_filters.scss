@@ -1,82 +1,162 @@
-.filters-selected {
-  text-transform: uppercase;
+.filter-text {
+    text-transform: uppercase;
 
-  font-family: $font-sans;
-  font-size: $side-menu-size;
-  line-height: $side-menu-line-height;
+    font-family: $font-sans;
+    font-size: $side-menu-size;
+    line-height: 1.8em;
 
-  span {
+    span {
+        background-color: #969799;
+        color: #fff;
+        padding: 2px 6px;
+        white-space: nowrap;
+
+        a {
+            color: #000;
+            font-weight: bold;
+            vertical-align: bottom;
+            text-decoration: none;
+        }
+
+        &.last {
+            background-color: inherit;
+            a {
+                font-size: inherit;
+                font-weight: inherit;
+            }
+        }
+    }
+}
+
+.filter-show-products {
+    text-transform: uppercase;
+    margin-top: -2px;
+    font-size: 12px;
     background-color: #969799;
-    color: #fff;
     padding: 2px 6px;
     line-height: 1.8em;
-    white-space: nowrap;
+    text-align: center;
 
     a {
-      color: #000;
-      font-weight: bold;
-      vertical-align: bottom;
+        color: #fff;
+        font-weight: 700;
+        vertical-align: bottom;
+        text-decoration: none;
+    }
+}
+
+
+// --------------------------------------------------
+// Filter dropdown
+// --------------------------------------------------
+
+// Filter dropdown
+ul.filter-dropdown {
+  width: 100%;
+  margin-bottom: 10px;
+
+  > li.open {
+    > a.filter-dropdown-toggle {
+      background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+      font-weight: 700;
+    }
+  }
+
+  // List item (first layer)
+  > li {
+      border-top: 1px solid #000;
+
+    // Toggle
+    > a.filter-dropdown-toggle {
+      display: block;
+      font-size: 1.4em;
+      margin-right: 5px;
+      padding: 6px 0 6px 5px;
       text-decoration: none;
+      background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+
+      // Icon
+      > .icon {
+          display: none;
+      }
     }
 
-    &.last {
-      background-color: inherit;
-      a {
-        font-size: inherit;
-        font-weight: inherit;
+    // Open
+    &.open {
+
+      // Toggle
+      > a.filter-dropdown-toggle {
+
+        // Icon
+        > .icon {
+          display: none;
+        }
       }
     }
   }
 }
 
-.filter-show-products {
-  text-transform: uppercase;
-  margin-top: -2px;
+// --------------------------------------------------
+// Dropdown menu
+// --------------------------------------------------
+//
 
-  font-family: $font-sans;
-  font-size: $side-menu-size;
-  line-height: $side-menu-line-height;
+// Dropdown list
+ul.filter-dropdown {
 
-  background-color: #969799;
-  padding: 2px 6px;
-  line-height: 1.8em;
-  text-align: center;
+  // List item (first layer)
+  > li {
+      @include clearfix;
 
-  a {
-      color: #fff;
-      font-weight: bold;
-      vertical-align: bottom;
-      text-decoration: none;
+    // Dropdown menu
+    div.filter-dropdown-menu {
+      display: none;
+
+      // Dropdown menu list
+      ul.filter-dropdown-menu-list {
+
+        // List item
+        > li {
+            width: 50%;
+            float: left;
+            border-bottom: 1px solid #000;
+            padding-bottom: 8px;
+
+          // Label
+          label {
+            display: block;
+            font-size: 1.4em;
+
+            // Checkbox
+            input {
+              margin: 0;
+              padding: 0;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    // Last element
+    &:last-child {
+
+      // Dropdown menu
+      div.filter-dropdown-menu {
+      }
+    }
+
+    // Open
+    &.open {
+
+      // Dropdown menu
+      div.filter-dropdown-menu {
+        display: block;
+      }
+    }
   }
 }
 
-.faceted-form-open {
-    background-color: #fff;
-    display: block;
-    position: static;
-    top: 0;
-    z-index: 1;
-}
-
-nav.filters-dropdowns {
-    .outer > li {
-        > ul {
-            label {
-                width: auto;
-            }
-            input {
-                margin-left: 20px;
-                &:nth-child(odd) {
-                    margin-left: 10px;
-                }
-            }
-            > li {
-                &.item {
-                    padding: 0;
-                    width: 50%;
-                    float: left;
-                }
-            }
-        }
-    }
+.filter-button-container a {
+    display: none;
 }

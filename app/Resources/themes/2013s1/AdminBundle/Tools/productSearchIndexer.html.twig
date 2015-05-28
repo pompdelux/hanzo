@@ -10,7 +10,10 @@
 {% endfor %}
 
 <p>
-    <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1}) }}" class="js-trigger-indexer">Opdatér faceted søgnings index.</a>
+  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'product_index'}) }}" class="js-trigger-indexer">Produkt index (size/color).</a><br/>
+  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'category_index'}) }}" class="js-trigger-indexer">Category index .</a><br/>
+  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'custom_token_index'}) }}" class="js-trigger-indexer">Token index (Øko m.m).</a><br/>
+  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'discount_index'}) }}" class="js-trigger-indexer">Discount index .</a><br/>
 </p>
 
 {% endblock %}

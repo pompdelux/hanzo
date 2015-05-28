@@ -4,24 +4,66 @@ namespace Hanzo\Bundle\SearchBundle;
 
 use Hanzo\Model\SearchProductsTagsQuery,
     Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsDomainsPricesPeer,
     Hanzo\Core\Hanzo,
     Hanzo\Core\Tools
     ;
 
 class ProductIndexBuilder extends IndexBuilder
 {
-    public function build()
+    /**
+     * Inserts data, remeber to ->clear() first
+     *
+     * @param Array $indexesToUpdate
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function build(Array $indexesToUpdate = [])
     {
-        foreach ($this->getConnections() as $name => $x) {
-            $connection = $this->getConnection($name);
-
-            foreach ($this->getLocales($connection) as $locale) {
-                $this->updateProductIndex($locale, $connection);
-                $this->updateCategoryIndex($locale, $connection);
-                $this->updateCustomTokensIndex($locale, $connection);
-            }
+        if (empty($indexesToUpdate)) {
+            // Changes here should also be updated in buildProductSearchIndexAction
+            $indexesToUpdate = [
+                'product_index'      => true,
+                'category_index'     => true,
+                'custom_token_index' => true,
+                'discount_index'     => true,
+                ];
         }
 
+        foreach (array_keys($this->getConnections()) as $name) {
+            $connection = $this->getConnection($name);
+
+            foreach ($indexesToUpdate as $index => $enabled) {
+                if ($enabled === true) {
+                    $this->performUpdate($index, $connection);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $index
+     */
+    protected function performUpdate($index, $connection)
+    {
+        foreach ($this->getLocales($connection) as $locale) {
+            switch ($index)
+            {
+                case 'product_index':
+                    $this->updateProductIndex($locale, $connection);
+                    break;
+                case 'category_index':
+                    $this->updateCategoryIndex($locale, $connection);
+                    break;
+                case 'custom_token_index':
+                    $this->updateCustomTokensIndex($locale, $connection);
+                    break;
+                case 'discount_index':
+                    $this->updateDiscountIndex($locale, $connection);
+                    break;
+            }
+        }
     }
 
     /**
@@ -32,7 +74,7 @@ class ProductIndexBuilder extends IndexBuilder
      **/
     public function clear()
     {
-        foreach ($this->getConnections() as $name => $x) {
+        foreach (array_keys($this->getConnections()) as $name) {
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
@@ -68,12 +110,14 @@ class ProductIndexBuilder extends IndexBuilder
                     master_products_id,
                     products_id,
                     token,
+                    type,
                     locale
                 )
             SELECT
                 p1.id,
                 p2.id,
                 p2.color,
+                'product',
                 '".$locale."'
             FROM
                 products AS p1
@@ -86,6 +130,7 @@ class ProductIndexBuilder extends IndexBuilder
                 p1.id,
                 p2.id,
                 p2.size,
+                'product',
                 '".$locale."'
             FROM
                 products AS p1
@@ -115,12 +160,14 @@ class ProductIndexBuilder extends IndexBuilder
                     master_products_id,
                     products_id,
                     token,
+                    type,
                     locale
                 )
             SELECT
                 p1.id,
                 p2.id,
                 c.title,
+                'category',
                 c.locale
             FROM
                 products AS p1
@@ -145,6 +192,7 @@ class ProductIndexBuilder extends IndexBuilder
                 p1.id,
                 p2.id,
                 c.context,
+                'category',
                 '".$locale."'
             FROM
                 products AS p1
@@ -175,7 +223,6 @@ class ProductIndexBuilder extends IndexBuilder
      * updateCustomTokensIndex
      * - Some products are tagged with some custom tokens, i.e. eco
      * - This will find all products in the configured categories @see getCustomTokensForCategories and add them to the search table
-     * - The value is stored in the db prefixed with 'token-' to avoid clash with category names
      *
      * @param string $locale
      * @param PropelPDO
@@ -203,7 +250,7 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($products as $product)
                 {
-                    $tokenValue = 'token-'.Tools::stripText($token);
+                    $tokenValue = Tools::stripText($token);
 
                     $sql = sprintf("
                         INSERT INTO
@@ -211,13 +258,15 @@ class ProductIndexBuilder extends IndexBuilder
                                 master_products_id,
                                 products_id,
                                 token,
+                                type,
                                 locale
                             )
-                        VALUES(%d, %d, '%s', '%s')
+                        VALUES(%d, %d, '%s', '%s', '%s')
                     ",
                     $masterProduct->getId(),
                     $product->getId(),
                     $tokenValue,
+                    'tag',
                     $locale);
 
                     $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
@@ -284,5 +333,86 @@ class ProductIndexBuilder extends IndexBuilder
 
 
         return $tokensToCategories;
+    }
+
+    /*
+     * Index all discounted products
+     *
+     */
+    private function updateDiscountIndex($locale, $connection)
+    {
+        $hanzo    = Hanzo::getInstance();
+        $range    = $hanzo->container->get('hanzo_product.range')->getCurrentRange();
+        $domainId = $hanzo->get('core.domain_id');
+
+        $masterProducts = ProductsQuery::create()
+            ->useProductsI18nQuery()
+                ->filterByLocale($locale)
+            ->endUse()
+            ->filterByIsActive(true)
+            ->filterByRange($range)
+            ->useProductsDomainsPricesQuery()
+                ->filterByDomainsId($domainId)
+                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                ->where(array('c1', 'c2'), 'AND')
+            ->endUse()
+            ->joinWithProductsImages()
+            ->find($connection)
+        ;
+
+        $product_ids = [];
+        $records     = [];
+
+        foreach ($masterProducts as $masterProduct)
+        {
+            // Find all styles
+            $sql = "SELECT id FROM products WHERE master = :sku";
+            $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $stmt->execute(['sku' => $masterProduct->getSku()]);
+
+            $styles = [];
+            while ($style = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $styles[] = $style['id'];
+            }
+
+            $product_ids[] = $masterProduct->getId();
+            $records[] = ['master_id' => $masterProduct->getId(), 'styles' => $styles];
+        }
+
+        // get product prices
+        $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
+        // attach the prices to the products
+        foreach ($records as $data) {
+            if (isset($prices[$data['master_id']]) && isset($prices[$data['master_id']]['sales'])) {
+
+                $discountPct = $prices[$data['master_id']]['sales']['sales_pct'];
+
+                foreach ($data['styles'] as $style)
+                {
+                    $sql = sprintf("
+                        INSERT INTO
+                            search_products_tags (
+                                master_products_id,
+                                products_id,
+                                token,
+                                type,
+                                locale
+                            )
+                        VALUES(%d, %d, '%s', '%s', '%s')
+                    ",
+                    $data['master_id'],
+                    $style,
+                    $discountPct,
+                    'discount',
+                    $locale);
+
+                    $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+                    $query->execute();
+                }
+            }
+        }
+
     }
 }

@@ -20,50 +20,17 @@
     <div class="clearfix"></div>
 </div>
 
-<div class="grid_8 alpha omega row js-filters filters-selected">
-  <span class="last off"><a href="all" class="js-filter-clear-dropdown">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+<div class="grid_8 alpha omega row js-filter-selected-values off">
+  <div class="grid_6 omega js-filters filter-text">
+    <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+  </div>
 </div>
 
-<form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
-  <nav class="menu clearfix main-menu filters-dropdowns">
-    <ul class="outer">
+{% include 'CategoryBundle:Default:filters.html.twig' %}
 
-      <li class="first">
-        <a href="#" class="heading js-filter-open">{{ 'faceted.dropdown.size'|trans({}, 'category') }}</a>
-        <ul class="js-filter-type-size">
-          {% for size in size_mapping %}
-          <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="size" data-name="{{ size }}" type="checkbox" name="size[]" value="{{ size }}" id="size_{{ size|tag_safe }}"/> <label for="size_{{ size|tag_safe }}"> {{ size }}</label></li>
-          {% endfor %}
-          <li class="clearfix"></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#" class="heading js-filter-open">{{ 'faceted.dropdown.color'|trans({}, 'category') }}</a>
-        <ul class="js-filter-type-color">
-          {% for color in color_mapping %}
-          <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="color" data-name="{{ color }}" type="checkbox" name="color[]" value="{{ color|tag_safe({' & ': ' - '}) }}" id="color_{{ color|tag_safe }}"/> <label for="color_{{ color|tag_safe }}"> {{ color }}</label></li>
-          {% endfor %}
-          <li class="clearfix"></li>
-        </ul>
-      </li>
-
-      <li class="last">
-        <a href="#" class="heading js-filter-open">{{ 'faceted.dropdown.eco'|trans({}, 'category') }}</a>
-        <ul class="js-filter-type-eco">
-          {% for token in token_mapping %}{# Note: value is prefixed with 'token-' as this is the value in the db  #}
-          <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}"><input data-group="eco" data-name="{{ token.name }}" type="checkbox" name="eco[]" value="token-{{ token.value|tag_safe({' & ': ' - '}) }}" id="token_{{ token.name|tag_safe }}"/> <label for="token_{{ token.name|tag_safe }}"> {{ token.name }}</label></li>
-          {% endfor %}
-          <li class="clearfix"></li>
-        </ul>
-      </li>
-
-    </ul>
-  </nav>
-  <div class="js-filter-show-products filter-show-products">
-    <a href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.show_results'|trans({}, 'category') }}</a>
-  </div>
-</form>
+<div class="js-filter-show-products filter-show-products">
+  <a href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.show_results'|trans({}, 'category') }}</a>
+</div>
 
 <div class="grid_8 alpha omega row js-filter-hide">
   <div class="grid_4 push_2 alpha left">
