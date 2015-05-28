@@ -662,7 +662,13 @@ class DefaultController extends CoreController
         $request    = $this->container->get('request');
 
         $this->setupFilterConfiguration();
-        $filterTypes = array_keys($this->filterConfiguration);
+        $filterTypes = [];
+
+        // Note: we use id here and not the array keys because tokens/eco mess
+        foreach ($this->filterConfiguration as $key => $types)
+        {
+            $filterTypes[] = $types['id'];
+        }
 
         $filters = [];
 
@@ -724,6 +730,7 @@ class DefaultController extends CoreController
         if (is_null($this->filterConfiguration)) {
             $this->filterConfiguration = [
                 // tag_type: This matches the "type" column in the table, check Hanzo\Bundle\SearchBundle\ProductIndexBuilder
+                // Note: tokens use eco as id
                 'size'     => [ 'tag_type' => 'product',  'id' => 'size',    ],
                 'color'    => [ 'tag_type' => 'product',  'id' => 'color',   ],
                 'tokens'   => [ 'tag_type' => 'tag',      'id' => 'eco',     ],
