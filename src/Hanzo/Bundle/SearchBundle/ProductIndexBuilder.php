@@ -32,6 +32,10 @@ class ProductIndexBuilder extends IndexBuilder
         }
 
         foreach (array_keys($this->getConnections()) as $name) {
+            // default has been replaced by pdldbdk1
+            if ($name == 'default') {
+                continue;
+            }
             $connection = $this->getConnection($name);
 
             foreach ($indexesToUpdate as $index => $enabled) {
@@ -336,11 +340,17 @@ class ProductIndexBuilder extends IndexBuilder
     }
 
     /*
-     * Index all discounted products
+     * Index all products with a discount
      *
      */
     private function updateDiscountIndex($locale, $connection)
     {
+        /*
+         * As we can't use hanzo here, because it depends on the enviroment, and we try to update all databases
+         * we need to look up active product range here.
+         *
+         * NOTE: This has to be updated when #927 is implemented.
+         */
         $sql = "SELECT c_value FROM settings WHERE c_key = 'active_product_range' AND ns = 'core'";
         $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $stmt->execute();
@@ -348,7 +358,7 @@ class ProductIndexBuilder extends IndexBuilder
         $record = $stmt->fetch(\PDO::FETCH_ASSOC);
         $range = $record['c_value'];
 
-        // We ignore domain_id here on purpose
+        // Get all master products
         $sql = "SELECT
                 products.id,
                 products.sku
@@ -369,7 +379,8 @@ class ProductIndexBuilder extends IndexBuilder
             AND
                 (products_domains_prices.from_date <= NOW()
             AND
-                products_domains_prices.to_date >= NOW())";
+                products_domains_prices.to_date >= NOW())
+            GROUP BY products.sku";
 
         $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $stmt->execute([
@@ -382,11 +393,9 @@ class ProductIndexBuilder extends IndexBuilder
             $masterProducts[] = $record;
         }
 
-        $product_ids = [];
-        $records     = [];
-
-        foreach ($masterProducts as $masterProduct)
-        {
+        // Now that we have the master products we have to find all style ids
+        $records = [];
+        foreach ($masterProducts as $masterProduct) {
             // Find all styles
             $sql = "SELECT id FROM products WHERE master = :sku";
             $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
@@ -397,13 +406,17 @@ class ProductIndexBuilder extends IndexBuilder
                 $styles[] = $style['id'];
             }
 
-            $product_ids[] = $masterProduct['id'];
             $records[] = ['master_id' => $masterProduct['id'], 'styles' => $styles];
         }
 
+        /*
+         * Find prices.
+         * We need the domain_id so that we don't calculate the discount based on prices from 2 different domains
+         */
         $sql = "SELECT
                 products_domains_prices.products_id,
                 products_domains_prices.price,
+                products_domains_prices.domains_id,
                 products_domains_prices.from_date,
                 products_domains_prices.to_date
             FROM
@@ -424,55 +437,58 @@ class ProductIndexBuilder extends IndexBuilder
         $prices = [];
         while ($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $key = is_null($record['to_date']) ? 'normal' : 'sales';
-            $prices[$record['products_id']][$key] = ['price' => $record['price'], 'sales_pct' => 0.00 ];
+            $prices[$record['domains_id']][$record['products_id']][$key] = ['price' => $record['price'], 'sales_pct' => 0.00 ];
         }
 
-        foreach ($prices as $productId => $price) {
-            if (isset($price['sales'])) {
-                $prices[$productId]['sales']['sales_pct'] = (($price['normal']['price'] - $price['sales']['price']) / $price['normal']['price']) * 100;
+        // Calculate all discounts and remember which domain ids there are
+        $domainIds = [];
+        foreach ($prices as $domainId => $domainPrices) {
+            $domainIds[$domainId] = $domainId;
+            foreach ($domainPrices as $productId => $price) {
+                if (isset($price['sales'])) {
+                    $prices[$domainId][$productId]['sales']['sales_pct'] = (($price['normal']['price'] - $price['sales']['price']) / $price['normal']['price']) * 100;
+                }
             }
         }
 
         $index = [];
 
-        // attach the prices to the products
         foreach ($records as $data) {
-            if (isset($prices[$data['master_id']]) && isset($prices[$data['master_id']]['sales'])) {
+            foreach ($domainIds as $domainId) {
+                if (isset($prices[$domainId][$data['master_id']]) && isset($prices[$domainId][$data['master_id']]['sales'])) {
+                    $discountPct = $prices[$domainId][$data['master_id']]['sales']['sales_pct'];
 
-                $discountPct = $prices[$data['master_id']]['sales']['sales_pct'];
+                    foreach ($data['styles'] as $style) {
+                        $key = $data['master_id'].'-'.$style.'-'.$discountPct.'-'.$domainId;
+                        // Avoid duplicated entries
+                        if (isset($index[$key])) {
+                            continue;
+                        }
 
-                foreach ($data['styles'] as $style)
-                {
-                    $key = $data['master_id'].'-'.$style.'-'.$discountPct;
-                    // Avoid duplicated entries
-                    if (isset($index[$key])) {
-                        continue;
+                        $index[$key] = true;
+
+                        $sql = sprintf("
+                            INSERT INTO
+                                search_products_tags (
+                                    master_products_id,
+                                    products_id,
+                                    token,
+                                    type,
+                                    locale
+                                )
+                            VALUES(%d, %d, '%s', '%s', '%s')
+                        ",
+                        $data['master_id'],
+                        $style,
+                        $discountPct,
+                        'discount',
+                        $locale);
+
+                        $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+                        $query->execute();
                     }
-
-                    $index[$key] = true;
-
-                    $sql = sprintf("
-                        INSERT INTO
-                            search_products_tags (
-                                master_products_id,
-                                products_id,
-                                token,
-                                type,
-                                locale
-                            )
-                        VALUES(%d, %d, '%s', '%s', '%s')
-                    ",
-                    $data['master_id'],
-                    $style,
-                    $discountPct,
-                    'discount',
-                    $locale);
-
-                    $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-                    $query->execute();
                 }
             }
         }
-
     }
 }
