@@ -341,25 +341,46 @@ class ProductIndexBuilder extends IndexBuilder
      */
     private function updateDiscountIndex($locale, $connection)
     {
-        $hanzo    = Hanzo::getInstance();
-        $range    = $hanzo->container->get('hanzo_product.range')->getCurrentRange();
-        $domainId = $hanzo->get('core.domain_id');
+        $sql = "SELECT c_value FROM settings WHERE c_key = 'active_product_range' AND ns = 'core'";
+        $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $stmt->execute();
 
-        $masterProducts = ProductsQuery::create()
-            ->useProductsI18nQuery()
-                ->filterByLocale($locale)
-            ->endUse()
-            ->filterByIsActive(true)
-            ->filterByRange($range)
-            ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($domainId)
-                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
-                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
-                ->where(array('c1', 'c2'), 'AND')
-            ->endUse()
-            ->joinWithProductsImages()
-            ->find($connection)
-        ;
+        $record = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $range = $record['c_value'];
+
+        // We ignore domain_id here on purpose
+        $sql = "SELECT
+                products.id,
+                products.sku
+            FROM
+                `products`
+            LEFT JOIN
+                `products_i18n` ON (products.id=products_i18n.id)
+            INNER JOIN
+                `products_domains_prices` ON (products.id=products_domains_prices.products_id)
+            INNER JOIN
+                `products_images` ON (products.id=products_images.products_id)
+            WHERE
+                products_i18n.locale=:locale
+            AND
+                products.is_active=1
+            AND
+                products.range=:range
+            AND
+                (products_domains_prices.from_date <= NOW()
+            AND
+                products_domains_prices.to_date >= NOW())";
+
+        $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $stmt->execute([
+            'locale' => $locale,
+            'range'  => $range,
+            ]);
+
+        $masterProducts = [];
+        while ($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $masterProducts[] = $record;
+        }
 
         $product_ids = [];
         $records     = [];
@@ -369,19 +390,50 @@ class ProductIndexBuilder extends IndexBuilder
             // Find all styles
             $sql = "SELECT id FROM products WHERE master = :sku";
             $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-            $stmt->execute(['sku' => $masterProduct->getSku()]);
+            $stmt->execute(['sku' => $masterProduct['sku']]);
 
             $styles = [];
             while ($style = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $styles[] = $style['id'];
             }
 
-            $product_ids[] = $masterProduct->getId();
-            $records[] = ['master_id' => $masterProduct->getId(), 'styles' => $styles];
+            $product_ids[] = $masterProduct['id'];
+            $records[] = ['master_id' => $masterProduct['id'], 'styles' => $styles];
         }
 
-        // get product prices
-        $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+        $sql = "SELECT
+                products_domains_prices.products_id,
+                products_domains_prices.price,
+                products_domains_prices.from_date,
+                products_domains_prices.to_date
+            FROM
+                `products_domains_prices`
+            WHERE
+                products_domains_prices.from_date<=:time
+            AND
+                (products_domains_prices.to_date>=:time
+                OR products_domains_prices.to_date IS NULL )
+            ORDER BY
+                products_domains_prices.products_id ASC,
+                products_domains_prices.from_date DESC,
+                products_domains_prices.to_date DESC";
+
+        $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $stmt->execute(['time' => date('Y-m-d H:i:s')]);
+
+        $prices = [];
+        while ($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $key = is_null($record['to_date']) ? 'normal' : 'sales';
+            $prices[$record['products_id']][$key] = ['price' => $record['price'], 'sales_pct' => 0.00 ];
+        }
+
+        foreach ($prices as $productId => $price) {
+            if (isset($price['sales'])) {
+                $prices[$productId]['sales']['sales_pct'] = (($price['normal']['price'] - $price['sales']['price']) / $price['normal']['price']) * 100;
+            }
+        }
+
+        $index = [];
 
         // attach the prices to the products
         foreach ($records as $data) {
@@ -391,6 +443,14 @@ class ProductIndexBuilder extends IndexBuilder
 
                 foreach ($data['styles'] as $style)
                 {
+                    $key = $data['master_id'].'-'.$style.'-'.$discountPct;
+                    // Avoid duplicated entries
+                    if (isset($index[$key])) {
+                        continue;
+                    }
+
+                    $index[$key] = true;
+
                     $sql = sprintf("
                         INSERT INTO
                             search_products_tags (
