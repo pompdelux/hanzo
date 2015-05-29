@@ -446,7 +446,8 @@ class ProductIndexBuilder extends IndexBuilder
             $domainIds[$domainId] = $domainId;
             foreach ($domainPrices as $productId => $price) {
                 if (isset($price['sales'])) {
-                    $prices[$domainId][$productId]['sales']['sales_pct'] = (($price['normal']['price'] - $price['sales']['price']) / $price['normal']['price']) * 100;
+                    // Runding is normaly done in the template, but the filter uses whole numbers
+                    $prices[$domainId][$productId]['sales']['sales_pct'] = round((($price['normal']['price'] - $price['sales']['price']) / $price['normal']['price']) * 100);
                 }
             }
         }
