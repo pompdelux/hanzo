@@ -46,7 +46,7 @@ class DefaultController extends CoreController
     {
         $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $locale = $this->getRequest()->getLocale();
+        $locale    = $this->getRequest()->getLocale();
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
@@ -346,7 +346,7 @@ class DefaultController extends CoreController
         $filterNoResultsFound = false;
 
         if ($use_filter) {
-            $ids = $this->getProductIdsMatchingFilters($filters);
+            $ids = $this->getProductIdsMatchingFilters($filters, $locale);
 
             if (!empty($ids)) {
                 $result = $result->useProductsQuery()->filterById($ids)->endUse();
@@ -698,7 +698,7 @@ class DefaultController extends CoreController
         return $filters;
     }
 
-    protected function getProductIdsMatchingFilters($filters)
+    protected function getProductIdsMatchingFilters($filters, $locale)
     {
         $ids = [];
 
@@ -709,7 +709,7 @@ class DefaultController extends CoreController
                   search_products_tags AS C1\n";
 
         $sql .= $this->searchProductsFilterBuilder($filters);
-        $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id";
+        $sql .= "\nAND p.is_out_of_stock = 0 AND p.id = C1.products_id AND C1.locale = '".$locale."'";
 
         $sql .= "\nGROUP BY C1.master_products_id";
 
