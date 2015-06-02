@@ -7,7 +7,7 @@ This file is shared between the desktop and the mobile version
 #}
 {% if app.request.attributes.get('_route') %}
     <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
-        <ul class="filter-dropdown">
+      <ul class="filter-dropdown filter-count-{{ filter_count }}">
 
             {% for filter in filters%}
             <!-- Begin - {{ filter.id }} -->

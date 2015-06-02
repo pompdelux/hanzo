@@ -48,56 +48,13 @@ class DefaultController extends CoreController
         $container = $hanzo->container;
         $locale    = $this->getRequest()->getLocale();
 
-        $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
-
-        if ($this->getFormat() !== 'json') {
-            $cache_id[] = 'html';
-        }
-
         // TODO: should not be set here !!
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
 
         $topLevel = $this->getTopLevelCMSPage($cms_page);
 
-        $colorMapping = $this->getSettings($locale, $topLevel->getId(), 'colormap');
-
-        $size_filter        = [];
-        $color_filter       = [];
-        $eco_filter         = [];
-        $discount_filter    = [];
-
-        // we need this "hack" to prevent url pollution..
-        $escapes = [
-            ' - ' => ' & ',
-        ];
-
-        if ($request->query->has('filter')) {
-            // A color, e.g. "Blue", can be mapped to many colors like "Dusty Blue" or "Navy"
-            // So this maps the color to all it's aliases
-            foreach ($request->query->get('color', []) as $color) {
-                $color = strtr($color, $escapes);
-                if (isset($colorMapping[$color])) {
-                    $color_filter = array_merge($color_filter, $colorMapping[$color]);
-                }
-            }
-
-            foreach ($request->query->get('size', []) as $size) {
-                $size_filter[]      = $size;
-            }
-
-            foreach ($request->query->get('eco', []) as $eco) {
-                $eco_filter[] = $eco;
-            }
-
-            foreach ($request->query->get('discount', []) as $discount) {
-                $discount_filter[] = $discount;
-            }
-
-            $cache_id = array_merge($cache_id, $size_filter, $color_filter, $eco_filter, $discount_filter);
-        }
-
-        $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
+        $cache_id = $this->getCacheId($show, $pager, $topLevel->getId());
+        $html = $this->getCache($cache_id);
 
         /**
          *  If html wasn't cached retrieve a fresh set of data
@@ -157,9 +114,11 @@ class DefaultController extends CoreController
 
         $hanzo = Hanzo::getInstance();
         $domainId = $hanzo->get('core.domain_id');
+        $productRange = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
+            ->filterByRange($productRange)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId($domainId)
             ->endUse()
@@ -203,13 +162,13 @@ class DefaultController extends CoreController
         $container = $hanzo->container;
         $locale    = $hanzo->get('core.locale');
 
-        $cache_id = array(__FUNCTION__, $cms_id, $show, $pager);
+        $cacheKeys = [
+            __FUNCTION__,
+            $cms_id,
+            ];
 
-        if ($this->getFormat() !== 'json') {
-            $cache_id[] = 'html';
-        }
-
-        $html = $this->getCache($cache_id); // If there a cached version, html has both the json and html version
+        $cache_id = $this->getCacheId($show, $pager, null, false, $cacheKeys);
+        $html = $this->getCache($cache_id);
 
         /**
          *  If html wasnt cached retrieve a fresh set of data
@@ -453,9 +412,11 @@ class DefaultController extends CoreController
             'products' => $records,
             'paginate' => null,
             'filters' => null,
+            'filter_count' => 0,
         ];
 
-        $data['filters'] = $this->getFiltersForTemplate($mappings);
+        $data['filters']      = $this->getFiltersForTemplate($mappings);
+        $data['filter_count'] = count($data['filters']);
 
         if ($this->getFormat() == 'json') {
             // for json we need the real image paths
@@ -737,5 +698,81 @@ class DefaultController extends CoreController
                 'discount' => [ 'tag_type' => 'discount', 'id' => 'discount',],
                 ];
         }
+    }
+
+    /**
+     * Builds cache id
+     *
+     * @param mixed $topLevelId
+     * @param mixed $show
+     * @param mixed $pager
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getCacheId($show, $pager, $topLevelId = null, $skipFilters = false, $cacheKeys = [])
+    {
+        $request = $this->getRequest();
+        $locale = $request->getLocale();
+
+        $cacheId = explode('_', $request->get('_route'));
+        $cacheId = array($cacheId[0], $cacheId[2], $cacheId[1], $show, $pager);
+
+        // If there a cached version, html has both the json and html version
+        if ($this->getFormat() !== 'json') {
+            $cacheId[] = 'html';
+        }
+
+        if (!empty($cacheKeys)) {
+            $cacheId = array_merge($cacheId, $cacheKeys);
+        }
+
+        // If the customer is editing an order from Sales that has another active product range, and stops editing, we have to make sure that the cache is correct
+        $productRange = $this->container->get('hanzo_product.range')->getCurrentRange();
+        $cacheId[] = $productRange;
+
+        if (!$skipFilters) {
+            $colorMapping = [];
+            if (!is_null($topLevelId)) {
+                $colorMapping = $this->getSettings($locale, $topLevelId, 'colormap');
+            }
+
+            $sizeFilter        = [];
+            $colorFilter       = [];
+            $ecoFilter         = [];
+            $discountFilter    = [];
+
+            // we need this "hack" to prevent url pollution..
+            $escapes = [
+                ' - ' => ' & ',
+            ];
+
+            if ($request->query->has('filter')) {
+                // A color, e.g. "Blue", can be mapped to many colors like "Dusty Blue" or "Navy"
+                // So this maps the color to all it's aliases
+                foreach ($request->query->get('color', []) as $color) {
+                    $color = strtr($color, $escapes);
+                    if (isset($colorMapping[$color])) {
+                        $colorFilter = array_merge($colorFilter, $colorMapping[$color]);
+                    }
+                }
+
+                foreach ($request->query->get('size', []) as $size) {
+                    $sizeFilter[] = $size;
+                }
+
+                foreach ($request->query->get('eco', []) as $eco) {
+                    $ecoFilter[] = $eco;
+                }
+
+                foreach ($request->query->get('discount', []) as $discount) {
+                    $discountFilter[] = $discount;
+                }
+
+                $cacheId = array_merge($cacheId, $sizeFilter, $colorFilter, $ecoFilter, $discountFilter);
+            }
+        }
+
+        return $cacheId;
     }
 }

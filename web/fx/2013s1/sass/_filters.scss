@@ -48,12 +48,31 @@ ul.filter-dropdown {
   margin-bottom: 10px;
   @include clearfix;
 
+  // Adjust width depending on amount of filters
+  &.filter-count-4 > li {
+    width: 25%;
+    max-width: 25%;
+  }
+
+  &.filter-count-3 > li {
+    width: 33%;
+    max-width: 33%;
+  }
+
+  &.filter-count-2 > li {
+    width: 50%;
+    max-width: 50%;
+  }
+
+  &.filter-count-1 > li {
+    width: 100%;
+    max-width: 100%;
+  }
+
   // List item (first layer)
   > li {
     position: relative;
     float: left;
-    width: 25%;
-    max-width: 25%;
 
     // Toggle
     > a.filter-dropdown-toggle {

@@ -10,9 +10,11 @@
 
 namespace Hanzo\Bundle\ProductBundle;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\Settings;
 use Hanzo\Model\SettingsQuery;
+use Hanzo\Model\DomainsSettingsQuery;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -42,12 +44,13 @@ class Range
      * Construct
      *
      * @param Session $session
-     * @param string  $activeRange
      */
-    public function __construct(Session $session, $activeRange)
+    public function __construct(Session $session)
     {
         $this->session     = $session;
-        $this->activeRange = $activeRange;
+        // Active product range has moved from a setting to domains_settings
+        $hanzo = Hanzo::getInstance();
+        $this->activeRange = $hanzo->get('core.active_product_range');
     }
 
 
@@ -78,13 +81,17 @@ class Range
         $this->validateRange($name);
         $this->activeRange = $name;
 
-        $range = SettingsQuery::create()
+        $hanzo = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+
+        $range = DomainsSettingsQuery::create()
             ->filterByNs('core')
             ->filterByCKey('active_product_range')
+            ->filterByDomainKey($domainKey)
             ->findOne();
 
-        if (!$range instanceof Settings) {
-            $range = new Settings();
+        if (!$range instanceof DomainsSettings) {
+            $range = new DomainsSettings();
             $range->setNs('core');
             $range->setCKey('active_product_range');
         }

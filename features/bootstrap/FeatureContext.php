@@ -12,10 +12,16 @@ use Behat\MinkExtension\Context\RawMinkContext;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\AddressesQuery;
+
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
 
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
+
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Defines application features from the specific context.
@@ -26,6 +32,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
 
     /** @var \Behat\MinkExtension\Context\MinkContext */
     private $minkContext;
+
+    private $data = [];
 
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope)
@@ -226,5 +234,164 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     public function iWaitUntilTheEntireMenuIsVisible()
     {
         $this->waitForJquery(5000);
+    }
+
+    /**
+     * @Given I am logged in as customer
+     */
+    public function iAmLoggedInAsCustomer()
+    {
+        $session = $this->getSession();
+        $driver = $session->getDriver();
+
+        if (!$driver instanceof Behat\Mink\Driver\Selenium2Driver) {
+            return;
+        }
+
+        $customer = CustomersQuery::create()
+            ->filterByEmail('hf+test1@bellcom.dk')
+            ->findOne();
+
+        if (!( $customer instanceof Customers )) {
+            throw new Exception('Customer not found');
+        }
+
+        $this->data['current_customer'] = $customer;
+
+        // Needed in order to set domain, else it will fail with "Can only set Cookies for the current domain"
+        $session->visit($this->getMinkParameter('base_url'));
+
+        $token = new UsernamePasswordToken($customer, null, 'secured_area', $customer->getRoles());
+        $this->getContainer()->get('security.context')->setToken($token);
+        $this->getContainer()->get('session')->set('_security_secured_area', serialize($token));
+        $this->getContainer()->get('session')->save();
+
+        $sessionName = $this->getContainer()->get('session')->getName();
+        $sessionId   = $this->getContainer()->get('session')->getId();
+
+        $driver->setCookie($sessionName, $sessionId);
+
+        $this->data['web_session'] = [];
+        $this->data['web_session']['session_name'] = $sessionName;
+        $this->data['web_session']['session_id'] = $sessionId;
+
+        $session->visit($this->getMinkParameter('base_url').'account');
+        $this->assertSession()->elementTextContains('css', '.legends .edit + span', 'Rediger din ordre');
+    }
+
+    /**
+     * @Given I edit the order
+     */
+    public function iEditTheOrder()
+    {
+        if (!isset($this->data['order_from_consultant_site'])) {
+            throw new Exception('Order not found');
+        }
+        $session = $this->getSession();
+        $session->visit($this->getMinkParameter('base_url').'account');
+
+        $this->assertSession()->elementTextContains('css', '#order-status td', '#'.$this->data['order_from_consultant_site']);
+
+        $this->getSession()->getPage()->clickLink('Redigér ordre');
+
+        $this->waitForJquery(5000);
+
+        $this->assertSession()->elementTextContains('css', '.dialoug.confirm > h2', 'Bemærk!');
+
+        $this->iClickTheElement('.dialoug-confirm');
+    }
+
+    /**
+     * @Then I should only see products which are in the active product range
+     */
+    public function iShouldOnlySeeProductsWhichAreInTheActiveProductRange()
+    {
+        // throw new PendingException();
+    }
+
+    /**
+     * @Given there are no orders
+     */
+    public function thereAreNoOrders()
+    {
+        if (!isset($this->data['current_customer'])) {
+            throw new Exception('Customer not found');
+        }
+        $customer = $this->data['current_customer'];
+
+        $orders = OrdersQuery::create()
+            ->filterByCustomersId($customer->getId())
+            ->find();
+
+        $service = $this->getContainer()->get('hanzo.core.orders_service');
+
+        $orderIds = [];
+        foreach ($orders as $order) {
+            $orderIds[] = $order->getId();
+        }
+
+        if (empty($orderIds)) {
+            return;
+        }
+
+        // To much voodoo to delete an order
+        $connection = \Propel::getConnection();
+        $sql = "DELETE FROM orders WHERE id IN (".implode(',', $orderIds).")";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+    }
+
+    /**
+     * @Given a consultant creates an order with the following products:
+     */
+    public function aConsultantCreatesAnOrderWithTheFollowingProducts(TableNode $table)
+    {
+        if (!isset($this->data['current_customer'])) {
+            throw new Exception('Customer not found');
+        }
+
+        // Ensure that values exists:
+        $customer = $this->data['current_customer'];
+        $sessionId = $this->data['web_session']['session_id'];
+
+        // TODO not hardcode id:
+        $eventId = 35965;
+
+        $order = new Orders();
+        $order->setCustomersId($customer->getId());
+        $order->setEmail($customer->getEmail());
+        $order->setFirstName($customer->getFirstName());
+        $order->setLastName($customer->getLastName());
+        $order->setState(Orders::STATE_PENDING);
+        $order->setSessionId($sessionId);
+
+        $order->setAttribute('SalesResponsible', 'global', 'WEB DK');
+        $order->setEventsId($eventId);
+        $order->setAttribute('HomePartyId', 'global', 'WEB DK');
+
+        $order->setAttribute('domain_key', 'global', 'SalesDK');
+        $order->setCurrencyCode('DKK');
+
+        $order->setDeliveryMethod(11);
+
+        // Make sure the test customer has a company_shipping address
+        $address = AddressesQuery::create()
+            ->filterByCustomersId($customer->getId())
+            ->filterByType('company_shipping') // 11
+            ->findOne();
+        $order->setDeliveryAddress($address);
+
+        $address = AddressesQuery::create()
+            ->filterByCustomersId($customer->getId())
+            ->filterByType('payment')
+            ->findOne();
+
+        $order->setBillingAddress($address);
+
+        $order->save();
+
+        $orderId = $order->getId();
+
+        $this->data['order_from_consultant_site'] = $orderId;
     }
 }
