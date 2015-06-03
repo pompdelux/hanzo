@@ -103,6 +103,12 @@ class DefaultController extends CoreController
                 'address_block' => $addressBlock,
             ]);
 
+            /*
+             * wkhtmltopdf fails with QSslSocket: cannot resolve SSLv2_client_method if https
+             * See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1516
+             */
+            $html = str_replace('https://','http://', $html);
+
             $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
 
             $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
