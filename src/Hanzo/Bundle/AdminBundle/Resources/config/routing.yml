@@ -819,16 +819,17 @@ admin_tools_sync_categories:
     defaults:
         _controller: AdminBundle:Tools:syncCategories
 
-admin_tools_search_clear:
-    pattern: /admin/tools/search-index/clear
+admin_tools_search_index_overview:
+    pattern: /admin/tools/search-index
     defaults:
-        _controller: AdminBundle:Tools:clearSearchIndex
-          
-admin_tools_faceted_search_indexer:
-    pattern: /admin/tools/search-index/faceted/update
-    defaults:
-        _controller: AdminBundle:Tools:buildProductSearchIndex
+        _controller: AdminBundle:Tools:searchIndex
 
+admin_tools_search_index_perform:
+    pattern: /admin/tools/search-index/perform-action
+    defaults:
+        _controller: AdminBundle:Tools:searchIndexPerform
+
+# Reads xliff
 admin_tools_search_index_update:
     pattern: /admin/tools/search-index/update
     defaults:

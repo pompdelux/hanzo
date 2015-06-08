@@ -12,25 +12,25 @@ use Hanzo\Model\SearchProductsTagsQuery,
 class ProductIndexBuilder extends IndexBuilder
 {
     /**
-     * Inserts data, remeber to ->clear() first
+     * indexes which actions are performed on
      *
-     * @param Array $indexesToUpdate
+     * @var array
+     */
+    private $indexes = [
+                'product'      => false,
+                'category'     => false,
+                'tag'          => false,
+                'discount'     => false,
+                ];
+
+    /**
+     * Inserts data
      *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    public function build(Array $indexesToUpdate = [])
+    public function build()
     {
-        if (empty($indexesToUpdate)) {
-            // Changes here should also be updated in buildProductSearchIndexAction
-            $indexesToUpdate = [
-                'product_index'      => true,
-                'category_index'     => true,
-                'custom_token_index' => true,
-                'discount_index'     => true,
-                ];
-        }
-
         foreach (array_keys($this->getConnections()) as $name) {
             // default has been replaced by pdldbdk1
             if ($name == 'default') {
@@ -38,32 +38,90 @@ class ProductIndexBuilder extends IndexBuilder
             }
             $connection = $this->getConnection($name);
 
-            foreach ($indexesToUpdate as $index => $enabled) {
-                if ($enabled === true) {
-                    $this->performUpdate($index, $connection);
+            foreach ($this->getLocales($connection) as $locale) {
+                $this->performUpdate($locale, $connection);
+            }
+        }
+    }
+
+    /**
+     * setIndexes sets which indexes should be worked on, ALL for... all
+     *
+     * @param Array $indexes
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function setIndexes(Array $indexes)
+    {
+        $this->resetIndexes();
+
+        if (in_array("ALL", $indexes)) {
+            foreach ($this->indexes as $index => $value) {
+                $this->indexes[$index] = true;
+            }
+        } else {
+            foreach ($indexes as $index) {
+                if (isset($this->indexes[$index])) {
+                    $this->indexes[$index] = true;
                 }
             }
         }
     }
 
     /**
-     * @param string $index
+     * resetIndexes
+     * Needed because we might be running in a loop via beanstalk
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
      */
-    protected function performUpdate($index, $connection)
+    private function resetIndexes()
     {
-        foreach ($this->getLocales($connection) as $locale) {
+        foreach ($this->indexes as $index => $value) {
+            $this->indexes[$index] = false;
+        }
+    }
+
+    /**
+     * getActiveIndexes
+     *
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function getActiveIndexes()
+    {
+        $strict      = true;
+        $searchValue = true;
+
+        return array_keys($this->indexes, $searchValue, $strict);
+    }
+
+    /**
+     * performUpdate
+     *
+     * @param string $locale
+     * @param PDO $connection
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function performUpdate($locale, $connection)
+    {
+        foreach ($this->getActiveIndexes() as $index) {
             switch ($index)
             {
-                case 'product_index':
+                case 'product':
                     $this->updateProductIndex($locale, $connection);
                     break;
-                case 'category_index':
+                case 'category':
                     $this->updateCategoryIndex($locale, $connection);
                     break;
-                case 'custom_token_index':
+                case 'tag':
                     $this->updateCustomTokensIndex($locale, $connection);
                     break;
-                case 'discount_index':
+                case 'discount':
                     $this->updateDiscountIndex($locale, $connection);
                     break;
             }
@@ -72,31 +130,39 @@ class ProductIndexBuilder extends IndexBuilder
 
     /**
      * clear
-     * Truncates the search_products_tags table for each connection
+     * Deletes a specific type
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function clear()
     {
+        $sql = "DELETE FROM search_products_tags WHERE type = :type";
+
         foreach (array_keys($this->getConnections()) as $name) {
             $connection = $this->getConnection($name);
+            $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 
-            foreach ($this->getLocales($connection) as $locale) {
-                $this->truncate($locale, $connection);
+            foreach ($this->getActiveIndexes() as $index) {
+                $query->execute(['type' => $index]);
             }
         }
     }
 
     /**
      * truncate
+     * Truncates the search_products_tags table for each connection
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    private function truncate($locale, $connection)
+    public function truncate()
     {
         $sql = "TRUNCATE TABLE search_products_tags";
-        $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $query->execute();
+
+        foreach (array_keys($this->getConnections()) as $name) {
+            $connection = $this->getConnection($name);
+            $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $query->execute();
+        }
     }
 
     /**
@@ -237,8 +303,7 @@ class ProductIndexBuilder extends IndexBuilder
     {
         $tokensToCategories = $this->getCustomTokensForCategories($locale);
 
-        foreach ($tokensToCategories as $token => $categories)
-        {
+        foreach ($tokensToCategories as $token => $categories) {
             // Only master products are in this table
             $masterProducts = ProductsQuery::create()
                 ->useProductsToCategoriesQuery()
@@ -246,18 +311,16 @@ class ProductIndexBuilder extends IndexBuilder
                 ->endUse()
                 ->find();
 
-            foreach ($masterProducts as $masterProduct)
-            {
+            foreach ($masterProducts as $masterProduct) {
                 $products = ProductsQuery::create()
                     ->filterByMaster($masterProduct->getSku())
                     ->find();
 
-                foreach ($products as $product)
-                {
+                foreach ($products as $product) {
                     $tokenValue = Tools::stripText($token);
 
-                    $sql = sprintf("
-                        INSERT INTO
+                    $sql = sprintf(
+                        "INSERT INTO
                             search_products_tags (
                                 master_products_id,
                                 products_id,
@@ -267,11 +330,12 @@ class ProductIndexBuilder extends IndexBuilder
                             )
                         VALUES(%d, %d, '%s', '%s', '%s')
                     ",
-                    $masterProduct->getId(),
-                    $product->getId(),
-                    $tokenValue,
-                    'tag',
-                    $locale);
+                        $masterProduct->getId(),
+                        $product->getId(),
+                        $tokenValue,
+                        'tag',
+                        $locale
+                    );
 
                     $query = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
                     $query->execute();
@@ -309,24 +373,19 @@ class ProductIndexBuilder extends IndexBuilder
 
         $catalog = $this->getTranslationCatalogue('cms', $locale);
 
-        foreach ($catalog->all('cms') as $key => $msg)
-        {
-            if (!preg_match('/([0-9]+).settings/i', $key, $matches))
-            {
+        foreach ($catalog->all('cms') as $key => $msg) {
+            if (!preg_match('/([0-9]+).settings/i', $key, $matches)) {
                 continue;
             }
 
             $msg = trim($msg);
 
-            if (is_scalar($msg) && substr($msg, 0, 1) == '{')
-            {
+            if (is_scalar($msg) && substr($msg, 0, 1) == '{') {
                 $settings = json_decode(stripcslashes($msg));
                 if (isset($settings->tokens)) {
                     $tokens = (array) $settings->tokens;
-                    foreach ($tokens as $key => $categories)
-                    {
-                        if (!isset($tokensToCategories[$key]))
-                        {
+                    foreach ($tokens as $key => $categories) {
+                        if (!isset($tokensToCategories[$key])) {
                             $tokensToCategories[$key] = [];
                         }
                         $tokensToCategories[$key] = array_merge($tokensToCategories[$key], $categories);

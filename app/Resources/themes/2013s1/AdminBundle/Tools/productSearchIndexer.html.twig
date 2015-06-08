@@ -4,16 +4,49 @@
 <h1>Produkt søgnings Indeksering</h1>
 
 {% for message in app.session.flashbag.get('notice') %}
-    <div class="message">
+    <div class="alert alert-info">
         {{ message }}
     </div><br>
 {% endfor %}
 
+<p>Bemærk at søge indexet skal tømmes manuelt før at det bliver opdateret</p>
+
+<h2>Slet data</h2>
 <p>
-  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'product_index'}) }}" class="js-trigger-indexer">Produkt index (size/color).</a><br/>
-  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'category_index'}) }}" class="js-trigger-indexer">Category index .</a><br/>
-  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'custom_token_index'}) }}" class="js-trigger-indexer">Token index (Øko m.m).</a><br/>
-  <a href="{{ path('admin_tools_faceted_search_indexer', {'run': 1, 'index': 'discount_index'}) }}" class="js-trigger-indexer">Discount index .</a><br/>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'truncate'}) }}" class="js-loading-spinner">Alle: Tøm søge indekset fuldstændigt (truncate)</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'clear', 'index': 'product'}) }}" class="js-loading-spinner">Product size/color</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'clear', 'index': 'category'}) }}" class="js-loading-spinner">Category</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'clear', 'index': 'tag'}) }}" class="js-loading-spinner">Tags (Øko m.m)</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'clear', 'index': 'discount'}) }}" class="js-loading-spinner">Discount</a>
+  </li>
+</p>
+
+<h2>Indsæt data</h2>
+<p>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'build', 'index': 'ALL'}) }}" class="js-trigger-indexer">Alle</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'build', 'index': 'product'}) }}" class="js-trigger-indexer">Produkt (size/color)</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'build', 'index': 'category'}) }}" class="js-trigger-indexer">Category</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'build', 'index': 'tag'}) }}" class="js-trigger-indexer">Tags (Øko m.m)</a>
+  </li>
+  <li>
+    <a href="{{ path('admin_tools_search_index_perform', {'action': 'build', 'index': 'discount'}) }}" class="js-trigger-indexer">Discount</a>
+  </li>
 </p>
 
 {% endblock %}
