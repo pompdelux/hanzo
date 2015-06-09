@@ -243,13 +243,14 @@ class DefaultController extends CoreController
                 $mail = $this->container->get('mail_manager');
                 $mail->setTo($reciever, 'Claims');
 
-                /*
-                 * Does not work with amazon
-                 * $sender       = $json->data->email;
-                 * $name         = $json->data->name;
-                 * $mail->setReplyTo($sender, $name)
-                 * ->setSender($sender, $name);
-                 */
+                if ((isset($json->data->email)) &&
+                    (filter_var($json->data->email, FILTER_VALIDATE_EMAIL))
+                ) {
+                    $sender = $json->data->email;
+                    $name   = $json->data->name;
+
+                    $mail->setReplyTo($sender, $name);
+                }
 
                 $mail->setMessage('rma.claims', [
                     'data' => $json->data,
