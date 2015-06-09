@@ -5550,11 +5550,25 @@ ul.filter-dropdown:before, ul.filter-dropdown:after {
 ul.filter-dropdown:after {
   clear: both;
 }
+ul.filter-dropdown.filter-count-4 > li {
+  width: 25%;
+  max-width: 25%;
+}
+ul.filter-dropdown.filter-count-3 > li {
+  width: 33%;
+  max-width: 33%;
+}
+ul.filter-dropdown.filter-count-2 > li {
+  width: 50%;
+  max-width: 50%;
+}
+ul.filter-dropdown.filter-count-1 > li {
+  width: 100%;
+  max-width: 100%;
+}
 ul.filter-dropdown > li {
   position: relative;
   float: left;
-  width: 25%;
-  max-width: 25%;
 }
 ul.filter-dropdown > li > a.filter-dropdown-toggle {
   position: relative;
