@@ -345,19 +345,6 @@ class ProductIndexBuilder extends IndexBuilder
      */
     private function updateDiscountIndex($locale, $connection)
     {
-        /*
-         * As we can't use hanzo here, because it depends on the enviroment, and we try to update all databases
-         * we need to look up active product range here.
-         *
-         * NOTE: This has to be updated when #927 is implemented.
-         */
-        $sql = "SELECT c_value FROM settings WHERE c_key = 'active_product_range' AND ns = 'core'";
-        $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $stmt->execute();
-
-        $record = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $range = $record['c_value'];
-
         // Get all master products
         $sql = "SELECT
                 products.id,
@@ -375,8 +362,6 @@ class ProductIndexBuilder extends IndexBuilder
             AND
                 products.is_active=1
             AND
-                products.range=:range
-            AND
                 (products_domains_prices.from_date <= NOW()
             AND
                 products_domains_prices.to_date >= NOW())
@@ -385,7 +370,6 @@ class ProductIndexBuilder extends IndexBuilder
         $stmt = $connection->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $stmt->execute([
             'locale' => $locale,
-            'range'  => $range,
             ]);
 
         $masterProducts = [];
