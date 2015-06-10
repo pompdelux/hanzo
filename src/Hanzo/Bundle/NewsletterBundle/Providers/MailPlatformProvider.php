@@ -53,8 +53,9 @@ class MailPlatformProvider extends BaseProvider
 
     /**
      * subscriberDelete
+     * - replaces old delete function
      * - Remove a subscriber from a list, or all if list_id = false
-     * - http://mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=Delete
+     * - http://www.mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=UnsubscribeSubscriber
      *
      * @param string $subscriber_id
      * @param mixed $list_id
@@ -66,19 +67,20 @@ class MailPlatformProvider extends BaseProvider
     {
         $request         = $this->getRequest();
         $request->type   = 'subscribers';
-        $request->method = 'delete';
-
-        if ($list_id === false)
-        {
-            $list_id = '';
-        }
+        $request->method = 'UnsubscribeSubscriber';
+        $sendThankYou    = true;
 
         $requestBody = [
             'details' => [
                 'emailaddress' => $subscriber_id,
-                'listid'       => $list_id,
+                'sendthankyou' => $sendThankYou,
                 ],
         ];
+
+        if ($list_id !== false)
+        {
+            $requestBody['details']['listid'] = $list_id;
+        }
 
         $request->body = $requestBody;
 

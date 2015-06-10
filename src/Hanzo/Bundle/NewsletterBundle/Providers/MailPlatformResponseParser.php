@@ -63,6 +63,7 @@ class MailPlatformResponseParser
           case 'addsubscribertolist':
               $response = $this->parseAddSubscriberToList($xml, $response);
               break;
+          case 'unsubscribesubscriber':
           case 'delete':
               $response = $this->parseDelete($xml, $response);
               break;
@@ -73,7 +74,7 @@ class MailPlatformResponseParser
               $response = $this->parseLoadCustomFields($xml, $response);
               break;
           default:
-              error_log(__LINE__.':'.__FILE__.' Parse does not know the method'. strtolower($this->originalRequest->method)); // hf@bellcom.dk debugging
+              trigger_error('Parse does not know the method: "'.strtolower($this->originalRequest->method).'"');
               $response->setStatus(BaseResponse::REQUEST_FAILED);
               break;
         }
