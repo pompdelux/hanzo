@@ -17,6 +17,7 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
      */
     private $shutdown = false;
     private $isWorking = false;
+    private $quiet = false;
 
     private $builder = null;
 
@@ -45,6 +46,14 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
 
     /**
      * {@inheritDoc}
+     *
+     * Examples on how to run:
+     * - Delete all type:discount and reindex them
+     * php app/console hanzo:search:phenstalk-indexbuilder-worker --quiet --once=yes --actions=clear,build --indexes=discount
+     *
+     * - Truncate and reindex all
+     * php app/console hanzo:search:phenstalk-indexbuilder-worker --quiet --once=yes --actions=truncate,build --indexes=ALL
+     *
      */
     protected function configure()
     {
@@ -52,7 +61,9 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
             ->setDescription('Reindexes search_products_tags if command is in beanstalk queue')
             ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Set max number of loops before exit.', 0)
             ->addOption('ttl', null, InputOption::VALUE_OPTIONAL, 'Set ttl on script, will exit script in tts seconds.', 0)
-            ->addOption('once', null, InputOption::VALUE_OPTIONAL, 'Only run once, do not listen for jobs in beanstalk', false);
+            ->addOption('once', null, InputOption::VALUE_OPTIONAL, 'Only run once, do not listen for jobs in beanstalk', false)
+            ->addOption('actions', null, InputOption::VALUE_OPTIONAL, '(Use with --once) Which Actions to run, possible values: clear, truncate, build. Seperate multiple actions with ","', false)
+            ->addOption('indexes', null, InputOption::VALUE_OPTIONAL, '(Use with --once) Which indexes to update. Seperate multiple actions with "," or use "ALL"', false);
     }
 
     /**
@@ -67,7 +78,9 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
         \Propel::disableInstancePooling();
         $this->builder = $this->getContainer()->get('hanzo_search.product.index_builder');
 
-        if (!$input->getOption('quiet')) {
+        $this->quiet = $input->getOption('quiet');
+
+        if (!$this->quiet) {
             $output->writeln(sprintf(
                 '<comment>[%s]</comment> <info>Loaded. Ctrl+C to break</info>',
                 date('Y-m-d H:i:s')
@@ -99,7 +112,23 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
                 pcntl_signal_dispatch();
             }
         } else {
-            $this->builder->build();
+            $action = $input->getOption('actions');
+
+            $indexes = $input->getOption('indexes');
+            if (strpos($indexes, ',') !== false) {
+                $indexes = explode(',', $indexes);
+            } else {
+                $indexes = [$indexes];
+            }
+
+            if (strpos($action, ',') !== false) {
+                $actions = explode(',', $action);
+                foreach ($actions as $action) {
+                    $this->performAction($action, $indexes);
+                }
+            } else {
+                $this->performAction($action, $indexes);
+            }
 
             return;
         }
@@ -110,14 +139,16 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
      */
     protected function notifyAboutCompletedJob($jobName)
     {
-        $txt = '';
-        mail(
-            'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
-            'Indekserings job "'.$jobName.'" færdigt',
-            $txt,
-            "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
-            '-fpompdelux@pompdelux.com'
-        );
+        if (!$this->quiet) {
+            $txt = '';
+            mail(
+                'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
+                'Indekserings job "'.$jobName.'" færdigt',
+                $txt,
+                "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
+                '-fpompdelux@pompdelux.com'
+            );
+        }
     }
 
     /**
@@ -134,7 +165,7 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
             exit;
         }
 
-        if (!$input->getOption('quiet')) {
+        if (!$this->quiet) {
             $output->writeln(sprintf(
                 '<comment>[%s]</comment> <info>Watching for incomming jobs ...</info>',
                 date('Y-m-d H:i:s')
@@ -153,7 +184,7 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
         $this->isWorking = true;
         $data = json_decode($job->getData(), true);
 
-        if (!$input->getOption('quiet')) {
+        if (!$this->quiet) {
             $output->writeln(sprintf(
                 '<comment>[%s]</comment> <info>Job #'.$job->getId().' received - reindexing search index</info>',
                 date('Y-m-d H:i:s')
@@ -161,20 +192,8 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
         }
 
         try {
-            if (isset($data['action'])) {
-                switch ($data['action'])
-                {
-                    case 'clear':
-                        $this->builder->clear();
-                        $this->notifyAboutCompletedJob($data['action']);
-                        break;
-
-                    case 'update':
-                        $indexesToUpdate = isset($data['indexes_to_update']) ? [] : $data['indexes_to_update'];
-                        $this->builder->build($indexesToUpdate);
-                        $this->notifyAboutCompletedJob($data['action']);
-                        break;
-                }
+            if (isset($data['action']) && isset($data['indexes'])) {
+                $this->performAction($data['action'], $data['indexes']);
             }
         } catch (\Exception $exception) {
         }
@@ -183,6 +202,32 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
         $this->isWorking = false;
 
         return true;
+    }
+
+    /**
+     * @param mixed $action
+     * @param mixed $data
+     */
+    private function performAction($action, Array $indexes = [])
+    {
+        $this->builder->setIndexes($indexes);
+
+        switch ($action)
+        {
+            case 'clear':
+                $this->builder->clear();
+                break;
+
+            case 'truncate':
+                $this->builder->truncate();
+                break;
+
+            case 'build':
+                $this->builder->build();
+                break;
+        }
+
+        $this->notifyAboutCompletedJob($action);
     }
 
     /**
