@@ -140,7 +140,7 @@ var filters = (function ($) {
   }
 
   function mobileSetup() {
-    if (!isMobile) {
+    if (isMobile === false) {
       return;
     }
 
@@ -152,7 +152,7 @@ var filters = (function ($) {
   }
 
   function updateSelectedValues(reload) {
-    if (isMobile) {
+    if (isMobile === true) {
       updateUrlMobile(reload);
     }
     else {
@@ -196,7 +196,7 @@ var filters = (function ($) {
 
     var $a = $(".js-filter-show-products a");
     updateHref($a);
-    if (reload) {
+    if (reload !== false) {
       window.location = $a.attr('href');
     }
   }
@@ -286,8 +286,6 @@ var filters = (function ($) {
           });
         }
       });
-      // Allways update main/sub category links if filter is set in url to avoid extra reload
-      updateMenuLinks();
     }
     else {
       if (typeof filterCookie != 'undefined') {
@@ -303,9 +301,10 @@ var filters = (function ($) {
             });
           }
         });
-        updateSelectedValues();
       }
     }
+    // Allways update main/sub category links if filter is set in url to avoid extra reload
+    updateSelectedValues();
   }
 
   return pub;
