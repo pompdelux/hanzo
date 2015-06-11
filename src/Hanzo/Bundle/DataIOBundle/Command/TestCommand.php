@@ -59,10 +59,8 @@ class TestCommand extends ContainerAwareCommand
         $response = $api->subscribe($email, $list_id);
         error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
 
-        /*
-         * $response = $api->unsubscribe($email, $list_id);
-         * error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
-         */
+        $response = $api->unsubscribe($email, $list_id, ['language' => 'DK']);
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
         return;
 
         // Test setting replyto
