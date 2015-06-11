@@ -271,8 +271,10 @@
             $form.on('submit',(function(e) {
                 e.preventDefault();
 
-                var $message = $(".message");
-                var url = $(this).attr('action');
+                // Override entire page with answer if success
+                var $page = $form.parent(),
+                $message  = $(".message"),
+                url       = $(this).attr('action');
 
                 var xhr = $.ajax({
                     url:          url,
@@ -287,15 +289,8 @@
                     if (data.error === true) {
                         $message.html(data.error_msg).addClass('error').removeClass('hidden');
                     } else {
-
-                        // Reset form
-                        $form.trigger('reset');
-
-                        // Remove body content
-                        $('#job-application-form').hide();
-
                         // Apply new text
-                        $message.html(data.msg).removeClass('hidden');
+                        $page.html(data.msg).addClass("message");
                     }
                 });
 

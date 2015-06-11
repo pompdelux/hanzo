@@ -52,8 +52,11 @@ var rma = (function ($) {
       var $form = $("form#rma_claims");
       $form.on('submit',(function(e) {
         e.preventDefault();
-        var $message = $(".message"),
-            url = $(this).attr('action');
+
+        // Override entire page with answer if success
+        var $page = $form.parent(),
+        $message  = $(".message"),
+        url       = $(this).attr('action');
 
         $.ajax({
           url:          url,
@@ -67,19 +70,7 @@ var rma = (function ($) {
             $message.html(data.error_msg).addClass('error').removeClass('hidden');
           }
           else {
-
-              // Reset form
-              $form.trigger('reset');
-
-              // Remove body content
-              $('#rma_claims').hide();
-
-              // Apply new text
-              $message.html(data.msg).removeClass('hidden');
-
-
-            $message.html(data.msg).addClass('success').removeClass('hidden');
-            $form.trigger('reset');
+            $page.html(data.msg).addClass("message");
           }
         }).fail(function(jqXHR, textStatus, errorThrown) {
             $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');

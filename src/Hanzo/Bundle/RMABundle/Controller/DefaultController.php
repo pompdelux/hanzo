@@ -261,6 +261,7 @@ class DefaultController extends CoreController
 
                 $response['msg'] = $translator->trans('rma.claims.success', [], 'rma');
             } catch (\Exception $e) {
+                trigger_error($e->getMessage());
                 $response['error'] = true;
                 $response['error_msg'][] = 'Failed sending claim';
             }
