@@ -180,7 +180,7 @@ class BundleController extends CoreController
 
             $variants = ProductsQuery::create()->findByMaster($product['master']);
             $products_id = [];
-            $options = [];
+            $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
             }
@@ -189,12 +189,16 @@ class BundleController extends CoreController
             $stock->prime($product_ids);
             foreach ($variants as $v) {
                 if ($stock->check($v->getId())) {
-                    $options[$v->getSize()] = $v->getSize();
+                    $sizes[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
+
+            $products[$id]['options'] = $sizes;
         }
 
         $this->setSharedMaxAge(86400);
@@ -348,7 +352,7 @@ class BundleController extends CoreController
 
             $variants = ProductsQuery::create()->findByMaster($product['master']);
             $products_id = [];
-            $options = [];
+            $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
             }
@@ -357,12 +361,16 @@ class BundleController extends CoreController
             $stock->prime($product_ids);
             foreach ($variants as $v) {
                 if ($stock->check($v->getId())) {
-                    $options[$v->getSize()] = $v->getSize();
+                    $sizes[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
+
+            $products[$id]['options'] = $sizes;
         }
 
         $this->setSharedMaxAge(86400);
