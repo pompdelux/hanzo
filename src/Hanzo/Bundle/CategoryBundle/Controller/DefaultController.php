@@ -128,7 +128,9 @@ class DefaultController extends CoreController
                 ->endUse()
             ->endUse()
             ->joinWithProductsToCategories()
-            ->orderBySku()
+            ->useProductsI18nQuery()
+                ->orderByTitle()
+            ->endUse()
             ->groupBySku()
             ->find();
 
