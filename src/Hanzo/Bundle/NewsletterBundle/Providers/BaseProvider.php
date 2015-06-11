@@ -31,11 +31,12 @@ abstract class BaseProvider
      *
      * @param string $subscriber_id
      * @param int $list_id
+     * @param array $params
      *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    abstract public function subscriberDelete($subscriber_id, $list_id);
+    abstract public function subscriberDelete($subscriber_id, $list_id, Array $params = []);
 
     /**
      * subscriberGet
