@@ -301,7 +301,8 @@
             }
 
             if (response.response.status) {
-                $('#address-block > div:nth-child(2)').replaceWith(response.response.data.html);
+                var $element = $('#address-block > div').last();
+                $element.replaceWith(response.response.data.html);
                 $(document).trigger('shipping.address.changed');
 
                 var m = $('input[name=method]:checked').val();
