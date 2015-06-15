@@ -163,11 +163,13 @@ var filters = (function ($) {
   }
 
   function updateCookie() {
-    var values = { size: [], color: [], eco: [] },
+    var values = { size: [], color: [], eco: [], discount: [] },
         group;
     $.each($('input:checked',$faceted), function() {
       group = $(this).data('group');
-      values[group].push($(this).val());
+      if (typeof values[group] !== 'undefined') {
+        values[group].push($(this).val());
+      }
     });
 
     $.cookie('filters-selected-values', values);
