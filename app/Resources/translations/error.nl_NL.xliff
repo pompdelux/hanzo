@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
-                <target><![CDATA[De pagina die je zocht, bestaat niet.<br><br>Ga <a href="http://www.pompdelux.com/nl_NL/">hier</a> naar de voorpagina of maak gebruik van de onderstaande zoekfunctie.]]></target>
+                <target><![CDATA[De pagina die je zocht, bestaat niet.<br><br>Ga <a href="http://www.pompdelux.com/nl_NL/">hier</a> naar de voorpagina of maak gebruik van de onderstaande zoekfunctie. ]]></target>
             </trans-unit>
             <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
