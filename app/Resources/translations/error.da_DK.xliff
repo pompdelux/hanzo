@@ -10,7 +10,7 @@
                 <source>404.description</source>
                 <target><![CDATA[
                     Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>
-                    Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.
+                    Gå til forsiden <a href="http://www.pompdelux.com/da_DK/">her</a> eller benyt søgeformularen herunder.
                 ]]></target>
             </trans-unit>
             <trans-unit id="404.webshop_closed.description">
