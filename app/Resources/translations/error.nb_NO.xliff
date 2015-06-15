@@ -8,11 +8,11 @@
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
-                <target><![CDATA[Du har spurt etter noe som vi ikke har her på siden.<br><br>Kontroller om en av kategoriene inneholder det du søker, eller bruk søkeformularen under.]]></target>
+                <target><![CDATA[Du har spurt etter noe som vi ikke har her på siden.<br><br>Gå til forsiden <a href="http://www.pompdelux.com/nb_NO/">her</a> eller bruk søkeformularen under.]]></target>
             </trans-unit>
             <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
-                <target><![CDATA[Du har spurt etter noe som vi ikke har her på siden.<br><br>Kontroller om en av kategoriene inneholder det du søker, eller bruk søkeformularen under.]]></target>
+                <target><![CDATA[Du har spurt etter noe som vi ikke har her på siden.<br><br>Gå til forsiden <a href="http://www.pompdelux.com/nb_NO/">her</a> eller bruk søkeformularen under.]]></target>
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
