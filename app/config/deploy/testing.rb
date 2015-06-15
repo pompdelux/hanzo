@@ -34,4 +34,9 @@ namespace :deploy do
   task :copy_test_config do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters_testing.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo_testing.yml")
   end
+# own tasks. clear opcode
+  desc "Clear PHP opcode"
+  task :clear_opcode do
+    run("/usr/local/bin/php-fpm-cli.sh -r 'opcache_reset();' -connect /tmp/php-testpompdelux.sock")
+  end
 end
