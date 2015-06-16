@@ -82,7 +82,7 @@ consignor:
         options:
             actor: 146
             product_concept_id: 94
-            service_id: ""
+            service_id: 9024
             key: PompDeluxDK
             to_address:
                 name: "POMPdeLUX ApS"
