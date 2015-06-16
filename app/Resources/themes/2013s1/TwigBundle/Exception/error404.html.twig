@@ -18,11 +18,13 @@
     {% endif %}
   </p>
 
+  {#
   <form name="{{ path('_search', {'_locale' : app.request.locale}) }}" action="" method="get">
     <input type="text" name="q" id="keywords" value="">
     <input class="button" type="submit" value="{{ 'Search'|trans }}">
     <input type="hidden" name="search_in_description" value="1">
   </form>
+  #}
 </div>
 
 {% endblock %}
