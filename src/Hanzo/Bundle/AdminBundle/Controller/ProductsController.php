@@ -1105,6 +1105,12 @@ class ProductsController extends CoreController
         }
 
         $stock  = $this->container->get('stock');
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $request->getSession()->get('database')) {
+            $stock->changeLocation('nb_NO');
+        }
+
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
@@ -1128,6 +1134,11 @@ class ProductsController extends CoreController
 
                 $stockData[] = [$product->getSku(), $level['quantity']];
             }
+        }
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $request->getSession()->get('database')) {
+            $stock->changeLocation('da_DK');
         }
 
         return new Response(
