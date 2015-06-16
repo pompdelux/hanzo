@@ -190,6 +190,7 @@
                         <li><b>Versand</b> AB EUR 4,95</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date% </li>
                         <li><b>Umtausch</b> Gratis</li>
+						<li><b>Hinweis:</b> Streik bei Deutsche Post DHL, klicken Sie <a href="http://www.pompdelux.com/de_AT/kundendienst/telefonzeiten/versand-und-lieferung ">hier.</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
