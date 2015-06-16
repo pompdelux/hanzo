@@ -171,8 +171,8 @@ class SubmitShipment
                     $this->from_address->toArray(),
                 ],
                 'Lines' => [[
-                    'LineWeight' => 5000,
-                    'PkgWeight'  => 5000,
+                    'LineWeight' => 1000,
+                    'PkgWeight'  => 1000,
                     'Pkgs'       => [
                         ['ItemNo' => 1]
                     ]
