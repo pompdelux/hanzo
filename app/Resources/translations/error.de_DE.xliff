@@ -10,15 +10,13 @@
                 <source>404.description</source>
                 <target><![CDATA[
                     Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
-                    Gehen Sie hier zur <a href="http://www.pompdelux.com/da_DK/">Startseite</a> oder benutzen Sie das unten stehende Suchformular.
-                ]]></target>
+                    Gehen Sie hier zur <a href="http://www.pompdelux.com/de_DE/">Startseite</a>.]]></target>
             </trans-unit>
             <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
                 <target><![CDATA[
                     Sie haben Inhalt gesucht, den es auf dieser Seite nicht gibt.<br><br>
-                    Gehen Sie hier zur Startseite oder benutzen Sie das unten stehende Suchformular.
-                ]]></target>
+                    Gehen Sie hier zur <a href="http://www.pompdelux.com/de_DE/">Startseite</a>.]]></target>
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>
