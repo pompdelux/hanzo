@@ -3324,6 +3324,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   color: #BBB;
 }
 .cycle-slideshow .cycle-slide {
+  right: 0;
   line-height: 0;
 }
 .cycle-slideshow .cycle-slide img {
