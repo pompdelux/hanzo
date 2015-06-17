@@ -1,10 +1,16 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
+
+# hf@bellcom.dk: Paths are hardcoded to current until we figure out how to avoid cached __DIR__
+
+require '/var/www/pompdelux/current/vendor/autoload.php';
+// require __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\Process\Process;
 
 if (!empty($_GET['go'])) {
-    $job = __DIR__.'/../cron/productImageImport.php --debug';
-    $log = __DIR__.'/../app/logs/php.log';
+    // $job = __DIR__.'/../cron/productImageImport.php --debug';
+    // $log = __DIR__.'/../app/logs/php.log';
+    $job = '/var/www/pompdelux/current/cron/productImageImport.php --debug';
+    $log = '/var/www/pompdelux/current/app/logs/php.log';
 
     $process = new Process('nohup php '.$job.' >> '.$log.' 2>&1 & echo $!');
     $process->run();

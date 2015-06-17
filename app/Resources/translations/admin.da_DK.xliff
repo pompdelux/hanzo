@@ -1735,6 +1735,10 @@
         <source>admin.statistics.totalorders</source>
         <target>Antal ordrer</target>
       </trans-unit>
+      <trans-unit id="admin.statistics.totalbasketsize">
+        <source>admin.statistics.totalbasketsize</source>
+        <target>Gnms. antal produkter pr. ordre</target>
+      </trans-unit>
       <trans-unit id="admin.statistics.totalamount">
         <source>admin.statistics.totalamount</source>
         <target>Beløb</target>

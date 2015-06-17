@@ -1,3 +1,4 @@
+/* global base_url:false, dialoug:false, jaiks:false, Translator:false */
 (function ($, undefined) {
     var checkout = (function ($, undefined) {
         var pub = {};
@@ -300,12 +301,26 @@
             }
 
             if (response.response.status) {
-                $('#address-block > div:nth-child(2)').replaceWith(response.response.data.html);
+                var $element = $('#address-block > div').last();
+                $element.replaceWith(response.response.data.html);
                 $(document).trigger('shipping.address.changed');
 
                 var m = $('input[name=method]:checked').val();
 
-                if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601") || (m === "800") || (m === "900")) { // Private postal
+                // Private postal - or types where address-copy should be shown
+                var allowedTypes = [
+                  "10",  // DK  - Post Danmark Privat
+                  "20",  // COM - Post Danmark Private priority
+                  "30",  // SE  - Post Danmark Privat
+                  "70",  // NL  - DHL          verzendmethode
+                  "500", // FI  - Postimaksu   FI
+                  "601", // DE  - DHL          Paketpost
+                  "700", // NO  - Bring        Servicepakke
+                  "800", // CH  - DHL          Paketpost
+                  "900", // AT  - DHL          Paketpost
+                ];
+
+                if (allowedTypes.indexOf(m) !== -1) {
                     $('#address-copy').prop('checked', false).parent().removeClass('off');
                 } else {
                     $('#address-copy').parent().addClass('off');

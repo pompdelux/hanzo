@@ -22,7 +22,7 @@
     <br>
     <h2>Billeder</h2>
     <ul>
-        <li><a href="http://static.pompdelux.dk/trigger-image-import.php">Igangsæt billedeimport.</a></li>
+      <li><a href="{{ cdn }}trigger-image-import.php">Igangsæt billedeimport på {{ cdn }}</a></li>
     </ul>
     <p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
     <ul>
@@ -50,10 +50,10 @@
 
 
     <h2>Søgeindexering</h2>
-    <ul>
-        <li><a href="{{ path('admin_tools_faceted_search_indexer') }}" class="js-loading-spinner">Opdatér faceted søgnings indekset.</a></li>
-        <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkt- og kategorisøgning</a></li>
-    </ul>
+    <ol>
+        <li><a href="{{ path('admin_tools_search_index_overview') }}" class="js-loading-spinner">Ryd/Opdatér faceted søgnings indekset</a></li>
+        <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkttekster fra XLIFF filer</a></li>
+    </ol>
 
     <h2>Arrangementer</h2>
     <ul>

@@ -8,7 +8,6 @@ use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
-use Symfony\Component\Translation\Loader\XliffFileLoader;
 
 class ProductAndCategoryIndexBuilder extends IndexBuilder
 {
@@ -26,26 +25,6 @@ class ProductAndCategoryIndexBuilder extends IndexBuilder
             }
         }
     }
-
-
-    /**
-     * Get translations from Catalogue
-     *
-     * @param $type
-     * @param $locale
-     * @return \Symfony\Component\Translation\MessageCatalogue
-     */
-    private function getTranslationCatalogue($type, $locale)
-    {
-        $file = $this->translation_dir.$type.'.'.$locale.'.xliff';
-        if (!is_file($file)) {
-            return;
-        }
-
-        $parser = new XliffFileLoader();
-        return $parser->load($file, $locale, $type);
-    }
-
 
     /**
      * Get Category to CMS map from the routing service.

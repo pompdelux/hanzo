@@ -22,11 +22,18 @@
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//netdna.bootstrapcdn.com">
 
-<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}" />
+
+{% if app.environment matches '/^prod_/' %}
+<script>
+    var console = {};
+    window.console = console;
+    console.log = function(){};
+</script>
+{% endif %}
+
 <!--[if lt IE 9]>
 <script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
 <![endif]-->
@@ -122,6 +129,5 @@
 {{ render(controller('NewsletterBundle:Default:js')) }}
 
 <script>if (jaiks) {jaiks.exec();}</script>
-{{ google_analytics_tag() }}
 </body>
 </html>

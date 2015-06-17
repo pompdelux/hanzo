@@ -1,4 +1,6 @@
 <div class="grid_6 omega">
+  {% include 'CategoryBundle:Default:filters.html.twig' %}
+
   <div class="grid_6 alpha omega row">
     <a href="{{ url(route, {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(route, {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
@@ -56,7 +58,7 @@
 
     {% else %}
         <div class="no-products-in-category">
-            {{ 'all.products.out.of.stock'|trans }}
+            {{ 'all.products.out.of.stock'|trans|raw }}
         </div>
     {% endif %}
 

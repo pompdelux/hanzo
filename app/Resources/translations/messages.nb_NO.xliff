@@ -50,9 +50,9 @@
                 <source>more.product.info</source>
                 <target>Klikk her for å få mer informasjon om %name%.</target>
             </trans-unit>
-            <trans-unit id="all.products.out.of.stock">
+              <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle varene i denne kategorien er utsolgt.</target>
+                <target>Det er dessverre ingen produkter å vise i denne kategorien. Du kan prøve å velge bort ett eller flere av dine søkekriterier. Hvis søket fortsatt ikke gir noen resultater, kan kategorien være utsolgt.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>

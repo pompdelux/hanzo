@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
 
       <trans-unit id="shipping.address.overnight">
@@ -245,7 +245,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Merk:</strong> Din ordre blir først sendt når alle varene er på lager.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -303,6 +303,10 @@
         <source>payment.dibs.title</source>
         <target>Kreditkort</target>
       </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
         <target></target>
@@ -347,7 +351,11 @@
         <source>discount.gift</source>
         <target>Rabatt:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+      <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>JENTE</target>
       </trans-unit>
@@ -389,7 +397,7 @@
       </trans-unit>
       <trans-unit id="address.copy">
          <source>address.copy</source>
-         <target>The deliveryaddress is the same as my Privateaddress</target>
+         <target>Leveringsadressen er den samme som betalingsadressen</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

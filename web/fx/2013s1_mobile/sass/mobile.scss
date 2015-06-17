@@ -106,6 +106,12 @@ b, strong {
 	}
 }
 
+/* For _filter.scss */
+$warm-gray: #a2a2a2;
+$category-menu-bg-color: #484a4d;
+$category-menu-hover-bg-color: $warm-gray;
+$filter-dropdown-hover-bg-color: $warm-gray;
+
 @import "../../2013s1/sass/_social";
 @import "../../2013s1/sass/_category";
 @import "../../2013s1/sass/_product";
@@ -126,6 +132,7 @@ b, strong {
 @import "slideshow";
 @import "topmenu";
 @import "video";
+@import "filters";
 
 /* Selection colours (easy to forget) */
 

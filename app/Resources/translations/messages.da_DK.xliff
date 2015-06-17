@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle varer i denne kategori er udsolgte.</target>
+                <target>Der er desværre ingen produkter at vise i denne kategori. Prøv at fravælge et eller flere af dine søgekriterier. Giver søgningen fortsat ingen resultater kan kategorien være udsolgt.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
@@ -334,6 +334,8 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
 				<li><a href="/da_DK/forside/om-pompdelux/presse">Presse</a></li>
 				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
+				<br>
+				<a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%">

@@ -6,9 +6,11 @@
         <column name="master_products_id" type="INTEGER" required="true"/>
         <column name="products_id" type="INTEGER" required="true"/>
         <column name="token" type="VARCHAR" size="128" required="true"/>
+        <column name="type" type="VARCHAR" size="128" required="true"/>
         <column name="locale" type="VARCHAR" size="12" required="true"/>
         <index name="index_token_locale">
             <index-column name="token"/>
+            <index-column name="type"/>
             <index-column name="locale"/>
         </index>
         <foreign-key foreignTable="products" name="fk_spt_products_images_1" onDelete="CASCADE">

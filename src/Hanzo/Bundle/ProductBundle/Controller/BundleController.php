@@ -73,6 +73,9 @@ class BundleController extends CoreController
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $product_route = $router_keys[$key];
 
+            // Without this i18n behaviour uses da_DK
+            $main_product->setLocale($hanzo->get('core.locale'));
+
             $image = $main_product->getProductsImagess()->getFirst();
             $products[$main_product->getId()] = array(
                 'id' => $main_product->getId(),
@@ -125,6 +128,9 @@ class BundleController extends CoreController
 
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
                 $product_route = $router_keys[$key];
+
+                // Without this i18n behaviour uses da_DK
+                $product->setLocale($hanzo->get('core.locale'));
 
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
@@ -180,7 +186,7 @@ class BundleController extends CoreController
 
             $variants = ProductsQuery::create()->findByMaster($product['master']);
             $products_id = [];
-            $options = [];
+            $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
             }
@@ -189,12 +195,16 @@ class BundleController extends CoreController
             $stock->prime($product_ids);
             foreach ($variants as $v) {
                 if ($stock->check($v->getId())) {
-                    $options[$v->getSize()] = $v->getSize();
+                    $sizes[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
+
+            $products[$id]['options'] = $sizes;
         }
 
         $this->setSharedMaxAge(86400);
@@ -348,7 +358,7 @@ class BundleController extends CoreController
 
             $variants = ProductsQuery::create()->findByMaster($product['master']);
             $products_id = [];
-            $options = [];
+            $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
             }
@@ -357,12 +367,16 @@ class BundleController extends CoreController
             $stock->prime($product_ids);
             foreach ($variants as $v) {
                 if ($stock->check($v->getId())) {
-                    $options[$v->getSize()] = $v->getSize();
+                    $sizes[$v->getSize()] = $v->getSize();
                 }
                 $products[$id]['out_of_stock'] = false;
             }
 
-            $products[$id]['options'] = $options;
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
+
+            $products[$id]['options'] = $sizes;
         }
 
         $this->setSharedMaxAge(86400);

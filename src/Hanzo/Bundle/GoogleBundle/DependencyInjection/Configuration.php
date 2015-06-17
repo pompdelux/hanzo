@@ -22,8 +22,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('analytics_code')->defaultNull()->end()
-                ->scalarNode('conversion_id')->defaultNull()->end()
                 ->arrayNode('site_verification')
                     ->prototype('scalar')->end()
                     ->beforeNormalization()
@@ -31,27 +29,23 @@ class Configuration implements ConfigurationInterface
                         ->then(function($v) { return [$v]; })
                     ->end()
                 ->end()
-                ->arrayNode('addwords')
+                ->arrayNode('tag_manager')
                     ->children()
-                        ->arrayNode('conversion')
+                        ->scalarNode('gtm_id')->defaultNull()->end()
+                        ->arrayNode('enabled_datalayers')
+                            ->useAttributeAsKey('alias', false)
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('addwords')
                             ->children()
-                                ->scalarNode('id')->defaultNull()->end()
-                                ->scalarNode('language')->defaultValue('en')->end()
-                                ->scalarNode('format')->defaultValue(3)->end()
-                                ->scalarNode('color')->defaultValue('ffffff')->end()
-                                ->scalarNode('label')->defaultNull()->end()
-                                ->scalarNode('value')->defaultNull()->end()
-                                ->booleanNode('remarketing_only')->defaultFalse()->end()
+                              ->scalarNode('conversion_id')->defaultNull()->end()
+                              ->scalarNode('conversion_label')->defaultNull()->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
             ->end()
-        ;
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+            ;
 
         return $treeBuilder;
     }

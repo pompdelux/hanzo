@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle artikelen in deze categorie zijn uitverkocht.</target>
+                <target>Er zijn helaas geen producten in deze categorie. Probeer je zoekcriteria aan te passen. Is er dan nog steeds geen resultaat, dan kan het zijn dat deze categorie uitverkocht is.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>

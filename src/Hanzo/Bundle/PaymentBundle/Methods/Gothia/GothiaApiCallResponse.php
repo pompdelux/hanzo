@@ -37,15 +37,6 @@ class GothiaApiCallResponse
      **/
     public $transactionId = null;
 
-    public $prettyErrors = [
-        5000  => 'We are unable to connect to Gothia Invoice service, please try again later.', // System error occured, contact service supplier or try again later
-        10004 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found
-        10006 => 'We couldn\'t find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.', // Customer not found in external DB
-        10036 => 'The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.', // Reservation is not approved
-        10041 => 'Your account information is incorrect. Please check that you have entered the correct bank code and account number.', // InvalidPaymentInfo
-    ];
-
-
     /**
      * @param array  $rawResponse
      * @param string $function
@@ -185,7 +176,6 @@ class GothiaApiCallResponse
      */
     private function checkResponseForErrors($rawResponse)
     {
-
         if (is_array($rawResponse)) {
             foreach ($rawResponse as $key => $data) {
                 if (isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors'])) {
@@ -193,17 +183,24 @@ class GothiaApiCallResponse
                         if (!empty($errorData)) {
                             if (!isset($errorData['ID']) && isset($errorData[0]['ID'])) {
                                 foreach ($errorData as $subError) {
-                                    $this->errors[] = (isset( $this->prettyErrors[$subError['ID']] )) ? $this->prettyErrors[$subError['ID']] : $subError['Message'];
+                                    $id    = $subError['ID'];
+                                    $msg   = $subError['Message'];
+                                    $error = [ 'id' => $id, 'msg' => $msg ];
+                                    $this->errors[] = $error;
                                 }
                             } else {
-                                $this->errors[] = (isset( $this->prettyErrors[$errorData['ID']] )) ? $this->prettyErrors[$errorData['ID']] : $errorData['Message'];
+                                $id    = $errorData['ID'];
+                                $msg   = $errorData['Message'];
+                                $error = [ 'id' => $id, 'msg' => $msg ];
+                                $this->errors[] = $error;
                             }
                         }
                     }
                 }
 
                 if (isset($data['TemporaryExternalProblem']) && ($data['TemporaryExternalProblem'] !== 'false')) {
-                    $this->errors[] = 'We are unable to connect to Gothia Invoice service, please try again later.';
+                    // Use HTTP code here
+                    $this->errors[] = [ 'id' => 503, 'msg' => 'We are unable to connect to Gothia Invoice service, please try again later.'];
                 }
             }
         }

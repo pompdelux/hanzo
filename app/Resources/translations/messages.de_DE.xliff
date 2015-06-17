@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle Waren in dieser Kategorie sind ausverkauft.</target>
+                <target>Es sind leider keine Produkte in dieser Kategorie zu finden. Bitte stellen Sie eine oder mehrere Ihrer Suchkriterien zurück. Sollte Ihre Suche dennoch keine Ergebnisse liefern, kann es sein, dass die Kategorie ausverkauft ist.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
@@ -190,6 +190,7 @@
                         <li><b>Bearbeitungszeit</b> %expected_delivery_date%</li>
                         <li><b>Fracht</b> AB EUR 3,95</li>
                         <li><b>Umtausch</b> Gratis</li>
+						<li><b>Hinweis:</b><I>Streik bei Deutsche Post DHL, klicken Sie<a href="http://www.pompdelux.com/de_DE/kundendienst/telefonzeiten/versand-und-lieferung"> hier.</a></I></li>
                     </ul>
                 ]]></target>
             </trans-unit>

@@ -1,0 +1,278 @@
+// Import mixins
+@import "mixins";
+
+.filter-text {
+    text-transform: uppercase;
+
+    font-family: $font-sans;
+    font-size: $side-menu-size;
+    line-height: 1.8em;
+
+    span {
+        background-color: #969799;
+        color: #fff;
+        padding: 2px 6px;
+        white-space: nowrap;
+
+        a {
+            color: #000;
+            font-size: 0.6em;
+            font-weight: bold;
+            vertical-align: bottom;
+        }
+
+        &.last {
+            background-color: inherit;
+            a {
+                font-size: inherit;
+                font-weight: inherit;
+            }
+        }
+    }
+}
+
+.main > .grid_6.filter-text {
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+
+// --------------------------------------------------
+// Filter dropdown
+// --------------------------------------------------
+//
+
+// Filter dropdown
+ul.filter-dropdown {
+  width: 100%;
+  margin-bottom: 10px;
+  @include clearfix;
+
+  // Adjust width depending on amount of filters
+  &.filter-count-4 > li {
+    width: 25%;
+    max-width: 25%;
+  }
+
+  &.filter-count-3 > li {
+    width: 33%;
+    max-width: 33%;
+  }
+
+  &.filter-count-2 > li {
+    width: 50%;
+    max-width: 50%;
+  }
+
+  &.filter-count-1 > li {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // List item (first layer)
+  > li {
+    position: relative;
+    float: left;
+
+    // Toggle
+    > a.filter-dropdown-toggle {
+      position: relative;
+      display: block;
+      margin-right: 5px;
+      padding: 10px 10px 10px 5px;
+      font-size: 13px;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: center;
+      background-color: $filter-dropdown-hover-bg-color;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+
+      // Icon
+      > .icon {
+        position: absolute;
+        right: 8px;
+        color: #000;
+        text-align: center;
+      }
+    }
+
+    // Last element
+    &:last-child {
+
+      // Toggle
+      > a.filter-dropdown-toggle {
+        margin-right: 0;
+      }
+    }
+
+    // Open
+    &.open {
+
+      // Toggle
+      > a.filter-dropdown-toggle {
+
+        // Icon
+        > .icon {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// No touch
+.no-touch {
+
+  // Filter dropdown
+  ul.filter-dropdown {
+
+    // List item (first layer)
+    > li {
+
+      // Open and hover state
+      &:hover {
+
+        // Toggle
+        > a.filter-dropdown-toggle {
+          background-color: $category-menu-bg-color;
+        }
+
+        // Hover and open
+        &.open {
+
+          // Toggle
+          > a.filter-dropdown-toggle {
+            background-color: $filter-dropdown-hover-bg-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// Dropdown menu
+// --------------------------------------------------
+//
+
+// Dropdown list
+ul.filter-dropdown {
+
+  // List item (first layer)
+  > li {
+
+    // Dropdown menu
+    div.filter-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 5px;
+      z-index: 200;
+      @include box-shadow(#676767 2px 2px 2px);
+      background-color: $filter-dropdown-hover-bg-color;
+
+      // Scrollbar container
+      div.filter-dropdown-menu-scrollbar-container {
+        overflow-y: auto;
+        overflow-x: none;
+        max-height: 120px;
+        @include scrollbars(5px, $category-menu-bg-color, darken($filter-dropdown-hover-bg-color, 10%));
+        margin: 2px 10px 5px 10px;
+      }
+
+      // Dropdown menu list
+      ul.filter-dropdown-menu-list {
+
+        // List item
+        > li {
+          padding: 0;
+
+          // Label
+          label {
+            display: block;
+            font-size: 12px;
+            line-height: 16px;
+            color: #fff;
+            margin: 0;
+            padding: 3px 0;
+            @include clearfix;
+
+            // Checkbox
+            input[type='checkbox'] {
+              float: left;
+              margin: 0;
+              padding: 0;
+              background-color: $filter-dropdown-hover-bg-color;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    // Last element
+    &:last-child {
+
+      // Dropdown menu
+      div.filter-dropdown-menu {
+        right: 0;
+      }
+    }
+
+    // Open
+    &.open {
+
+      // Dropdown menu
+      div.filter-dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// Button (clear and close)
+// --------------------------------------------------
+//
+
+// Dropdown list
+ul.filter-dropdown {
+
+  // List item (first layer)
+  > li {
+
+    // Dropdown menu
+    div.filter-dropdown-menu {
+
+      // Button container
+      div.filter-button-container {
+        height: 24px;
+        line-height: 24px;
+        padding: 0 10px;
+        @include clearfix;
+
+        // Clear button
+        a.js-filter-clear {
+          float: left;
+          font-size: 12px;
+          line-height: inherit;
+        }
+
+        // Close button
+        a.js-filter-close {
+          float: right;
+          line-height: inherit;
+
+          // Icon
+          .icon {
+            font-size: 16px;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}

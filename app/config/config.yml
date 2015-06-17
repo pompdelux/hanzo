@@ -196,9 +196,13 @@ stock:
             - nb_NO
 
 google:
-    conversion_id:     ~
-    site_verification: ~
-    analytics_code:    ~
+    site_verification:     ~
+    tag_manager:
+        gtm_id:             ~
+        enabled_datalayers: ~
+        addwords:
+            conversion_id: ~
+            conversion_label: ~
 
 # un: 2014.09.29 - removed to see if new-relics own sf support is better.
 ## @see https://github.com/ekino/EkinoNewRelicBundle
@@ -224,7 +228,7 @@ liip_theme:
             - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
 
 muneris:
-    host: http://muneris.bellcom.dk/
+    host: http://muneris.pompdelux.com/
 ax:
     wsdl: ""
 

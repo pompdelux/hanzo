@@ -65,7 +65,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Vaihtoehtoinen toimitusosoite </target>
+        <target>Toimitusosoite</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
@@ -225,8 +225,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[
-          <strong>Huomaa:</strong> Tilauksesi lähetetään vasta, kun kaikkia tuotteita on varastossa.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -282,6 +281,10 @@
         <source>payment.dibs.title</source>
         <target>Maksukortti</target>
       </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
         <target>DK-kort</target>
@@ -326,7 +329,11 @@
         <source>discount.gift</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+      <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>TYTTÖ</target>
       </trans-unit>

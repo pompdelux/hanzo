@@ -34,7 +34,10 @@
                 <source>account.details</source>
                 <target>Visa eller ändra mina kontoupplysningar.</target>
             </trans-unit>
-
+			<trans-unit id="create.account.header">
+                <source>create.account.header</source>
+                <target><![CDATA[<h1>Välkommen – registrera dig som kund</h1>]]></target>
+            </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
                 <target>Ny kund</target>
@@ -128,11 +131,11 @@
             </trans-unit>
             <trans-unit id="51">
                 <source>First name</source>
-                <target>Förnamn</target>
+                <target>Förnamn (ditt fullständiga förnamn)</target>
             </trans-unit>
             <trans-unit id="52">
                 <source>Last name</source>
-                <target>Efternamn</target>
+                <target>Efternamn (ditt fullständiga efternamn)</target>
             </trans-unit>
             <trans-unit id="53" >
                 <source>Initials</source>
@@ -450,6 +453,7 @@
       Om du vill returnera en vara klickar du på ikonen vid ordern.<br>
      Returetiketten och retursedeln ligger i två olika pdf-filer och ska skrivas ut var för sig. Om du använder vår returetikett drar vi av SEK 49 från värdet av dina returvaror.<br>
       Om du vill byta en vara eller har fått en vara med fel returnerar du bara varan så skickar vi en ny – naturligtvis helt kostnadsfritt. Om varan är utsåld får du pengarna tillbaka för varan.<br><br>
+	  Om du vill reklamera en skadad eller defekt vara, kan du givetvis göra en reklamation. Så snart du upptäcker felet ber vi dig att kontakta oss via vårat reklamationsformulär, som du hittar <a href="https://www.pompdelux.com/sv_SE/kundservice/reklamation">här.</a> Utifrån den information du ger oss, kan vi så snabbt som möjligt erbjuda dig en lösning. <br><br>
       <b>Retursedel</b><br>
       Om du inte hittar varan du vill returnera på den interaktiva retursedeln kan du klicka på den här länken och skriva ut retursedeln manuellt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_SE.pdf">» Retursedel (PDF)</a>
       <br><br>

@@ -464,11 +464,12 @@
       Klicken Sie auf das Symbol neben Ihrer Bestellung um das Paket nachzuverfolgen. Die Track & Trace Seite öffnet sich in einem neuen Fenster.<br><br>
       <b>Rücksendung, Umtausch und Reklamation</b><br>
       Möchten Sie eine Ware zurückschicken, dann klicken Sie bitte auf die Symbole neben Ihrer Bestellung. <br><b>Bitte beachten:</b> Das DHL Rücksendelabel und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden. Wenn es um eine Rücksendung mit Geld zurück geht, hat das Rücksendelabel einen Wert von EUR 5,95. Möchten Sie einen Umtausch machen bzw. eine mangelhafte Ware zurückgeben oder umtauschen sind die Versandkosten frei. Wir werden Ihnen eine neue Ware versandkostenfrei zusenden. Sollte die Ware ausverkauft sein, zahlen wir Ihnen den gesamten Betrag wieder zurück.<br><br>
+	  Wenn Sie eine beschädigte oder defekte Ware reklamieren möchten, dann können Sie diese selbstverständlich als Reklamation einreichen. Kontaktieren Sie uns bitte mittels des Reklamationsformulars, sobald Sie den Fehler entdeckt haben. Das Reklamationsformular finden Sie <a href="https://www.pompdelux.com/de_AT/kundendienst/reklamation">hier.</a> Auf diesem Weg können wir Ihnen schnellstmöglich auf Basis Ihrer Informationen eine Lösung anbieten.<br><br>
       <b>Rücksendeschein</b><br>
       Falls Sie die Waren, die Sie zurückschicken möchten nicht im interaktiven Rücksendeschein finden können, klicken Sie auf diesen Link und drucken den Rücksendeschein manuell aus.  <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_AT.pdf">» Rücksendeschein (PDF)</a>
       <br><br>
       <b>DHL Rücksendelabel</b><br>
-      Klicken Sie auf das graue Symbol neben Ihrer Bestellung um ein DHL Rücksendelabel zu erstellen. Das Rücksendelabel öffnet sich in einem neuen Fenster.</p>  ]]></target>
+      Klicken Sie auf das graue Symbol neben Ihrer Bestellung um ein <a href="https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140f">» DHL Rücksendelabel</a> zu erstellen. Das Rücksendelabel öffnet sich in einem neuen Fenster.</p>  ]]></target>
             </trans-unit>
             <trans-unit id="newsletter">
                 <source>newsletter</source>
@@ -554,7 +555,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
                         <li><i class="sprite show"></i><span>Ihre Bestellung ansehen</span></li>
                         <li><i class="sprite pdf"></i><span>Rechnung (pdf)</span></li>
                         <li><i class="sprite return"></i><span>Eine Ware zurücksenden</span></li>
-                        <li><i class="sprite returnlabel"></i><span>Rücksendeetikett</span></li>
+                        <li><i class="sprite returnlabel"></i><span>DHL Rücksendelabel erstellen</span></li>
                         <li><i class="sprite trackntrace"></i><span>Ihr Paket nachverfolgen</span></li>
                     </ul>
                     ]]></target>

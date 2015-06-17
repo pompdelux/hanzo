@@ -82,28 +82,40 @@ Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer spa
         <target>Personnummer:</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
-        <source>We were unable to approve your payment with arvato Finance AB Invoice service.</source>
+        <source>gothia.response.error.before</source>
         <target>Vi kunde tyvärr inte godkänna din order hos arvato Finance AB Invoice service.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
-        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <source>gothia.response.error.after</source>
         <target>Vänligen kontakta arvato Finance AB kundservice på: 0340-664444 om felet kvarstår.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Verifiering misslyckades</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
-        <source>We are unable to connect to arvato Finance AB Invoice service, please try again later.</source>
+        <source>gothia.response.5000</source>
         <target>Det finns ingen förbindelse till arvato Finance AB Faktura Service just nu. Försök igen senare.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10004">
-        <source>We couldn't find you in arvato Finance AB Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10004</source>
         <target>Vi kunde inte hitta dig som kund hos arvato Finance AB Faktura Service. Är du säker på att alla information står rätt?</target>
       </trans-unit>
       <trans-unit id="gothia.response.10005">
-        <source>We couldn't find you in arvato Finance AB Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10005</source>
         <target>Vi kunde inte hitta dig som kund hos arvato Finance AB Faktura Service. Är du säker på att alla information står rätt?</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>Vi kunde inte hitta dig hos avarto Invoice Service. Vänligen se till att alla dina uppgifter är korrekt ifyllda på din kundsida samt att du angivit rätt personnummer.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.10036">
-        <source>The reservation was not approved at arvato Finance AB Invoice Service. You may have exceeded the limit of reservations at arvato Finance AB.</source>
+        <source>gothia.response.10036</source>
         <target>Köpet blev inte godkänt hos arvato Finance AB Faktura Service. Anledningen kan vara att du har uppnått ditt kreditmaximum.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>Du har loggat in på en annan kundsida (en annan mailadress) än vad Gothia tidigare registrerat dig på. Vänligen logga in med den mail som du använt tidigare när du handlat med faktura hos oss.</target>
       </trans-unit>
     </body>
   </file>
