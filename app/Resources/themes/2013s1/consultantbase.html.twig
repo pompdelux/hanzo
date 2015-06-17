@@ -17,9 +17,17 @@
 <link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//netdna.bootstrapcdn.com">
 
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}" />
+
+{% if app.environment matches '/^prod_/' %}
+<script>
+    var console = {};
+    window.console = console;
+    console.log = function(){};
+</script>
+{% endif %}
+
 <!--[if lt IE 9]>
 <script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
 <![endif]-->
