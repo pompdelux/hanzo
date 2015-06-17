@@ -1,5 +1,6 @@
 {
     "mobile_css": [
+        "web/fx/css/font-awesome.css",
         "web/fx/css/jquery-ui.css",
         "web/fx/scripts/fullcalendar/fullcalendar.css",
         "web/fx/css/colorbox/theme4/colorbox.css",

@@ -30,7 +30,14 @@
 <link rel="stylesheet" href="/fx/css/flags.css">
 <link rel="stylesheet" href="/fx/2013s1/css/admin.css">
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% if app.environment matches '/^dev_|test_/' %}
+{% else %}
+    <script type="text/javascript">
+        window.console = console;
+        var console = {};
+        console.log = function(){};
+    </script>
+{% endif %}
 
 <script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr.js"></script>
 <script type="text/javascript">
