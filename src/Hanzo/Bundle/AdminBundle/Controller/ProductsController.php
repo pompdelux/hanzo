@@ -1096,9 +1096,11 @@ class ProductsController extends CoreController
     }
 
     /**
+     * @param Request $request
+     *
      * @return Response
      */
-    public function stockAction()
+    public function stockAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
