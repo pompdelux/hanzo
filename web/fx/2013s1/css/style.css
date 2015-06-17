@@ -2566,6 +2566,14 @@ form.create label.required:after {
   display: inline-block;
 }
 
+#body-event .grid_3.notes {
+  float: right;
+}
+#body-event .grid_3.notes div {
+  width: 90%;
+  float: right;
+}
+
 #body-account .legends ul {
   margin: 0;
 }

@@ -214,14 +214,18 @@ class EventMailer
      * Send event participant invite mail.
      *
      * @param EventsParticipants $eventsParticipant
+     * @param null               $note
+     *
+     * @throws \PropelException
      */
-    public function sendParticipantEventInviteEmail(EventsParticipants $eventsParticipant)
+    public function sendParticipantEventInviteEmail(EventsParticipants $eventsParticipant, $note = null)
     {
         $this->mailer->setMessage('events.participant.invited', [
             'event_date'       => $this->event->getEventDate('d/m'),
             'event_time'       => $this->event->getEventDate('H:i'),
             'name'             => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
             'to_name'          => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
+            'name'             => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
             'hostess'          => $this->event->getHost(),
             'address'          => $this->event->getAddressLine1() . ' ' . $this->event->getAddressLine2(),
             'zip'              => $this->event->getPostalCode(),
@@ -230,7 +234,8 @@ class EventMailer
             'phone'            => $this->event->getPhone(),
             'link'             => $this->router->generate('events_rsvp', ['key' => $eventsParticipant->getKey()], true),
             'consultant_name'  => $this->consultant->getFirstName() . ' ' . $this->consultant->getLastName(),
-            'consultant_email' => $this->consultant->getEmail()
+            'consultant_email' => $this->consultant->getEmail(),
+            'note'             => $note,
         ]);
 
         $this->mailer->setTo(

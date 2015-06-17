@@ -755,7 +755,7 @@ class EventsController extends CoreController
                 if ($participant->getEmail()) {
                     $mailer = $this->get('hanzo.event.mailer');
                     $mailer->setEventData($event, null, $myEvents[$participant->getEventsId()]['data']->getCustomersRelatedByConsultantsId());
-                    $mailer->sendParticipantEventInviteEmail($participant);
+                    $mailer->sendParticipantEventInviteEmail($participant, $request->request->get('events_participant[comment]', null, true));
                 }
 
                 if ($participant->getPhone()) {
