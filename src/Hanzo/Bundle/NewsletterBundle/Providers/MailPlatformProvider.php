@@ -15,7 +15,15 @@ class MailPlatformProvider extends BaseProvider
      */
     public function subscriberCreate($subscriber_id, $list_id, Array $params = [])
     {
-        return $this->subscriberAddToList($subscriber_id, $list_id, $params);
+        // If subscriber is unsubscribed (not deleted) we have to activate the subscriber first - else just create
+        $response = $this->subscriberActivate($subscriber_id, $list_id);
+        if ($response->getStatus() === BaseResponse::REQUEST_SUCCESS) {
+            return $response;
+        }
+        else
+        {
+            return $this->subscriberAddToList($subscriber_id, $list_id, $params);
+        }
     }
 
     /**
@@ -68,17 +76,16 @@ class MailPlatformProvider extends BaseProvider
         $request->type   = 'subscribers';
         $request->method = 'delete';
 
-        if ($list_id === false)
-        {
-            $list_id = '';
-        }
-
         $requestBody = [
             'details' => [
                 'emailaddress' => $subscriber_id,
-                'listid'       => $list_id,
                 ],
         ];
+
+        if ($list_id !== false)
+        {
+            $requestBody['details']['listid'] = $list_id;
+        }
 
         $request->body = $requestBody;
 

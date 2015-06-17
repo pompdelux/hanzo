@@ -72,12 +72,38 @@ class MailPlatformResponseParser
           case 'loadsubscribercustomfields':
               $response = $this->parseLoadCustomFields($xml, $response);
               break;
+          case 'activatesubscriber':
+              $response = $this->parseSimpleCheckForSuccess($xml, $response);
+              break;
           default:
               error_log(__LINE__.':'.__FILE__.' Parse does not know the method'. strtolower($this->originalRequest->method)); // hf@bellcom.dk debugging
               $response->setStatus(BaseResponse::REQUEST_FAILED);
               break;
         }
 
+        return $response;
+    }
+
+    /**
+     * parseSimpleCheckForSuccess
+     *
+     * @param SimpleXMLElement $xml
+     * @param BaseResponse $response
+     *
+     * @return BaseResponse
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function parseSimpleCheckForSuccess($xml, $response)
+    {
+        if ((string)$xml->status === 'SUCCESS')
+        {
+            $response->setStatus(BaseResponse::REQUEST_SUCCESS);
+        }
+        else
+        {
+            $response->setStatus(BaseResponse::REQUEST_FAILED);
+            $response->setErrorMessage((string)$xml->errormessage);
+        }
         return $response;
     }
 
