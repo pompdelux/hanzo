@@ -180,7 +180,7 @@ Obs! Även om du väntar på en kreditnota för dina returvaror ska du alltid be
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Varans namn* (se namnet på din faktura)</target>
+              <target>Varans namn/färg/storlek:* (se namnet på din faktura)</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>

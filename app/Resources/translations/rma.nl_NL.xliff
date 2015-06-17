@@ -169,7 +169,7 @@
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Naam artikel (deze naam staat op je factuur)*</target>
+              <target>Naam artikel/kleur/maat (deze naam staat op je factuur)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>

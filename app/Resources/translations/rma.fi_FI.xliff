@@ -182,7 +182,7 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Tuotteen nimi (katso nimi laskusta)*</target>
+              <target>Tuotteen nimi/väri/koko (katso nimi laskusta)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>

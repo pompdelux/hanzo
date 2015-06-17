@@ -178,7 +178,7 @@ Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du bru
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Varens navn (se navn på din faktura)*</target>
+              <target>Varens navn/farge/størrelse (se navn på din faktura)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>

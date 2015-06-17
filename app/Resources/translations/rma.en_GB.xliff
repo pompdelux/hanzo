@@ -174,7 +174,7 @@ For further information, please visit: <a href="/en_GB/" target="_blank">www.pom
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Name of item (can be found on the invoice)*</target>
+              <target>Name of item/colour/size (can be found on the invoice)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>

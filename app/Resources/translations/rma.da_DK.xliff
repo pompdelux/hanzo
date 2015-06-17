@@ -181,7 +181,7 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Varens navn (se navn på din faktura)*</target>
+              <target>Varens navn/farve/størrelse (se navn på din faktura)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>
