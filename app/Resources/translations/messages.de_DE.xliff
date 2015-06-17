@@ -190,7 +190,7 @@
                         <li><b>Bearbeitungszeit</b> %expected_delivery_date%</li>
                         <li><b>Fracht</b> AB EUR 3,95</li>
                         <li><b>Umtausch</b> Gratis</li>
-						<li><b>Hinweis:</b><I>Streik bei Deutsche Post DHL, klicken Sie<a href="http://www.pompdelux.com/de_DE/kundendienst/telefonzeiten/versand-und-lieferung">hier.</a></I></li>
+						<li><b>Hinweis:</b><I>Streik bei Deutsche Post DHL, klicken Sie<a href="http://www.pompdelux.com/de_DE/kundendienst/telefonzeiten/versand-und-lieferung"> hier.</a></I></li>
                     </ul>
                 ]]></target>
             </trans-unit>
