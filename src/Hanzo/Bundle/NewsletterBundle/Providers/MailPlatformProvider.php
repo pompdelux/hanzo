@@ -84,7 +84,7 @@ class MailPlatformProvider extends BaseProvider
                 'emailaddress' => $subscriber_id,
                 'sendthankyou' => 'true',
                 'language'     => 'EN',
-                'formid'       => 471,
+                'formid'       => $this->getUnsubscribeFormId($list_id),
                 ],
         ];
 
@@ -397,5 +397,54 @@ class MailPlatformProvider extends BaseProvider
         }
 
         return $requestBody;
+    }
+
+    /**
+     * getUnsubscribeFormId
+     * - Maps list id to unsubscribe form id
+     * - Find ids on this page http://client2.mailmailmail.net/admin/index.php?Page=Forms
+     *
+     * @param string $listId
+     *
+     * @return int
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getUnsubscribeFormId($listId)
+    {
+        $formId = 499;
+
+        switch ($listId)
+        {
+            case 2002: // 'DK'
+                $formId = 471;
+                break;
+            case 2054: // 'SE'
+                $formId = 493;
+                break;
+            case 2053: // 'NO'
+                $formId = 491;
+                break;
+            case 2048: // 'NL'
+                $formId = 487;
+                break;
+            case 2047: // 'FI'
+                $formId = 485;
+                break;
+            case 2045: // 'DE'
+                $formId = 483;
+                break;
+            case 2042: // 'AT'
+                $formId = 479;
+                break;
+            case 2044: // 'CH'
+                $formId = 481;
+                break;
+            default:
+            case 2056: // 'COM'
+                $formId = 499;
+                break;
+        }
+
+        return $formId;
     }
 }
