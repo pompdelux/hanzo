@@ -55,12 +55,13 @@
   </form>
   {% if orders_array|length > 0 %}
 
-  <table id="statistics" class="list">
+  <table id="statistics" class="list table">
     <thead>
       <tr>
         <th>{{ 'admin.statistics.finishedat'|trans({}, 'admin') }}</th>
         <th>{{ 'admin.statistics.totalproducts'|trans({}, 'admin') }}</th>
         <th>{{ 'admin.statistics.totalorders'|trans({}, 'admin') }}</th>
+        <th>{{ 'admin.statistics.totalbasketsize'|trans({}, 'admin') }}</th>
         <th>{{ 'admin.statistics.totalamount'|trans({}, 'admin') }}</th>
       </tr>
     </thead>
@@ -70,6 +71,7 @@
         <td>{{ orders.CreatedAt|date("d/m/Y") }}</td>
         <td>{{ orders.TotalProducts }}</td>
         <td>{{ orders.TotalOrders }}</td>
+        <td>{{ (orders.TotalProducts / orders.TotalOrders)|number_format(1) }}</td>
         <td>{{ orders.TotalPrice|number_format(2, ',', '.') }}</td>
       </tr>
     {% endfor %}
@@ -77,6 +79,7 @@
         <th></th>
         <th>{{ total.sumproducts }}</th>
         <th>{{ total.sumorders }}</th>
+        <th></th>
         <th>{{ total.sumprice|number_format(2, ',', '.') }}</th>
       </tr>
     </tbody>

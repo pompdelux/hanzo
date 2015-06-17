@@ -43,7 +43,7 @@ Kontakt vennligst arvato Finance AS Kundeservice: 2287 8970<br>Ved andre godkjen
         <source>json.placereservation.error</source>
         <target>Kunne ikke opprette din ordre ved arvato Finance AS</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Your order is being processed. Please wait.</target>
       </trans-unit>
@@ -73,7 +73,7 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
         <source>form.submit_step2</source>
         <target>Gå videre</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Afbryd betaling</target>
       </trans-unit>
@@ -82,28 +82,40 @@ Hvis du har vært kunde hos arvato Finance AS før, er ditt personnummer lagret 
         <target>Personnummer:</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
-        <source>We were unable to approve your payment with arvato Finance AS Invoice service.</source>
+        <source>gothia.response.error.before</source>
         <target>Det har ikke vært mulig å godkjenne ordren ved arvato Finance AS Invoice service.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
-        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <source>gothia.response.error.after</source>
         <target>Kontakt vennligst arvato Finance AS Kundeservice: 2287 8970, hvis feilen gjentar seg.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Godkjenning feilet</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
-        <source>We are unable to connect to arvato Finance AS Invoice service, please try again later.</source>
+        <source>gothia.response.5000</source>
         <target>Det kan ikke opprettes forbindelse til arvato Finance AS Faktura Servise akkurat nå. Prøv vennligst senere.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10004">
-        <source>We couldn't find you in arvato Finance AS Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10004</source>
         <target>Vi kunne ikke finne deg i arvato Finance AS Faktura Service, er du sikker på at alle dine informasjoner er riktige?</target>
       </trans-unit>
       <trans-unit id="gothia.response.10005">
-        <source>We couldn't find you in arvato Finance AS Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10005</source>
         <target>Vi kunne ikke finne deg i arvato Finance AS Faktura Service, er du sikker på at alle dine informasjoner er riktige?</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>Vi kunne ikke finne deg hos avarto fakturaservice. Kontroller at du har opgitt riktig fødselsnummer.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.10036">
-        <source>The reservation was not approved at arvato Finance AS Invoice Service. You may have exceeded the limit of reservations at arvato Finance AS.</source>
+        <source>gothia.response.10036</source>
         <target>Kjøpet ble ikke godkjent av arvato Finance AS Faktura Service. Det kan skyldes at du har oppnådd ditt kreditmaksimum.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>Kontroller at du bruker samme e-postadresse som tidligere.</target>
       </trans-unit>
     </body>
   </file>

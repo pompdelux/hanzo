@@ -80,6 +80,17 @@ services:
         tags:
             - { name: monolog.logger, channel: 3ps }
 
+    hanzo.statsd:
+        class: Hanzo\Core\StatsD
+        arguments:
+            - '%statsd.host%'
+            - '%statsd.port%'
+            - '%kernel.environment%'
+        tags:
+            -   { name: kernel.event_listener, event: kernel.request, method: onCoreHTTPRequest, priority: 1 }
+            -   { name: kernel.event_listener, event: kernel.terminate, method: flush, priority: 100 }
+            -   { name: kernel.event_listener, event: console.terminate, method: flush, priority: 100 }
+
 twig:
     debug:            '%kernel.debug%'
     strict_variables: '%kernel.debug%'
@@ -141,7 +152,7 @@ cms:
             thread: 32
 
 # native redis caching
-redis:
+php_redis:
     class:
         # the "main" cache is for tmp caching
         main:
@@ -185,9 +196,13 @@ stock:
             - nb_NO
 
 google:
-    conversion_id:     ~
-    site_verification: ~
-    analytics_code:    ~
+    site_verification:     ~
+    tag_manager:
+        gtm_id:             ~
+        enabled_datalayers: ~
+        addwords:
+            conversion_id: ~
+            conversion_label: ~
 
 # un: 2014.09.29 - removed to see if new-relics own sf support is better.
 ## @see https://github.com/ekino/EkinoNewRelicBundle
@@ -213,7 +228,7 @@ liip_theme:
             - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
 
 muneris:
-    host: http://muneris.bellcom.dk/
+    host: http://muneris.pompdelux.com/
 ax:
     wsdl: ""
 

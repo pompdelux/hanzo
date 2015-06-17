@@ -31,6 +31,8 @@ role :db, adminserver, :primary => true  # where to run migrations
 # only notify New Relic on production deploys
 after 'deploy:send_email', 'deploy:newrelic_notify', 'deploy:post_dashing'
 
+before 'deploy:send_email', 'deploy:run_pagespeed'
+
 # own tasks. copy config
 namespace :deploy do
   desc "Copy default parameters.ini to shared dir"
@@ -53,5 +55,25 @@ namespace :deploy do
     set :now, `date "+%d/%m %H:%M:%S"`.strip
     run_locally "curl -s -d '{\"auth_token\": \"puz6Raejpuz6Raej\", \"text\": \"#{now}<br />af #{whoami}\" }' http://pepper-potts.pompdelux.com:3030/widgets/lastdeploy"
     capifony_puts_ok
+  end
+# run pagespeed test and save the result for later use in mail
+  desc "Run google pagespeeds tests on the site"
+  task :run_pagespeed, :except => { :no_release => true } do
+    capifony_pretty_print "--> Running Pagespeed tests"
+    set :pagespeed_desktop, `if [ -x /usr/local/bin/psi ]; then /usr/local/bin/psi --strategy=desktop http://www.pompdelux.com/da_DK/dreng-110-152-cm | tr -s " ";else echo "psi not found, skipping pagespeed test";fi`
+    set :pagespeed_mobile, `if [ -x /usr/local/bin/psi ]; then /usr/local/bin/psi --strategy=mobile http://www.pompdelux.com/da_DK/dreng-110-152-cm | tr -s " ";else echo "psi not found, skipping pagespeed test";fi`
+    capifony_puts_ok
+  end
+# overriding the global send_email to add pagespeed only in prod deploy
+  desc "Send email after deploy"
+  task :send_email do
+    capifony_pretty_print "--> Sending deploy status mail"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}\n\nPagespeed tests:#{pagespeed_desktop}#{pagespeed_mobile}' | mail -s 'Hanzo #{stage} deployed' -c hd@pompdelux.dk -c cc@pompdelux.dk pdl@bellcom.dk"
+    capifony_puts_ok
+  end
+# own tasks. clear opcode
+  desc "Clear PHP opcode"
+  task :clear_opcode do
+    run("/usr/local/bin/php-fpm-cli.sh -r 'opcache_reset();' -connect /tmp/php-pompdelux.sock")
   end
 end

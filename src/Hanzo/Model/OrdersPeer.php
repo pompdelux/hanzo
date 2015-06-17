@@ -4,27 +4,24 @@ namespace Hanzo\Model;
 
 use Propel;
 
-use Hanzo\Model\om\BaseOrdersPeer;
-use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersQuery;
-
-use Hanzo\Model\CustomersPeer;
-
 use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
+use Hanzo\Model\om\BaseOrdersPeer;
 
 /**
- * Skeleton subclass for performing query and update operations on the 'orders' table.
+ * Class OrdersPeer
  *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
+ * @package Hanzo\Model
  */
 class OrdersPeer extends BaseOrdersPeer
 {
-    public static function getCurrent($force_reload = true)
+    /**
+     * @param bool $forceReload
+     *
+     * @return Orders
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    public static function getCurrent($forceReload = true)
     {
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
@@ -41,8 +38,7 @@ class OrdersPeer extends BaseOrdersPeer
                 ->findOneById(
                     $session->get('order_id'),
                     Propel::getConnection(null, Propel::CONNECTION_WRITE)
-                )
-            ;
+                );
 
             // attach the customer to the order.
             if ($order instanceOf Orders) {
@@ -60,10 +56,12 @@ class OrdersPeer extends BaseOrdersPeer
                     }
                 }
 
-                if ($force_reload) {
+                if ($forceReload) {
                     try {
                         $order->reload(true);
-                    } catch(\PropelException $e) {}
+                    } catch (\PropelException $e) {
+                        // sometimes reload failes, but these are ok - we can safely ignore those.
+                    }
                 }
             }
         }
@@ -75,20 +73,22 @@ class OrdersPeer extends BaseOrdersPeer
     /**
      * Fetch order by its payment gateway id
      *
-     * @param  mixed $gateway_id
+     * @param mixed $gatewayId
+     *
      * @return Orders object
      */
-    public static function retriveByPaymentGatewayId($gateway_id)
+    public static function retriveByPaymentGatewayId($gatewayId)
     {
         $order = OrdersQuery::create()
             ->findOneByPaymentGatewayId(
-                $gateway_id,
-                Propel::getConnection(null, Propel::CONNECTION_WRITE)
-        );
+                $gatewayId,
+                Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         try {
             $order->reload(true);
-        } catch(\PropelException $e) {}
+        } catch (\PropelException $e) {
+            // again - its safe to ignore reload errors.
+        }
 
         return $order;
     }

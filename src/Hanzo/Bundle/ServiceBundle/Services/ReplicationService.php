@@ -213,11 +213,13 @@ class ReplicationService
      */
     protected function mapReplicatedConnections()
     {
+        $excludedConnections = ['default', 'pdldbdk1'];
+
         foreach ($this->propelConfiguration->getFlattenedParameters() as $key => $value) {
             list($namespace, $name, $rest) = explode('.', $key, 3);
 
             // only add one connection, and only if the user is set
-            if (($name != 'default') &&
+            if ((!in_array($name, $excludedConnections)) &&
                 ($rest == 'connection.user') &&
                 ($namespace == 'datasources')
             ) {

@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="newsletter_1">
         <source>block.subscribe.newsletter_heading</source>
-        <target>Aanmelden Nieuwbrief</target>
+        <target>Aanmelden Nieuwsbrief</target>
       </trans-unit>
       <trans-unit id="block.subscribe.teaser">
         <source>block.subscribe.teaser</source>
@@ -34,15 +34,15 @@
         <source>block.unsubscribe.submit_button</source>
         <target>Meld af</target>
       </trans-unit>
-      <trans-unit id="subscribed.text" approved="no">
+      <trans-unit id="subscribed.text">
         <source>subscribed.text</source>
         <target>Je bent nu aangemeld voor onze nieuwsbrief.</target>
       </trans-unit>
-      <trans-unit id="unsubscribed.text" approved="no">
+      <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target> Je hebt je zojuist afgemeld voor de POMPdeLUX nieuwsbrief.</target>
       </trans-unit>
-      <trans-unit id="invalid.email.address" approved="no">
+      <trans-unit id="invalid.email.address">
         <source>invalid.email.address</source>
         <target>De ingevoerde e-mail is ongeldig</target>
       </trans-unit>

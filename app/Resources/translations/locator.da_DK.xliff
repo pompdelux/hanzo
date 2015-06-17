@@ -2,71 +2,71 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="description" approved="no">
+            <trans-unit id="description">
                 <source>description</source>
                 <target><![CDATA[Skriv postnummer på den by, hvor du gerne vil finde dit udleveringssted.<br> Derefter vælger du dit foretrukne udleveringssted, <br>og adressen udfyldes automatisk.]]></target>
             </trans-unit>
-            <trans-unit id="lookup.label" approved="no">
+            <trans-unit id="lookup.label">
                 <source>lookup.label</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="submit.label" approved="no">
+            <trans-unit id="submit.label">
                 <source>submit.label</source>
                 <target>Find</target>
             </trans-unit>
-            <trans-unit id="lookup.placeholder" approved="no">
+            <trans-unit id="lookup.placeholder">
                 <source>lookup.placeholder</source>
-                <target>Adresse, postnummer</target>
+                <target>Postnummer</target>
             </trans-unit>
-            <trans-unit id="point.header" approved="no">
+            <trans-unit id="point.header">
                 <source>point.header</source>
                 <target>Valgfri udleveringssted</target>
             </trans-unit>
-            <trans-unit id="distance.header" approved="no">
+            <trans-unit id="distance.header">
                 <source>distance.header</source>
                 <target>Afstand</target>
             </trans-unit>
-            <trans-unit id="open.hours" approved="no">
+            <trans-unit id="open.hours">
                 <source>open.hours</source>
                 <target>Åbningstider</target>
             </trans-unit>
-            <trans-unit id="distance" approved="no">
+            <trans-unit id="distance">
                 <source>distance</source>
                 <target>%distance% km</target>
             </trans-unit>
-            <trans-unit id="day.mo" approved="no">
+            <trans-unit id="day.mo">
                 <source>day.mo</source>
                 <target>Man</target>
             </trans-unit>
-            <trans-unit id="day.tu" approved="no">
+            <trans-unit id="day.tu">
                 <source>day.tu</source>
                 <target>Tir</target>
             </trans-unit>
-            <trans-unit id="day.we" approved="no">
+            <trans-unit id="day.we">
                 <source>day.we</source>
                 <target>Ons</target>
             </trans-unit>
-            <trans-unit id="day.th" approved="no">
+            <trans-unit id="day.th">
                 <source>day.th</source>
                 <target>Tor</target>
             </trans-unit>
-            <trans-unit id="day.fr" approved="no">
+            <trans-unit id="day.fr">
                 <source>day.fr</source>
                 <target>Fre</target>
             </trans-unit>
-            <trans-unit id="day.sa" approved="no">
+            <trans-unit id="day.sa">
                 <source>day.sa</source>
                 <target>Lør</target>
             </trans-unit>
-            <trans-unit id="day.su" approved="no">
+            <trans-unit id="day.su">
                 <source>day.su</source>
                 <target>Søn</target>
             </trans-unit>
-            <trans-unit id="no.records.found" approved="no">
+            <trans-unit id="no.records.found">
                 <source>no.records.found</source>
                 <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
             </trans-unit>
-            <trans-unit id="service.down" approved="no">
+            <trans-unit id="service.down">
                 <source>service.down</source>
                 <target><![CDATA[Post Danmarks postnummerservice svarer ikke i øjeblikket.<br>Prøv igen senere eller vælg privat- eller erhvervsfragt.]]></target>
             </trans-unit>

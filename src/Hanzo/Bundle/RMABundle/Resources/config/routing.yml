@@ -10,3 +10,8 @@ rma_get:
     defaults:
         _controller: RMABundle:Default:get
         pdf: NULL
+
+rma_upload_complete:
+    pattern: /rma/upload
+    defaults: { _controller: RMABundle:Default:uploadComplete, _format: json }
+    requirements: { _format: json, _method: POST }

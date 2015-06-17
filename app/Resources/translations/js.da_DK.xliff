@@ -428,7 +428,7 @@
             </trans-unit>
             <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
-                <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
+                <target><![CDATA[Når du vælger pakkeboks som levering, skal du huske at udfylde dit mobilnummer korrekt.]]></target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
@@ -441,6 +441,18 @@
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
                 <target>Netop tilføjet</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Denne vare er tilføjet din Shoppingliste.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>Login påkrævet</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Du skal være logget ind for at anvende Shoppinglisten.<br><br><a href="%url%">» Login her / opret login</a><br><br>Bemærk: Når du her logget ind bliver du sendt tilbage til denne side.]]></target>
             </trans-unit>
         </body>
     </file>

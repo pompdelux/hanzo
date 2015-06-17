@@ -17,9 +17,22 @@
         'type': 'breadcrumb',
         'thread': 20
     })) }}
+    <div class="clearfix"></div>
 </div>
 
-<div class="grid_8 alpha omega row">
+<div class="grid_8 alpha omega row js-filter-selected-values off">
+  <div class="grid_6 omega js-filters filter-text">
+    <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+  </div>
+</div>
+
+{% include 'CategoryBundle:Default:filters.html.twig' %}
+
+<div class="js-filter-show-products filter-show-products">
+  <a href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.show_results'|trans({}, 'category') }}</a>
+</div>
+
+<div class="grid_8 alpha omega row js-filter-hide">
   <div class="grid_4 push_2 alpha left">
     <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
@@ -30,7 +43,7 @@
     </div>
   {% endif %}
 </div>
-<div class="grid_8 alpha omega row">
+<div class="grid_8 alpha omega row js-filter-hide">
   <div class="grid_2 alpha sub-menu menu">
     {{ render(controller('CMSBundle:Menu:menu', {
         'type': 'sub',
@@ -77,8 +90,8 @@
             </div>
           {% endif %}
         {% else %}
-          <div class="out-of-stock">
-            {{ 'all.products.out.of.stock'|trans }}
+          <div>
+            {{ 'all.products.out.of.stock'|trans|raw }}
           </div>
         {% endfor %}
       </div>

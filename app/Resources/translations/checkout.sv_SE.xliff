@@ -84,7 +84,7 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveransadress </target>
+        <target>Leveransadress</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
@@ -246,13 +246,13 @@
         <source>cart.is.empty</source>
         <target>Du har inga varor i din korg.</target>
       </trans-unit>
-      <trans-unit id="42" approved="no">
+      <trans-unit id="42">
         <source>no.such.product.in.cart</source>
         <target>Den sökta produkten finns inte i din korg.</target>
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Observera:</strong> Din order skickas först när alla varor finns på lager.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Avsluta order och betala</target>
+        <target>Godkänn order och betala</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
@@ -273,7 +273,7 @@
           <p>Vi förväntar att skicka din order från vårt lager senast den: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="status.20" approved="no">
+      <trans-unit id="status.20">
         <source>status.20</source>
         <target>Betalning accepterad</target>
       </trans-unit>
@@ -304,6 +304,10 @@
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
         <target>Kreditkort</target>
+      </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -349,7 +353,11 @@
         <source>discount.gift</source>
         <target>Rabatt:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+      <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>TJEJ</target>
       </trans-unit>
@@ -365,31 +373,31 @@
         <source>product.group.lb</source>
         <target>LITEN KILLE</target>
       </trans-unit>
-      <trans-unit id="gift_card" approved="no">
+      <trans-unit id="gift_card">
          <source>gift_card</source>
          <target>Presentkort</target>
       </trans-unit>
-      <trans-unit id="toggle.gift_card.form" approved="no">
+      <trans-unit id="toggle.gift_card.form">
          <source>toggle.gift_card.form</source>
          <target>» Skriv in din presentkortskod</target>
       </trans-unit>
-      <trans-unit id="invalid.gift_card.code" approved="no">
+      <trans-unit id="invalid.gift_card.code">
          <source>invalid.gift_card.code</source>
          <target>Ogiltig presentkortskod</target>
       </trans-unit>
-      <trans-unit id="gift_card.label" approved="no">
+      <trans-unit id="gift_card.label">
          <source>gift_card.label</source>
          <target>Presentkortskod:</target>
       </trans-unit>
-      <trans-unit id="apply.gift_card.discount" approved="no">
+      <trans-unit id="apply.gift_card.discount">
          <source>apply.gift_card.discount</source>
          <target>Spara</target>
       </trans-unit>
-      <trans-unit id="gift_card.description" approved="no">
+      <trans-unit id="gift_card.description">
          <source>gift_card.description</source>
          <target>Nedan kan du skriva din presentkortskod. Om du inte använder hela beloppet på ditt presentkort, kan du använda presentkortskoden igen nästa gång du handlar hos POMPdeLUX.</target>
       </trans-unit>
-      <trans-unit id="address.copy" approved="no">
+      <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Leveransadressen är samma som fakturaadressen</target>
       </trans-unit>
@@ -402,43 +410,43 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Korg</h1><p>Hjälp? <a href="/sv_SE/forside/kundservice/fragor-och-svar">Vanliga frågor och svar</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Ditt köp har ett mindre värde än den totala värdinnerabatt du har uppnått. Lägg till fler varor på din order för att använda din värdinnerabatt.</target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Ditt köp motsvarar tyvärr inte minimum gränsen på SEK %amount% på din rabattkod. Lägg till fler varor på din order för att använda rabattkoden.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Rabattkod</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Skriv din rabattkod</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Man kan endast använda en rabattkod per order.</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>Spara</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Skriv din rabattkod.</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Ogiltig rabattkod</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms" approved="no">
+        <trans-unit id="checkout.confirm.terms">
             <source>checkout.confirm.terms</source>
             <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Jag bekräftar härmed att jag har läst och accepterar</label>

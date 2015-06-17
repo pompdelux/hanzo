@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Das Passwort darf nicht leer sein.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Ihr Konto wurde deaktiviert.</target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>fetch.credit_note</source>
                 <target>Gutschrift als PDF herunterladen</target>
             </trans-unit>
-            <trans-unit id="previous.orders" approved="no">
+            <trans-unit id="previous.orders">
                 <source>previous.orders</source>
                 <target>Frühere Bestellungen</target>
             </trans-unit>
@@ -30,7 +30,7 @@
                 <source>account.details</source>
                 <target>Kontoinformationen anzeigen oder ändern.</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Mein Konto - Bestellnummer #%order_id%</target>
             </trans-unit>
@@ -122,7 +122,7 @@
                 <source>my.account</source>
                 <target>Meine Seite</target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Willkommen!</h1>]]></target>
             </trans-unit>
@@ -206,7 +206,7 @@
                 <source>create.account</source>
                 <target>Weiter</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target><![CDATA[<h1>Willkommen - Erstellen Sie ein Benutzerkonto</h1>]]></target>
             </trans-unit>
@@ -338,11 +338,11 @@
                 <source>address.last_name.required</source>
                 <target>Bitte Nachnamen ausfüllen</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Der Vorname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Der Nachname muss aus mind. 2 Zeichen bestehen</target>
             </trans-unit>
@@ -374,43 +374,43 @@
                 <source>Bad credentials</source>
                 <target>E-Mail-Adresse und/oder Passwort wurde nicht gefunden.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Nur ausfüllen, wenn Sie Ihr aktuelles Passwort ändern möchten.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Ihr Einkaufsverlauf ist leer.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Ihre Kontoinformationen wurden aktualisiert.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Es ist ein Fehler aufgetreten</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Sie haben das Formular nicht korrekt ausgefüllt, Details sehen Sie unten:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Bitte Ihre Telefonnummer angeben</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Die Telefonnummer darf nur Ziffern enthalten</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Ihre Telefonnummer muss aus mind. 8 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Bitte Ihre E-Mail-Adresse angeben</target>
             </trans-unit>
@@ -418,7 +418,7 @@
                 <source>password.required</source>
                 <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Ihr Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
@@ -430,7 +430,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
@@ -438,21 +438,21 @@
                 <source>stop.editing.order</source>
                 <target>Bestellbearbeitung stoppen</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Die Bestellung kann im Augenblick nicht bearbeitet werden. Bitte versuchen Sie es später erneut.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Willkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       Auf Meine Seite können Sie Ihre Bestellung bearbeiten und das Rücksendeetikett samt Rücksendeschein ausdrucken. Sie haben ebenfalls die Möglichkeit Informationen zu ändern und sich für den Newsletter anzumelden oder ihn abzubestellen<br><br>
       <em>Ihre Bestellung kann folgenden Status haben:</em><br><br>
       <b>Warten auf Bearbeitung</b><br>
-      Ihre Bestellung wurde noch nicht bearbeitet und Sie haben zum Bearbeiten Ihrer Bestellung mind. 24 Stunden Zeit. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen.<br>Bitte beachten Sie: Nachdem Sie die Änderungen vorgenommen haben, muss die Zahlung nochmals durchgeführt werden – frühere Zahlungsreservationen werden automatisch gelöscht.<br><br>
+      Ihre Bestellung ist noch nicht in Bearbeitung und Sie können Ihre Bestellung noch bearbeiten. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen.<br>Bitte beachten Sie: Nachdem Sie die Änderungen vorgenommen haben, muss die Zahlung nochmals durchgeführt werden – frühere Zahlungsreservationen werden automatisch gelöscht.<br><br>
       <b>Bearbeitung stoppen</b><br>
       Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br>
       <b>Wird bearbeitet</b><br>
@@ -465,13 +465,14 @@
       <b>Rücksendung</b><br>
       Möchten Sie die Ware zurückschicken, dann klicken Sie bitte auf das grüne Symbol neben Ihrer Bestellung.<br>
      Bitte beachten: Das Rücksendeetikett und der Rücksendeschein werden einzeln in zwei verschiedenen PDF-Dokumenten geöffnet und müssen einzeln ausgedruckt werden. Für Rücksendungen hat das Rücksendeetikett einen Wert von CHF 8,95, der von dem Betrag der retournierten Waren entgegengerechnet wird. Wenn Sie eine Ware in eine andere Grösse oder Farbe umtauschen möchten ist der Versand für die Rücksendung kostenfrei. Es ist ebenfalls kostenlos fehlerhafte Waren zurückzusenden. Ausverkaufte Waren sind jedoch vom Umtausch vorbehalten.<br><br>
+	 Wenn Sie eine beschädigte oder defekte Ware reklamieren möchten, dann können Sie diese selbstverständlich als Reklamation einreichen. Kontaktieren Sie uns bitte mittels des Reklamationsformulars, sobald Sie den Fehler entdeckt haben. Das Reklamationsformular finden Sie <a href="https://www.pompdelux.com/de_CH/kundendienst/reklamation">hier.</a> Auf diesem Weg können wir Ihnen schnellstmöglich auf Basis Ihrer Informationen eine Lösung anbieten.<br><br>
       <b>Rücksendeschein</b><br>
       Falls Sie die Waren, die Sie zurückschicken möchten nicht im interaktiven Rücksendeschein finden können, klicken Sie auf diesen Link und drucken den Rücksendeschein manuell aus.    <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_CH.pdf">» Rücksendeschein (PDF)</a>
       <br><br>
       <b>Rücksendeetikett</b><br>
       Klicken Sie auf das graue Symbol neben Ihrer Bestellung um ein Rücksendeetikett zu erstellen. Das Rücksendeetikett öffnet sich in einem neuen Fenster.</p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Newsletter</target>
             </trans-unit>
@@ -491,24 +492,24 @@
                 <source>Pass repeated</source>
                 <target>Passwort bestätigen</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Meine Veranstaltungen</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Alle Bestellungen anzeigen</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Melden Sie sich hier als Kunde an</p>]]></target>
-            </trans-unit><trans-unit id="my.account.login.text" approved="no">
+            </trans-unit><trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MEINE SEITE</h2><p>Um alle Vorteile bei POMPdeLUX genießen zu können, müssen Sie sich als Kunde anmelden bevor Sie weitershoppen.<br><br>Dies gibt Ihnen unter anderem die Möglichkeit:<br>
 			<ul>
             <li>Ihre Bestellung zu prüfen und zu ändern bis diese gepackt und von unserem Lager gesandt wird.</li>
             <li>Farben und Größen der bestellen Waren zu ändern </li>
-            <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat, d.h. bis mind. 24 Std. nachdem Sie bestellt haben.</li>
+            <li>Waren hinzuzufügen oder zu löschen solange Ihre Bestellung den Status „Warten auf Bearbeitung“ hat.</li>
 			<li>Ihre früheren Bestellungen einzusehen und ältere Rechnungen abzurufen</li>
           </ul></p>]]></target>
             </trans-unit>
@@ -516,15 +517,15 @@
                 <source>my.account.login.title</source>
                 <target>Meine Seite - Login</target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Willkommen auf Meine Seite</h1>]]></target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Sind Sie ein neuer Kunde?</b><br>Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Liebe/r Kunde/in,</h3>
@@ -611,6 +612,40 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
                 <target>Liste zurücksetzen</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Shoppingliste an einen Freund senden</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>Geben Sie die Emailadresse der Person ein, an welche Sie die Shoppingliste senden möchten.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Emailadresse des Empfängers</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Senden</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Ungültige Emailadresse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Die Shoppingliste wurde versendet.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alle Produkte wurden von Ihrer Shoppingliste entfernt.</target>
+            </trans-unit>
+			 <trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann gültig, wenn Ihr Shopping Advisor die Nummer Ihrer Shoppingliste eingegeben hat und Sie Ihre Bestellbestätigung erhalten haben. Die Waren auf Ihrer Shoppingliste werden nicht reserviert, auch wenn diese hinzugefügt wurden. Es kann also vorkommen, dass eine Ware bei Bestelleingabe ausverkauft ist. 
+                ]]></target>
             </trans-unit>
         </body>
     </file>

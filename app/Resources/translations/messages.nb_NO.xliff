@@ -50,9 +50,9 @@
                 <source>more.product.info</source>
                 <target>Klikk her for å få mer informasjon om %name%.</target>
             </trans-unit>
-            <trans-unit id="all.products.out.of.stock">
+              <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle varene i denne kategorien er utsolgt.</target>
+                <target>Det er dessverre ingen produkter å vise i denne kategorien. Du kan prøve å velge bort ett eller flere av dine søkekriterier. Hvis søket fortsatt ikke gir noen resultater, kan kategorien være utsolgt.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
@@ -272,7 +272,7 @@
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Hvis du ønsker å bytte eller returnere en vare, har du hos POMPdeLUX 14 dagers angrerett fra den dagen du mottar varen. Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet. Du kan lese mer om hvordan du skal gjøre hvis du ønsker å returnere eller bytte en vare under <a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering og Bytting.</a> 
+                    <p>Hvis du ønsker å bytte eller returnere en vare, har du hos POMPdeLUX 14 dagers angrerett fra den dagen du mottar varen. Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet. Du kan lese mer om hvordan du skal gjøre hvis du ønsker å returnere eller bytte en vare under <a href="/nb_NO/forside/kundeservice/returnering" target="_blank">Returnering og Bytting.</a>
 Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-betingelser" target="_blank">Vilkår og betingelser.</a>
 </p>
                 ]]></target>
@@ -379,9 +379,13 @@ Du kan lese mer om angrerett under <a href="/nb_NO/forside/kundeservice/vilkar-b
                 <source>faceted.reset.filter</source>
                 <target>» Nullstill filtre</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Køb %span% stk. og spar %discount% pr. stk.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Tilføy shoppingliste</target>
             </trans-unit>
         </body>
     </file>

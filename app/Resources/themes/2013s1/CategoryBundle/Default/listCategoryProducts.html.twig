@@ -1,4 +1,6 @@
 <div class="grid_6 omega">
+  {% include 'CategoryBundle:Default:filters.html.twig' %}
+
   <div class="grid_6 alpha omega row">
     <a href="{{ url(route, {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(route, {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
@@ -8,6 +10,8 @@
     </div>
 
     <div class="product-list clearfix grid_6 alpha omega row">
+
+    {% if products|length > 0 %}
       <div class="old-item">
         {% for product in products %}
           {% set _lazy = (loop.index > 3) ? true : false %}
@@ -30,6 +34,9 @@
                   {% if product.out_of_stock %}
                   <div class="out-of-stock"></div>
                   {% endif %}
+                  {% if product.prices.sales is defined %}
+                  <div class="discount-badge discountbadges-pct{{ product.prices.sales.sales_pct|round(0) }}"></div>
+                  {% endif %}
                 </a>
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
                   <span class="title">{{ product.title }}</span>
@@ -46,12 +53,15 @@
           {% if loop.index is divisibleby(3) or loop.last %}
             </div>
           {% endif %}
-        {% else %}
-          <div class="out-of-stock">
-            {{ 'all.products.out.of.stock'|trans }}
-          </div>
         {% endfor %}
       </div>
+
+    {% else %}
+        <div class="no-products-in-category">
+            {{ 'all.products.out.of.stock'|trans|raw }}
+        </div>
+    {% endif %}
+
     </div>
 
     <div class="grid_4 push_2 omega right">
@@ -81,6 +91,9 @@
           <? if(data[i].out_of_stock) {?>
           <div class="out-of-stock"></div>
           <? }?>
+          <? if(undefined !== data[i].prices.sales) {?>
+            <div class="discount-badge discountbadges-pct<?=Math.round(data[i].prices.sales.sales_pct)?>"></div>
+          <? }?>
         </a>
         <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>">
           <span class="title"><?=data[i].title?></span>
@@ -100,7 +113,7 @@
     <? }?>
     <? if(data.length === 0) { ?>
       <div class="out-of-stock-message">
-        {{ 'all.products.out.of.stock'|trans }}
+        {{ 'all.products.out.of.stock'|trans|raw }}
       </div>
     <? }?>
   </div>

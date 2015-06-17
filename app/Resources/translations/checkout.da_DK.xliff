@@ -84,11 +84,11 @@
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="company.shipping.address">
         <source>company.shipping.address</source>
-        <target>Alternativ leveringsadresse</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bemærk:</strong> Din ordre bliver først afsendt, når alle varer er på lager.]]></target>
+        <target><![CDATA[ <a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a> ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -260,7 +260,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Afslut ordre og betal</target>
+        <target>Godkend ordre og betal</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
@@ -269,7 +269,7 @@
           <p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="status.20" approved="no">
+      <trans-unit id="status.20">
         <source>status.20</source>
         <target>Betaling godkendt</target>
       </trans-unit>
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer.]]></target>
+        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -313,21 +313,25 @@
         <source>payment.dibs.title</source>
         <target>Kreditkort</target>
       </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
-        <target>Dankort</target>
+        <target>Dankort (Gebyr DKK 0,00)</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.visa">
         <source>payment.dibs.paytype.visa</source>
-        <target>Visa</target>
+        <target>Visa (Gebyr DKK 0,00)</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.visa_elec">
         <source>payment.dibs.paytype.visa_elec</source>
-        <target>Visa Electron</target>
+        <target>Visa Electron (Gebyr DKK 0,00)</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.master">
         <source>payment.dibs.paytype.master</source>
-        <target>Mastercard/Eurocard</target>
+        <target>Mastercard/Eurocard (Gebyr DKK 0,00)</target>
       </trans-unit>
       <trans-unit id="payment.dibs.processing.title">
         <source>payment.dibs.processing.title</source>
@@ -357,7 +361,11 @@
         <source>discount.gift</source>
         <target>Rabat:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+       <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>PIGE</target>
       </trans-unit>
@@ -397,7 +405,7 @@
          <source>gift_card.description</source>
          <target>Herunder kan du taste din gavekortskode. Bruger du ikke hele beløbet på dit gavekort, kan du anvende gavekortskoden igen, næste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
-      <trans-unit id="address.copy" approved="no">
+      <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Leveringsaddressen er den samme som Privataddressen</target>
       </trans-unit>
@@ -410,47 +418,47 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/da_DK/forside/kundeservice/faq">FAQ</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Dit køb har en mindre værdi end den samlede værtinderabat, du har opnået. Tilføj flere varer til din kurv for at anvende din værtinderabat.</target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Dit køb svarer desværre ikke til minimumsgrænsen på DKK %amount% på din rabatkode. Tilføj flere varer til din kurv for at anvende din rabatkode.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Indtast din rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Der kan kun anvendes én rabatkode pr. ordre</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>Gem</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Indtast din rabatkode</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Ugyldig rabatkode</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.terms" approved="no">
+      <trans-unit id="checkout.confirm.terms">
           <source>checkout.confirm.terms</source>
           <target><![CDATA[
               <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer</label>
-              <a href="/da_DK/forside/kundeservice/vilkaar" class="js-external">POMPdeLUX vilkår</a>.
+              <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
       </trans-unit>
     </body>

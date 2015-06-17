@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Adgangskoden kan ikke være tom.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>Din konto er deaktiveret.</target>
             </trans-unit>
@@ -22,7 +22,7 @@
                 <source>fetch.credit_note</source>
                 <target>Hent kreditnota som pdf</target>
             </trans-unit>
-            <trans-unit id="previous.orders" approved="no">
+            <trans-unit id="previous.orders">
                 <source>previous.orders</source>
                 <target>Tidligere ordrer</target>
             </trans-unit>
@@ -30,7 +30,7 @@
                 <source>account.details</source>
                 <target>Se eller ret kontoinformationer.</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>Min konto - ordre nummer #%order_id%</target>
             </trans-unit>
@@ -122,7 +122,7 @@
                 <source>my.account</source>
                 <target>Min Side</target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Velkommen!</h1>]]></target>
             </trans-unit>
@@ -206,7 +206,7 @@
                 <source>create.account</source>
                 <target>Videre</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target><![CDATA[<h1>Velkommen - Opret dig som kunde</h1>]]></target>
             </trans-unit>
@@ -338,11 +338,11 @@
                 <source>address.last_name.required</source>
                 <target>Efternavn skal udfyldes</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Fornavn skal være min 2 tegn</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Efternavn skal være min 2 tegn</target>
             </trans-unit>
@@ -374,43 +374,43 @@
                 <source>Bad credentials</source>
                 <target>Kan ikke finde e-mailadressen og/eller adgangskode.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Skal kun udfyldes hvis du ønsker at ændre dit nuværende kodeord.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>Din indkøbshistorik er tom.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Dine kontoinformationer er blevet opdateret.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>Der opstod en fejl</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>Du har ikke udfyldt formularen korrekt, se detaljer herunder:</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Du skal angive dit telefonnummer</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Telefonnummer må kun indeholder tal</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Dit telefonnummer skal bestå af minimum 8 tegn</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Du skal angive din e-mailadresse</target>
             </trans-unit>
@@ -418,7 +418,7 @@
                 <source>password.required</source>
                 <target>Adgangskode skal være min 5 tegn</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Dit kodeord skal bestå af minimum 5 tegn</target>
             </trans-unit>
@@ -430,7 +430,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> Webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
@@ -438,21 +438,21 @@
                 <source>stop.editing.order</source>
                 <target>Stop ordreredigering</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>Ordren kan ikke redigeres i øjeblikket. Prøv igen senere.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Velkommen %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       På Min Side kan du redigere i din ordre, samt udskrive returlabel og returseddel. Du kan ligeledes rette dine informationer og tilmelde/afmelde vores nyhedsbrev.<br><br>
       <em>Din ordre kan have følgende status:</em><br><br>
       <b>Afventer</b><br>
-      Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer efter ordreafgivelse til at redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. <br>Bemærk: Efter redigering skal betalingen gennemføres igen – tidligere betalingsreservation bliver automatisk slettet.<br><br>
+      Din ordre er endnu ikke ekspederet, og du kan redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. <br>Bemærk: Efter redigering skal betalingen gennemføres igen – tidligere betalingsreservation bliver automatisk slettet.<br><br>
       <b>Stop editering</b><br>
       Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
       <b>Under behandling</b><br>
@@ -466,13 +466,14 @@
       Ønsker du at returnere en vare, klikker du på ikonet ud for din ordre nedenfor.<br>
       Returlabel og returseddel ligger i hver sin PDF, og skal printes hver for sig. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. <br>
       Returnerer du en vare med henblik på ombytning, eller har du modtaget en vare med fejl, returnerer du blot varen og vi sender dig en ny – selvfølgelig uden omkostninger for dig. Er varen udsolgt, tilbagefører vi varens købspris til dig.<br><br>
+	  Ønsker du at reklamere over en beskadiget eller defekt vare, kan du naturligvis lave en reklamation. Så snart du opdager fejlen bedes du kontakte os via vores reklamationsformular, som du finder <a href="https://www.pompdelux.com/da_DK/kundeservice/reklamation">her.</a> På den måde kan vi hurtigst muligt tilbyde dig en løsning på baggrund af dine informationer.<br><br>
       <b>Returseddel</b><br>
       Kan du ikke finde varen, du ønsker at returnere, på den interaktive returseddel, kan du klikke på linket her og udskrive retursedlen manuelt. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DK.pdf">» Returseddel (PDF)</a>
       <br><br>
       <b>Returlabel</b><br>
       Klik på ikonet ud for din ordre for at få en returlabel. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. Returlabel åbner i et nyt vindue.</p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Nyhedsbreve</target>
             </trans-unit>
@@ -492,19 +493,19 @@
                 <source>Pass repeated</source>
                 <target>Gentag adgangskode</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>Mine arrangementer</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>Se alle ordrer</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Opret dig som kunde her</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[
                 <h2>MIN SIDE</h2>
@@ -512,7 +513,7 @@
                 <ul>
                     <li>Tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager.</li>
                     <li>Ændre farver og størrelser på de varer, du har bestilt.</li>
-                    <li>Tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.</li>
+                    <li>Tilføje eller slette varer, så længe der står "Afventer" ud for din ordre.</li>
                     <li>Se dine tidligere bestillinger og finde gamle fakturaer.</li>
                 </ul>
 			    ]]></target>
@@ -521,15 +522,15 @@
                 <source>my.account.login.title</source>
                 <target>Min Side - Log in</target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Velkommen til Min Side</h1>]]></target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Kære kunde</h3>
@@ -623,6 +624,34 @@ Herefter kan du nemt shoppe videre.</p><br>
                 <target><![CDATA[
                     <strong>HUSK!</strong> Vær opmærksom på, at du først har afgivet din ordre, når din Shopping Advisor har indlæst dit Shoppingliste nummer, og du har fået en ordrebekræftelse. Varerne på din Shoppingliste er ikke reserveret selvom de er tilføjet, så der kan opstå tilfælde, hvor en vare desværre er udsolgt.
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Send Shoppinglisten til en du kender</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description" approved="no">
+                <source>wishlist.send_list.description</source>
+                <target>Indtast den e-mail adresse, som du ønsker at sende Shoppinglisten til.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Modtagers e-mail adresse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Send</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Ugyldig emailaddresse</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>Shoppinglisten er nu sendt.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted" approved="no">
+                <source>wishlist.all.items.deleted</source>
+                <target>Alle produkterne er nu fjernet fra din shoppingliste.</target>
             </trans-unit>
         </body>
     </file>

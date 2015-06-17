@@ -1,0 +1,66 @@
+{# 
+
+
+This file is shared between the desktop and the mobile version
+
+
+#}
+{% if app.request.attributes.get('_route') %}
+    <form action="{{ url(app.request.attributes.get('_route')) }}" class="js-faceted-form">
+      <ul class="filter-dropdown filter-count-{{ filter_count }}">
+
+            {% for filter in filters%}
+            <!-- Begin - {{ filter.id }} -->
+            <li>
+              <a href="#" class="filter-dropdown-toggle filter-{{ filter.id }}-toggle">{{ "faceted.dropdown.#{ filter.id }"|trans({}, 'category') }}<span class="icon fa fa-angle-down"></span></a>
+
+                <!-- Begin - dropdown menu -->
+                <div class="filter-dropdown-menu">
+
+                    <!-- Begin - scrollbar container -->
+                    <div class="filter-dropdown-menu-scrollbar-container">
+
+                        <!-- Begin - dropdown menu list -->
+                        <ul class="js-filter-type-{{ filter.id }} filter-dropdown-menu-list">
+                            {% for filter_value in filter.filter_values %}
+                                <li class="inactive item {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
+                                    <label for="{{ filter.id }}_{{ filter_value.value|tag_safe }}">
+                                      <input data-group="{{ filter.id }}" data-name="{{ filter_value.value }}" type="checkbox" name="{{ filter.id }}[]" value="{{ filter_value.value }}" id="{{ filter.id }}_{{ filter_value.value|tag_safe }}" />
+                                        {{ filter_value.name }}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- End - dropdown menu list -->
+
+                    </div>
+                    <!-- End - scrollbar container -->
+
+                    <!-- Begin - buttons -->
+                    <div class="filter-button-container">
+
+                        <!-- Begin - clear button -->
+                        <a href="{{ filter.id }}" class="js-filter-clear">
+                            {{ 'faceted.clear_all'|trans({}, 'category') }}
+                        </a>
+                        <!-- End - clear button -->
+
+                        <!-- Begin - close button -->
+                        <a href="close" class="js-filter-close">
+                            <span class="icon fa fa-angle-up js-menu-close"></span>
+                        </a>
+                        <!-- End - close button -->
+
+                    </div>
+                    <!-- End - buttons -->
+
+                </div>
+                <!-- End - dropdown menu -->
+
+            </li>
+            <!-- End - {{ filter.id }} -->
+            {% endfor %}
+
+        </ul>
+    </form>
+{% endif %}

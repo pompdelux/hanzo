@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>Alle Waren in dieser Kategorie sind ausverkauft.</target>
+                <target>Es sind leider keine Produkte in dieser Kategorie zu finden. Bitte stellen Sie eine oder mehrere Ihrer Suchkriterien zurück. Sollte Ihre Suche dennoch keine Ergebnisse liefern, kann es sein, dass die Kategorie ausverkauft ist.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
@@ -190,6 +190,7 @@
                         <li><b>Versand</b> AB EUR 4,95</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date% </li>
                         <li><b>Umtausch</b> Gratis</li>
+						<li><b>Hinweis:</b><I>Streik bei Deutsche Post DHL, klicken Sie <a href="http://www.pompdelux.com/de_AT/kundendienst/telefonzeiten/versand-und-lieferung">hier.</a></I></li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -260,8 +261,8 @@
             <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle Waren werden als Paket mit der Österreichischen Post versandt. Sie haben die Möglichkeit, Ihr Paket ab Ankunft in Österreich bis zum Empfang mit Hilfe von Track & Trace zu verfolgen. Das Paket kann nach ca. 3 Werktagen nachdem der Status der Bestellung auf "Meine Seite" mit "fakturiert" vermerkt wurde, nachverfolgt werden. Die komplette Lieferzeit beträgt 7-10 Tage.<br>
-Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschlieβend bei der Post abholen..<br><br>Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.</p>
+                    <p>Alle Waren werden als Paket mit DHL versandt. Sie haben die Möglichkeit, Ihr Paket ab Versand bis zum Empfang mit Hilfe von <a href="http://www.dhl.de/de.html" target="_blank">Track & Trace</a> zu verfolgen. Die Lieferzeit beträgt 5-7 Tage. Sie haben selbstverständlich die Möglichkeit, eine alternative Lieferadresse zu Ihrer Rechnungsadresse einzugeben. Die Lieferung erfolgt jedoch nur an Privatadressen. Lieferungen kosten EUR 5,95 (EUR 4,95 wenn Sie über eine Home Shopping Veranstaltung bestellen). Wenn Sie zum Zeitpunkt der Lieferung nicht zu Hause sind, können Sie das Paket anschließend bei der Österreichischen Post abholen.<br>
+Wenn Sie das Paket empfangen haben, sollten Sie die Waren überprüfen. Wenn das Paket und/oder der Inhalt beschädigt sind, wenden Sie sich bitte umgehend an unseren Kundendienst oder an Die Post.</p>
 ]]>
 </target>
 </trans-unit>
@@ -273,7 +274,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
             <trans-unit id="return.info">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Wenn Sie eine Ware umtauschen oder zurückgeben möchten, haben Sie bei POMPdeLUX ein 14-tägiges Rückgaberecht ab dem Tag an dem Sie die Waren erhalten haben. Es ist wichtig, dass die Waren mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommen, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurückhaben möchten. Sie können unter <a href="/de_AT/home/kundendienst/ruckgabe-umtausch" target="_blank">Rückgabe</a> und <a href="/de_AT/home/kundendienst/umtausch" target="_blank">Umtausch</a> mehr über die Verfahrensweise erfahren. <br><br>Sie können mehr über das Kaufrückzugsrecht in unseren <a href="/de_AT/home/kundendienst/abgs" target="_blank">Allgemeinen Geschäftsbedingungen</a> lesen.  
+                    <p>Wenn Sie eine Ware umtauschen oder zurückgeben möchten, haben Sie bei POMPdeLUX ein 14-tägiges Rückgaberecht ab dem Tag an dem Sie die Waren erhalten haben. Es ist wichtig, dass die Waren mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommen, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurückhaben möchten. Sie können unter <a href="/de_AT/home/kundendienst/ruckgabe" target="_blank">Rückgabe</a> und <a href="/de_AT/home/kundendienst/umtausch" target="_blank">Umtausch</a> mehr über die Verfahrensweise erfahren. <br><br>Sie können mehr über das Kaufrückzugsrecht in unseren <a href="/de_AT/home/kundendienst/abgs" target="_blank">Allgemeinen Geschäftsbedingungen</a> lesen.
 </p>
                 ]]></target>
             </trans-unit>
@@ -284,7 +285,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
                 <ul class="menu">
                     <li><a href="/de_AT/kundendienst/telefonzeiten">Telefonzeiten</a></li>
                     <li><a href="/de_AT/home/kundendienst/faq">FAQ</a></li>
-                    <li><a href="/de_AT/home/kundendienst/ruckgabe-umtausch">Rückgabe und Umtausch</a></li>
+                    <li><a href="/de_AT/home/kundendienst/ruckgabe">Rückgabe</a></li>
                     <li><a href="/de_AT/home/kundendienst/umtausch">Umtausch</a></li>
 					<li><a href="/de_AT/home/kundendienst/rucksendeschein">Rücksendeschein</a></li>
                     <li><a href="/de_AT/home/kundendienst/waschtipps">Waschtipps</a></li>
@@ -301,7 +302,7 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
                     <li><a href="/de_AT/home/uber-home-shopping/werden-sie-gastgeberin">Werden Sie Gastgeberin </a></li>
-                    <li><a href="/de_AT/home/home-shopping/shopping-advisor-finden">Shopping Advisor finden</a></li>
+                    <li><a href="/de_AT/home/home-shopping/beraterin-finden">Shopping Advisor finden</a></li>
                     <li><a href="/de_AT/home/home-shopping/tag-der-offenen-tur">Tag der offenen Tür</a></li>
                     <li><a href="/de_AT/home/katalog">Katalog</a></li>
                     <li><a href="/de_AT/home/uber-home-shopping/werden-sie-gastgeberin">Shopping Advisor werden</a></li>
@@ -379,9 +380,13 @@ Paket: Das Paket wird an Ihre Adresse geliefert und kostet EUR 5,95. Wenn Sie zu
                 <source>faceted.reset.filter</source>
                 <target>» Filter zurücksetzen</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Kaufen Sie %span% Stk. und sparen Sie %discount% pro Stk.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Zur Shoppingliste hinzufügen</target>
             </trans-unit>
         </body>
     </file>

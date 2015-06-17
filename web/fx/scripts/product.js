@@ -169,9 +169,8 @@
         pub.initPurchase = function () {
             _resetForm();
             var in_progress = false;
-            var $form = $('form.buy');
 
-            $('select.size, select.color', $form).on('change', function () {
+            $('form.buy select.size, form.buy select.color').on('change', function () {
                 if (in_progress) {
                     return;
                 }
@@ -187,7 +186,7 @@
                     _resetForm(name);
                 }
 
-                //var $form = $(this).closest('form');
+                var $form = $(this).closest('form');
 
                 var lookup = $.ajax({
                     url: base_url + 'stock-check',
@@ -260,10 +259,10 @@
                 lookup.fail(function (jqXHR, textStatus) {});
             });
 
-            $form.on('submit', function (event) {
+            $("form.buy").on('submit', function (event) {
                 event.preventDefault();
 
-                //var $form = $(this);
+                var $form = $(this);
                 if ($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()) {
                     var lookup = $.ajax({
                         url: $form.attr('action'),
@@ -323,7 +322,43 @@
                         dialoug.error(Translator.trans('notice!'), Translator.trans('an.error.occurred'));
                     });
                 } else {
-                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $('.button', $form).parent());
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
+                }
+            });
+
+            $(document).on('click', '.buy .wishlist', function(event) {
+                event.preventDefault();
+
+                var $trigger = $(this);
+                if ($trigger.hasClass('js-is-anonymous')) {
+                    dialoug.alert(
+                        Translator.trans('require.login.label'),
+                        Translator.trans('wishlist.require.login.text', {'url': base_url+'login?target='+encodeURI(document.location.href)})
+                    );
+
+                    return;
+                }
+
+                var $form = $trigger.closest('form');
+                if ('' == $('.color', $form).val()) {
+                    dialoug.notice(Translator.trans('form.buy.choose.first'), 'error', 3000, $form.parent());
+                    return;
+                }
+
+                var xhr = $.post(this.href, $form.serialize());
+
+                xhr.done(function(data) {
+                    dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
+                });
+
+                xhr.fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                });
+            });
+
+            $.get(base_url+'is-authendicated', function(response) {
+                if (response.status) {
+                    $('.add-buttons a').removeClass('js-is-anonymous');
                 }
             });
         };
@@ -482,6 +517,26 @@
             });
         };
 
+        /**
+         * Handle color switching in the dropdown.
+         * This triggers a change of both product image and related styles.
+         */
+        $(document).on('change', '.buy .color', function() {
+            var $select = $(this);
+            var currentColor = $('option:selected', $select).val().toLowerCase().replace(/[ |\/]/g, function(value) {
+                if (' ' == value) {
+                    return '-';
+                } else if ('/' == value) {
+                    return '9';
+                }
+            });
+
+            var $swapped = $('.productimage-small a.color-' + currentColor + '.type-overview');
+            product.swapImages($swapped.first());
+            _changeColor(currentColor);
+            product.initZoom();
+        });
+
 
         return pub;
     })(jQuery);
@@ -494,7 +549,7 @@
     product.initPurchase();
     product.initLastSeen();
 
-    // icon toggler
+    // icon toggler.
     $('.productimage-small a').click(function (e) {
         e.preventDefault();
         product.swapImages(this);

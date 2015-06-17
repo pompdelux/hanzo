@@ -115,6 +115,8 @@ class DefaultController extends CoreController
                 WHERE
                     p.size IN ('".implode("','", $sizes[$size])."')
                 AND
+                    p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
+                AND
                     p.is_out_of_stock = 0
                 AND
                     pdp.domains_id = {$domain_id}
@@ -164,6 +166,8 @@ class DefaultController extends CoreController
                     )
                 WHERE
                     pdp.domains_id = {$domain_id}
+                AND
+                    p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
                 AND
                     p.is_out_of_stock = 0
                 AND
@@ -238,16 +242,25 @@ class DefaultController extends CoreController
             }
         }
 
+        // Define classes to the body, dependently on the context of the category.
+        $classes = '';
+        if (preg_match('/(pige|girl|tjej|tytto|jente)/', $request->getPathInfo())) {
+            $classes .= ' category-girl';
+        } elseif (preg_match('/(dreng|boy|kille|poika|gutt)/', $request->getPathInfo())) {
+            $classes .= ' category-boy';
+        }
+
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
-            'page_type' => 'category-search',
-            'content'   => $page->getContent(),
-            'title'     => $page->getTitle(),
-            'result'    => $result_set,
-            'sizes'     => (is_array($sizes) ? $sizes : array()),
-            'route'     => $request->get('_route'),
-            'selected'  => $request->get('size', ''),
-            'cms_id'    => $page->getParentId()
+            'page_type'     => 'category-search',
+            'content'       => $page->getContent(),
+            'title'         => $page->getTitle(),
+            'result'        => $result_set,
+            'body_classes'  => $classes,
+            'sizes'         => (is_array($sizes) ? $sizes : array()),
+            'route'         => $request->get('_route'),
+            'selected'      => $request->get('size', ''),
+            'cms_id'        => $page->getParentId()
         ));
     }
 
@@ -347,6 +360,7 @@ class DefaultController extends CoreController
                 {$where}
                 )
                 AND p.master IS NULL
+                AND p.range = '".$this->container->get('hanzo_product.range')->getCurrentRange()."'
             GROUP BY
                 pi.image
             ORDER BY

@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RMABundle\Controller;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
@@ -65,6 +66,7 @@ class DefaultController extends CoreController
         }
 
         $rmaProducts = json_decode($request->request->get('products'), true);
+
         // Time to generate some pdf's!
         if (count($rmaProducts)) {
 
@@ -83,8 +85,7 @@ class DefaultController extends CoreController
             $address->setCompanyName($order->getDeliveryCompanyName());
 
             $addressFormatter = $this->get('hanzo.address_formatter');
-
-            $addressBlock = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
+            $addressBlock     = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
 
             // Only show the products which are chosed to RMA.
             foreach ($rmaProducts as &$rmaProduct) {
@@ -102,6 +103,12 @@ class DefaultController extends CoreController
                 'address_block' => $addressBlock,
             ]);
 
+            /*
+             * wkhtmltopdf fails with QSslSocket: cannot resolve SSLv2_client_method if https
+             * See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1516
+             */
+            $html = str_replace('https://','http://', $html);
+
             $this->setCache('rma_generated_html.' . $order_id . '.' . CustomersPeer::getCurrent()->getId(), $html);
 
             $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
@@ -109,12 +116,12 @@ class DefaultController extends CoreController
 
             try {
                 $mail = $this->container->get('mail_manager');
+                $mail->setTo($order->getEmail(), $order->getCustomersName());
                 $mail->addAttachment($pdfData, false, $pdfName);
                 $mail->setMessage('order.rma', [
                     'order_id'      => $order_id,
                     'customer_name' => $order->getCustomersName(),
                 ]);
-                $mail->setTo($order->getEmail(), $order->getCustomersName());
 
                 if ($bcc = Tools::getBccEmailAddress('rma', $order)) {
                     $mail->setBcc($bcc);
@@ -165,4 +172,101 @@ class DefaultController extends CoreController
         return $this->redirect($this->generateUrl('rma_form', ['order_id' => $order_id]));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function uploadCompleteAction(Request $request)
+    {
+        $json       = json_decode($request->getContent());
+        $response   = ['error' => false, 'error_msg' => '', 'msg' => ''];
+        $translator = $this->get('translator');
+
+        // rma_upload.php checks the fields and reports any errors
+        // If we at some point want to expose the detailed upload error, change error type upload in rma_upload.php to upload_XXX
+        if (isset($json->errors) && !empty($json->errors))
+        {
+            $response['error'] = true;
+            foreach ($json->errors as $error)
+            {
+                $response['error_msg'][] = $translator->trans('rma.claims.error.'.$error->type, [], 'rma');
+            }
+        }
+
+        // Checks if rma_upload.php has returned the correct data
+        $fields = ['files', 'data'];
+        foreach ($fields as $field)
+        {
+            if (!isset($json->{$field}))
+            {
+                $response['error'] = true;
+                $response['error_msg'][] = $translator->trans('rma.claims.error.missing_data', [], 'rma');
+            }
+        }
+
+        if ( $response['error'] !== true )
+        {
+            $hanzo     = Hanzo::getInstance();
+            $domainKey = $hanzo->get('core.domain_key');
+
+            switch ($domainKey)
+            {
+                case 'AT':
+                    $reciever = 'claimat@pompdelux.com';
+                    break;
+                case 'CH':
+                    $reciever = 'claimch@pompdelux.com';
+                    break;
+                case 'COM':
+                    $reciever = 'claimcom@pompdelux.com';
+                    break;
+                case 'DE':
+                    $reciever = 'claimde@pompdelux.com';
+                    break;
+                case 'DK':
+                    $reciever = 'claimdk@pompdelux.com';
+                    break;
+                case 'FI':
+                    $reciever = 'claimfi@pompdelux.com';
+                    break;
+                case 'NL':
+                    $reciever = 'claimnl@pompdelux.com';
+                    break;
+                case 'NO':
+                    $reciever = 'claimno@pompdelux.com';
+                    break;
+                case 'SE':
+                    $reciever = 'claimse@pompdelux.com';
+                    break;
+            }
+
+            try {
+                $mail = $this->container->get('mail_manager');
+                $mail->setTo($reciever, 'Claims');
+
+                if ((isset($json->data->email)) &&
+                    (filter_var($json->data->email, FILTER_VALIDATE_EMAIL))
+                ) {
+                    $sender = $json->data->email;
+                    $name   = $json->data->name;
+
+                    $mail->setReplyTo($sender, $name);
+                }
+
+                $mail->setMessage('rma.claims', [
+                    'data' => $json->data,
+                    'files' => $json->files,
+                ]);
+
+                $mail->send();
+
+                $response['msg'] = $translator->trans('rma.claims.success', [], 'rma');
+            } catch (\Exception $e) {
+                trigger_error($e->getMessage());
+                $response['error'] = true;
+                $response['error_msg'][] = 'Failed sending claim';
+            }
+        }
+
+        return $this->json_response( $response );
+    }
 }

@@ -6,7 +6,8 @@ set :deploy_to,   "/var/www/devpompdelux"
 
 # default environment, used by default functions
 set :symfony_env_prod, "test_dk"
-set :symfony_env_prods, ["test_ch", "test_at","test_de", "test_fi", "test_se", "test_no", "test_com", "test_nl", "test_dk", "test_dk_consultant"]
+#set :symfony_env_prods, ["test_ch", "test_at","test_de", "test_fi", "test_se", "test_no", "test_com", "test_nl", "test_dk", "test_dk_consultant"]
+set :symfony_env_prods, ["test_dk"]
 
 set :adminserver, "pdldev.bellcom.dk"
 set :staticserver, "pdldev-db-static.bellcom.dk"
@@ -33,5 +34,10 @@ namespace :deploy do
   desc "Copy default parameters.ini to shared dir"
   task :copy_dev_config do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters_dev.ini")
+  end
+# own tasks. clear opcode
+  desc "Clear PHP opcode"
+  task :clear_opcode do
+    run("/usr/local/bin/php-fpm-cli.sh -r 'opcache_reset();' -connect /tmp/php-devpompdelux.sock")
   end
 end

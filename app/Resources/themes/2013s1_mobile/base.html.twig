@@ -9,6 +9,8 @@
 
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} is-mobile">
+{# Must be right after body tag: https://developers.google.com/tag-manager/devguide#datalayer #}
+{{ google_tag_manager() }}
 
 <div id="container" class="container container_8">
   <header id="top-nav" class="grid_8 row">
@@ -22,8 +24,8 @@
         </ul>
         <ul class="horizontal menu second">
           <li id="mini-basket" class="basket">
-            <span class="sprite"></span>
-            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title=""><span class="sprite"></span></a>
+            <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}" class="total"> {{ render(controller('BasketBundle:Default:miniBasket')) }} </a>
           </li>
         </ul>
       </nav>
@@ -31,7 +33,7 @@
   </header>
 
   {% if simple_layout is not defined %}
-    <nav class="menu main-menu">
+    <nav class="menu category-menu main-menu">
       <div class="nested">
         <a href="" class="menu-trigger">Menu</a>
         {{ render(controller('CMSBundle:Menu:menu', {
@@ -48,12 +50,12 @@
 
   <div id="main" role="main" class="main clearfix grid_8">
     {% block content %}{% endblock %}
-    <div>
+    <div class="js-filter-hide">
       <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
     </div>
   </div><!-- /div#main -->
 
-  <footer class="container container_8">
+  <footer class="container container_8 js-filter-hide">
     <div class="newsletter-block clearfix footer-menu-4">
       <div class="sprite"></div>
       <div class="container">

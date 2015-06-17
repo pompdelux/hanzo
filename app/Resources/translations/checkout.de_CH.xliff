@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -260,7 +260,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Bestellung abschließen und bezahlen</target>
+        <target>Bestellung bestätigen und bezahlen</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
@@ -269,7 +269,7 @@
           <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-      <trans-unit id="status.20" approved="no">
+      <trans-unit id="status.20">
         <source>status.20</source>
         <target>Zahlung erfolgreich</target>
       </trans-unit>
@@ -301,7 +301,7 @@
         <source>payment.gothia.desc</source>
         <target><![CDATA[Gothia-Rechnung (Gebühr 5,00 CHF). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
-      <trans-unit id="payment.gothia_lv.desc" approved="no">
+      <trans-unit id="payment.gothia_lv.desc">
         <source>payment.gothia_lv.desc</source>
         <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
@@ -316,6 +316,10 @@
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
         <target>Kreditkartenzahlung</target>
+      </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -361,7 +365,11 @@
         <source>discount.gift</source>
         <target>Ermäßigung:</target>
       </trans-unit>
-      <trans-unit id="product.group.g">
+      <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+	  <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>GIRL</target>
       </trans-unit>
@@ -401,7 +409,7 @@
          <source>gift_card.description</source>
          <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
       </trans-unit>
-      <trans-unit id="address.copy" approved="no">
+      <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Die Lieferanschrift ist die gleiche wie die Privatadresse</target>
       </trans-unit>
@@ -414,45 +422,45 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_CH/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
 Sie müssen Waren hinzufügen.
 </target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere varer.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Rabattcode</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Rabattgutschein eintragen</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>speichern</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Rabattgutschein eintragen.</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms" approved="no">
+        <trans-unit id="checkout.confirm.terms">
             <source>checkout.confirm.terms</source>
             <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere</label>

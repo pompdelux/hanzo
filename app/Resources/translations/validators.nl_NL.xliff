@@ -6,47 +6,51 @@
                 <source>email.exists</source>
                 <target>Dit e-mailadres bestaat al!</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Je moet je telefoonnummer invullen</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Een telefoonnummer bestaat uit  {{ limit }} cijfers|Een telefoonnummer bestaat uit {{ limit }} cijfers</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Het telefoonnummer mag alleen cijfers bevatten</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Je moet een e-mailadres vermelden</target>
             </trans-unit>
-            <trans-unit id="email.not.valid" approved="no">
+            <trans-unit id="email.not.valid">
                 <source>email.not.valid</source>
                 <target>Je moet een e-mailadres vermelden</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>Deze twee e-mailadressen zijn niet hetzelfde</target>
             </trans-unit>
-            <trans-unit id="address.first_name.required" approved="no">
+            <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>
                 <target>Je moet een voornaam invullen</target>
             </trans-unit>
-            <trans-unit id="address.last_name.required" approved="no">
+            <trans-unit id="address.last_name.required">
                 <source>address.last_name.required</source>
                 <target>Je moet een achternaam invullen</target>
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Je volledige naam mag bestaan uit maximaal {{ limit }} tekens|Je volledige naam mag bestaan uit maximaal {{ limit }} tekens</target>
+                <target>Je volledige naam mag bestaan uit maximaal {{ limit }} tekens</target>
             </trans-unit>
-            <trans-unit id="host.required" approved="no">
+            <trans-unit id="host.required">
                 <source>host.required</source>
                 <target>Du skal angive værtinde</target>
             </trans-unit>
-            <trans-unit id="address_line_1.required" approved="no">
+            <trans-unit id="event_date.required">
+                <source>event_date.required</source>
+                <target>Du skal udfylde en dato</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Du skal udfylde adressen|Du skal udfylde adressen</target>
             </trans-unit>
@@ -54,23 +58,23 @@
                 <source>address_line_1.max.length</source>
                 <target>Het adres mag bestaan uit maximaal {{ limit }} tekens|Het adres mag bestaan uit maximaal {{ limit }} tekens</target>
             </trans-unit>
-            <trans-unit id="postal_code.required" approved="no">
+            <trans-unit id="postal_code.required">
                 <source>postal_code.required</source>
                 <target>Du skal udfylde postnummer</target>
             </trans-unit>
-            <trans-unit id="postal_code.length" approved="no">
+            <trans-unit id="postal_code.length">
                 <source>postal_code.length</source>
                 <target>Dit postnummer består af {{ limit }} tal|Dit postnummer består af {{ limit }} tal</target>
             </trans-unit>
-            <trans-unit id="city.required" approved="no">
+            <trans-unit id="city.required">
                 <source>city.required</source>
                 <target>Du skal udfylde by|Du skal udfylde by</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Je voornaam moet uit minstens {{ limit }} tekens bestaan|Je voornaam moet uit minstens {{ limit }} tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Je achternaam moet uit minstens {{ limit }} tekens bestaan|Je achternaam moet uit minstens {{ limit }} tekens bestaan</target>
             </trans-unit>
@@ -78,11 +82,11 @@
                 <source>password.required</source>
                 <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Je wachtwoord moet minstens {{ limit }} tekens bevatten|Je wachtwoord moet minstens {{ limit }} tekens bevatten</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Je moet in beide velden hetzelfde wachtwoord invullen.</target>
             </trans-unit>

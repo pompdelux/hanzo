@@ -10,7 +10,7 @@
                 <source>The presented password cannot be empty.</source>
                 <target>No match for E-Mail Address and/or Password.</target>
             </trans-unit>
-            <trans-unit id="User account is disabled." approved="no">
+            <trans-unit id="User account is disabled.">
                 <source>User account is disabled.</source>
                 <target>User account is disabled.</target>
             </trans-unit>
@@ -146,7 +146,7 @@
                 <source>Address line 1</source>
                 <target>Street address</target>
             </trans-unit>
-            <trans-unit id="56" approved="no">
+            <trans-unit id="56">
                 <source>Address line 2</source>
                 <target></target>
             </trans-unit>
@@ -182,7 +182,7 @@
                 <source>Countries id</source>
                 <target>Country</target>
             </trans-unit>
-            <trans-unit id="64" approved="no">
+            <trans-unit id="64">
                 <source>account.created</source>
                 <target>Your account has been created.</target>
             </trans-unit>
@@ -194,7 +194,7 @@
                 <source>create.account</source>
                 <target>Proceed</target>
             </trans-unit>
-            <trans-unit id="create.account.header" approved="no">
+            <trans-unit id="create.account.header">
                 <source>create.account.header</source>
                 <target>Welcome - Create your account</target>
             </trans-unit>
@@ -214,11 +214,11 @@
                 <source>create.notice</source>
                 <target><![CDATA[<strong>Are you already a customer?</strong><br> If you have already created an account please log in to <a href="%url%">My account</a><br><br>]]></target>
             </trans-unit>
-            <trans-unit id="68" approved="no">
+            <trans-unit id="68">
                 <source>nno.title</source>
                 <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
             </trans-unit>
-            <trans-unit id="69" approved="no">
+            <trans-unit id="69">
                 <source>nno.description</source>
                 <target>Indtast dit telefonnummer og få autoudfyldt din adresse.</target>
             </trans-unit>
@@ -234,11 +234,11 @@
                 <source>create.terms</source>
                 <target>POMPdeLUX privacy notice.</target>
             </trans-unit>
-            <trans-unit id="74" approved="no">
+            <trans-unit id="74">
                 <source>create.nno.address_found</source>
                 <target>Adressen der matcher det indtastede telefonnummer er indsat i formen herunder.</target>
             </trans-unit>
-            <trans-unit id="75" approved="no">
+            <trans-unit id="75">
                 <source>create.nno.no_address_found</source>
                 <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
             </trans-unit>
@@ -322,11 +322,11 @@
                 <source>address.last_name.required</source>
                 <target>You must provide your last name.</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Your first name muist be at least 2 characters long</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Your last name muist be at least 2 characters long</target>
             </trans-unit>
@@ -358,43 +358,43 @@
                 <source>Bad credentials</source>
                 <target>No match for E-Mail Address and/or Password.</target>
             </trans-unit>
-            <trans-unit id="update.notice" approved="no">
+            <trans-unit id="update.notice">
                 <source>update.notice</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="update.password_notice" approved="no">
+            <trans-unit id="update.password_notice">
                 <source>update.password_notice</source>
                 <target>Only fill out the fields if you wish to change your current password.</target>
             </trans-unit>
-            <trans-unit id="history.empty" approved="no">
+            <trans-unit id="history.empty">
                 <source>history.empty</source>
                 <target>You have placed no orders with us yet.</target>
             </trans-unit>
-            <trans-unit id="account.updated" approved="no">
+            <trans-unit id="account.updated">
                 <source>account.updated</source>
                 <target>Your account details have been updated.</target>
             </trans-unit>
-            <trans-unit id="create.account.error.title" approved="no">
+            <trans-unit id="create.account.error.title">
                 <source>create.account.error.title</source>
                 <target>An account error occurred</target>
             </trans-unit>
-            <trans-unit id="create.account.error" approved="no">
+            <trans-unit id="create.account.error">
                 <source>create.account.error</source>
                 <target>You have not entered account details correctly, please see below</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Phone number required</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Phone number should only be numbers</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Phone number should be at least 8 digits long</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Email required</target>
             </trans-unit>
@@ -402,7 +402,7 @@
                 <source>password.required</source>
                 <target>Password, minimum 5 characters</target>
             </trans-unit>
-            <trans-unit id="my.account.order.view" approved="no">
+            <trans-unit id="my.account.order.view">
                 <source>my.account.order.view</source>
                 <target>My account - order #%order_id%</target>
             </trans-unit>
@@ -414,7 +414,7 @@
                 <source>address.billing</source>
                 <target>Billing Address</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Password must be a minimum of 5 characters long</target>
             </trans-unit>
@@ -426,7 +426,7 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> Online shop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
-            <trans-unit id="login.restricted.only.customers" approved="no">
+            <trans-unit id="login.restricted.only.customers">
                 <source>login.restricted.only.customers</source>
                 <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
@@ -434,21 +434,21 @@
                 <source>stop.editing.order</source>
                 <target>Stop order editing</target>
             </trans-unit>
-            <trans-unit id="unable.to.lock.order" approved="no">
+            <trans-unit id="unable.to.lock.order">
                 <source>unable.to.lock.order</source>
                 <target>You cannot change your order right now. Please try again later.</target>
             </trans-unit>
-            <trans-unit id="my.account.%name%" approved="no">
+            <trans-unit id="my.account.%name%">
                 <source>my.account.%name%</source>
                 <target>Welcome %name%!</target>
             </trans-unit>
-            <trans-unit id="my.account.description" approved="no">
+            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
                 <target><![CDATA[ <p>
       On My account you can edit your order, print the returns form. You can also edit your personal details and subscribe/unsubscribe to our newsletter.<br><br>
       <em>Your order can have the following status:</em><br><br>
       <b>Pending</b><br>
-      Your order has not been processed yet, and from the time you place your order, you have a minimum of 24 hours to edit your order. You can add, change or cancel items on your order.<br>Please note: To complete the editing you must proceed to payment – previous payment reservation will automatically be cancelled. It can sometimes take up to 30 days until the reservation will be cancelled on your credit card. <br><br>
+      Your order has not been processed yet, and you can still change it. You can add, change or cancel items on your order.<br>Please note: To complete the editing you must proceed to payment – previous payment reservation will automatically be cancelled. It can sometimes take up to 30 days until the reservation will be cancelled on your credit card. <br><br>
       <b>Stop editing</b><br>
       You have been logged out while editing your order. Click on ”Stop editing” and you can then start all over again with your editing.<br><br>
       <b>Being processed</b><br>
@@ -459,21 +459,22 @@
       <b>Track your parcel</b><br>
       Click on the icon next to your order to follow your parcel. The Track and Trace page will open in a new window.<br><br>
       <b>Returns, exchanges and defects</b><br>
-      If you wish to return an item, click on the green icon next to your order below.<br>
+      If you wish to return an item, click on the icon next to your order below.<br>
       The returns form needs to be filled out and can be opened in a PDF-file. You can then print the PDF-file. <br>
       If you wish to exchange an item or you have received an item with manufacturing flaws or defects, please just return the item to us. If the defect is accepted by us, we will send you a new item free of charge and we will refund your postage. Please make the amount you have paid visible on the parcel or make a note on the returns form. In case you are returning items without flaws/defects and without the purpose of having them exchanged, we cannot refund any postage. If the item is sold out, we will give you a full refund. <br><br>
+	  I you wish to complain about a defective or incorrect item you can always make a claim. Please contact us through our <a href="https://www.pompdelux.com/en_GB/customer-service/complaint">claim form</a> as soon as you discover an error or omission in an item. This way we can offer you a solution as quick as possible based on your information.<br><br>
       <b>Returns form</b><br>
       If you cannot find the item you wish to return on the returns form, please click on the link here and you can print a returns form manually. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_COM.pdf">» Returns form (PDF)</a><br><br></p>  ]]></target>
             </trans-unit>
-            <trans-unit id="newsletter" approved="no">
+            <trans-unit id="newsletter">
                 <source>newsletter</source>
                 <target>Newsletters</target>
             </trans-unit>
-            <trans-unit id="my.account.my.events" approved="no">
+            <trans-unit id="my.account.my.events">
                 <source>my.account.my.events</source>
                 <target>My events</target>
             </trans-unit>
-            <trans-unit id="account.history.see.all.orders" approved="no">
+            <trans-unit id="account.history.see.all.orders">
                 <source>account.history.see.all.orders</source>
                 <target>See all orders</target>
             </trans-unit>
@@ -493,33 +494,33 @@
                 <source>Pass repeated</source>
                 <target>Password repeated</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice" approved="no">
+            <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
                 <target><![CDATA[<p>Create your account here</p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.text" approved="no">
+            <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>MY ACCOUNT</h2><p>To give you several advantages at POMPdeLUX you must create an account to continue shopping.<br><br>This will provide you with the opportunity to:<br>
 			<ul>
             <li>Check and change your order until it is packet and shipped from our warehouse.</li>
             <li>Change colours and sizes on the selected items which you have ordered.</li>
-            <li>Add and cancel items from your order as long as your order has the status “pending”. This service is available 24 hours after your order has been placed.</li>
+            <li>Add and cancel items from your order as long as your order has the status “pending”.</li>
 			<li>See your previous orders and find old invoices.</li>
           </ul></p>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
+            <trans-unit id="my.account.login.header">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Welcome to my account</h1>]]></target>
             </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
+            <trans-unit id="my.account.header">
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
-            <trans-unit id="create.pre-notice" approved="no">
+            <trans-unit id="create.pre-notice">
                 <source>create.pre-notice</source>
                 <target><![CDATA[<b>Are you a new customer?</b><br>On this page you must enter your personal info (and <u>not</u> company info).]]></target>
             </trans-unit>
-            <trans-unit id="order.force.login.description" approved="no">
+            <trans-unit id="order.force.login.description">
                 <source>order.force.login.description</source>
                 <target><![CDATA[
                     <h3>Dear customer,</h3>
@@ -597,7 +598,7 @@ After this you can easily continue shopping.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target><![CDATA[Shoppingliste Nr: <span>%number%</span>]]></target>
+                <target><![CDATA[SHOPPING LIST NUMBER<span>%number%</span>]]></target>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
@@ -606,6 +607,40 @@ After this you can easily continue shopping.<br></p>
             <trans-unit id="wishlist.remove.all.items">
                 <source>wishlist.remove.all.items</source>
                 <target>Clear the list</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.header">
+                <source>wishlist.send_list.header</source>
+                <target>Send the Shoppinglist to someone you know</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.description">
+                <source>wishlist.send_list.description</source>
+                <target>Write the e-mail adress to which you want to send the Shoppinglist.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.placeholder">
+                <source>wishlist.send_list.placeholder</source>
+                <target>Receivers e-mail address</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send_list.button_label">
+                <source>wishlist.send_list.button_label</source>
+                <target>Send</target>
+            </trans-unit>
+            <trans-unit id="wishlist.invalid_to_address">
+                <source>wishlist.invalid_to_address</source>
+                <target>Incorrect e-mail address</target>
+            </trans-unit>
+            <trans-unit id="wishlist.send">
+                <source>wishlist.send</source>
+                <target>The Shoppinglist has been sent.</target>
+            </trans-unit>
+            <trans-unit id="wishlist.all.items.deleted">
+                <source>wishlist.all.items.deleted</source>
+                <target>All the products was removed from your Shoppinglist.</target>
+            </trans-unit>
+			<trans-unit id="wishlist.footer.description">
+                <source>wishlist.footer.description</source>
+                <target><![CDATA[
+                    <strong>PLEASE NOTE!</strong>Your order is only valid when your Shopping Advisor has registered your Shopping List number and you have received the order confirmation. The items on your Shopping List are not reserved automatically when you add them to your list, so you can experience that an item has been sold out in the meantime. 
+                ]]></target>
             </trans-unit>
         </body>
     </file>

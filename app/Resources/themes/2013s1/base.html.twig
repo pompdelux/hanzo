@@ -28,16 +28,24 @@
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//netdna.bootstrapcdn.com">
 
-<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
+
+{% if app.environment matches '/^prod_/' %}
+<script>
+    var console = {};
+    window.console = console;
+    console.log = function(){};
+</script>
+{% endif %}
 
 <!--[if lt IE 9]>
 <script src="{{ asset_url('vendors/html5shiv/dist/html5shiv.min.js') }}"></script>
 <![endif]-->
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }} domain-{{ domain_key|lower }}">
+{# Must be right after body tag: https://developers.google.com/tag-manager/devguide#datalayer #}
+{{ google_tag_manager() }}
 {% include '::inlineEditMenu.html.twig' %}
 
 <div class="top-bar"></div>
@@ -103,7 +111,7 @@
             {% endif %}
         {% endif %}
 
-        <nav class="menu main-menu clearfix">
+        <nav class="navigation-main">
             {{ render(controller('CMSBundle:Menu:menu', {
                 'type':   left_menu.type,
                 'thread': left_menu.thread,

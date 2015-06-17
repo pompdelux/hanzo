@@ -74,7 +74,7 @@
       </trans-unit>
      <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Alternatief verzendadres </target>
+        <target>Alternatief verzendadres erzendadres </target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
@@ -234,7 +234,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Let op:</strong> Je bestelling wordt pas verstuurd als we alle artikelen op voorraad hebben.]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -246,7 +246,7 @@
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Afsluit order en betaal</target>
+        <target>Bestelling goedkeuren en betalen</target>
       </trans-unit>
             <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
@@ -255,7 +255,7 @@
           <p>Je order wordt uiterlijk verstuurd op: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
-            <trans-unit id="status.20" approved="no">
+            <trans-unit id="status.20">
         <source>status.20</source>
         <target>Betaling goedgekeurd</target>
       </trans-unit>
@@ -294,6 +294,10 @@
            <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
         <target>Credit card</target>
+      </trans-unit>
+      <trans-unit id="payment.paypal.title">
+        <source>payment.paypal.title</source>
+        <target>Paypal</target>
       </trans-unit>
      <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
@@ -339,7 +343,11 @@
         <source>discount.gift</source>
         <target>Korting:</target>
       </trans-unit>
-            <trans-unit id="product.group.g">
+            <trans-unit id="product.group.u">
+        <source>product.group.u</source>
+        <target>UNISEX</target>
+      </trans-unit>
+			<trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>GIRL</target>
       </trans-unit>
@@ -379,7 +387,7 @@
          <source>gift_card.description</source>
          <target>Hieronder kun je je cadeauboncode invullen. Gebruik je niet het volledige tegoed op je cadeaubon, dan kun je de code nogmaals gebruiken als je de volgende keer bij POMPdeLUX winkelt.</target>
       </trans-unit>
-            <trans-unit id="address.copy" approved="no">
+            <trans-unit id="address.copy">
          <source>address.copy</source>
          <target>Het afleveradres is hetzelfde als het privé-adres.</target>
       </trans-unit>
@@ -392,43 +400,43 @@
           POMPdeLUX
           ]]></target>
       </trans-unit>
-      <trans-unit id="basket.header" approved="no">
+      <trans-unit id="basket.header">
         <source>basket.header</source>
         <target><![CDATA[<h1>Winkelmandje</h1><p>Hulp nodig?<a href="/nl_NL/voorpagina/klantenservice/faq">Veelgestelde vragen</a></p>]]></target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low" approved="no">
+      <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Je bestelling is van mindere waarde dan de totale gastvrouwkorting, die je hebt verdiend. Vul je bestelling aan als je je gastvrouwkorting wilt gebruiken.</target>
       </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon" approved="no">
+      <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
         <target>Je waarde van je bestelling komt niet overeen met het minimumbedrag van EUR %amount% voor je kortingscode. Vul je bestelling aan als je de als je de kortingscode wilt gebruiken.</target>
       </trans-unit>
-      <trans-unit id="coupon" approved="no">
+      <trans-unit id="coupon">
         <source>coupon</source>
         <target>Kortingscode</target>
       </trans-unit>
-      <trans-unit id="coupon.toggle.form" approved="no">
+      <trans-unit id="coupon.toggle.form">
         <source>coupon.toggle.form</source>
         <target>» Toets je kortingscode</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
+      <trans-unit id="coupon.description">
         <source>coupon.description</source>
         <target>Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
-      <trans-unit id="coupon.apply.discount" approved="no">
+      <trans-unit id="coupon.apply.discount">
         <source>coupon.apply.discount</source>
         <target>Gem</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
+      <trans-unit id="coupon.label">
         <source>coupon.label</source>
         <target>Toets je kortingscode. Je mag maar één kortingscode per bestelling gebruiken.</target>
       </trans-unit>
-      <trans-unit id="coupon.invalid.code" approved="no">
+      <trans-unit id="coupon.invalid.code">
         <source>coupon.invalid.code</source>
         <target>Ongeldige kortingscode</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms" approved="no">
+        <trans-unit id="checkout.confirm.terms">
             <source>checkout.confirm.terms</source>
             <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Ik bevestig dat ik de heb gelezen en geaccepteerd</label>

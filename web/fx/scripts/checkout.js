@@ -1,3 +1,4 @@
+/* global base_url:false, dialoug:false, jaiks:false, Translator:false */
 (function ($, undefined) {
     var checkout = (function ($, undefined) {
         var pub = {};
@@ -300,12 +301,26 @@
             }
 
             if (response.response.status) {
-                $('#address-block > div:nth-child(2)').replaceWith(response.response.data.html);
+                var $element = $('#address-block > div').last();
+                $element.replaceWith(response.response.data.html);
                 $(document).trigger('shipping.address.changed');
 
                 var m = $('input[name=method]:checked').val();
 
-                if ((m === "10") || (m === "30") || (m === "70") || (m === "500") || (m === "601") || (m === "800") || (m === "900")) { // Private postal
+                // Private postal - or types where address-copy should be shown
+                var allowedTypes = [
+                  "10",  // DK  - Post Danmark Privat
+                  "20",  // COM - Post Danmark Private priority
+                  "30",  // SE  - Post Danmark Privat
+                  "70",  // NL  - DHL          verzendmethode
+                  "500", // FI  - Postimaksu   FI
+                  "601", // DE  - DHL          Paketpost
+                  "700", // NO  - Bring        Servicepakke
+                  "800", // CH  - DHL          Paketpost
+                  "900", // AT  - DHL          Paketpost
+                ];
+
+                if (allowedTypes.indexOf(m) !== -1) {
                     $('#address-copy').prop('checked', false).parent().removeClass('off');
                 } else {
                     $('#address-copy').parent().addClass('off');
@@ -321,11 +336,11 @@
         pub.handleLocationLocatorUpdates = function (response) {
             var $form = $('#address-block form.location-locator');
 
-            $('table.locator-result, div.error', $form).remove();
+            $('.locator-result-wrapper, div.error', $form).remove();
 
             if (response.response.status) {
-                if ($('.locator-result', $form).length) {
-                    $('.locator-result', $form).remove();
+                if ($('.locator-result-wrapper', $form).length) {
+                    $('.locator-result-wrapper', $form).remove();
                 }
 
                 $form.append(response.response.data.html);
@@ -471,9 +486,8 @@
 
         var attachLocationForm = function ($form) {
             $form.on('submit', function (event) {
-
-                if ($('.locator-result', $form).length) {
-                    $('.locator-result', $form).remove();
+                if ($('.locator-result-wrapper', $form).length) {
+                    $('.locator-result-wrapper', $form).remove();
                 }
 
                 event.preventDefault();

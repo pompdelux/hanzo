@@ -2,10 +2,8 @@
 
 namespace Hanzo\Bundle\MunerisBundle\Services;
 
-use Hanzo\Core\Tools;
 use Guzzle\Service\Client as GuzzleClient;
-use Hanzo\Bundle\RedisBundle\Client\Redis as RedisClient;
-use Hanzo\Model\MannequinImages;
+use Pompdelux\PHPRedisBundle\Client\PHPRedis;
 use Symfony\Bridge\Monolog\Logger;
 
 class MaxMind
@@ -15,7 +13,7 @@ class MaxMind
     protected $redis;
     protected $logger;
 
-    public function __construct($container, GuzzleClient $guzzle, RedisClient $redis, Logger $logger)
+    public function __construct($container, GuzzleClient $guzzle, PHPRedis $redis, Logger $logger)
     {
         $this->container = $container;
         $this->guzzle    = $guzzle;
@@ -29,8 +27,8 @@ class MaxMind
         if (empty($ip)) {
             $ip = $this->container->get('request')->getClientIp();
         }
-
-        if (preg_match('/^(127.0.0.|192.168.|0.0.)/', $ip)) {
+        // Local host, internal and IP used by docker
+        if (preg_match('/^(127.0.0.|192.168.|0.0.|172.17.)/', $ip)) {
             $ip = '90.185.206.100';
         }
 

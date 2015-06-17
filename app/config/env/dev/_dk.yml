@@ -23,3 +23,13 @@ consignor:
                   country_iso2: DK
                   email: mail@pompdelux.dk
                   phone: "+45 8678 7871"
+
+google:
+    tag_manager:
+        gtm_id:             "GTM-TDVFG4"
+        enabled_datalayers:
+            - Ecommerce
+            - Remarketing
+        addwords:
+            conversion_id: 000000001
+            conversion_label: Dev

@@ -3,6 +3,7 @@
         "web/fx/2013s1/css/960_8_3_3.css",
         "web/fx/2013s1/css/jquery.fullimagebox.css",
         "web/fx/css/colorbox/theme4/colorbox.css",
+        "web/fx/css/font-awesome.css",
         "web/fx/css/jquery-ui.css",
         "web/fx/scripts/video-js/video-js.css",
         "web/fx/scripts/fullcalendar/fullcalendar.css",
@@ -48,7 +49,9 @@
         "web/fx/scripts/flowplayer.js",
         "web/fx/scripts/video.js",
         "web/fx/scripts/main.js",
+        "web/fx/scripts/navigation.js",
         "web/fx/scripts/social-buttons.js",
+        "web/fx/scripts/filters.js",
         "web/fx/scripts/category.js",
         "web/fx/scripts/product.js",
         "web/fx/scripts/cart.js",
@@ -67,9 +70,12 @@
         "web/fx/scripts/rma.js",
         "web/fx/scripts/jquery.placeholder-enhanced.min.js",
         "web/fx/scripts/oldie.js",
+        "web/fx/scripts/mailplatform.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
-        "web/fx/scripts/App.WishlistBuilder.js"
+        "web/fx/scripts/App.WishlistBuilder.js",
+        "web/fx/scripts/App.WishlistMailer.js",
+        "web/fx/scripts/App.RmaBuilder.js"
     ],
 
     "admin_js": [
@@ -132,6 +138,7 @@
         "web/fx/scripts/video.js",
         "web/fx/scripts/main.js",
         "web/fx/scripts/social-buttons.js",
+        "web/fx/scripts/filters.js",
         "web/fx/scripts/category.js",
         "web/fx/scripts/product.js",
         "web/fx/scripts/cart.js",
@@ -148,6 +155,9 @@
         "web/fx/scripts/search.js",
         "web/fx/scripts/rma.js",
         "web/fx/scripts/jquery.placeholder-enhanced.min.js",
-        "web/fx/scripts/oldie.js"
+        "web/fx/scripts/oldie.js",
+        "web/fx/scripts/App.js",
+        "web/fx/scripts/App.ProductFinder.js",
+        "web/fx/scripts/App.RmaBuilder.js"
     ]
 }

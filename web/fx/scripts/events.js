@@ -2,7 +2,8 @@
 var calendar = (function ($) {
     var pub = {};
 
-    pub.init = function () {};
+    pub.init = function () {
+    };
 
     return pub;
 })(jQuery);
@@ -24,7 +25,6 @@ var events = (function ($) {
             }
         });
     };
-
     pub.choose_evet_type_init = function () {
         var $select = $('select#sales-type');
         var $hostess = $select.next();

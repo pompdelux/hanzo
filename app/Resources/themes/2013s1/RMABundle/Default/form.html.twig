@@ -1,134 +1,138 @@
 {% extends layout %}
 {% block content %}
 
-<h1>{{ 'rma.form.title.order_id'|trans({'%order_id%': order.id}, 'rma') }}</h1>
-<div>{{ 'rma.form.description'|trans({}, 'rma')|raw }}</div>
-<div class="grid_8 alpha omega">
-  <div class="basket clearfix">
-    {% if order_lines %}
-      <table class="product-table">
-        <thead>
-          <tr>
-            <th class="left">{{ "products"|trans }}</th>
-            <th>
-              <label>
-                {{ 'rma.form.label.return.order'|trans({}, 'rma') }}
-                <input type="checkbox" id="rma-return-all-order">
-              </label>
-              <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for product in order_lines %}
-          <tr class="item">
-            <td class="image left">
-            {% if product.basket_image is defined %}
-              {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+    <h1>{{ 'rma.form.title.order_id'|trans({'%order_id%': order.id}, 'rma') }}</h1>
+    <div>{{ 'rma.form.description'|trans({}, 'rma')|raw }}</div>
+    <div class="grid_8 alpha omega">
+        <div class="basket clearfix">
+            {% if order_lines %}
+                <table class="product-table">
+                    <thead>
+                    <tr>
+                        <th class="left">{{ "products"|trans }}</th>
+                        <th>
+                            <label>
+                                {{ 'rma.form.label.return.order'|trans({}, 'rma') }}
+                                <input type="checkbox" id="rma-return-all-order">
+                            </label>
+                            <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in order_lines %}
+                        <tr class="item">
+                            <td class="image left">
+                                {% if product.basket_image is defined %}
+                                    {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+                                {% endif %}
+                                <div class="info" data-product_id="{{ product.id }}" data-confirmed="">
+                                    <span class="title">{{ product.products_name }}</span>
+
+                                    <div class="size">
+                                        <label>{{ "size"|trans }}:</label>
+                                        <span>{{ product.products_size }}</span>
+                                    </div>
+                                    <div class="color">
+                                        <label>{{ "color"|trans }}:</label>
+                                        <span>{{ product.products_color }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="left actions js-hanzo-module" data-module-name="ProductFinder RmaBuilder">
+                                <form action="#" class="rma-form">
+                                    <label>
+                                        {{ 'rma.form.label.activitycode'|trans({}, 'rma') }}
+                                        <select name="product[{{ product.id }}][activity_code]" id="activitycode-lineid-{{ product.id }}" class="rma-activitycode" data-id="{{ product.id }}">
+                                            <option value="" selected>{{ 'rma.form.activity.default'|trans({}, 'rma') }}</option>
+                                            <option value="return">{{ 'rma.form.activity.return'|trans({}, 'rma') }}</option>
+                                            <option value="replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
+                                            <option value="warranty">{{ 'rma.form.activity.warranty'|trans({}, 'rma') }}</option>
+                                        </select>
+                                    </label>
+
+                                    {#
+                                      Causes for activities
+
+                                      We need a select for each activity. Different causes.
+                                    #}
+                                    <label class="off rma-cause rma-return-causes">
+                                        {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                                        <select name="product[{{ product.id }}][return][cause]" id="return-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
+                                            <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                                            {% for cause in 'rma.form.activity.return.causes'|trans({}, 'rma')|split('|') %}
+                                                <option value="{{ cause }}">{{ cause }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                    <label class="off rma-cause rma-replacement-causes">
+                                        {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                                        <select name="product[{{ product.id }}][replacement][cause]" id="replacement-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
+                                            <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                                            {% for cause in 'rma.form.activity.replacement.causes'|trans({}, 'rma')|split('|') %}
+                                                <option value="{{ cause }}">{{ cause }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                    <label class="off rma-cause rma-warranty-causes">
+                                        {{ 'rma.form.label.cause'|trans({}, 'rma') }}
+                                        <select name="product[{{ product.id }}][warranty][cause]" id="warranty-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
+                                            <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
+                                            {% for cause in 'rma.form.activity.warranty.causes'|trans({}, 'rma')|split('|') %}
+                                                <option value="{{ cause }}">{{ cause }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+
+                                    {# Select a new product #}
+
+                                    <div class="off rma-productreplacement">
+                                        <label>
+                                            <input type="text" name="q" id="replacement-master-lineid-{{ product.id }}" placeholder="{{ 'rma.form.placeholder.produkt'|trans({}, 'rma') }}" autocomplete="off" class="master">
+                                        </label>
+                                        <label class="off">
+                                            <select disabled name="size" id="replacement-size-lineid-{{ product.id }}" class="size">
+                                                <option value="">{{ 'wishlist.select.size'|trans({}, 'account') }}</option>
+                                            </select>
+                                        </label>
+                                        <label class="off">
+                                            <select disabled name="color" id="replacement-color-lineid-{{ product.id }}" class="color">
+                                                <option value="">{{ 'wishlist.select.color'|trans({}, 'account') }}</option>
+                                            </select>
+                                        </label>
+                                        <div class="clearfix"></div>
+                                        <input type="hidden" name="master" value="">
+                                        <input type="hidden" name="product_id" value="">
+                                        <input type="button" id="reset" name="reset" class="off reset" value="{{ 'delete'|trans }}" tabindex="-1">
+                                    </div>
+
+                                    {# Message: not reserved #}
+                                    <p class="off rma-cause rma-productreplacement">{{ 'rma-form.message.not-reserved'|trans({}, 'rma') }}</p>
+
+                                    {# Description #}
+                                    <label class="off rma-description">
+                                        {{ 'rma.form.label.description'|trans({}, 'rma') }}
+                                        <textarea name="product[{{ product.id }}][description]" id="description-lineid-{{ product.id }}" data-id="{{ product.id }}"></textarea>
+                                    </label>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
+                <div class="cached-version {{ not is_cached ? 'off' : 'on' }}">
+                    <a href="{{ path('rma_get', {'order_id' : order.id, 'pdf' : 'pdf'}) }}" target="_blank" title="Download PDF" class="sprite pdf"></a>
+                    <a href="{{ path('rma_get', {'order_id' : order.id}) }}" target="_blank" title="Print" class="sprite show"></a>
+                    <a href="{{ path('consignor_return_label', {'id' : order.id}) }}" target="_blank" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel"></a>
+                </div>
             {% endif %}
-              <div class="info" data-product_id="{{ product.id }}" data-confirmed="">
-                <span class="title">{{ product.products_name }}</span>
-                <div class="size">
-                  <label>{{ "size"|trans }}:</label>
-                  <span>{{ product.products_size }}</span>
-                </div>
-                <div class="color">
-                  <label>{{ "color"|trans }}:</label>
-                  <span>{{ product.products_color }}</span>
-                </div>
-              </div>
-            </td>
-            <td class="left actions">
-              <form action="#" class="rma-form">
-                <label>
-                  {{ 'rma.form.label.activitycode'|trans({}, 'rma') }}
-                  <select name="product[{{ product.id }}][activity_code]" id="activitycode-lineid-{{ product.id }}" class="rma-activitycode" data-id="{{ product.id }}">
-                    <option value="" selected>{{ 'rma.form.activity.default'|trans({}, 'rma') }}</option>
-                    <option value="return">{{ 'rma.form.activity.return'|trans({}, 'rma') }}</option>
-                    <option value="replacement">{{ 'rma.form.activity.replacement'|trans({}, 'rma') }}</option>
-                    <option value="warranty">{{ 'rma.form.activity.warranty'|trans({}, 'rma') }}</option>
-                  </select>
-                </label>
-
-                {#
-                  Causes for activities
-
-                  We need a select for each activity. Different causes.
-                #}
-                <label class="off rma-cause rma-return-causes">
-                  {{ 'rma.form.label.cause'|trans({}, 'rma') }}
-                  <select name="product[{{ product.id }}][return][cause]" id="return-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
-                    <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
-                    {% for cause in 'rma.form.activity.return.causes'|trans({}, 'rma')|split('|') %}
-                    <option value="{{ cause }}">{{ cause }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
-                <label class="off rma-cause rma-replacement-causes">
-                  {{ 'rma.form.label.cause'|trans({}, 'rma') }}
-                  <select name="product[{{ product.id }}][replacement][cause]" id="replacement-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
-                    <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
-                    {% for cause in 'rma.form.activity.replacement.causes'|trans({}, 'rma')|split('|') %}
-                    <option value="{{ cause }}">{{ cause }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
-                <label class="off rma-cause rma-warranty-causes">
-                  {{ 'rma.form.label.cause'|trans({}, 'rma') }}
-                  <select name="product[{{ product.id }}][warranty][cause]" id="warranty-cause-lineid-{{ product.id }}" data-id="{{ product.id }}">
-                    <option value="" selected>{{ 'rma.form.cause.default'|trans({}, 'rma') }}</option>
-                    {% for cause in 'rma.form.activity.warranty.causes'|trans({}, 'rma')|split('|') %}
-                    <option value="{{ cause }}">{{ cause }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
-
-                {#
-                  Quickorder to select a new product
-                #}
-                <div class="off rma-productreplacement quickorder">
-                  {{ 'rma.form.label.replacement'|trans({}, 'rma') }}<br>
-                  <label>
-                    <input type="text" id="replacement-master-lineid-{{ product.id }}" placeholder="{{ 'rma.form.placeholder.produkt'|trans({}, 'rma') }}" class="master">
-                  </label>
-                  <label class="off">
-                    <select id="replacement-size-lineid-{{ product.id }}" class="size"></select>
-                  </label>
-                  <label class="off">
-                    <select id="replacement-color-lineid-{{ product.id }}" class="color"></select>
-                  </label>
-                  <input type="button" id="reset" name="reset" class="off reset" value="{{ 'delete'|trans }}" tabindex="-1">
-                  <div class="autocomplete-container"></div>
-                </div>
-
-                {#
-                  Description
-                #}
-                <label class="off rma-description">
-                  {{ 'rma.form.label.description'|trans({}, 'rma') }}
-                  <textarea name="product[{{ product.id }}][description]" id="description-lineid-{{ product.id }}" data-id="{{ product.id }}"></textarea>
-                </label>
-              </form>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-      <input type="button" class="button right rma-submit" value="{{ 'rma.form.submit'|trans({}, 'rma') }}">
-      <div class="cached-version {{ not is_cached ? 'off' : 'on' }}">
-        <a href="{{ path('rma_get', {'order_id' : order.id, 'pdf' : 'pdf'}) }}" target="_blank" title="Download PDF" class="sprite pdf"></a>
-        <a href="{{ path('rma_get', {'order_id' : order.id}) }}" target="_blank" title="Print" class="sprite show"></a>
-        <a href="{{ path('consignor_return_label', {'id' : order.id}) }}" target="_blank" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel"></a>
-      </div>
-    {% endif %}
-  </div>
-</div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
-<!-- script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script -->
 <script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
-<script>
-  var rma_order_id = {{ order.id }};
-</script>
+<script>$(function () { App.init(); });</script>
+<script>var rma_order_id = {{ order.id }};</script>
 {% endblock %}

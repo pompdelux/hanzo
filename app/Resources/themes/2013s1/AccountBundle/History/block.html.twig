@@ -23,8 +23,8 @@
                     {% if order.track_n_trace %}
                         <a href="{{ order.track_n_trace }}" title="{{ 'account.trackntrace.link'|trans({}, 'account') }}" class="sprite trackntrace js-external"></a>
                     {% endif %}
-                    {% if order.return_lable_url %}
-                        <a href="{{ order.return_lable_url }}" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel js-external"></a>
+                    {% if order.return_label_url %}
+                        <a href="{{ order.return_label_url }}" title="{{ 'account.returnlabel.link'|trans({}, 'account') }}" class="sprite returnlabel js-external"></a>
                     {% endif %}
                     {% if order.can_modify %}
                         <a href="{{ path('_account_delete_order', { 'order_id': order.id }) }}" title="{{ 'order.delete.title'|trans({}, 'account') }}" class="sprite delete"></a>

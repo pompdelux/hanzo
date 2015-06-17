@@ -32,6 +32,8 @@ use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsQuery;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
+use Hanzo\Bundle\AdminBundle\Exporter\LanguageExporter;
+
 
 /**
  * Class ProductsController
@@ -41,20 +43,20 @@ use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 class ProductsController extends CoreController
 {
     /**
-     * @Template()
-     *
-     * @param int $category_id
-     * @param int $subcategory_id
+     * @param Request $request
+     * @param int     $category_id
+     * @param int     $subcategory_id
      *
      * @return array
+     * @Template()
      */
-    public function indexAction($category_id, $subcategory_id)
+    public function indexAction(Request $request, $category_id, $subcategory_id)
     {
         $categories = null;
         $products = null;
         $qClean = null;
         if (isset($_GET['q'])) {
-            $qClean = $this->getRequest()->get('q', null);
+            $qClean = $request->get('q', null);
             $q = '%'.$qClean.'%';
 
             $products = ProductsQuery::create()
@@ -151,11 +153,10 @@ class ProductsController extends CoreController
     }
 
     /**
-     * @Template()
-     *
      * @param Request $request
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @Template()
      */
     public function listAction(Request $request)
     {
@@ -241,7 +242,7 @@ class ProductsController extends CoreController
             $stock = $this->container->get('stock');
 
             // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-            if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            if ('pdldbno1' === $request->getSession()->get('database')) {
                 $stock->changeLocation('nb_NO');
             }
 
@@ -263,12 +264,12 @@ class ProductsController extends CoreController
             }
 
             // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-            if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+            if ('pdldbno1' === $request->getSession()->get('database')) {
                 $stock->changeLocation('da_DK');
             }
 
             uksort($data, "strnatcmp");
-            $this->setCache($cacheKey, $data);
+            $this->setCache($cacheKey, $data, 300);
         }
 
         return [
@@ -427,15 +428,15 @@ class ProductsController extends CoreController
         ]);
     }
 
-
     /**
-     * @param int $product_id
+     * @param Request $request
+     * @param int     $product_id
      *
-     * @return Response
      * @throws \Exception
      * @throws \PropelException
+     * @return Response
      */
-    public function quantityDiscountsAction($product_id)
+    public function quantityDiscountsAction(Request $request, $product_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -488,7 +489,6 @@ class ProductsController extends CoreController
                 'data'               => $quantityDiscount->getValidTo('Y-m-d'),
             ])->getForm();
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -498,8 +498,7 @@ class ProductsController extends CoreController
                     ->filterByProductsMaster($quantityDiscount->getProductsMaster())
                     ->filterBySpan($quantityDiscount->getSpan())
                     ->filterByDomainsId($quantityDiscount->getDomainsId())
-                    ->findOne($this->getDbConnection())
-                ;
+                    ->findOne($this->getDbConnection());
 
                 if ($duplicate instanceof ProductsQuantityDiscount) {
 
@@ -578,7 +577,6 @@ class ProductsController extends CoreController
         return $this->redirect($this->generateUrl('admin_products_discount', ['product_id' => $master->getId()]));
 
     }
-
 
     /**
      * @param int $id
@@ -729,7 +727,6 @@ class ProductsController extends CoreController
         }
     }
 
-
     /**
      * @return Response
      * @throws \Exception
@@ -742,8 +739,8 @@ class ProductsController extends CoreController
         }
 
         $requests = $this->get('request');
-        $master = $requests->get('master');
-        $sku = $requests->get('sku');
+        $master   = $requests->get('master');
+        $sku      = $requests->get('sku');
 
         $relatedProducts = new RelatedProducts();
         $relatedProducts->setMaster($master);
@@ -767,7 +764,6 @@ class ProductsController extends CoreController
             ]);
         }
     }
-
 
     /**
      * @param string $master
@@ -801,16 +797,17 @@ class ProductsController extends CoreController
     }
 
     /**
-     * @return Response
+     * @param Request $request
+     *
      * @throws \Exception
      * @throws \PropelException
+     * @return Response
      */
-    public function addReferenceAction()
+    public function addReferenceAction(Request $request)
     {
-        $requests  = $this->get('request');
-        $imageId   = $requests->get('image');
-        $productId = $requests->get('product');
-        $color     = $requests->get('color');
+        $imageId   = $request->get('image');
+        $productId = $request->get('product');
+        $color     = $request->get('color');
 
         $reference = new ProductsImagesProductReferences();
         $reference->setProductsImagesId($imageId);
@@ -819,7 +816,7 @@ class ProductsController extends CoreController
 
         try {
             $reference->save($this->getDbConnection());
-        } catch (PropelException $e) {
+        } catch (\PropelException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response([
                     'status'  => true,
@@ -836,14 +833,14 @@ class ProductsController extends CoreController
         }
     }
 
-
     /**
+     * @param Request $request
+     *
      * @return Response
      */
-    public function addReferenceGetColorsAction()
+    public function addReferenceGetColorsAction(Request $request)
     {
-        $requests  = $this->get('request');
-        $productId = $requests->get('product');
+        $productId = $request->get('product');
 
         $images = ProductsImagesQuery::create()
             ->filterByProductsId($productId)
@@ -890,21 +887,21 @@ class ProductsController extends CoreController
         }
     }
 
-
     /**
-     * @return Response
+     * @param Request $request
+     *
      * @throws \Exception
      * @throws \PropelException
+     * @return Response
      */
-    public function addImageToCategoryAction()
+    public function addImageToCategoryAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
 
-        $requests   = $this->get('request');
-        $imageId    = $requests->get('image');
-        $categoryId = $requests->get('category');
+        $imageId    = $request->get('image');
+        $categoryId = $request->get('category');
         $image      = ProductsImagesQuery::create()->findOneById($imageId);
 
         $reference = new ProductsImagesCategoriesSort();
@@ -987,9 +984,8 @@ class ProductsController extends CoreController
         }
     }
 
-
     /**
-     * @param $category_id
+     * @param int $category_id
      *
      * @return Response
      */
@@ -1050,16 +1046,16 @@ class ProductsController extends CoreController
         ]);
     }
 
-
     /**
-     * @return Response
+     * @param Request $request
+     *
      * @throws \Exception
      * @throws \PropelException
+     * @return Response
      */
-    public function updateSortAction()
+    public function updateSortAction(Request $request)
     {
-        $requests = $this->get('request');
-        $products = $requests->get('data');
+        $products = $request->get('data');
 
         $sort = 0;
         foreach ($products as $product) {
@@ -1078,7 +1074,7 @@ class ProductsController extends CoreController
                 $imagesId[] = $image->getId();
             }
 
-            $results = ProductsImagesCategoriesSortQuery::create()
+            ProductsImagesCategoriesSortQuery::create()
                 ->filterByCategoriesId($categoryId)
                 ->filterByProductsId($productId)
                 ->filterByProductsImagesId($imagesId)
@@ -1099,17 +1095,24 @@ class ProductsController extends CoreController
         }
     }
 
-
     /**
+     * @param Request $request
+     *
      * @return Response
      */
-    public function stockAction()
+    public function stockAction(Request $request)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $stock = $this->container->get('stock');
+        $stock  = $this->container->get('stock');
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $request->getSession()->get('database')) {
+            $stock->changeLocation('nb_NO');
+        }
+
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
@@ -1133,6 +1136,11 @@ class ProductsController extends CoreController
 
                 $stockData[] = [$product->getSku(), $level['quantity']];
             }
+        }
+
+        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
+        if ('pdldbno1' === $request->getSession()->get('database')) {
+            $stock->changeLocation('da_DK');
         }
 
         return new Response(
@@ -1245,19 +1253,19 @@ class ProductsController extends CoreController
             'category_id'    => $category_id,
             'subcategory_id' => $subcategory_id,
             'items'          => $items,
-            'database'       => $this->getRequest()->getSession()->get('database')
+            'database'       => $request->getSession()->get('database')
         ]);
     }
 
     /**
-     * @param Products $product
      * @param Request  $request
+     * @param Products $product
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @ParamConverter("product", class="Hanzo\Model\Products")
      */
-    public function purgeStockAction(Products $product, Request $request)
+    public function purgeStockAction(Request $request, Products $product)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -1266,19 +1274,117 @@ class ProductsController extends CoreController
         $stock = $this->container->get('stock');
 
         // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+        if ('pdldbno1' === $request->getSession()->get('database')) {
             $stock->changeLocation('nb_NO');
         }
 
         $stock->flushStyle($product);
 
         // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $this->getRequest()->getSession()->get('database')) {
+        if ('pdldbno1' === $request->getSession()->get('database')) {
             $stock->changeLocation('da_DK');
         }
 
         $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
 
         return $this->redirect($this->generateUrl('admin_products_list', ['range' => $request->query->get('range')]));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @author Henrik Farre <hf@bellcom.dk>
+     *
+     * @return Response
+     */
+    public function exportLanguagesAction(Request $request)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
+        $exporter = new LanguageExporter();
+        $exporter->setDBConnection($this->getDbConnection());
+        $csvData = $exporter->getDataAsCsv();
+
+        return new Response($csvData, 200, [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="product_languages.csv"',
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function importLanguagesAction(Request $request)
+    {
+        return $this->render('AdminBundle:Products:import_languages.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function performImportLanguagesAction(Request $request)
+    {
+        $fileTmp   = $request->files->get('language_file');
+        $tmpDir    = sys_get_temp_dir();
+        $fileName  = 'language_file.csv';
+        $inputFile = $tmpDir.'/'.$fileName;
+        $locale    = $request->request->get('import_locale');
+        $errors    = [];
+        $sql       = "UPDATE products_i18n SET title = :title WHERE id = :id AND locale = :locale";
+        $line      = 0;
+
+        ini_set("auto_detect_line_endings", true);
+
+        $fileTmp->move($tmpDir, $fileName);
+
+        if (is_file($inputFile)) {
+            $conn = $this->getDbConnection();
+            $stmt = $conn->prepare($sql);
+
+            $handle = fopen($inputFile, 'r');
+
+            while (($data = fgetcsv($handle, 2048, ';', '"')) !== false) {
+                $line++;
+
+                if ($line == 1) {
+                    continue;
+                }
+
+                if (empty($data[0]) || empty($data[2])) {
+                    $errors[] = 'Line '.$line.' does not contain the required id and title';
+                    continue;
+                }
+
+                $values = [
+                    'id'     => $data[0],
+                    'title'  => trim($data[2]),
+                    'locale' => $locale,
+                    ];
+
+                $stmt->execute($values);
+            }
+
+            fclose($handle);
+            unlink($inputFile);
+        } else {
+            $errors[] = 'Uploaded file was not found';
+        }
+
+        if (!empty($errors)) {
+            $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '. implode("<br>", $errors));
+        } else {
+            $this->get('session')->getFlashBag()->add('notice', 'OK, file uploade and products updated');
+        }
+
+        return $this->redirect($this->generateUrl('admin_products_language_import'));
     }
 }

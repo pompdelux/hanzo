@@ -4,11 +4,7 @@ namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\CheckoutBundle\Controller\DefaultController AS CheckoutController;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 
@@ -33,20 +29,19 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        $selected_payment_type = '';
+        $selectedPaymentType = '';
         if ($order->getBillingMethod()) {
-            $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
+            $selectedPaymentType = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
         }
 
-        $redis = $this->get('redis.permanent');
-        $dibs_status = $redis->hget('service.status', 'dibs');
+        $redis = $this->get('pdl.phpredis.permanent');
+        $dibsStatus = $redis->hget('service.status', 'dibs');
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
             $service = $this->get($service);
             if ($service && $service->isActive()) {
-
-                if (('Dibs' == $controller) && ('DOWN' === $dibs_status)) {
+                if (('Dibs' == $controller) && ('DOWN' === $dibsStatus)) {
                     $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
                     continue;
                 }
@@ -54,16 +49,16 @@ class DefaultController extends CoreController
                 $parameters = [
                     'order'                 => $order,
                     'cardtypes'             => $service->getPayTypes(),
-                    'selected_payment_type' => $selected_payment_type,
+                    'selected_payment_type' => $selectedPaymentType,
                 ];
 
-                $payment_html = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
+                $paymentHtml = $this->render('PaymentBundle:'.$controller.':select.html.twig', $parameters)->getContent();
 
                 // If the service has an specific order. Add it to that index.
                 if ($service->getOrder()) {
-                    $modules[$service->getOrder()] = $payment_html;
+                    $modules[$service->getOrder()] = $paymentHtml;
                 } else {
-                    $modules[$controller] = $payment_html;
+                    $modules[$controller] = $paymentHtml;
                 }
             }
         }
@@ -74,13 +69,13 @@ class DefaultController extends CoreController
 
         return $this->render('PaymentBundle:Default:block.html.twig', [
             'modules'               => $modules,
-            'selected_payment_type' => $selected_payment_type,
+            'selected_payment_type' => $selectedPaymentType,
         ]);
     }
 
-
     /**
      * @param Request $request
+     *
      * @return Response
      * @throws \Exception
      * @throws \PropelException
@@ -111,14 +106,14 @@ class DefaultController extends CoreController
             return $this->json_response($response);
         }
 
-        $order->setPaymentMethod( $provider );
-        $order->setPaymentPaytype( $method );
+        $order->setPaymentMethod($provider);
+        $order->setPaymentPaytype($method);
 
         // Handle payment fee
         // Currently hardcoded to 0 vat
         // It also only supports one order line with payment fee, as all others are deleted
 
-        if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
+        if ('DOWN' !== $this->get('pdl.phpredis.permanent')->hget('service.status', 'dibs')) {
             $order->setPaymentFee($method, $api->getFee($method), 0, $api->getFeeExternalId());
         }
 
@@ -133,9 +128,9 @@ class DefaultController extends CoreController
         return $this->json_response($response);
     }
 
-
     /**
      * @param Request $request
+     *
      * @return Response
      * @throws \Exception
      * @throws \PropelException
@@ -170,7 +165,7 @@ class DefaultController extends CoreController
         }
 
         $provider = strtolower($order->getBillingMethod());
-        $key      = 'payment.' . $provider . 'api';
+        $key      = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {
             $api = $this->get($key);
@@ -190,7 +185,6 @@ class DefaultController extends CoreController
         return $this->json_response($response);
     }
 
-
     /**
      * Cancels a Gothia Payment, and restores the order in good state
      *
@@ -201,7 +195,7 @@ class DefaultController extends CoreController
         $translator = $this->get('translator');
 
         $order = OrdersPeer::getCurrent();
-        $order->setState( Orders::STATE_BUILDING );
+        $order->setState(Orders::STATE_BUILDING);
         $order->save();
 
         $this->get('session')->getFlashBag()->add('notice', $translator->trans('payment.canceled', [], 'checkout'));

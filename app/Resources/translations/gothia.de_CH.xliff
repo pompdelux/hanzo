@@ -43,7 +43,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>json.placereservation.error</source>
         <target>Sehr geehrter Kunde, die Bezahlarten Rechnung und Lastschrift stehen Ihnen leider nicht zur Verfügung. Dies kann daran liegen, dass Sie an der angegebenen Adresse nicht bekannt sind, mit dieser Bestellung das Kundenlimit überschreiten würden oder über keine ausreichende Bonität verfügen. Bitte prüfen Sie, ob Sie Ihre Personendaten korrekt angegeben haben und wählen Sie ggf. eine andere Bezahlart. Vielen Dank für Ihr Verständnis.</target>
       </trans-unit>
-      <trans-unit id="json_err90" approved="no">
+      <trans-unit id="json_err90">
         <source>json.order.state_pre_payment.locked</source>
         <target>Ihre Bestellung wird bezahlt. Bitte warten</target>
       </trans-unit>
@@ -72,7 +72,7 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>form.submit_step2</source>
         <target>Weiter</target>
       </trans-unit>
-      <trans-unit id="form_txt30" approved="no">
+      <trans-unit id="form_txt30">
         <source>form.cancel</source>
         <target>Zahlung abbrechen</target>
       </trans-unit>
@@ -80,45 +80,57 @@ Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795<br>Bei ander
         <source>social_security_num</source>
         <target>Geburtstag (TTMMJJJJ):</target>
       </trans-unit>
-      <trans-unit id="bank_account_no" approved="no">
+      <trans-unit id="bank_account_no">
         <source>bank_account_no</source>
         <target>Bankkontonummer</target>
       </trans-unit>
-      <trans-unit id="bank_id" approved="no">
+      <trans-unit id="bank_id">
         <source>bank_id</source>
         <target>Bank id</target>
       </trans-unit>
-      <trans-unit id="json.bank_account_no.to_long" approved="no">
+      <trans-unit id="json.bank_account_no.to_long">
         <source>json.bank_account_no.to_long</source>
         <target>The entered Bank Acccount number must be less than 11 digits.</target>
       </trans-unit>
-      <trans-unit id="json.bank_id.to_long" approved="no">
+      <trans-unit id="json.bank_id.to_long">
         <source>json.bank_id.to_long</source>
         <target>The entered Bank ID must be 8 digits long.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.before">
-        <source>We were unable to approve your payment with Gothia Invoice service.</source>
+        <source>gothia.response.error.before</source>
         <target>Die Bestellung konnte nicht bei Gothia Invoice registriert werden.</target>
       </trans-unit>
       <trans-unit id="gothia.response.error.after">
-        <source>Please contact POMPdeLUX customer service if you keep receiving this error.</source>
+        <source>gothia.response.error.after</source>
         <target>Wenden Sie sich bitte an den Kundendienst von Gothia: +45 7027 2795 wenn dieser Fehler nochmals auftritt.</target>
       </trans-unit>
+      <trans-unit id="gothia.response.1003">
+        <source>gothia.response.1003</source>
+        <target>Keine Bestätigung erhalten</target>
+      </trans-unit>
       <trans-unit id="gothia.response.5000">
-        <source>We are unable to connect to Gothia Invoice service, please try again later.</source>
+        <source>gothia.response.5000</source>
         <target>Derzeit kann keine Verbindung zu GFG Finanz GmbH hergestellt werden. Bitte versuchen Sie es später erneut.</target>
       </trans-unit>
       <trans-unit id="gothia.response.10004">
-        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10004</source>
         <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
       </trans-unit>
       <trans-unit id="gothia.response.10005">
-        <source>We couldn't find you in Gothia Invoice Service. Please be sure that all your details are correct on your profile page.</source>
+        <source>gothia.response.10005</source>
         <target>Wir konnten Sie nicht als Kunde von GFG Finanz GmbH finden. Sind Sie sicher, dass alle Ihre Angaben richtig sind?</target>
       </trans-unit>
+      <trans-unit id="gothia.response.10006">
+        <source>gothia.response.10006</source>
+        <target>•	Wir konnten Sie leider nicht bei BFS finance GmbH identifizieren. Bitte prüfen Sie, ob alle Informationen auf Ihrer POMPdeLUX-Kundenseite korrekt sind.</target>
+      </trans-unit>
       <trans-unit id="gothia.response.10036">
-        <source>The reservation was not approved at Gothia Invoice Service. You may have exceeded the limit of reservations at Gothia.</source>
+        <source>gothia.response.10036</source>
         <target>Der Kauf wurde nicht von der GFG Finanz GmbH genehmigt. Der Grund hierfür kann sein, dass Sie Ihr Limit erreicht haben.</target>
+      </trans-unit>
+      <trans-unit id="gothia.response.10041">
+        <source>gothia.response.10041</source>
+        <target>•	Ihre Kontoinformationen sind nicht korrekt. Bitte überprüfen Sie, ob Sie die korrekte Bankverbindung eingegeben haben.</target>
       </trans-unit>
     </body>
   </file>

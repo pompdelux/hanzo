@@ -13,7 +13,10 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>For hver vare du &oslash;nsker &aring; returnere, skal du vennligst velge en aktivitet og en &aring;rsak. Noter ogs&aring; eventuelle kommentarer til den enkelte varen.<br>Returnerer du varer fra flere forskjellige ordrer, skal du opprette et returskjema pr. ordre. Dine returvarer sender du naturligvis bare i en og samme pakke, uansett om de kommer fra flere ordrer. Husk &aring; legge ved returskjemaet / returskjemaene i pakken. Les mer om returneringen p&aring; returskjemaet, som blir opprettet n&aring;r du klikker p&aring; knappen &quot;Opprett returskjema&quot;<br><br>For &aring; kunne se lappen, skal du ha installert gratisprogrammet Adobe Reader. Hvis du ikke har installert Adobe Reader, kan du laste ned programmet her.<br />
+                    <p>For hver vare du &oslash;nsker &aring; returnere, skal du vennligst velge en aktivitet og en &aring;rsak. Noter ogs&aring; eventuelle kommentarer til den enkelte varen.<br>Returnerer du varer fra flere forskjellige ordrer, skal du opprette et returskjema pr. ordre. Dine returvarer sender du naturligvis bare i en og samme pakke, uansett om de kommer fra flere ordrer. Husk &aring; legge ved returskjemaet / returskjemaene i pakken. Les mer om returneringen p&aring; returskjemaet, som blir opprettet n&aring;r du klikker p&aring; knappen &quot;Opprett returskjema&quot;<br><br><h2 style="color:#A10000">Opplever du problemer med at utfylle eller skrive ut retursedlen kan du i stedet bruke <br>
+<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_NO.pdf">» denne.</a> <br>
+Returlapp finner du her <a href="https://www.pompdelux.com/nb_NO/account"><i class="sprite returnlabel"></i></a></h2>
+<br><br>For &aring; kunne se lappen, skal du ha installert gratisprogrammet Adobe Reader. Hvis du ikke har installert Adobe Reader, kan du laste ned programmet her.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -123,7 +126,7 @@
                 <target><![CDATA[<p>Hos POMPdeLUX er det enkelt å bytte eller returnere en vare. Den enkleste måten å gjøre dette på er ved å fylle ut og sende med dette returskjemaet.Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet.<br><br> 
 <b>Returnering, bytting, reklamasjon</b><br>
 Hvis du ønsker å returnere en vare, kan du benytte vår forhåndsbetalte returlapp som du finner på Min Side. Hvis denne brukes, motregner vi kun  NOK 69,- fra verdien av dine returvarer.<br><br>
-Hvis du ønsker å bytte til en annen størrelse, farge eller til en helt annen vare, er returforsendelsen fraktfri hvis du benytter vår forutbetalte returlapp. Legg merke til at du kun kan bytte til en vare som ikke overstiger returvarens pris.<br><br>
+Hvis du ønsker å bytte til en annen størrelse, farge eller til en helt annen vare, er returforsendelsen fraktfri hvis du benytter vår forutbetalte returlapp. Legg merke til at du kun kan bytte til en vare som ikke overstiger returvarens pris. Vi gjør oppmerksom på at varen ikke blir reservert.<br><br>
 Hvis du ønsker å returnere en reklamasjon eller feil levert vare, er returforsendelsen også fraktfri for deg hvis du benytter vår forhåndsbetalte returlapp.<br><br><b>Tilbakebetaling</b><br>
 Har du benyttet kortbetaling, overføres ditt returbeløp til det betalingskortet du brukte ved bestilling.<br><br>
 Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du brukt PayByBill, ber vi deg om å kontakte arvato Finance A/S på tlf.: 22 87 89 70.<br><br>Merk: Selv om du mangler en kreditnota på dine returvarer, skal du betale din utestående faktura i løpet av 30 dager.<br><br>For ytterligere informasjon, se vennligst: <a href="/nb_NO/" target="_blank">www.pompdelux.no</a></p>]]></target>
@@ -159,6 +162,71 @@ Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du bru
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
                 <target><![CDATA[Farge]]></target>
+            </trans-unit>
+
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Navn*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-ordrenummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Varens navn/farge/størrelse (se navn på din faktura)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Beskrivelse av reklamasjonen*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Last opp bilder av reklamasjonen:<br>(maks. 5 bilder på i alt 10MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
+              <target>Telefonnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
+              <target>E-post*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Send reklamasjonsskjemaet</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Skal fylles ut</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Feil med opplastet fil.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Fyll vennligst ut dette feltet.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Manglende data.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Din reklamasjonsformular er nå sendt, og vi kontakter deg innenfor noen dager med tilbakemelding om saken.</p>
+                <p>Hvis du har spørsmål, vennligst kontakt kundeservice på tlf. (+45) 8678 7871.</p>
+                ]]>
+              </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Vi gjør oppmerksom på at varen ikke blir reservert.</target>
             </trans-unit>
         </body>
     </file>

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class OrderListener
+ *
  * @package Hanzo\Bundle\CheckoutBundle
  */
 class OrderListener
@@ -43,7 +44,7 @@ class OrderListener
     /**
      * onEditStart event handeling
      *
-     * @param  FilterOrderEvent $event [description]
+     * @param FilterOrderEvent $event
      */
     public function onEditStart(FilterOrderEvent $event)
     {
@@ -62,6 +63,7 @@ class OrderListener
 
         if ($bail) {
             $event->setStatus(false, 'unable.to.lock.order');
+
             return;
         }
 
@@ -109,7 +111,7 @@ class OrderListener
     /**
      * onEditCancel event handling
      *
-     * @param  FilterOrderEvent $event
+     * @param FilterOrderEvent $event
      */
     public function onEditCancel(FilterOrderEvent $event)
     {
@@ -137,7 +139,7 @@ class OrderListener
     /**
      * onEditDone event handler
      *
-     * @param  FilterOrderEvent $event
+     * @param FilterOrderEvent $event
      */
     public function onEditDone(FilterOrderEvent $event)
     {
@@ -148,7 +150,8 @@ class OrderListener
             $log = new OrdersStateLog();
             $log->info($order->getId(), Orders::INFO_STATE_EDIT_DONE);
             $log->save();
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         // unset session vars.
         $this->session->remove('in_edit');

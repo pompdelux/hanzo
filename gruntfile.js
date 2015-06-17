@@ -6,8 +6,8 @@ module.exports = function (grunt) {
 
     var files = {
         scss : [
-            'web/fx/2013s1/sass/*.scss',
-            'web/fx/2013s1_mobile/sass/*.scss'
+            'web/fx/2013s1/sass/**/*.scss',
+            'web/fx/2013s1_mobile/sass/**/*.scss'
         ],
 
         desktop_css   : desktop_files.desktop_css,
@@ -161,5 +161,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['compass', 'cssmin', 'modernizr', 'uglify']);
+    grunt.registerTask('build-css', ['compass', 'cssmin']);
+    grunt.registerTask('build-js', ['modernizr', 'uglify']);
 };
 

@@ -1,0 +1,26 @@
+{% extends '::adminbase.html.twig' %}
+{% use '::admin-subnav.html.twig' %}
+
+{% block content %}
+{% for message in app.session.flashbag.get('notice') %}
+    <div class="alert alert-success">
+        {{ message|trans({}, 'admin')|raw }}
+    </div>
+{% endfor %}
+
+{% for message in app.session.flashbag.get('warning') %}
+    <div class="alert alert-warning">
+        {{ message|trans({}, 'admin')|raw }}
+    </div>
+{% endfor %}
+
+<form role="form" action="{{ path('admin_products_language_perform_import') }}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="language_file">File input</label>
+    <input type="file" id="language_file" name="language_file">
+    <p class="help-block">CSV fil med ; som adskilder og felterne: Id, Sku, Title. Skal have header</p>
+  </div>
+  <input type="hidden" name="import_locale" id="import_locale" value="en_GB" />
+  <button type="submit" class="btn btn-default">Upload</button>
+</form>
+{% endblock %}

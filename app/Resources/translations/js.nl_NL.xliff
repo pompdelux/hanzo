@@ -2,11 +2,11 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="update" approved="no">
+            <trans-unit id="update">
                 <source>update</source>
                 <target>Werk bij</target>
             </trans-unit>
-            <trans-unit id="forward" approved="no">
+            <trans-unit id="forward">
                 <source>forward</source>
                 <target>Ga door</target>
             </trans-unit>
@@ -26,7 +26,7 @@
                 <source>ok</source>
                 <target>Ok</target>
             </trans-unit>
-            <trans-unit id="cancel" approved="no">
+            <trans-unit id="cancel">
                 <source>cancel</source>
                 <target>Annuleer</target>
             </trans-unit>
@@ -46,11 +46,11 @@
                 <source>please.wait</source>
                 <target>Wacht even</target>
             </trans-unit>
-            <trans-unit id="action.completed" approved="no">
+            <trans-unit id="action.completed">
                 <source>action.completed</source>
                 <target>De handeling is nu uitgevoerd</target>
             </trans-unit>
-            <trans-unit id="an.error.occurred" approved="no">
+            <trans-unit id="an.error.occurred">
                 <source>an.error.occurred</source>
                 <target>Er ging iets fout</target>
             </trans-unit>
@@ -66,7 +66,7 @@
                 <source>late.delivery.notice</source>
                 <target><![CDATA[<p><b>Let op:</b> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.</p>]]></target>
             </trans-unit>
-            <trans-unit id="delete.from.basket.warning" approved="no">
+            <trans-unit id="delete.from.basket.warning">
                 <source>delete.from.basket.warning</source>
                 <target><![CDATA[Weet je zeker dat je <strong>%product%</strong> uit je mandje wilt halen ?]]></target>
             </trans-unit>
@@ -74,23 +74,23 @@
                 <source>late.delivery</source>
                 <target><![CDATA[<h2 style="color:#A10000">Let op</h2><strong>"%product%"</strong> hebben we op het moment niet op voorraad.<br>Je order wordt uiterlijk verstuurd op<strong>%date%</strong>]]></target>
             </trans-unit>
-            <trans-unit id="not.filled.correctly" approved="no">
+            <trans-unit id="not.filled.correctly">
                 <source>not.filled.correctly</source>
                 <target>Verkeerd/Onjuist ingevuld</target>
             </trans-unit>
-            <trans-unit id="checkout.shipping_business" approved="no">
+            <trans-unit id="checkout.shipping_business">
                 <source>checkout.shipping_business</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="loading.std" approved="no">
+            <trans-unit id="loading.std">
                 <source>loading.std</source>
                 <target>Aan het laden ...</target>
             </trans-unit>
-            <trans-unit id="loading.search" approved="no">
+            <trans-unit id="loading.search">
                 <source>loading.search</source>
                 <target>Aan het zoeken ...</target>
             </trans-unit>
-            <trans-unit id="loading.search.products" approved="no">
+            <trans-unit id="loading.search.products">
                 <source>loading.search.products</source>
                 <target>Producten aan het vinden ...</target>
             </trans-unit>
@@ -114,7 +114,7 @@
                 <source>email</source>
                 <target>E-mail</target>
             </trans-unit>
-            <trans-unit id="mannequin.empty" approved="no">
+            <trans-unit id="mannequin.empty">
                 <source>mannequin.empty</source>
                 <target></target>
             </trans-unit>
@@ -126,7 +126,7 @@
                 <source>variant.out.of.stock</source>
                 <target>%name% er desværre udsolgt i %dimensions%</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>Dit e-mailadres "%email%" is niet aangemeld voor de nieuwsbrief</target>
             </trans-unit>
@@ -310,63 +310,63 @@
                 <source>proceed</source>
                 <target>Voortgaan</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target>Kies verzendmethode.</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Kies betalingswijze.</target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Ongeldige e-mail</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>De e-mails zijn niet hetzelfde</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>Ongeldig telefoonnummer, het mag alleen cijfers bevatten - en minstens 8 cijfers</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>De wachtwoorden moeten hetzelfde zijn</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Het wachtwoord moet uit minstens 5 tekens bestaan</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>Alle velden met (*) moeten ingevuld worden.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>Je moet de POMPdeLUX voorwaarden accepteren.</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Het betaalscherm wordt geopend</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Wacht totdat het betaalscherm geopend wordt. Het kan 30 seconden duren voordat het betaalscherm geopend is. Duurt het meer dan 30 seconden, klik dan op de “Betaling onderbreken” knop hieronder en probeer het opnieuw.<br><br>Bij voorbaat dank.<br><br><a href="%url%">» Betaling onderbreken</a>]]></target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Klik hier voor meer informatie over %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Klik hier voor meer informatie.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
             </trans-unit>
-			<trans-unit id="form.buy.choose.first" approved="no">
+			<trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Je moet eerst een maat en kleur kiezen.</target>
             </trans-unit>
@@ -378,19 +378,19 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Bij het omruilen van het artikel moeten maat en kleur worden ingevuld.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Bevestig dat de adresgegevens correct zijn.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>Er waren verschillende resultaten voor je zoekopdracht. Kies de plaats in de dropdown lijst hieronder.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
@@ -405,6 +405,18 @@
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
                 <target>Net toegevoegd</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Dit artikel is nu aan je Shoppinglijst toegevoegd.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>JE MOET INLOGGEN</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Je moet inloggen om de Shoppinglijst te kunnen samenstellen.<br><br><a href="%url%">» Hier inloggen/aanmelden</a><br><br>Let op: nadat je ingelogd hebt, word je naar deze pagina teruggestuurd.]]></target>
             </trans-unit>
         </body>
     </file>

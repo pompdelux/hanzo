@@ -412,6 +412,14 @@ class GothiaDEController extends CoreController
         try {
             $api->updateOrderSuccess($request, $order);
             $gothiaAccount->save();
+
+            /**
+             * Listeners includes:
+             *  - stopping order edit flows
+             *  - cansellation of "old" payments (for edits)
+             *  - adding the order to beanstalk for processing
+             *  - ..
+             */
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
             return $this->json_response([
@@ -466,6 +474,11 @@ class GothiaDEController extends CoreController
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
 
-        return $this->redirect($this->generateUrl('_checkout_success'));
+        $queryParameters = [];
+        if ($order->getInEdit()) {
+            $queryParameters = ['is-edit' => 1];
+        }
+
+        return $this->redirect($this->generateUrl('_checkout_success', $queryParameters));
     }
 }

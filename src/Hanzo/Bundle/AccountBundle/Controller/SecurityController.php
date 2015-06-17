@@ -2,45 +2,70 @@
 
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
+use Hanzo\Core\CoreController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
-use Hanzo\Core\CoreController;
-
+/**
+ * Class SecurityController
+ *
+ * @package Hanzo\Bundle\AccountBundle
+ */
 class SecurityController extends CoreController
 {
-    public function loginAction()
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function loginAction(Request $request)
     {
-        $request = $this->getRequest();
         $session = $request->getSession();
 
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
-        }
-        else {
+        } else {
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
         switch (strrchr($request->headers->get('referer'), '/')) {
             case '/basket':
-                $target = '_checkout';
+                $target = $this->container->get('router')->generate('_checkout', [], true);
                 break;
+
             default:
-                $target = '_account';
-                if ('consultant' == $this->get('kernel')->getStoreMode()) {
-                    $target = '_homepage';
+                if ($request->query->has('target')) {
+                    // yeah, force to https...
+                    $target = str_replace('p:', 'ps:', $request->query->get('target'));
+                } else {
+                    if ('consultant' == $this->get('kernel')->getStoreMode()) {
+                        $target = $this->container->get('router')->generate('_homepage', [], true);
+                    } else {
+                        $target = $this->container->get('router')->generate('_account', [], true);
+                    }
                 }
                 break;
         }
 
-        return $this->render('AccountBundle:Security:login.html.twig', array(
-            'page_type' => 'login',
+        return $this->render('AccountBundle:Security:login.html.twig', [
+            'page_type'     => 'login',
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-            'error' => $error,
-            'target' => $target
-        ));
+            'error'         => $error,
+            'target'        => $target,
+        ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function isAuthendicatedAction()
+    {
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response(['status' => true]);
+        }
+
+        return $this->json_response(['status' => false]);
     }
 }

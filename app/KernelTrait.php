@@ -44,6 +44,7 @@ trait KernelTrait
             new Liip\ThemeBundle\LiipThemeBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Pompdelux\PHPRedisBundle\PHPRedisBundle(),
             new Leezy\PheanstalkBundle\LeezyPheanstalkBundle(),
             new Glorpen\Propel\PropelBundle\GlorpenPropelBundle(),
             // ------------------------------------------------------
@@ -71,7 +72,6 @@ trait KernelTrait
             new Hanzo\Bundle\WallBundle\WallBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
             new Hanzo\Bundle\VarnishBundle\VarnishBundle(),
-            new Hanzo\Bundle\RedisBundle\RedisBundle(),
             new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
             new Hanzo\Bundle\MunerisBundle\MunerisBundle(),
             new Hanzo\Bundle\AxBundle\AxBundle(),
@@ -80,6 +80,7 @@ trait KernelTrait
             new Hanzo\Bundle\StockBundle\StockBundle(),
             new Hanzo\Bundle\GoogleBundle\GoogleBundle(),
             new Hanzo\Bundle\ConsignorBundle\ConsignorBundle(),
+            new Hanzo\Bundle\PromotionBundle\PromotionBundle(),
             // ------------------------------------------------------
         ];
 

@@ -17,6 +17,8 @@
     {% else %}
         {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('admin_stock') }}" title="Download lagerudtræk">Download lagerudtræk <i class="glyphicon glyphicon-download-alt"></i></a></li>
+            <li><a href="{{ path('admin_products_language_export') }}" title="Download produkt titler">Download produkt titler <i class="glyphicon glyphicon-download-alt"></i></a></li>
+            <li><a href="{{ path('admin_products_language_import') }}" title="Import produkt titler">Import produkt titler <i class="glyphicon glyphicon-upload"></i></a></li>
         {% endif %}
         <li><a href="{{ path('admin_products_list') }}" title="Rå produkt liste">Produkter <i class="glyphicon glyphicon-list"></i></a></li>
     {% endif %}

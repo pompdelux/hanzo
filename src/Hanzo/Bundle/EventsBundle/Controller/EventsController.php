@@ -3,6 +3,8 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 
+use Hanzo\Bundle\EventsBundle\Form\Type\EventsType;
+use Hanzo\Bundle\EventsBundle\Helpers\EventHostess;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\EventsQuery;
@@ -645,7 +647,6 @@ class EventsController extends CoreController
                 ->filterByType('discount')
                 ->find()
                 ->delete();
-            ;
 
             list($id, $code) = explode(':', $request->get('type'));
 
@@ -719,14 +720,25 @@ class EventsController extends CoreController
             $participant = $form->getData();
 
             if ($form->isValid()) {
-                $eventParticipant = EventsParticipantsQuery::create()
-                    ->filterByEventsId($participant->getEventsId())
-                    ->filterByEmail($participant->getEmail())
-                    ->_or()
-                    ->filterByPhone($participant->getPhone())
-                    ->findOne();
+                $query = EventsParticipantsQuery::create()
+                    ->filterByEventsId($participant->getEventsId());
 
-                if ($eventParticipant instanceof EventsParticipants) {
+                // the query is only valid as long as there is either an email or a phone number.
+                $validQuery = false;
+                if ($participant->getEmail()) {
+                    $query->filterByEmail($participant->getEmail());
+                    $validQuery = true;
+                }
+                if ($participant->getPhone()) {
+                    $query->filterByPhone($participant->getPhone());
+                    $validQuery = true;
+                }
+
+                if (true === $validQuery) {
+                    $eventParticipant = $query->findOne();
+                }
+
+                if (isset($eventParticipant) && ($eventParticipant instanceof EventsParticipants)) {
                     $this->container->get('session')->getFlashBag()->add('notice', 'events.participant.exists');
 
                     return $this->redirect($this->generateUrl('events_my_events'));

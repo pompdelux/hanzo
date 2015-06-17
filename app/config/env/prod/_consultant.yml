@@ -10,4 +10,7 @@ cms:
             offset: 482
 
 google:
-    analytics_code:    UA-48440455-1
+    tag_manager:
+        gtm_id: "GTM-KV65DG"
+        enabled_datalayers:
+            - Ecommerce

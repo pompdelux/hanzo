@@ -8,11 +8,11 @@
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
-                <target><![CDATA[Etsimääsi tietoa ei löydy sivulta.<br><br>Yritä uudelleen tuotteiden kohdalta tai käytä alla olevaa hakukenttää.]]></target>
+                <target><![CDATA[Etsimääsi tietoa ei löydy sivulta.<br><br>Siirry etusivulle <a href="http://www.pompdelux.com/fi_FI/">tästä</a.]]></target>
             </trans-unit>
-            <trans-unit id="404.webshop_closed.description" approved="no">
+            <trans-unit id="404.webshop_closed.description">
                 <source>404.webshop_closed.description</source>
-                <target><![CDATA[Etsimääsi tietoa ei löydy sivulta.<br><br>Yritä uudelleen tuotteiden kohdalta tai käytä alla olevaa hakukenttää.]]></target>
+                <target><![CDATA[Etsimääsi tietoa ei löydy sivulta.<br><br>Siirry etusivulle <a href="http://www.pompdelux.com/fi_FI/">tästä</a.]]></target>
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>

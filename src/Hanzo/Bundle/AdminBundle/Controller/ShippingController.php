@@ -96,9 +96,8 @@ class ShippingController extends CoreController
                 'choices' => $domains,
                 'required' => true,
             ])
-            ->add('break_at', 'integer', [
+            ->add('break_at', 'text', [
                 'required' => true,
-                'grouping' => true,
             ])
             ->add('valid_from', 'date', [
                 'input' => 'string',

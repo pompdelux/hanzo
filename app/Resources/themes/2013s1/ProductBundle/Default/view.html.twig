@@ -1,228 +1,229 @@
 {% extends layout %}
 
 {% block meta %}
-  {{ meta_tags('og:type,og:title,og:image,og:description,description') }}
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ product.title }}">
-  <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
-  <meta property="og:description" content="{{ product.description|og_description }}">
-  <meta name="description" content="{{ product.description|og_description }}">
-  <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
+    {{ meta_tags('og:type,og:title,og:image,og:description,description') }}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ product.title }}">
+    <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
+    <meta property="og:description" content="{{ product.description|og_description }}">
+    <meta name="description" content="{{ product.description|og_description }}">
+    <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
 
 {% block content %}
-{#
-<div class="grid_8 alpha omega">
-  {{ render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': 20})) }}
-</div> #}
-<div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
-  <meta itemprop="brand" content="POMPdeLUX" />
-  <meta itemprop="identifier" content="sku:{{ product.title }}" />
-  <div class="grid_8 alpha">
-    <div class="grid_8 alpha omega history-link">
-        <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
-    </div>
-
-    <div class="productimages">
-      <div class="productimage-large grid_8 alpha omega align-center">
-        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="image color-{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
-          {{ product_image_tag(
-              product.main_image.name,
-              '234x410',
-              {'alt': product.title ~ ', ' ~ product.main_image.color ~ ' - POMPdeLUX', 'itemprop' : 'image'}
-            )
-          }}
-        </a>
-        <a class="next"></a>
-        <a class="prev"></a>
-      </div>
-
-      <div class="grid_8 alpha omega">
-        <div class="grid_8 align-center vert-align-middle">
-          {% if product.all_colors is not empty %}
-            <div class="centerfy">
-              {% spaceless %}
-              {% for color in product.all_colors %}
-                <a href="#" class="product-color color-{{ color|lower|replace({' ':'-', '/':'9'}) }}" data-color="{{ color|lower|replace({' ':'-', '/':'9'}) }}">
-                  <div class="sprite-block colorbuttons colorbuttons-_{{ color|lower|replace({' ':'-', '/':'9'}) }}"></div>
-                  <span>{{ color }}</span>
-                </a>
-              {% endfor %}
-              {% endspaceless %}
-            </div>
-          {% endif %}
-        </div>
-      </div>
-
-    {% if product.has_video %}
-      <div class="grid_8 alpha omega">
-        <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.sku }}" data-banner="video_bg" class="video video-popper">
-          <div class="sprite"></div>
-        </a>
-        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
-          <div class="sprite">zoom</div>
-        </a>
-      </div>
-    {% else %}
-        <div class="grid_8 alpha omega">
-            <div class="grid_4 push_2">
-            <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
-                <div class="sprite">zoom</div>
+    {#
+    <div class="grid_8 alpha omega">
+      {{ render(controller('CMSBundle:Menu:menu', {'type': 'breadcrumb', 'thread': 20})) }}
+    </div> #}
+    <div class="grid_8 alpha omega container_16" itemscope itemtype="http://data-vocabulary.org/Product">
+    <meta itemprop="brand" content="POMPdeLUX"/>
+    <meta itemprop="identifier" content="sku:{{ product.title }}"/>
+    <div class="grid_8 alpha">
+        <div class="grid_8 alpha omega history-link">
+            <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}
             </a>
+        </div>
+
+        <div class="productimages">
+            <div class="productimage-large grid_8 alpha omega align-center">
+                <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="image color-{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
+                    {{ product_image_tag(
+                        product.main_image.name,
+                        '234x410',
+                        {'alt': product.title ~ ', ' ~ product.main_image.color ~ ' - POMPdeLUX', 'itemprop' : 'image'}
+                    ) }}
+                </a>
+                <a class="next"></a>
+                <a class="prev"></a>
+            </div>
+
+            <div class="grid_8 alpha omega">
+                <div class="grid_8 align-center vert-align-middle">
+                    {% if product.all_colors is not empty %}
+                        <div class="centerfy">
+                            {% spaceless %}
+                                {% for color in product.all_colors %}
+                                    <a href="#" class="product-color color-{{ color|lower|replace({' ':'-', '/':'9'}) }}" data-color="{{ color|lower|replace({' ':'-', '/':'9'}) }}">
+                                        <div class="sprite-block colorbuttons colorbuttons-_{{ color|lower|replace({' ':'-', '/':'9'}) }}"></div>
+                                        <span>{{ color }}</span>
+                                    </a>
+                                {% endfor %}
+                            {% endspaceless %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if product.has_video %}
+                <div class="grid_8 alpha omega">
+                    <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.sku }}" data-banner="video_bg" class="video video-popper">
+                        <div class="sprite"></div>
+                    </a>
+                    <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+                        <div class="sprite">zoom</div>
+                    </a>
+                </div>
+            {% else %}
+                <div class="grid_8 alpha omega">
+                    <div class="grid_4 push_2">
+                        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
+                            <div class="sprite">zoom</div>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if product.images is not empty %}
+                <div class="productimage-small grid_8 alpha omega bordered-top">
+                    <h4>{{ 'product.pictures.title'|trans }}</h4>
+                    {% spaceless %}
+                        {% for image in product.images %}
+                            <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ image.number }} type-{{ image.type }}{% if loop.last %} last{% endif %}" data-number="{{ image.number }}" data-color="{{ image.color|lower|replace({' ':'-', '/':'9'}) }}" data-type="{{ image.type }}">
+                                {{ product_image_tag(
+                                    image.name,
+                                    '114x200',
+                                    {'alt': product.title ~ ', ' ~ image.color ~ ' - POMPdeLUX'}
+                                ) }}
+                            </a>
+                        {% endfor %}
+                    {% endspaceless %}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="style-guide grid_8 alpha omega bordered-top">
+            <h4>{{ "buy.the.set.title"|trans }}</h4>
+
+            {% for id, references in references %}
+                <div class="element image-id-{{ id }}">
+                    {% spaceless %}
+                        {% for item in references.references %}
+                            <a href="{{ item.url }}" title="{{ product.title ~ ', ' ~ item.color }}">{{ product_image_tag(item.image, '114x200', {'alt': product.title ~ ', ' ~ item.color}) }}</a>
+                        {% endfor %}
+                    {% endspaceless %}
+                    <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="grid_7 push_1 omega">
+        <div class="grid_4 push_3 align-right omega">
+            {% include 'CMSBundle:Social:share.html.twig' with {
+                'url': app.request.uri,
+                'image': product_image_url(product.main_image.name, '0x1670'),
+                'description': product.title
+            } %}
+        </div>
+        <h1 class="title" itemprop="name">{{ product.title }}</h1>
+
+        <div class="prices" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+            {% if product.prices.sales is defined %}
+                <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+                <span class="discount" itemprop="price">{{ product.prices.sales.price|money }}</span>
+            {% else %}
+                <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
+            {% endif %}
+            <div class="description">{{ "product.prices.description"|trans }}</div>
+        </div>
+
+        {% render(controller('DiscountBundle:QuantityDiscount:discountTable', {'master': product.sku})) %}
+
+        <div class="buybox clearfix">
+
+            {% if product.sizes|length == 0 %}
+
+                <div>{{ 'out.of.stock'|trans }}</div>
+
+            {% else %}
+
+                <form action="{{ url('basket_add', {}, true) }}" method="post" class="buy">
+                    <div class="options grid_4 alpha">
+                        <h4 class="bordered">{{ 'options.title'|trans }}</h4>
+                        <label for="size">
+                            <div class="row">
+                                <span>{{ "size"|trans }}:</span>
+                                <select class="size" name="size">
+                                    <option value="">{{ "choose"|trans }}</option>
+                                    {% for size in product.sizes %}
+                                        <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.label }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
+                        </label>
+
+                        <label for="color">
+                            <span>{{ "color"|trans }}:</span>
+                            <select class="color" name="color" disabled="disabled">
+                                <option value="">{{ "choose"|trans }}</option>
+                                {% for color in product.colors %}
+                                    <option value="{{ color }}">{{ color }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+
+                        <label for="quantity" class="off">
+                            <span>{{ "quantity"|trans }}:</span>
+                            <select class="quantity" name="quantity">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+
+                        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
+                    </div>
+
+                    <div class="grid_3 omega add-buttons">
+                        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
+                        <a href="{{ path('_account_wishlist_add_item') }}" class="wishlist js-is-anonymous">{{ "add.product.to.wishlist"|trans }}</a>
+                    </div>
+                    <input type="hidden" id="master" name="master" value="{{ product.sku }}">
+                </form>
+
+            {% endif %}
+
+        </div>
+        <div class="productdescription tab-box">
+            <ul class="tabs bordered">
+                <li><a href=""><i></i>{{ "product.details"|trans }}</a></li>
+                {% if product.washing %}
+                    <li><a href=""><i></i>{{ "care.instructions"|trans }}</a></li>
+                {% endif %}
+            </ul>
+
+            <div class="panes">
+                <div>
+                    <p itemprop="description">{{ product.description|raw }}</p>
+                </div>
+                {% if product.washing %}
+                    <div class="off"><p>{{ product.washing|raw }}</p></div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
 
-    {% if product.images is not empty %}
-      <div class="productimage-small grid_8 alpha omega bordered-top">
-        <h4>{{ 'product.pictures.title'|trans }}</h4>
-      {% spaceless %}
-      {% for image in product.images %}
-        <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ image.number }} type-{{ image.type }}{% if loop.last %} last{% endif %}" data-number="{{ image.number }}" data-color="{{ image.color|lower|replace({' ':'-', '/':'9'}) }}" data-type="{{ image.type }}">
-          {{ product_image_tag(
-              image.name,
-              '114x200',
-              {'alt': product.title ~ ', ' ~ image.color ~ ' - POMPdeLUX'}
-            )
-          }}
-        </a>
-      {% endfor %}
-      {% endspaceless %}
-      </div>
-    {% endif %}
+        <div class="deliverydescription tab-box">
+            <ul class="tabs bordered">
+                <li><a href="" data-pane="1"><i></i>{{ "delivery.title"|trans }}</a></li>
+                <li><a href="" data-pane="2"><i></i>{{ "return.title"|trans }}</a></li>
+            </ul>
 
-    </div>
-
-    <div class="style-guide grid_8 alpha omega bordered-top">
-      <h4>{{ "buy.the.set.title"|trans }}</h4>
-
-      {% for id, references in references %}
-        <div class="element image-id-{{ id }}">
-        {% spaceless %}
-        {% for item in references.references %}
-          <a href="{{ item.url }}" title="{{ product.title ~ ', ' ~ item.color }}">{{ product_image_tag(item.image, '114x200',
-              {'alt': product.title ~ ', ' ~ item.color}) }}</a>
-        {% endfor %}
-        {% endspaceless %}
-        <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
-        </div>
-      {% endfor %}
-    </div>
-
-  </div>
-
-  <div class="grid_7 push_1 omega">
-    <div class="grid_4 push_3 align-right omega">
-      {% include 'CMSBundle:Social:share.html.twig' with {
-        'url': app.request.uri,
-        'image': product_image_url(product.main_image.name, '0x1670'),
-        'description': product.title }
-      %}
-    </div>
-    <h1 class="title" itemprop="name">{{ product.title }}</h1>
-
-    <div class="prices" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-    {% if product.prices.sales is defined %}
-      <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-      <span class="discount" itemprop="price">{{ product.prices.sales.price|money }}</span>
-    {% else %}
-      <span class="normal" itemprop="price">{{ product.prices.normal.price|money }}</span>
-    {% endif %}
-      <div class="description">{{ "product.prices.description"|trans }}</div>
-    </div>
-
-    {% render(controller('DiscountBundle:QuantityDiscount:discountTable', {'master': product.sku})) %}
-
-    <div class="buybox clearfix">
-
-    {%  if product.sizes|length == 0 %}
-
-      <div>{{ 'out.of.stock'|trans }}</div>
-
-    {%  else %}
-
-      <form action="{{ url('basket_add', {}, true) }}" method="post" class="buy">
-        <div class="options">
-          <h4 class="bordered">{{ 'options.title'|trans }}</h4>
-          <label for="size">
-            <div class="row">
-              <span>{{ "size"|trans }}:</span>
-              <select class="size" name="size">
-                <option value="">{{ "choose"|trans }}</option>
-              {% for size in product.sizes %}
-                <option value="{{ size.value }}" {{ not size.in_stock ? 'disabled="disabled"' : '' }} >{{ size.label }} {{ not size.in_stock ? "("~ "out.of.stock"|trans ~ ")" : '' }}</option>
-              {% endfor %}
-              </select>
+            <div class="panes">
+                <div class="off pane-1">
+                    {{ 'delivery.info'|trans({'%delivery.date%': parameter('expected_delivery_date') })|raw }}
+                </div>
+                <div class="off pane-2">{{ 'return.info'|trans|raw }}</div>
             </div>
-            <div><span class="small">{{ 'choose.size.note'|trans }}</span></div>
-          </label>
-
-          <label for="color">
-            <span>{{ "color"|trans }}:</span>
-            <select class="color" name="color" disabled="disabled">
-              <option value="">{{ "choose"|trans }}</option>
-            {% for color in product.colors %}
-              <option value="{{ color }}">{{ color }}</option>
-            {% endfor %}
-            </select>
-          </label>
-
-          <label for="quantity" class="off">
-            <span>{{ "quantity"|trans }}:</span>
-            <select class="quantity" name="quantity">
-            {% for i in 1..10 %}
-              <option value="{{ i }}">{{ i }}</option>
-            {% endfor %}
-            </select>
-          </label>
         </div>
 
-        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
-
-        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
-        <input type="hidden" id="master" name="master" value="{{ product.sku }}">
-      </form>
-
-    {% endif %}
-
-    </div>
-    <div class="productdescription tab-box">
-      <ul class="tabs bordered">
-        <li><a href=""><i></i>{{ "product.details"|trans }}</a></li>
-      {% if product.washing %}
-        <li><a href=""><i></i>{{ "care.instructions"|trans }}</a></li>
-      {% endif %}
-      </ul>
-
-      <div class="panes">
-        <div>
-          <p itemprop="description">{{ product.description|raw }}</p>
+        <div class="grid_7 alpha omega latest-seen-poducts">
+            <h4>{{ 'latest.seen.products.title'|trans }}</h4>
         </div>
-      {% if product.washing %}
-        <div class="off"><p>{{ product.washing|raw }}</p></div>
-      {% endif %}
-      </div>
     </div>
 
-    <div class="deliverydescription tab-box">
-      <ul class="tabs bordered">
-        <li><a href="" data-pane="1"><i></i>{{ "delivery.title"|trans }}</a></li>
-        <li><a href="" data-pane="2"><i></i>{{ "return.title"|trans }}</a></li>
-      </ul>
-
-      <div class="panes">
-        <div class="off pane-1">
-          {{ 'delivery.info'|trans({'%delivery.date%': parameter('expected_delivery_date') })|raw }}
-        </div>
-        <div class="off pane-2">{{ 'return.info'|trans|raw }}</div>
-      </div>
     </div>
-
-    <div class="grid_7 alpha omega latest-seen-poducts">
-      <h4>{{ 'latest.seen.products.title'|trans }}</h4>
-    </div>
-  </div>
-
-</div>
 
 {% endblock %}

@@ -174,6 +174,21 @@ admin_products:
         category_id: \d+
         subcategory_id: \d+
 
+admin_products_language_export:
+    pattern:  /admin/products/languages.csv
+    defaults:
+        _controller: AdminBundle:Products:exportLanguages
+
+admin_products_language_import:
+    pattern:  /admin/products/languages/import/
+    defaults:
+        _controller: AdminBundle:Products:importLanguages
+
+admin_products_language_perform_import:
+    pattern:  /admin/products/languages/perform_import/
+    defaults:
+        _controller: AdminBundle:Products:performImportLanguages
+
 admin_products_list:
     pattern:  /admin/products/list
     defaults:
@@ -804,15 +819,46 @@ admin_tools_sync_categories:
     defaults:
         _controller: AdminBundle:Tools:syncCategories
 
-admin_tools_faceted_search_indexer:
-    pattern: /admin/tools/search-index/faceted/update
+admin_tools_search_index_overview:
+    pattern: /admin/tools/search-index
     defaults:
-        _controller: AdminBundle:Tools:buildProductSearchIndex
+        _controller: AdminBundle:Tools:searchIndex
 
+admin_tools_search_index_perform:
+    pattern: /admin/tools/search-index/perform-action
+    defaults:
+        _controller: AdminBundle:Tools:searchIndexPerform
+
+# Reads xliff
 admin_tools_search_index_update:
     pattern: /admin/tools/search-index/update
     defaults:
         _controller: AdminBundle:Tools:updateSearchIndex
+
+admin_tools_clear_varnish:
+    pattern: /admin/tools/cache/clear-varnish
+    defaults:
+        _controller: AdminBundle:Tools:clearVarnishCache
+
+admin_tools_dibs_tools:
+    pattern: /admin/tools/dibs/{action}
+    defaults:
+        _controller: AdminBundle:Tools:dibsTools
+        action: ''
+admin_tools_flush_wishlists:
+    pattern: /admin/tools/wishlists/flush-all
+    defaults:
+        _controller: AdminBundle:Tools:wishlistsFlushAll
+
+admin_tools_purge_product_range:
+    pattern: /admin/tools/products/delete-range
+    defaults:
+        _controller: AdminBundle:Tools:purgeProductRange
+
+admin_tools_generate_product_mapping:
+    pattern: /admin/tools/products/generate-mapping
+    defaults:
+        _controller: AdminBundle:Tools:generateProductMapping
 
 # Image Categories Sort
 admin_product_image_category_add:
@@ -832,22 +878,6 @@ admin_product_image_category_delete:
         _format: html|json
         image_id: \d+
         category_id: \d+
-
-admin_tools_clear_varnish:
-    pattern: /admin/tools/cache/clear-varnish
-    defaults:
-        _controller: AdminBundle:Tools:clearVarnishCache
-
-admin_tools_dibs_tools:
-    pattern: /admin/tools/dibs/{action}
-    defaults:
-        _controller: AdminBundle:Tools:dibsTools
-        action: ''
-admin_tools_flush_wishlists:
-    pattern: /admin/tools/wishlists/flush-all
-    defaults:
-        _controller: AdminBundle:Tools:wishlistsFlushAll
-
 
 admin_shipping_breaks:
     pattern: /admin/shipping/free-breaks/

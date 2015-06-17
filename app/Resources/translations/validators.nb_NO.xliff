@@ -6,47 +6,51 @@
                 <source>email.exists</source>
                 <target>E-mail-adressen eksisterer allerede!</target>
             </trans-unit>
-            <trans-unit id="phone.required" approved="no">
+            <trans-unit id="phone.required">
                 <source>phone.required</source>
                 <target>Telefonnummer må fylles ut</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
+            <trans-unit id="phone.min.length">
                 <source>phone.min.length</source>
                 <target>Et telefonnummer består av {{ limit }} tall|Et telefonnummer består av {{ limit }} tall</target>
             </trans-unit>
-            <trans-unit id="phone.not.valid" approved="no">
+            <trans-unit id="phone.not.valid">
                 <source>phone.not.valid</source>
                 <target>Telefonnummeret må kun bestå av tall</target>
             </trans-unit>
-            <trans-unit id="email.required" approved="no">
+            <trans-unit id="email.required">
                 <source>email.required</source>
                 <target>Du må angi en e-mail-adresse</target>
             </trans-unit>
-            <trans-unit id="email.invalid.match" approved="no">
+            <trans-unit id="email.invalid.match">
                 <source>email.invalid.match</source>
                 <target>De to e-mail-adressene matcher ikke</target>
             </trans-unit>
-            <trans-unit id="email.not.valid" approved="no">
+            <trans-unit id="email.not.valid">
                 <source>email.not.valid</source>
                 <target>Du må angi en e-mail-adresse</target>
             </trans-unit>
-            <trans-unit id="address.first_name.required" approved="no">
+            <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>
                 <target>Du må fylle ut fornavn</target>
             </trans-unit>
-            <trans-unit id="address.last_name.required" approved="no">
+            <trans-unit id="address.last_name.required">
                 <source>address.last_name.required</source>
                 <target>Du må fylle ut etternavn</target>
             </trans-unit>
             <trans-unit id="name.max.length">
                 <source>name.max.length</source>
-                <target>Ditt fulle navn må maksimalt bestå av {{ limit }} tegn|Ditt fulle navn må maksimalt bestå av {{ limit }} tegn</target>
+                <target>Ditt fulle navn må maksimalt bestå av {{ limit }} tegn</target>
             </trans-unit>
-            <trans-unit id="host.required" approved="no">
+            <trans-unit id="host.required">
                 <source>host.required</source>
                 <target>Du skal angive værtinde</target>
             </trans-unit>
-            <trans-unit id="address_line_1.required" approved="no">
+            <trans-unit id="event_date.required">
+                <source>event_date.required</source>
+                <target>Du skal udfylde en dato</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required">
                 <source>address_line_1.required</source>
                 <target>Du skal udfylde adressen|Du skal udfylde adressen</target>
             </trans-unit>
@@ -54,23 +58,23 @@
                 <source>address_line_1.max.length</source>
                 <target>Adressefeltet må maksimalt bestå av {{ limit }} tegn|Adressefeltet må maksimalt bestå av {{ limit }} tegn</target>
             </trans-unit>
-            <trans-unit id="postal_code.required" approved="no">
+            <trans-unit id="postal_code.required">
                 <source>postal_code.required</source>
                 <target>Du skal udfylde postnummer</target>
             </trans-unit>
-            <trans-unit id="postal_code.length" approved="no">
+            <trans-unit id="postal_code.length">
                 <source>postal_code.length</source>
                 <target>Dit postnummer består af {{ limit }} tal|Dit postnummer består af {{ limit }} tal</target>
             </trans-unit>
-            <trans-unit id="city.required" approved="no">
+            <trans-unit id="city.required">
                 <source>city.required</source>
                 <target>Du skal udfylde by|Du skal udfylde by</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
+            <trans-unit id="address.first_name.min.length">
                 <source>address.first_name.min.length</source>
                 <target>Your first name muist be at least {{ limit }} characters long|Your first name muist be at least {{ limit }} characters long</target>
             </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
+            <trans-unit id="address.last_name.min.length">
                 <source>address.last_name.min.length</source>
                 <target>Your last name muist be at least {{ limit }} characters long|Your last name muist be at least {{ limit }} characters long</target>
             </trans-unit>
@@ -78,11 +82,11 @@
                 <source>password.required</source>
                 <target>Passord skal være på minst 5 tegn</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Kodeordet må bestå av minst {{ limit }} tegn|Kodeordet må bestå av minst {{ limit }} tegn</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Du skal taste inn samme kodeord i begge felt.</target>
             </trans-unit>

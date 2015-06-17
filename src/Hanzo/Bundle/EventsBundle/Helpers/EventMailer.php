@@ -223,6 +223,7 @@ class EventMailer
         $this->mailer->setMessage('events.participant.invited', [
             'event_date'       => $this->event->getEventDate('d/m'),
             'event_time'       => $this->event->getEventDate('H:i'),
+            'name'             => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
             'to_name'          => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
             'name'             => $eventsParticipant->getFirstName() . ' ' . $eventsParticipant->getLastName(),
             'hostess'          => $this->event->getHost(),

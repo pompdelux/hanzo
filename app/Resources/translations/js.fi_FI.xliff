@@ -190,7 +190,7 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Haluatko varmasti poistaa tämän sisällön?</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>Sähköpostiosoitetta "%email%" ei ole kirjattu</target>
             </trans-unit>
@@ -310,63 +310,63 @@
                 <source>proceed</source>
                 <target>Jatka</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target>Valitse toimitustapa.</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Valitse maksutapa.</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Maksuikkunaa avataan</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Odota maksuikkunan avautumista. Maksuikkunan avautuminen voi kestää 30 sekuntia. Jos kuluu yli 30 sekuntia, napsauta alla olevaa Keskeytä maksu  painiketta ja yritä uudelleen.<br><br>Kiitos jo etukäteen.<br><br><a href="%url%">» Keskeytä maksu</a>]]></target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Sähköpostiosoite ei kelpaa</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>Sähköpostiosoitteet eivät ole samoja</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>Puhelinnumero ei kelpaa. Siinä on oltava vähintään 8 numeroa eikä muita merkkejä.</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Salasanakenttien on vastattava toisiaan.</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Salasanassa on oltava vähintään 5 merkkiä</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>Kaikki tähdellä (*) merkityt kentät on täytettävä.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>Sinun on hyväksyttävä POMPdeLUXin ehdot.</target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
             </trans-unit>
-			<trans-unit id="form.buy.choose.first" approved="no">
+			<trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Valitse ensin koko ja väri.</target>
             </trans-unit>
@@ -378,19 +378,19 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Tuotteen vaihdossa täytyy ilmoittaa sekä koko että väri.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Vahvista, että osoitetietosi ovat oikein.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>Haullasi tuli useita tuloksia. Valitse alla olevasta pudotusvalikosta.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
@@ -405,6 +405,18 @@
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
                 <target>Lisätty</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Tämä tuote on lisätty Ostoslistallesi.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>Login påkrævet</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Sinun tulee olla sisäänkirjautuneena, jotta voit käyttää Ostoslistaa.<br><br><a href="%url%">» Kirjaudu täällä / rekisteröidy</a><br><br>Huomaa: Kun kirjaudut sisään, palaat takaisin tälle sivulle.]]></target>
             </trans-unit>
         </body>
     </file>

@@ -18,6 +18,26 @@ if (empty($images_found)) {
     exit;
 }
 
+// hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541 -->>
+/* $renamedImages = [];
+foreach ($images_found as $file) {
+    $path = dirname($file);
+    $newName = $path .'/'.strtolower(basename($file));
+
+    // Only rename if names are different
+    if ( $file != $newName ) {
+        if ( !rename($file, $newName) ) {
+            _dbug("Could not rename $file to $newName");
+            continue;
+        }
+    }
+
+    $renamedImages[] = $newName;
+}
+
+$images_found = $renamedImages; */
+// <<-- hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541
+
 $images = array();
 foreach ($images_found as $file) {
     $image = basename($file);
@@ -53,15 +73,17 @@ $product_categories_ids = array();
 $product_categories_all_ids = array();
 $failed = array();
 
+// DK == vip
 $pdo = $_databases['vip'];
-$products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-$categories_stmt = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$products_stmt      = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$categories_stmt    = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
 foreach ($images as $image) {
 
     // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
+    // 9 is used as slash in color names, e.g. SnowSUITGIRLAW14_Navy9Rose_set_02.jpg
     // master         color             type     index
     @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
 
@@ -303,16 +325,23 @@ $product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :col
 
 $image_records_to_delete = array();
 while ($record = $images_stmt->fetchObject()) {
+    // note we check for both old and new style image names.
 
-    if (!file_exists($source_dir.$record->image)) {
-        $image_records_to_delete[$record->id] = $record->image;
+    // If the file exists, or the lowercase file exists, do not delete anything
+    if ((file_exists($source_dir.$record->image)) ||
+        (file_exists($source_dir.strtolower($record->image)))
+    ) {
         continue;
     }
+
+    $image_records_to_delete[$record->id] = $record->image;
+
     // Find the master with correct color
     $product_stmt->execute(array(
         ':master' => $record->master,
         ':color' => $record->color
     ));
+
     $image_master = $product_stmt->fetchColumn();
     if (!$image_master > 0) {
         $image_records_to_delete[$record->id] = $record->image;
@@ -354,7 +383,7 @@ if (count($image_records_to_delete)) {
     $txt .= "\nbum og sov godt!\n";
 
     mail(
-        'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
+        'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
         'slettede billeder i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
@@ -370,7 +399,7 @@ if (count($failed)) {
     $txt .= "\nFix dem, nu!\n";
 
     mail(
-        'hd@pompdelux.dk,cc@pompdelux.dk,un@bellcom.dk',
+        'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
         'fejl i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",

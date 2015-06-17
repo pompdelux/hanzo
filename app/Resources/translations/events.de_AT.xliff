@@ -38,7 +38,7 @@
                 <source>events.calendar.link</source>
                 <target>Kalender</target>
             </trans-unit>
-            <trans-unit id="events.calendar.link.back.to" approved="no">
+            <trans-unit id="events.calendar.link.back.to">
                 <source>events.calendar.link.back.to</source>
                 <target>Zurück zum Kalender</target>
             </trans-unit>
@@ -390,7 +390,7 @@
                 <source>events.create_customer.description.text</source>
                 <target><![CDATA[<b>Neuer Kunde:</b> Geben Sie die Telefonnummer des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><b>Existierender Kunde:</b> Geben Sie die E-Mail-Adresse des Kunden ein und klicken Sie auf die Schaltfläche Holen.<br><br><span style="font-weight:bold; color:#A10000;">Bitte beachten:</span> Auf dieser Seite sollen Sie Ihre privaten Informationen ausfüllen (<u>nicht</u> evtl. Firmeninformationen)]]></target>
             </trans-unit>
-            <trans-unit id="events.fetch_customer.placeholder" approved="no">
+            <trans-unit id="events.fetch_customer.placeholder">
                 <source>events.fetch_customer.placeholder</source>
                 <target>E-Mail oder Tel. Nr.</target>
             </trans-unit>
@@ -434,69 +434,73 @@
                 <source>events.fetch_customer.newsletter.update</source>
                 <target>Newsletteranmeldung ändern</target>
             </trans-unit>
-            <trans-unit id="events.myevents.header" approved="no">
+            <trans-unit id="events.myevents.header">
                 <source>events.myevents.header</source>
                 <target><![CDATA[<h1>Meine Veranstaltungen</h1><p>Hier werden alle Veranstaltungen angezeigt, bei denen <b>Sie</b> die Gastgeberin sind</p>]]></target>
             </trans-unit>
-            <trans-unit id="events.event.header.text.%date%" approved="no">
+            <trans-unit id="events.event.header.text.%date%">
                 <source>events.event.header.text.%date%</source>
                 <target>Veranstaltung am %date%:</target>
             </trans-unit>
-            <trans-unit id="events.no.events" approved="no">
+            <trans-unit id="events.no.events">
                 <source>events.no.events</source>
                 <target>Es wurden keine kommenden Veranstaltungen gefunden.</target>
             </trans-unit>
-            <trans-unit id="events.missing.event_end_time" approved="no">
+            <trans-unit id="events.missing.event_end_time">
                 <source>events.missing.event_end_time</source>
                 <target>Wähle den End-Zeitpunkt für die Tag-der-offenen-Tür-Veranstaltung.</target>
             </trans-unit>
-            <trans-unit id="events.missing.rsvp_type" approved="no">
+            <trans-unit id="events.missing.rsvp_type">
                 <source>events.missing.rsvp_type</source>
                 <target>Wähle Antwort-Typ</target>
             </trans-unit>
-            <trans-unit id="events.event_end_time.label" approved="no">
+            <trans-unit id="events.event_end_time.label">
                 <source>events.event_end_time.label</source>
                 <target>End-Zeitpunkt</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.label" approved="no">
+            <trans-unit id="events.rsvp_type.label">
                 <source>events.rsvp_type.label</source>
                 <target>Antwort-Typ</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.need_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.need_to">
                 <source>events.rsvp_type.choice.need_to</source>
                 <target>Anmeldung erforderlich</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.nice_to" approved="no">
+            <trans-unit id="events.rsvp_type.choice.nice_to">
                 <source>events.rsvp_type.choice.nice_to</source>
                 <target>Anmeldung nicht erforderlich</target>
             </trans-unit>
-            <trans-unit id="events.rsvp_type.choice.sms_email" approved="no">
+            <trans-unit id="events.rsvp_type.choice.sms_email">
                 <source>events.rsvp_type.choice.sms_email</source>
                 <target>Anmeldung gerne per Email oder SMS</target>
             </trans-unit>
-            <trans-unit id="events.public_note.label" approved="no">
+            <trans-unit id="events.public_note.label">
                 <source>events.public_note.label</source>
                 <target>Wähle einen Text</target>
             </trans-unit>
-            <trans-unit id="events.choose.rsvp_type" approved="no">
+            <trans-unit id="events.choose.rsvp_type">
                 <source>events.choose.rsvp_type</source>
                 <target>Wähle Anmelde-Typ</target>
             </trans-unit>
-            <trans-unit id="open.house.label" approved="no">
+            <trans-unit id="open.house.label">
                 <source>open.house.label</source>
                 <target>Tag der offenen Tür</target>
             </trans-unit>
-            <trans-unit id="sa_search.zip_code.placeholder" approved="no">
+            <trans-unit id="sa_search.zip_code.placeholder">
                 <source>sa_search.zip_code.placeholder</source>
                 <target>Postleitzahl oder Stadt/Ort</target>
             </trans-unit>
-            <trans-unit id="advisor.locater_form.label" approved="no">
+            <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
                 <target>Gebe Deine Stadt/Ort oder Deine Postleitzahl an</target>
             </trans-unit>
             <trans-unit id="events.participants.comment.label" approved="no">
                 <source>events.participants.comment.label</source>
                 <target>Din kommentar</target>
+            </trans-unit>
+            <trans-unit id="no.open_house.events.near.you">
+                <source>no.open_house.events.near.you</source>
+                <target>Momentan gibt es keine Tag der offenen Tür Veranstaltungen in Ihrer Nähe.</target>
             </trans-unit>
         </body>
     </file>

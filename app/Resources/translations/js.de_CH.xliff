@@ -194,7 +194,7 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Sind Sie sicher, dass Sie diesen Beitrag löschen möchten?</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>Die E-Mail-Adresse "%email%" ist nicht registriert</target>
             </trans-unit>
@@ -318,63 +318,63 @@
                 <source>proceed</source>
                 <target>Weiter</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.shipping.method" approved="no">
+            <trans-unit id="checkout.choose.shipping.method">
                 <source>checkout.choose.shipping.method</source>
                 <target>Wählen Sie bitte eine Versandart.</target>
             </trans-unit>
-            <trans-unit id="checkout.choose.payment.method" approved="no">
+            <trans-unit id="checkout.choose.payment.method">
                 <source>checkout.choose.payment.method</source>
                 <target>Wählen Sie bitte eine Zahlungsart.</target>
             </trans-unit>
-            <trans-unit id="form.buy.choose.first" approved="no">
+            <trans-unit id="form.buy.choose.first">
                 <source>form.buy.choose.first</source>
                 <target>Wählen Sie bitte zunächst eine Größe und Farbe.</target>
             </trans-unit>
-            <trans-unit id="email.invalid" approved="no">
+            <trans-unit id="email.invalid">
                 <source>email.invalid</source>
                 <target>Ungültige E-Mail</target>
             </trans-unit>
-            <trans-unit id="email.repeat.invalid" approved="no">
+            <trans-unit id="email.repeat.invalid">
                 <source>email.repeat.invalid</source>
                 <target>E-Mail stimmt nicht überein</target>
             </trans-unit>
-            <trans-unit id="phone.invalid" approved="no">
+            <trans-unit id="phone.invalid">
                 <source>phone.invalid</source>
                 <target>Ungültige Telefonnummer. Sie darf nur Ziffern enthalten und muss aus mind. 8 Zeichen bestehen.</target>
             </trans-unit>
-            <trans-unit id="password.invalid.match" approved="no">
+            <trans-unit id="password.invalid.match">
                 <source>password.invalid.match</source>
                 <target>Die Passwortbestätigung muss dieselbe sein wie Ihr Passwort.</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
+            <trans-unit id="password.min.length">
                 <source>password.min.length</source>
                 <target>Das Passwort muss aus mind. 5 Zeichen bestehen</target>
             </trans-unit>
-            <trans-unit id="field.required" approved="no">
+            <trans-unit id="field.required">
                 <source>field.required</source>
                 <target>Alle Felder mit (*) müssen ausgefüllt werden.</target>
             </trans-unit>
-            <trans-unit id="approve.conditions.required" approved="no">
+            <trans-unit id="approve.conditions.required">
                 <source>approve.conditions.required</source>
                 <target>Sie müssen zunächst die AGB's von POMPdeLUX akzeptieren</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.title">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Zahlungsfenster wird geöffnet</target>
             </trans-unit>
-            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+            <trans-unit id="checkout.payment.progress.alert.message">
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Bitte warten, Zahlungsfenster wird geöffnet. Dies kann bis zu 30 Sekunden dauern. Falls mehr als 30 Sekunden vergehen, klicken Sie bitte auf die Schaltfläche Bezahlung abbrechen unten und versuchen es erneut.<br><br>Wir danken für Ihr Verständnis.<br><br><a href="%url%">» Bezahlung abbrechen</a>]]></target>
             </trans-unit>
-            <trans-unit id="more.product.info" approved="no">
+            <trans-unit id="more.product.info">
                 <source>more.product.info</source>
                 <target>Hier klicken für weitere Informationen über %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info" approved="no">
+            <trans-unit id="more.bundle.info">
                 <source>more.bundle.info</source>
                 <target>Hier klicken für weitere Informationen.</target>
             </trans-unit>
-            <trans-unit id="events.error.email.or.phone" approved="no">
+            <trans-unit id="events.error.email.or.phone">
                 <source>events.error.email.or.phone</source>
                 <target>E-Mail oder Telefon muss ausgefüllt werden.</target>
             </trans-unit>
@@ -382,19 +382,19 @@
                 <source>rma.product.not.filled.correctly</source>
                 <target>Beim Umtausch Ihrer Ware geben Sie bitte Größe und Farbe ein.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.address.block" approved="no">
+            <trans-unit id="checkout.confirm.address.block">
                 <source>checkout.confirm.address.block</source>
                 <target>Bitte bestätigen Sie, dass Ihre Adressangaben korrekt sind.</target>
             </trans-unit>
-            <trans-unit id="maps.choose.correct.location" approved="no">
+            <trans-unit id="maps.choose.correct.location">
                 <source>maps.choose.correct.location</source>
                 <target>Ihre Suche ergibt mehrere Ergebnisse. Wählen Sie die Stadt im Dropdown-Fenster unten.</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.title" approved="no">
+            <trans-unit id="checkout.confirm.mobile.title">
                 <source>checkout.confirm.mobile.title</source>
                 <target>Vigtigt</target>
             </trans-unit>
-            <trans-unit id="checkout.confirm.mobile.text" approved="no">
+            <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
                 <target><![CDATA[Verificér venligst at dit mobilnummer er korrekt.<br><br>Hvis det ikke er kan Post Danmark ikke komme i kontakt dig vedrørende forsendelsen.]]></target>
             </trans-unit>
@@ -409,6 +409,18 @@
             <trans-unit id="basket.latest.added">
                 <source>basket.latest.added</source>
                 <target>Soeben hinzugefügt</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.wishlist">
+                <source>product.added.to.wishlist</source>
+                <target>Diese Ware wurde der Shoppingliste hinzugefügt.</target>
+            </trans-unit>
+            <trans-unit id="require.login.label">
+                <source>require.login.label</source>
+                <target>LOGIN ERFORDERLICH</target>
+            </trans-unit>
+            <trans-unit id="wishlist.require.login.text">
+                <source>wishlist.require.login.text</source>
+                <target><![CDATA[Sie müssen angemeldet sein, um die Shoppingliste zu nutzen.<br><br><a href="%url%">» Hier einloggen / Anmelden</a><br><br>Bitte beachten: Wenn Sie eingeloggt sind, kommen Sie wieder auf diese Seite.]]></target>
             </trans-unit>
         </body>
     </file>

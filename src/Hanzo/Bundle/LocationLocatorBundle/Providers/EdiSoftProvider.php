@@ -41,7 +41,7 @@ class EdiSoftProvider extends BaseProvider
      *
      * @var integer
      */
-    protected $limit = 5;
+    protected $limit = 20;
 
     /**
      * webservice api test endpoint
@@ -62,7 +62,7 @@ class EdiSoftProvider extends BaseProvider
     /**
      * {@inheritDoc}
      */
-    public function findByAddress(array $address_parts = [], $limit = 5)
+    public function findByAddress(array $address_parts = [], $limit = 20)
     {
         $this->limit = $limit;
         $client = $this->getClient();
@@ -108,7 +108,7 @@ class EdiSoftProvider extends BaseProvider
     /**
      * {@inheritDoc}
      */
-    public function findByPostalCode($country_code, $postal_code, $limit = 5)
+    public function findByPostalCode($country_code, $postal_code, $limit = 20)
     {
         $this->limit = $limit;
         $client = $this->getClient();
@@ -139,7 +139,7 @@ class EdiSoftProvider extends BaseProvider
     /**
      * {@inheritDoc}
      */
-    public function findByLocation($latitude, $longitude, $country_code, $limit = 5)
+    public function findByLocation($latitude, $longitude, $country_code, $limit = 20)
     {
         $this->limit = $limit;
 

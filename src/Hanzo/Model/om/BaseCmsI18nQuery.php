@@ -30,6 +30,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery orderByIsRestricted($order = Criteria::ASC) Order by the is_restricted column
  * @method CmsI18nQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method CmsI18nQuery orderByOnMobile($order = Criteria::ASC) Order by the on_mobile column
+ * @method CmsI18nQuery orderByOnlyMobile($order = Criteria::ASC) Order by the only_mobile column
  *
  * @method CmsI18nQuery groupById() Group by the id column
  * @method CmsI18nQuery groupByLocale() Group by the locale column
@@ -41,6 +42,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery groupByIsRestricted() Group by the is_restricted column
  * @method CmsI18nQuery groupByIsActive() Group by the is_active column
  * @method CmsI18nQuery groupByOnMobile() Group by the on_mobile column
+ * @method CmsI18nQuery groupByOnlyMobile() Group by the only_mobile column
  *
  * @method CmsI18nQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CmsI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -63,6 +65,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18n findOneByIsRestricted(boolean $is_restricted) Return the first CmsI18n filtered by the is_restricted column
  * @method CmsI18n findOneByIsActive(boolean $is_active) Return the first CmsI18n filtered by the is_active column
  * @method CmsI18n findOneByOnMobile(boolean $on_mobile) Return the first CmsI18n filtered by the on_mobile column
+ * @method CmsI18n findOneByOnlyMobile(boolean $only_mobile) Return the first CmsI18n filtered by the only_mobile column
  *
  * @method array findById(int $id) Return CmsI18n objects filtered by the id column
  * @method array findByLocale(string $locale) Return CmsI18n objects filtered by the locale column
@@ -74,6 +77,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method array findByIsRestricted(boolean $is_restricted) Return CmsI18n objects filtered by the is_restricted column
  * @method array findByIsActive(boolean $is_active) Return CmsI18n objects filtered by the is_active column
  * @method array findByOnMobile(boolean $on_mobile) Return CmsI18n objects filtered by the on_mobile column
+ * @method array findByOnlyMobile(boolean $only_mobile) Return CmsI18n objects filtered by the only_mobile column
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {
@@ -167,7 +171,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active`, `on_mobile` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active`, `on_mobile`, `only_mobile` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -565,6 +569,33 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsI18nPeer::ON_MOBILE, $onMobile, $comparison);
+    }
+
+    /**
+     * Filter the query on the only_mobile column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByOnlyMobile(true); // WHERE only_mobile = true
+     * $query->filterByOnlyMobile('yes'); // WHERE only_mobile = true
+     * </code>
+     *
+     * @param     boolean|string $onlyMobile The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsI18nQuery The current query, for fluid interface
+     */
+    public function filterByOnlyMobile($onlyMobile = null, $comparison = null)
+    {
+        if (is_string($onlyMobile)) {
+            $onlyMobile = in_array(strtolower($onlyMobile), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CmsI18nPeer::ONLY_MOBILE, $onlyMobile, $comparison);
     }
 
     /**

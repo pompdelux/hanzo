@@ -2,14 +2,11 @@
 
 namespace Hanzo\Bundle\QuickOrderBundle\Controller;
 
-use Hanzo\Core\Tools;
-use Hanzo\Core\Hanzo;
-
-use Hanzo\Model\Products;
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\OrdersPeer;
-
 use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\ProductsQuery;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -35,6 +32,7 @@ class DefaultController extends CoreController
         $router       = $this->get('router');
         $products     = [];
         $deliveryDate = 0;
+        $productRange = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
@@ -62,13 +60,14 @@ class DefaultController extends CoreController
                 SELECT p.id, p.sku FROM products AS p
                 WHERE p.sku = (
                     SELECT pp.master FROM products AS pp
-                    WHERE pp.id = ".$line['products_id']."
+                    WHERE  pp.id = ".$line['products_id']."
+                    AND    pp.range = '".$productRange."'
                 )
+                AND p.range = '".$productRange."'
             ";
             $master = \Propel::getConnection()
                 ->query($sql)
-                ->fetch(\PDO::FETCH_OBJ)
-            ;
+                ->fetch(\PDO::FETCH_OBJ);
 
             $line['basket_image'] =
                 preg_replace('/[^a-z0-9]/i', '-', $master->sku) .
@@ -88,19 +87,12 @@ class DefaultController extends CoreController
 
         Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
-        $outOfStock = [];
-        if ($request->getSession()->has('missing_wishlist_products')) {
-            $outOfStock = $request->getSession()->get('missing_wishlist_products');
-            $request->getSession()->remove('missing_wishlist_products');
-        }
-
         return $this->render('QuickOrderBundle:Default:index.html.twig', [
             'embedded'        => false,
             'page_type'       => 'basket',
             'products'        => $products,
             'total'           => $order->getTotalPrice(true),
             'delivery_date'   => $deliveryDate,
-            'wishlist_misses' => $outOfStock,
         ]);
     }
 
@@ -114,12 +106,13 @@ class DefaultController extends CoreController
      */
     public function getSkuAction(Request $request)
     {
-        $max_rows = $request->query->get('max_rows', 12);
-        $name     = $request->query->get('name');
+        $maxRows = $request->query->get('max_rows', 12);
+        $name    = $request->query->get('name');
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
             ->filterByIsOutOfStock(false)
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()
@@ -129,9 +122,8 @@ class DefaultController extends CoreController
             ->endUse()
             ->groupBySku()
             ->orderBySku()
-            ->limit($max_rows)
-            ->find()
-        ;
+            ->limit($maxRows)
+            ->find();
 
         $result = [];
         if ($products->count()) {
@@ -151,118 +143,5 @@ class DefaultController extends CoreController
         }
 
         return $this->json_response([$this->get('translator')->trans('quickorder.no.products.found', [], 'quickorder')]);
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function loadWishListAction(Request $request)
-    {
-        $query = "
-            SELECT
-                w.customers_id,
-                wl.*,
-                p.size,
-                p.color,
-                p.master,
-                p.sku, (
-                SELECT
-                    products_i18n.title
-                FROM
-                    products_i18n
-                JOIN
-                    products ON (
-                        products_i18n.id = products.id
-                    )
-                WHERE
-                    products_i18n.locale = :locale
-                    AND
-                      products.sku = p.master
-            ) as title
-            FROM
-                wishlists_lines as wl
-            JOIN
-                products as p ON (
-                    p.id = wl.products_id
-                )
-            JOIN
-                wishlists as w ON (
-                  w.id = wl.wishlists_id
-                )
-            WHERE
-                wl.wishlists_id = :wishlists_id
-        ";
-
-        $con  = \Propel::getConnection();
-        $stmt = $con->prepare($query);
-        $stmt->execute([
-            ':locale'       => $request->getLocale(),
-            ':wishlists_id' => $request->request->get('q'),
-        ]);
-
-        $lines = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        if (0 === count($lines)) {
-            $request->getSession()->set('notice', 'wishlist.not.found');
-
-            return $this->redirect($this->generateUrl('QuickOrderBundle_homepage'));
-        }
-
-        $outOfStock = [];
-        $wishlistId = '';
-
-        /** @var \Hanzo\Model\WishlistsLines $line */
-        foreach ($lines as $line) {
-            $product = ProductsQuery::create()
-                ->findOneById($line['products_id']);
-
-            $product->setLocale($request->getLocale());
-            $product->setTitle($line['title']);
-
-            if (!$this->addToOrder($product, $line['quantity'])) {
-                $outOfStock[] = $line;
-            }
-
-            $wishlistId = $line['wishlists_id'];
-        }
-
-        if (count($outOfStock)) {
-            $request->getSession()->set('missing_wishlist_products', $outOfStock);
-        }
-
-        if ($wishlistId) {
-            $order = OrdersPeer::getCurrent();
-            $order->setAttribute('id', 'wishlist', $wishlistId);
-            $order->save();
-        }
-
-        return $this->redirect($this->generateUrl('QuickOrderBundle_homepage'));
-    }
-
-    /**
-     * @param Products $products
-     * @param int      $quantity
-     *
-     * @return bool
-     */
-    private function addToOrder(Products $products, $quantity = 1)
-    {
-        static $basket;
-
-        if (empty($basket)) {
-            $basket = $this->container->get('hanzo.basket');
-            $basket->setOrder(OrdersPeer::getCurrent());
-            $basket->flush();
-        }
-
-        try {
-            $basket->addProduct($products, $quantity);
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return true;
     }
 }

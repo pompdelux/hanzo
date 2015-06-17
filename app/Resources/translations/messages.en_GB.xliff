@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
-                <target>All products in this category is out of stock.</target>
+                <target>Unfortunately there are no products available in this category. Please remove one or more of your search criterias. If your search still does not show any results the category might be out of stock.</target>
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
@@ -186,7 +186,7 @@
                     <ul>
                         <li><b>Delivery</b> from 15,-</li>
                         <li><b>Delivery time</b> %expected_delivery_date%</li>
-                        <li><b>Exchange</b> Gratis</li>
+                        <li><b>Exchange</b> FREE EXCHANGE </li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -373,9 +373,13 @@ Read more about your cancellation rights in our <a href="/en_GB/home/customer-se
                 <source>faceted.reset.filter</source>
                 <target>» Reset filters</target>
             </trans-unit>
-            <trans-unit id="product.quantity.discount" approved="no">
+            <trans-unit id="product.quantity.discount">
                 <source>product.quantity.discount</source>
                 <target>Buy %span% items and save %discount% per item.</target>
+            </trans-unit>
+            <trans-unit id="add.product.to.wishlist">
+                <source>add.product.to.wishlist</source>
+                <target>Add to Shoppinglist</target>
             </trans-unit>
         </body>
     </file>

@@ -55,15 +55,18 @@
                                 </tr>
                             </tbody>
                         </table>
-                        {% if event.form_view is defined%}
-                            <h3 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h3>
+
+                        {% if event.form is defined %}
+                            <h2 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h2>
                             <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
-                            <form action="{{ path('events_my_events') }}" method="post" {{ form_enctype(event.form_view) }} class="create invite-form full-width">
-                                <div id="events" class="bottom-space">
-                                    {{ form_widget(event.form_view.event_id, {value : event.data.id}) }}
-                                    {{ form_rest(event.form_view) }}
-                                    {{ form_row(event.form_view._token) }}
-                                    <input class="button button-full-width" type="submit" value="{{ 'events.invite.participant.button'|trans({}, 'events') }}">
+                            <form action="{{ path('events_my_events') }}" method="post" {{ form_enctype(event.form) }} class="create invite-form full-width">
+                                <div id="events" class="grid_3 suffix_5 alpha omega bottom-space">
+                                    <div class="row">
+                                        {{ form_rest(event.form) }}
+                                    </div>
+                                    <div class="row">
+                                        <input class="button button-large" type="submit" value="{{ 'events.invite.participant.button'|trans({}, 'events') }}">
+                                    </div>
                                 </div>
                             </form>
                         {% else %}

@@ -32,10 +32,19 @@
 			}
 			.out-of-stock{
 				position: absolute;
-				bottom:0;
+				bottom:11px;
 				left:0;
 				text-indent: -999px;
 			}
+			.discount-badge {
+				position: absolute;
+				bottom:11px;
+				right:0;
+				text-indent: -999px;
+				height: 73px;
+				width: 73px;
+			}
+
 		}
 		&.look{
 			.buy-set{
@@ -85,7 +94,6 @@ html.touch .product-list .buy-set{display: inline-block;}
 	text-decoration: underline;
 }
 
-.body-category,
 .body-bycolour,
 // Hardcoded category landingpage pages.
 // TODO: not to do it.
@@ -121,4 +129,8 @@ html.touch .product-list .buy-set{display: inline-block;}
 .js-faceted-container label {
     margin-top: 0;
     margin-left: 5px;
+}
+
+.no-products-in-category {
+    padding-top: 10px;
 }

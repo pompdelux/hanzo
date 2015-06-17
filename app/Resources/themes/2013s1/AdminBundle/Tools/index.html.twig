@@ -22,7 +22,7 @@
     <br>
     <h2>Billeder</h2>
     <ul>
-        <li><a href="http://static.pompdelux.dk/trigger-image-import.php">Igangsæt billedeimport.</a></li>
+      <li><a href="{{ cdn }}trigger-image-import.php">Igangsæt billedeimport på {{ cdn }}</a></li>
     </ul>
     <p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
     <ul>
@@ -44,14 +44,16 @@
         <li><a href="{{ path('admin_orders_bulk_resync_sync') }}">Bulk gensend ordre</a></li>
         <li><a href="{{ path('admin_tools_dibs_tools') }}">Dibs værktøjer</a></li>
         <li><a href="{{ path('admin_tools_flush_wishlists') }}" rel="confirm" data-confirm-message="Er du helt sikker på du vil slette alle kunders shoppinglister ?">Tøm ønskelister</a></li>
+        <li><a href="{{ path('admin_tools_purge_product_range') }}" rel="confirm" data-confirm-message="Herinde skal du altså passe på hvad du laver!<br>- Nu er du advaret!">Slet kollektion</a></li>
+        <li><a href="{{ path('admin_tools_generate_product_mapping') }}" rel="confirm" data-confirm-message="Husk at:<br>- Stå i den danske database.<br>- Du skal ha' oprettet alle produkterne korrekt i .dk<br>- Ved nyt dump skal alle produktdatabaser pånær .dk nulstilles">Generer produkt mapping</a></li>
     </ul>
 
 
     <h2>Søgeindexering</h2>
-    <ul>
-        <li><a href="{{ path('admin_tools_faceted_search_indexer') }}" class="js-loading-spinner">Opdatér faceted søgnings indekset.</a></li>
-        <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkt- og kategorisøgning</a></li>
-    </ul>
+    <ol>
+        <li><a href="{{ path('admin_tools_search_index_overview') }}" class="js-loading-spinner">Ryd/Opdatér faceted søgnings indekset</a></li>
+        <li><a href="{{ path('admin_tools_search_index_update') }}" class="js-loading-spinner">Opdatér produkttekster fra XLIFF filer</a></li>
+    </ol>
 
 {% endblock %}
 

@@ -13,7 +13,10 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>F&uuml;r jeden Artikel den Sie umtauschen m&ouml;chten, w&auml;hlen Sie bitte eine Aktivit&auml;t und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen m&ouml;chten, erstellen Sie bitte einen R&uuml;cksendeschein per Bestellung. Ihre Umtauschwaren senden Sie nat&uuml;rlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den R&uuml;cksendeschein/die R&uuml;cksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem R&uuml;cksendeschein, welcher erstellt wird, wenn Sie auf „R&uuml;cksendeschein erstellen“ klicken.<br><br> Um sich den Schein anzeigen zu lassen, ben&ouml;tigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, k&ouml;nnen Sie es hier downloaden.<br />
+                    <p>F&uuml;r jeden Artikel den Sie umtauschen m&ouml;chten, w&auml;hlen Sie bitte eine Aktivit&auml;t und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen m&ouml;chten, erstellen Sie bitte einen R&uuml;cksendeschein per Bestellung. Ihre Umtauschwaren senden Sie nat&uuml;rlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den R&uuml;cksendeschein/die R&uuml;cksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem R&uuml;cksendeschein, welcher erstellt wird, wenn Sie auf „R&uuml;cksendeschein erstellen“ klicken.<br><br><h2 style="color:#A10000">Sollten Sie Probleme beim Ausfüllen des Rücksendescheins haben, können Sie einen alternativen Rücksendeschein <br>
+<a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_DE.pdf">» hier</a> ausdrucken und handschriftlich ausfüllen.<br>
+Das Rücksendeetikett können Sie wie gewohnt hier<a href="https://www.pompdelux.com/de_DE/login"><i class="sprite returnlabel"></i></a>ausdrucken.</h2>
+<br><br> Um sich den Schein anzeigen zu lassen, ben&ouml;tigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, k&ouml;nnen Sie es hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
@@ -119,7 +122,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bei POMPdeLUX k&ouml;nnen Sie ganz einfach Ihre Waren umtauschen oder zur&uuml;cksenden. Am besten schicken Sie einfach den ausgef&uuml;llten R&uuml;cksendeschein an uns zur&uuml;ck. Es w&auml;re uns eine gro&szlig;e Hilfe, wenn Sie die Waren in der Originalverpackung und mit den H&auml;ngeschildern etc. zur&uuml;ckschicken w&uuml;rden.<br><br><em>Bitte beachten: Auf Meine Seite finden Sie das R&uuml;cksendeetikett. Benutzen Sie bitte unbedingt dieses, damit Sie die Ware portofrei zur&uuml;cksenden k&ouml;nnen. Die R&uuml;cksendung ist f&uuml;r Sie kostenlos.</em><br><br>Da Ihre Umtauschwaren weiterverkauft werden sollten, w&auml;re es eine gro&szlig;e Hilfe, wenn Sie die Artikel in der Originalverpackung H&auml;ngeschildern usw. zur&uuml;ckschicken k&ouml;nnten.<br><br>W&uuml;nschen Sie in eine andere Gr&ouml;&szlig;e, Farbe oder einen anderen Artikel umzutauschen, ist der Versand ebenfalls kostenfrei. Der Preis der Waren darf jedoch nicht den Preis der umzutauschenden Artikel &uuml;berschreiten.<br><br>Sollte ein Artikel den Sie umtauschen m&ouml;chten, ausverkauft sein, geben wir Ihnen Ihr Geld zur&uuml;ck. Sollten Sie mit einer Geldkarte bezahlt haben, wird der zu erstattende Betrag auf die Karte zur&uuml;ckbezahlt, welche Sie beim Kauf der Waren angegeben haben.<br><br><em>Wenn Sie mit PayPal bezahlt haben, wird der Betrag auf Ihr PayPal Konto zur&uuml;ckgezahlt.</em><br><br>Haben Sie per PayByBill oder Lastschrift bezahlt, kontaktieren Sie bitte GFG Finanz GmbH unter Tel.: 06131-9075259.<br><br><b>Bitte beachten Sie:</b> Auch wenn Ihnen ein Betrag gutgeschrieben wird, bezahlen Sie bitte trotzdem Ihre ausstehende Rechnung innerhalb von 30 Tagen.<br><br>F&uuml;r weitere Informationen gehen Sie auf: <a href="/de_DE/" target="_blank">www.pompdelux.de</a></p>]]></target>
+                <target><![CDATA[<p>Bei POMPdeLUX k&ouml;nnen Sie ganz einfach Ihre Waren umtauschen oder zur&uuml;cksenden. Am besten schicken Sie einfach den ausgef&uuml;llten R&uuml;cksendeschein an uns zur&uuml;ck. Es w&auml;re uns eine gro&szlig;e Hilfe, wenn Sie die Waren in der Originalverpackung und mit den H&auml;ngeschildern etc. zur&uuml;ckschicken w&uuml;rden.<br><br><em>Bitte beachten: Auf Meine Seite finden Sie das R&uuml;cksendeetikett. Benutzen Sie bitte unbedingt dieses, damit Sie die Ware portofrei zur&uuml;cksenden k&ouml;nnen. Die R&uuml;cksendung ist f&uuml;r Sie kostenlos.</em><br><br>Da Ihre Umtauschwaren weiterverkauft werden sollten, w&auml;re es eine gro&szlig;e Hilfe, wenn Sie die Artikel in der Originalverpackung H&auml;ngeschildern usw. zur&uuml;ckschicken k&ouml;nnten.<br><br>W&uuml;nschen Sie in eine andere Gr&ouml;&szlig;e, Farbe oder einen anderen Artikel umzutauschen, ist der Versand ebenfalls kostenfrei. Der Preis der Waren darf jedoch nicht den Preis der umzutauschenden Artikel &uuml;berschreiten. Bitte beachten Sie, dass die Ware hiermit nicht reserviert ist. <br><br>Sollte ein Artikel den Sie umtauschen m&ouml;chten, ausverkauft sein, geben wir Ihnen Ihr Geld zur&uuml;ck. Sollten Sie mit einer Geldkarte bezahlt haben, wird der zu erstattende Betrag auf die Karte zur&uuml;ckbezahlt, welche Sie beim Kauf der Waren angegeben haben.<br><br><em>Wenn Sie mit PayPal bezahlt haben, wird der Betrag auf Ihr PayPal Konto zur&uuml;ckgezahlt.</em><br><br>Haben Sie per PayByBill oder Lastschrift bezahlt, kontaktieren Sie bitte GFG Finanz GmbH unter Tel.: 06131-9075259.<br><br><b>Bitte beachten Sie:</b> Auch wenn Ihnen ein Betrag gutgeschrieben wird, bezahlen Sie bitte trotzdem Ihre ausstehende Rechnung innerhalb von 30 Tagen.<br><br>F&uuml;r weitere Informationen gehen Sie auf: <a href="/de_DE/" target="_blank">www.pompdelux.de</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
@@ -152,6 +155,69 @@
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
                 <target><![CDATA[Farbe]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Name*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-Auftragsnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Name der Ware/Farbe/Grösse (siehe Rechnung)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Beschreibung der Reklamation*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Laden Sie Bilder der Reklamation hoch:<br>(Max. 5 Bilder von Gesamtgröße 10MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
+              <target>Telefonnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
+              <target>E-Mail*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Reklamationsformular senden</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Pflichtfelder</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fehler bei der hochgeladenen Datei.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Füllen Sie bitte dieses Feld aus.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Fehlende Daten.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Ihr Reklamationsformular wurde nun gesendet und wir geben Ihnen innerhalb weniger Tage eine Rückmeldung. </p>
+<p>Sollten Sie Fragen haben, kontaktieren Sie bitte unseren Kundenservice unter Tel: 040-35715072.</p>]]>
+              </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Bitte beachten Sie, dass die Ware hiermit nicht reserviert ist.</target>
             </trans-unit>
         </body>
     </file>

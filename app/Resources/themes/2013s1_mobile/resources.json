@@ -1,5 +1,6 @@
 {
     "mobile_css": [
+        "web/fx/css/font-awesome.css",
         "web/fx/css/jquery-ui.css",
         "web/fx/scripts/fullcalendar/fullcalendar.css",
         "web/fx/css/colorbox/theme4/colorbox.css",
@@ -40,6 +41,9 @@
         "web/fx/scripts/events.js",
         "web/fx/scripts/maps.js",
         "web/fx/scripts/faq.js",
+        "web/fx/scripts/purl/purl.js",
+        "web/fx/scripts/filters.js",
+        "web/fx/2013s1_mobile/scripts/category.js",
         "web/fx/2013s1_mobile/scripts/frontpage.js",
         "web/fx/2013s1_mobile/scripts/colorbox.js",
         "web/fx/2013s1_mobile/scripts/jquery.hammer.js",
@@ -52,8 +56,11 @@
         "web/fx/scripts/newsletter.js",
         "web/fx/scripts/events.js",
         "web/fx/2013s1_mobile/scripts/checkout.js",
+        "web/fx/scripts/mailplatform.js",
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
-        "web/fx/scripts/App.WishlistBuilder.js"
+        "web/fx/scripts/App.WishlistBuilder.js",
+        "web/fx/scripts/App.WishlistMailer.js",
+        "web/fx/scripts/rma.js"
     ]
 }

@@ -1,0 +1,126 @@
+server {
+  listen 80;
+
+  server_name pdl.hf c.pdl.hf admin.pdl.hf www.pdl.hf;
+  root /var/www/pompdelux/web/;
+
+  error_log /var/www/logs/error.log;
+  access_log /var/www/logs/access.log;
+
+  location / {
+    index app_dev.php;
+    try_files $uri @rewriteapp;
+  }
+
+  location @rewriteapp {
+    rewrite ^(.*)$ /app_dev.php/$1 last;
+  }
+
+  location ~ \.php(/|$) {
+    include fastcgi_params;
+    fastcgi_pass   unix:/tmp/php-pompdelux.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_param  HTTPS              off;
+  }
+}
+
+server {
+  listen 443;
+
+  server_name pdl.hf c.pdl.hf www.pdl.hf;
+  root /var/www/pompdelux/web/;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/server.crt;
+  ssl_certificate_key /etc/nginx/ssl/server.key;
+
+  error_log /var/www/logs/error.log;
+  access_log /var/www/logs/access.log;
+
+  location / {
+    index app_dev.php;
+    try_files $uri @rewriteapp;
+  }
+
+  location @rewriteapp {
+    rewrite ^(.*)$ /app_dev.php/$1 last;
+  }
+
+  location ~ \.php(/|$) {
+    include fastcgi_params;
+    fastcgi_pass   unix:/tmp/php-pompdelux.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_param  HTTPS              on;
+  }
+}
+
+server {
+  listen 80;
+
+  server_name cdn.pdl.hf static.pompdelux.hf;
+  root /var/www/pompdelux/web/;
+
+  error_log /var/www/logs/error.log;
+  access_log /var/www/logs/access.log;
+
+  error_page   404 = /404.php;
+
+  location ~ \.php(/|$) {
+    include fastcgi_params;
+    fastcgi_pass   unix:/tmp/php-pompdelux.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_param  HTTPS              off;
+  }
+}
+
+server {
+  listen 443;
+
+  server_name cdn.pdl.hf static.pompdelux.hf;
+  root /var/www/pompdelux/web/;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/server.crt;
+  ssl_certificate_key /etc/nginx/ssl/server.key;
+
+  error_log /var/www/logs/error.log;
+  access_log /var/www/logs/access.log;
+
+  error_page   404 = /404.php;
+
+  location ~ \.php(/|$) {
+    include fastcgi_params;
+    fastcgi_pass   unix:/tmp/php-pompdelux.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_param  HTTPS              on;
+  }
+}
+
+server {
+  listen 80;
+
+  server_name mya.pompdelux.hf;
+
+  location /phpmyadmin {
+    root /usr/share/;
+    index index.php index.html index.htm;
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+      root /usr/share/;
+      include fastcgi_params;
+      fastcgi_pass   unix:/tmp/php-pompdelux.sock;
+      fastcgi_split_path_info ^(.+\.php)(/.*)$;
+      fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+      fastcgi_param  HTTPS              off;
+    }
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+      root /usr/share/;
+    }
+  }
+  location /phpMyAdmin {
+    rewrite ^/* /phpmyadmin last;
+  }
+}
