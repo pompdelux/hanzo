@@ -352,11 +352,11 @@ class ToolsController extends CoreController
             if ($request->query->get('start')) {
                 $start = date('Y-m-d', strtotime($request->query->get('start')));
                 $end   = date('Y-m-d', strtotime($request->query->get('end')));
-                $timeRange = sprintf(" where event_date >= '%s 00:00:00' AND event_date <= '%s 23:59:59'", $start, $end);
+                $timeRange = sprintf(" WHERE event_date >= '%s 00:00:00' AND event_date <= '%s 23:59:59'", $start, $end);
             }
 
             $con    = \Propel::getConnection();
-            $query  = "UPDATE events SET is_open = 0".$timeRange.' AND is_open = 1';
+            $query  = "UPDATE events SET is_open = 0".$timeRange." AND is_open = 1";
             $result = $con->query($query);
 
             $data = ['msg' => sprintf('Lukkede %s arrangementer', $result->rowCount())];
