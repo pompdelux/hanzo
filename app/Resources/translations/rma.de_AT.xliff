@@ -181,7 +181,7 @@ Bei Zahlung per Rechnung wenden Sie sich bitte an POMPdeLUX: 01/5350375. <br><br
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Name der Ware (siehe Rechnung)*</target>
+              <target>Name der Ware/Farbe/Grösse (siehe Rechnung)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>
