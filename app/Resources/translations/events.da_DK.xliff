@@ -498,6 +498,10 @@
                 <source>advisor.locater_form.label</source>
                 <target>Indtast din by eller dit postnummer</target>
             </trans-unit>
+            <trans-unit id="events.participants.comment.label" approved="no">
+                <source>events.participants.comment.label</source>
+                <target>Din kommentar</target>
+            </trans-unit>
             <trans-unit id="no.open_house.events.near.you">
                 <source>no.open_house.events.near.you</source>
                 <target>Der er i øjeblikket ingen Åbent Hus arrangementer i nærheden af hvor du bor.</target>
