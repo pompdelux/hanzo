@@ -3310,24 +3310,28 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   width: 31px;
 }
 
-.cycle-slideshow .cycle-pager {
+body .cycle-slideshow, body.body-pages .cycle-slideshow {
+  position: relative;
+  display: block;
+}
+body .cycle-slideshow .cycle-pager, body.body-pages .cycle-slideshow .cycle-pager {
   padding-top: 4px;
   text-align: center;
 }
-.cycle-slideshow .cycle-pager span {
+body .cycle-slideshow .cycle-pager span, body.body-pages .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-.cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
+body .cycle-slideshow .cycle-pager span.cycle-pager-active, body .cycle-slideshow .cycle-pager span:hover, body.body-pages .cycle-slideshow .cycle-pager span.cycle-pager-active, body.body-pages .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-.cycle-slideshow .cycle-slide {
+body .cycle-slideshow .cycle-slide, body.body-pages .cycle-slideshow .cycle-slide {
   right: 0;
   line-height: 0;
 }
-.cycle-slideshow .cycle-slide img {
+body .cycle-slideshow .cycle-slide img, body.body-pages .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
 
@@ -3589,9 +3593,6 @@ div.sub-menu {
 
 .body-pages article div {
   display: table;
-}
-.body-pages article div > div:nth-child(1) {
-  display: table-footer-group;
 }
 .body-pages article div > div:nth-child(1) h2 {
   margin-top: 10px;
