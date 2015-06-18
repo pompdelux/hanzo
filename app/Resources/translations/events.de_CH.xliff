@@ -494,6 +494,10 @@
                 <source>advisor.locater_form.label</source>
                 <target>Gebe Deine Stadt/Ort oder Deine Postleitzahl an</target>
             </trans-unit>
+            <trans-unit id="events.participants.comment.label" approved="no">
+                <source>events.participants.comment.label</source>
+                <target>Din kommentar</target>
+            </trans-unit>
             <trans-unit id="no.open_house.events.near.you">
                 <source>no.open_house.events.near.you</source>
                 <target>Momentan gibt es keine Tag der offenen Tür Veranstaltungen in Ihrer Nähe.</target>

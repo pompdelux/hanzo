@@ -105,7 +105,7 @@ var account = (function ($) {
             var $input = $('input[name="phone"]', $form);
             if ($input.val()) {
                 // trigger loading box
-                dialoug.loading('form.nno input[type="submit"]', 'søger efter adresse...');
+                dialoug.loading('form.nno input[type="submit"]', Translator.trans('please.wait'));
                 // fetch data
                 $.getJSON(this.action + '/' + $input.val(), function (result) {
                     if (result.status) {

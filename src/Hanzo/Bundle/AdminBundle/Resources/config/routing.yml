@@ -860,6 +860,11 @@ admin_tools_generate_product_mapping:
     defaults:
         _controller: AdminBundle:Tools:generateProductMapping
 
+admin_tools_events_close:
+    pattern: /admin/tools/events/close
+    defaults:
+        _controller: AdminBundle:Tools:eventsClose
+
 # Image Categories Sort
 admin_product_image_category_add:
     pattern:  /admin/products/add-image-to-category/

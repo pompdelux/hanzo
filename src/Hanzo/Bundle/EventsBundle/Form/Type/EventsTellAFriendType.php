@@ -14,6 +14,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class EventsTellAFriendType
+ *
+ * @package Hanzo\Bundle\EventsBundle\Form\Type
+ */
 class EventsTellAFriendType extends AbstractType
 {
     /**
@@ -41,10 +46,10 @@ class EventsTellAFriendType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class'         => 'Hanzo\Model\EventsParticipants',
             'translation_domain' => 'events',
-        ));
+        ]);
     }
 
     /**
