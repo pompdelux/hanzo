@@ -136,12 +136,13 @@ class EventsController extends CoreController
     /**
      * @param Request $request
      * @param int     $id
+     * @param string  $recreate
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function createAction(Request $request, $id)
+    public function createAction(Request $request, $id, $recreate)
     {
         if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_CONSULTANT") or hasRole("ROLE_ADMIN")'))) {
             return $this->redirect($this->generateUrl('login', ['_locale' => $request->getLocale()]));
@@ -153,11 +154,24 @@ class EventsController extends CoreController
         if ($id) {
             $event = EventsQuery::create()->findPK($id);
 
-            // no editing old events
-            if ($event->getEventDate('U') < time()) {
-                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
+            /**
+             * Do not allow editing of old events unless "recreate" is set
+             * Then we reuse an existing event and change the event date to default
+             */
+            if (!is_null($recreate)) {
+                $event = $event->copy(); // Shallow copy, we ignore participants
+                $event->setEventDate(null);
+                $event->setEventEndTime(null);
+                $event->setCode(null);
+                // Set id to null so that when the form is posted we don't hit the code in the else
+                $id = null;
+                $this->get('session')->getFlashBag()->add('notice', 'event.recreating');
+            } else {
+                if ($event->getEventDate('U') < time()) {
+                    $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.edit');
 
-                return $this->redirect($this->generateUrl('events_index'));
+                    return $this->redirect($this->generateUrl('events_index'));
+                }
             }
         } else {
             $event = new Events();
