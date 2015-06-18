@@ -335,6 +335,41 @@ class ToolsController extends CoreController
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 
+
+    /**
+     * eventsCloseAction
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function eventsCloseAction(Request $request)
+    {
+        if ($request->query->get('run')) {
+            $timeRange = '';
+
+            if ($request->query->get('start')) {
+                $start = date('Y-m-d', strtotime($request->query->get('start')));
+                $end   = date('Y-m-d', strtotime($request->query->get('end')));
+                $timeRange = sprintf(" WHERE event_date >= '%s 00:00:00' AND event_date <= '%s 23:59:59'", $start, $end);
+            }
+
+            $con    = \Propel::getConnection();
+            $query  = "UPDATE events SET is_open = 0".$timeRange." AND is_open = 1";
+            $result = $con->query($query);
+
+            $data = ['msg' => sprintf('Lukkede %s arrangementer', $result->rowCount())];
+
+            return $this->json_response($data);
+        }
+
+        return $this->render('AdminBundle:Tools:eventsClose.html.twig', [
+            'start' => date('d-m-Y', strtotime("-1 Year")),
+            'end'   => date('d-m-Y'),
+        ]);
+    }
+
     /**
      * Queues a job in beanstalk for the search-index
      *
