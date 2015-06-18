@@ -200,7 +200,7 @@ div.sub-menu {
     article div {
         display: table;
         > div:nth-child(1) {
-            display: table-footer-group;
+//            display: table-footer-group; // This breaks slideshow - way to general
             h2 {
                 margin-top: 10px;
             }
