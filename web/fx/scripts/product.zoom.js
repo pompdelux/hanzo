@@ -33,7 +33,7 @@ var productZoom = (function ($) {
     /**
      * Enable zoom
      */
-    function enableZoom() {
+    function enableZoom() {
         if (isMobile == true || Modernizr.touch) {
             return;
         }
