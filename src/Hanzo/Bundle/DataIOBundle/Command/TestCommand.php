@@ -52,19 +52,63 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $builder = $this->getContainer()->get('hanzo_search.product.index_builder');
-        $builder->build();
-
-        return;
+        $api = $this->getContainer()->get('newsletterapi');
         $email = 'hf+mailplatform131@bellcom.dk';
         $list_id = 2002;
-        $extraData = [
-            'name'   => 'My name',
-            'phone'  => 12345678,
-            'mobile' => 87654321,
-            'city'   => 'My city',
-            'confirm_language' => 'DK',
-        ];
+
+        $response = $api->subscribe($email, $list_id);
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+
+        $response = $api->unsubscribe($email, $list_id, ['language' => 'DK']);
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response, 1)); // hf@bellcom.dk debugging
+        return;
+
+        // Test setting replyto
+/*
+ *         try {
+ *             $mail = $this->getContainer->get('mail_manager');
+ *             $mail->setTo('hf+claimstest@bellcom.dk', 'Claims');
+ *
+ *             $sender       = 'hf+sender@bellcom.dk';
+ *             $name         = 'Mr. Hest';
+ *             $mail->setReplyTo($sender, $name);
+ *
+ *             $data['name']          = 'My name';
+ *             $data['order_number']  = '127';
+ *             $data['product_info']  = 'Info?';
+ *             $data['contact']       = 'email';
+ *             $data['contact_value'] = 'hf@bellcom.dk';
+ *             $data['description']   = 'Description';
+ *
+ *             $mail->setMessage('rma.claims', [
+ *                 'data' => $json->data,
+ *                 'files' => [],
+ *             ]);
+ *
+ *             $mail->send();
+ *
+ *             $response['msg'] = $translator->trans('rma.claims.success', [], 'rma');
+ *         } catch (\Exception $e) {
+ *             error_log(__LINE__.':'.__FILE__.' '.$e->getMessage()); // hf@bellcom.dk debugging
+ *         }
+ */
+
+        /*
+         * $builder = $this->getContainer()->get('hanzo_search.product.index_builder');
+         * $builder->build();
+         */
+
+        /*
+         * $email = 'hf+mailplatform131@bellcom.dk';
+         * $list_id = 2002;
+         * $extraData = [
+         *     'name'   => 'My name',
+         *     'phone'  => 12345678,
+         *     'mobile' => 87654321,
+         *     'city'   => 'My city',
+         *     'confirm_language' => 'DK',
+         * ];
+         */
 
         // $api = $this->getContainer()->get('newsletterapi');
         // $response = $api->getAllLists($email);

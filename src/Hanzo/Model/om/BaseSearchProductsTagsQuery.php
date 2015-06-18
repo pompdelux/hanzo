@@ -24,12 +24,14 @@ use Hanzo\Model\SearchProductsTagsQuery;
  * @method SearchProductsTagsQuery orderByMasterProductsId($order = Criteria::ASC) Order by the master_products_id column
  * @method SearchProductsTagsQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method SearchProductsTagsQuery orderByToken($order = Criteria::ASC) Order by the token column
+ * @method SearchProductsTagsQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method SearchProductsTagsQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  *
  * @method SearchProductsTagsQuery groupById() Group by the id column
  * @method SearchProductsTagsQuery groupByMasterProductsId() Group by the master_products_id column
  * @method SearchProductsTagsQuery groupByProductsId() Group by the products_id column
  * @method SearchProductsTagsQuery groupByToken() Group by the token column
+ * @method SearchProductsTagsQuery groupByType() Group by the type column
  * @method SearchProductsTagsQuery groupByLocale() Group by the locale column
  *
  * @method SearchProductsTagsQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -50,12 +52,14 @@ use Hanzo\Model\SearchProductsTagsQuery;
  * @method SearchProductsTags findOneByMasterProductsId(int $master_products_id) Return the first SearchProductsTags filtered by the master_products_id column
  * @method SearchProductsTags findOneByProductsId(int $products_id) Return the first SearchProductsTags filtered by the products_id column
  * @method SearchProductsTags findOneByToken(string $token) Return the first SearchProductsTags filtered by the token column
+ * @method SearchProductsTags findOneByType(string $type) Return the first SearchProductsTags filtered by the type column
  * @method SearchProductsTags findOneByLocale(string $locale) Return the first SearchProductsTags filtered by the locale column
  *
  * @method array findById(int $id) Return SearchProductsTags objects filtered by the id column
  * @method array findByMasterProductsId(int $master_products_id) Return SearchProductsTags objects filtered by the master_products_id column
  * @method array findByProductsId(int $products_id) Return SearchProductsTags objects filtered by the products_id column
  * @method array findByToken(string $token) Return SearchProductsTags objects filtered by the token column
+ * @method array findByType(string $type) Return SearchProductsTags objects filtered by the type column
  * @method array findByLocale(string $locale) Return SearchProductsTags objects filtered by the locale column
  */
 abstract class BaseSearchProductsTagsQuery extends ModelCriteria
@@ -163,7 +167,7 @@ abstract class BaseSearchProductsTagsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `master_products_id`, `products_id`, `token`, `locale` FROM `search_products_tags` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `master_products_id`, `products_id`, `token`, `type`, `locale` FROM `search_products_tags` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -409,6 +413,35 @@ abstract class BaseSearchProductsTagsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(SearchProductsTagsPeer::TOKEN, $token, $comparison);
+    }
+
+    /**
+     * Filter the query on the type column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
+     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $type The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return SearchProductsTagsQuery The current query, for fluid interface
+     */
+    public function filterByType($type = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($type)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $type)) {
+                $type = str_replace('*', '%', $type);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(SearchProductsTagsPeer::TYPE, $type, $comparison);
     }
 
     /**

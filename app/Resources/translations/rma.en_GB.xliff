@@ -122,7 +122,7 @@
                 <target><![CDATA[<p>At POMPdeLUX it is easy to exchange or return items. The easiest way to do this is to fill in this form and return it with the item/s.<br><br>
 It is important that the item is returned with tags and in the same condition that you received it in if you wish to make an exchange for a similar product or receive a refund of the full amount. <br><br>
 <b>Returns, Exchanges, Complaints</b><br>
-If you wish to return an item, you must pay for shipping costs associated with the return of the goods. We will however refund the postage charges for parcels sent with standard priority through the national post service. <br><br>If you wish to make an exchange for another size, colour, or different product altogether, the costs associated with the return of the item are free provided you use our prepaid return label. Please note that it is only possible to exchange for another item that does not cost more than the original item. Please note that the item will not be reserved. <br><br>
+If you wish to return an item, you must pay for shipping costs associated with the return of the goods. We will however refund the postage charges for parcels sent with standard priority through the national post service. <br><br>If you wish to make an exchange for another size, colour, different product altogether, the costs of return shipping is naturally free and we will refund the postage charges for parcels sent with standard priority through the national post service. Please note that it is only possible to exchange for another item that does not cost more than the original item. Please note that the item will not be reserved. <br><br>
 If you wish to return a defective or incorrect item, the return shipping costs will also be refunded as described above. <br><br>
 Refund of Payment
 If you paid by card then your refund will be returned to the card you used when ordering.<br><br>
@@ -159,6 +159,69 @@ For further information, please visit: <a href="/en_GB/" target="_blank">www.pom
             <trans-unit id="rma.slip.color">
                 <source>rma.slip.color</source>
                 <target><![CDATA[Colour]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Name*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-order number*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Name of item/colour/size (can be found on the invoice)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Details of complaint*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Upload photos of the complaint<br>(maximum 5 photos totalling 10 MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
+              <target>Telephone number*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
+              <target>E-mail*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Submit complaint form</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Must be filled out</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Error with uploaded file.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Please fill out this field.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Missing data.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Your complaint form has now been submitted and within a few days we will come back to you with a response.</p>
+<p>If you have any further questions, please do not hesitate to contact Customer Service on telephone +45 8736 1000.</p>]]>
+              </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Please note that the item will not be reserved.</target>
             </trans-unit>
         </body>
     </file>

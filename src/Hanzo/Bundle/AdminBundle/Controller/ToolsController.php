@@ -25,7 +25,7 @@ class ToolsController extends CoreController
     public function indexAction(Request $request)
     {
         return $this->render('AdminBundle:Tools:index.html.twig', [
-            'database' => $request->getSession()->get('database')
+            'database' => $request->getSession()->get('database'),
         ]);
     }
 
@@ -105,26 +105,31 @@ class ToolsController extends CoreController
     }
 
     /**
-     * Build product search index
-     *
      * @param Request $request
      *
-     * @return array
-     *
-     * @Template("AdminBundle:Tools:productSearchIndexer.html.twig")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function buildProductSearchIndexAction(Request $request)
+    public function searchIndexAction(Request $request)
     {
-        if ($request->query->get('run')) {
-            $builder = $this->get('hanzo_search.product.index_builder');
-            $builder->build();
+        return $this->render('AdminBundle:Tools:productSearchIndexer.html.twig', [
+            'database' => $request->getSession()->get('database'),
+        ]);
+    }
 
-            $request->getSession()->getFlashBag()->add('notice', 'Søgeindekset er nu opdateret.');
+    /**
+     * Performs action on search product tag index
+     * - Adds job to Beanstalk
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function searchIndexPerformAction(Request $request)
+    {
+        $queueId = $this->queueBeanstalkIndexJob($request);
 
-            return $this->redirect($this->generateUrl($request->get('_route')));
-        }
+        $request->getSession()->getFlashBag()->add('notice', 'Job til opdatering af indeks er nu lagt i kø med id "'.$queueId.'".');
 
-        return ['database' => $request->getSession()->get('database')];
+        return $this->redirect($this->generateUrl('admin_tools_search_index_overview'));
     }
 
     /**
@@ -234,21 +239,6 @@ class ToolsController extends CoreController
     }
 
     /**
-     * clearSearchIndexAction
-     * @param Request $request
-     * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function clearSearchIndexAction(Request $request)
-    {
-        $this->container->get('hanzo_search.product.index_builder')->clear();
-
-        $request->getSession()->getFlashBag()->add('notice', 'Søgeindexer opdateret for produkter og kategorier.');
-
-        return $this->redirect($this->generateUrl('admin_tools'));
-    }
-
-    /**
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -261,46 +251,6 @@ class ToolsController extends CoreController
         $request->getSession()->getFlashBag()->add('notice', 'Alle shoppinglister er nu tømt.');
 
         return $this->redirect($this->generateUrl('admin_tools'));
-    }
-
-    /**
-     * @param array $return
-     * @param array $ids
-     *
-     * @return mixed
-     * @throws \Exception
-     * @throws \PropelException
-     */
-    protected function fixTransactionId($return, $ids)
-    {
-        $api = $this->get('payment.dibsapi');
-
-        foreach ($ids as $id => $item) {
-            $order = OrdersQuery::create()->findOneById($id);
-
-            if (!$order) {
-                $return['message'] = 'Ordren #'.$id.' findes altså ikke...';
-                continue;
-            }
-
-            $result = $api->call()->transinfo($order);
-
-            if (isset($result->data['transact'])) {
-                $order->setAttribute('transact', 'payment', $result->data['transact']);
-                $order->save();
-                $return['data']['fixed_message'] = 'Fiksede ordre:';
-                $return['data']['fixed'][] = $id.' -> '.$result->data['transact'];
-            } else {
-                $missing[$id] = $result->data;
-            }
-        }
-
-        if (isset($missing) && count($missing)) {
-            $return['data']['missing_message'] = 'Gah, der var nogen ordre der ikke kunne fikses:';
-            $return['data']['missing'] = $missing;
-        }
-
-        return $return;
     }
 
     /**
@@ -377,11 +327,82 @@ class ToolsController extends CoreController
             $data[strtolower($product['Sku'])] = $product['Id'];
         }
 
-        $data = "<?php /* generated: " . date('Y-m-d H:i:s') . " */\n\$products_id_map = " . var_export($data, 1) .";\n";
+        $data = "<?php /* generated: ".date('Y-m-d H:i:s')." */\n\$products_id_map = ".var_export($data, 1).";\n";
         file_put_contents($file, $data);
 
         $this->container->get('session')->getFlashBag()->set('notice', 'Produkt mapping filen er nu blevet opdateret.');
 
         return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    /**
+     * Queues a job in beanstalk for the search-index
+     *
+     * @param Request $request
+     *
+     * @return int Job id
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function queueBeanstalkIndexJob(Request $request)
+    {
+        $pheanstalkQueue = $this->get('leezy.pheanstalk');
+
+        $options = [
+            'action' => $request->query->get('action'),
+            'indexes' => [],
+        ];
+
+        if ($request->query->has('index')) {
+            $index = $request->query->get('index');
+
+            $options['indexes'][] = $index;
+        }
+
+        $data = json_encode($options);
+
+        $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY;
+        $delay    = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY;
+
+        return $pheanstalkQueue->putInTube('search-index', $data, $priority, $delay);
+    }
+
+    /**
+     * @param array $return
+     * @param array $ids
+     *
+     * @return mixed
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    protected function fixTransactionId($return, $ids)
+    {
+        $api = $this->get('payment.dibsapi');
+
+        foreach ($ids as $id => $item) {
+            $order = OrdersQuery::create()->findOneById($id);
+
+            if (!$order) {
+                $return['message'] = 'Ordren #'.$id.' findes altså ikke...';
+                continue;
+            }
+
+            $result = $api->call()->transinfo($order);
+
+            if (isset($result->data['transact'])) {
+                $order->setAttribute('transact', 'payment', $result->data['transact']);
+                $order->save();
+                $return['data']['fixed_message'] = 'Fiksede ordre:';
+                $return['data']['fixed'][] = $id.' -> '.$result->data['transact'];
+            } else {
+                $missing[$id] = $result->data;
+            }
+        }
+
+        if (isset($missing) && count($missing)) {
+            $return['data']['missing_message'] = 'Gah, der var nogen ordre der ikke kunne fikses:';
+            $return['data']['missing'] = $missing;
+        }
+
+        return $return;
     }
 }

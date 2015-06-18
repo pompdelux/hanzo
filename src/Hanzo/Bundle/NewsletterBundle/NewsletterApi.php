@@ -65,50 +65,7 @@ class NewsletterApi
         // Map external data to something the provider understands
         $params = $this->mapExtraDataToProvider($extraData);
 
-        // Set language for confirmation mail
-        $language = 'EN';
-        // EN, DK, DE, NO, SE
-
-        $domainKey = Hanzo::getInstance()->get('core.domain_key');
-        switch ($domainKey)
-        {
-            case 'SalesDK':
-            case 'DK':
-                $language = 'DK';
-                break;
-            case 'COM':
-                $language = 'EN';
-                break;
-            case 'SalesSE':
-            case 'SE':
-                $language = 'SE';
-                break;
-            case 'SalesNO':
-            case 'NO':
-                $language = 'NO';
-                break;
-            case 'SalesNL':
-            case 'NL':
-                $language = 'EN';
-                break;
-            case 'SalesFI':
-            case 'FI':
-                $language = 'EN';
-                break;
-            case 'SalesDE':
-            case 'DE':
-                $language = 'DE';
-                break;
-            case 'SalesAT':
-            case 'AT':
-                $language = 'DE';
-                break;
-            case 'SalesCH':
-            case 'CH':
-                $language = 'EN';
-                break;
-        }
-
+        $language = $this->getLanguageForMails();
         $params['confirm_language'] = $language;
 
         $response = $this->provider->subscriberCreate($email, $list_id, $params);
@@ -138,7 +95,11 @@ class NewsletterApi
             }
         }
 
-        $response = $this->provider->subscriberDelete($email, $list_id);
+        $language = $this->getLanguageForMails();
+        $params = [];
+        $params['language'] = $language;
+
+        $response = $this->provider->subscriberDelete($email, $list_id, $params);
 
         // Wrap response in something the rest of the system expects
         $combatibleResponse               = new \stdClass();
@@ -340,4 +301,59 @@ class NewsletterApi
         return $params;
     }
 
+    /**
+     * getLanguageForMails
+     *
+     *
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getLanguageForMails()
+    {
+        // Set language for confirmation mail
+        $language = 'EN';
+        // EN, DK, DE, NO, SE
+
+        $domainKey = Hanzo::getInstance()->get('core.domain_key');
+        switch ($domainKey)
+        {
+            case 'SalesDK':
+            case 'DK':
+                $language = 'DK';
+                break;
+            case 'COM':
+                $language = 'EN';
+                break;
+            case 'SalesSE':
+            case 'SE':
+                $language = 'SE';
+                break;
+            case 'SalesNO':
+            case 'NO':
+                $language = 'NO';
+                break;
+            case 'SalesNL':
+            case 'NL':
+                $language = 'EN';
+                break;
+            case 'SalesFI':
+            case 'FI':
+                $language = 'EN';
+                break;
+            case 'SalesDE':
+            case 'DE':
+                $language = 'DE';
+                break;
+            case 'SalesAT':
+            case 'AT':
+                $language = 'DE';
+                break;
+            case 'SalesCH':
+            case 'CH':
+                $language = 'EN';
+                break;
+        }
+
+        return $language;
+    }
 } // END class NewsletterApi

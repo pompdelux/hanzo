@@ -228,7 +228,7 @@ liip_theme:
             - %%dir%%/themes/2013s1/%%bundle_name%%/%%template%%
 
 muneris:
-    host: http://muneris.bellcom.dk/
+    host: http://muneris.pompdelux.com/
 ax:
     wsdl: ""
 

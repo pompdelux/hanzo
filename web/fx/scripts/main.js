@@ -115,6 +115,7 @@
                     $(this).removeClass("open");
                 });
 
+                // For the topmenu only
                 $('> ul > li > a', $menu).click(function (event) {
                     var $this = $(this).parent();
                     var $element = $('> ul', $this);
@@ -132,23 +133,9 @@
                 });
 
 
-                $('html').click(function (event) {
-                  $('.on', $menu).removeClass('on');
+                $('html').on('click', function (event) {
+                    $('.on', $menu).removeClass('on');
                 });
-
-                // Insert close link in menu. A bit tricky to do in CategoryBundle:Menu:Menu
-                // TODO: #944
-/*
- *                 var menuCloseElement = '<li class="js-menu-close menu-close"><a href="#"><i class="fa fa-angle-up"></i></a></li>';
- *
- *                 $("nav.category-menu > ul > li > ul").append(menuCloseElement);
- *
- *                 $(".js-menu-close").click(function(event) {
- *                   event.stopPropagation();
- *                   event.preventDefault();
- *                   $('.on', $menu).removeClass('on');
- *                 });
- */
             }
 
             // handeling mobile->pc->mobile view switching
@@ -278,6 +265,58 @@
 
         };
 
+        pub.initJobApplication = function() {
+            var $form = $("form#job-application-form");
+
+            $form.on('submit',(function(e) {
+                e.preventDefault();
+
+                // Override entire page with answer if success
+                var $page = $form.parent(),
+                $message  = $(".message"),
+                url       = $(this).attr('action');
+
+                var xhr = $.ajax({
+                    url:          url,
+                    type:         "POST",
+                    data:         new FormData(this),
+                    contentType:  false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                    cache:        false,
+                    processData:  false  // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                });
+
+                xhr.done(function(data) {
+                    if (data.error === true) {
+                        $message.html(data.error_msg).addClass('error').removeClass('hidden');
+                    } else {
+                        // Apply new text
+                        $page.html(data.msg).addClass("message");
+                    }
+                });
+
+                xhr.fail(function(jqXHR, textStatus, errorThrown) {
+                    $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
+                });
+
+                xhr.always(function() {
+                    $('html,body').animate({scrollTop: 0});
+                });
+            }));
+
+            // Show next element if file has been selected
+            $("input[type='file']", $form).change(function() {
+                $(this).next().removeClass('hidden');
+            });
+
+            // Show input fields if radio button selected
+            $("input[name='contact']", $form).change(function() {
+                var name = $(this).val();
+
+                $(".contact_methods input[type='text']", $form).addClass('hidden');
+                $("input[name='"+name+"_value']", $form).removeClass('hidden');
+            });
+        };
+
         var getDocHeight = function () {
             var D = document;
             return Math.max(Math.max(
@@ -300,5 +339,9 @@
     gui.initBasket();
     gui.initToTop();
     gui.initSearchForm();
+
+    if ($("form#job-application-form").length) {
+        gui.initJobApplication();
+    }
 
 })(jQuery, document);

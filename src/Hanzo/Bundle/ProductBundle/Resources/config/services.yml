@@ -7,7 +7,6 @@ services:
         class: %hanzo_product.range.class%
         arguments:
             - @session
-            - %core.active_product_range%
 
     hanzo_product.range.twig.extension:
         class: %hanzo_product.range.twig.extension.class%

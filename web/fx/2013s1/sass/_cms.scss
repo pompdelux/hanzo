@@ -142,3 +142,42 @@ article div ul {
         }
     }
 }
+
+// Job application form
+// RMA claim form
+#job-application-form,
+#rma_claims {
+  label span {
+    display: block
+  }
+  span {
+
+    &.help {
+      display: block;
+      font-size: 11px;
+    }
+    &.required {
+      display: inline-block;
+      font-size: 16px;
+      color: #cc0000;
+      padding: 0 4px;
+    }
+  }
+  textarea,
+  input[type="text"] {
+    width: 80%;
+    max-width: 370px;
+  }
+  textarea {
+    height: 120px;
+  }
+  input[type="file"] {
+    display: block;
+    clear: right;
+
+    &.hidden {
+      visibility: hidden;
+      display: none;
+    }
+  }
+}

@@ -707,6 +707,7 @@ b, strong {
   text-align: right;
 }
 
+/* For _filter.scss */
 /**
 | _social
 */
@@ -754,7 +755,7 @@ a.facebook-button:hover, a.facebook-button:active, a.facebook-button:focus,
 */
 .product-list .block a {
   border: none;
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 12px;
   line-height: 18px;
   color: #444;
@@ -903,7 +904,7 @@ ul.tabs li {
   margin-right: 15px;
 }
 ul.tabs li a {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 ul.tabs li a i {
   display: inline;
@@ -978,7 +979,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main h2.title,
 .body-product .main .prices {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 18px;
@@ -2459,6 +2460,17 @@ aside.js-slider h3 span.open {
   margin-left: 10px;
 }
 
+#body-login .main > .grid_3 > .grid_3 {
+  border-bottom: 2px dotted #8D8D8D;
+  padding: 10px 0;
+}
+#body-login .main > .grid_3 > .grid_3:first-child {
+  border-top: 2px dotted #8D8D8D;
+}
+#body-login .main > .grid_3 > .grid_3:last-child {
+  border-bottom: none;
+}
+
 #account-block-newsletter-all h3 {
   border-top: 1px solid #000;
   cursor: pointer;
@@ -3312,6 +3324,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   color: #BBB;
 }
 .cycle-slideshow .cycle-slide {
+  right: 0;
   line-height: 0;
 }
 .cycle-slideshow .cycle-slide img {
@@ -3399,38 +3412,36 @@ video img {
   border-bottom: 1px solid #000;
 }
 
-.filters-selected {
+.filter-text {
   text-transform: uppercase;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.8em;
 }
-.filters-selected span {
+.filter-text span {
   background-color: #969799;
   color: #fff;
   padding: 2px 6px;
-  line-height: 1.8em;
   white-space: nowrap;
 }
-.filters-selected span a {
+.filter-text span a {
   color: #000;
   font-weight: bold;
   vertical-align: bottom;
   text-decoration: none;
 }
-.filters-selected span.last {
+.filter-text span.last {
   background-color: inherit;
 }
-.filters-selected span.last a {
+.filter-text span.last a {
   font-size: inherit;
   font-weight: inherit;
 }
 
 .filter-show-products {
   text-transform: uppercase;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: -2px;
   font-size: 12px;
-  line-height: 14px;
   background-color: #969799;
   padding: 2px 6px;
   line-height: 1.8em;
@@ -3438,32 +3449,68 @@ video img {
 }
 .filter-show-products a {
   color: #fff;
-  font-weight: bold;
+  font-weight: 700;
   vertical-align: bottom;
   text-decoration: none;
 }
 
-.faceted-form-open {
-  background-color: #fff;
+ul.filter-dropdown {
+  width: 100%;
+  margin-bottom: 10px;
+}
+ul.filter-dropdown > li.open > a.filter-dropdown-toggle {
+  background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+  font-weight: 700;
+}
+ul.filter-dropdown > li {
+  border-top: 1px solid #000;
+}
+ul.filter-dropdown > li > a.filter-dropdown-toggle {
   display: block;
-  position: static;
-  top: 0;
-  z-index: 1;
+  font-size: 1.4em;
+  margin-right: 5px;
+  padding: 6px 0 6px 5px;
+  text-decoration: none;
+  background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+}
+ul.filter-dropdown > li > a.filter-dropdown-toggle > .icon {
+  display: none;
+}
+ul.filter-dropdown > li.open > a.filter-dropdown-toggle > .icon {
+  display: none;
 }
 
-nav.filters-dropdowns .outer > li > ul label {
-  width: auto;
+ul.filter-dropdown > li:before, ul.filter-dropdown > li:after {
+  content: " ";
+  display: table;
 }
-nav.filters-dropdowns .outer > li > ul input {
-  margin-left: 20px;
+ul.filter-dropdown > li:after {
+  clear: both;
 }
-nav.filters-dropdowns .outer > li > ul input:nth-child(odd) {
-  margin-left: 10px;
+ul.filter-dropdown > li div.filter-dropdown-menu {
+  display: none;
 }
-nav.filters-dropdowns .outer > li > ul > li.item {
-  padding: 0;
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li {
   width: 50%;
   float: left;
+  border-bottom: 1px solid #000;
+  padding-bottom: 8px;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label {
+  display: block;
+  font-size: 1.4em;
+}
+ul.filter-dropdown > li div.filter-dropdown-menu ul.filter-dropdown-menu-list > li label input {
+  margin: 0;
+  padding: 0;
+  margin-right: 5px;
+}
+ul.filter-dropdown > li.open div.filter-dropdown-menu {
+  display: block;
+}
+
+.filter-button-container a {
+  display: none;
 }
 
 /* Selection colours (easy to forget) */
@@ -3564,7 +3611,7 @@ table tfoot {
   border-top: 1px solid #444;
 }
 table thead {
-  font-family: "Merriweather", serif;
+  font-family: Tahoma, serif;
 }
 table thead th {
   padding: 3px 6px;

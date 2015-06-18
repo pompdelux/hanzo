@@ -30,7 +30,8 @@ class CustomersType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $shortDomainKey = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
+        $domainKey = Hanzo::getInstance()->get('core.domain_key');
+        $shortDomainKey = substr($domainKey, -2);
 
         if (in_array($shortDomainKey, ['DE'])) {
             $builder->add('title', 'choice', [
@@ -80,9 +81,8 @@ class CustomersType extends AbstractType
                 'checked'      => 'checked'
             ];
 
-            // ugly hack to disable default choice for NL
-            // TODO: find a better solution
-            if ('NL' == $shortDomainKey) {
+            // Disable default choice for NL, DK
+            if (in_array($domainKey, ['NL', 'DK'])) {
                 unset($attr['checked']);
             }
 

@@ -70,7 +70,7 @@
 			<trans-unit id="headers.category-112">
                 <source>headers.category-112</source>
                 <target><![CDATA[<h1>Leggings</h1>
-                <p>Strümpfe, Strumpfhosen und Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Strümpfe, Strumpfhosen und Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggins gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+                <p>Strümpfe, Strumpfhosen und Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Strümpfe, Strumpfhosen und Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggings gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-113">
                 <source>headers.category-113</source>
@@ -85,7 +85,7 @@
 			<trans-unit id="headers.category-115">
                 <source>headers.category-115</source>
                 <target><![CDATA[<h1>Strumpfhosen</h1>
-                <p>Strümpfe, Strumpfhosen und Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Strümpfe, Strumpfhosen und Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggins gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
+                <p>Strümpfe, Strumpfhosen und Leggings sind ein fester Bestandteil der Basisgarderobe Ihres Kindes. POMPdeLUX hat Strümpfe, Strumpfhosen und Leggings aus schicken, weichen Materialien, die alle Mädchen gerne tragen. Verwenden Sie Leggings unter einem Kleid, Rock oder Shorts und vergessen Sie unsere Basistops nicht, die perfekt zu unseren Leggings passen. Unsere Leggings gibt es in den Größen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-127">
                 <source>headers.category-127</source>
@@ -159,7 +159,7 @@
             </trans-unit>
 			<trans-unit id="headers.category-9">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Blusen</h1>
+                <target><![CDATA[<h1>Langarmshirt</h1>
                 <p>T-Shirts kann man das ganze Jahr über verwenden und sind schick im Sommer und im Winter. POMPdeLUX hat T-Shirts in vielen verschiedenen Farben und Modellen. Es ist also etwas für grosse und kleine Jungen da. Unsere T-Shirts sind aus schöner, weicher Qualität und haben viele schicke Details und Prints. Finden Sie Ihr Lieblings-T-Shirt für den Alltag oder ein cooles Polohemd für festliche Anlässe. Unsere T-Shirts gibt es in den Grössen 80 cm bis 152 cm und hier gibt es viele Anregungen für die Garderobe Ihrer Kinder zu holen.</p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-11">
@@ -254,15 +254,19 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>Grösse wählen</target>
+        <target>Grösse</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>Farbe wählen</target>
+        <target>Farbe</target>
+      </trans-unit>
+	  <trans-unit id="faceted.dropdown.discount">
+        <source>faceted.dropdown.discount</source>
+        <target>SALE</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>OEKO-TEX / BIO-PRODUKTE wählen</target>
+        <target>OEKO-TEX / BIO-PRODUKTE</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

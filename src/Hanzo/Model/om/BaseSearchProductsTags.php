@@ -65,6 +65,12 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
     protected $token;
 
     /**
+     * The value for the type field.
+     * @var        string
+     */
+    protected $type;
+
+    /**
      * The value for the locale field.
      * @var        string
      */
@@ -147,6 +153,17 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
     {
 
         return $this->token;
+    }
+
+    /**
+     * Get the [type] column value.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+
+        return $this->type;
     }
 
     /**
@@ -253,6 +270,27 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
     } // setToken()
 
     /**
+     * Set the value of [type] column.
+     *
+     * @param  string $v new value
+     * @return SearchProductsTags The current object (for fluent API support)
+     */
+    public function setType($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->type !== $v) {
+            $this->type = $v;
+            $this->modifiedColumns[] = SearchProductsTagsPeer::TYPE;
+        }
+
+
+        return $this;
+    } // setType()
+
+    /**
      * Set the value of [locale] column.
      *
      * @param  string $v new value
@@ -309,7 +347,8 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
             $this->master_products_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
             $this->products_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->token = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->locale = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->type = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->locale = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -319,7 +358,7 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 5; // 5 = SearchProductsTagsPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 6; // 6 = SearchProductsTagsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating SearchProductsTags object", $e);
@@ -585,6 +624,9 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
         if ($this->isColumnModified(SearchProductsTagsPeer::TOKEN)) {
             $modifiedColumns[':p' . $index++]  = '`token`';
         }
+        if ($this->isColumnModified(SearchProductsTagsPeer::TYPE)) {
+            $modifiedColumns[':p' . $index++]  = '`type`';
+        }
         if ($this->isColumnModified(SearchProductsTagsPeer::LOCALE)) {
             $modifiedColumns[':p' . $index++]  = '`locale`';
         }
@@ -610,6 +652,9 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
                         break;
                     case '`token`':
                         $stmt->bindValue($identifier, $this->token, PDO::PARAM_STR);
+                        break;
+                    case '`type`':
+                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
                     case '`locale`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
@@ -779,6 +824,9 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
                 return $this->getToken();
                 break;
             case 4:
+                return $this->getType();
+                break;
+            case 5:
                 return $this->getLocale();
                 break;
             default:
@@ -814,7 +862,8 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
             $keys[1] => $this->getMasterProductsId(),
             $keys[2] => $this->getProductsId(),
             $keys[3] => $this->getToken(),
-            $keys[4] => $this->getLocale(),
+            $keys[4] => $this->getType(),
+            $keys[5] => $this->getLocale(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -875,6 +924,9 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
                 $this->setToken($value);
                 break;
             case 4:
+                $this->setType($value);
+                break;
+            case 5:
                 $this->setLocale($value);
                 break;
         } // switch()
@@ -905,7 +957,8 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
         if (array_key_exists($keys[1], $arr)) $this->setMasterProductsId($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setProductsId($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setToken($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setLocale($arr[$keys[4]]);
+        if (array_key_exists($keys[4], $arr)) $this->setType($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setLocale($arr[$keys[5]]);
     }
 
     /**
@@ -921,6 +974,7 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
         if ($this->isColumnModified(SearchProductsTagsPeer::MASTER_PRODUCTS_ID)) $criteria->add(SearchProductsTagsPeer::MASTER_PRODUCTS_ID, $this->master_products_id);
         if ($this->isColumnModified(SearchProductsTagsPeer::PRODUCTS_ID)) $criteria->add(SearchProductsTagsPeer::PRODUCTS_ID, $this->products_id);
         if ($this->isColumnModified(SearchProductsTagsPeer::TOKEN)) $criteria->add(SearchProductsTagsPeer::TOKEN, $this->token);
+        if ($this->isColumnModified(SearchProductsTagsPeer::TYPE)) $criteria->add(SearchProductsTagsPeer::TYPE, $this->type);
         if ($this->isColumnModified(SearchProductsTagsPeer::LOCALE)) $criteria->add(SearchProductsTagsPeer::LOCALE, $this->locale);
 
         return $criteria;
@@ -988,6 +1042,7 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
         $copyObj->setMasterProductsId($this->getMasterProductsId());
         $copyObj->setProductsId($this->getProductsId());
         $copyObj->setToken($this->getToken());
+        $copyObj->setType($this->getType());
         $copyObj->setLocale($this->getLocale());
 
         if ($deepCopy && !$this->startCopy) {
@@ -1160,6 +1215,7 @@ abstract class BaseSearchProductsTags extends BaseObject implements Persistent
         $this->master_products_id = null;
         $this->products_id = null;
         $this->token = null;
+        $this->type = null;
         $this->locale = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;

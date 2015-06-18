@@ -254,15 +254,19 @@
             </trans-unit>
 			<trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
-        <target>VÄLJ STORLEK</target>
+        <target>STORLEK</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
-        <target>VÄLJ FÄRG</target>
+        <target>FÄRG</target>
+      </trans-unit>
+	   <trans-unit id="faceted.dropdown.discount">
+        <source>faceted.dropdown.discount</source>
+        <target>Rea</target>
       </trans-unit>
 	  <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
-        <target>VÄLJ OEKO-TEX/EKOLOGI</target>
+        <target>OEKO-TEX/EKOLOGI</target>
       </trans-unit>
 	  <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>

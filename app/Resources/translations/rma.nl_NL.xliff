@@ -155,6 +155,70 @@
                 <source>rma.slip.color</source>
                 <target><![CDATA[Kleur]]></target>
             </trans-unit>
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Naam*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-ordrenummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Naam artikel/kleur/maat (deze naam staat op je factuur)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Beschrijving reclamatie*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Upload foto’s van de reclamatie:<br>(maximaal 5 foto’s van totaal 10MB)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
+              <target>Telefoonnummer*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
+              <target>E-mail*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Verstuur het reclamatieformulier</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Verplichte velden</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Fout met het geüploade bestand.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Gelieve dit veld in te vullen.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Ontbrekende data.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Je reclamatieformulier is nu verzonden en we zullen binnen een paar dagen contact met je opnemen over je reclamatie.</p>
+<p>Heb je nog vragen, dan kun je altijd contact opnemen met onze klantenservice op telefoonnummer 085-3001100.</p>
+                ]]>
+              </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Wees er op attent, dat het artikel niet gereserveerd kan worden.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

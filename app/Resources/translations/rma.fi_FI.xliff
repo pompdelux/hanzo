@@ -167,6 +167,70 @@ Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin 
                 <source>rma.slip.color</source>
                 <target><![CDATA[V&auml;ri]]></target>
             </trans-unit>
+
+            <trans-unit id="rma.claims.form.name_label">
+                <source>rma.claims.form.name_label</source>
+                <target>Nimi*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.customer_number_label">
+              <source>rma.claims.form.customer_number_label</source>
+              <target>Kundenummer</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.order_number_label">
+              <source>rma.claims.form.order_number_label</source>
+              <target>E-tilausnumero*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.product_info_label">
+              <source>rma.claims.form.product_info_label</source>
+              <target>Tuotteen nimi/väri/koko (katso nimi laskusta)*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.description_label">
+              <source>rma.claims.form.description_label</source>
+              <target>Reklamaatiokuvaus*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.file_heading">
+              <source>rma.claims.form.file_heading</source>
+              <target><![CDATA[Lataa kuvia reklamaatiosta:<br>(enintään 5 kuvaa, yhteensä 10 Mt)]]></target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.phone_label">
+              <source>rma.claims.form.phone_label</source>
+              <target>Puhelinnumero*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.email_label">
+              <source>rma.claims.form.email_label</source>
+              <target>Sähköposti*</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.send">
+              <source>rma.claims.form.send</source>
+              <target>Lähetä reklamaatiolomake</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.form.required">
+              <source>rma.claims.form.required</source>
+              <target>* Pakollinen tieto</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.upload">
+                <source>rma.claims.error.upload</source>
+                <target>Virhe tiedoston lataamisessa.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_field">
+                <source>rma.claims.error.missing_field</source>
+                <target>Täytäthän tämän kentän.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.error.missing_data">
+                <source>rma.claims.error.missing_data</source>
+                <target>Tietoja puuttuu.</target>
+            </trans-unit>
+            <trans-unit id="rma.claims.success">
+              <source>rma.claims.success</source>
+              <target>
+                <![CDATA[<p>Reklamaatiolomakkeesi on nyt lähetetty. Palaamme asiaan muutaman päivän kuluessa.</p>
+<p>Jos sinulla on kysyttävää, voit aina ottaa yhteyttä asiakaspalveluun, puh. (+45) 8678 7871.</p>]]>
+              </target>
+            </trans-unit>
+            <trans-unit id="rma-form.message.not-reserved">
+                <source>rma-form.message.not-reserved</source>
+                <target>Huomaathan, ettei tuotteelle tule varausta.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

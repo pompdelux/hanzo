@@ -43,6 +43,7 @@
         <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE"/>
         <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE"/>
         <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+        <column name="only_mobile" type="BOOLEAN" required="true" defaultValue="FALSE"/>
         <column name="updated_by" type="VARCHAR" required="false"/>
         <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
             <reference local="cms_thread_id" foreign="id"/>
@@ -51,7 +52,7 @@
             <reference local="parent_id" foreign="id"/>
         </foreign-key>
         <behavior name="i18n">
-            <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile"/>
+            <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile, only_mobile"/>
             <parameter name="default_locale" value="da_DK"/>
         </behavior>
         <behavior name="timestampable"/>
@@ -329,7 +330,7 @@
         <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="name" type="VARCHAR" size="32" required="true"/>
         <column name="local_name" type="VARCHAR" size="45" required="true"/>
-        <column name="locale" type="VARCHAR" size="5" required="true"/>
+        <column name="locale" type="VARCHAR" size="12" required="true"/>
         <column name="iso2" type="VARCHAR" size="2" required="true"/>
         <column name="direction" type="VARCHAR" size="3" required="true" defaultValue="ltr"/>
         <index name="languages_index_3">

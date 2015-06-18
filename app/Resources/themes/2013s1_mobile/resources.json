@@ -1,5 +1,6 @@
 {
     "mobile_css": [
+        "web/fx/css/font-awesome.css",
         "web/fx/css/jquery-ui.css",
         "web/fx/scripts/fullcalendar/fullcalendar.css",
         "web/fx/css/colorbox/theme4/colorbox.css",
@@ -59,6 +60,7 @@
         "web/fx/scripts/App.js",
         "web/fx/scripts/App.ProductFinder.js",
         "web/fx/scripts/App.WishlistBuilder.js",
-        "web/fx/scripts/App.WishlistMailer.js"
+        "web/fx/scripts/App.WishlistMailer.js",
+        "web/fx/scripts/rma.js"
     ]
 }

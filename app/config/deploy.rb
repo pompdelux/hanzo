@@ -63,7 +63,7 @@ ssh_options[:forward_agent] = true
 set :deploydiff, "Nothing - Rollback maybe?"
 
 # own rules for running tasks after deploy
-after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:restart_beanstalkd_worker', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
+after 'deploy:restart', 'deploy:symlinks', 'symfony:cache:assets_update', 'symfony:cache:redis_clear', 'deploy:restart_beanstalkd_worker', 'deploy:opcode_clear', 'symfony:cache:varnish_clear', 'deploy:cleanup', 'deploy:clear_opcode', 'deploy:update_permissions', 'deploy:update_permissions_shared', 'deploy:update_permissions_releases'
 # send_email moved here. dont want a deploy email on rollback
 after 'deploy', 'deploy:send_email', 'deploy:graphite_notify'
 ## also clear redis and varnish when calling cache:clear

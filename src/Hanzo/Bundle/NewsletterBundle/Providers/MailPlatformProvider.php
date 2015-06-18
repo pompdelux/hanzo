@@ -15,7 +15,15 @@ class MailPlatformProvider extends BaseProvider
      */
     public function subscriberCreate($subscriber_id, $list_id, Array $params = [])
     {
-        return $this->subscriberAddToList($subscriber_id, $list_id, $params);
+        // If subscriber is unsubscribed (not deleted) we have to activate the subscriber first - else just create
+        $response = $this->subscriberActivate($subscriber_id, $list_id);
+        if ($response->getStatus() === BaseResponse::REQUEST_SUCCESS) {
+            return $response;
+        }
+        else
+        {
+            return $this->subscriberAddToList($subscriber_id, $list_id, $params);
+        }
     }
 
     /**
@@ -53,32 +61,41 @@ class MailPlatformProvider extends BaseProvider
 
     /**
      * subscriberDelete
+     * - NOTE: uses UnsubscribeSubscriber and replaces old delete function
+     *
      * - Remove a subscriber from a list, or all if list_id = false
-     * - http://mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=Delete
+     * - http://www.mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=UnsubscribeSubscriber
      *
      * @param string $subscriber_id
-     * @param mixed $list_id
+     * @param mixed  $list_id
+     * @param array  $params
      *
      * @return BaseResponse
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    public function subscriberDelete($subscriber_id, $list_id = false)
+    public function subscriberDelete($subscriber_id, $list_id = false, Array $params = [])
     {
         $request         = $this->getRequest();
         $request->type   = 'subscribers';
-        $request->method = 'delete';
-
-        if ($list_id === false)
-        {
-            $list_id = '';
-        }
+        $request->method = 'UnsubscribeSubscriber';
 
         $requestBody = [
             'details' => [
                 'emailaddress' => $subscriber_id,
-                'listid'       => $list_id,
+                'sendthankyou' => 'true',
+                'language'     => 'EN',
+                'formid'       => $this->getUnsubscribeFormId($list_id),
                 ],
         ];
+
+        if ($list_id !== false)
+        {
+            $requestBody['details']['listid'] = $list_id;
+        }
+
+        $optionalParams = ['sendthankyou', 'language'];
+
+        $requestBody = $this->getOptionalParams($optionalParams, $params, $requestBody);
 
         $request->body = $requestBody;
 
@@ -380,5 +397,54 @@ class MailPlatformProvider extends BaseProvider
         }
 
         return $requestBody;
+    }
+
+    /**
+     * getUnsubscribeFormId
+     * - Maps list id to unsubscribe form id
+     * - Find ids on this page http://client2.mailmailmail.net/admin/index.php?Page=Forms
+     *
+     * @param string $listId
+     *
+     * @return int
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getUnsubscribeFormId($listId)
+    {
+        $formId = 499;
+
+        switch ($listId)
+        {
+            case 2002: // 'DK'
+                $formId = 471;
+                break;
+            case 2054: // 'SE'
+                $formId = 493;
+                break;
+            case 2053: // 'NO'
+                $formId = 491;
+                break;
+            case 2048: // 'NL'
+                $formId = 487;
+                break;
+            case 2047: // 'FI'
+                $formId = 485;
+                break;
+            case 2045: // 'DE'
+                $formId = 483;
+                break;
+            case 2042: // 'AT'
+                $formId = 479;
+                break;
+            case 2044: // 'CH'
+                $formId = 481;
+                break;
+            default:
+            case 2056: // 'COM'
+                $formId = 499;
+                break;
+        }
+
+        return $formId;
     }
 }
