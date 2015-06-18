@@ -1,26 +1,34 @@
+body {
 
-// Slideshow Cycle2 styles
-.cycle-slideshow {
-	.cycle-pager{
-		padding-top:4px;
-		text-align: center;
-		span{
-			color: #DDD;
-			font-size: 31px;
-			line-height: 10px;
-			cursor: pointer;
-			&.cycle-pager-active,
-			&:hover{
-				color: #BBB;
-			}
-		}
-	}
-	.cycle-slide{
-      right: 0;
-      
-		line-height: 0;
-		img{
-			width: 100%;
-		}
-	}
+  &,
+  &.body-pages {
+    // Slideshow Cycle2 styles
+    .cycle-slideshow {
+      position: relative;
+      display: block;
+
+      .cycle-pager{
+        padding-top:4px;
+        text-align: center;
+        span{
+          color: #DDD;
+          font-size: 31px;
+          line-height: 10px;
+          cursor: pointer;
+          &.cycle-pager-active,
+          &:hover{
+            color: #BBB;
+          }
+        }
+      }
+      .cycle-slide{
+        right: 0;
+        line-height: 0;
+
+        img{
+          width: 100%;
+        }
+      }
+    }
+  }
 }
