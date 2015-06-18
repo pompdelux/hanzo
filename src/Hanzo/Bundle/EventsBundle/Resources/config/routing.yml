@@ -8,12 +8,14 @@ events_view:
     requirements: { id: \d+ }
 
 events_create:
-    pattern: /events/create/{id}
+    pattern: /events/create/{id}/{recreate}
     defaults:
         _controller: EventsBundle:Events:create
         id: null
+        recreate: null
     requirements:
         id: \d+
+        recreate: 'recreate'
 
 events_get_feed:
     pattern:  /events/getevents
@@ -109,7 +111,6 @@ events_my_events:
     pattern: /account/my-events
     defaults:
         _controller: EventsBundle:Events:myEvents
-
 
 advisor_near_you:
     pattern: /events/advisor/near_you/{type}/{latitude}/{longitude}/{showAll}
