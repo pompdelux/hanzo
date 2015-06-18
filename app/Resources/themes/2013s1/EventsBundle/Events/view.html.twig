@@ -126,8 +126,10 @@
 
 
         <a href="{{ path('events_index') }}" class="button">{{ 'events.calendar.link.back.to'|trans({}, 'events') }}</a>
-        {% if event.eventdate|date('YmdHi') < date() %}
+        {% if event.isopen == 0 %}
             <a href="{{ path('events_create', {'_locale':app.request.locale, 'id': event.id, 'recreate': 'recreate'}) }}" class="button">{{ 'events.calendar.link.recreate'|trans({}, 'events') }}</a>
+        {% endif %}
+        {% if event.eventdate|date('YmdHi') < date() %}
 
             <a href="{{ path('events_close', {'_locale':app.request.locale, 'id': event.id}) }}" class="button">{{ 'event.close'|trans({}, 'events') }}</a>
         {% endif %}
