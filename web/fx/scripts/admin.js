@@ -176,7 +176,10 @@
                   });
 
                   window.scrollTo(window.scrollMinX, window.scrollMinY);
-                  dialoug.slideNotice(response.message);
+                  dialoug.alert(Translator.trans('notice'), response.message);
+                }
+                else {
+                  dialoug.error(Translator.trans('notice'), response.message, 5000);
                 }
               }
             });
