@@ -500,7 +500,8 @@ class OrdersController extends CoreController
                 ->filterByOrdersId($order_id)
                 ->delete($this->getDbConnection());
 
-
+            // Needed to delete orders in other databases
+            $order->setDBConnection($this->getDbConnection());
             $order->setIgnoreDeleteConstraints(true);
 
             try {
