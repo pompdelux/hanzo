@@ -489,8 +489,15 @@ class OrdersController extends CoreController
             ->findOne($this->getDbConnection());
 
         if ($job) {
-            $this->container->get('ax.pheanstalk_queue')->removeFromQuery($job->getQueueId());
-            $job->delete($this->getDbConnection());
+            try {
+                $this->container->get('ax.pheanstalk_queue')->removeFromQuery($job->getQueueId());
+                $job->delete($this->getDbConnection());
+            } catch (Exception $e) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ));
+            }
         }
 
         if ($order) {
@@ -571,7 +578,7 @@ class OrdersController extends CoreController
                     'required' => false
                 )
             )->getForm()
-        ;
+            ;
 
         $updated_orders = array();
         if ('POST' === $request->getMethod()) {
@@ -588,7 +595,7 @@ class OrdersController extends CoreController
                     ->where('orders.id >= ?', $form_data['id-from'])
                     ->where('orders.id <= ?', $form_data['id-to'])
                     ->where('orders.id NOT IN ?', $excluded_ids)
-                ;
+                    ;
                 if($form_data['state-from'] != '')
                     $orders = $orders->filterByState($form_data['state-from']);
 
@@ -603,9 +610,9 @@ class OrdersController extends CoreController
             }
         }
         return $this->render('AdminBundle:Orders:change_state.html.twig', array(
-          'form' => $form_state->createView(),
-          'updated_orders' => $updated_orders,
-          'database' => $request->getSession()->get('database')
+            'form' => $form_state->createView(),
+            'updated_orders' => $updated_orders,
+            'database' => $request->getSession()->get('database')
         ));
     }
 
@@ -624,9 +631,9 @@ class OrdersController extends CoreController
         }
 
         return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
-              'orders' => $orders,
-              'database' => $request->getSession()->get('database')
-            ));
+            'orders' => $orders,
+            'database' => $request->getSession()->get('database')
+        ));
     }
 
     /**
@@ -646,14 +653,14 @@ class OrdersController extends CoreController
             return $this->json_response(array(
                 'status' => false,
                 'data'   => $status
-                )
-            );
+            )
+        );
         }
         return $this->json_response(array(
             'status' => true,
             'data'   => $status
-            )
-        );
+        )
+    );
     }
 
     /**
@@ -860,7 +867,7 @@ class OrdersController extends CoreController
                     ]
                 ])
                 ->getForm()
-            ;
+                ;
             $template_data['form'] = $form->createView();
         }
 
@@ -894,10 +901,10 @@ class OrdersController extends CoreController
                         'key'  => $attribute['CKey'],
                         'file' => $attribute['CValue'],
                         'path' => $cdn . 'pdf.php?' . http_build_query(array(
-                                'folder' => $folder,
-                                'file'   => $attribute['CValue'],
-                                'key'    => md5(time())
-                            ))
+                            'folder' => $folder,
+                            'file'   => $attribute['CValue'],
+                            'key'    => md5(time())
+                        ))
                     ];
                 } else {
                     $attributes[] = $attribute;
@@ -928,7 +935,7 @@ class OrdersController extends CoreController
         $orders = OrdersDeletedLogQuery::create()
             ->filterByOrdersId($ids)
             ->find($this->getDbConnection())
-        ;
+            ;
 
         /** @var OrdersDeletedLog $record */
         foreach ($orders as $record) {
@@ -959,7 +966,7 @@ class OrdersController extends CoreController
             OrdersAttributesQuery::create()
                 ->findByOrdersId($order->getId(), $this->getDbConnection())
                 ->delete($this->getDbConnection())
-            ;
+                ;
             $order->clearOrdersAttributess();
 
             // attributes
@@ -1038,7 +1045,7 @@ class OrdersController extends CoreController
             ->filterByOrdersId($orders_id)
             ->filterByState($state)
             ->delete($this->getDbConnection())
-        ;
+            ;
 
         return $this->json_response([
             'status'  => true,
