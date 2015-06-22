@@ -19,6 +19,7 @@ use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Wishlists;
 use Hanzo\Model\WishlistsLines;
 use Hanzo\Model\WishlistsLinesQuery;
@@ -53,6 +54,7 @@ class WishlistController extends CoreController
                 p.size,
                 p.color,
                 p.master,
+                p.id,
                 p.sku, (
                 SELECT
                     products_i18n.title
@@ -86,10 +88,33 @@ class WishlistController extends CoreController
         $locale   = $request->getLocale();
         $products = [];
 
+        $productIds = [];
+
         /** @var \Hanzo\Model\WishlistsLines $item */
         foreach ($result as $item) {
+            $productIds[] = $item['id'];
             $item = $this->getItemViewData($item, $locale);
             $products[$item['sku']] = $item;
+        }
+
+        $prices = ProductsDomainsPricesPeer::getProductsPrices($productIds);
+
+        $totalPrice = 0;
+
+        // attach the prices to the products
+        foreach ($products as $i => $data) {
+            if (isset($prices[$data['id']])) {
+                $price = $prices[$data['id']]['normal']['formattet'];
+                // $rawPrice = $prices[$data['id']]['normal']['formattet'];
+                if (isset($prices[$data['id']]['sales']['formattet'])) {
+                    // HTML is escaped when outputted
+                    // $price = '<span class="normal strike">'.$prices[$data['id']]['normal']['formattet'].'</span>'.$prices[$data['id']]['sales']['formattet'];
+                    $price = $prices[$data['id']]['sales']['formattet'];
+                }
+                $products[$i]['price'] = $price;
+                // $totalPrice += $rawPrice;
+                // @WIP
+            }
         }
 
         ksort($products);
@@ -97,7 +122,8 @@ class WishlistController extends CoreController
         return [
             'wishlist_id' => $this->getWishlist()->getId(),
             'page_type'   => 'wishlist',
-            'products'    => $products
+            'products'    => $products,
+            'total_price' => $totalPrice,
         ];
     }
 
@@ -338,6 +364,7 @@ class WishlistController extends CoreController
                 'size'     => $item['size'].$sizeLabel,
                 'sku'      => $item['sku'],
                 'title'    => $item['title'],
+                'price'    => '100 kr',
             ];
         }
 
@@ -364,6 +391,7 @@ class WishlistController extends CoreController
             'size'     => $product->getPostfixedSize($this->container->get('translator')),
             'sku'      => $product->getSku(),
             'title'    => $title,
+            'price'    => $item->getPrice(),
         ];
     }
 
