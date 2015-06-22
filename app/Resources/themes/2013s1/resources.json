@@ -143,7 +143,6 @@
         "web/fx/scripts/filters.js",
         "web/fx/scripts/category.js",
         "web/fx/scripts/product.js",
-        "web/fx/scripts/product.zoom.js",
         "web/fx/scripts/cart.js",
         "web/fx/scripts/account.js",
         "web/fx/scripts/preload.js",

@@ -11,6 +11,9 @@ var product_zoom = (function ($) {
         if ($('body').hasClass('is_mobile')) {
             isMobile = true;
         }
+        if ($productImage.length === 0) {
+            return;
+        }
 
         eventListener();
         enableZoom();
