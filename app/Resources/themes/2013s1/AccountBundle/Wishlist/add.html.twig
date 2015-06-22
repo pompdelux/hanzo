@@ -27,9 +27,9 @@
             </div>
             <div>
                 <select disabled name="quantity">
-                {% for i in 1..10 %}
-                    <option value="{{ i }}">{{ i }}</option>
-                {% endfor %}
+                    {% for i in 1..10 %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <input type="hidden" name="master" value="">
@@ -48,35 +48,35 @@
     </div>
 
     <section class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega js-wishlist-target wishlist-target">
-    {% for product in products %}
-        <article
-                data-product-id="{{ product.id }}"
-                data-quantity="{{ product.quantity }}"
-                data-color="{{ product.color }}"
-                data-size="{{ product.size }}"
-                data-master="{{ product.master }}"
-                data-title="{{ product.title }}"
-                data-price="{{ product.raw_price }}"
-                id="js-wishlist-{{ product.id }}">
-            <img src="{{ product.image }}" alt="">
-            <p>
-                {{ product.title }}<br>
-                {{ product.size }}<br>
-                {{ product.color }}<br>
-                <span class="quantity">{{ product.quantity }}</span> stk<br>
-                {% if product.price_sale %}
-                <span class="normal strike">{{ product.price_normal }}</span><br>
-                {% endif %}
-                {{ product.price_formattet }}<br>
-            </p>
-            <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
-            <a href="{{ path('_account_wishlist_remove_item', {'productId': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
-        </article>
-    {% endfor %}
+        {% for product in products %}
+            <article
+                    data-product-id="{{ product.id }}"
+                    data-quantity="{{ product.quantity }}"
+                    data-color="{{ product.color }}"
+                    data-size="{{ product.size }}"
+                    data-master="{{ product.master }}"
+                    data-title="{{ product.title }}"
+                    data-price="{{ product.raw_price }}"
+                    id="js-wishlist-{{ product.id }}">
+                <img src="{{ product.image }}" alt="">
+                <p>
+                    {{ product.title }}<br>
+                    {{ product.size }}<br>
+                    {{ product.color }}<br>
+                    <span class="quantity">{{ product.quantity }}</span> stk<br>
+                    {% if product.price_sale %}
+                        <span class="normal strike">{{ product.price_normal }}</span><br>
+                    {% endif %}
+                    {{ product.price_formattet }}<br>
+                </p>
+                <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+                <a href="{{ path('_account_wishlist_remove_item', {'productId': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
+            </article>
+        {% endfor %}
     </section>
 
     <div class="grid_8 alpha omega">
-      {{ 'total'|trans({}, 'messages') }}: <span class="js-wishlist-total">{{ total_price }}</span>
+        {{ 'total'|trans({}, 'messages') }}: <span class="js-wishlist-total">{{ total_price }}</span>
     </div>
 
     <div class="grid_8 alpha omega wishlist-flush-list">
@@ -114,35 +114,35 @@
     </article>
 
 
-<script type="text/html" id="wishlistItemTpl">
-    <article
-            data-product-id="<?= data.id ?>"
-            data-quantity="<?= data.quantity ?>"
-            data-color="<?= data.color ?>"
-            data-size="<?= data.size ?>"
-            data-master="<?= data.master ?>"
-            data-title="<?= data.title ?>"
-            data-price="<?= data.raw_price ?>"
-            id="js-wishlist-<?= data.id ?>">
-        <img src="<?= data.image ?>" alt="">
-        <p>
-            <?= data.title ?><br>
-            <?= data.size ?><br>
-            <?= data.color ?><br>
-            <span class="quantity"><?= data.quantity ?></span> stk<br>
-            <? if(data.price_sale) {?><br>
-              <span class="normal strike"><?= data.price_normal ?></span><br>
-            <?}?>
-            <?= data.price_formattet ?>
-        </p>
-        <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
-        <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
-    </article>
-</script>
+    <script type="text/html" id="wishlistItemTpl">
+        <article
+                data-product-id="<?= data.id ?>"
+                data-quantity="<?= data.quantity ?>"
+                data-color="<?= data.color ?>"
+                data-size="<?= data.size ?>"
+                data-master="<?= data.master ?>"
+                data-title="<?= data.title ?>"
+                data-price="<?= data.raw_price ?>"
+                id="js-wishlist-<?= data.id ?>">
+            <img src="<?= data.image ?>" alt="">
+            <p>
+                <?= data.title ?><br>
+                <?= data.size ?><br>
+                <?= data.color ?><br>
+                <span class="quantity"><?= data.quantity ?></span> stk<br>
+                <? if(data.price_sale) {?><br>
+                <span class="normal strike"><?= data.price_normal ?></span><br>
+                <?}?>
+                <?= data.price_formattet ?>
+            </p>
+            <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+            <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
+        </article>
+    </script>
 
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
-<script>$(function () {App.init();});</script>
+    <script src="{{ asset('/fx/scripts/typeahead.min.js') }}"></script>
+    <script>$(function () {App.init();});</script>
 {% endblock javascript %}
