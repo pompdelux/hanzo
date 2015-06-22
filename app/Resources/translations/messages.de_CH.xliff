@@ -190,7 +190,7 @@
                         <li><b>Versand</b> ab CHF 7,95</li>
                         <li><b>Lieferzeit</b> %expected_delivery_date% (zzgl. Feiertage)</li>
                         <li><b>Umtausch</b> Gratis</li>
-						<li><b>Hinweis:</b><I>Streik bei Deutsche Post DHL, klicken Sie <a href="http://www.pompdelux.com/de_CH/kundendienst/telefonzeiten/versand-und-lieferung">hier.</a></I></li>
+						<li><b>Hinweis:</b>Streik bei der Deutschen Post und DHL, für weitere Informationen klicken Sie <a href="http://www.pompdelux.com/de_CH/kundendienst/telefonzeiten/versand-und-lieferung">hier.</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
