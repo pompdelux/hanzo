@@ -52,6 +52,7 @@
                 data-size="{{ product.size }}"
                 data-master="{{ product.master }}"
                 data-title="{{ product.title }}"
+                data-price="{{ product.price }}"
                 id="js-wishlist-{{ product.id }}">
             <img src="{{ product.image }}" alt="">
             <p>
@@ -59,6 +60,7 @@
                 {{ product.size }}<br>
                 {{ product.color }}<br>
                 <span>{{ product.quantity }}</span> stk<br>
+                {{ product.price }}<br>
             </p>
             <!-- <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a> -->
             <a href="{{ path('_account_wishlist_remove_item', {'product_id': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
@@ -110,6 +112,7 @@
             data-size="<?= data.size ?>"
             data-master="<?= data.master ?>"
             data-title="<?= data.title ?>"
+            data-price="<?= data.price ?>"
             id="js-wishlist-<?= data.id ?>">
         <img src="<?= data.image ?>" alt="">
         <p>
@@ -117,8 +120,9 @@
             <?= data.size ?><br>
             <?= data.color ?><br>
             <span><?= data.quantity ?></span> stk<br>
+            <?= data.price ?><br>
         </p>
-        <!-- <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a> -->
+        <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
         <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
     </article>
 </script>
