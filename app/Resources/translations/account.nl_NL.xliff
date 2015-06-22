@@ -539,7 +539,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="account.returnlabel.link">
                 <source>account.returnlabel.link</source>
-                <target>Print retourlabel</target>
+                <target>DHL retourlabel</target>
             </trans-unit>
            <trans-unit id="my.account.legends.header">
                 <source>my.account.legends.header</source>
