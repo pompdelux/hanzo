@@ -40,7 +40,10 @@ var product_zoom = (function ($) {
 
         // Enable zoom
         $productImage.elevateZoom({
-            zoomWindowOffetx: 10
+            zoomWindowOffetx: 184,
+            zoomWindowOffety: 6,
+            zoomWindowWidth: 414,
+            borderSize: 2
         });
     }
 
