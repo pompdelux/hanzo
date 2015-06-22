@@ -1,13 +1,6 @@
 {% extends layout %}
 
 {% block content %}
-    asd
-    asd
-    das
-    asd
-    as
-    dsa
-
     <nav class="grid_2 alpha sub-menu menu">
         <ul>
             <li>
@@ -66,13 +59,38 @@
         var $form           = $endEventDate.closest('form');
 
         $startEventDate.prop('readonly', true);
+        $endEventDate.prop('readonly', true);
 
-        $startEventDate.datetimepicker({
-                minDate     : new Date("{{ 'today 1am'|date('r') }}"),
-                minInterval : (1000*60*60), // 1hr
-                stepMinute  : 15,
-                controlType : 'select'
-        });
+        function set_correct_picker() {
+            var $start_date = $('#events_event_date');
+            var $end_date   = $('#events_event_end_time');
+            var $form       = $end_date.closest('form');
+            var event_type  = $('#events_type', $form).val();
+
+            // Home shopping
+            if (event_type == 'AR') {
+                $start_date.datetimepicker({
+                    minDate     : new Date("{{ 'today 1am'|date('r') }}"),
+                    stepMinute  : 15,
+                    controlType : 'select'
+                });
+            }
+
+            // Open house
+            else {
+
+                $.timepicker.datetimeRange(
+                    $start_date,
+                    $end_date, {
+                        minDate     : new Date("{{ 'today 1am'|date('r') }}"),
+                        minInterval : (1000*60*60), // 1hr
+                        stepMinute  : 15,
+                        controlType : 'select'
+                    });
+            }
+        }
+
+        set_correct_picker();
 
         if ('HUS' !== $('#events_type', $form).val()) {
             var $e;
@@ -94,6 +112,7 @@
             $('#events_event_end_time', $form).closest('div').toggleClass('off');
             $('#events_rsvp_type', $form).closest('div').toggleClass('off');
             $('#events_public_note', $form).closest('div').toggleClass('off');
+            set_correct_picker();
         });
     });
 </script>
