@@ -1,54 +1,61 @@
-/* jshint unused:false */ // Revealing module pattern
 var product_zoom = (function ($) {
     'use strict';
     var pub = {},
-        isMobile = false;
+        isMobile = false,
+        $productImage = $('.productimage-large a[rel=full-image] img');
 
     /**
      * Instantiate zoom
      */
     pub.init = function() {
-
-        if ($("body.is-mobile").length !== 0) {
+        if ($('body').hasClass('is_mobile')) {
             isMobile = true;
         }
 
+        eventListener();
         enableZoom();
     };
+
+    /**
+     * Event listener
+     */
+    function eventListener() {
+        $(document).on('product.image.change', function() {
+            updateZoomImage();
+        });
+    }
 
     /**
      * Enable zoom
      */
     function enableZoom() {
-
-        if (is_mobile == false) {
-
-            if (! Modernizr.touch) {
-                enableDesktopNoTouch;
-            }
-            else {
-                enableDesktopTouch;
-            }
+        if (isMobile == true || Modernizr.touch) {
+            return;
         }
-        else {
-            enableMobile;
-        }
+
+        var $large_thumb_link = $('.productimage-large a[rel=full-image]'),
+            $large_image_src = $large_thumb_link.attr('href');
+
+        $productImage.data('zoom-image', $large_image_src);
+
+        // Enable zoom
+        $productImage.elevateZoom({
+            zoomWindowOffetx: 10
+        });
     }
 
     /**
-     * Enable on desktop on non-touch devices
+     * Update zoom image
      */
-    function enableDesktopNoTouch() {}
+    function updateZoomImage() {
+        var $large_thumb_link = $('.productimage-large a[rel=full-image]'),
+            $small_image_src = $productImage.attr('src'),
+            $large_image_src = $large_thumb_link.attr('href');
 
-    /**
-     * Enable on desktop on touch devices
-     */
-    function enableDesktopTouch() {}
-
-    /**
-     * Enable on desktop on touch devices
-     */
-    function enableMobile() {}
+        // Swap image
+        var ez = $productImage.data('elevateZoom');
+        ez.swaptheimage($small_image_src, $large_image_src);
+    }
 
     return pub;
 })(jQuery);

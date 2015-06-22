@@ -77,6 +77,7 @@
             $large.addClass('type-' + small.type);
             $large_img.attr('src', small.medium);
             $large_img.attr('alt', small.alt);
+            $(document).trigger('product.image.change');
 
             _changeColor();
             product.initStyleGuide();
