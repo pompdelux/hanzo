@@ -1,6 +1,13 @@
 {% extends layout %}
 
 {% block content %}
+    asd
+    asd
+    das
+    asd
+    as
+    dsa
+
     <nav class="grid_2 alpha sub-menu menu">
         <ul>
             <li>
@@ -59,11 +66,8 @@
         var $form           = $endEventDate.closest('form');
 
         $startEventDate.prop('readonly', true);
-        $endEventDate.prop('readonly', true);
 
-        $.timepicker.datetimeRange(
-            $startEventDate,
-            $endEventDate, {
+        $startEventDate.datetimepicker({
                 minDate     : new Date("{{ 'today 1am'|date('r') }}"),
                 minInterval : (1000*60*60), // 1hr
                 stepMinute  : 15,
