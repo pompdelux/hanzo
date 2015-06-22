@@ -14,7 +14,7 @@ App.register('WishlistBuilder', function() {
     publicMethods.init = function($element) {
         $_element     = $element;
         identifiers = {
-            form           : 'form',
+            form           : 'form.wishlist',
             target         : '.js-wishlist-target',
             resetter       : '.js-wishlist-flush-list',
             searchField    : 'input[name="q"]',
