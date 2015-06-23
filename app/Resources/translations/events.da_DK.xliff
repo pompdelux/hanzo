@@ -508,11 +508,11 @@
             </trans-unit>
             <trans-unit id="events.calendar.link.recreate">
                 <source>events.calendar.link.recreate</source>
-                <target>Genopret</target>
+                <target>Genopret </target>
             </trans-unit>
             <trans-unit id="events.recreating">
                 <source>events.recreating</source>
-                <target>Genopret gammelt event</target>
+                <target>Genopret gammelt event </target>
             </trans-unit>
         </body>
     </file>
