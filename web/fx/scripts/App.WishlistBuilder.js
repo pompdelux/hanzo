@@ -1,3 +1,4 @@
+/* global accounting:true, App:true, yatzy:true */
 App.register('WishlistBuilder', function() {
     "use strict";
 
@@ -9,7 +10,8 @@ App.register('WishlistBuilder', function() {
         $_resetter,
         $_form,
         $_masterField,
-        $_searchField;
+        $_searchField,
+        $_total;
 
     publicMethods.init = function($element) {
         $_element     = $element;
@@ -18,17 +20,23 @@ App.register('WishlistBuilder', function() {
             target         : '.js-wishlist-target',
             resetter       : '.js-wishlist-flush-list',
             searchField    : 'input[name="q"]',
-            masterField    : 'input[name="master"]'
+            masterField    : 'input[name="master"]',
+            total          : '.js-wishlist-total'
         };
         $_target      = $(identifiers.target);
         $_resetter    = $(identifiers.resetter, $_target);
-        $_form        = $(identifiers.form),
-        $_masterField = $(identifiers.masterField, $_form),
+        $_form        = $(identifiers.form);
+        $_masterField = $(identifiers.masterField, $_form);
         $_searchField = $(identifiers.searchField, $_form);
+        $_total       = $(identifiers.total);
 
         setupListeners();
         yatzy.compile('wishlistItemTpl');
     };
+
+    function updateTotal(total) {
+      $_total.text(total);
+    }
 
     var setupListeners = function() {
 
@@ -41,13 +49,12 @@ App.register('WishlistBuilder', function() {
 
             xhr.done(function(response) {
 
-                if ($('#js-wishlist-'+response.data.id, $_target).length) {
-                    var $product = $('#js-wishlist-'+response.data.id, $_target);
-
+                var $product = $('#js-wishlist-'+response.data.id, $_target);
+                if ($product.length) {
                     $('.js-in-edit', $_target).removeClass('js-in-edit');
 
                     $product.data('quantity', response.data.quantity);
-                    $('span', $product).text(response.data.quantity);
+                    $('span.quantity', $product).text(response.data.quantity);
                 } else {
                     $_target.prepend(yatzy.render('wishlistItemTpl', response.data));
 
@@ -55,6 +62,8 @@ App.register('WishlistBuilder', function() {
                        $(this).remove();
                     });
                 }
+
+                updateTotal(response.total_price);
 
                 App.ProductFinder.resetForm($_form);
 
@@ -82,6 +91,7 @@ App.register('WishlistBuilder', function() {
                     $('article', $_target).remove();
                     $scope.addClass('off');
                     $('.list-number.last').addClass('off');
+                    updateTotal(0);
                 }
             });
         });
@@ -126,8 +136,12 @@ App.register('WishlistBuilder', function() {
         $(document).on('click', '.js-wishlist-delete-item-trigger', function(event) {
             event.preventDefault();
 
-            $.post(this.href);
+            var xhr = $.post(this.href);
             $(this).closest('article').remove();
+
+            xhr.done(function(response) {
+              updateTotal(response.total_price);
+            });
         });
     };
 
