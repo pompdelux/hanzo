@@ -179,6 +179,7 @@ class EventsController extends CoreController
 
         $form = $this->createForm(new EventsType(), $event);
         $form->get('event_date')->setData($event->getEventDate('m/d/Y H:i'));
+        $form->get('event_end_time')->setData($event->getEventEndTime('m/d/Y H:i'));
 
         if ('POST' === $request->getMethod()) {
             $changed = !$event->isNew();
