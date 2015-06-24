@@ -63,7 +63,7 @@ class WishlistController extends CoreController
     }
 
     /**
-     * Add a product line to the wish list
+     * Add/Edit/Update a product line to the wish list
      *
      * @param Request $request
      *
@@ -76,9 +76,12 @@ class WishlistController extends CoreController
         if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json_response([
                 'status'  => false,
-                'message' => 'requires.login'
+                'message' => 'requires.login',
             ]);
         }
+
+        // action indicates if this is an edit request
+        $action = $request->request->get('action');
 
         $list = $this->getWishlist();
         $type = 'add';
@@ -95,10 +98,31 @@ class WishlistController extends CoreController
             ->findOne();
 
         if ($item instanceof WishlistsLines) {
+            // Another product of the same type has been added, increasing quantity
             $type     = 'update';
             $quantity = $item->getQuantity() + $request->request->get('quantity', 1);
             $item->setQuantity($quantity);
+        } elseif ($action == 'edit') {
+            // An existing product is being edited, delete the old product and create a new
+            if (!$request->request->has('old_product_id') || empty($request->request->get('old_product_id', ''))) {
+                return $this->json_response([
+                    'status'  => false,
+                    'message' => 'missing.update_line.parameters',
+                ]);
+            }
+            $oldProductId = $request->request->get('old_product_id');
+
+            WishlistsLinesQuery::create()
+                ->filterByProductsId($oldProductId)
+                ->filterByWishlists($list)
+                ->delete();
+
+            $item = new WishlistsLines();
+            $item->setQuantity($request->request->get('quantity', 1));
+            $item->setWishlists($list);
+            $item->setProductsId($productId);
         } else {
+            // New product added
             $item = new WishlistsLines();
             $item->setQuantity($request->request->get('quantity', 1));
             $item->setWishlists($list);
@@ -111,8 +135,7 @@ class WishlistController extends CoreController
         $products   = $this->getAllWishlistItems();
         $totalPrice = $this->calculateTotalPrice($products);
 
-        foreach ($products as $product)
-        {
+        foreach ($products as $product) {
             // Loop stops at the correct product, and $product is then used
             if ($product['id'] == $productId) {
                 break;
@@ -129,45 +152,20 @@ class WishlistController extends CoreController
     }
 
     /**
-     * Update a line by removing the old and inserting a new line
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function updateItemAction(Request $request)
-    {
-        $post = $request->request->all();
-
-        if (empty($post['old_products_id']) || empty($post['new_products_id'])) {
-            return $this->json_response([
-                'status'  => false,
-                'message' => 'missing.update_line.parameters'
-            ]);
-        }
-
-        $request->request->set('products_id', $post['old_products_id']);
-
-        $this->deleteItemAction($request);
-
-        return $this->addItemAction($request);
-    }
-
-    /**
      * Remove a line from a wishlist
      *
      * @param Request $request
-     * @param int     $product_id
+     * @param int     $productId
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function deleteItemAction(Request $request, $product_id = null)
+    public function deleteItemAction(Request $request, $productId = null)
     {
         WishlistsLinesQuery::create()
             ->filterByWishlistsId($this->getWishlist()->getId())
-            ->filterByProductsId($product_id)
+            ->filterByProductsId($productId)
             ->delete();
 
         $totalPrice = 0;
@@ -199,7 +197,7 @@ class WishlistController extends CoreController
         if ('json' === $this->getFormat()) {
             return $this->json_response([
                 'status'  => true,
-                'message' => 'wishlist.deleted'
+                'message' => 'wishlist.deleted',
             ]);
         }
 
@@ -224,7 +222,7 @@ class WishlistController extends CoreController
         if ('json' === $this->getFormat()) {
             return $this->json_response([
                 'status'  => true,
-                'message' => 'wishlist.all.items.deleted'
+                'message' => 'wishlist.all.items.deleted',
             ]);
         }
 
@@ -233,97 +231,6 @@ class WishlistController extends CoreController
         return $this->redirect($this->generateUrl('_account'));
     }
 
-
-    /**
-     * Generate unique random key string.
-     * Unique in the way that it's not already in use.
-     *
-     * @param int $length
-     *
-     * @return string
-     */
-    private function random($length = 5)
-    {
-        while (true) {
-            $string = implode('', array_rand(array_flip(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432')), $length));
-
-            $found = WishlistsQuery::create()
-                ->filterById($string)
-                ->count();
-
-            if (0 === $found) {
-                return $string;
-            }
-        }
-    }
-
-    /**
-     * Retrive customers list
-     *
-     * @param int $customerId
-     *
-     * @return Wishlists
-     * @throws \Exception
-     * @throws \PropelException
-     */
-    private function getWishlist($customerId = null)
-    {
-        if (is_null($customerId)) {
-            $customerId = CustomersPeer::getCurrent()->getId();
-        }
-
-        $list = WishlistsQuery::create()
-            ->filterByCustomersId($customerId)
-            ->findOne();
-
-        if (!$list instanceof Wishlists) {
-            $list = new Wishlists();
-            $list->setCustomersId($customerId);
-            $list->setId($this->random(5));
-            $list->save();
-
-            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getSetting('domain_key'));
-        }
-
-        return $list;
-    }
-
-    /**
-     * Get view data for a wishlist item
-     *
-     * @param array $item
-     *
-     * @return array
-     */
-    private function getItemViewData($item)
-    {
-        if (!is_array($item)) {
-            trigger_error("Item is not an array");
-        }
-
-        $image     = $this->getImageName($item['sku'], $item['color']);
-        $prices    = $this->getPrices($item['products_id']);
-        $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
-
-        if ('size.label.postfix' === $sizeLabel) {
-            $sizeLabel = '';
-        }
-
-        $data = [
-            'color'    => $item['color'],
-            'id'       => $item['products_id'],
-            'image'    => Tools::productImageUrl($image, '57x100'),
-            'master'   => $item['master'],
-            'quantity' => $item['quantity'],
-            'size'     => $item['size'].$sizeLabel,
-            'sku'      => $item['sku'],
-            'title'    => $item['title'],
-        ];
-
-        $data = array_merge($data, $prices);
-
-        return $data;
-    }
 
     /**
      * @param Request $request
@@ -337,7 +244,7 @@ class WishlistController extends CoreController
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json_response([
                 'status'  => false,
-                'message' => $this->container->get('translator')->trans('wishlist.invalid_to_address', [], 'account')
+                'message' => $this->container->get('translator')->trans('wishlist.invalid_to_address', [], 'account'),
             ]);
         }
 
@@ -345,7 +252,7 @@ class WishlistController extends CoreController
 
         return $this->json_response([
             'status'  => true,
-            'message' => $this->container->get('translator')->trans('wishlist.send', [], 'account')
+            'message' => $this->container->get('translator')->trans('wishlist.send', [], 'account'),
         ]);
     }
 
@@ -486,18 +393,6 @@ class WishlistController extends CoreController
     }
 
     /**
-     * getItemDataFromArray
-     *
-     * @param array $item
-     *
-     * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     */
-    protected function getItemDataFromArray(Array $item)
-    {
-    }
-
-    /**
      * @param mixed $productId
      */
     protected function getPrices($productId)
@@ -546,10 +441,7 @@ class WishlistController extends CoreController
      */
     protected function getImageName($sku, $color)
     {
-        return preg_replace('/[^a-z0-9]/i', '-', explode(' ', $sku)[0]) .
-            '_' .
-            preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $color)) .
-            '_overview_01.jpg';
+        return preg_replace('/[^a-z0-9]/i', '-', explode(' ', $sku)[0]).'_'.preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $color)).'_overview_01.jpg';
     }
 
     /**
@@ -608,7 +500,6 @@ class WishlistController extends CoreController
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         $products   = [];
-        $totalPrice = 0;
 
         /** @var \Hanzo\Model\WishlistsLines $item */
         foreach ($result as $item) {
@@ -641,5 +532,96 @@ class WishlistController extends CoreController
         }
 
         return true;
+    }
+
+    /**
+     * Generate unique random key string.
+     * Unique in the way that it's not already in use.
+     *
+     * @param int $length
+     *
+     * @return string
+     */
+    private function random($length = 5)
+    {
+        while (true) {
+            $string = implode('', array_rand(array_flip(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432')), $length));
+
+            $found = WishlistsQuery::create()
+                ->filterById($string)
+                ->count();
+
+            if (0 === $found) {
+                return $string;
+            }
+        }
+    }
+
+    /**
+     * Retrive customers list
+     *
+     * @param int $customerId
+     *
+     * @return Wishlists
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    private function getWishlist($customerId = null)
+    {
+        if (is_null($customerId)) {
+            $customerId = CustomersPeer::getCurrent()->getId();
+        }
+
+        $list = WishlistsQuery::create()
+            ->filterByCustomersId($customerId)
+            ->findOne();
+
+        if (!$list instanceof Wishlists) {
+            $list = new Wishlists();
+            $list->setCustomersId($customerId);
+            $list->setId($this->random(5));
+            $list->save();
+
+            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getSetting('domain_key'));
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get view data for a wishlist item
+     *
+     * @param array $item
+     *
+     * @return array
+     */
+    private function getItemViewData($item)
+    {
+        if (!is_array($item)) {
+            trigger_error("Item is not an array");
+        }
+
+        $image     = $this->getImageName($item['sku'], $item['color']);
+        $prices    = $this->getPrices($item['products_id']);
+        $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
+
+        if ('size.label.postfix' === $sizeLabel) {
+            $sizeLabel = '';
+        }
+
+        $data = [
+            'color'    => $item['color'],
+            'id'       => $item['products_id'],
+            'image'    => Tools::productImageUrl($image, '57x100'),
+            'master'   => $item['master'],
+            'quantity' => $item['quantity'],
+            'size'     => $item['size'].$sizeLabel,
+            'sku'      => $item['sku'],
+            'title'    => $item['title'],
+        ];
+
+        $data = array_merge($data, $prices);
+
+        return $data;
     }
 }

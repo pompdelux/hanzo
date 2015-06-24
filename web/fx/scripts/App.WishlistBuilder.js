@@ -5,30 +5,27 @@ App.register('WishlistBuilder', function() {
     var publicMethods = {};
 
     var $_element,
-        identifiers,
         $_target,
         $_resetter,
         $_form,
         $_masterField,
         $_searchField,
-        $_total;
+        $_total,
+        $_actionField,
+        $_oldProductIdField;
 
     publicMethods.init = function($element) {
         $_element     = $element;
-        identifiers = {
-            form           : 'form.wishlist',
-            target         : '.js-wishlist-target',
-            resetter       : '.js-wishlist-flush-list',
-            searchField    : 'input[name="q"]',
-            masterField    : 'input[name="master"]',
-            total          : '.js-wishlist-total'
-        };
-        $_target      = $(identifiers.target);
-        $_resetter    = $(identifiers.resetter, $_target);
-        $_form        = $(identifiers.form);
-        $_masterField = $(identifiers.masterField, $_form);
-        $_searchField = $(identifiers.searchField, $_form);
-        $_total       = $(identifiers.total);
+        $_target      = $('.js-wishlist-target');
+        $_resetter    = $('.js-wishlist-flush-list', $_target);
+
+        $_form              = $('form.wishlist');
+        $_masterField       = $('input[name="master"]', $_form);
+        $_searchField       = $('input[name="q"]', $_form);
+        $_actionField       = $('input[name="action"]', $_form);
+        $_oldProductIdField = $('input[name="old_product_id"]', $_form);
+
+        $_total       = $('.js-wishlist-total');
 
         setupListeners();
         yatzy.compile('wishlistItemTpl');
@@ -36,6 +33,22 @@ App.register('WishlistBuilder', function() {
 
     function updateTotal(total) {
       $_total.text(total);
+    }
+
+    function setActionAdd() {
+      $_actionField.val('add');
+    }
+
+    function setActionEdit() {
+      $_actionField.val('edit');
+    }
+
+    function setOldProductId(id) {
+      $_oldProductIdField.val(id);
+    }
+
+    function resetOldProductId() {
+      $_oldProductIdField.val("");
     }
 
     var setupListeners = function() {
@@ -64,6 +77,8 @@ App.register('WishlistBuilder', function() {
                 }
 
                 updateTotal(response.total_price);
+                setActionAdd();
+                resetOldProductId();
 
                 App.ProductFinder.resetForm($_form);
 
@@ -99,6 +114,7 @@ App.register('WishlistBuilder', function() {
         // edit
         $(document).on('click', '.js-wishlist-edit-item-trigger', function(event) {
             event.preventDefault();
+            setActionEdit();
 
             var $scope      = $(this),
                 $article    = $scope.parents('article'),
@@ -122,6 +138,7 @@ App.register('WishlistBuilder', function() {
 
             $_masterField.val(data.master);
             $_searchField.val(data.title);
+            setOldProductId(data.productId);
 
             App.ProductFinder.stockCheck({
                 master : data.master
