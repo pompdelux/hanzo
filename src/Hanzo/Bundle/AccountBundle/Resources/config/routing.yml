@@ -114,12 +114,6 @@ _account_wishlist_remove_item:
     requirements:
         product_id: \d+
 
-_account_wishlist_update_item:
-    path: /account/wishlist/update-item
-    defaults:
-        _controller: AccountBundle:Wishlist:updateItem
-    methods: [POST]
-
 _account_wishlist_remove_all:
     path: /account/wishlist/delete-all-items
     defaults:
