@@ -107,7 +107,7 @@ _account_wishlist_add_item:
     methods: [POST]
 
 _account_wishlist_remove_item:
-    path: /account/wishlist/remove-item/{product_id}
+    path: /account/wishlist/remove-item/{productId}
     defaults:
         _controller: AccountBundle:Wishlist:deleteItem
     methods: [POST]
