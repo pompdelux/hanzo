@@ -10,7 +10,7 @@
             </section>
         {% endif  %}
 
-        <form action="{{ path('_account_wishlist_add_item') }}" class="">
+        <form action="{{ path('_account_wishlist_add_item') }}" class="wishlist">
             <div>
                 <input type="text" name="q" id="form-item-q" placeholder="{{ 'wishlist.placeholder.query'|trans({}, 'account') }}" autocomplete="off" class="master">
                 <label form="form-item-q">{{ 'wishlist.query.description'|trans({}, 'account') }}</label>
@@ -34,6 +34,9 @@
             </div>
             <input type="hidden" name="master" value="">
             <input type="hidden" name="product_id" value="">
+            {# Used to distinguish between add and edit: #}
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="old_product_id" value="">
             <input type="submit" value="{{ "add.to.wishlist"|trans({}, 'account') }}" class="button submit-button">
         </form>
     </section>
