@@ -69,7 +69,7 @@
                 {{ product.raw_price|money }}<br>
             </p>
             <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
-            <a href="{{ path('_account_wishlist_remove_item', {'product_id': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
+            <a href="{{ path('_account_wishlist_remove_item', {'productId': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
         </article>
     {% endfor %}
     </section>
