@@ -51,6 +51,22 @@ App.register('WishlistBuilder', function() {
         $_oldProductIdField.val("");
     }
 
+    function setActionAdd() {
+      $_actionField.val('add');
+    }
+
+    function setActionEdit() {
+      $_actionField.val('edit');
+    }
+
+    function setOldProductId(id) {
+      $_oldProductIdField.val(id);
+    }
+
+    function resetOldProductId() {
+      $_oldProductIdField.val("");
+    }
+
     var setupListeners = function() {
 
         // submit
