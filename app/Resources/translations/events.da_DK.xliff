@@ -512,7 +512,7 @@
             </trans-unit>
             <trans-unit id="events.recreating">
                 <source>events.recreating</source>
-                <target>Genopret gammelt event </target>
+                <target>For at genoprette arrangementet skal du indtaste en ny dato.  </target>
             </trans-unit>
         </body>
     </file>
