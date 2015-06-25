@@ -474,8 +474,8 @@
                 <source>events.calendar.link.recreate</source>
                 <target>Opnieuw creëren</target>
             </trans-unit>
-            <trans-unit id="events.recreating">
-                <source>events.recreating</source>
+            <trans-unit id="event.recreating">
+                <source>event.recreating</source>
                 <target>Om het arrangement opnieuw te creëren, moet je een nieuwe datum invullen.</target>
             </trans-unit>
         </body>

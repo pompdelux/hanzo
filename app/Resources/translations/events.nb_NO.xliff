@@ -506,8 +506,8 @@
                 <source>events.calendar.link.recreate</source>
                 <target>Gjenopprett</target>
             </trans-unit>
-            <trans-unit id="events.recreating">
-                <source>events.recreating</source>
+            <trans-unit id="event.recreating">
+                <source>event.recreating</source>
                 <target>For å gjenopprette arrangementet skal du taste inn en ny dato.</target>
             </trans-unit>
        </body>

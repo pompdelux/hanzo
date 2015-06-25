@@ -466,8 +466,8 @@
                 <source>events.calendar.link.recreate</source>
                 <target>Luo uudelleen</target>
             </trans-unit>
-            <trans-unit id="events.recreating">
-                <source>events.recreating</source>
+            <trans-unit id="event.recreating">
+                <source>event.recreating</source>
                 <target>Kun luot tapahtuman uudelleen, sinun tulee antaa uusi päivämäärä.</target>
             </trans-unit>
         </body>
