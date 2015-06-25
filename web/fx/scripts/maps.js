@@ -1,3 +1,4 @@
+/* global yatzy:true, dialoug:true, Translator:true, base_url:true, near_you_params:true, geo_zipcode_params:true, google:true */
 var maps = (function ($) {
     var pub = {};
 
@@ -168,9 +169,11 @@ var maps = (function ($) {
 if ($("#geo-zipcode-form").length) {
     maps.initZip();
 }
-if ($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
-    // maps.initContainer();
-}
-if ($('#consultants-map-canvas').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
-  // maps.initConsultantsmap();
-}
+/*
+ * if ($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
+ *     maps.initContainer();
+ * }
+ * if ($('#consultants-map-canvas').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
+ *     maps.initConsultantsmap();
+ * }
+ */
