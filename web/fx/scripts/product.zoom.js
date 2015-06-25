@@ -1,13 +1,15 @@
-var product_zoom = (function ($) {
+var productZoom = (function ($) {
     'use strict';
     var pub = {},
         isMobile = false,
-        $productImage = $('.productimage-large a[rel=full-image] img');
+        $productImage = null;
 
     /**
      * Instantiate zoom
      */
     pub.init = function() {
+        $productImage = $('.productimage-large a[rel=full-image] img');
+
         if ($('body').hasClass('is_mobile')) {
             isMobile = true;
         }
@@ -36,10 +38,10 @@ var product_zoom = (function ($) {
             return;
         }
 
-        var $large_thumb_link = $('.productimage-large a[rel=full-image]'),
-            $large_image_src = $large_thumb_link.attr('href');
+        var $largeThumbLink = $('.productimage-large a[rel=full-image]'),
+            $largeImageSrc = $largeThumbLink.attr('href');
 
-        $productImage.data('zoom-image', $large_image_src);
+        $productImage.data('zoom-image', $largeImageSrc);
 
         // Enable zoom
         $productImage.elevateZoom({
@@ -54,16 +56,16 @@ var product_zoom = (function ($) {
      * Update zoom image
      */
     function updateZoomImage() {
-        var $large_thumb_link = $('.productimage-large a[rel=full-image]'),
-            $small_image_src = $productImage.attr('src'),
-            $large_image_src = $large_thumb_link.attr('href');
+        var $largeThumbLink = $('.productimage-large a[rel=full-image]'),
+            $smallImageSrc = $productImage.attr('src'),
+            $largeImageSrc = $largeThumbLink.attr('href');
 
         // Swap image
         var ez = $productImage.data('elevateZoom');
-        ez.swaptheimage($small_image_src, $large_image_src);
+        ez.swaptheimage($smallImageSrc, $largeImageSrc);
     }
 
     return pub;
 })(jQuery);
 
-product_zoom.init();
+productZoom.init();
