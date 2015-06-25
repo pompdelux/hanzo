@@ -13,7 +13,7 @@ var maps = (function ($) {
     pub.initZip = function () {
         var $geoZipForm = $("#geo-zipcode-form");
         if ($geoZipForm.length === 0) {
-          return;
+            return;
         }
 
         $geoZipForm.submit(function (event) {
@@ -85,7 +85,7 @@ var maps = (function ($) {
      */
     pub.initContainer = function () {
         if (!($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true)) {
-          return;
+            return;
         }
 
         dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
@@ -94,17 +94,17 @@ var maps = (function ($) {
         var nearYouRequest = getNearYou(near_you_params.type);
 
         nearYouRequest.done(function(result) {
-          dataToContainer(result.data);
+            dataToContainer(result.data);
 
-          if (typeof gm_settings === 'undefined') {
-            return;
-          }
+            if (typeof gm_settings === 'undefined') {
+                return;
+            }
 
-          if (result.data.length) {
-            populateMap(mapContainer, result.data, true);
-            $(mapContainer).show();
-            google.maps.event.trigger($(mapContainer)[0], 'resize');
-          }
+            if (result.data.length) {
+                populateMap(mapContainer, result.data, true);
+                $(mapContainer).show();
+                google.maps.event.trigger($(mapContainer)[0], 'resize');
+            }
         });
     };
 
@@ -116,35 +116,35 @@ var maps = (function ($) {
     pub.initConsultantsmap = function () {
         var mapContainer = '#consultants-map-canvas';
         if (!($(mapContainer).length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true)) {
-          return;
+            return;
         }
         if (typeof gm_settings === 'undefined') {
-          return;
+            return;
         }
         if ($('body').hasClass('is-mobile')) {
-          gm_settings.zoom = gm_settings.zoom - 1;
-          $(mapContainer).width('100%');
+            gm_settings.zoom = gm_settings.zoom - 1;
+            $(mapContainer).width('100%');
         }
         var consultantsRequest = getConsultants();
         consultantsRequest.done(function(result) {
-          populateMap(mapContainer, result.data, true);
+            populateMap(mapContainer, result.data, true);
         });
     };
 
     var getGeocodeForZip = function(zip) {
-      return $.getJSON(base_url + "muneris/gpc/" + encodeURI(zip));
+        return $.getJSON(base_url + "muneris/gpc/" + encodeURI(zip));
     };
 
     var getConsultants = function() {
-      return $.getJSON(base_url + 'events/advisor/consultants');
+        return $.getJSON(base_url + 'events/advisor/consultants');
     };
 
     var getNearYou = function(type, lat, lng) {
-      lat = lat || 0;
-      lng = lng || 0;
-      var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
-      var req = '/' + type + '/' + lat + '/' + lng + showAll;
-      return $.getJSON(base_url + 'events/advisor/near_you' + req);
+        lat = lat || 0;
+        lng = lng || 0;
+        var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
+        var req = '/' + type + '/' + lat + '/' + lng + showAll;
+        return $.getJSON(base_url + 'events/advisor/near_you' + req);
     };
 
     var getMap = function(id) {
