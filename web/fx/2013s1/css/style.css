@@ -5284,7 +5284,7 @@ nav.navigation-main > ul.outer > li > ul {
 nav.navigation-main > ul.outer > li > ul > li {
   width: 11em;
   float: left;
-  padding: 0 1em 0 0;
+  padding: 0;
   letter-spacing: 1.5px;
 }
 nav.navigation-main > ul.outer > li > ul > li > a {
