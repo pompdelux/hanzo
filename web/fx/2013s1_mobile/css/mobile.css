@@ -3281,9 +3281,6 @@ footer .copy li {
 .prices .discount {
   display: block;
 }
-.prices .strike {
-  text-decoration: line-through;
-}
 .prices .description {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 11px;
@@ -3694,6 +3691,10 @@ table.horizontal th {
   display: inline-block;
   vertical-align: text-top;
   margin-top: 5px;
+}
+
+.strike {
+  text-decoration: line-through;
 }
 
 #consultants-map-canvas,
