@@ -46,7 +46,7 @@ var maps = (function ($) {
                         return;
                     }
 
-                    var map = getMap('consultants-map-canvas-2');
+                    var map = getMap('consultants-map-canvas');
                     if (result.data.length) {
                         populateMap(map, result.data, true);
                         $('#consultants-map-canvas-2').show();
@@ -93,6 +93,13 @@ var maps = (function ($) {
     };
 
     pub.initConsultantsmap = function () {
+        if (typeof gm_settings === 'undefined') {
+          return;
+        }
+        if ($('body').hasClass('is-mobile')) {
+          gm_settings.zoom = gm_settings.zoom - 1;
+          $('#consultants-map-canvas').width('100%');
+        }
         var map = getMap('consultants-map-canvas');
         $.getJSON(base_url + 'events/advisor/consultants', function (result) {
             populateMap(map, result.data);
@@ -161,16 +168,9 @@ var maps = (function ($) {
 if ($("#geo-zipcode-form").length) {
     maps.initZip();
 }
-if ($('#near-you-container').length) {
-    maps.initContainer();
+if ($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
+    // maps.initContainer();
 }
-if ($('#consultants-map-canvas').length) {
-    if ($('body').hasClass('is-mobile')) {
-        gm_settings.zoom = gm_settings.zoom - 1;
-        $('#consultants-map-canvas').width('100%');
-    }
-
-    if (typeof gm_settings !== 'undefined') {
-        maps.initConsultantsmap();
-    }
+if ($('#consultants-map-canvas').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
+  // maps.initConsultantsmap();
 }
