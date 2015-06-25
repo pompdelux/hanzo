@@ -909,6 +909,8 @@ ul.breadcrumb li.last i.arrow-right {
   font-size: 21px;
   color: white;
   font-weight: normal;
+  letter-spacing: 0.05em;
+  font-weight: 200;
 }
 .container .main header hgroup h6 {
   font-size: 14px;
