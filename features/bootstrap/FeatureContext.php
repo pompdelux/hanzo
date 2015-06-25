@@ -394,4 +394,23 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
 
         $this->data['order_from_consultant_site'] = $orderId;
     }
+
+    /**
+     * @When I wait for the suggestion box to appear
+     */
+    public function iWaitForTheSuggestionBoxToAppear()
+    {
+        $this->getSession()->wait(5000, "$('.tt-suggestions').children().length > 0");
+    }
+
+    /**
+     * @When I type :arg1 into the autocomplete field :arg2
+     */
+    public function iTypeIntoTheAutocompleteField($arg1, $arg2)
+    {
+        $script = 'function() { $("#'.$arg2.'").val("'.$arg1.'").trigger("input"); }()';
+
+        $driver = $this->minkContext->getSession()->getDriver();
+        $driver->evaluateScript($script);
+    }
 }
