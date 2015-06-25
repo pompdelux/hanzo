@@ -5,7 +5,7 @@
 @import "../../2013s1/sass/_sprites";
 
 html {
-	font-size: 12px;
+    font-size: 12px;
     line-height: 1.6em;
     body {
         background: $html-background-color;
@@ -63,11 +63,11 @@ h1, h2, h3, h4 {
 
 .small, small {
     word-break: break-all;
-	font-size: 0.7em;
+    font-size: 0.7em;
 }
 
 img {
-	max-width: 100%;
+    max-width: 100%;
     height: auto;
 }
 
@@ -87,23 +87,23 @@ b, strong {
 }
 
 .image-caption {
-	position: relative;
-	margin-bottom: 3px;
-	span {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		color: white;
-		font-size: $heading-size;
-		font-family: $font-sans;
-		text-transform: uppercase;
+    position: relative;
+    margin-bottom: 3px;
+    span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: white;
+        font-size: $heading-size;
+        font-family: $font-sans;
+        text-transform: uppercase;
 
-		padding: 10px;
-	}
-	&.caption-right span {
-		right: 0;
-		text-align: right;
-	}
+        padding: 10px;
+    }
+    &.caption-right span {
+        right: 0;
+        text-align: right;
+    }
 }
 
 /* For _filter.scss */
@@ -136,10 +136,10 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 
 /* Selection colours (easy to forget) */
 
-::selection 	 	{background: #CCCCCC;}
-::-moz-selection 	{background: #CCCCCC;}
-img::selection 		{background: transparent;}
-img::-moz-selection	{background: transparent;}
+::selection         {background: #CCCCCC;}
+::-moz-selection    {background: #CCCCCC;}
+img::selection      {background: transparent;}
+img::-moz-selection {background: transparent;}
 body {-webkit-tap-highlight-color: #CCCCCC;}
 
 .clearfix:before,
@@ -315,6 +315,9 @@ table{
     }
 }
 
+.strike {
+    text-decoration: line-through;
+}
 
 #consultants-map-canvas,
 #consultants-map-canvas-2,
