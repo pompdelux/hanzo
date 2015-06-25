@@ -1,10 +1,18 @@
 <div id="near-you-container" class="near-you-container grid_6 omega"></div>
+{{ consultants_map() }}
+
+{#
+auto_load_results controlls if results are auto loaded based on geoip
+If this should not be hardcoded to false, then pass the value via:
+AdvisorController > open_house/finder.html.twig > MapsExtension > this tpl
+#}
 <script type="text/javascript">
 var near_you_params = {
-    type : geo_zipcode_params.type || "{{ type }}",
-    lat  : {{ lat }},
-    lon  : {{ lon }},
-    all  : {{ all|default('false') }}
+    type              : geo_zipcode_params.type || "{{ type }}",
+    lat               : {{ lat }},
+    lon               : {{ lon }},
+    all               : {{ all|default('false') }},
+    auto_load_results : false
 };
 </script>
 
@@ -55,4 +63,3 @@ var near_you_params = {
     <? } ?>
 <? } ?>
 </script>
-
