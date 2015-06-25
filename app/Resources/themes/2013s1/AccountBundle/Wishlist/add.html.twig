@@ -64,9 +64,9 @@
                 {{ product.color }}<br>
                 <span class="quantity">{{ product.quantity }}</span> stk<br>
                 {% if product.price_sale %}
-                <span class="normal strike">{{ product.price_normal|money }}</span><br>
+                <span class="normal strike">{{ product.price_normal }}</span><br>
                 {% endif %}
-                {{ product.raw_price|money }}<br>
+                {{ product.price_formattet }}<br>
             </p>
             <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
             <a href="{{ path('_account_wishlist_remove_item', {'productId': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
