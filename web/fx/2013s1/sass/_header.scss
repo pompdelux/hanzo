@@ -5,7 +5,7 @@
 $topbar-color: #dcd8d2;
 
 #logo {
-	margin-top: 6px;
+    margin-top: 6px;
 }
 
 .top-bar {
@@ -144,62 +144,62 @@ ul.menu,
         a {
             color: $font-color;
             text-decoration: none;
-		}
-		&.active > a,
-		&.active-trail > a,
-		a:hover{
-			text-decoration: none;
-		}
-	}
-	.dropdown{
-		position: absolute;
-		left: 0;
-		background: white;
-		@include shadow;
-		padding: 0 9px;
-		max-height: 400px;
-		overflow-y: auto;
-		overflow-x: hidden;
-		z-index: 141;
-	}
-	&.right{
-		text-align: right;
-		.dropdown{
-			left: auto;
-			right: 0;
-		}
-	}
+        }
+        &.active > a,
+        &.active-trail > a,
+        a:hover{
+            text-decoration: none;
+        }
+    }
+    .dropdown{
+        position: absolute;
+        left: 0;
+        background: white;
+        @include shadow;
+        padding: 0 9px;
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 141;
+    }
+    &.right{
+        text-align: right;
+        .dropdown{
+            left: auto;
+            right: 0;
+        }
+    }
 }
 
 .sub-menu > ul {
-	@include side-menu-style;
+    @include side-menu-style;
 
-	li {
-		padding: 0 0 6px 0;
-		line-height: 18px;
-		&.item {
-			a {
-				line-height: 18px;
+    li {
+        padding: 0 0 6px 0;
+        line-height: 18px;
+        &.item {
+            a {
+                line-height: 18px;
                 &.search {
                     font-weight: bold;
                     margin: 6px 0 0;
                 }
-			}
-		}
-		&.heading > a,
-		&.self-included > a {
-			font-weight: bold;
-			line-height: 18px;
-			text-decoration: none;
-			cursor: default;
-		}
-		&.active > a,
-		&.active-trail > a {
+            }
+        }
+        &.heading > a,
+        &.self-included > a {
             font-weight: bold;
-		    &:hover {
-		        text-decoration:none;
-		    }
-		}
+            line-height: 18px;
+            text-decoration: none;
+            cursor: default;
+        }
+        &.active > a,
+        &.active-trail > a {
+            font-weight: bold;
+            &:hover {
+                text-decoration:none;
+            }
+        }
     }
 
     > li {
@@ -229,19 +229,19 @@ ul.menu,
                 display: inline-block;
                 width: 24px;
             }
-	        /* Inactive menus are hidden */
-	        > ul {
-	            padding: 6px 0 0 36px;
-	            display: none;
-	        }
+            /* Inactive menus are hidden */
+            > ul {
+                padding: 6px 0 0 36px;
+                display: none;
+            }
         }
     }
 
     /* Show active menus */
-	li.active-trail > ul,
-	li.active ul {
-	    display: block;
-	}
+    li.active-trail > ul,
+    li.active ul {
+        display: block;
+    }
 }
 
 .consultant .sub-menu > ul > li > a {
@@ -251,10 +251,10 @@ ul.menu,
 // horizontal helper. Lets all list get horizontal
 ul.horizontal,
 .horizontal > ul{
-	list-style: none;
-	li{
-	    display: inline-block;
-	}
+    list-style: none;
+    li{
+        display: inline-block;
+    }
 }
 
 // Specific Secondary menu
@@ -263,9 +263,9 @@ div header.row {
     position:relative;
 }
 #secondary-links {
-	position: absolute;
-	top: -6px; // top menu bottom margin.
-	right: 0px;
+    position: absolute;
+    top: -6px; // top menu bottom margin.
+    right: 0px;
     background: #a2a2a2;
     padding: 5px 10px 0;
     -webkit-border-radius: 0px 0px 20px 20px;
@@ -282,95 +282,97 @@ div header.row {
         }
         a{
             text-transform: uppercase;
-	    }
-	}
+        }
+    }
     ul.first {
         border-bottom: 1px dashed white;
         > li > a {
             color: white;
         }
     }
-	ul.second{
-	    z-index: 1;
+    ul.second{
+        z-index: 1;
         a {
             color: $basket-color;
             font-size: $basket-font-size;
             font-weight: $basket-font-weight;
             font-family: $font-sans;
         }
-	}
+    }
 }
 
 ul.breadcrumb {
-	list-style: none;
-	font-size: $side-menu-size;
-	font-family: $side-menu-family;
-	color:$side-menu-color;
+    list-style: none;
+    font-size: $side-menu-size;
+    font-family: $side-menu-family;
+    color:$side-menu-color;
     margin-bottom:12px;
-	li {
-	    display: inline-block;
-	    padding: 0 3px;
-	    &.first{
-		    padding: 0 3px 0 0;
-	    }
-	    a{
-		    color:$font-color;
-		    text-decoration: none;
-	    }
-	    &.active > a,
-	    &.active-trail > a,
-	    a:hover{
-		    text-decoration: underline;
-	    }
-	    &.heading{
-		    a:hover{
-		        text-decoration:none;
-		    cursor: default;}
-	    }
-	    i.arrow-right{
-		    margin-top: 3px;
-	    }
-	    &.last i.arrow-right{display:none;}
-	}
+    li {
+        display: inline-block;
+        padding: 0 3px;
+        &.first{
+            padding: 0 3px 0 0;
+        }
+        a{
+            color:$font-color;
+            text-decoration: none;
+        }
+        &.active > a,
+        &.active-trail > a,
+        a:hover{
+            text-decoration: underline;
+        }
+        &.heading{
+            a:hover{
+                text-decoration:none;
+            cursor: default;}
+        }
+        i.arrow-right{
+            margin-top: 3px;
+        }
+        &.last i.arrow-right{display:none;}
+    }
 }
 
 .container .main header{
-	display: table;
-	min-height: 100px;
+    display: table;
+    min-height: 100px;
     height: 100px;
     background: #d2c3c6;
-	margin-bottom: 20px;
+    margin-bottom: 20px;
     overflow: hidden;
 
     hgroup {
-	    color: white;
-	    padding: 10px;
-	    display: table-cell;
-	    vertical-align: middle;
-	    text-align: center;
-	    h1,h2,h3,h4,h5{
-		    text-transform: uppercase;
-		    padding: 0 0 10px;
-		    font-size: 21px;
-		    color: white;
-		    font-weight: normal;
-	    }
-	    h6{
-		    font-size: $font-size;
-		    font-weight: normal;
-		    color: white;
-	    }
-	    a,p{
-		    color: white;
-	    }
-	}
+        color: white;
+        padding: 10px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        h1,h2,h3,h4,h5{
+            text-transform: uppercase;
+            padding: 0 0 10px;
+            font-size: 21px;
+            color: white;
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            font-weight: 200;
+        }
+        h6{
+            font-size: $font-size;
+            font-weight: normal;
+            color: white;
+        }
+        a,p{
+            color: white;
+        }
+    }
 }
 
 .body-bycolour .main header,
 .body-bylook .main header,
 .body-category .main header{ // Specific for all categories
-	background: #d2c3c6;
-	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+    background: #d2c3c6;
+    background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
 }
 
 #body-account .main header,
@@ -384,14 +386,14 @@ ul.breadcrumb {
 #body-pensio-payment-failed .main header,
 #body-pensio-pensio-payment-form .main header,
 #body-pensio-wait .main header{
-	background: #d2c3c6;
-	background: url('/fx/images/headers/Kategori_Min_side_960x100.jpg') no-repeat top center;
+    background: #d2c3c6;
+    background: url('/fx/images/headers/Kategori_Min_side_960x100.jpg') no-repeat top center;
 
     hgroup {
-	    h1,h2,h3,h4,h5,h6,a,p{
-		    color: #fff;
-	    }
-	}
+        h1,h2,h3,h4,h5,h6,a,p{
+            color: #fff;
+        }
+    }
 }
 
 #new-basket-item {
