@@ -506,8 +506,8 @@
                 <source>events.calendar.link.recreate</source>
                 <target>Wiederherstellen</target>
             </trans-unit>
-            <trans-unit id="events.recreating">
-                <source>events.recreating</source>
+            <trans-unit id="event.recreating">
+                <source>event.recreating</source>
                 <target>Um die Veranstaltung wiederherzustellen, geben Sie bitte ein neues Datum ein.</target>
             </trans-unit>
         </body>

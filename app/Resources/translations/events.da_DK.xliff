@@ -510,8 +510,8 @@
                 <source>events.calendar.link.recreate</source>
                 <target>Genopret </target>
             </trans-unit>
-            <trans-unit id="events.recreating">
-                <source>events.recreating</source>
+            <trans-unit id="event.recreating">
+                <source>event.recreating</source>
                 <target>For at genoprette arrangementet skal du indtaste en ny dato.  </target>
             </trans-unit>
         </body>
