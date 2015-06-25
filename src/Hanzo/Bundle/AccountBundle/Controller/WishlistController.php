@@ -19,6 +19,7 @@ use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Wishlists;
 use Hanzo\Model\WishlistsLines;
 use Hanzo\Model\WishlistsLinesQuery;
@@ -36,6 +37,7 @@ class WishlistController extends CoreController
 {
     /**
      * Create a new wish list.
+     * - Loads existing wishlist
      *
      * @param Request $request
      *
@@ -47,62 +49,21 @@ class WishlistController extends CoreController
      */
     public function addAction(Request $request)
     {
-        $query = "
-            SELECT
-                wl.*,
-                p.size,
-                p.color,
-                p.master,
-                p.sku, (
-                SELECT
-                    products_i18n.title
-                FROM
-                    products_i18n
-                JOIN
-                    products ON (
-                        products_i18n.id = products.id
-                    )
-                WHERE
-                    products_i18n.locale = '".$request->getLocale()."'
-                    AND
-                      products.sku = p.master
-            ) as title
-            FROM
-                wishlists_lines as wl
-            JOIN
-                products as p ON (
-                    p.id = wl.products_id
-                )
-            JOIN
-                wishlists as w ON (
-                    wl.wishlists_id = w.id
-                )
-            WHERE
-                w.customers_id = ".(int) CustomersPeer::getCurrent()->getId()."
-        ";
-
-        $con      = \Propel::getConnection();
-        $result   = $con->query($query);
-        $locale   = $request->getLocale();
-        $products = [];
-
-        /** @var \Hanzo\Model\WishlistsLines $item */
-        foreach ($result as $item) {
-            $item = $this->getItemViewData($item, $locale);
-            $products[$item['sku']] = $item;
-        }
+        $products   = $this->getAllWishlistItems();
+        $totalPrice = $this->calculateTotalPrice($products);
 
         ksort($products);
 
         return [
             'wishlist_id' => $this->getWishlist()->getId(),
             'page_type'   => 'wishlist',
-            'products'    => $products
+            'products'    => $products,
+            'total_price' => Tools::moneyFormat($totalPrice),
         ];
     }
 
     /**
-     * Add a product line to the wish list
+     * Add/Edit/Update a product line to the wish list
      *
      * @param Request $request
      *
@@ -115,9 +76,12 @@ class WishlistController extends CoreController
         if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json_response([
                 'status'  => false,
-                'message' => 'requires.login'
+                'message' => 'requires.login',
             ]);
         }
+
+        // action indicates if this is an edit request
+        $action = $request->request->get('action');
 
         $list = $this->getWishlist();
         $type = 'add';
@@ -134,9 +98,31 @@ class WishlistController extends CoreController
             ->findOne();
 
         if ($item instanceof WishlistsLines) {
-            $type = 'update';
+            // Another product of the same type has been added, increasing quantity
+            $type     = 'update';
+            $quantity = $item->getQuantity() + $request->request->get('quantity', 1);
+            $item->setQuantity($quantity);
+        } elseif ($action == 'edit') {
+            // An existing product is being edited, delete the old product and create a new
+            if (!$request->request->has('old_product_id') || empty($request->request->get('old_product_id', ''))) {
+                return $this->json_response([
+                    'status'  => false,
+                    'message' => 'missing.update_line.parameters',
+                ]);
+            }
+            $oldProductId = $request->request->get('old_product_id');
+
+            WishlistsLinesQuery::create()
+                ->filterByProductsId($oldProductId)
+                ->filterByWishlists($list)
+                ->delete();
+
+            $item = new WishlistsLines();
             $item->setQuantity($request->request->get('quantity', 1));
+            $item->setWishlists($list);
+            $item->setProductsId($productId);
         } else {
+            // New product added
             $item = new WishlistsLines();
             $item->setQuantity($request->request->get('quantity', 1));
             $item->setWishlists($list);
@@ -145,59 +131,51 @@ class WishlistController extends CoreController
 
         $item->save();
 
-        return $this->json_response([
-            'data'    => $this->getItemViewData($item, $request->getLocale()),
-            'message' => '',
-            'status'  => true,
-            'type'    => $type,
-        ]);
-    }
+        $totalPrice = 0;
+        $products   = $this->getAllWishlistItems();
+        $totalPrice = $this->calculateTotalPrice($products);
 
-    /**
-     * Update a line by removing the old and inserting a new line
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function updateItemAction(Request $request)
-    {
-        $post = $request->request->all();
-
-        if (empty($post['old_products_id']) || empty($post['new_products_id'])) {
-            return $this->json_response([
-                'status'  => false,
-                'message' => 'missing.update_line.parameters'
-            ]);
+        foreach ($products as $product) {
+            // Loop stops at the correct product, and $product is then used
+            if ($product['id'] == $productId) {
+                break;
+            }
         }
 
-        $request->request->set('products_id', $post['old_products_id']);
-
-        $this->deleteItemAction($request);
-
-        return $this->addItemAction($request);
+        return $this->json_response([
+            'data'        => $product,
+            'message'     => '',
+            'status'      => true,
+            'type'        => $type,
+            'total_price' => Tools::moneyFormat($totalPrice),
+        ]);
     }
 
     /**
      * Remove a line from a wishlist
      *
      * @param Request $request
-     * @param int     $product_id
+     * @param int     $productId
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function deleteItemAction(Request $request, $product_id = null)
+    public function deleteItemAction(Request $request, $productId = null)
     {
         WishlistsLinesQuery::create()
             ->filterByWishlistsId($this->getWishlist()->getId())
-            ->filterByProductsId($product_id)
+            ->filterByProductsId($productId)
             ->delete();
 
+        $totalPrice = 0;
+        $products   = $this->getAllWishlistItems();
+        $totalPrice = $this->calculateTotalPrice($products);
+
         return $this->json_response([
-            'status'  => true,
-            'message' => 'wishlist.line.removed'
+            'status'      => true,
+            'message'     => 'wishlist.line.removed',
+            'total_price' => Tools::moneyFormat($totalPrice),
         ]);
     }
 
@@ -219,7 +197,7 @@ class WishlistController extends CoreController
         if ('json' === $this->getFormat()) {
             return $this->json_response([
                 'status'  => true,
-                'message' => 'wishlist.deleted'
+                'message' => 'wishlist.deleted',
             ]);
         }
 
@@ -244,7 +222,7 @@ class WishlistController extends CoreController
         if ('json' === $this->getFormat()) {
             return $this->json_response([
                 'status'  => true,
-                'message' => 'wishlist.all.items.deleted'
+                'message' => 'wishlist.all.items.deleted',
             ]);
         }
 
@@ -253,119 +231,6 @@ class WishlistController extends CoreController
         return $this->redirect($this->generateUrl('_account'));
     }
 
-
-    /**
-     * Generate unique random key string.
-     * Unique in the way that it's not already in use.
-     *
-     * @param int $length
-     *
-     * @return string
-     */
-    private function random($length = 5)
-    {
-        while (true) {
-            $string = implode('', array_rand(array_flip(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432')), $length));
-
-            $found = WishlistsQuery::create()
-                ->filterById($string)
-                ->count();
-
-            if (0 === $found) {
-                return $string;
-            }
-        }
-    }
-
-    /**
-     * Retrive customers list
-     *
-     * @param int $customerId
-     *
-     * @return Wishlists
-     * @throws \Exception
-     * @throws \PropelException
-     */
-    private function getWishlist($customerId = null)
-    {
-        if (is_null($customerId)) {
-            $customerId = CustomersPeer::getCurrent()->getId();
-        }
-
-        $list = WishlistsQuery::create()
-            ->filterByCustomersId($customerId)
-            ->findOne();
-
-        if (!$list instanceof Wishlists) {
-            $list = new Wishlists();
-            $list->setCustomersId($customerId);
-            $list->setId($this->random(5));
-            $list->save();
-
-            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getSetting('domain_key'));
-        }
-
-        return $list;
-    }
-
-    /**
-     * Get view data for a wishlist item
-     *
-     * @param WishlistsLines|array $item
-     * @param string               $locale
-     *
-     * @return array
-     */
-    private function getItemViewData($item, $locale)
-    {
-        $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
-        if ('size.label.postfix' === $sizeLabel) {
-            $sizeLabel = '';
-        }
-
-        if (is_array($item)) {
-            $image = preg_replace('/[^a-z0-9]/i', '-', explode(' ', $item['sku'])[0]) .
-                '_' .
-                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $item['color'])) .
-                '_overview_01.jpg';
-
-            return [
-                'color'    => $item['color'],
-                'id'       => $item['products_id'],
-                'image'    => Tools::productImageUrl($image, '57x100'),
-                'master'   => $item['master'],
-                'quantity' => $item['quantity'],
-                'size'     => $item['size'].$sizeLabel,
-                'sku'      => $item['sku'],
-                'title'    => $item['title'],
-            ];
-        }
-
-        $product = $item->getProducts();
-        $image   = preg_replace('/[^a-z0-9]/i', '-', explode(' ', $product->getSku())[0]) .
-            '_' .
-            preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $product->getColor())) .
-            '_overview_01.jpg';
-
-        $title = ProductsI18nQuery::create()
-            ->select('Title')
-            ->filterByLocale($locale)
-            ->useProductsQuery()
-                ->filterBySku($product->getMaster())
-            ->endUse()
-            ->findOne();
-
-        return [
-            'color'    => $product->getColor(),
-            'id'       => $item->getProductsId(),
-            'image'    => Tools::productImageUrl($image, '57x100'),
-            'master'   => $product->getMaster(),
-            'quantity' => $item->getQuantity(),
-            'size'     => $product->getPostfixedSize($this->container->get('translator')),
-            'sku'      => $product->getSku(),
-            'title'    => $title,
-        ];
-    }
 
     /**
      * @param Request $request
@@ -379,7 +244,7 @@ class WishlistController extends CoreController
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json_response([
                 'status'  => false,
-                'message' => $this->container->get('translator')->trans('wishlist.invalid_to_address', [], 'account')
+                'message' => $this->container->get('translator')->trans('wishlist.invalid_to_address', [], 'account'),
             ]);
         }
 
@@ -387,7 +252,7 @@ class WishlistController extends CoreController
 
         return $this->json_response([
             'status'  => true,
-            'message' => $this->container->get('translator')->trans('wishlist.send', [], 'account')
+            'message' => $this->container->get('translator')->trans('wishlist.send', [], 'account'),
         ]);
     }
 
@@ -448,9 +313,9 @@ class WishlistController extends CoreController
         $con  = \Propel::getConnection();
         $stmt = $con->prepare($query);
         $stmt->execute([
-                ':locale'       => $request->getLocale(),
-                ':wishlists_id' => $wishlistId,
-            ]);
+            ':locale'       => $request->getLocale(),
+            ':wishlists_id' => $wishlistId,
+        ]);
 
         $lines = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -507,6 +372,142 @@ class WishlistController extends CoreController
         return $this->render('AccountBundle:Wishlist:missing.html.twig', ['misses' => $misses]);
     }
 
+    /**
+     * calculateTotalPrice
+     *
+     * @param mixed $data
+     *
+     * @return int
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function calculateTotalPrice($data)
+    {
+        $total = 0;
+        if (is_array($data)) {
+            foreach ($data as $product) {
+                $total += ($product['raw_price'] * $product['quantity']);
+            }
+        }
+
+        return $total;
+    }
+
+    /**
+     * @param mixed $productId
+     */
+    protected function getPrices($productId)
+    {
+        $normal    = 0;
+        $sale      = false;
+        $formattet = 0;
+        $rawPrice  = 0;
+
+        $data = ProductsDomainsPricesPeer::getProductsPrices([$productId]);
+
+        if (is_array($data)) {
+            // Key is product id so shift to get subarrays
+            $data = array_shift($data);
+
+            $rawPrice  = $data['normal']['price'];
+            $normal    = $data['normal']['formattet'];
+            $sale      = false;
+            $formattet = $normal;
+
+            if (isset($data['sales']['price'])) {
+                $rawPrice  = $data['sales']['price'];
+                $sale      = $data['sales']['formattet'];
+                $formattet = $sale;
+            }
+        }
+
+        $prices = [
+            'price_normal'    => $normal,
+            'price_sale'      => $sale,
+            'price_formattet' => $formattet,
+            'raw_price'       => $rawPrice,
+        ];
+
+        return $prices;
+    }
+
+    /**
+     * getImageName
+     *
+     * @param string $sku
+     * @param string $color
+     *
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getImageName($sku, $color)
+    {
+        return preg_replace('/[^a-z0-9]/i', '-', explode(' ', $sku)[0]).'_'.preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $color)).'_overview_01.jpg';
+    }
+
+    /**
+     * getAllWishlistItems
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getAllWishlistItems()
+    {
+        $request = $this->container->get('request');
+        $locale  = $request->getLocale();
+
+        $query = "
+            SELECT
+                wl.*,
+                p.size,
+                p.color,
+                p.master,
+                p.id,
+                p.sku, (
+                SELECT
+                    products_i18n.title
+                FROM
+                    products_i18n
+                JOIN
+                    products ON (
+                        products_i18n.id = products.id
+                    )
+                WHERE
+                    products_i18n.locale = :locale
+                    AND
+                      products.sku = p.master
+            ) as title
+            FROM
+                wishlists_lines as wl
+            JOIN
+                products as p ON (
+                    p.id = wl.products_id
+                )
+            JOIN
+                wishlists as w ON (
+                    wl.wishlists_id = w.id
+                )
+            WHERE
+                w.customers_id = :customers_id
+        ";
+
+        $con  = \Propel::getConnection();
+        $stmt = $con->prepare($query);
+        $stmt->execute([
+            ':locale'       => $locale,
+            ':customers_id' => CustomersPeer::getCurrent()->getId(),
+        ]);
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $products   = [];
+
+        /** @var \Hanzo\Model\WishlistsLines $item */
+        foreach ($result as $item) {
+            $products[$item['sku']] = $this->getItemViewData($item);
+        }
+
+        return $products;
+    }
 
     /**
      * @param Products $products
@@ -531,5 +532,96 @@ class WishlistController extends CoreController
         }
 
         return true;
+    }
+
+    /**
+     * Generate unique random key string.
+     * Unique in the way that it's not already in use.
+     *
+     * @param int $length
+     *
+     * @return string
+     */
+    private function random($length = 5)
+    {
+        while (true) {
+            $string = implode('', array_rand(array_flip(str_split('ABCDEFGHJKLMNPQRSTUVWXYZ98765432')), $length));
+
+            $found = WishlistsQuery::create()
+                ->filterById($string)
+                ->count();
+
+            if (0 === $found) {
+                return $string;
+            }
+        }
+    }
+
+    /**
+     * Retrive customers list
+     *
+     * @param int $customerId
+     *
+     * @return Wishlists
+     * @throws \Exception
+     * @throws \PropelException
+     */
+    private function getWishlist($customerId = null)
+    {
+        if (is_null($customerId)) {
+            $customerId = CustomersPeer::getCurrent()->getId();
+        }
+
+        $list = WishlistsQuery::create()
+            ->filterByCustomersId($customerId)
+            ->findOne();
+
+        if (!$list instanceof Wishlists) {
+            $list = new Wishlists();
+            $list->setCustomersId($customerId);
+            $list->setId($this->random(5));
+            $list->save();
+
+            $this->container->get('hanzo.statsd')->increment('shoppinglists.'.$this->container->get('kernel')->getSetting('domain_key'));
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get view data for a wishlist item
+     *
+     * @param array $item
+     *
+     * @return array
+     */
+    private function getItemViewData($item)
+    {
+        if (!is_array($item)) {
+            trigger_error("Item is not an array");
+        }
+
+        $image     = $this->getImageName($item['sku'], $item['color']);
+        $prices    = $this->getPrices($item['products_id']);
+        $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
+
+        if ('size.label.postfix' === $sizeLabel) {
+            $sizeLabel = '';
+        }
+
+        $data = [
+            'color'    => $item['color'],
+            'id'       => $item['products_id'],
+            'image'    => Tools::productImageUrl($image, '57x100'),
+            'master'   => $item['master'],
+            'quantity' => $item['quantity'],
+            'size'     => $item['size'].$sizeLabel,
+            'sku'      => $item['sku'],
+            'title'    => $item['title'],
+        ];
+
+        $data = array_merge($data, $prices);
+
+        return $data;
     }
 }

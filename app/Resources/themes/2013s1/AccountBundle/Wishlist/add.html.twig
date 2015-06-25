@@ -34,6 +34,9 @@
             </div>
             <input type="hidden" name="master" value="">
             <input type="hidden" name="product_id" value="">
+            {# Used to distinguish between add and edit: #}
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="old_product_id" value="">
             <input type="submit" value="{{ "add.to.wishlist"|trans({}, 'account') }}" class="button submit-button">
         </form>
     </section>
@@ -52,19 +55,28 @@
                 data-size="{{ product.size }}"
                 data-master="{{ product.master }}"
                 data-title="{{ product.title }}"
+                data-price="{{ product.raw_price }}"
                 id="js-wishlist-{{ product.id }}">
             <img src="{{ product.image }}" alt="">
             <p>
                 {{ product.title }}<br>
                 {{ product.size }}<br>
                 {{ product.color }}<br>
-                <span>{{ product.quantity }}</span> stk<br>
+                <span class="quantity">{{ product.quantity }}</span> stk<br>
+                {% if product.price_sale %}
+                <span class="normal strike">{{ product.price_normal }}</span><br>
+                {% endif %}
+                {{ product.price_formattet }}<br>
             </p>
-            <!-- <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a> -->
-            <a href="{{ path('_account_wishlist_remove_item', {'product_id': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
+            <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
+            <a href="{{ path('_account_wishlist_remove_item', {'productId': product.id}) }}" class="sprite delete js-wishlist-delete-item-trigger"></a>
         </article>
     {% endfor %}
     </section>
+
+    <div class="grid_8 alpha omega">
+      {{ 'total'|trans({}, 'messages') }}: <span class="js-wishlist-total">{{ total_price }}</span>
+    </div>
 
     <div class="grid_8 alpha omega wishlist-flush-list">
 
@@ -110,15 +122,20 @@
             data-size="<?= data.size ?>"
             data-master="<?= data.master ?>"
             data-title="<?= data.title ?>"
+            data-price="<?= data.raw_price ?>"
             id="js-wishlist-<?= data.id ?>">
         <img src="<?= data.image ?>" alt="">
         <p>
             <?= data.title ?><br>
             <?= data.size ?><br>
             <?= data.color ?><br>
-            <span><?= data.quantity ?></span> stk<br>
+            <span class="quantity"><?= data.quantity ?></span> stk<br>
+            <? if(data.price_sale) {?><br>
+              <span class="normal strike"><?= data.price_normal ?></span><br>
+            <?}?>
+            <?= data.price_formattet ?>
         </p>
-        <!-- <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a> -->
+        <a href="" class="sprite edit js-wishlist-edit-item-trigger"></a>
         <a href="{{ path('_homepage') }}account/wishlist/remove-item/<?= data.id ?>" class="sprite delete js-wishlist-delete-item-trigger"></a>
     </article>
 </script>

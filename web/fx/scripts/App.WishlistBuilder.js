@@ -1,34 +1,55 @@
+/* global accounting:true, App:true, yatzy:true */
 App.register('WishlistBuilder', function() {
     "use strict";
 
     var publicMethods = {};
 
     var $_element,
-        identifiers,
         $_target,
         $_resetter,
         $_form,
         $_masterField,
-        $_searchField;
+        $_searchField,
+        $_total,
+        $_actionField,
+        $_oldProductIdField;
 
     publicMethods.init = function($element) {
         $_element     = $element;
-        identifiers = {
-            form           : 'form.wishlist',
-            target         : '.js-wishlist-target',
-            resetter       : '.js-wishlist-flush-list',
-            searchField    : 'input[name="q"]',
-            masterField    : 'input[name="master"]'
-        };
-        $_target      = $(identifiers.target);
-        $_resetter    = $(identifiers.resetter, $_target);
-        $_form        = $(identifiers.form),
-        $_masterField = $(identifiers.masterField, $_form),
-        $_searchField = $(identifiers.searchField, $_form);
+        $_target      = $('.js-wishlist-target');
+        $_resetter    = $('.js-wishlist-flush-list', $_target);
+
+        $_form              = $('form.wishlist');
+        $_masterField       = $('input[name="master"]', $_form);
+        $_searchField       = $('input[name="q"]', $_form);
+        $_actionField       = $('input[name="action"]', $_form);
+        $_oldProductIdField = $('input[name="old_product_id"]', $_form);
+
+        $_total       = $('.js-wishlist-total');
 
         setupListeners();
         yatzy.compile('wishlistItemTpl');
     };
+
+    function updateTotal(total) {
+      $_total.text(total);
+    }
+
+    function setActionAdd() {
+      $_actionField.val('add');
+    }
+
+    function setActionEdit() {
+      $_actionField.val('edit');
+    }
+
+    function setOldProductId(id) {
+      $_oldProductIdField.val(id);
+    }
+
+    function resetOldProductId() {
+      $_oldProductIdField.val("");
+    }
 
     var setupListeners = function() {
 
@@ -41,13 +62,12 @@ App.register('WishlistBuilder', function() {
 
             xhr.done(function(response) {
 
-                if ($('#js-wishlist-'+response.data.id, $_target).length) {
-                    var $product = $('#js-wishlist-'+response.data.id, $_target);
-
+                var $product = $('#js-wishlist-'+response.data.id, $_target);
+                if ($product.length) {
                     $('.js-in-edit', $_target).removeClass('js-in-edit');
 
                     $product.data('quantity', response.data.quantity);
-                    $('span', $product).text(response.data.quantity);
+                    $('span.quantity', $product).text(response.data.quantity);
                 } else {
                     $_target.prepend(yatzy.render('wishlistItemTpl', response.data));
 
@@ -55,6 +75,10 @@ App.register('WishlistBuilder', function() {
                        $(this).remove();
                     });
                 }
+
+                updateTotal(response.total_price);
+                setActionAdd();
+                resetOldProductId();
 
                 App.ProductFinder.resetForm($_form);
 
@@ -82,6 +106,7 @@ App.register('WishlistBuilder', function() {
                     $('article', $_target).remove();
                     $scope.addClass('off');
                     $('.list-number.last').addClass('off');
+                    updateTotal(0);
                 }
             });
         });
@@ -89,6 +114,7 @@ App.register('WishlistBuilder', function() {
         // edit
         $(document).on('click', '.js-wishlist-edit-item-trigger', function(event) {
             event.preventDefault();
+            setActionEdit();
 
             var $scope      = $(this),
                 $article    = $scope.parents('article'),
@@ -112,6 +138,7 @@ App.register('WishlistBuilder', function() {
 
             $_masterField.val(data.master);
             $_searchField.val(data.title);
+            setOldProductId(data.productId);
 
             App.ProductFinder.stockCheck({
                 master : data.master
@@ -126,8 +153,12 @@ App.register('WishlistBuilder', function() {
         $(document).on('click', '.js-wishlist-delete-item-trigger', function(event) {
             event.preventDefault();
 
-            $.post(this.href);
+            var xhr = $.post(this.href);
             $(this).closest('article').remove();
+
+            xhr.done(function(response) {
+              updateTotal(response.total_price);
+            });
         });
     };
 
