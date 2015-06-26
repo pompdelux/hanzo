@@ -909,6 +909,8 @@ ul.breadcrumb li.last i.arrow-right {
   font-size: 21px;
   color: white;
   font-weight: normal;
+  letter-spacing: 0.05em;
+  font-weight: 200;
 }
 .container .main header hgroup h6 {
   font-size: 14px;
@@ -5284,7 +5286,7 @@ nav.navigation-main > ul.outer > li > ul {
 nav.navigation-main > ul.outer > li > ul > li {
   width: 11em;
   float: left;
-  padding: 0 1em 0 0;
+  padding: 0;
   letter-spacing: 1.5px;
 }
 nav.navigation-main > ul.outer > li > ul > li > a {
