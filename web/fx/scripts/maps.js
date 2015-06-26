@@ -100,16 +100,10 @@ var maps = (function ($) {
             return;
           }
 
-          // If no result: load all consultants
           if (result.data.length) {
             populateMap(mapContainer, result.data, true);
             $(mapContainer).show();
             google.maps.event.trigger($(mapContainer)[0], 'resize');
-          } else {
-            var consultantsRequest = getConsultants();
-            consultantsRequest.done(function(result) {
-              populateMap(mapContainer, result.data, true);
-            });
           }
         });
     };
