@@ -11,4 +11,6 @@ var geo_zipcode_params = {
         <p>{{ 'advisor.locater_form.label'|trans({}, 'events') }} {{ geo_zip_code_form('hus') }}</p>
         {{ consultants_near_you('hus') }}
     {% endif %}
+    <br class="clear">
+    {{ consultants_map() }}
 </div>
