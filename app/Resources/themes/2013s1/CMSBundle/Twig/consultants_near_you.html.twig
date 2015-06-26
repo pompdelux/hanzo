@@ -12,7 +12,7 @@ var near_you_params = {
     lat               : {{ lat }},
     lon               : {{ lon }},
     all               : {{ all|default('false') }},
-    auto_load_results : false
+    auto_load_results : {{ all|default('false') }}
 };
 </script>
 
