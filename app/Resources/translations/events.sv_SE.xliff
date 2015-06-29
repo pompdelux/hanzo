@@ -493,7 +493,7 @@
             </trans-unit>
             <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
-                <target><![CDATA[<b>Ange din ort eller ditt postnummer</b>]]></target>
+                <target>Ange din ort eller ditt postnummer</target>
             </trans-unit>
             <trans-unit id="events.participants.comment.label" approved="no">
                 <source>events.participants.comment.label</source>
