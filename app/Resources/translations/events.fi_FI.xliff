@@ -452,7 +452,7 @@
             </trans-unit>
             <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
-                <target>Anna kaupunkisi tai postinumerosi</target>
+                <target><![CDATA[<b>Anna kaupunkisi tai postinumerosi</b>]]></target>
             </trans-unit>
             <trans-unit id="events.participants.comment.label" approved="no">
                 <source>events.participants.comment.label</source>
