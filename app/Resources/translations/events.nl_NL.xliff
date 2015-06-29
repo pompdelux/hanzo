@@ -460,7 +460,7 @@
             </trans-unit>
             <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
-                <target>Typ je woonplaats of je postcode</target>
+                <target><![CDATA[<b>Typ je woonplaats of je postcode</b>]]></target>
             </trans-unit>
             <trans-unit id="events.participants.comment.label" approved="no">
                 <source>events.participants.comment.label</source>
