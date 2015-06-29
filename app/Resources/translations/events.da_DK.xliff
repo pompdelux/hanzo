@@ -496,7 +496,7 @@
             </trans-unit>
             <trans-unit id="advisor.locater_form.label">
                 <source>advisor.locater_form.label</source>
-                <target><b>Indtast din by eller dit postnummer</b></target>
+                <target><b>Indtast din by eller dit postnummer </b></target>
             </trans-unit>
             <trans-unit id="events.participants.comment.label" approved="no">
                 <source>events.participants.comment.label</source>
