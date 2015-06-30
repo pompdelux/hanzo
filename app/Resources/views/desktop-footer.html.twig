@@ -19,4 +19,4 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 {% endif %}
 
-{{ include('::footer-'~app.request.locale~'.html.twig', ignore_missing = true, with_context = true) }}
+{{ cookie_notice() }}

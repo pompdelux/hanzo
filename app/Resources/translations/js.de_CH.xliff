@@ -422,6 +422,14 @@
                 <source>wishlist.require.login.text</source>
                 <target><![CDATA[Sie müssen angemeldet sein, um die Shoppingliste zu nutzen.<br><br><a href="%url%">» Hier einloggen / Anmelden</a><br><br>Bitte beachten: Wenn Sie eingeloggt sind, kommen Sie wieder auf diese Seite.]]></target>
             </trans-unit>
+            <trans-unit id="cookie_notice.fdih.text">
+                <source>cookie_notice.fdih.text</source>
+                <target><![CDATA[Cookies sind erforderlich, damit die Internetseite funktioniert, sie vermitteln aber auch Informationen darüber, wie Sie unsere Internetseite nutzen, sodass wir die Seite für Sie und andere Nutzer verbessern können. Diese Internetseite nutzt Cookies prim, um den Verkehr zu messen und den Inhalt der Seite zu optimieren.]]></target>
+            </trans-unit>
+            <trans-unit id="cookie_notice.fdih.link">
+                <source>cookie_notice.fdih.link</source>
+                <target>http://www.pompdelux.com/de_CH/home/kundendienst/uber-den-webshop</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

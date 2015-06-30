@@ -418,6 +418,14 @@
                 <source>wishlist.require.login.text</source>
                 <target><![CDATA[Sinun tulee olla sisäänkirjautuneena, jotta voit käyttää Ostoslistaa.<br><br><a href="%url%">» Kirjaudu täällä / rekisteröidy</a><br><br>Huomaa: Kun kirjaudut sisään, palaat takaisin tälle sivulle.]]></target>
             </trans-unit>
+            <trans-unit id="cookie_notice.fdih.text">
+                <source>cookie_notice.fdih.text</source>
+                <target><![CDATA[Cookies are needed to get the website to work. They also help us to know a little bit about how you use our website, which improves the browsing experience both for you and for others. Cookies on this site are primarily used for traffic measurement and optimization of page content.]]></target>
+            </trans-unit>
+            <trans-unit id="cookie_notice.fdih.link">
+                <source>cookie_notice.fdih.link</source>
+                <target>http://www.pompdelux.com/fi_FI/koti/asiakaspalvelu/tietoa-verkkokaupasta</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
