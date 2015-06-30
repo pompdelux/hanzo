@@ -11,4 +11,6 @@
         <p>{{ 'advisor.locater_form.label'|trans({}, 'events') }} {{ geo_zip_code_form('near', country) }}</p>
         {{ consultants_near_you() }}
     {% endif %}
+    <br class="clear">
+    {{ consultants_map() }}
 </div>

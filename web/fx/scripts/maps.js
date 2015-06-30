@@ -1,17 +1,29 @@
-/* global yatzy:true, dialoug:true, Translator:true, base_url:true, near_you_params:true, geo_zipcode_params:true, google:true */
+/* global yatzy:true, dialoug:true, Translator:true, base_url:true, near_you_params:true, geo_zipcode_params:true, google:true, gm_settings:true */
 var maps = (function ($) {
+    'use strict';
     var pub = {};
 
+    /**
+     * Handle zip code lookup
+     * - Listen for submit event
+     * - Perform geo location lookup
+     * - Load consultants/open house events
+     * - Display on map
+     */
     pub.initZip = function () {
         var $geoZipForm = $("#geo-zipcode-form");
+        if ($geoZipForm.length === 0) {
+          return;
+        }
+
         $geoZipForm.submit(function (event) {
             var $this = $(this);
             event.preventDefault();
 
             dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
-            var url = base_url + "muneris/gpc/" + encodeURI($("#geo-zipcode", $this).val());
+            var geoRequest = getGeocodeForZip($("#geo-zipcode", $this).val());
 
-            $.getJSON(url, function (response) {
+            geoRequest.done(function (response) {
                 if (false === response.status || typeof response.data.postcodes === 'undefined' || response.data.postcodes.length === 0) {
                     dialoug.stopLoading();
                     return;
@@ -37,27 +49,27 @@ var maps = (function ($) {
                     }
                 }
 
-                var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
-                var req = '/' + geo_zipcode_params.type + '/' + response.data.postcodes[0].lat + '/' + response.data.postcodes[0].lng + showAll;
+                var nearYouRequest = getNearYou(geo_zipcode_params.type, response.data.postcodes[0].lat, response.data.postcodes[0].lng);
 
-                $.getJSON(base_url + 'events/advisor/near_you' + req, function (result) {
+                nearYouRequest.done(function(result) {
                     dataToContainer(result.data);
 
                     if (typeof gm_settings === 'undefined') {
                         return;
                     }
 
-                    var map = getMap('consultants-map-canvas');
+                    var mapContainer = '#consultants-map-canvas';
+
                     if (result.data.length) {
-                        populateMap(map, result.data, true);
-                        $('#consultants-map-canvas-2').show();
-                        google.maps.event.trigger(map, 'resize');
+                        populateMap(mapContainer, result.data, true);
+                        $(mapContainer).show();
+                        google.maps.event.trigger($(mapContainer)[0], 'resize');
                     } else {
-                        $('#consultants-map-canvas-2').hide();
+                        $(mapContainer).hide();
                     }
                 });
+            })
 
-            });
             $("#geo-zipcode", $this).val("");
         });
 
@@ -66,51 +78,78 @@ var maps = (function ($) {
         });
     };
 
+    /**
+     * Load data defined in near_you_params.type
+     * - Display on map
+     *
+     */
     pub.initContainer = function () {
+        if (!($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true)) {
+          return;
+        }
+
         dialoug.loading('#near-you-container', Translator.trans('loading.std'), 'prepend');
-        $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px; display:none;"></div>');
 
-        var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
-        var req = '/' + near_you_params.type + '/0/0' + showAll;
+        var mapContainer = '#consultants-map-canvas';
+        var nearYouRequest = getNearYou(near_you_params.type);
 
-        $.getJSON(base_url + 'events/advisor/near_you' + req, function (result) {
-            dataToContainer(result.data);
+        nearYouRequest.done(function(result) {
+          dataToContainer(result.data);
 
-            if (typeof gm_settings === 'undefined') {
-                return;
-            }
+          if (typeof gm_settings === 'undefined') {
+            return;
+          }
 
-            var map = getMap('consultants-map-canvas-2');
-            if (result.data.length) {
-                populateMap(map, result.data, true);
-                $('#consultants-map-canvas-2').show();
-                google.maps.event.trigger(map, 'resize');
-            } else {
-                $.getJSON(base_url + 'events/advisor/consultants', function (consultant_result) {
-                    populateMap(map, consultant_result.data, true);
-                });
-            }
+          if (result.data.length) {
+            populateMap(mapContainer, result.data, true);
+            $(mapContainer).show();
+            google.maps.event.trigger($(mapContainer)[0], 'resize');
+          }
         });
     };
 
+    /**
+     * Load Consultantants
+     * - Display on map
+     *
+     */
     pub.initConsultantsmap = function () {
+        var mapContainer = '#consultants-map-canvas';
+        if (!($(mapContainer).length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true)) {
+          return;
+        }
         if (typeof gm_settings === 'undefined') {
           return;
         }
         if ($('body').hasClass('is-mobile')) {
           gm_settings.zoom = gm_settings.zoom - 1;
-          $('#consultants-map-canvas').width('100%');
+          $(mapContainer).width('100%');
         }
-        var map = getMap('consultants-map-canvas');
-        $.getJSON(base_url + 'events/advisor/consultants', function (result) {
-            populateMap(map, result.data);
+        var consultantsRequest = getConsultants();
+        consultantsRequest.done(function(result) {
+          populateMap(mapContainer, result.data, true);
         });
     };
 
+    var getGeocodeForZip = function(zip) {
+      return $.getJSON(base_url + "muneris/gpc/" + encodeURI(zip));
+    };
 
-    var getMap = function (id) {
+    var getConsultants = function() {
+      return $.getJSON(base_url + 'events/advisor/consultants');
+    };
+
+    var getNearYou = function(type, lat, lng) {
+      lat = lat || 0;
+      lng = lng || 0;
+      var showAll = ((undefined != near_you_params.all) && near_you_params.all) ? '/1' : '';
+      var req = '/' + type + '/' + lat + '/' + lng + showAll;
+      return $.getJSON(base_url + 'events/advisor/near_you' + req);
+    };
+
+    var getMap = function(id) {
         var zc = (undefined === gm_settings.zoomControl) ? true : gm_settings.zoomControl;
-        return new google.maps.Map(document.getElementById(id), {
+        return new google.maps.Map($(id)[0], {
             zoom: gm_settings.zoom,
             center: new google.maps.LatLng(gm_settings.lat, gm_settings.lng),
             disableDefaultUI: true,
@@ -123,7 +162,8 @@ var maps = (function ($) {
         });
     };
 
-    var populateMap = function (map, data, fit) {
+    var populateMap = function(mapContainer, data, fit) {
+        var map = getMap(mapContainer);
         var bounds = new google.maps.LatLngBounds();
         $.each(data, function (i, item) {
             var text = Translator.trans('consultant') + '<br>' + item.name + '<br>' + item.zip + ' ' + item.city + '<br><br><p>' + Translator.trans('phone') + ': ' + item.phone + '<br>' + Translator.trans('email') + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br><br>' + item.info;
@@ -163,17 +203,6 @@ var maps = (function ($) {
     return pub;
 })(jQuery);
 
-/**
- * auto init some of the maps methods.
- */
-if ($("#geo-zipcode-form").length) {
-    maps.initZip();
-}
-
-if ($('#near-you-container').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
-  maps.initContainer();
-}
-
-if ($('#consultants-map-canvas').length && typeof near_you_params.auto_load_results !== 'undefined' && near_you_params.auto_load_results === true) {
-    maps.initConsultantsmap();
-}
+maps.initZip();
+maps.initContainer();
+// maps.initConsultantsmap();
