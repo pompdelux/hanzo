@@ -330,6 +330,14 @@
                 <source>quickorder.choose.color</source>
                 <target>Colour</target>
             </trans-unit>
+            <trans-unit id="cookie_notice.fdih.text">
+                <source>cookie_notice.fdih.text</source>
+                <target><![CDATA[Cookies are needed to get the website to work. They also help us to know a little bit about how you use our website, which improves the browsing experience both for you and for others. Cookies on this site are primarily used for traffic measurement and optimization of page content.]]></target>
+            </trans-unit>
+            <trans-unit id="cookie_notice.fdih.link">
+                <source>cookie_notice.fdih.link</source>
+                <target>http://www.pompdelux.com/en_GB/home/customer-service/about-the-webshop</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
