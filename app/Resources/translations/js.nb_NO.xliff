@@ -419,6 +419,14 @@
                 <source>wishlist.require.login.text</source>
                 <target><![CDATA[Du må være logget inn for å bruke Shoppinglisten.<br><br><a href="%url%">» Login her / opprett login</a><br><br>Merk: Når du er logget inn her, blir du sendt tilbake til denne siden.]]></target>
             </trans-unit>
+            <trans-unit id="cookie_notice.fdih.text">
+                <source>cookie_notice.fdih.text</source>
+                <target><![CDATA[Cookies are needed to get the website to work. They also help us to know a little bit about how you use our website, which improves the browsing experience both for you and for others. Cookies on this site are primarily used for traffic measurement and optimization of page content.]]></target>
+            </trans-unit>
+            <trans-unit id="cookie_notice.fdih.link">
+                <source>cookie_notice.fdih.link</source>
+                <target>http://www.pompdelux.com/nb_NO/forside/kundeservice/om-webshoppen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
