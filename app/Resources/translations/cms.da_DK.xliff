@@ -862,7 +862,7 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Hvorfor vil du gerne sælge POMPdeLUX børnetøj?</target>
+                <target><![CDATA[Hvorfor vil du gerne sælge POMPdeLUX børnetøj?<br>Hvorfor skal du være vores nye Shopping Advisor?<br>Hvor og hvordan blev du opmærksom på os?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
