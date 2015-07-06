@@ -170,6 +170,9 @@ article div ul {
   }
   textarea {
     height: 120px;
+    &[name="describe_yourself"] {
+      height: 240px;
+    }
   }
   input[type="file"] {
     display: block;
