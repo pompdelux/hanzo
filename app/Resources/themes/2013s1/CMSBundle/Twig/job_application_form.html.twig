@@ -61,7 +61,7 @@
         <label>
             <div class="row">
                 <span>{{ 'job_application_form.describe_yourself_label'|trans({}, 'cms') }}<span class="required">*</span></span>
-                <span class="help">{{ 'job_application_form.describe_yourself_help'|trans({}, 'cms') }}</span>
+                <span class="help">{{ 'job_application_form.describe_yourself_help'|trans({}, 'cms')|raw }}</span>
                 <textarea name="describe_yourself" rows="4" cols="30" required></textarea>
             </div>
         </label>
@@ -70,7 +70,7 @@
         <!-- Begin - describe motivation -->
         <label>
             <div class="row">
-                <span>{{ 'job_application_form.describe_motivation_label'|trans({}, 'cms') }}<span class="required">*</span></span>
+                <span>{{ 'job_application_form.describe_motivation_label'|trans({}, 'cms')|raw }}<span class="required">*</span></span>
                 <textarea name="describe_motivation" rows="4" cols="30" required></textarea>
             </div>
         </label>
