@@ -53,8 +53,18 @@ class ProductsController extends CoreController
     public function indexAction(Request $request, $category_id, $subcategory_id)
     {
         $categories = null;
-        $products = null;
-        $qClean = null;
+        $products   = null;
+        $qClean     = null;
+
+        $locale = $request->query->get('locale');
+
+        if (!$locale) {
+            $locale = LanguagesQuery::create()
+                ->orderById()
+                ->findOne($this->getDbConnection())
+                ->getLocale();
+        }
+
         if (isset($_GET['q'])) {
             $qClean = $request->get('q', null);
             $q = '%'.$qClean.'%';
@@ -71,7 +81,7 @@ class ProductsController extends CoreController
 
             $categories = CategoriesQuery::create()
                 ->where('categories.PARENT_ID IS NULL')
-                ->joinWithI18n('en_GB')
+                ->joinWithI18n($locale)
                 ->orderById()
                 ->find($this->getDbConnection());
 
@@ -81,12 +91,12 @@ class ProductsController extends CoreController
 
             $categories = CategoriesQuery::create()
                 ->filterByParentId($category_id)
-                ->joinWithI18n('en_GB')
+                ->joinWithI18n($locale)
                 ->orderById()
                 ->find($this->getDbConnection());
 
             $parentCategory = CategoriesQuery::create()
-                ->joinWithI18n('en_GB')
+                ->joinWithI18n($locale)
                 ->filterById($category_id)
                 ->findOne($this->getDbConnection());
 
@@ -106,7 +116,7 @@ class ProductsController extends CoreController
                 ->find($this->getDbConnection());
 
             $parentCategory = CategoriesQuery::create()
-                ->joinWithI18n('en_GB')
+                ->joinWithI18n($locale)
                 ->filterById($subcategory_id)
                 ->findOne($this->getDbConnection());
         }
@@ -116,6 +126,7 @@ class ProductsController extends CoreController
 
         if ($categories) {
             foreach ($categories as $category) {
+                $category->setLocale($locale);
                 $categoriesList[] = [
                     'id'        => $category->getId(),
                     'context'   => $category->getContext(),
