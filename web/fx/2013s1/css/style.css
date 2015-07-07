@@ -3718,6 +3718,10 @@ article div ul {
 #rma_claims textarea {
   height: 120px;
 }
+#job-application-form textarea[name="describe_yourself"],
+#rma_claims textarea[name="describe_yourself"] {
+  height: 240px;
+}
 #job-application-form input[type="file"],
 #rma_claims input[type="file"] {
   display: block;
