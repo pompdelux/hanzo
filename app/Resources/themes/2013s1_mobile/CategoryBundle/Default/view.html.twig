@@ -8,8 +8,6 @@
           {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
       </hgroup>
   </header>
-{% else %}
-<!-- {{ 'headers.'~page_type }} -->
 {% endif %}
 
 <div class="grid_8 alpha omega row">
@@ -96,6 +94,11 @@
         {% endfor %}
       </div>
     </div>
+    {% if ('description.'~page_type)|trans({}, 'category') != 'description.'~page_type %}
+    <div class="grid_6 alpha omega row page-description {{ page_type }}-description">
+      {{ ('description.'~page_type)|trans({}, 'category')|raw }}
+    </div>
+    {% endif %}
       <div class="grid_4 push_2">
         {% if paginate %}
           {% import "::macro.pager.html.twig" as p %}

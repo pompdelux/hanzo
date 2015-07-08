@@ -165,20 +165,11 @@
       }, '.flip-this');
     };
 
-    pub.initHeader = function() {
-      var $header = $('.main header');
-      $('p', $header).hide();
-      $header.on('click', function (event) {
-          $header.find('p').slideToggle();
-      });
-    };
-
     return pub;
   })(jQuery);
 
   category.initPager();
   category.initFlip();
-  category.initHeader();
   filters.init();
 
 })(document, jQuery);
