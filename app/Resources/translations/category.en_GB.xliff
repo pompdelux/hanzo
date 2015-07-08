@@ -4,8 +4,11 @@
     <body>
       <trans-unit id="headers.category-12">
         <source>headers.category-12</source>
-        <target><![CDATA[<h1>Fleece jackets</h1>
-               <p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p> ]]></target>
+        <target><![CDATA[<h1>Fleece jackets</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-12">
+        <source>description.category-12</source>
+        <target><![CDATA[<p>An important part of your child’s wardrobe is outerwear. Find you favourite down jacket, fleece jacket, gilet or snowsuit among the many colours and models. All of our outerwear is designed to keep your child warm and dry in all types of weather. Especially our technical outerwear is of high quality and secure and therefore both water tight, wind tight and breathable. Notice also the many details such as reflectors, removable hood, wind skirt, shoe straps and pockets. Our jackets, snow pants, fleece jackets and snow suits start in size 80 cm and go up to 152 cm and there is lots of inspiration to be discovered for children’s wardrobe.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-13">
         <source>headers.category-13</source>
