@@ -1,349 +1,539 @@
 <?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="headers.category-12">
-                <source>headers.category-12</source>
-                <target><![CDATA[<h1>Fleece jassen</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-             <trans-unit id="headers.category-13">
-                <source>headers.category-13</source>
-                <target><![CDATA[<h1>Jassen</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-14">
-                <source>headers.category-14</source>
-                <target><![CDATA[<h1>Shelljassen en shell broeken</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-15">
-                <source>headers.category-15</source>
-                <target><![CDATA[<h1>Softshell</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-16">
-                <source>headers.category-16</source>
-                <target><![CDATA[<h1>Blouses</h1>
-                <p>POMPdeLUX heeft een groot assortiment tunieken en blouses voor de grote en de kleine meisjes. Hier vind je veel verschillende modellen en kleuren en voor elk wat wils. Zowel een basic blouse voor doordeweeks als een feestelijke tuniek voor een bijzondere gelegenheid. Onze tunieken en blouses zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-17">
-                <source>headers.category-17</source>
-                <target><![CDATA[<h1>Vesten</h1>
-                <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui heerlijk om bij de hand te hebben. POMPdeLUX heeft truien en vesten van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts en jumpers. Onze truien en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-18">
-                <source>headers.category-18</source>
-                <target><![CDATA[<h1>Jurken</h1>
-                <p>POMPdeLUX heeft veel verschillende kleuren en modellen jurken. Zowel jurken voor feesten en bijzondere gelegenheden als jurken om doordeweeks in te spelen. Met jurken van POMPdeLUX is er voor elk wat wils – voor de grote en de kleine meisjes. Dus kies je favoriete jurk. Onze jurken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-19">
-                <source>headers.category-19</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-21">
-                <source>headers.category-21</source>
-                <target><![CDATA[<h1>Tops</h1>
-                <p>Tops kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen tops, zodat er t-shirts zijn voor de grote en de kleine. Onze t-shirts zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete tops voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze tops zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-45">
-                <source>headers.category-45</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
-                <p>T-shirts kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen t-shirts, zodat er t-shirts zijn voor de grote en de kleine meisjes. Onze t-shirts zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete t-shirt voor doordeweeks of top voor een feestelijke gelegenheid. Onze t-shirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-46">
-                <source>headers.category-46</source>
-                <target><![CDATA[<h1>Broeken</h1>
-                <p>Bij POMPdeLUX vind je de broek die het beste bij jouw kind past. We hebben een groot assortiment kleuren en modellen – ongeacht of het hierbij gaat om jeggings, jeans, baggy of slimfit broeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en gebreide stof en er zijn broeken voor allerlei gelegenheden. Onze broeken, jeggings en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-79">
-                <source>headers.category-79</source>
-                <target><![CDATA[<h1>Jeans</h1>
-                <p>Jeans zijn er in allerlei modellen en kleuren - POMPdeLUX heeft de pasvorm die het allerbeste bij jouw kind past. Er zijn baggy en slimfit spijkerbroeken en jeggings voor de grote en de kleine meisjes. Onze jeans hebben veel mooie details en ze zijn slijtvast, zodat je er doordeweeks in kunt spelen. Combineer je favoriete spijkerbroek of jegging met een mooie tuniek en fleur je outfit op. Onze broeken, jeggings en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-81">
-                <source>headers.category-81</source>
-                <target><![CDATA[<h1>Jumpsuits</h1>
-                <p>Een jumpsuit is handig voor doordeweeks en voor feestelijke gelegenheden. POMPdeLUX heeft de mooiste jumpsuits voor grote en kleine meisjes uitgezocht. Hier vind je precies het model en de kleur die jouw persoonlijke favoriet is. Combineer je jumpsuit met een basic t-shirt of doe een mooie trui over je jumpsuit en accessoires erbij. Onze jumpsuits zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-112">
-                <source>headers.category-112</source>
-                <target><![CDATA[<h1>Leggings</h1>
-                <p>Leggings horen in de basisgarderobe van je kind. POMPdeLUX heeft leggings van lekker zacht materiaal zodat alle meisjes ze wel aan willen hebben. Gebruik de legging onder een jurk, rok of shorts en vergeet niet onze basic tops die perfect bij onze leggings passen. Onze leggings zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-113">
-                <source>headers.category-113</source>
-                <target><![CDATA[<h1>Rokken</h1>
-                <p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-114">
-                <source>headers.category-114</source>
-                <target><![CDATA[<h1>Shorts</h1>
-                <p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-115">
-                <source>headers.category-115</source>
-                <target><![CDATA[<h1>Maillots</h1>
-                <p>Leggings horen in de basisgarderobe van je kind. POMPdeLUX heeft leggings van lekker zacht materiaal zodat alle meisjes ze wel aan willen hebben. Gebruik de legging onder een jurk, rok of shorts en vergeet niet onze basic tops die perfect bij onze leggings passen. Onze leggings zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-127">
-                <source>headers.category-127</source>
-                <target><![CDATA[<h1>Bodystockings</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-				</trans-unit>
-				<trans-unit id="headers.category-131">
-                <source>headers.category-131</source>
-                <target><![CDATA[<h1>Nachtgoed</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-				</trans-unit>
-				<trans-unit id="headers.category-136">
-                <source>headers.category-136</source>
-                <target><![CDATA[<h1>Ondergoed</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-				</trans-unit>
-				<trans-unit id="headers.category-137">
-                <source>headers.category-137</source>
-                <target><![CDATA[<h1>Zwemkleding</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-142">
-                <source>headers.category-142</source>
-                <target><![CDATA[<h1>Riemen</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-143">
-                <source>headers.category-143</source>
-                <target><![CDATA[<h1>Hoeden</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-144">
-                <source>headers.category-144</source>
-                <target><![CDATA[<h1>Haaraccessoires</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-145">
-                <source>headers.category-145</source>
-                <target><![CDATA[<h1>Sokken</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-146">
-                <source>headers.category-146</source>
-                <target><![CDATA[<h1>Sjaals</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-147">
-                <source>headers.category-147</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-5">
-                <source>headers.category-5</source>
-                <target><![CDATA[<h1>Fleece jassen</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-6">
-                <source>headers.category-6</source>
-                <target><![CDATA[<h1>Jassen</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-7">
-                <source>headers.category-7</source>
-                <target><![CDATA[<h1>Shelljassen en shell broeken</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-8">
-                <source>headers.category-8</source>
-                <target><![CDATA[<h1>Softshell</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-9">
-                <source>headers.category-9</source>
-                <target><![CDATA[<h1>Blouses</h1>
-                <p>Blouses kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen blouses, zodat er t-shirts zijn voor de grote en de kleine jongens. Onze blouses zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete t-shirt voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze blouses zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-11">
-                <source>headers.category-11</source>
-                <target><![CDATA[<h1>Vesten</h1>
-                <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-43">
-                <source>headers.category-43</source>
-                <target><![CDATA[<h1>Polo shirts</h1>
-                <p>Overhemden en poloshirts staan elke jongen goed. POMPdeLUX heeft veel verschillende modellen, dessins en kleuren die de garderobe van je kleine of grote jongen helemaal afmaken. We leggen vooral de nadruk op mooie details zoals borstzakken, kragen, knopen en prints. Vind het overhemd of poloshirt waar jouw jongen helemaal gek op is en combineer dit met een pullover, slipover, vest of sweatshirt. Onze overhemden en poloshirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-44">
-                <source>headers.category-44</source>
-                <target><![CDATA[<h1>Overhemden</h1>
-                <p>Overhemden en poloshirts staan elke jongen goed. POMPdeLUX heeft veel verschillende modellen, dessins en kleuren die de garderobe van je kleine of grote jongen helemaal afmaken. We leggen vooral de nadruk op mooie details zoals borstzakken, kragen, knopen en prints. Vind het overhemd of poloshirt waar jouw jongen helemaal gek op is en combineer dit met een pullover, slipover, vest of sweatshirt. Onze overhemden en poloshirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-83">
-                <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sportjassen</h1>
-                <p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-84">
-                <source>headers.category-84</source>
-                <target><![CDATA[<h1>Pullover</h1>
-                <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-116">
-                <source>headers.category-116</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>
-                <p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-117">
-                <source>headers.category-117</source>
-                <target><![CDATA[<h1>T-shirts</h1>
-                <p>T-shirts kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen t-shirts, zodat er t-shirts zijn voor de grote en de kleine jongens. Onze t-shirts zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete t-shirt voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze t-shirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-118">
-                <source>headers.category-118</source>
-                <target><![CDATA[<h1>Slipover</h1>
-                <p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-119">
-                <source>headers.category-119</source>
-                <target><![CDATA[<h1>Broeken</h1>
-                <p>Bij POMPdeLUX vind je de broek die het beste bij jouw kind past. We hebben een groot assortiment kleuren en modellen – ongeacht of het hierbij gaat om baggy, regular, slimfit, sweatbroeken, chinobroeken of spijkerbroeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en katoen en er zijn broeken voor allerlei gelegenheden. Onze broeken, chinobroeken en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-<trans-unit id="headers.category-120">
-                <source>headers.category-120</source>
-                <target><![CDATA[<h1>Jeans</h1>
-                <p>Het moet fijn zijn om een jeans aan te hebben en het is belangrijk om voor je kind de juiste spijkerbroek te vinden. Bij POMPdeLUX vind je verschillende kleuren en modellen spijkerbroeken. Kies uit baggy, regular, slimfit, sweatbroeken, chinobroeken of spijkerbroeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en katoen en er zijn broeken en jeans voor allerlei gelegenheden. Onze broeken, chinobroeken en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind. </p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-128">
-                <source>headers.category-128</source>
-                <target><![CDATA[<h1>Shorts</h1>
-                <p>Bij POMPdeLUX vind je een groot assortiment leuke shorts, knickers en zwemshorts. Kies uit lange en korte modellen gemaakt van sweatstof, denim en katoen. Dan is je jongen klaar voor de zomer en het strand en om buiten te spelen. Al onze shorts kunnen gecombineerd worden met een cool overhemd, een zacht t-shirt of een hip hemd. Onze shorts en knickers zijn verkrijgbaar van maat 80 tot 152 en je kunt hier veel inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-132">
-                <source>headers.category-132</source>
-                <target><![CDATA[<h1>Bodystockings</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-135">
-                <source>headers.category-135</source>
-                <target><![CDATA[<h1>Nachtgoed</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-148">
-                <source>headers.category-148</source>
-                <target><![CDATA[<h1>Ondergoed</h1>
-                <p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-		<trans-unit id="headers.category-149">
-                <source>headers.category-149</source>
-                <target><![CDATA[<h1>Zwemkleding</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-		<trans-unit id="headers.category-150">
-                <source>headers.category-150</source>
-                <target><![CDATA[<h1>Hoeden</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-		<trans-unit id="headers.category-151">
-                <source>headers.category-151</source>
-                <target><![CDATA[<h1>Sokken</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-		<trans-unit id="headers.category-152">
-                <source>headers.category-152</source>
-                <target><![CDATA[<h1>Accessories</h1>
-                <p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
-            </trans-unit>
-			<trans-unit id="faceted.dropdown.size">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="headers.category-12">
+        <source>headers.category-12</source>
+        <target><![CDATA[<h1>Fleece jassen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-12">
+        <source>description.category-12</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-13">
+        <source>headers.category-13</source>
+        <target><![CDATA[<h1>Jassen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-13">
+        <source>description.category-13</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-14">
+        <source>headers.category-14</source>
+        <target><![CDATA[<h1>Shelljassen en shell broeken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-14">
+        <source>description.category-14</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-15">
+        <source>headers.category-15</source>
+        <target><![CDATA[<h1>Softshell</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-15">
+        <source>description.category-15</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-16">
+        <source>headers.category-16</source>
+        <target><![CDATA[<h1>Blouses</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-16">
+        <source>description.category-16</source>
+        <target><![CDATA[<p>POMPdeLUX heeft een groot assortiment tunieken en blouses voor de grote en de kleine meisjes. Hier vind je veel verschillende modellen en kleuren en voor elk wat wils. Zowel een basic blouse voor doordeweeks als een feestelijke tuniek voor een bijzondere gelegenheid. Onze tunieken en blouses zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-17">
+        <source>headers.category-17</source>
+        <target><![CDATA[<h1>Vesten</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-17">
+        <source>description.category-17</source>
+        <target><![CDATA[<p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui heerlijk om bij de hand te hebben. POMPdeLUX heeft truien en vesten van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts en jumpers. Onze truien en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-18">
+        <source>headers.category-18</source>
+        <target><![CDATA[<h1>Jurken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-18">
+        <source>description.category-18</source>
+        <target><![CDATA[<p>POMPdeLUX heeft veel verschillende kleuren en modellen jurken. Zowel jurken voor feesten en bijzondere gelegenheden als jurken om doordeweeks in te spelen. Met jurken van POMPdeLUX is er voor elk wat wils – voor de grote en de kleine meisjes. Dus kies je favoriete jurk. Onze jurken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind. </p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-19">
+        <source>headers.category-19</source>
+        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-19">
+        <source>description.category-19</source>
+        <target><![CDATA[<p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-21">
+        <source>headers.category-21</source>
+        <target><![CDATA[<h1>Tops</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-21">
+        <source>description.category-21</source>
+        <target><![CDATA[<p>Tops kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen tops, zodat er t-shirts zijn voor de grote en de kleine. Onze t-shirts zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete tops voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze tops zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-45">
+        <source>headers.category-45</source>
+        <target><![CDATA[<h1>T-Shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-45">
+        <source>description.category-45</source>
+        <target><![CDATA[<p>Tshirts og toppe kan bruges året rundt, og er lækre både til sommer og vinter. POMPdeLUX har tshirts i mange forskellige farver og modeller, så der er noget til både store og små piger. Vores tshirts og toppe er i lækre bløde kvaliteter, og med mange fine detaljer. Find din favorit tshirt til hverdag eller en skøn top til festlige lejligheder. Vores tshirts og toppe går fra størrelse 80 cm til 152 cm, og der er masser af inspiration at hente til børnenes garderobe.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-46">
+        <source>headers.category-46</source>
+        <target><![CDATA[<h1>Broeken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-46">
+        <source>description.category-46</source>
+        <target><![CDATA[<p>Bij POMPdeLUX vind je de broek die het beste bij jouw kind past. We hebben een groot assortiment kleuren en modellen – ongeacht of het hierbij gaat om jeggings, jeans, baggy of slimfit broeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en gebreide stof en er zijn broeken voor allerlei gelegenheden. Onze broeken, jeggings en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-79">
+        <source>headers.category-79</source>
+        <target><![CDATA[<h1>Jeans</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-79">
+        <source>description.category-79</source>
+        <target><![CDATA[<p>Jeans zijn er in allerlei modellen en kleuren - POMPdeLUX heeft de pasvorm die het allerbeste bij jouw kind past. Er zijn baggy en slimfit spijkerbroeken en jeggings voor de grote en de kleine meisjes. Onze jeans hebben veel mooie details en ze zijn slijtvast, zodat je er doordeweeks in kunt spelen. Combineer je favoriete spijkerbroek of jegging met een mooie tuniek en fleur je outfit op. Onze broeken, jeggings en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-81">
+        <source>headers.category-81</source>
+        <target><![CDATA[<h1>Jumpsuits</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-81">
+        <source>description.category-81</source>
+        <target><![CDATA[<p>Een jumpsuit is handig voor doordeweeks en voor feestelijke gelegenheden. POMPdeLUX heeft de mooiste jumpsuits voor grote en kleine meisjes uitgezocht. Hier vind je precies het model en de kleur die jouw persoonlijke favoriet is. Combineer je jumpsuit met een basic t-shirt of doe een mooie trui over je jumpsuit en accessoires erbij. Onze jumpsuits zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-112">
+        <source>headers.category-112</source>
+        <target><![CDATA[<h1>Leggings</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-112">
+        <source>description.category-112</source>
+        <target><![CDATA[<p>Leggings horen in de basisgarderobe van je kind. POMPdeLUX heeft leggings van lekker zacht materiaal zodat alle meisjes ze wel aan willen hebben. Gebruik de legging onder een jurk, rok of shorts en vergeet niet onze basic tops die perfect bij onze leggings passen. Onze leggings zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-113">
+        <source>headers.category-113</source>
+        <target><![CDATA[<h1>Rokken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-113">
+        <source>description.category-113</source>
+        <target><![CDATA[<p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-114">
+        <source>headers.category-114</source>
+        <target><![CDATA[<h1>Shorts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-114">
+        <source>description.category-114</source>
+        <target><![CDATA[<p>POMPdeLUX heeft shorts en rokken voor alle meisjes. Kies uit verschillende modellen en kleuren en bewonder de mooie details met print en tule. Combineer een shorts en rok met leggings en maillots of tops zoals t-shirts, truien en vesten. Onze shorts en rokken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-115">
+        <source>headers.category-115</source>
+        <target><![CDATA[<h1>Maillots</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-115">
+        <source>description.category-115</source>
+        <target><![CDATA[<p>Leggings horen in de basisgarderobe van je kind. POMPdeLUX heeft leggings van lekker zacht materiaal zodat alle meisjes ze wel aan willen hebben. Gebruik de legging onder een jurk, rok of shorts en vergeet niet onze basic tops die perfect bij onze leggings passen. Onze leggings zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-127">
+        <source>headers.category-127</source>
+        <target><![CDATA[<h1>Bodystockings</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-127">
+        <source>description.category-127</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-131">
+        <source>headers.category-131</source>
+        <target><![CDATA[<h1>Nachtgoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-131">
+        <source>description.category-131</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-136">
+        <source>headers.category-136</source>
+        <target><![CDATA[<h1>Ondergoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-136">
+        <source>description.category-136</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn, maar ook een mooi design hebben. In de collectie vind je zowel onderbroeken, hipsters, slips, hemden, nachtjapons en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-137">
+        <source>headers.category-137</source>
+        <target><![CDATA[<h1>Zwemkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-137">
+        <source>description.category-137</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-142">
+        <source>headers.category-142</source>
+        <target><![CDATA[<h1>Riemen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-142">
+        <source>description.category-142</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-143">
+        <source>headers.category-143</source>
+        <target><![CDATA[<h1>Hoeden</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-143">
+        <source>description.category-143</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-144">
+        <source>headers.category-144</source>
+        <target><![CDATA[<h1>Haaraccessoires</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-144">
+        <source>description.category-144</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-145">
+        <source>headers.category-145</source>
+        <target><![CDATA[<h1>Sokken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-145">
+        <source>description.category-145</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-146">
+        <source>headers.category-146</source>
+        <target><![CDATA[<h1>Sjaals</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-146">
+        <source>description.category-146</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-147">
+        <source>headers.category-147</source>
+        <target><![CDATA[<h1>Accessories</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-147">
+        <source>description.category-147</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-5">
+        <source>headers.category-5</source>
+        <target><![CDATA[<h1>Fleece jassen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-5">
+        <source>description.category-5</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-6">
+        <source>headers.category-6</source>
+        <target><![CDATA[<h1>Jassen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-6">
+        <source>description.category-6</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-7">
+        <source>headers.category-7</source>
+        <target><![CDATA[<h1>Shelljassen en shell broeken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-7">
+        <source>description.category-7</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-8">
+        <source>headers.category-8</source>
+        <target><![CDATA[<h1>Softshell</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-8">
+        <source>description.category-8</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-9">
+        <source>headers.category-9</source>
+        <target><![CDATA[<h1>Blouses</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-9">
+        <source>description.category-9</source>
+        <target><![CDATA[<p>Blouses kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen blouses, zodat er t-shirts zijn voor de grote en de kleine jongens. Onze blouses zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete t-shirt voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze blouses zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-11">
+        <source>headers.category-11</source>
+        <target><![CDATA[<h1>Vesten</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-11">
+        <source>description.category-11</source>
+        <target><![CDATA[<p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-43">
+        <source>headers.category-43</source>
+        <target><![CDATA[<h1>Polo shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-43">
+        <source>description.category-43</source>
+        <target><![CDATA[<p>Overhemden en poloshirts staan elke jongen goed. POMPdeLUX heeft veel verschillende modellen, dessins en kleuren die de garderobe van je kleine of grote jongen helemaal afmaken. We leggen vooral de nadruk op mooie details zoals borstzakken, kragen, knopen en prints. Vind het overhemd of poloshirt waar jouw jongen helemaal gek op is en combineer dit met een pullover, slipover, vest of sweatshirt. Onze overhemden en poloshirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-44">
+        <source>headers.category-44</source>
+        <target><![CDATA[<h1>Overhemden</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-44">
+        <source>description.category-44</source>
+        <target><![CDATA[<p>Overhemden en poloshirts staan elke jongen goed. POMPdeLUX heeft veel verschillende modellen, dessins en kleuren die de garderobe van je kleine of grote jongen helemaal afmaken. We leggen vooral de nadruk op mooie details zoals borstzakken, kragen, knopen en prints. Vind het overhemd of poloshirt waar jouw jongen helemaal gek op is en combineer dit met een pullover, slipover, vest of sweatshirt. Onze overhemden en poloshirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-83">
+        <source>headers.category-83</source>
+        <target><![CDATA[<h1>Sportjassen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-83">
+        <source>description.category-83</source>
+        <target><![CDATA[<p>Buitenkleding is een belangrijk deel van de garderobe van je kind. Kies je favoriete donsjack, fleecejack, bodywarmer of skipak uit de vele kleuren en modellen. Al onze buitenkleding is ontworpen om je kind in allerlei soorten weer warm en droog te houden. Onze technische buitenkleding is van hoge kwaliteit en biedt grote veiligheid en is zowel waterdicht, winddicht als ademend. Bekijk ook de vele details zoals reflectoren, afneembare capuchons, windvangers, bandjes onder de voeten, en zakken. Onze jacks, skibroeken, fleecejacks en skipakken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-84">
+        <source>headers.category-84</source>
+        <target><![CDATA[<h1>Pullover</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-84">
+        <source>description.category-84</source>
+        <target><![CDATA[<p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-116">
+        <source>headers.category-116</source>
+        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-116">
+        <source>description.category-116</source>
+        <target><![CDATA[<p>Sweatbroeken en sweatshirts zijn populair! Kies uit lekkere zachte truien, jacks, broeken en joggingpakken. Onze sweatartikelen zijn gemaakt van een mooie stof die lekker zit, maar ze zien er ook cool uit. Onze sweatshirts en sweatbroeken zijn verkrijgbaar van maat 80-152 en zijn er voor de meisjes en de jongens.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-117">
+        <source>headers.category-117</source>
+        <target><![CDATA[<h1>T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-117">
+        <source>description.category-117</source>
+        <target><![CDATA[<p>T-shirts kun je het hele jaar door dragen en ze zijn fijn voor de zomer en de winter. POMPdeLUX heeft veel verschillende kleuren en modellen t-shirts, zodat er t-shirts zijn voor de grote en de kleine jongens. Onze t-shirts zijn gemaakt van lekkere zachte stof, met veel mooie details en prints. Vind je favoriete t-shirt voor doordeweeks of een cool poloshirt voor een feestelijke gelegenheid. Onze t-shirts zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-118">
+        <source>headers.category-118</source>
+        <target><![CDATA[<h1>Slipover</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-118">
+        <source>description.category-118</source>
+        <target><![CDATA[<p>Voor de koude winterdagen en de wat koelere zomeravonden is een warme trui of vest heerlijk om bij de hand te hebben. POMPdeLUX heeft truien, vesten en pullovers van lekker zacht materiaal en je kunt bij ons kiezen uit verschillende kleuren en modellen. Kies je favoriet uit onze fleecetruien, vesten, sweatshirts, slipovers en pullovers. Onze pullovers en vesten zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-119">
+        <source>headers.category-119</source>
+        <target><![CDATA[<h1>Broeken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-119">
+        <source>description.category-119</source>
+        <target><![CDATA[<p>Bij POMPdeLUX vind je de broek die het beste bij jouw kind past. We hebben een groot assortiment kleuren en modellen – ongeacht of het hierbij gaat om baggy, regular, slimfit, sweatbroeken, chinobroeken of spijkerbroeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en katoen en er zijn broeken voor allerlei gelegenheden. Onze broeken, chinobroeken en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-120">
+        <source>headers.category-120</source>
+        <target><![CDATA[<h1>Jeans</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-120">
+        <source>description.category-120</source>
+        <target><![CDATA[<p>Het moet fijn zijn om een jeans aan te hebben en het is belangrijk om voor je kind de juiste spijkerbroek te vinden. Bij POMPdeLUX vind je verschillende kleuren en modellen spijkerbroeken. Kies uit baggy, regular, slimfit, sweatbroeken, chinobroeken of spijkerbroeken. Onze broeken zijn gemaakt van mooie materialen zoals sweatstof en katoen en er zijn broeken en jeans voor allerlei gelegenheden. Onze broeken, chinobroeken en spijkerbroeken zijn verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind. </p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-128">
+        <source>headers.category-128</source>
+        <target><![CDATA[<h1>Shorts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-128">
+        <source>description.category-128</source>
+        <target><![CDATA[<p>Bij POMPdeLUX vind je een groot assortiment leuke shorts, knickers en zwemshorts. Kies uit lange en korte modellen gemaakt van sweatstof, denim en katoen. Dan is je jongen klaar voor de zomer en het strand en om buiten te spelen. Al onze shorts kunnen gecombineerd worden met een cool overhemd, een zacht t-shirt of een hip hemd. Onze shorts en knickers zijn verkrijgbaar van maat 80 tot 152 en je kunt hier veel inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-132">
+        <source>headers.category-132</source>
+        <target><![CDATA[<h1>Bodystockings</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-132">
+        <source>description.category-132</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-135">
+        <source>headers.category-135</source>
+        <target><![CDATA[<h1>Nachtgoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-135">
+        <source>description.category-135</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-148">
+        <source>headers.category-148</source>
+        <target><![CDATA[<h1>Ondergoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-148">
+        <source>description.category-148</source>
+        <target><![CDATA[<p>Bij POMPdeLUX produceren we ondergoed en nachtgoed dat lekker zit. We gebruiken daarom zacht materiaal van een hoge kwaliteit dat je kind graag aan zal hebben. Ondergoed en nachtgoed moet niet alleen praktisch zijn maar ook een mooi design hebben. In de collectie vind je onderbroeken, boxershorts, hemden en pyjama’s. Ons ondergoed en nachtgoed is verkrijgbaar van maat 80 tot en met 152 en in onze Webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-149">
+        <source>headers.category-149</source>
+        <target><![CDATA[<h1>Zwemkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-149">
+        <source>description.category-149</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-150">
+        <source>headers.category-150</source>
+        <target><![CDATA[<h1>Hoeden</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-150">
+        <source>description.category-150</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-151">
+        <source>headers.category-151</source>
+        <target><![CDATA[<h1>Sokken</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-151">
+        <source>description.category-151</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-152">
+        <source>headers.category-152</source>
+        <target><![CDATA[<h1>Accessories</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-152">
+        <source>description.category-152</source>
+        <target><![CDATA[<p>Om de garderobe van je kind te completeren kun je de collectie combineren met onze leuke accessories. POMPdeLUX heeft van alles, van haaraccessoires, zwemkleding, sokken, maillots en leggings, bretels en riemen tot wanten, mutsen en dassen. Onze populaire accessoires passen bij de rest van de collectie en kunnen daarom gecombineerd worden met de mooie jurken, vesten en broeken. Onze riemen, bretels, wanten, mutsen, dassen en haaraccessoires zijn voor meisjes van alle leeftijden en in onze webshop kun je inspiratie opdoen voor de garderobe van je kind.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
         <target>MAAT</target>
       </trans-unit>
-	  <trans-unit id="faceted.dropdown.color">
+      <trans-unit id="faceted.dropdown.color">
         <source>faceted.dropdown.color</source>
         <target>KLEUR</target>
       </trans-unit>
-	   <trans-unit id="faceted.dropdown.discount">
+      <trans-unit id="faceted.dropdown.discount">
         <source>faceted.dropdown.discount</source>
         <target>Uitverkoop</target>
       </trans-unit>
-	  <trans-unit id="faceted.dropdown.eco">
+      <trans-unit id="faceted.dropdown.eco">
         <source>faceted.dropdown.eco</source>
         <target>OEKO-TEX/Ecologi</target>
       </trans-unit>
-	  <trans-unit id="faceted.selected_filters">
+      <trans-unit id="faceted.selected_filters">
         <source>faceted.selected_filters</source>
         <target>JOUW KEUZE</target>
       </trans-unit>
-	  <trans-unit id="faceted.clear_all">
+      <trans-unit id="faceted.clear_all">
         <source>faceted.clear_all</source>
         <target>WIS ALLES</target>
       </trans-unit>
-	  <trans-unit id="faceted.show_results">
+      <trans-unit id="faceted.show_results">
         <source>faceted.show_results</source>
         <target>Toon resultaten</target>
       </trans-unit>
-	   <trans-unit id="headers.category-157">
-                <source>headers.category-157</source>
-                <target><![CDATA[<h1>Buitenkleding</h1>
-                <p></p>]]></target>
-            </trans-unit><trans-unit id="headers.category-158">
-                <source>headers.category-158</source>
-                <target><![CDATA[<h1>Bovenkleding</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-159">
-                <source>headers.category-159</source>
-                <target><![CDATA[<h1>Onderkleding</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-160">
-                <source>headers.category-160</source>
-                <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-161">
-                <source>headers.category-161</source>
-                <target><![CDATA[<h1>Accessoires</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			 <trans-unit id="headers.category-162">
-                <source>headers.category-162</source>
-                <target><![CDATA[<h1>Buitenkleding</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-163">
-                <source>headers.category-163</source>
-                <target><![CDATA[<h1>Bovenkleding</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-164">
-                <source>headers.category-164</source>
-                <target><![CDATA[<h1>Onderkleding</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-165">
-                <source>headers.category-165</source>
-                <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-166">
-                <source>headers.category-166</source>
-                <target><![CDATA[<h1>Accessoires</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-168">
-                <source>headers.category-168</source>
-                <target><![CDATA[<h1>Meisje - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-169">
-                <source>headers.category-169</source>
-                <target><![CDATA[<h1>Jongen - ZOEK HIER OP DE MAAT VAN JE KIND</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			<trans-unit id="headers.category-141">
-                <source>headers.category-141</source>
-                <target><![CDATA[<h1>AANBIEDINGEN</h1>
-                <p></p>]]></target>
-            </trans-unit>
-			</body>
-    </file>
+      <trans-unit id="headers.category-157">
+        <source>headers.category-157</source>
+        <target><![CDATA[<h1>Buitenkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-157">
+        <source>description.category-157</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-158">
+        <source>headers.category-158</source>
+        <target><![CDATA[<h1>Bovenkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-158">
+        <source>description.category-158</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-159">
+        <source>headers.category-159</source>
+        <target><![CDATA[<h1>Onderkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-159">
+        <source>description.category-159</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-160">
+        <source>headers.category-160</source>
+        <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-160">
+        <source>description.category-160</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-161">
+        <source>headers.category-161</source>
+        <target><![CDATA[<h1>Accessoires</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-161">
+        <source>description.category-161</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-162">
+        <source>headers.category-162</source>
+        <target><![CDATA[<h1>Buitenkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-162">
+        <source>description.category-162</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-163">
+        <source>headers.category-163</source>
+        <target><![CDATA[<h1>Bovenkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-163">
+        <source>description.category-163</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-164">
+        <source>headers.category-164</source>
+        <target><![CDATA[<h1>Onderkleding</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-164">
+        <source>description.category-164</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-165">
+        <source>headers.category-165</source>
+        <target><![CDATA[<h1>Ondergoed en nachtgoed</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-165">
+        <source>description.category-165</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-166">
+        <source>headers.category-166</source>
+        <target><![CDATA[<h1>Accessoires</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-166">
+        <source>description.category-166</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-168">
+        <source>headers.category-168</source>
+        <target><![CDATA[<h1>Meisje - ZOEK HIER OP DE MAAT VAN JE KIND</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-168">
+        <source>description.category-168</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-169">
+        <source>headers.category-169</source>
+        <target><![CDATA[<h1>Jongen - ZOEK HIER OP DE MAAT VAN JE KIND</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-169">
+        <source>description.category-169</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-141">
+        <source>headers.category-141</source>
+        <target><![CDATA[<h1>AANBIEDINGEN</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-141">
+        <source>description.category-141</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
