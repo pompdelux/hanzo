@@ -5,6 +5,10 @@
     <a href="{{ url(route, {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(route, {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
   </div>
 
+  <div class="grid_6 alpha omega row page-description {{ page_type }}-description">
+    {{ ('description.'~page_type)|trans({}, 'category')|raw }}
+  </div>
+
     <div class="pager ajax js-pager-container off" data-target="product-list">
         <li><a href="{{ app.request.uri }}" title="">...</a></li>
     </div>
