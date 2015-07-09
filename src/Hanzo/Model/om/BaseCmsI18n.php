@@ -112,6 +112,18 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     protected $only_mobile;
 
     /**
+     * The value for the meta_title field.
+     * @var        string
+     */
+    protected $meta_title;
+
+    /**
+     * The value for the meta_description field.
+     * @var        string
+     */
+    protected $meta_description;
+
+    /**
      * @var        Cms
      */
     protected $aCms;
@@ -281,6 +293,28 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     {
 
         return $this->only_mobile;
+    }
+
+    /**
+     * Get the [meta_title] column value.
+     *
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+
+        return $this->meta_title;
+    }
+
+    /**
+     * Get the [meta_description] column value.
+     *
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+
+        return $this->meta_description;
     }
 
     /**
@@ -551,6 +585,48 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
     } // setOnlyMobile()
 
     /**
+     * Set the value of [meta_title] column.
+     *
+     * @param  string $v new value
+     * @return CmsI18n The current object (for fluent API support)
+     */
+    public function setMetaTitle($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->meta_title !== $v) {
+            $this->meta_title = $v;
+            $this->modifiedColumns[] = CmsI18nPeer::META_TITLE;
+        }
+
+
+        return $this;
+    } // setMetaTitle()
+
+    /**
+     * Set the value of [meta_description] column.
+     *
+     * @param  string $v new value
+     * @return CmsI18n The current object (for fluent API support)
+     */
+    public function setMetaDescription($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->meta_description !== $v) {
+            $this->meta_description = $v;
+            $this->modifiedColumns[] = CmsI18nPeer::META_DESCRIPTION;
+        }
+
+
+        return $this;
+    } // setMetaDescription()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -613,6 +689,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $this->is_active = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
             $this->on_mobile = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
             $this->only_mobile = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
+            $this->meta_title = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->meta_description = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -622,7 +700,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 11; // 11 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 13; // 13 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating CmsI18n object", $e);
@@ -894,6 +972,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsI18nPeer::ONLY_MOBILE)) {
             $modifiedColumns[':p' . $index++]  = '`only_mobile`';
         }
+        if ($this->isColumnModified(CmsI18nPeer::META_TITLE)) {
+            $modifiedColumns[':p' . $index++]  = '`meta_title`';
+        }
+        if ($this->isColumnModified(CmsI18nPeer::META_DESCRIPTION)) {
+            $modifiedColumns[':p' . $index++]  = '`meta_description`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `cms_i18n` (%s) VALUES (%s)',
@@ -937,6 +1021,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
                         break;
                     case '`only_mobile`':
                         $stmt->bindValue($identifier, (int) $this->only_mobile, PDO::PARAM_INT);
+                        break;
+                    case '`meta_title`':
+                        $stmt->bindValue($identifier, $this->meta_title, PDO::PARAM_STR);
+                        break;
+                    case '`meta_description`':
+                        $stmt->bindValue($identifier, $this->meta_description, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1110,6 +1200,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             case 10:
                 return $this->getOnlyMobile();
                 break;
+            case 11:
+                return $this->getMetaTitle();
+                break;
+            case 12:
+                return $this->getMetaDescription();
+                break;
             default:
                 return null;
                 break;
@@ -1150,6 +1246,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $keys[8] => $this->getIsActive(),
             $keys[9] => $this->getOnMobile(),
             $keys[10] => $this->getOnlyMobile(),
+            $keys[11] => $this->getMetaTitle(),
+            $keys[12] => $this->getMetaDescription(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1227,6 +1325,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             case 10:
                 $this->setOnlyMobile($value);
                 break;
+            case 11:
+                $this->setMetaTitle($value);
+                break;
+            case 12:
+                $this->setMetaDescription($value);
+                break;
         } // switch()
     }
 
@@ -1262,6 +1366,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         if (array_key_exists($keys[8], $arr)) $this->setIsActive($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setOnMobile($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setOnlyMobile($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setMetaTitle($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setMetaDescription($arr[$keys[12]]);
     }
 
     /**
@@ -1284,6 +1390,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         if ($this->isColumnModified(CmsI18nPeer::IS_ACTIVE)) $criteria->add(CmsI18nPeer::IS_ACTIVE, $this->is_active);
         if ($this->isColumnModified(CmsI18nPeer::ON_MOBILE)) $criteria->add(CmsI18nPeer::ON_MOBILE, $this->on_mobile);
         if ($this->isColumnModified(CmsI18nPeer::ONLY_MOBILE)) $criteria->add(CmsI18nPeer::ONLY_MOBILE, $this->only_mobile);
+        if ($this->isColumnModified(CmsI18nPeer::META_TITLE)) $criteria->add(CmsI18nPeer::META_TITLE, $this->meta_title);
+        if ($this->isColumnModified(CmsI18nPeer::META_DESCRIPTION)) $criteria->add(CmsI18nPeer::META_DESCRIPTION, $this->meta_description);
 
         return $criteria;
     }
@@ -1365,6 +1473,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $copyObj->setIsActive($this->getIsActive());
         $copyObj->setOnMobile($this->getOnMobile());
         $copyObj->setOnlyMobile($this->getOnlyMobile());
+        $copyObj->setMetaTitle($this->getMetaTitle());
+        $copyObj->setMetaDescription($this->getMetaDescription());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1490,6 +1600,8 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
         $this->is_active = null;
         $this->on_mobile = null;
         $this->only_mobile = null;
+        $this->meta_title = null;
+        $this->meta_description = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;

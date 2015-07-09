@@ -54,6 +54,8 @@ class CmsI18nTableMap extends TableMap
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
         $this->addColumn('on_mobile', 'OnMobile', 'BOOLEAN', true, 1, true);
         $this->addColumn('only_mobile', 'OnlyMobile', 'BOOLEAN', true, 1, false);
+        $this->addColumn('meta_title', 'MetaTitle', 'VARCHAR', false, 255, null);
+        $this->addColumn('meta_description', 'MetaDescription', 'VARCHAR', false, 255, null);
         // validators
     } // initialize()
 

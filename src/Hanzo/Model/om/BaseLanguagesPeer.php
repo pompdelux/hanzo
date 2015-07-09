@@ -13,6 +13,7 @@ use Glorpen\Propel\PropelBundle\Dispatcher\EventDispatcherProxy;
 use Glorpen\Propel\PropelBundle\Events\PeerEvent;
 use Hanzo\Model\Languages;
 use Hanzo\Model\LanguagesPeer;
+use Hanzo\Model\ProductsSeoI18nPeer;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\map\LanguagesTableMap;
 
@@ -391,6 +392,9 @@ abstract class BaseLanguagesPeer
         // Invalidate objects in ProductsWashingInstructionsPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsWashingInstructionsPeer::clearInstancePool();
+        // Invalidate objects in ProductsSeoI18nPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ProductsSeoI18nPeer::clearInstancePool();
     }
 
     /**

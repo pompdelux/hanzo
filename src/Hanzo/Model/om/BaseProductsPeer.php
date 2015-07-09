@@ -22,6 +22,7 @@ use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsImagesProductReferencesPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuantityDiscountPeer;
+use Hanzo\Model\ProductsSeoI18nPeer;
 use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
@@ -483,6 +484,9 @@ abstract class BaseProductsPeer
         // Invalidate objects in ProductsStockPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsStockPeer::clearInstancePool();
+        // Invalidate objects in ProductsSeoI18nPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ProductsSeoI18nPeer::clearInstancePool();
         // Invalidate objects in ProductsToCategoriesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsToCategoriesPeer::clearInstancePool();
