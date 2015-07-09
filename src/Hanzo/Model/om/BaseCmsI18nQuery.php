@@ -31,6 +31,8 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method CmsI18nQuery orderByOnMobile($order = Criteria::ASC) Order by the on_mobile column
  * @method CmsI18nQuery orderByOnlyMobile($order = Criteria::ASC) Order by the only_mobile column
+ * @method CmsI18nQuery orderByMetaTitle($order = Criteria::ASC) Order by the meta_title column
+ * @method CmsI18nQuery orderByMetaDescription($order = Criteria::ASC) Order by the meta_description column
  *
  * @method CmsI18nQuery groupById() Group by the id column
  * @method CmsI18nQuery groupByLocale() Group by the locale column
@@ -43,6 +45,8 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery groupByIsActive() Group by the is_active column
  * @method CmsI18nQuery groupByOnMobile() Group by the on_mobile column
  * @method CmsI18nQuery groupByOnlyMobile() Group by the only_mobile column
+ * @method CmsI18nQuery groupByMetaTitle() Group by the meta_title column
+ * @method CmsI18nQuery groupByMetaDescription() Group by the meta_description column
  *
  * @method CmsI18nQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CmsI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -66,6 +70,8 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18n findOneByIsActive(boolean $is_active) Return the first CmsI18n filtered by the is_active column
  * @method CmsI18n findOneByOnMobile(boolean $on_mobile) Return the first CmsI18n filtered by the on_mobile column
  * @method CmsI18n findOneByOnlyMobile(boolean $only_mobile) Return the first CmsI18n filtered by the only_mobile column
+ * @method CmsI18n findOneByMetaTitle(string $meta_title) Return the first CmsI18n filtered by the meta_title column
+ * @method CmsI18n findOneByMetaDescription(string $meta_description) Return the first CmsI18n filtered by the meta_description column
  *
  * @method array findById(int $id) Return CmsI18n objects filtered by the id column
  * @method array findByLocale(string $locale) Return CmsI18n objects filtered by the locale column
@@ -78,6 +84,8 @@ use Hanzo\Model\CmsI18nQuery;
  * @method array findByIsActive(boolean $is_active) Return CmsI18n objects filtered by the is_active column
  * @method array findByOnMobile(boolean $on_mobile) Return CmsI18n objects filtered by the on_mobile column
  * @method array findByOnlyMobile(boolean $only_mobile) Return CmsI18n objects filtered by the only_mobile column
+ * @method array findByMetaTitle(string $meta_title) Return CmsI18n objects filtered by the meta_title column
+ * @method array findByMetaDescription(string $meta_description) Return CmsI18n objects filtered by the meta_description column
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {
@@ -171,7 +179,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active`, `on_mobile`, `only_mobile` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted`, `is_active`, `on_mobile`, `only_mobile`, `meta_title`, `meta_description` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -596,6 +604,64 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsI18nPeer::ONLY_MOBILE, $onlyMobile, $comparison);
+    }
+
+    /**
+     * Filter the query on the meta_title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByMetaTitle('fooValue');   // WHERE meta_title = 'fooValue'
+     * $query->filterByMetaTitle('%fooValue%'); // WHERE meta_title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $metaTitle The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsI18nQuery The current query, for fluid interface
+     */
+    public function filterByMetaTitle($metaTitle = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($metaTitle)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $metaTitle)) {
+                $metaTitle = str_replace('*', '%', $metaTitle);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CmsI18nPeer::META_TITLE, $metaTitle, $comparison);
+    }
+
+    /**
+     * Filter the query on the meta_description column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByMetaDescription('fooValue');   // WHERE meta_description = 'fooValue'
+     * $query->filterByMetaDescription('%fooValue%'); // WHERE meta_description LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $metaDescription The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsI18nQuery The current query, for fluid interface
+     */
+    public function filterByMetaDescription($metaDescription = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($metaDescription)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $metaDescription)) {
+                $metaDescription = str_replace('*', '%', $metaDescription);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CmsI18nPeer::META_DESCRIPTION, $metaDescription, $comparison);
     }
 
     /**

@@ -7,7 +7,9 @@
         <meta property="og:title" content="{{ page.title|title }}">
         <meta property="og:image" content="{{ fx_image_url('images/POMPdeLUX_logo_SS12.png', '200x200') }}">
         <meta property="og:description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
-        <meta name="description" content="{{ page.content|trim|strip_tags|slice(0,150) }}">
+        {% if meta_description is not empty %}
+        <meta name="description" content="{{ meta_description }}">
+        {% endif%}
     {% else %}
         {{ meta_tags() }}
     {% endif %}

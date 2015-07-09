@@ -7,7 +7,7 @@ use \TableMap;
 
 
 /**
- * This class defines the structure of the 'cms_i18n' table.
+ * This class defines the structure of the 'products_seo_i18n' table.
  *
  *
  *
@@ -18,13 +18,13 @@ use \TableMap;
  *
  * @package    propel.generator.src.Hanzo.Model.map
  */
-class CmsI18nTableMap extends TableMap
+class ProductsSeoI18nTableMap extends TableMap
 {
 
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'src.Hanzo.Model.map.CmsI18nTableMap';
+    const CLASS_NAME = 'src.Hanzo.Model.map.ProductsSeoI18nTableMap';
 
     /**
      * Initialize the table attributes, columns and validators
@@ -36,26 +36,17 @@ class CmsI18nTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('cms_i18n');
-        $this->setPhpName('CmsI18n');
-        $this->setClassname('Hanzo\\Model\\CmsI18n');
+        $this->setName('products_seo_i18n');
+        $this->setPhpName('ProductsSeoI18n');
+        $this->setClassname('Hanzo\\Model\\ProductsSeoI18n');
         $this->setPackage('src.Hanzo.Model');
-        $this->setUseIdGenerator(false);
+        $this->setUseIdGenerator(true);
         // columns
-        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'cms', 'id', true, null, null);
-        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-        $this->addColumn('title', 'Title', 'VARCHAR', true, 255, null);
-        $this->getColumn('title', false)->setPrimaryString(true);
-        $this->addColumn('path', 'Path', 'VARCHAR', true, 255, null);
-        $this->addColumn('old_path', 'OldPath', 'VARCHAR', false, 255, null);
-        $this->addColumn('content', 'Content', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('settings', 'Settings', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('is_restricted', 'IsRestricted', 'BOOLEAN', true, 1, false);
-        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
-        $this->addColumn('on_mobile', 'OnMobile', 'BOOLEAN', true, 1, true);
-        $this->addColumn('only_mobile', 'OnlyMobile', 'BOOLEAN', true, 1, false);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('products_id', 'ProductsId', 'INTEGER', 'products', 'id', true, null, null);
         $this->addColumn('meta_title', 'MetaTitle', 'VARCHAR', false, 255, null);
         $this->addColumn('meta_description', 'MetaDescription', 'VARCHAR', false, 255, null);
+        $this->addForeignKey('locale', 'Locale', 'VARCHAR', 'languages', 'locale', true, 5, null);
         // validators
     } // initialize()
 
@@ -64,7 +55,8 @@ class CmsI18nTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Cms', 'Hanzo\\Model\\Cms', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Languages', 'Hanzo\\Model\\Languages', RelationMap::MANY_TO_ONE, array('locale' => 'locale', ), 'CASCADE', null);
     } // buildRelations()
 
     /**
@@ -81,4 +73,4 @@ class CmsI18nTableMap extends TableMap
         );
     } // getBehaviors()
 
-} // CmsI18nTableMap
+} // ProductsSeoI18nTableMap
