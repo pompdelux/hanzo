@@ -9,6 +9,8 @@ use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\WishlistsQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Hanzo\Bundle\AdminBundle\Exporter\SeoTextExporter;
 
 /**
  * Class ToolsController
@@ -368,6 +370,32 @@ class ToolsController extends CoreController
             'start' => date('d-m-Y', strtotime("-1 Year")),
             'end'   => date('d-m-Y'),
         ]);
+    }
+
+    /**
+     * seoExportAction
+     *
+     * @param Request $request
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public function seoExportAction(Request $request)
+    {
+
+        if ($request->query->get('run')) {
+            $exporter = new SeoTextExporter();
+            $exporter->setDBConnection($this->getDbConnection());
+            $data = $exporter->getDataAsXML();
+
+            return new Response($data, 200, [
+                    'Content-Type' => 'application/xml',
+                    'Content-Disposition' => 'attachment; filename="product_languages.xml"',
+                ]
+            );
+        }
+
+        return $this->render('AdminBundle:Tools:seoExport.html.twig');
     }
 
     /**
