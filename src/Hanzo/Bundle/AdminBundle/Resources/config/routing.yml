@@ -865,6 +865,11 @@ admin_tools_events_close:
     defaults:
         _controller: AdminBundle:Tools:eventsClose
 
+admin_tools_seo_export:
+    pattern: /admin/tools/seo/export
+    defaults:
+        _controller: AdminBundle:Tools:seoExport
+
 # Image Categories Sort
 admin_product_image_category_add:
     pattern:  /admin/products/add-image-to-category/
