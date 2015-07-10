@@ -4,8 +4,8 @@
 {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
 {{ meta_tags('og:description,description') }}
 <meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
-<meta name="description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
 {% endif %}
+<meta name="description" content="{{ meta_description }}">
 {% endblock %}
 
 {% block content %}
