@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\AdminBundle\Exporter;
 
 use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\CmsQuery;
 
 /**
  * Class LanguageExporter
@@ -31,13 +32,13 @@ class SeoTextExporter extends \PropelXMLParser
      * @return string
      * @throws \OutOfBoundsException
      */
-    public function getDataAsXML()
+    public function getDataAsXML($locale, Array $exportTypes)
     {
         if (is_null($this->getDBConnection())) {
             throw new \OutOfBoundsException("Database connection needs to be set.");
         }
 
-        return $this->listFromArray($this->build(), 'seo_texts');
+        return $this->listFromArray($this->build($locale, $exportTypes), 'seo_texts');
     }
 
     /**
@@ -52,6 +53,7 @@ class SeoTextExporter extends \PropelXMLParser
     {
         foreach ($array as $key => $value) {
             if ($removeNumbersFromKeys) {
+                // hf@bellcom.dk: Notice: this removed everything from the key that is not a-z, e.g. _ and numbers
                 $key = preg_replace('/[^a-z]/i', '', $key);
             }
             $element = $rootElement->ownerDocument->createElement($key);
@@ -65,7 +67,8 @@ class SeoTextExporter extends \PropelXMLParser
                 if (function_exists('iconv') && strcasecmp($charset, 'utf-8') !== 0 && strcasecmp($charset, 'utf8') !== 0) {
                     $value = iconv($charset, 'UTF-8', $value);
                 }
-                $value = htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
+                // hf@bellcom.dk: don't convert
+                // $value = htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
                 $child = $element->ownerDocument->createCDATASection($value);
                 $element->appendChild($child);
             } else {
@@ -79,18 +82,44 @@ class SeoTextExporter extends \PropelXMLParser
     }
 
     /**
+     * build
+     *
+     * @param string $locale
+     * @param array  $exportTypes
+     *
      * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
      */
-    private function build()
+    private function build($locale, $exportTypes)
     {
-        $locale = 'da_DK';
         $data = [
-            'locale'   => $locale,
-            'products' => [],
+            'locale' => $locale,
         ];
 
+        if (in_array('products', $exportTypes)) {
+            $data['products'] = $this->exportProducts($locale);
+        }
+
+        if (in_array('cms', $exportTypes)) {
+            $data['cmspages'] = $this->exportCms($locale);
+        }
+
+        return $data;
+    }
+
+    /**
+     * exportProducts
+     *
+     * @param string $locale
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function exportProducts($locale)
+    {
+        $data = [];
         $products = ProductsQuery::create()
-            ->joinProductsSeoI18n(null, \Criteria::LEFT_JOIN)
+            ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->joinWithI18n($locale)
             ->find($this->getDBConnection());
 
@@ -98,7 +127,46 @@ class SeoTextExporter extends \PropelXMLParser
         $i = 0;
         foreach ($products as $product) {
             $seo = $product->getProductsSeoI18ns();
-            $data['products']['product'.$i++] = ['sku' => $product->getSku(), 'title' => $seo->getMetaTitle(), 'description' => $seo->getMetaDescription()];
+            $seo = $seo->toArray();
+
+            $title       = '';
+            $description = '';
+            if (!empty($seo)) {
+                $title       = $seo[0]['MetaTitle'];
+                $description = $seo[0]['MetaDescription'];
+            }
+
+            $data['product'.$i++] = ['id' => $product->getId(), 'sku' => $product->getSku(), 'metatitle' => $title, 'metadescription' => $description];
+        }
+
+        return $data;
+    }
+
+    /**
+     * exportCms
+     *
+     * @param string $locale
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function exportCms($locale)
+    {
+        $data = [];
+        $cmsPages = CmsQuery::create()
+            ->useCmsI18nQuery()
+                ->filterByLocale($locale)
+            ->endUse()
+            ->find($this->getDBConnection());
+
+        // Numbers are removed from key when using listFromArray
+        $i = 0;
+        foreach ($cmsPages as $page) {
+            $name        = $page->getTitle();
+            $title       = $page->getMetaTitle();
+            $description = $page->getMetaDescription();
+
+            $data['cmspage'.$i++] = ['id' => $page->getId(), 'title' => $name, 'metatitle' => $title, 'metadescription' => $description];
         }
 
         return $data;
