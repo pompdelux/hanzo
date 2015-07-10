@@ -1,59 +1,59 @@
 {% extends layout %}
 
 {% block meta %}
-{% if meta_description is empty %}
-    {% set meta_description = ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags %}
-{% endif %}
-{{ meta_tags('', {
-    'title'         : meta_title|default(''),
-    'og:title'      : meta_title|default(''),
-    'description'   : meta_description|default(''),
-    'og:description': meta_description|default(''),
-    'og:type'       : meta_type|default('product.group')
-}) }}
+    {% if meta_description is empty %}
+        {% set meta_description = ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags %}
+    {% endif %}
+    {{ meta_tags('', {
+        'title'         : meta_title|default(''),
+        'og:title'      : meta_title|default(''),
+        'description'   : meta_description|default(''),
+        'og:description': meta_description|default(''),
+        'og:type'       : meta_type|default('product.group')
+    }) }}
 
-{% if (show_type == 'overview') or (app.request.uri|split('?')|length == 2) %}
-<link rel="canonical" href="{{ url(app.request.get('_route')) }}">
-{% endif %}
+    {% if (show_type == 'overview') or (app.request.uri|split('?')|length == 2) %}
+        <link rel="canonical" href="{{ url(app.request.get('_route')) }}">
+    {% endif %}
 
 {% endblock %}
 
 {% block content %}
-<header class="grid_8 alpha omega">
-    <hgroup>
-        {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
-          {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
-        {% else %}
-          <h1>{{ browser_title }}</h1>
-        {% endif %}
-    </hgroup>
-</header>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+                {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+            {% else %}
+                <h1>{{ browser_title }}</h1>
+            {% endif %}
+        </hgroup>
+    </header>
 
-<div class="grid_8 alpha omega row">
-  {{ render(controller('CMSBundle:Menu:menu', {
-    'type': 'breadcrumb',
-    'thread': 20
-  })) }}
-</div>
-
-<div class="grid_8 alpha omega row js-filter-selected-values off">
-  <div class="grid_2 alpha right filter-text">{{ 'faceted.selected_filters'|trans({}, 'category') }}</div>
-  <div class="grid_6 omega js-filters filter-text">
-    <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
-  </div>
-</div>
-
-<div class="grid_8 alpha omega row">
-  <div class="grid_2 alpha sub-menu menu">
-    <div class="grid_2 alpha sub-menu menu">
+    <div class="grid_8 alpha omega row">
         {{ render(controller('CMSBundle:Menu:menu', {
-            'type': 'sub',
-            'thread' : 20,
-            'include_self' : true
+            'type': 'breadcrumb',
+            'thread': 20
         })) }}
     </div>
-  </div>
 
-  {% include 'CategoryBundle:Default:listCategoryProducts.html.twig' %}
-</div>
+    <div class="grid_8 alpha omega row js-filter-selected-values off">
+        <div class="grid_2 alpha right filter-text">{{ 'faceted.selected_filters'|trans({}, 'category') }}</div>
+        <div class="grid_6 omega js-filters filter-text">
+            <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
+        </div>
+    </div>
+
+    <div class="grid_8 alpha omega row">
+        <div class="grid_2 alpha sub-menu menu">
+            <div class="grid_2 alpha sub-menu menu">
+                {{ render(controller('CMSBundle:Menu:menu', {
+                    'type': 'sub',
+                    'thread' : 20,
+                    'include_self' : true
+                })) }}
+            </div>
+        </div>
+
+        {% include 'CategoryBundle:Default:listCategoryProducts.html.twig' %}
+    </div>
 {% endblock %}
