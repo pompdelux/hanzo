@@ -110,16 +110,16 @@ class DefaultController extends CoreController
             ->where('products.MASTER IS NULL')
             ->filterByRange($productRange)
             ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($domainId)
+            ->filterByDomainsId($domainId)
             ->endUse()
             ->useProductsToCategoriesQuery()
-                ->useCategoriesQuery()
-                    ->filterByContext($filter.'%', \Criteria::LIKE)
-                ->endUse()
+            ->useCategoriesQuery()
+            ->filterByContext($filter.'%', \Criteria::LIKE)
+            ->endUse()
             ->endUse()
             ->joinWithProductsToCategories()
             ->useProductsI18nQuery()
-                ->orderByTitle()
+            ->orderByTitle()
             ->endUse()
             ->groupBySku()
             ->find();
@@ -157,7 +157,7 @@ class DefaultController extends CoreController
         $cacheKeys = [
             __FUNCTION__,
             $cms_id,
-            ];
+        ];
 
         $cache_id = $this->getCacheId($show, $pager, null, false, $cacheKeys);
         $html = $this->getCache($cache_id);
@@ -285,20 +285,20 @@ class DefaultController extends CoreController
         $result = ProductsImagesCategoriesSortQuery::create()
             ->joinWithProducts()
             ->useProductsQuery()
-                ->filterByRange($product_range)
-                ->joinProductsI18n()
-                ->where('products.MASTER IS NULL')
-                // ->filterByIsOutOfStock(FALSE)
-                ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId($domain_id)
-                ->endUse()
-                ->useProductsI18nQuery()
-                    ->filterByLocale($locale)
-                ->endUse()
+            ->filterByRange($product_range)
+            ->joinProductsI18n()
+            ->where('products.MASTER IS NULL')
+            // ->filterByIsOutOfStock(FALSE)
+            ->useProductsDomainsPricesQuery()
+            ->filterByDomainsId($domain_id)
+            ->endUse()
+            ->useProductsI18nQuery()
+            ->filterByLocale($locale)
+            ->endUse()
             ->endUse()
             ->useProductsImagesQuery()
-                ->filterByType($show_by_look ? 'set' : 'overview')
-                ->groupByImage()
+            ->filterByType($show_by_look ? 'set' : 'overview')
+            ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
             ->filterByCategoriesId($category_ids_for_filter);
@@ -324,13 +324,13 @@ class DefaultController extends CoreController
         if (!$filterNoResultsFound) {
             if ($request->query->get('show_all')) {
                 $result = $result->useProductsQuery()
-                        ->filterByIsOutOfStock(false)
-                        ->_or()
-                        ->filterByIsOutOfStock(true)
+                    ->filterByIsOutOfStock(false)
+                    ->_or()
+                    ->filterByIsOutOfStock(true)
                     ->endUse();
             } else {
                 $result = $result->useProductsQuery()
-                        ->filterByIsOutOfStock(false)
+                    ->filterByIsOutOfStock(false)
                     ->endUse();
             }
 
@@ -381,50 +381,50 @@ class DefaultController extends CoreController
 
             // Rejected products
             $rejected_product_colors = [
-              'LeanderShellLtBibPantsSS16' => [
-                'girl' => ['blue', 'navy'],
-                'boy'  => ['plum'],
-              ],
-              'LeanderShellPantsSS16'      => [
-                'girl' => ['blue', 'navy'],
-                'boy'  => ['plum'],
-              ],
-              'LilydaleJrRaincoatSS16'     => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LilydaleLtRainsuitSS16'     => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LeeSoftshellJrJacketSS16'   => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LeeSoftshellLtJacketSS16'   => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LeeSoftshellLtSuitSS16'     => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LommelJrFleeceJacketSS16'   => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LommelLtFleeceJacketSS16'   => [
-                'girl' => ['green', 'blue', 'navy'],
-                'boy'  => ['purple', 'rose'],
-              ],
-              'LeanderShellJrJacketSS16'   => [
-                'girl' => ['navy'],
-                'boy' => ['plum'],
-              ],
-              'LeanderShellLtJacketSS16'   => [
-                'girl' => ['navy'],
-                'boy' => ['plum'],
-              ],
+                'LeanderShellLtBibPantsSS16' => [
+                    'girl' => ['blue', 'navy'],
+                    'boy'  => ['plum'],
+                ],
+                'LeanderShellPantsSS16'      => [
+                    'girl' => ['blue', 'navy'],
+                    'boy'  => ['plum'],
+                ],
+                'LilydaleJrRaincoatSS16'     => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LilydaleLtRainsuitSS16'     => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LeeSoftshellJrJacketSS16'   => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LeeSoftshellLtJacketSS16'   => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LeeSoftshellLtSuitSS16'     => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LommelJrFleeceJacketSS16'   => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LommelLtFleeceJacketSS16'   => [
+                    'girl' => ['green', 'blue', 'navy'],
+                    'boy'  => ['purple', 'rose'],
+                ],
+                'LeanderShellJrJacketSS16'   => [
+                    'girl' => ['navy'],
+                    'boy' => ['plum'],
+                ],
+                'LeanderShellLtJacketSS16'   => [
+                    'girl' => ['navy'],
+                    'boy' => ['plum'],
+                ],
             ];
 
             foreach ($result as $record) {
@@ -868,4 +868,3 @@ class DefaultController extends CoreController
         return $this->categoryGender;
     }
 }
-
