@@ -159,14 +159,16 @@ class SeoTextExporter extends \PropelXMLParser
             ->endUse()
             ->find($this->getDBConnection());
 
-        // Numbers are removed from key when using listFromArray
         $i = 0;
         foreach ($cmsPages as $page) {
-            $name        = $page->getTitle();
             $title       = $page->getMetaTitle();
             $description = $page->getMetaDescription();
+            // Only used to make a page easier to identify in the xml
+            $name        = $page->getTitle();
+            $path        = $page->getPath();
 
-            $data['cmspage'.$i++] = ['id' => $page->getId(), 'title' => $name, 'metatitle' => $title, 'metadescription' => $description];
+            // Numbers are removed from key when using listFromArray
+            $data['cmspage'.$i++] = ['id' => $page->getId(), 'title' => $name, 'path' => $path, 'metatitle' => $title, 'metadescription' => $description];
         }
 
         return $data;
