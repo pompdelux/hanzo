@@ -99,6 +99,14 @@ class SeoTextsController extends CoreController
 
         if (is_file($inputFile)) {
             $xml = simplexml_load_file($inputFile);
+
+            if ($xml === false) {
+                $errors[] = 'Could not load xml file or file contains errors';
+                $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '.implode("<br>", $errors));
+
+                return $this->redirect($this->generateUrl('admin_tools_seo_index'));
+            }
+
             foreach ($xml->children() as $child) {
                 switch ($child->getName())
                 {
