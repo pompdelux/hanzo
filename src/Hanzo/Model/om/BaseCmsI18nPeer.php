@@ -32,13 +32,13 @@ abstract class BaseCmsI18nPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\CmsI18nTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 13;
+    const NUM_COLUMNS = 11;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 13;
+    const NUM_HYDRATE_COLUMNS = 11;
 
     /** the column name for the id field */
     const ID = 'cms_i18n.id';
@@ -73,12 +73,6 @@ abstract class BaseCmsI18nPeer
     /** the column name for the only_mobile field */
     const ONLY_MOBILE = 'cms_i18n.only_mobile';
 
-    /** the column name for the meta_title field */
-    const META_TITLE = 'cms_i18n.meta_title';
-
-    /** the column name for the meta_description field */
-    const META_DESCRIPTION = 'cms_i18n.meta_description';
-
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -98,12 +92,12 @@ abstract class BaseCmsI18nPeer
      * e.g. CmsI18nPeer::$fieldNames[CmsI18nPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'OldPath', 'Content', 'Settings', 'IsRestricted', 'IsActive', 'OnMobile', 'OnlyMobile', 'MetaTitle', 'MetaDescription', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'oldPath', 'content', 'settings', 'isRestricted', 'isActive', 'onMobile', 'onlyMobile', 'metaTitle', 'metaDescription', ),
-        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID, CmsI18nPeer::LOCALE, CmsI18nPeer::TITLE, CmsI18nPeer::PATH, CmsI18nPeer::OLD_PATH, CmsI18nPeer::CONTENT, CmsI18nPeer::SETTINGS, CmsI18nPeer::IS_RESTRICTED, CmsI18nPeer::IS_ACTIVE, CmsI18nPeer::ON_MOBILE, CmsI18nPeer::ONLY_MOBILE, CmsI18nPeer::META_TITLE, CmsI18nPeer::META_DESCRIPTION, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'OLD_PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', 'IS_ACTIVE', 'ON_MOBILE', 'ONLY_MOBILE', 'META_TITLE', 'META_DESCRIPTION', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'old_path', 'content', 'settings', 'is_restricted', 'is_active', 'on_mobile', 'only_mobile', 'meta_title', 'meta_description', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'OldPath', 'Content', 'Settings', 'IsRestricted', 'IsActive', 'OnMobile', 'OnlyMobile', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'oldPath', 'content', 'settings', 'isRestricted', 'isActive', 'onMobile', 'onlyMobile', ),
+        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID, CmsI18nPeer::LOCALE, CmsI18nPeer::TITLE, CmsI18nPeer::PATH, CmsI18nPeer::OLD_PATH, CmsI18nPeer::CONTENT, CmsI18nPeer::SETTINGS, CmsI18nPeer::IS_RESTRICTED, CmsI18nPeer::IS_ACTIVE, CmsI18nPeer::ON_MOBILE, CmsI18nPeer::ONLY_MOBILE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'OLD_PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', 'IS_ACTIVE', 'ON_MOBILE', 'ONLY_MOBILE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'old_path', 'content', 'settings', 'is_restricted', 'is_active', 'on_mobile', 'only_mobile', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -113,12 +107,12 @@ abstract class BaseCmsI18nPeer
      * e.g. CmsI18nPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'OldPath' => 4, 'Content' => 5, 'Settings' => 6, 'IsRestricted' => 7, 'IsActive' => 8, 'OnMobile' => 9, 'OnlyMobile' => 10, 'MetaTitle' => 11, 'MetaDescription' => 12, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'oldPath' => 4, 'content' => 5, 'settings' => 6, 'isRestricted' => 7, 'isActive' => 8, 'onMobile' => 9, 'onlyMobile' => 10, 'metaTitle' => 11, 'metaDescription' => 12, ),
-        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID => 0, CmsI18nPeer::LOCALE => 1, CmsI18nPeer::TITLE => 2, CmsI18nPeer::PATH => 3, CmsI18nPeer::OLD_PATH => 4, CmsI18nPeer::CONTENT => 5, CmsI18nPeer::SETTINGS => 6, CmsI18nPeer::IS_RESTRICTED => 7, CmsI18nPeer::IS_ACTIVE => 8, CmsI18nPeer::ON_MOBILE => 9, CmsI18nPeer::ONLY_MOBILE => 10, CmsI18nPeer::META_TITLE => 11, CmsI18nPeer::META_DESCRIPTION => 12, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'OLD_PATH' => 4, 'CONTENT' => 5, 'SETTINGS' => 6, 'IS_RESTRICTED' => 7, 'IS_ACTIVE' => 8, 'ON_MOBILE' => 9, 'ONLY_MOBILE' => 10, 'META_TITLE' => 11, 'META_DESCRIPTION' => 12, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'old_path' => 4, 'content' => 5, 'settings' => 6, 'is_restricted' => 7, 'is_active' => 8, 'on_mobile' => 9, 'only_mobile' => 10, 'meta_title' => 11, 'meta_description' => 12, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'OldPath' => 4, 'Content' => 5, 'Settings' => 6, 'IsRestricted' => 7, 'IsActive' => 8, 'OnMobile' => 9, 'OnlyMobile' => 10, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'oldPath' => 4, 'content' => 5, 'settings' => 6, 'isRestricted' => 7, 'isActive' => 8, 'onMobile' => 9, 'onlyMobile' => 10, ),
+        BasePeer::TYPE_COLNAME => array (CmsI18nPeer::ID => 0, CmsI18nPeer::LOCALE => 1, CmsI18nPeer::TITLE => 2, CmsI18nPeer::PATH => 3, CmsI18nPeer::OLD_PATH => 4, CmsI18nPeer::CONTENT => 5, CmsI18nPeer::SETTINGS => 6, CmsI18nPeer::IS_RESTRICTED => 7, CmsI18nPeer::IS_ACTIVE => 8, CmsI18nPeer::ON_MOBILE => 9, CmsI18nPeer::ONLY_MOBILE => 10, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'OLD_PATH' => 4, 'CONTENT' => 5, 'SETTINGS' => 6, 'IS_RESTRICTED' => 7, 'IS_ACTIVE' => 8, 'ON_MOBILE' => 9, 'ONLY_MOBILE' => 10, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'old_path' => 4, 'content' => 5, 'settings' => 6, 'is_restricted' => 7, 'is_active' => 8, 'on_mobile' => 9, 'only_mobile' => 10, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -203,8 +197,6 @@ abstract class BaseCmsI18nPeer
             $criteria->addSelectColumn(CmsI18nPeer::IS_ACTIVE);
             $criteria->addSelectColumn(CmsI18nPeer::ON_MOBILE);
             $criteria->addSelectColumn(CmsI18nPeer::ONLY_MOBILE);
-            $criteria->addSelectColumn(CmsI18nPeer::META_TITLE);
-            $criteria->addSelectColumn(CmsI18nPeer::META_DESCRIPTION);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.locale');
@@ -217,8 +209,6 @@ abstract class BaseCmsI18nPeer
             $criteria->addSelectColumn($alias . '.is_active');
             $criteria->addSelectColumn($alias . '.on_mobile');
             $criteria->addSelectColumn($alias . '.only_mobile');
-            $criteria->addSelectColumn($alias . '.meta_title');
-            $criteria->addSelectColumn($alias . '.meta_description');
         }
     }
 

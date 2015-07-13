@@ -57,7 +57,6 @@ class LanguagesTableMap extends TableMap
     public function buildRelations()
     {
         $this->addRelation('ProductsWashingInstructions', 'Hanzo\\Model\\ProductsWashingInstructions', RelationMap::ONE_TO_MANY, array('locale' => 'locale', ), 'CASCADE', null, 'ProductsWashingInstructionss');
-        $this->addRelation('ProductsSeoI18n', 'Hanzo\\Model\\ProductsSeoI18n', RelationMap::ONE_TO_MANY, array('locale' => 'locale', ), 'CASCADE', null, 'ProductsSeoI18ns');
     } // buildRelations()
 
     /**
