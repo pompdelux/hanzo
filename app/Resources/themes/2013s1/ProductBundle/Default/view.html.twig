@@ -7,7 +7,7 @@
     <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
     <meta property="og:description" content="{{ product.description|og_description }}">
     {% if meta_description %}
-    <meta name="description" content="{{ meta_description|og_description }}">
+    <meta name="description" content="{{ meta_description }}">
     {% endif%}
     <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
