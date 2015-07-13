@@ -45,6 +45,8 @@
         <column name="on_mobile" type="BOOLEAN" required="true" defaultValue="TRUE"/>
         <column name="only_mobile" type="BOOLEAN" required="true" defaultValue="FALSE"/>
         <column name="updated_by" type="VARCHAR" required="false"/>
+        <column name="meta_title" type="VARCHAR" required="false"/>
+        <column name="meta_description" type="VARCHAR" required="false"/>
         <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE" onUpdate="CASCADE">
             <reference local="cms_thread_id" foreign="id"/>
         </foreign-key>
@@ -52,7 +54,7 @@
             <reference local="parent_id" foreign="id"/>
         </foreign-key>
         <behavior name="i18n">
-            <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile, only_mobile"/>
+            <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active, on_mobile, only_mobile, meta_title, meta_description"/>
             <parameter name="default_locale" value="da_DK"/>
         </behavior>
         <behavior name="timestampable"/>
@@ -504,6 +506,20 @@
         <index name="key_available_from">
             <index-column name="available_from"/>
         </index>
+    </table>
+
+    <table name="products_seo_i18n">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="products_id" type="INTEGER" required="true"/>
+        <column name="meta_title" type="VARCHAR" required="false"/>
+        <column name="meta_description" type="VARCHAR" required="false"/>
+        <column name="locale" type="VARCHAR" size="5" required="true"/>
+        <foreign-key foreignTable="products" name="fk_products_seo_i18n_1" onDelete="CASCADE">
+            <reference local="products_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="languages" name="fk_products_seo_i18n_locale_1" onDelete="CASCADE">
+            <reference local="locale" foreign="locale"/>
+        </foreign-key>
     </table>
 
     <table name="products_to_categories">

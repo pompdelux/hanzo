@@ -77,7 +77,7 @@ class CmsTableMap extends TableMap
             'i18n' =>  array (
   'i18n_table' => '%TABLE%_i18n',
   'i18n_phpname' => '%PHPNAME%I18n',
-  'i18n_columns' => 'title, path, old_path, content, settings, is_restricted, is_active, on_mobile, only_mobile',
+  'i18n_columns' => 'title, path, old_path, content, settings, is_restricted, is_active, on_mobile, only_mobile, meta_title, meta_description',
   'i18n_pk_name' => NULL,
   'locale_column' => 'locale',
   'default_locale' => 'da_DK',
