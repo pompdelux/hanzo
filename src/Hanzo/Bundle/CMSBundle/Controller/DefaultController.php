@@ -103,9 +103,6 @@ class DefaultController extends CoreController
         $metaTitle       = !empty($page->getMetaTitle()) ? $page->getMetaTitle() : false;
         $metaDescription = !empty($page->getMetaDescription()) ? $page->getMetaDescription() : false;
 
-        $this->get('twig')->addGlobal('meta_title', $metaTitle);
-        $this->get('twig')->addGlobal('meta_description', $metaDescription);
-
         return $this->render('CMSBundle:Default:view.html.twig', [
             'page_type'        => $type,
             'body_classes'     => 'body-' . $type . ' body-page-' . $id . ' ' . $class,
@@ -113,6 +110,9 @@ class DefaultController extends CoreController
             'embedded_content' => $this->getEmbeddedContent($page, $request),
             'parent_id'        => ($page->getParentId()) ? $page->getParentId() : $id,
             'browser_title'    => $page->getTitle(),
+            'meta_title'       => $metaTitle,
+            'meta_description' => $metaDescription,
+
         ]);
     }
 
