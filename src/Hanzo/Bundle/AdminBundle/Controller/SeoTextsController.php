@@ -181,7 +181,7 @@ class SeoTextsController extends CoreController
             $seoText = ProductsSeoI18nQuery::create()
                 ->filterByLocale($locale)
                 ->filterByProductsId($product->id)
-                ->findOne();
+                ->findOne($this->getDbConnection());
 
             if (!$seoText) {
                 $seoText = new ProductsSeoI18n();
@@ -207,7 +207,7 @@ class SeoTextsController extends CoreController
             $seoText->setMetaTitle($title);
             $seoText->setMetaDescription($description);
             $seoText->setLocale($locale);
-            $seoText->save();
+            $seoText->save($this->getDbConnection());
         }
 
         return $errors;

@@ -95,7 +95,7 @@ class SeoTextExporter extends \PropelXMLParser
         // Numbers are removed from key when using listFromArray
         $i = 0;
         foreach ($products as $product) {
-            $seo = $product->getProductsSeoI18ns();
+            $seo = $product->getProductsSeoI18ns(null, $this->getDBConnection());
             $seo = $seo->toArray();
 
             $title       = '';
