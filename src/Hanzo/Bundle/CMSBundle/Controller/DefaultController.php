@@ -100,8 +100,8 @@ class DefaultController extends CoreController
             $this->setSharedMaxAge(86400);
         }
 
-        $metaTitle       = !empty($page->getMetaTitle()) ? $page->getMetaTitle() : false;
-        $metaDescription = !empty($page->getMetaDescription()) ? $page->getMetaDescription() : false;
+        $metaTitle       = !empty($page->getMetaTitle()) ? $page->getMetaTitle() : '';
+        $metaDescription = !empty($page->getMetaDescription()) ? $page->getMetaDescription() : '';
 
         return $this->render('CMSBundle:Default:view.html.twig', [
             'page_type'        => $type,
