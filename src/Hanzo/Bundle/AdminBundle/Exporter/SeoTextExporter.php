@@ -21,14 +21,9 @@ class SeoTextExporter extends \PropelXMLParser
     }
 
     /**
-     * @return \PDO|\PropelPDO
-     */
-    private function getDBConnection()
-    {
-        return $this->dbConnection;
-    }
-
-    /**
+     * @param string $locale
+     * @param Array  $exportTypes
+     *
      * @return string
      * @throws \OutOfBoundsException
      */
@@ -82,32 +77,6 @@ class SeoTextExporter extends \PropelXMLParser
     }
 
     /**
-     * build
-     *
-     * @param string $locale
-     * @param array  $exportTypes
-     *
-     * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     */
-    private function build($locale, $exportTypes)
-    {
-        $data = [
-            'locale' => $locale,
-        ];
-
-        if (in_array('products', $exportTypes)) {
-            $data['products'] = $this->exportProducts($locale);
-        }
-
-        if (in_array('cms', $exportTypes)) {
-            $data['cmspages'] = $this->exportCms($locale);
-        }
-
-        return $data;
-    }
-
-    /**
      * exportProducts
      *
      * @param string $locale
@@ -154,9 +123,7 @@ class SeoTextExporter extends \PropelXMLParser
     {
         $data = [];
         $cmsPages = CmsQuery::create()
-            ->useCmsI18nQuery()
-                ->filterByLocale($locale)
-            ->endUse()
+            ->joinWithI18n($locale)
             ->find($this->getDBConnection());
 
         $i = 0;
@@ -169,6 +136,40 @@ class SeoTextExporter extends \PropelXMLParser
 
             // Numbers are removed from key when using listFromArray
             $data['cmspage'.$i++] = ['id' => $page->getId(), 'title' => $name, 'path' => $path, 'metatitle' => $title, 'metadescription' => $description];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return \PDO|\PropelPDO
+     */
+    private function getDBConnection()
+    {
+        return $this->dbConnection;
+    }
+
+    /**
+     * build
+     *
+     * @param string $locale
+     * @param array  $exportTypes
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    private function build($locale, $exportTypes)
+    {
+        $data = [
+            'locale' => $locale,
+        ];
+
+        if (in_array('products', $exportTypes)) {
+            $data['products'] = $this->exportProducts($locale);
+        }
+
+        if (in_array('cms', $exportTypes)) {
+            $data['cmspages'] = $this->exportCms($locale);
         }
 
         return $data;
