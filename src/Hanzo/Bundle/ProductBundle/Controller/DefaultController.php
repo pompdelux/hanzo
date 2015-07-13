@@ -209,13 +209,12 @@ class DefaultController extends CoreController
             ->filterByProductsId($product_ids[0])
             ->findOne();
 
-        $metaTitle       = false;
-        $metaDescription = false;
+        $metaTitle       = '';
+        $metaDescription = '';
         if ($seo) {
-            $metaTitle       = !empty($seo->getMetaTitle()) ? $seo->getMetaTitle() : false;
-            $metaDescription = !empty($seo->getMetaDescription()) ? $seo->getMetaDescription() : false;
+            $metaTitle       = !empty($seo->getMetaTitle()) ? $seo->getMetaTitle() : '';
+            $metaDescription = !empty($seo->getMetaDescription()) ? $seo->getMetaDescription() : '';
         }
-
 
         if ($result instanceof ProductsWashingInstructions) {
             $washing = stripslashes($result->getDescription());

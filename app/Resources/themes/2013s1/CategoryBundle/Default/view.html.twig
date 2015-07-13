@@ -5,7 +5,9 @@
 {{ meta_tags('og:description,description') }}
 <meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
 {% endif %}
+{% if meta_description is not empty %}
 <meta name="description" content="{{ meta_description }}">
+{% endif %}
 {% endblock %}
 
 {% block content %}
