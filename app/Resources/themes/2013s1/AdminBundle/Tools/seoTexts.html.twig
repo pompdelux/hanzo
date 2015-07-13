@@ -1,0 +1,40 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+{% for message in app.session.flashbag.get('notice') %}
+<div class="alert alert-info">
+    {{ message|raw }}
+</div>
+{% endfor %}
+{% for message in app.session.flashbag.get('warning') %}
+<div class="alert alert-warning">
+    {{ message|raw }}
+</div>
+{% endfor %}
+
+<h1>Import SEO tekster</h1>
+<ul>
+    <li>SKU opdateres ikke på produkter og title opdateres ikke på CMS sider ved import</li>
+</ul>
+<form action="{{ path('admin_tools_seo_import') }}" id="seo-import" class="form-inline" method="POST" enctype="multipart/form-data">
+    <input type="file" name="language_file"><br>
+    <input class="button btn btn-success" type="submit" value="Importer">
+</form>
+
+<h1>Eksport SEO tekster</h1>
+
+<form action="{{ path('admin_tools_seo_export') }}" id="seo-export" class="form-inline" method="POST">
+    <label>
+      Products:
+      <input type="checkbox" name="export_types[]" value="products" checked>
+    </label>
+    <br>
+    <label>
+      CMS:
+      <input type="checkbox" name="export_types[]" value="cms" checked>
+    </label>
+    <br>
+    <input class="button btn btn-success" type="submit" value="Eksporter">
+</form>
+
+{% endblock %}

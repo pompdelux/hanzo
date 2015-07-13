@@ -14,9 +14,10 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsImagesQuery;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsSeoI18nQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
@@ -201,6 +202,22 @@ class DefaultController extends CoreController
             ->filterByLocale($hanzo->get('core.locale'))
             ->findOneByCode($product->getWashing())
         ;
+
+        // As seo text is related to a product style we have to look at the first product id
+        $seo = ProductsSeoI18nQuery::create()
+            ->filterByLocale($hanzo->get('core.locale'))
+            ->filterByProductsId($product_ids[0])
+            ->findOne();
+
+        $metaTitle       = false;
+        $metaDescription = false;
+        if ($seo) {
+            $metaTitle       = !empty($seo->getMetaTitle()) ? $seo->getMetaTitle() : false;
+            $metaDescription = !empty($seo->getMetaDescription()) ? $seo->getMetaDescription() : false;
+        }
+
+        $this->get('twig')->addGlobal('meta_title', $metaTitle);
+        $this->get('twig')->addGlobal('meta_description', $metaDescription);
 
         if ($result instanceof ProductsWashingInstructions) {
             $washing = stripslashes($result->getDescription());
