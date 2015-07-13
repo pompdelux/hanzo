@@ -216,8 +216,6 @@ class DefaultController extends CoreController
             $metaDescription = !empty($seo->getMetaDescription()) ? $seo->getMetaDescription() : false;
         }
 
-        $this->get('twig')->addGlobal('meta_title', $metaTitle);
-        $this->get('twig')->addGlobal('meta_description', $metaDescription);
 
         if ($result instanceof ProductsWashingInstructions) {
             $washing = stripslashes($result->getDescription());
@@ -238,7 +236,7 @@ class DefaultController extends CoreController
             'all_colors' => $all_colors,
             'sizes' => $sizes,
             'images_references' => $images_references,
-            'has_video' => (bool) $product->getHasVideo()
+            'has_video' => (bool) $product->getHasVideo(),
         );
 
 
@@ -258,7 +256,9 @@ class DefaultController extends CoreController
             'product' => $data,
             'references' => $images_references,
             'browser_title' => $product->getTitle(),
-            '_route' => $route
+            '_route' => $route,
+            'meta_title' => $metaTitle,
+            'meta_description' => $metaDescription,
         ));
         return $response;
     }
