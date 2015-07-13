@@ -51,6 +51,7 @@ class SeoTextsController extends CoreController
 
         if (empty($exportTypes)) {
             $this->get('session')->getFlashBag()->add('warning', 'No export types selected');
+
             return $this->redirect($this->generateUrl('admin_tools_seo_index'));
         }
 
@@ -67,8 +68,7 @@ class SeoTextsController extends CoreController
         return new Response($data, 200, [
             'Content-Type' => 'application/xml',
             'Content-Disposition' => 'attachment; filename="seo_texts_'.$locale.'.xml"',
-        ]
-    );
+        ]);
     }
 
     /**
@@ -122,13 +122,15 @@ class SeoTextsController extends CoreController
 
             if ($locale === false) {
                 $errors[] = 'Missing <locale> tag';
-                $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '. implode("<br>", $errors));
+                $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '.implode("<br>", $errors));
+
                 return $this->redirect($this->generateUrl('admin_tools_seo_index'));
             }
 
             if ($dbLocale !== $locale) {
                 $errors[] = 'Uploaded fields <locale> tag does not match the selected database: "'.$locale.'" vs. "'.$dbLocale.'"';
-                $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '. implode("<br>", $errors));
+                $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '.implode("<br>", $errors));
+
                 return $this->redirect($this->generateUrl('admin_tools_seo_index'));
             }
 
@@ -141,16 +143,14 @@ class SeoTextsController extends CoreController
             if ($cmsPages !== false) {
                 $cmsPagesErrors = $this->importCMSPagesTexts($cmsPages, $locale);
             }
-        }
-        else {
+        } else {
             $errors[] = 'No file uploaded';
         }
 
         $errors = array_merge($errors, $productsErrors, $cmsPagesErrors);
         if (!empty($errors)) {
-            $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '. implode("<br>", $errors));
-        }
-        else {
+            $this->get('session')->getFlashBag()->add('warning', 'Some errors happened: '.implode("<br>", $errors));
+        } else {
             $this->get('session')->getFlashBag()->add('notice', 'Success, import complete.');
         }
 
