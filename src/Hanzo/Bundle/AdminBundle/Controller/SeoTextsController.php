@@ -227,11 +227,9 @@ class SeoTextsController extends CoreController
 
         foreach ($pages->children() as $page) {
             $seoText = CmsQuery::create()
-                ->useCmsI18nQuery()
-                    ->filterByLocale($locale)
-                ->endUse()
+                ->joinWithI18n($locale)
                 ->filterById($page->id)
-                ->findOne();
+                ->findOne($this->getDBConnection());
 
             if (!$seoText) {
                 // We will not create new CMS i18n entries
@@ -256,7 +254,7 @@ class SeoTextsController extends CoreController
 
             $seoText->setMetaTitle($title);
             $seoText->setMetaDescription($description);
-            $seoText->save();
+            $seoText->save($this->getDBConnection());
         }
 
         return $errors;
