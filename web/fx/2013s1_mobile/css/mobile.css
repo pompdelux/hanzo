@@ -2695,6 +2695,10 @@ a.show-by-look {
   text-decoration: none;
 }
 
+.page-description {
+  margin-top: 2em;
+}
+
 .product-table {
   width: 100%;
   border-bottom: 1px solid #000;
