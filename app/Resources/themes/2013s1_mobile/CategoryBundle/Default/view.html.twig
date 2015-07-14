@@ -15,81 +15,81 @@
 
 {% block content %}
 
-{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
-  <header class="grid_8 alpha omega">
+  {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+    <header class="grid_8 alpha omega">
       <hgroup>
-          {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+        {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
       </hgroup>
-  </header>
-{% endif %}
+    </header>
+  {% endif %}
 
-<div class="grid_8 alpha omega row">
+  <div class="grid_8 alpha omega row">
     {{ render(controller('CMSBundle:Menu:menu', {
-        'type': 'breadcrumb',
-        'thread': 20
+      'type': 'breadcrumb',
+      'thread': 20
     })) }}
     <div class="clearfix"></div>
-</div>
-
-<div class="grid_8 alpha omega row js-filter-selected-values off">
-  <div class="grid_6 omega js-filters filter-text">
-    <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
   </div>
-</div>
 
-{% include 'CategoryBundle:Default:filters.html.twig' %}
-
-<div class="js-filter-show-products filter-show-products">
-  <a href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.show_results'|trans({}, 'category') }}</a>
-</div>
-
-<div class="grid_8 alpha omega row js-filter-hide">
-  <div class="grid_4 push_2 alpha left">
-    <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
-  </div>
-  {% if paginate %}
-    <div class="grid_4 omega right">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'product-list') }}
+  <div class="grid_8 alpha omega row js-filter-selected-values off">
+    <div class="grid_6 omega js-filters filter-text">
+      <span class="last"><a href="all" class="js-filter-clear">{{ 'faceted.clear_all'|trans({}, 'category') }}</a></span>
     </div>
-  {% endif %}
-</div>
-<div class="grid_8 alpha omega row js-filter-hide">
-  <div class="grid_2 alpha sub-menu menu">
-    {{ render(controller('CMSBundle:Menu:menu', {
+  </div>
+
+  {% include 'CategoryBundle:Default:filters.html.twig' %}
+
+  <div class="js-filter-show-products filter-show-products">
+    <a href="{{ url(app.request.attributes.get('_route')) }}">{{ 'faceted.show_results'|trans({}, 'category') }}</a>
+  </div>
+
+  <div class="grid_8 alpha omega row js-filter-hide">
+    <div class="grid_4 push_2 alpha left">
+      <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
+    </div>
+    {% if paginate %}
+      <div class="grid_4 omega right">
+        {% import "::macro.pager.html.twig" as p %}
+        {{ p.pager(paginate, 'product-list') }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="grid_8 alpha omega row js-filter-hide">
+    <div class="grid_2 alpha sub-menu menu">
+      {{ render(controller('CMSBundle:Menu:menu', {
         'type': 'sub',
         'offset': cms_id,
         'thread' : 20,
         'include_self' : true
-    })) }}
-  </div>
-  <div class="grid_6 omega">
-    <div class="product-list clearfix grid_6 alpha omega row">
-      <div class="old-item">
-        {% for product in products %}
-          {% if loop.index % 3 == 1 %}
-            <div class="grid_6 alpha omega row">
-          {% endif %}
-              <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
-                <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
-                  {{ product_image_tag(product.image, '234x410', {
-                    'alt' : product.alt,
-                    'data-flip': product_image_url(product.image_flip, '234x410'),
-                    'height' : '410',
-                    'width' : '234'
-                  }) }}
-                  {% if product.prices.sales is defined and show_new_price_badge %}
+      })) }}
+    </div>
+    <div class="grid_6 omega">
+      <div class="product-list clearfix grid_6 alpha omega row">
+        <div class="old-item">
+          {% for product in products %}
+            {% if loop.index % 3 == 1 %}
+              <div class="grid_6 alpha omega row">
+            {% endif %}
+            <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+              <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
+                {{ product_image_tag(product.image, '234x410', {
+                  'alt' : product.alt,
+                  'data-flip': product_image_url(product.image_flip, '234x410'),
+                  'height' : '410',
+                  'width' : '234'
+                }) }}
+                {% if product.prices.sales is defined and show_new_price_badge %}
                   <div class="new-price"></div>
-                  {% endif %}
-                  {% if product.out_of_stock %}
+                {% endif %}
+                {% if product.out_of_stock %}
                   <div class="out-of-stock"></div>
-                  {% endif %}
-                  {% if product.prices.sales is defined %}
-                    <div class="discount-badge discountbadges-pct{{ product.prices.sales.sales_pct|round(0) }}"></div>
-                  {% endif %}
-                </a>
-                <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
-                  <span class="title">{{ product.title }}</span>
+                {% endif %}
+                {% if product.prices.sales is defined %}
+                  <div class="discount-badge discountbadges-pct{{ product.prices.sales.sales_pct|round(0) }}"></div>
+                {% endif %}
+              </a>
+              <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
+                <span class="title">{{ product.title }}</span>
                   <span class="prices">
                   {% if product.prices.sales is defined %}
                     <span class="normal strike">{{ product.prices.normal.price|money }}</span>
@@ -98,72 +98,72 @@
                     <span class="normal">{{ product.prices.normal.price|money }}</span>
                   {% endif %}
                   </span>
-                </a>
-              </div>
-          {% if loop.index is divisibleby(3) or loop.last %}
+              </a>
             </div>
-          {% endif %}
-        {% else %}
-          <div>
-            {{ 'all.products.out.of.stock'|trans|raw }}
-          </div>
-        {% endfor %}
+            {% if loop.index is divisibleby(3) or loop.last %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div>
+              {{ 'all.products.out.of.stock'|trans|raw }}
+            </div>
+          {% endfor %}
+        </div>
       </div>
-    </div>
-    {% if ('description.'~page_type)|trans({}, 'category') != 'description.'~page_type %}
-    <div class="grid_6 alpha omega row page-description {{ page_type }}-description">
-      {{ ('description.'~page_type)|trans({}, 'category')|raw }}
-    </div>
-    {% endif %}
+      {% if ('description.'~page_type)|trans({}, 'category') != 'description.'~page_type %}
+        <div class="grid_6 alpha omega row page-description {{ page_type }}-description">
+          {{ ('description.'~page_type)|trans({}, 'category')|raw }}
+        </div>
+      {% endif %}
       <div class="grid_4 push_2">
         {% if paginate %}
           {% import "::macro.pager.html.twig" as p %}
           {{ p.pager(paginate, 'product-list') }}
         {% endif %}
       </div>
+    </div>
   </div>
-</div>
 
-{#  yatzy js template used by the pager, do not delete ! #}
+  {#  yatzy js template used by the pager, do not delete ! #}
 
-<script type="text/html" id="productItems">
-  <div class="new-item">
-    <? for(i=0, l=data.length; i<l; i++) {?>
+  <script type="text/html" id="productItems">
+    <div class="new-item">
+      <? for(i=0, l=data.length; i<l; i++) {?>
       <? if((i+1)%3 === 1) {?>
-        <div class="grid_6 alpha omega row">
-      <?}?>
-      <div class="block block-num-<?=(i+1)?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
-        <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>" class="product flip-this">
-          <img src="<?=data[i].image?>" alt="<?=data[i].alt?>" class="flip" data-flip="<?=data[i].image_flip?>">
-          {% if show_new_price_badge == 1 %}
-            <? if(undefined !== data[i].prices.sales) {?>
-            <div class="new-price"></div>
+      <div class="grid_6 alpha omega row">
+        <?}?>
+        <div class="block block-num-<?=(i+1)?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
+          <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>" class="product flip-this">
+            <img src="<?=data[i].image?>" alt="<?=data[i].alt?>" class="flip" data-flip="<?=data[i].image_flip?>">
+            {% if show_new_price_badge == 1 %}
+              <? if(undefined !== data[i].prices.sales) {?>
+              <div class="new-price"></div>
+              <? }?>
+            {% endif %}
+            <? if(data[i].out_of_stock) {?>
+            <div class="out-of-stock"></div>
             <? }?>
-          {% endif %}
-          <? if(data[i].out_of_stock) {?>
-          <div class="out-of-stock"></div>
-          <? }?>
-          <? if(undefined === data[i].prices.sales) {?>
-          <div class="discount-badge discountbadges-pct<?=Math.round(product.prices.sales.sales_pct)?>"></div>
-          <? }?>
-        </a>
-        <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>">
-          <span class="title"><?=data[i].title?></span>
+            <? if(undefined === data[i].prices.sales) {?>
+            <div class="discount-badge discountbadges-pct<?=Math.round(product.prices.sales.sales_pct)?>"></div>
+            <? }?>
+          </a>
+          <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>">
+            <span class="title"><?=data[i].title?></span>
           <span class="prices">
           <? if(undefined === data[i].prices.sales) {?>
             <span class="normal"><?=data[i].prices.normal.formattet?></span>
-          <?}else{?>
+            <?}else{?>
             <span class="normal strike"><?=data[i].prices.normal.formattet?></span>
             <span class="discount"><?=data[i].prices.sales.formattet?></span>
-          <? }?>
+            <? }?>
           </span>
-        </a>
-      </div>
-      <? if((i+1)%3 === 0 || (i+1) === l){?>
+          </a>
         </div>
+        <? if((i+1)%3 === 0 || (i+1) === l){?>
+      </div>
       <?}?>
-    <? }?>
-  </div>
-</script>
+      <? }?>
+    </div>
+  </script>
 
 {% endblock %}
