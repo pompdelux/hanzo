@@ -873,7 +873,7 @@
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_help">
                 <source>job_application_form.attach_resume_help</source>
-                <target>(valgfrit)</target>
+                <target> </target>
             </trans-unit>
             <trans-unit id="job_application_form.submit_value">
                 <source>job_application_form.submit_value</source>
