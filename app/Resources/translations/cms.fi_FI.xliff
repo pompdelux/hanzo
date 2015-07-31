@@ -856,15 +856,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Kuka olet?</target>
+                <target>Hvem er du? (fx alder, familie og interesser)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(Kerro jotain itsestäsi, kuten ikäsi, perheestäsi ja harrastuksistasi)</target>
+                <target><![CDATA[Mitä olet tehnyt aiemmin?<br>Mitä teet nykyisin?<br>Mitä voit antaa POMPdeLUXille?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Miksi haluaisit myydä POMPdeLUX-lastenvaatteita?</target>
+                <target><![CDATA[Miksi haluaisit myydä POMPdeLUX-lastenvaatteita?<br>Miksi sinusta pitäisi tulla uusi Shopping Advisorimme?<br>Mistä ja kuinka sait kuulla meistä?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
