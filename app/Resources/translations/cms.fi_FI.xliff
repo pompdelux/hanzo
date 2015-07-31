@@ -856,7 +856,7 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Hvem er du? (fx alder, familie og interesser)</target>
+                <target>Kuka olet? (esim. ikäsi, perheesi ja harrastuksesi)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
