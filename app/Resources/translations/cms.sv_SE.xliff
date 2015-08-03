@@ -856,15 +856,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Vem är du?</target>
+                <target>Vem är du? (ex ålder, familj och intressen)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(Skriv lite om dig själv, exv. ålder, familj och intressen)</target>
+                <target><![CDATA[Vad har du gjort tidigare?<br>Vad gör du idag?<br>Vad kan du bidra med till POMPdeLUX?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Varför skulle du vilja sälja POMPdeLUXs kläder?</target>
+                <target><![CDATA[Varför vill du sälja POMPdeLUX barnkläder?<br>Varför vill du vara vår nya Shopping Advisor?<br>Hur har du hört talas om oss?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
@@ -900,7 +900,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Sales Coordinator Sandra Jeppsson på tel. 08-6117104.</p>]]></target>
+                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Kundservice på tel. 08-6117103.</p>]]></target>
             </trans-unit>
         </body>
     </file>
