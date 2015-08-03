@@ -900,7 +900,8 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Søknaden din er sendt.</p><br/><p>Hvis du har spørsmål, kan du kontakte Sales Coordinator Heidi Bregendahl Poulsen på tlf. i Norge 22 74 27 00.</p>]]></target>
+                <target><![CDATA[<p>Søknaden din er sendt.</p><br/><p>Hvis du har spørsmål, kan du kontakte Kundeservice tlf. nr.+47 2274 2600, <a href="mailto:mailno@POMPdeLUX.com">mailno@POMPdeLUX.com</a>
+</p>]]></target>
             </trans-unit>
         </body>
     </file>
