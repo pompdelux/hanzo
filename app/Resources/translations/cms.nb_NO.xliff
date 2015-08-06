@@ -996,15 +996,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Hvem er du?</target>
+                <target>Hvem er du? (f.eks. alder, familie og interesser)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(Skriv litt om deg selv, f.eks. alder, familie og interesser)</target>
+                <target><![CDATA[Hva har du gjort tidligere?<br>Hva driver du med i dag?<br>Hva kan du bidra med til POMPdeLUX?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Hvorfor vil du selge POMPdeLUX barneklær?</target>
+                <target><![CDATA[Hvorfor vil du selge POMPdeLUX barneklær?<br>Hvorfor skal du være vår nye Shopping Advisor?<br>Hvor og hvordan hørte du om oss?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
