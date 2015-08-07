@@ -996,15 +996,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Wie ben jij??</target>
+                <target>Wie ben je (bijv. iets over je leeftijd, gezin en hobby's)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(Schrijf iets over jezelf, bijvoorbeeld je leeftijd en iets over je gezin en je hobby’s)</target>
+                <target><![CDATA[Waar heb je je eerder mee beziggehouden?<br>Wat doe je nu?<br>Wat heb jij POMPdeLUX te bieden?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Waarom wil je graag POMPdeLUX kinderkleding verkopen?</target>
+                <target><![CDATA[Waarom wil je de kinderkleding van POMPdeLUX verkopen?<br>Waarom zou jij onze nieuwe Shopping Advisor moeten worden?<br>Waar en wanneer heb je ons gevonden?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
