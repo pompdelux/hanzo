@@ -34,7 +34,14 @@
                         "144",
                         "145",
                         "146",
-                        "147"
+                        "147",
+						"170",
+						"172",
+						"174",
+						"176",
+						"177",
+						"181",
+						"183"
                     ],
                     "colors": "",
                         "colormap": {
@@ -174,7 +181,14 @@
                         "149",
                         "150",
                         "151",
-                        "152"
+                        "152",
+						"171",
+						"173",
+						"175",
+						"178",
+						"179",
+						"180",
+						"182"
                     ],
                     "colors": "",
                         "colormap": {
@@ -275,7 +289,7 @@
                 <target><![CDATA[
                     {   
                         "category_id": "157",
-                        "embedded_category_id": ["12","13","14","15"],
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176"],
                         "colors": ""
                     }
                 ]]></target>
@@ -316,12 +330,48 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="850.settings">
+                <source>850.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "170",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="851.settings">
+                <source>851.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "172",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="852.settings">
+                <source>852.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "174",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="853.settings">
+                <source>853.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "176",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="810.settings">
                 <source>810.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183"],
                         "colors": ""
                     }
                 ]]></target>
@@ -376,6 +426,24 @@
                 <target><![CDATA[
                     {
                         "category_id": "45",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			  <trans-unit id="854.settings">
+                <source>854.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "177",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="855.settings">
+                <source>855.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "183",
                         "colors": ""
                     }
                 ]]></target>
@@ -495,7 +563,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "161",
-                        "embedded_category_id": ["137","142","143","144","145","146","147"],
+                        "embedded_category_id": ["137","142","143","144","145","146","147","181"],
                         "colors": ""
                     }
                 ]]></target>
@@ -563,12 +631,21 @@
                     }
                 ]]></target>
             </trans-unit>
+			  <trans-unit id="856.settings">
+                <source>856.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "181",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["5","6","7","8"],
+                        "embedded_category_id": ["5","6","7","8","171","173","175","179"],
                         "colors": ""
                     }
                 ]]></target>
@@ -609,12 +686,48 @@
                     }
                 ]]></target>
             </trans-unit>
+			  <trans-unit id="857.settings">
+                <source>857.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "171",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="858.settings">
+                <source>858.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "173",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="864.settings">
+                <source>864.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "175",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			 <trans-unit id="860.settings">
+                <source>860.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "179",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="825.settings">
                 <source>825.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","118"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","118","178"],
                         "colors": ""
                     }
                 ]]></target>
@@ -700,6 +813,15 @@
                     }
                 ]]></target>
             </trans-unit>
+			  <trans-unit id="861.settings">
+                <source>861.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "178",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="826.settings">
                 <source>826.settings</source>
                 <target><![CDATA[
@@ -779,7 +901,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "166",
-                        "embedded_category_id": ["149","150","151","152"],
+                        "embedded_category_id": ["149","150","151","152","180","182"],
                         "colors": ""
                     }
                 ]]></target>
@@ -820,6 +942,24 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="862.settings">
+                <source>862.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "180",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="863.settings">
+                <source>863.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "182",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="845.settings">
                 <source>845.settings</source>
                 <target><![CDATA[
@@ -856,15 +996,15 @@
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_label">
                 <source>job_application_form.describe_yourself_label</source>
-                <target>Vem är du?</target>
+                <target>Vem är du? (ex ålder, familj och intressen)</target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_yourself_help">
                 <source>job_application_form.describe_yourself_help</source>
-                <target>(Skriv lite om dig själv, exv. ålder, familj och intressen)</target>
+                <target><![CDATA[Vad har du gjort tidigare?<br>Vad gör du idag?<br>Vad kan du bidra med till POMPdeLUX?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.describe_motivation_label">
                 <source>job_application_form.describe_motivation_label</source>
-                <target>Varför skulle du vilja sälja POMPdeLUXs kläder?</target>
+                <target><![CDATA[Varför vill du sälja POMPdeLUX barnkläder?<br>Varför vill du vara vår nya Shopping Advisor?<br>Hur har du hört talas om oss?]]></target>
             </trans-unit>
             <trans-unit id="job_application_form.attach_image_label">
                 <source>job_application_form.attach_image_label</source>
@@ -876,7 +1016,7 @@
             </trans-unit>
             <trans-unit id="job_application_form.attach_resume_help">
                 <source>job_application_form.attach_resume_help</source>
-                <target>(valfritt)</target>
+                <target> </target>
             </trans-unit>
             <trans-unit id="job_application_form.submit_value">
                 <source>job_application_form.submit_value</source>
@@ -900,7 +1040,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Sales Coordinator Sandra Jeppsson på tel. 08-6117104.</p>]]></target>
+                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Kundservice på tel. 08-6117103.</p>]]></target>
             </trans-unit>
         </body>
     </file>
