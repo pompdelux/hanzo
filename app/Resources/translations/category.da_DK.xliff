@@ -538,6 +538,118 @@
         <source>description.category-141</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
+	  <trans-unit id="headers.category-170">
+        <source>headers.category-170</source>
+        <target><![CDATA[<h1>Adventure - funktionelt overtøj</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-170">
+        <source>description.category-170</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-172">
+        <source>headers.category-172</source>
+        <target><![CDATA[<h1>Flyverdragter</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-172">
+        <source>description.category-172</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-174">
+        <source>headers.category-174</source>
+        <target><![CDATA[<h1>Skibukser</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-174">
+        <source>description.category-174</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-176">
+        <source>headers.category-176</source>
+        <target><![CDATA[<h1>Veste</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-176">
+        <source>description.category-176</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-177">
+        <source>headers.category-177</source>
+        <target><![CDATA[<h1>Basis</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-177">
+        <source>description.category-177</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-181">
+        <source>headers.category-181</source>
+        <target><![CDATA[<h1>Huer & vanter</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-181">
+        <source>description.category-181</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-183">
+        <source>headers.category-183</source>
+        <target><![CDATA[<h1>Sweaters</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-183">
+        <source>description.category-183</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-171">
+        <source>headers.category-171</source>
+        <target><![CDATA[<h1>Adventure - funktionelt overtøj</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-171">
+        <source>description.category-171</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-173">
+        <source>headers.category-173</source>
+        <target><![CDATA[<h1>Flyverdragt</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-173">
+        <source>description.category-173</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-175">
+        <source>headers.category-175</source>
+        <target><![CDATA[<h1>Skibukser</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-175">
+        <source>description.category-175</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-178">
+        <source>headers.category-178</source>
+        <target><![CDATA[<h1>Basis</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-178">
+        <source>description.category-178</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-179">
+        <source>headers.category-179</source>
+        <target><![CDATA[<h1>Veste</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-179">
+        <source>description.category-179</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-180">
+        <source>headers.category-180</source>
+        <target><![CDATA[<h1>Butterfly</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-180">
+        <source>description.category-180</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-182">
+        <source>headers.category-182</source>
+        <target><![CDATA[<h1>Huer & Vanter</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-182">
+        <source>description.category-182</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
