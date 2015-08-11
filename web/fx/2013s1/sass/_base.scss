@@ -524,6 +524,12 @@ ul.form-errors li {
     vertical-align: bottom;
 }
 
+// Override grid size on product list on consultant to make even sized columns
+#body-context-list .main.grid_8 .grid_2 {
+  width: 33%;
+  margin: 0;
+}
+
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
