@@ -294,33 +294,9 @@ class SyncSalesOrder extends BaseService
                 'SalesUnit'  =>  'Stk.',
             ];
 
-            switch($domainKey) {
-                case 'AT':
-                case 'CH':
-                case 'COM':
-                case 'DE':
-                case 'FI':
-                case 'NL':
-                    $bigBagPrice = '4.95';
-                    break;
-                case 'DK':
-                    $bigBagPrice = '40.00';
-                    break;
-                case 'NO':
-                case 'SE':
-                    $bigBagPrice = '60.00';
-                    break;
-            }
-
-            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                'ItemId'          => 'POMPBIGBAGSS15',
-                'SalesPrice'      => $bigBagPrice,
-                'LineDiscPercent' => 100,
-                'SalesQty'        => 1,
-                'InventColorId'   => 'Grey',
-                'InventSizeId'    => 'One Size',
-                'SalesUnit'       => 'Stk.',
-            ];
+            /*
+             * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
+             */
         }
     }
 
@@ -365,7 +341,7 @@ class SyncSalesOrder extends BaseService
                 }
 
                 $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                    'ItemId'          => 'POMPBAGSS15',
+                    'ItemId'          => 'FREEPOMPBAGAW15',
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
                     'SalesQty'        => 1,
