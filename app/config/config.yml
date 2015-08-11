@@ -46,6 +46,11 @@ services:
         arguments: ['@twig_string', '@muneris.maxmind']
         tags:
             -   { name: twig.extension }
+    hanzo.cookie_notice.twig.extension:
+        class:     Hanzo\Twig\Extension\CookieNoticeExtension
+        arguments: ['@twig_string', '@liip_theme.active_theme']
+        tags:
+            -   { name: twig.extension }
 
     hanzo.routing_loader:
         class:     Hanzo\Bundle\CMSBundle\CMSRouterLoader
