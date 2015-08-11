@@ -536,6 +536,118 @@
         <source>description.category-141</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
+	  <trans-unit id="headers.category-173">
+        <source>headers.category-173</source>
+        <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-173">
+        <source>description.category-173</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	    <trans-unit id="headers.category-175">
+        <source>headers.category-175</source>
+        <target><![CDATA[<h1>Schneeanzug</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-175">
+        <source>description.category-175</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-177">
+        <source>headers.category-177</source>
+        <target><![CDATA[<h1>Skihose</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-177">
+        <source>description.category-177</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-179">
+        <source>headers.category-179</source>
+        <target><![CDATA[<h1>Westen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-179">
+        <source>description.category-179</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-180">
+        <source>headers.category-180</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-180">
+        <source>description.category-180</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-184">
+        <source>headers.category-184</source>
+        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-184">
+        <source>description.category-184</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	     <trans-unit id="headers.category-186">
+        <source>headers.category-186</source>
+        <target><![CDATA[<h1>Pullover</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-186">
+        <source>description.category-186</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-174">
+        <source>headers.category-174</source>
+        <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-174">
+        <source>description.category-174</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-176">
+        <source>headers.category-176</source>
+        <target><![CDATA[<h1>Schneeanzug</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-176">
+        <source>description.category-176</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-178">
+        <source>headers.category-178</source>
+        <target><![CDATA[<h1>Skihose</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-178">
+        <source>description.category-178</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-181">
+        <source>headers.category-181</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-181">
+        <source>description.category-181</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-182">
+        <source>headers.category-182</source>
+        <target><![CDATA[<h1>Westen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-182">
+        <source>description.category-182</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-183">
+        <source>headers.category-183</source>
+        <target><![CDATA[<h1>Fliegen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-183">
+        <source>description.category-183</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-185">
+        <source>headers.category-185</source>
+        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-185">
+        <source>description.category-185</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
