@@ -1,14 +1,14 @@
-<?xml version="1.0"?>
+-<?xml version="1.0"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="headers.category-12">
         <source>headers.category-12</source>
-        <target><![CDATA[<h1>Fleece </h1>]]></target>
+        <target><![CDATA[<h1>Fleece</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-12">
         <source>description.category-12</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Fleecetakki on verraton vaate tyttärellesi. POMPdeLUXin fleecetakit ovat niin pehmeitä ja mukavia, että tytöt eivät tahdo riisua niitä lainkaan. Fleecetakki on erittäin käytännöllinen välikausitakkina viileinä kevät- ja syyspäivinä. Fleecetakkien koot ovat 80–152 cm, ja saatavana on eri värejä ja malleja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-13">
         <source>headers.category-13</source>
@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="description.category-13">
         <source>description.category-13</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa tyttäresi pukeutumista ovat päällysvaatteet, ja meillä POMPdeLUXilla on aina saatavana laaja valikoima kauniita tyttöjen takkeja. Meillä on takkeja joka makuun, sillä valmistamme aina useita eri malleja – ja tietenkin valittavana on paljon eri värejä ja malleja. Tyttöjen takkien koot ovat 80–152 cm, ja kaikki edustavat tietenkin POMPdeLUXin huippulaatua.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-14">
         <source>headers.category-14</source>
@@ -24,7 +24,7 @@
       </trans-unit>
       <trans-unit id="description.category-14">
         <source>description.category-14</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa tyttäresi pukeutumista ovat päällysvaatteet. Kuoritakkimme ja -housumme kuuluvat teknisten päällysvaatteidemme valikoimaan, jonka tuotteet ovat huippulaadukkaita ja turvallisia. Kuoritakkimme ja -housumme ovat veden- ja tuulenpitäviä sekä hengittäviä, ja molemmissa on runsaasti herkullisia ja käytännöllisiä yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja taskut. Kuoritakkien ja -housujen koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-15">
         <source>headers.category-15</source>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="description.category-15">
         <source>description.category-15</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa tyttäresi pukeutumista ovat päällysvaatteet. POMPdeLUXilla me valmistamme laadukkaita Softshell-takkeja ja Softshell-haalareita, joista on saatavilla monia eri värejä ja kokoja. Kuoritakkimme ja -housumme ovat tietenkin veden- ja tuulenpitäviä sekä hengittäviä, ja molemmissa on runsaasti herkullisia ja käytännöllisiä yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja taskut. Softshell-kuoritakkien ja -housujen koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-16">
         <source>headers.category-16</source>
@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="description.category-16">
         <source>description.category-16</source>
-        <target><![CDATA[<p>POMPdeLUXilla on suuri valikoima tunikoita ja puseroita isoille ja pienille tytöille. Täältä löydät monia eri malleja ja värejä – jokaiseen makuun löytyy jotakin. Valikoimassamme on sekä peruspuseroita arkeen että juhlavampia tunikoita erityistilaisuuksiin. Meiltä löytyy tunikoita ja puseroita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXilla on kattava valikoima puseroita niin isoille kuin pienillekin tytöille. Meiltä löydät monia erilaisia malleja ja värejä jokaiseen makuun. POMPdeLUX valmistaa sekä arkisia peruspaitoja että juhlavia vaatteita erikoistilaisuuksiin. Paidoista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-17">
         <source>headers.category-17</source>
@@ -48,7 +48,7 @@
       </trans-unit>
       <trans-unit id="description.category-17">
         <source>description.category-17</source>
-        <target><![CDATA[<p>Lämmin pusero tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on sekä neulepuseroita että -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecetakkien, neuletakkien, puseroiden ja huppareiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Kylminä talvipäivinä ja viileinä kesäiltoina tyttäresi on mukava pukea lämpimään neuleeseen. POMPdeLUXillla on ihanan pehmeitä villapaitoja, joiden joukosta löydät varmasti mieleisesi. Tutustu ja löydä suosikkisi – tyttöjen villapaidoista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-18">
         <source>headers.category-18</source>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="description.category-19">
         <source>description.category-19</source>
-        <target><![CDATA[<p>Collegehousut ja collegepuserot ovat suosittuja! Valitse omasi ihanan pehmeistä puseroista, takeista, housuista ja haalareista. Collegevaatteemme ovat aina ihanaa materiaalia, joka tuntuu mukavalta lapsen päällä ja samalla näyttää coolilta. Collegepuserojamme ja collegehousujamme on saatavana koossa 80–152 cm sekä tytöille että pojille.</p>]]></target>
+        <target><![CDATA[<p>Svetarit ovat suosittuja, ja POMPdeLUXin valikoimaan kuuluu aina useita malleja ja värejä. Tyttöjen svetarit ovat supernäppäriä ja aina huippulaadukkaita, joten ne tuntuvat miellyttäviltä tyttäresi päällä. Tyttöjen svetarien koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-21">
         <source>headers.category-21</source>
@@ -88,7 +88,7 @@
       </trans-unit>
       <trans-unit id="description.category-46">
         <source>description.category-46</source>
-        <target><![CDATA[<p>POMPdeLUXilta löydät housuja, jotka sopivat lapsellesi parhaiten. Meillä on suuri valikoima värejä ja malleja – pidätpä sitten eniten jeggingseistä, farkuista, baggyista tai slimfit-mallista. Housumme on valmistettu ihanista materiaaleista aina collegesta neuleeseen, ja meillä on housuja joka tilaisuuteen. Meiltä löytyy housuja, jeggingsejä ja farkkuja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXilta löydät housut, jotka sopivat juuri sinun lapsellesi. Meillä on kattava valikoima eri värejä ja malleja, halusipa tyttäresi sitten jeggingsit, trekkingsit, farkut, siistit housut, joustavat housut, pehmeät housut, löysät housut tai jotkin aivan muunlaiset housut. POMPdeLUX valmistaa tyttöjen housuja joka makuun, ja saatavana on koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-79">
         <source>headers.category-79</source>
@@ -112,7 +112,7 @@
       </trans-unit>
       <trans-unit id="description.category-112">
         <source>description.category-112</source>
-        <target><![CDATA[<p>Sukat, sukkahousut ja leggingsit ovat olennainen osa lapsesi perusvaatevarastoa. POMPdeLUXin sukat, sukkahousut ja leggingsit on valmistettu ihanan pehmeistä materiaaleista, joita kaikki tytöt käyttävät mielellään. Käytä leggingsejä mekon, hameen tai shortsien kanssa ja muista myös perustoppimme, jotka sopivat täydellisesti leggingseihimme. Meiltä löytyy leggingsejä koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Legginsit kuuluvat itsestään selvästi tytön vaatekaappiin. POMPdeLUXilla on tyttöjen leggingsejä, jotka on valmistettu ihanan pehmeistä materiaaleista. Kaikki tytöt käyttävät niitä mielellään, ja tarjolla on kaatava valikoima värejä ja malleja. Leggingsejä voi käyttää hameen, housujen tai sortsien alla – vain mielikuvitus on rajana. Tyttöjen leggingseistä on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-113">
         <source>headers.category-113</source>
@@ -120,7 +120,7 @@
       </trans-unit>
       <trans-unit id="description.category-113">
         <source>description.category-113</source>
-        <target><![CDATA[<p>POMPdeLUxilla on shortseja ja hameita kaikille tytöille. Valitse erilaisista malleista ja ihanista väreistä. Huomaa myös monet hienot yksityiskohdat painatuksineen ja tylleineen. Lisää shortsien ja hameiden alle leggingsit tai sukkahousut ja käytä yläosana T-paitaa, neulepuseroa tai neuletakkia. Meiltä löytyy shortseja ja hameita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXilla on alaosia kaikille tytöille. Valittavana on useita malleja ja herkullisia värejä. Huomaa myös monet sievät yksityiskohdat, kuten painokuviot ja tyllisomisteet. Yhdistele tyttöjen alusvaatteita erilaisiin ylä- ja/tai alaosiin - mahdollisuuksia on loputtomiin, ja vain mielikuvitus on rajana. Tyttöjen alaosista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-114">
         <source>headers.category-114</source>
@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit id="description.category-114">
         <source>description.category-114</source>
-        <target><![CDATA[<p>POMPdeLUxilla on shortseja ja hameita kaikille tytöille. Valitse erilaisista malleista ja ihanista väreistä. Huomaa myös monet hienot yksityiskohdat painatuksineen ja tylleineen. Lisää shortsien ja hameiden alle leggingsit tai sukkahousut ja käytä yläosana T-paitaa, neulepuseroa tai neuletakkia. Meiltä löytyy shortseja ja hameita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXilla on shortseja kaikille tytöille. Valittavana on useita malleja ja herkullisia värejä. Huomaa myös monet sievät yksityiskohdat, kuten painokuviot, pitsit ja niitit. Yhdistele tyttöjen shortseja erilaisiin ylä- ja/tai alaosiin - mahdollisuuksia on loputtomiin, ja vain mielikuvitus on rajana. Tyttöjen sortseista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-115">
         <source>headers.category-115</source>
@@ -136,7 +136,7 @@
       </trans-unit>
       <trans-unit id="description.category-115">
         <source>description.category-115</source>
-        <target><![CDATA[<p>Sukat, sukkahousut ja leggingsit ovat olennainen osa lapsesi perusvaatevarastoa. POMPdeLUXin sukat, sukkahousut ja leggingsit on valmistettu ihanan pehmeistä materiaaleista, joita kaikki tytöt käyttävät mielellään. Käytä leggingsejä mekon, hameen tai shortsien kanssa ja muista myös perustoppimme, jotka sopivat täydellisesti leggingseihimme. Meiltä löytyy leggingsejä koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Sukkahousut kuuluvat itsestään selvästi tytön vaatekaappiin. POMPdeLUXilla on valtava valikoima kauniita tyttöjen sukkahousuja, jotka on valmistettu pehmeistä materiaaleista. Ne tuntuvat aina yhtä mukavilta tyttäresi jalassa. Sukkahousuja voi käyttää hameen, alaosan tai sortsien alla. Tyttöjen sukkahousut sopivat tietenkin aina kokoelman muihin vaatteisiin. Tyttöjen sukkahousuista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-127">
         <source>headers.category-127</source>
@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="description.category-127">
         <source>description.category-127</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Bodystocking on mainio vaate pikkutytölle. POMPdeLUX valmistaa tytöille suloisia, niin lyhyt- kuin pitkähihaisiakin bodystockingeja, aina tietenkin Oeko-Tex Standard 100:n mukaisesti ja GOTS-merkillä varustettuina. Tyttöjen bodystockingit ovat tietenkin suunniteltu aina yhtä käytännöllisiksi. Niistä on saatavana useita värejä ja kuoseja, koot 80–152 cm. Tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-131">
         <source>headers.category-131</source>
@@ -152,7 +152,7 @@
       </trans-unit>
       <trans-unit id="description.category-131">
         <source>description.category-131</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös yöasuja, jotka ovat aina yhtä mukavia käytössä. Kaikki yöasumme, niin pyjamat kuin kokohaalaritkin, on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki. POMPdeLUXin yöpukuja on saatavana useita värejä ja kuoseja, koot 80–152 cm. Tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-136">
         <source>headers.category-136</source>
@@ -160,7 +160,7 @@
       </trans-unit>
       <trans-unit id="description.category-136">
         <source>description.category-136</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös yöasuja, jotka ovat aina yhtä mukavia käytössä. Kaikki alusasumme, niin alushousut , hipsterit kuin pikkuhousutkin, on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki. POMPdeLUXin yöpukuja on saatavana useita värejä ja kuoseja, koot 80–152 cm. Tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-137">
         <source>headers.category-137</source>
@@ -168,7 +168,7 @@
       </trans-unit>
       <trans-unit id="description.category-137">
         <source>description.category-137</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Ei kesää ilman uimista – ja silloin tietenkin hankitaan tytön uimapuku POMPdeLUXilta. POMPdeLUX valmistaa tytöille kaikenlaisia uima-asuja, niin bikineitä kuin kokouimapukujakin, ja kaikki edustavat tietenkin meille tunnusomaista hyvää laatua, taidokasta suunnittelua ja herkullisia värejä. Tyttöjen uima-asuista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-142">
         <source>headers.category-142</source>
@@ -176,7 +176,7 @@
       </trans-unit>
       <trans-unit id="description.category-142">
         <source>description.category-142</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tytön vaatekaapin täydennykseksi voit hankkia monenlaisia kauniita asusteita, ja esimerkiksi vyö voi viimeistellä kauniin asukokonaisuuden. Hattumme sopivat sekä isoille että pienille tytöille, ja tytön vaatekaappiin onkin tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-143">
         <source>headers.category-143</source>
@@ -184,7 +184,7 @@
       </trans-unit>
       <trans-unit id="description.category-143">
         <source>description.category-143</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tytön vaatekaapin täydennykseksi voit hankkia monenlaisia kauniita asusteita, ja esimerkiksi lakki voi viimeistellä kauniin asukokonaisuuden. POMPdeLUX valmistaa monennäköisiä ja -värisiä lakkeja, jotka ovat tietenkin yhtä laadukkaita kuin muutkin vaatteemme. Valitse vaikkapa monikäyttöinen lippis tai suloinen ja superkäytännöllinen aurinkohattu. Hattumme sopivat sekä isoille että pienille tytöille, ja tytön vaatekaappiin onkin tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-144">
         <source>headers.category-144</source>
@@ -192,7 +192,7 @@
       </trans-unit>
       <trans-unit id="description.category-144">
         <source>description.category-144</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tytön vaatekaapin täydennykseksi voit hankkia monenlaisia kauniita asusteita, ja esimerkiksi hiuskoriste on pakollinen asuste kaikille tytöille – niin isoille kuin pienillekin. Tyttöjen hiuskoristeita on saatavana monissa eri väriyhdistelmissä, jotka sopivat tietenkin yhteen koko kokoelman kanssa. Tytön vaatekaappiin onkin tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-145">
         <source>headers.category-145</source>
@@ -200,7 +200,7 @@
       </trans-unit>
       <trans-unit id="description.category-145">
         <source>description.category-145</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Sukatkin ovat tärkeä osa tyttäresi pukeutumista. POMPdeLUXilla on valtava valikoima kauniita tyttöjen sukkia, jotka on valmistettu pehmeistä materiaaleista. Ne tuntuvat aina yhtä mukavilta tyttäresi jalassa. Tyttöjensukat on Oeko-Tex Standard 100 -merkittyjä, ja saatavana on joukko hienoja värejä, jotka luonnollisesti sopivat kokoelman muihin vaatteisiin. Tyttöjen sukista on saatavilla koot 20–38, joten tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-146">
         <source>headers.category-146</source>
@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="description.category-146">
         <source>description.category-146</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tytöt rakastavat huiveja, ja niitä voikin käyttää vuoden ympäri! POMPdeLUX valmistaa tyttöjen huiveja, joista on saatavana useita eri värejä ja malleja, tietenkin aina tunnettua hyvää POMPdeLUX-laatua. Asusteilla voi täydentää jokaisen vaatekaapin, ja huiveilla on tietenkin siinä vakiintunut ja tärkeä osa. Huivimme sopivat kokoelman muihin vaatteisiin sekä isoille että pienille tytöille – ja myös äidille – ja tytön vaatekaappiin onkin tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-147">
         <source>headers.category-147</source>
@@ -216,7 +216,7 @@
       </trans-unit>
       <trans-unit id="description.category-147">
         <source>description.category-147</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Lapsen vaatekaapin täydennykseksi kokoelman vaatteita voi yhdistellä monien kauniiden asusteiden kanssa POMPdeLUXin valikoimaan kuuluu sukkahousuista, sukista, leggingseistä, uima-asuista, bikineistä, olkaimista ja vöistä lapasiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat luonnollisesti yhteen kokoelman muiden vaatteiden kanssa, ja niitä on helppo yhdistellä kauniiden hameiden, herkullisten villatakkien ja sievien housujen kanssa. Valikoimamme vyöt, olkaimet, lapaset, lakit, kaulahuivit ja hiuskoristeet sopivat kaikenikäisille tytöille, ja tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-5">
         <source>headers.category-5</source>
@@ -224,7 +224,7 @@
       </trans-unit>
       <trans-unit id="description.category-5">
         <source>description.category-5</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Fleecetakki on verraton vaate pojalle. POMPdeLUXin fleecetakit ovat niin pehmeitä ja mukavia, että pojat eivät tahdo riisua niitä lainkaan. Fleecetakki on erittäin käytännöllinen välikausitakkina viileinä kevät- ja syyspäivinä. Fleecetakkien koot ovat 80–152 cm, ja saatavana on eri värejä ja malleja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-6">
         <source>headers.category-6</source>
@@ -232,7 +232,7 @@
       </trans-unit>
       <trans-unit id="description.category-6">
         <source>description.category-6</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa poikasi pukeutumista ovat päällysvaatteet, ja meillä POMPdeLUXilla on aina saatavana laaja valikoima kauniita takkeja. Meillä on takkeja joka makuun, sillä valmistamme aina useita eri malleja – ja tietenkin valittavana on paljon eri värejä ja malleja. Poikien takkien koot ovat 80–152 cm, ja kaikki edustavat tietenkin POMPdeLUXin huippulaatua.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-7">
         <source>headers.category-7</source>
@@ -240,7 +240,7 @@
       </trans-unit>
       <trans-unit id="description.category-7">
         <source>description.category-7</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa poikasi pukeutumista ovat päällysvaatteet. Kuoritakkimme ja -housumme kuuluvat teknisten päällysvaatteidemme valikoimaan, jonka tuotteet ovat huippulaadukkaita ja turvallisia. Kuoritakkimme ja -housumme ovat veden- ja tuulenpitäviä sekä hengittäviä, ja molemmissa on runsaasti herkullisia ja käytännöllisiä yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja taskut. Kuoritakkien ja -housujen koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-8">
         <source>headers.category-8</source>
@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="description.category-8">
         <source>description.category-8</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa poikasi pukeutumista ovat päällysvaatteet. POMPdeLUXilla me valmistamme laadukkaita Softshell-takkeja ja Softshell-haalareita, joista on saatavilla monia eri värejä ja kokoja. Kuoritakkimme ja -housumme ovat tietenkin veden- ja tuulenpitäviä sekä hengittäviä, ja molemmissa on runsaasti herkullisia ja käytännöllisiä yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja taskut. Softshell-kuoritakkien ja -housujen koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-9">
         <source>headers.category-9</source>
@@ -256,7 +256,7 @@
       </trans-unit>
       <trans-unit id="description.category-9">
         <source>description.category-9</source>
-        <target><![CDATA[<p>T-paitoja voi käyttää ympäri vuoden ja ne ovat kauniita sekä kesällä että talvella. POMPdeLUXilla on T-paitoja monessa eri värissä ja mallissa, joten valikoimasta löytyy jotain sekä isoille että pienille pojille. T-paitamme ovat ihanan pehmeää materiaalia, ja niissä on paljon hienoja painatuksia. Löydä oma suosikkipaitasi arkeen tai siisti pikeepaita juhlavampiin tilaisuuksiin. Meiltä löytyy T-paitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXilla on kattava valikoima puseroita niin isoille kuin pienillekin pojille. Meiltä löydät monia erilaisia malleja ja värejä jokaiseen makuun. POMPdeLUX valmistaa sekä arkisia peruspaitoja että juhlavia vaatteita erikoistilaisuuksiin. Paidoista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-11">
         <source>headers.category-11</source>
@@ -272,15 +272,15 @@
       </trans-unit>
       <trans-unit id="description.category-43">
         <source>description.category-43</source>
-        <target><![CDATA[<p>Kauluspaidat ja pikeepaidat sopivat joka pojalle. POMPdeLUXilla on monia eri malleja, kuoseja ja värejä, jotka täydentävät hienosti sekä pienten että isojen poikien vaatevarastoa. Keskitymme erityisesti moniin hienoihin yksityiskohtiin, kuten rintataskuihin, kauluksiin, nappeihin ja painatuksiin. Löydä kauluspaita tai pikeepaita, joka on poikasi suosikki ja yhdistä siihen neulepusero, slipoveri, neuletakki tai collegepaita. Meiltä löytyy kauluspaitoja ja pikeepaitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Poolopaitoja voi käyttää vuoden ympäri, niin kesällä kuin talvellakin. POMPdeLUXin poolopaitoja on saatavilla eri väreissä ja malleissa, joten sopiva löytyy varmasti niin isoille kuin pienillekin pojille. Poolopaitamme ovat ihanan pehmeää materiaalia, ja niissä on useita herkullisia yksityiskohtia. Löydä suosikkipoolopaitasi sekä arkeen että juhlaan. Poolopaidoista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-44">
         <source>headers.category-44</source>
-        <target><![CDATA[<h1>Paidat</h1>]]></target>
+        <target><![CDATA[<h1>Kauluspaidat</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-44">
         <source>description.category-44</source>
-        <target><![CDATA[<p>Kauluspaidat ja pikeepaidat sopivat joka pojalle. POMPdeLUXilla on monia eri malleja, kuoseja ja värejä, jotka täydentävät hienosti sekä pienten että isojen poikien vaatevarastoa. Keskitymme erityisesti moniin hienoihin yksityiskohtiin, kuten rintataskuihin, kauluksiin, nappeihin ja painatuksiin. Löydä kauluspaita tai pikeepaita, joka on poikasi suosikki ja yhdistä siihen neulepusero, slipoveri, neuletakki tai collegepaita. Meiltä löytyy kauluspaitoja ja pikeepaitoja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Paita on näppärä vaate pojalle, ja POMPdeLUXin paidoissa on valinnanvaraa: useita malleja, kuoseja ja värejä, joilla varustat niin ison kuin pienenkin pojan vaatekaapin. Olemme kiinnittäneet huomiota erityisesti kauniisiin yksityiskohtiin, kuten rintataskuihin, kauluksiin, nappeihin ja painokuoseihin. Valitse pojallesi mieleinen paita ja yhdistä se svetariin, villapaitaan, villatakkiin tai slipariin. Paidoista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-83">
         <source>headers.category-83</source>
@@ -288,7 +288,7 @@
       </trans-unit>
       <trans-unit id="description.category-83">
         <source>description.category-83</source>
-        <target><![CDATA[<p>Ulkovaatteet ovat tärkeä osa lapsesi vaatevarastoa. Löydä suosikkisi untuvatakkien, fleecetakkien, liivien tai haalareiden joukosta. Saatavana on monia värejä ja malleja. Kaikki ulkovaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana joka säällä. Etenkin tekniset ulkovaatteemme ovat erittäin laadukkaita ja turvallisia. Ne ovat veden- ja tuulenpitäviä sekä hengittäviä. Kannattaa myös kiinnittää huomiota moniin yksityiskohtiin, kuten heijastimiin, irrotettavaan huppuun, tuulilukkoon, jalkalenkkeihin ja taskuihin. Meiltä löytyy takkeja, ulkohousuja, fleecetakkeja ja haalareita koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa poikasi pukeutumista ovat päällysvaatteet, ja meillä POMPdeLUXilla on aina laaja valikoima poikien päällysvaatteita. Poikien urheilutakkeja on tietenkin saatavana useita värejä, totta kai somistettuna näppärillä yksityiskohdilla. Urheilutakkien koot ovat 80–152 cm, ja kaikki edustavat tietenkin POMPdeLUXin huippulaatua.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-84">
         <source>headers.category-84</source>
@@ -296,7 +296,7 @@
       </trans-unit>
       <trans-unit id="description.category-84">
         <source>description.category-84</source>
-        <target><![CDATA[<p>Lämmin pusero tai neuletakki tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on neulepuseroita ja -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecepuseroiden, neuletakkien, puseroiden, collegepaitojen ja neulepuseroiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Kylminä talvipäivinä ja viileinä kesäiltoina poikasi on mukava pukea lämpimään neuleeseen. POMPdeLUXillla on ihanan pehmeitä villapaitoja, joiden joukosta löydät varmasti mieleisesi. Tutustu ja löydä suosikkisi. – poikien villapaidoista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-116">
         <source>headers.category-116</source>
@@ -304,7 +304,7 @@
       </trans-unit>
       <trans-unit id="description.category-116">
         <source>description.category-116</source>
-        <target><![CDATA[<p>Collegehousut ja collegepuserot ovat suosittuja! Valitse omasi ihanan pehmeistä puseroista, takeista, housuista ja haalareista. Collegevaatteemme ovat aina ihanaa materiaalia, joka tuntuu mukavalta lapsen päällä ja samalla näyttää coolilta. Collegepuserojamme ja collegehousujamme on saatavana koossa 80–152 cm sekä tytöille että pojille.</p>]]></target>
+        <target><![CDATA[<p>Svetarit ovat suosittuja, käytännöllisiä ja monikäyttöisiä vaatteita sekä isoille että pienille pojille. POMPdeLUXin valikoimaan kuuluu aina useita malleja ja värejä. Poikien svetarit ovat supernäppäriä ja aina huippulaadukkaita, joten ne tuntuvat miellyttäviltä poikasi päällä. Poikien svetarien koot ovat 80–152 cm.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-117">
         <source>headers.category-117</source>
@@ -320,7 +320,7 @@
       </trans-unit>
       <trans-unit id="description.category-118">
         <source>description.category-118</source>
-        <target><![CDATA[<p>Lämmin pusero tai neuletakki tuntuu ihanalta kylmänä talvipäivänä ja viileänä kesäiltana. POMPdeLUXilla on neulepuseroita ja -takkeja ihanan pehmeissä materiaaleissa. Värejä ja malleja on laaja valikoima. Löydä suosikkisi fleecepuseroiden, neuletakkien, puseroiden, collegepaitojen ja neulepuseroiden joukosta. Meiltä löytyy neulepuseroita ja neuletakkeja koossa 80–152 cm, ja tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Kylminä talvipäivinä ja viileinä kesäiltoina poikasi on mukava pukea lämpimään liiviin. POMPdeLUXillla on ihanan pehmeitä liivejä, joiden joukosta löydät varmasti mieleisesi. Liivi tuo lisäpiristystä kaikenlaisiin asuihin ja toimii niin arjessa kuin juhlassakin. Poikien liiveistä on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-119">
         <source>headers.category-119</source>
@@ -352,7 +352,7 @@
       </trans-unit>
       <trans-unit id="description.category-132">
         <source>description.category-132</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Bodystocking on mainio vaate pikkupojalle. POMPdeLUX valmistaa pojille suloisia, niin lyhyt- kuin pitkähihaisiakin bodystockingeja, aina tietenkin Oeko-Tex Standard 100:n mukaisesti ja GOTS-merkillä varustettuina. Poikien bodystockingit ovat tietenkin suunniteltu aina yhtä käytännöllisiksi. Niistä on saatavana useita värejä ja kuoseja, koot 80–152 cm. Pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-135">
         <source>headers.category-135</source>
@@ -360,7 +360,7 @@
       </trans-unit>
       <trans-unit id="description.category-135">
         <source>description.category-135</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös yöpukuja, jotka ovat aina yhtä mukavia käytössä. Kaikki yöasumme, niin pyjamat kuin kokohaalaritkin, on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki. POMPdeLUXin yöpukuja on saatavana useita värejä ja kuoseja, koot 80–152 cm. Pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-148">
         <source>headers.category-148</source>
@@ -368,7 +368,7 @@
       </trans-unit>
       <trans-unit id="description.category-148">
         <source>description.category-148</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea  sukkahousuista, sukista, leggingseistä, uima-asuista ,hiuskoristeista, henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin mekkoihin, ihaniin neuletakkeihin ja siisteihin housuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme, kaulahuivejamme ja hiuskoristeitamme voidaan käyttää kaikenikäisillä tytöillä. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös alusasuja, jotka ovat aina yhtä mukavia käytössä. Kaikki alusasumme, niin alushousut kuin bokseritkin, on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki.  POMPdeLUXin alusasuja on saatavana useita värejä ja kuoseja, koot 80–152 cm. Pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-149">
         <source>headers.category-149</source>
@@ -376,7 +376,7 @@
       </trans-unit>
       <trans-unit id="description.category-149">
         <source>description.category-149</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Ei kesää ilman uimista – ja silloin tietenkin hankitaan pojan uimapuku POMPdeLUXilta. POMPdeLUX valmistaa pojille kaikenlaisia uima-asuja, niin shortseja kuin uimahousujakin, ja kaikki edustavat tietenkin meille tunnusomaista hyvää laatua, taidokasta suunnittelua ja herkullisia värejä. Poikien uima-asuista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-150">
         <source>headers.category-150</source>
@@ -384,7 +384,7 @@
       </trans-unit>
       <trans-unit id="description.category-150">
         <source>description.category-150</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Pojan vaatekaapin täydennykseksi voit hankkia monenlaisia kauniita asusteita, jotka viimeistelevät kauniit asukokonaisuudet. POMPdeLUX valmistaa monennäköisiä ja -värisiä lakkeja, jotka ovat tietenkin yhtä laadukkaita kuin muutkin vaatteemme. Valitse vaikkapa monikäyttöinen lippis tai superkäytännöllinen aurinkohattu. Hattumme sopivat sekä isoille että pienille pojille, ja pojan vaatekaappiin onkin tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-151">
         <source>headers.category-151</source>
@@ -392,7 +392,7 @@
       </trans-unit>
       <trans-unit id="description.category-151">
         <source>description.category-151</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>Sukatkin ovat tärkeä osa poikasi pukeutumista. POMPdeLUXilla on valtava valikoima kauniita poikien sukkia, jotka on valmistettu pehmeistä materiaaleista. Ne tuntuvat aina yhtä mukavilta poikasi jalassa. Poikien sukat on Oeko-Tex Standard 100 -merkittyjä, ja saatavana on joukko hienoja värejä, jotka luonnollisesti sopivat kokoelman muihin vaatteisiin. Poikien sukista on saatavilla koot 20–38, joten pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-152">
         <source>headers.category-152</source>
@@ -400,7 +400,7 @@
       </trans-unit>
       <trans-unit id="description.category-152">
         <source>description.category-152</source>
-        <target><![CDATA[<p>Voit viimeistellä lapsesi vaatevaraston yhdistämällä vaatteisiin monia kauniita asusteitamme. POMPdeLUXilta löytyy kaikkea henkseleistä ja vöistä käsineisiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat yhteen muun malliston kanssa ja niitä voidaan siten yhdistellä hienoihin puseroihin, ihaniin neuletakkeihin ja siisteihin farkkuihin. Vöitämme, henkseleitämme, käsineitämme, lakkejamme ja kaulahuivejamme voidaan käyttää kaikenikäisillä pojilla. Tarjoamme paljon inspiraatiota lasten vaatevarastoon.</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa jokaiseen kokoelmaan runsaasti asusteita. Meillä on esimerkiksi POPM-kassi, joka sopii yhteen oikeastaan kaiken kanssa. On supersiistejä ja näppäriä laukkuja, joita voi käyttää rannalla tai ostoksilla tai johon vain laittaa uimapuvun, yöasun yökylään mennessä tai jonka voi solmia rusetilla lahjapussiksi. Päätä itse – POMPdeLUX-asusteilla mahdollisuuksia on rajattomasti.</p>]]></target>
       </trans-unit>
       <trans-unit id="faceted.dropdown.size">
         <source>faceted.dropdown.size</source>
@@ -436,7 +436,7 @@
       </trans-unit>
       <trans-unit id="description.category-157">
         <source>description.category-157</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa tyttäresi pukeutumista ovat päällysvaatteet, ja meillä POMPdeLUXilla on aina laaja valikoima tyttöjen päällysvaatteita, joista jokainen löytää mieleisensä. Kaikki päällysvaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana kaikenlaisilla säillä. Etenkin tekniset päällysvaatteemme ovat erittäin laadukkaita ja turvallisia. Siksi ne ovat sekä veden- että tuulenpitäviä mutta samalla hengittäviä. Tyttöjen päällysvaatteissa on aina paljon käytännöllisiä ja herkullisia yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja käytännöllisiä taskuja. Haalareita, takkeja, olkainhousuja ja fleecetakkeja on saatavana koossa 80–152 cm, joten tytön vaatekaappiin on saatavilla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-158">
         <source>headers.category-158</source>
@@ -444,7 +444,7 @@
       </trans-unit>
       <trans-unit id="description.category-158">
         <source>description.category-158</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXin jokaisessa kokoelmassa on laaja valikoima tyttöjen takkeja. On suorastaan vaikea löytää suosikkinsa puseroiden, villatakkien, hameiden, svetarien, toppien ja t-paitojen joukosta – valittavana on niin paljon upeita vaatteita! Lähde tutkimusretkelle naisellisten pitsien ja nauhojen, pehmeiden ja rouheiden niittien, söpöjen rusettien, upeiden kuosien ja printtien, prinsessahattujen ja upeiden neuleiden maailmaan - kaikki tietenkin valmistettuna parhaista ja laadukkaimmista materiaaleista. Kaikista yläosista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-159">
         <source>headers.category-159</source>
@@ -452,7 +452,7 @@
       </trans-unit>
       <trans-unit id="description.category-159">
         <source>description.category-159</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXin jokaisessa kokoelmassa on laaja valikoima tyttöjen housuja, farkkuja, haalareita, leggingsejä, alaosia ja shortseja kaikenlaisiin tilaisuuksiin ja käyttötarkoituksiin sekä kaikkiin vuodenaikoihin. Herkulliset materiaalit ja upeat mallit ovat POMPdeLUXin vaatteiden tunnusmerkki, ja myös alaosien laatu on aina huippuluokkaa. Saatavana on koot 82–152 cm. Tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-160">
         <source>headers.category-160</source>
@@ -460,7 +460,7 @@
       </trans-unit>
       <trans-unit id="description.category-160">
         <source>description.category-160</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös alusvaatteita ja yöpukuja, jotka ovat aina yhtä mukavia käytössä. Siksi käytämme vain laadukkaita ja pehmeitä materiaaleja, jotka tuntuvat mukavilta tyttäresi päällä. Kaikki yöasumme ja alusvaatteemme on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki. Me POMPdeLUXilla emme kuitenkaan tyydy siihen, että yöasut ja alusvaatteet ovat pelkästään käytännöllisiä, vaan haluamme niiden olevan samalla myös kauniita ja hienosti suunniteltuja. Kokoelmaan kuuluu sekä alushousuja, hipstereitä, yöpaitoja, pikkuhousuja, pyjamia ja kokohaalareita, joista on saatavana koot 80–152 cm, joten tytön vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-161">
         <source>headers.category-161</source>
@@ -468,7 +468,7 @@
       </trans-unit>
       <trans-unit id="description.category-161">
         <source>description.category-161</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Lapsen vaatekaapin täydennykseksi kokoelman vaatteita voi yhdistellä monien kauniiden asusteiden kanssa POMPdeLUXin valikoimaan kuuluu sukkahousuista, sukista, leggingseistä, uima-asuista, bikineistä, olkaimista ja vöistä lapasiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat luonnollisesti yhteen kokoelman muiden vaatteiden kanssa, ja niitä on helppo yhdistellä kauniiden hameiden, herkullisten villatakkien ja sievien housujen kanssa. Valikoimamme vyöt, olkaimet, lapaset, lakit, kaulahuivit ja hiuskoristeet sopivat kaikenikäisille tytöille, ja tytön vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-162">
         <source>headers.category-162</source>
@@ -476,7 +476,7 @@
       </trans-unit>
       <trans-unit id="description.category-162">
         <source>description.category-162</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Tärkeä osa poikasi pukeutumista ovat päällysvaatteet, ja meillä POMPdeLUXilla on aina laaja valikoima poikien päällysvaatteita, joista jokainen löytää mieleisensä. Kaikki päällysvaatteemme on suunniteltu pitämään lapsesi lämpimänä ja kuivana kaikenlaisilla säillä. Etenkin tekniset päällysvaatteemme ovat erittäin laadukkaita ja turvallisia. Siksi ne ovat sekä veden- että tuulenpitäviä mutta samalla hengittäviä. Poikien päällysvaatteissa on aina paljon käytännöllisiä ja herkullisia yksityiskohtia, kuten heijastimia, irrotettava huppu, tuulisuoja, jalkahihnat ja käytännöllisiä taskuja. Haalareita, takkeja, olkainhousuja ja fleecetakkeja on saatavana koossa 80–152 cm, joten pojan vaatekaappiin on saatavilla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-163">
         <source>headers.category-163</source>
@@ -484,7 +484,7 @@
       </trans-unit>
       <trans-unit id="description.category-163">
         <source>description.category-163</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXin jokaisessa kokoelmassa on laaja valikoima poikien takkeja.  On suorastaan vaikea löytää suosikkinsa puseroiden, villatakkien, poolopaitojen, paitojen, urheilutakkien, villapaitojen, svetarien, t-paitojen ja liivien joukosta – valittavana on niin paljon upeita vaatteita!  Lähde tutkimusretkelle merkkien, pehmeiden ja rouheiden niittien, kauniiden värien, upeiden kuosien ja printtien, collegevaatteiden ja upeiden neuleiden maailmaan – kaikki tietenkin valmistettuna parhaista ja laadukkaimmista materiaaleista. Kaikista yläosista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-164">
         <source>headers.category-164</source>
@@ -492,7 +492,7 @@
       </trans-unit>
       <trans-unit id="description.category-164">
         <source>description.category-164</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUXin jokaisessa kokoelmassa on laaja valikoima poikien housuja, farkkuja ja shortseja kaikenlaisiin tilaisuuksiin ja käyttötarkoituksiin sekä kaikkiin vuodenaikoihin. Herkulliset materiaalit ja upeat mallit ovat POMPdeLUXin vaatteiden tunnusmerkki, ja myös housujemme laatu on aina huippuluokkaa Saatavana on koot 82–152 cm. Pojan vaatekaappiin on tarjolla runsaasti ideoita.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-165">
         <source>headers.category-165</source>
@@ -500,7 +500,7 @@
       </trans-unit>
       <trans-unit id="description.category-165">
         <source>description.category-165</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX valmistaa myös alusvaatteita ja yöpukuja, joiden tulee olla mukavia käytössä. Siksi käytämme vain laadukkaita ja pehmeitä materiaaleja, jotka tuntuvat mukavilta päällä. Kaikki yöasumme ja alusvaatteemme on tietenkin valmistettu Oeko-Tex Standard 100:n mukaisesti, ja niille on myönnetty myös GOTS-merkki. Me POMPdeLUXilla emme kuitenkaan tyydy siihen, että yöasut ja alusvaatteet ovat pelkästään käytännöllisiä vaan haluamme niiden olevan samalla myös kauniita ja hienosti suunniteltuja. Kokoelmaan kuuluu sekä alushousuja, boksereita, pyjamia ja kokohaalareita, joista on saatavana koot 80–152 cm, joten pojan vaatekaappiin on tarjolla runsaasti vaihtoehtoja.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-166">
         <source>headers.category-166</source>
@@ -508,7 +508,7 @@
       </trans-unit>
       <trans-unit id="description.category-166">
         <source>description.category-166</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Lapsen vaatekaapin täydennykseksi kokoelman vaatteita voi yhdistellä monien kauniiden asusteiden kanssa POMPdeLUXin valikoimaan kuuluu sukkahousuista, sukista, uima-asuista, olkaimista ja vöistä lapasiin, lakkeihin ja kaulahuiveihin. Suositut asusteemme sopivat luonnollisesti yhteen kokoelman muiden vaatteiden kanssa, ja niitä on helppo yhdistellä kauniiden villapaitojen, herkullisten villatakkien ja sievien housujen kanssa.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-168">
         <source>headers.category-168</source>
@@ -532,6 +532,118 @@
       </trans-unit>
       <trans-unit id="description.category-141">
         <source>description.category-141</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-170">
+        <source>headers.category-170</source>
+        <target><![CDATA[<h1>Adventure – tekniset ulkovaatteet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-170">
+        <source>description.category-170</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-172">
+        <source>headers.category-172</source>
+        <target><![CDATA[<h1>Haalarit</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-172">
+        <source>description.category-172</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-174">
+        <source>headers.category-174</source>
+        <target><![CDATA[<h1>Talvihousut</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-174">
+        <source>description.category-174</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-176">
+        <source>headers.category-176</source>
+        <target><![CDATA[<h1>Liivit</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-176">
+        <source>description.category-176</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-177">
+        <source>headers.category-177</source>
+        <target><![CDATA[<h1>Perusvaatteet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-177">
+        <source>description.category-177</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-181">
+        <source>headers.category-181</source>
+        <target><![CDATA[<h1>Päähineet ja käsineet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-181">
+        <source>description.category-181</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-183">
+        <source>headers.category-183</source>
+        <target><![CDATA[<h1>Neulepaidat</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-183">
+        <source>description.category-183</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-171">
+        <source>headers.category-171</source>
+        <target><![CDATA[<h1>Adventure – tekniset ulkovaatteet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-171">
+        <source>description.category-171</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-173">
+        <source>headers.category-173</source>
+        <target><![CDATA[<h1>Haalarit</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-173">
+        <source>description.category-173</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-175">
+        <source>headers.category-175</source>
+        <target><![CDATA[<h1>Talvihousut</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-175">
+        <source>description.category-175</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-178">
+        <source>headers.category-178</source>
+        <target><![CDATA[<h1>Perusvaatteet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-178">
+        <source>description.category-178</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-179">
+        <source>headers.category-179</source>
+        <target><![CDATA[<h1>Liivit</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-179">
+        <source>description.category-179</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-180">
+        <source>headers.category-180</source>
+        <target><![CDATA[<h1>Rusetit</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-180">
+        <source>description.category-180</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-182">
+        <source>headers.category-182</source>
+        <target><![CDATA[<h1>Päähineet ja käsineet</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-182">
+        <source>description.category-182</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
     </body>
