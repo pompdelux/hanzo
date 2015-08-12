@@ -230,11 +230,12 @@ class MailPlatformProvider extends BaseProvider
     {
         $requestBody = [
             'details' => [
-                'emailaddress'     => $subscriber_id,
-                'mailinglist'      => $list_id,
-                'format'           => 'html',
-                'confirmed'        => 'false',
-                'confirm_language' => 'EN',
+                'emailaddress'          => $subscriber_id,
+                'mailinglist'           => $list_id,
+                'format'                => 'html',
+                'confirmed'             => 'false',
+                'confirm_language'      => 'EN',
+                'add_to_autoresponders' => 1,
                 ],
         ];
 
