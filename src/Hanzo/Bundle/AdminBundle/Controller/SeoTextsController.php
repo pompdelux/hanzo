@@ -178,18 +178,10 @@ class SeoTextsController extends CoreController
         $errors = [];
 
         foreach ($products->children() as $product) {
-            $seoText = ProductsSeoI18nQuery::create()
-                ->filterByLocale($locale)
-                ->filterByProductsId($product->id)
-                ->findOne($this->getDbConnection());
-
-            if (!$seoText) {
-                $seoText = new ProductsSeoI18n();
-            }
-
             $productId   = (int) $product->id;
             $title       = (string) $product->metatitle;
             $description = (string) $product->metadescription;
+            $sku         = (string) $product->sku;
 
             if (empty($title) && empty($description)) {
                 continue;
@@ -203,11 +195,46 @@ class SeoTextsController extends CoreController
                 $errors[] = 'Description is more than 255 chars (Truncated in database):<br>'.$description.'<br>';
             }
 
+            // Master product:
+            $seoText = ProductsSeoI18nQuery::create()
+                ->filterByLocale($locale)
+                ->filterByProductsId($product->id)
+                ->findOne($this->getDbConnection());
+
+            if (!$seoText) {
+                $seoText = new ProductsSeoI18n();
+            }
+
             $seoText->setProductsId($productId);
             $seoText->setMetaTitle($title);
             $seoText->setMetaDescription($description);
             $seoText->setLocale($locale);
             $seoText->save($this->getDbConnection());
+
+            unset($seoText);
+
+            // Copy text to all varients
+            $variants = ProductsQuery::create()
+                ->filterByMaster($sku)
+                ->find($this->getDbConnection());
+
+            foreach ($variants as $variant)
+            {
+                $seoText = ProductsSeoI18nQuery::create()
+                    ->filterByLocale($locale)
+                    ->filterByProductsId($variant->getId())
+                    ->findOne($this->getDbConnection());
+
+                if (!$seoText) {
+                    $seoText = new ProductsSeoI18n();
+                }
+
+                $seoText->setProductsId($variant->getId());
+                $seoText->setMetaTitle($title);
+                $seoText->setMetaDescription($description);
+                $seoText->setLocale($locale);
+                $seoText->save($this->getDbConnection());
+            }
         }
 
         return $errors;

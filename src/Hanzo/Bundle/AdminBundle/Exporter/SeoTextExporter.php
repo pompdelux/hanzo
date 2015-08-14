@@ -87,8 +87,9 @@ class SeoTextExporter extends \PropelXMLParser
     protected function exportProducts($locale)
     {
         $data = [];
+        // We only export Master products, when imported the data is copied to all varients
         $products = ProductsQuery::create()
-            ->filterByMaster(null, \Criteria::ISNOTNULL)
+            ->filterByMaster(null, \Criteria::ISNULL)
             ->joinWithI18n($locale)
             ->find($this->getDBConnection());
 

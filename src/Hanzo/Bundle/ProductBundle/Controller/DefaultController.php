@@ -204,6 +204,7 @@ class DefaultController extends CoreController
         ;
 
         // As seo text is related to a product style we have to look at the first product id
+        // Currently the SEO text import/export duplicates the meta info to all varients
         $seo = ProductsSeoI18nQuery::create()
             ->filterByLocale($hanzo->get('core.locale'))
             ->filterByProductsId($product_ids[0])
