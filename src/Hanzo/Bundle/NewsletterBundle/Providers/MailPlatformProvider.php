@@ -235,7 +235,8 @@ class MailPlatformProvider extends BaseProvider
                 'format'                => 'html',
                 'confirmed'             => 'false',
                 'confirm_language'      => 'EN',
-                'add_to_autoresponders' => 1,
+                // Results in an increased amounts for 500 errors
+                // 'add_to_autoresponders' => 1,
                 ],
         ];
 
