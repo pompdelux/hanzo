@@ -110,8 +110,8 @@ class DefaultController extends CoreController
         $name    = $request->query->get('name');
 
         // Active range for products is set in admin
+        // FIXME: this should only be set for wish list, but #1020 requires it to be fixed now :)
         $range = Hanzo::getInstance()->get('wishlist.active_product_range');
-        error_log(__LINE__.':'.__FILE__.' '.$range); // hf@bellcom.dk debugging
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
