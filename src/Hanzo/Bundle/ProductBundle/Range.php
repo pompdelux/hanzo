@@ -62,6 +62,18 @@ class Range
      */
     public function getCurrentRange()
     {
+        try {
+            $request = Hanzo::getInstance()->container->get('request');
+            if ($range = $request->get('active_product_range'))
+            {
+                return $range;
+            }
+        }
+        catch (\Exception $e)
+        {
+            error_log(__LINE__.':'.__FILE__.' Could not get active_product_range from request'); // hf@bellcom.dk debugging
+        }
+
         if ($this->session->has('active_product_range')) {
             return $this->session->get('active_product_range');
         }
