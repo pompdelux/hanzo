@@ -153,7 +153,7 @@ class StockController extends CoreController
             return $this->json_response([
                 'data'    => [],
                 'message' => $translator->trans('No product(s) in stock.'),
-                'status'  => true,
+                'status'  => false,
             ]);
         }
 

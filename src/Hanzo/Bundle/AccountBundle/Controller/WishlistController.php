@@ -11,6 +11,7 @@
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\OrdersPeer;
@@ -54,11 +55,13 @@ class WishlistController extends CoreController
 
         ksort($products);
 
+        // Active product range can be overwritten from domain_settings
         return [
-            'wishlist_id' => $this->getWishlist()->getId(),
-            'page_type'   => 'wishlist',
-            'products'    => $products,
-            'total_price' => Tools::moneyFormat($totalPrice),
+            'wishlist_id'          => $this->getWishlist()->getId(),
+            'page_type'            => 'wishlist',
+            'products'             => $products,
+            'active_product_range' => Hanzo::getInstance()->get('wishlist.active_product_range'),
+            'total_price'          => Tools::moneyFormat($totalPrice),
         ];
     }
 

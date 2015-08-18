@@ -14,13 +14,14 @@ App.register('ProductFinder', function() {
     publicMethods.init = function($element) {
         $_element = $element;
         identifiers = {
-            form           : 'form',
-            searchField    : 'input[name="q"]',
-            masterField    : 'input[name="master"]',
-            productIdField : 'input[name="product_id"]',
-            sizeSelect     : 'select[name="size"]',
-            colorSelect    : 'select[name="color"]',
-            quantitySelect : 'select[name="quantity"]'
+            form             : 'form',
+            searchField      : 'input[name="q"]',
+            masterField      : 'input[name="master"]',
+            productIdField   : 'input[name="product_id"]',
+            activeRangeField : 'input[name="active_product_range"]',
+            sizeSelect       : 'select[name="size"]',
+            colorSelect      : 'select[name="color"]',
+            quantitySelect   : 'select[name="quantity"]'
         };
 
         setupSearch();
@@ -66,12 +67,19 @@ App.register('ProductFinder', function() {
      * Setup the search form
      */
     var setupSearch = function() {
+        var url = base_url + "quickorder/get-sku?name=%QUERY",
+                $activeRangeField = $(identifiers.activeRangeField);
+
+        // Override active product range, e.g. wishlist
+        if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
+          url = base_url + "quickorder/get-sku?active_product_range="+$activeRangeField.val()+"&name=%QUERY";
+        }
 
         // setup typeahead search
         $_element.find(identifiers.searchField).typeahead({
             name   : "sku",
             remote : {
-                url: base_url + "quickorder/get-sku?name=%QUERY",
+                url: url,
                 cache: false,
                 beforeSend : function(jqXHR, settings) {
                     var query = settings.url.split('?')[1];
@@ -102,10 +110,21 @@ App.register('ProductFinder', function() {
 
             var $scope = $(this),
                 $form = $scope.parents(identifiers.form),
-                $masterField = $(identifiers.masterField, $form);
+                $masterField = $(identifiers.masterField, $form),
+                $activeRangeField = $(identifiers.activeRangeField, $form);
 
             $masterField.val(item.name);
-            publicMethods.stockCheck({master: item.name}, 'size', $scope);
+
+            var data = {
+              master: item.name
+            }
+
+            // Override active product range, e.g. wishlist
+            if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
+              data.active_product_range = $activeRangeField.val();
+            }
+
+            publicMethods.stockCheck(data, 'size', $scope);
         });
 
         // handle found products ...
@@ -162,12 +181,20 @@ App.register('ProductFinder', function() {
             var $scope = $(this),
                 $form = $scope.parents(identifiers.form),
                 $masterField = $(identifiers.masterField, $form),
-                $sizeSelect = $(identifiers.sizeSelect, $form);
+                $sizeSelect = $(identifiers.sizeSelect, $form),
+                $activeRangeField = $(identifiers.activeRangeField, $form);
 
-            publicMethods.stockCheck({
+            var data = {
                 master : $masterField.val(),
                 size   : $sizeSelect.val()
-            }, 'color', $scope);
+            };
+
+            // Override active product range, e.g. wishlist
+            if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
+              data.active_product_range = $activeRangeField.val();
+            }
+
+            publicMethods.stockCheck(data, 'color', $scope);
         });
 
         // set field state and focus

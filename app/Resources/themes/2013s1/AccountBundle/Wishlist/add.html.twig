@@ -37,6 +37,7 @@
             {# Used to distinguish between add and edit: #}
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="old_product_id" value="">
+            <input type="hidden" name="active_product_range" value="{{ active_product_range }}">
             <input type="submit" value="{{ "add.to.wishlist"|trans({}, 'account') }}" class="button submit-button">
         </form>
     </section>
