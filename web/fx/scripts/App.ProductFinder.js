@@ -68,11 +68,11 @@ App.register('ProductFinder', function() {
      */
     var setupSearch = function() {
         var url = base_url + "quickorder/get-sku?name=%QUERY",
-                $activeRangeField = $(identifiers.activeRangeField);
+            $activeRangeField = $(identifiers.activeRangeField);
 
         // Override active product range, e.g. wishlist
         if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
-          url = base_url + "quickorder/get-sku?active_product_range="+$activeRangeField.val()+"&name=%QUERY";
+            url = base_url + "quickorder/get-sku?active_product_range="+$activeRangeField.val()+"&name=%QUERY";
         }
 
         // setup typeahead search
@@ -117,12 +117,12 @@ App.register('ProductFinder', function() {
             $masterField.val(item.name);
 
             var data = {
-              master: item.name
+                master: item.name
             }
 
             // Override active product range, e.g. wishlist
             if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
-              data.active_product_range = $activeRangeField.val();
+                data.active_product_range = $activeRangeField.val();
             }
 
             publicMethods.stockCheck(data, 'size', $scope);
@@ -192,7 +192,7 @@ App.register('ProductFinder', function() {
 
             // Override active product range, e.g. wishlist
             if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
-              data.active_product_range = $activeRangeField.val();
+                data.active_product_range = $activeRangeField.val();
             }
 
             publicMethods.stockCheck(data, 'color', $scope);
