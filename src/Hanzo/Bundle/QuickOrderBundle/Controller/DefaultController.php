@@ -109,14 +109,10 @@ class DefaultController extends CoreController
         $maxRows = $request->query->get('max_rows', 12);
         $name    = $request->query->get('name');
 
-        // Active range for products is set in admin
-        // FIXME: this should only be set for wish list, but #1020 requires it to be fixed now :)
-        $range = Hanzo::getInstance()->get('wishlist.active_product_range');
-
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
             ->filterByIsOutOfStock(false)
-            ->filterByRange($range)
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()
