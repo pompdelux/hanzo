@@ -71,7 +71,7 @@ App.register('ProductFinder', function() {
                 $activeRangeField = $(identifiers.activeRangeField);
 
         // Override active product range, e.g. wishlist
-        if (typeof $activeRangeField != 'undefined') {
+        if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
           url = base_url + "quickorder/get-sku?active_product_range="+$activeRangeField.val()+"&name=%QUERY";
         }
 
@@ -110,10 +110,21 @@ App.register('ProductFinder', function() {
 
             var $scope = $(this),
                 $form = $scope.parents(identifiers.form),
-                $masterField = $(identifiers.masterField, $form);
+                $masterField = $(identifiers.masterField, $form),
+                $activeRangeField = $(identifiers.activeRangeField, $form);
 
             $masterField.val(item.name);
-            publicMethods.stockCheck({master: item.name}, 'size', $scope);
+
+            var data = {
+              master: item.name
+            }
+
+            // Override active product range, e.g. wishlist
+            if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
+              data.active_product_range = $activeRangeField.val();
+            }
+
+            publicMethods.stockCheck(data, 'size', $scope);
         });
 
         // handle found products ...
@@ -175,12 +186,11 @@ App.register('ProductFinder', function() {
 
             var data = {
                 master : $masterField.val(),
-                size   : $sizeSelect.val(),
-                active_product_range : null
+                size   : $sizeSelect.val()
             };
 
             // Override active product range, e.g. wishlist
-            if (typeof $activeRangeField != 'undefined') {
+            if (typeof $activeRangeField != 'undefined' && $activeRangeField.length == 1) {
               data.active_product_range = $activeRangeField.val();
             }
 
