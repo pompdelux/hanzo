@@ -9,6 +9,9 @@
     {% if meta_description is not empty %}
     <meta name="description" content="{{ meta_description }}">
     {% endif%}
+    {% if meta_title is not empty %}
+    <meta name="title" content="{{ meta_title }}">
+    {% endif%}
     <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
 
