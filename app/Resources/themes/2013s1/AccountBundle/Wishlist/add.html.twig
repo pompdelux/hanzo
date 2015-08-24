@@ -83,8 +83,8 @@
 
         <div class="grid_{% if is_mobile_layout %}8{% else %}4{% endif %} alpha omega">
             <div class="js-hanzo-module" data-module-name="WishlistMailer">
-                <a href="" class="button js-email-trigger">{{ 'wishlist.send_list.header'|trans({}, 'account') }}</a><br>
 {# Disabled for now
+                <a href="" class="button js-email-trigger">{{ 'wishlist.send_list.header'|trans({}, 'account') }}</a><br>
                 <a href="{{ path('_account_wishlist_load', {'listId': wishlist_id}) }}" class="button">{{ 'add.to.basket'|trans }}</a>
                 <div id="js-send-wishlist" class="off">
                     <h4>{{ 'wishlist.send_list.header'|trans({}, 'account') }}</h4>
