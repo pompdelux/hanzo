@@ -86,7 +86,6 @@
                 <a href="" class="button js-email-trigger">{{ 'wishlist.send_list.header'|trans({}, 'account') }}</a><br>
 {# Disabled for now
                 <a href="{{ path('_account_wishlist_load', {'listId': wishlist_id}) }}" class="button">{{ 'add.to.basket'|trans }}</a>
-#}
                 <div id="js-send-wishlist" class="off">
                     <h4>{{ 'wishlist.send_list.header'|trans({}, 'account') }}</h4>
                     <p>{{ 'wishlist.send_list.description'|trans({}, 'account') }}</p>
@@ -96,6 +95,7 @@
                         <button type="submit" class="button right">{{ 'wishlist.send_list.button_label'|trans({}, 'account') }} <i class="fa fa-arrow-right"></i></button>
                     </form>
                 </div>
+#}
             </div>
 
             <div class="align-right">
