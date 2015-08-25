@@ -6,7 +6,12 @@
     <meta property="og:title" content="{{ product.title }}">
     <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
     <meta property="og:description" content="{{ product.description|og_description }}">
-    <meta name="description" content="{{ product.description|og_description }}">
+    {% if meta_description is not empty %}
+    <meta name="description" content="{{ meta_description }}">
+    {% endif%}
+    {% if meta_title is not empty %}
+    <meta name="title" content="{{ meta_title }}">
+    {% endif%}
     <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
 {% endblock %}
 

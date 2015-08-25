@@ -14,9 +14,10 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsImagesQuery;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsSeoI18nQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
@@ -202,6 +203,20 @@ class DefaultController extends CoreController
             ->findOneByCode($product->getWashing())
         ;
 
+        // As seo text is related to a product style we have to look at the first product id
+        // Currently the SEO text import/export duplicates the meta info to all varients
+        $seo = ProductsSeoI18nQuery::create()
+            ->filterByLocale($hanzo->get('core.locale'))
+            ->filterByProductsId($product_ids[0])
+            ->findOne();
+
+        $metaTitle       = '';
+        $metaDescription = '';
+        if ($seo) {
+            $metaTitle       = !empty($seo->getMetaTitle()) ? $seo->getMetaTitle() : '';
+            $metaDescription = !empty($seo->getMetaDescription()) ? $seo->getMetaDescription() : '';
+        }
+
         if ($result instanceof ProductsWashingInstructions) {
             $washing = stripslashes($result->getDescription());
             $washing = preg_replace($find, $replace, $washing);
@@ -221,7 +236,7 @@ class DefaultController extends CoreController
             'all_colors' => $all_colors,
             'sizes' => $sizes,
             'images_references' => $images_references,
-            'has_video' => (bool) $product->getHasVideo()
+            'has_video' => (bool) $product->getHasVideo(),
         );
 
 
@@ -241,7 +256,9 @@ class DefaultController extends CoreController
             'product' => $data,
             'references' => $images_references,
             'browser_title' => $product->getTitle(),
-            '_route' => $route
+            '_route' => $route,
+            'meta_title' => $metaTitle,
+            'meta_description' => $metaDescription,
         ));
         return $response;
     }

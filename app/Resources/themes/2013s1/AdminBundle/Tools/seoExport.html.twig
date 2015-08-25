@@ -1,0 +1,13 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<div id="msg" class="alert alert-success" style="display:none"></div>
+
+<h1>Eksport SEO tekster</h1>
+
+<form action="#" id="seo-export" class="form-inline">
+    <input class="button btn btn-success js-event-close-all" type="submit" value="Eksporter">
+    <input type="hidden" name="run" value="1" />
+</form>
+
+{% endblock %}

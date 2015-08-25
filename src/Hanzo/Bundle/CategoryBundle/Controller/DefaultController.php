@@ -88,6 +88,11 @@ class DefaultController extends CoreController
                 $twig->addGlobal('cms_id', $cms_page->getParentId());
                 $twig->addGlobal('show_by_look', ($show === 'look'));
                 $twig->addGlobal('browser_title', $cms_page->getTitle());
+
+                $metaTitle                = !empty($cms_page->getMetaTitle()) ? $cms_page->getMetaTitle() : '';
+                $metaDescription          = !empty($cms_page->getMetaDescription()) ? $cms_page->getMetaDescription() : '';
+                $data['meta_title']       = $metaTitle;
+                $data['meta_description'] = $metaDescription;
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }

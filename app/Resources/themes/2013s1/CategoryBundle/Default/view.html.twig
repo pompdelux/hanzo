@@ -4,8 +4,13 @@
 {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
 {{ meta_tags('og:description,description') }}
 <meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
-<meta name="description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
 {% endif %}
+{% if meta_description is not empty %}
+<meta name="description" content="{{ meta_description }}">
+{% endif %}
+{% if meta_title is not empty %}
+<meta name="title" content="{{ meta_title }}">
+{% endif%}
 {% endblock %}
 
 {% block content %}

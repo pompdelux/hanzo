@@ -2,8 +2,8 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+use Hanzo\Core\Tools;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\WishlistsQuery;
