@@ -285,22 +285,34 @@ a.product-color {
   }
 
   /* Only images without _active */
+  /* unalias ls; for i in $(ls web/fx/images/colorbuttons/*.png | grep -v _active); do basename -s .png $i; done */
   @include colorbutton(_aqua-melange);
   @include colorbutton(_aqua);
   @include colorbutton(_black9off-white);
   @include colorbutton(_black-melange);
   @include colorbutton(_black);
+  @include colorbutton(_black-wide-stripe);
   @include colorbutton(_blue9navy);
   @include colorbutton(_blue9off-white);
+  @include colorbutton(_blue9rose);
   @include colorbutton(_blue9star);
+  @include colorbutton(_blue9yellow);
   @include colorbutton(_blue-denim);
   @include colorbutton(_blue-melange);
   @include colorbutton(_blue);
+  @include colorbutton(_bright-blue);
+  @include colorbutton(_brown);
   @include colorbutton(_copper9black);
+  @include colorbutton(_dark-blue-melange);
+  @include colorbutton(_dark-grey-melange);
+  @include colorbutton(_dark-grey);
   @include colorbutton(_dark-rose);
   @include colorbutton(_dusty-blue);
+  @include colorbutton(_dusty-brown);
   @include colorbutton(_eggplant);
+  @include colorbutton(_green-narrow-stripe);
   @include colorbutton(_green);
+  @include colorbutton(_grey9black);
   @include colorbutton(_grey9blue);
   @include colorbutton(_grey-melange);
   @include colorbutton(_grey);
@@ -308,21 +320,29 @@ a.product-color {
   @include colorbutton(_khaki);
   @include colorbutton(_light-blue-denim);
   @include colorbutton(_light-blue);
+  @include colorbutton(_light-grey);
   @include colorbutton(_light-rose);
   @include colorbutton(_navy9blue);
   @include colorbutton(_navy9camel);
+  @include colorbutton(_navy9green);
   @include colorbutton(_navy9off-white);
   @include colorbutton(_navy9palm);
   @include colorbutton(_navy9petrol);
-  @include colorbutton(_navy9green);
+  @include colorbutton(_navy9red);
   @include colorbutton(_navy9shoe);
   @include colorbutton(_navy-melange-block);
   @include colorbutton(_navy-melange);
   @include colorbutton(_navy-melange-stripe);
+  @include colorbutton(_navy-narrow-stripe);
   @include colorbutton(_navy);
+  @include colorbutton(_navy_stripe);
+  @include colorbutton(_navy-wide-stripe);
   @include colorbutton(_off-white9blue);
   @include colorbutton(_off-white);
   @include colorbutton(_peach);
+  @include colorbutton(_petrol);
+  @include colorbutton(_petrol-stripe);
+  @include colorbutton(_plum);
   @include colorbutton(_red);
   @include colorbutton(_rose9black);
   @include colorbutton(_rose9grey);
