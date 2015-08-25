@@ -8,6 +8,8 @@
     <meta property="og:description" content="{{ product.description|og_description }}">
     {% if meta_description is not empty %}
     <meta name="description" content="{{ meta_description }}">
+    {% else %}
+    <meta name="description" content="{{ product.description|og_description }}">
     {% endif%}
     {% if meta_title is not empty %}
     <meta name="title" content="{{ meta_title }}">
