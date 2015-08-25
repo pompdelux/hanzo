@@ -49,14 +49,27 @@ var rma = (function ($) {
     };
 
     pub.uploadInit = function() {
-      var $form = $("form#rma_claims");
+      var $form = $("form#rma_claims"),
+          $submitButton = $("input[type='submit']", $form),
+          hasBeenSubmitted = false;
+
       $form.on('submit',(function(e) {
         e.preventDefault();
+
+        if (hasBeenSubmitted === true) {
+          return;
+        }
+        hasBeenSubmitted = true;
 
         // Override entire page with answer if success
         var $page = $form.parent(),
         $message  = $(".message"),
         url       = $(this).attr('action');
+
+        // Try to prevent multiple submits
+        $message.html("<span class='dialoug-loading'>"+Translator.trans('please.wait')+"</span>").removeClass('hidden');
+        $submitButton.prop('disabled', true);
+        $form.hide();
 
         $.ajax({
           url:          url,
@@ -68,12 +81,18 @@ var rma = (function ($) {
         }).done(function(data) {
           if (data.error === true) {
             $message.html(data.error_msg).addClass('error').removeClass('hidden');
+            hasBeenSubmitted = false;
+            $form.show();
+            $submitButton.prop('disabled', false);
           }
           else {
             $page.html(data.msg).addClass("message");
           }
         }).fail(function(jqXHR, textStatus, errorThrown) {
             $message.html("An unexpected error occurred:<br>"+textStatus+"<br>"+errorThrown).addClass('error').removeClass('hidden');
+            hasBeenSubmitted = false;
+            $form.show();
+            $submitButton.prop('disabled', false);
         }).always(function() {
             $('html,body').animate({scrollTop: 0});
         });
