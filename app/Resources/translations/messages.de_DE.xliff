@@ -403,6 +403,11 @@ Wenn Sie eine Ware mit Fehlern erhalten haben oder wenn die erhaltene Ware nicht
                 <source>add.product.to.wishlist</source>
                 <target>Zur Shoppingliste hinzufügen</target>
             </trans-unit>
+			<trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
+      </trans-unit>
+
         </body>
     </file>
 </xliff>

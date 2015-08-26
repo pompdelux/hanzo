@@ -378,6 +378,12 @@ Voit lukea lisää katumisoikeudesta <a href="/fi_FI/koti/asiakaspalvelu/ehdotja
                 <source>add.product.to.wishlist</source>
                 <target>Lisää ostoslistalle</target>
             </trans-unit>
+			<trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[
+          <strong>Huomaa:</strong> Tilauksesi lähetetään vasta, kun kaikkia tuotteita on varastossa.]]></target>
+      </trans-unit>
+
         </body>
     </file>
 </xliff>
