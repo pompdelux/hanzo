@@ -200,9 +200,7 @@ class BundleController extends CoreController
                 $products[$id]['out_of_stock'] = false;
             }
 
-            uksort($sizes, function ($a, $b) {
-                return (int) $a - (int) $b;
-            });
+            Tools::sortSizes($sizes);
 
             $products[$id]['options'] = $sizes;
         }
