@@ -106,7 +106,6 @@ class DefaultController extends CoreController
      */
     public function getSkuAction(Request $request)
     {
-        $maxRows = $request->query->get('max_rows', 12);
         $name    = $request->query->get('name');
 
         $products = ProductsQuery::create()
