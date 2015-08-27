@@ -4434,6 +4434,8 @@ div.quickorder input[type=button] {
   display: none;
   float: left;
   min-width: 160px;
+  max-height: 150px;
+  overflow-y: scroll;
   padding: 4px 0;
   margin: 1px 0 0;
   list-style: none;
