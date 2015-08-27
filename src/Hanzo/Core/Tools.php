@@ -932,13 +932,14 @@ class Tools
             'M'        => 30,
             'L'        => 40,
             'XL'       => 50,
-            'ONE SIZE' => 100,
             ];
 
-        $firstValue = array_shift(array_keys($sizes));
+        $firstValue = strtoupper(array_shift(array_keys($sizes)));
 
         if (isset($sizeMap[$firstValue])) {
             uksort($sizes, function($a, $b) use ($sizeMap) {
+                $a = strtoupper($a);
+                $b = strtoupper($b);
                 if ($sizeMap[$a] == $sizeMap[$b]) {
                     return 0;
                 }
