@@ -297,6 +297,34 @@ class SyncSalesOrder extends BaseService
             /*
              * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
              */
+            $bagPrice  = 0.00;
+            switch($domainKey) {
+                case 'AT':
+                case 'CH':
+                case 'COM':
+                case 'DE':
+                case 'FI':
+                case 'NL':
+                    $bagPrice = '1.95';
+                    break;
+                case 'DK':
+                    $bagPrice = '10.00';
+                    break;
+                case 'NO':
+                case 'SE':
+                    $bagPrice = '15.00';
+                    break;
+            }
+
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
+                'ItemId'          => 'FREEPOMPBAGAW15',
+                'SalesPrice'      => $bagPrice,
+                'LineDiscPercent' => 100,
+                'SalesQty'        => 1,
+                'InventColorId'   => 'Grey',
+                'InventSizeId'    => 'One Size',
+                'SalesUnit'       => 'Stk.',
+            ];
         }
     }
 
