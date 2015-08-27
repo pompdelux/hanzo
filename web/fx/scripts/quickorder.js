@@ -11,10 +11,10 @@ var quickorder = (function($) {
         yatzy.compile('quickOrderItemTpl');
 
         $_searchField.typeahead({
-            limit      : 12,
+            limit      : 30,
             name       : "sku",
             remote     : {
-                url: base_url + "quickorder/get-sku?name=%QUERY",
+                url: base_url + "quickorder/get-sku?max_rows=30&name=%QUERY",
                 beforeSend : function(jqXHR, settings) {
                     var query = settings.url.split('?')[1];
                     var params = {};
