@@ -381,6 +381,11 @@ Read more about your cancellation rights in our <a href="/en_GB/home/customer-se
                 <source>add.product.to.wishlist</source>
                 <target>Add to Shoppinglist</target>
             </trans-unit>
+			<trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Note:</strong> Your order will be sent when all items are in stock.]]></target>
+      </trans-unit>
+
         </body>
     </file>
 </xliff>

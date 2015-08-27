@@ -7,6 +7,8 @@
 {% endif %}
 {% if meta_description is not empty %}
 <meta name="description" content="{{ meta_description }}">
+{% else %}
+<meta name="description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
 {% endif %}
 {% if meta_title is not empty %}
 <meta name="title" content="{{ meta_title }}">
