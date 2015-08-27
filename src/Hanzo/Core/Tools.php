@@ -916,4 +916,39 @@ class Tools
         ];
     }
 
+    /**
+     * sortSizes
+     *
+     * @param array $sizes
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    public static function sortSizes(&$sizes)
+    {
+        $sizeMap = [
+            'XS'       => 10,
+            'S'        => 20,
+            'M'        => 30,
+            'L'        => 40,
+            'XL'       => 50,
+            'ONE SIZE' => 100,
+            ];
+
+        $firstValue = array_shift(array_keys($sizes));
+
+        if (isset($sizeMap[$firstValue])) {
+            uksort($sizes, function($a, $b) use ($sizeMap) {
+                if ($sizeMap[$a] == $sizeMap[$b]) {
+                    return 0;
+                }
+
+                return ($sizeMap[$a] < $sizeMap[$b]) ? -1 : 1;
+            });
+        } else {
+            uksort($sizes, function ($a, $b) {
+                return (int) $a - (int) $b;
+            });
+        }
+    }
 }
