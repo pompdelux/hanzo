@@ -931,7 +931,7 @@
                 <source>864.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "180",
+                        "category_id": "182",
                         "colors": ""
                     }
                 ]]></target>
@@ -940,7 +940,7 @@
                 <source>863.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "182",
+                        "category_id": "180",
                         "colors": ""
                     }
                 ]]></target>
