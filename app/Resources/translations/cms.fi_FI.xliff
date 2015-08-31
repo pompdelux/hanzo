@@ -702,7 +702,7 @@
                 <source>861.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "179",
+                        "category_id": "118",
                         "colors": ""
                     }
                 ]]></target>
@@ -793,7 +793,7 @@
                 <source>585.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "118",
+                        "category_id": "179",
                         "colors": ""
                     }
                 ]]></target>
@@ -931,7 +931,7 @@
                 <source>864.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "180",
+                        "category_id": "182",
                         "colors": ""
                     }
                 ]]></target>
@@ -940,7 +940,7 @@
                 <source>863.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "182",
+                        "category_id": "180",
                         "colors": ""
                     }
                 ]]></target>
