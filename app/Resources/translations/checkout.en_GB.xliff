@@ -232,7 +232,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[ ]]></target>
+        <target><![CDATA[<strong>Note:</strong> Your order will be sent when all items are in stock.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
