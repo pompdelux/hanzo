@@ -702,7 +702,7 @@
                 <source>857.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "179",
+                        "category_id": "118",
                         "colors": ""
                     }
                 ]]></target>
@@ -793,7 +793,7 @@
                 <source>569.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "118",
+                        "category_id": "179",
                         "colors": ""
                     }
                 ]]></target>
