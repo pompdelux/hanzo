@@ -389,11 +389,6 @@ Du kan läsa mer om ångerrätten under <a href="/sv_SE/forside/kundservice/vill
                 <source>add.product.to.wishlist</source>
                 <target>Lägg till i shoppinglistan</target>
             </trans-unit>
-			<trans-unit id="late.delivery.notice">
-        <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Observera:</strong> Din order skickas först när alla varor finns på lager.]]></target>
-      </trans-unit>
-
         </body>
     </file>
 </xliff>
