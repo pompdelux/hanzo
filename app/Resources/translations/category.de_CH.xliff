@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit id="headers.category-9">
         <source>headers.category-9</source>
-        <target><![CDATA[<h1>Langarmshirt</h1>]]></target>
+        <target><![CDATA[<h1>Langarmshirts</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-9">
         <source>description.category-9</source>
@@ -544,7 +544,7 @@
       </trans-unit>
 	    <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
-        <target><![CDATA[<h1>Schneeanzug</h1>]]></target>
+        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-172">
         <source>description.category-172</source>
@@ -552,7 +552,7 @@
       </trans-unit>
 	   <trans-unit id="headers.category-174">
         <source>headers.category-174</source>
-        <target><![CDATA[<h1>Skihose</h1>]]></target>
+        <target><![CDATA[<h1>Skihosen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-174">
         <source>description.category-174</source>
@@ -600,7 +600,7 @@
       </trans-unit>
 	   <trans-unit id="headers.category-173">
         <source>headers.category-173</source>
-        <target><![CDATA[<h1>Schneeanzug</h1>]]></target>
+        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-173">
         <source>description.category-173</source>
@@ -608,7 +608,7 @@
       </trans-unit>
 	   <trans-unit id="headers.category-175">
         <source>headers.category-175</source>
-        <target><![CDATA[<h1>Skihose</h1>]]></target>
+        <target><![CDATA[<h1>Skihosen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-175">
         <source>description.category-175</source>
