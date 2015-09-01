@@ -630,7 +630,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "166",
-                        "embedded_category_id": ["5","6","7","8","174","176","178","182"],
+                        "embedded_category_id": ["5","6","7","8","174","176","178","118"],
                         "colors": ""
                     }
                 ]]></target>
@@ -712,7 +712,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "167",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","118","181"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","181"],
                         "colors": ""
                     }
                 ]]></target>
