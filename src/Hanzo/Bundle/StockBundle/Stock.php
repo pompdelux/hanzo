@@ -102,6 +102,9 @@ class Stock
         foreach ($this->warehouse->getInventory($ids) as $id => $status) {
             $this->stock[$id] = $status;
         }
+
+        // hf@bellcom.dk: ensure that lowest date comes first
+        ksort($this->stock[$id]);
     }
 
 
