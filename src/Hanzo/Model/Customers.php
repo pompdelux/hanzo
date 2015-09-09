@@ -55,6 +55,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'hd@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'sc@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'cc@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'mped@pompdelux.dk'   => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'hanzo@bellcom.dk'    => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'hf@bellcom.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -276,7 +277,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         $address->setLastName($this->getLastName());
         $address->save();
     }
-    
+
     /**
      * Validate length of users full name
      *
