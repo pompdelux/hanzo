@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[Din ordre bliver først afsendt, når alle varer er på lager.<br><br> <a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a> ]]></target>
+        <target><![CDATA[Din ordre bliver først afsendt, når alle varer er på lager.<br><br> <a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a><br><br>Vores webshop er e-mærket – naturligvis.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
