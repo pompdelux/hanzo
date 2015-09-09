@@ -331,12 +331,15 @@ class MenuController extends CoreController
             foreach($result as $record) {
                 $path = $record->getPath();
 
+                $urlQuery = false;
                 // Only for type URL
                 if ($record->getType() == 'url') {
 
                     // If URL is a absolute URL (containing http://, not http://www only, since our local environments, doesnt nescessarily contain www)
                     if ( strpos($path, 'http://') !== false ) {
 
+                        // Save query, it might contain filter settings
+                        $urlQuery = parse_url($path, PHP_URL_QUERY);
                         // Split path - remove locale (da_DK)
                         $path = substr(parse_url($path, PHP_URL_PATH), 7);
                     }
@@ -386,13 +389,18 @@ class MenuController extends CoreController
                         }
                     }
 
-                    if($record->getType() === 'heading'){
+                    if ($record->getType() === 'heading') {
                         $uri = '#';
                         $class .= ' heading';
-                    }elseif (preg_match('~^(f|ht)tps?://~', $path)) {
+                    } elseif (preg_match('~^(f|ht)tps?://~', $path)) {
                         $uri = $path;
                     } else {
                         $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                    }
+
+                    // Append any query if type is url, might contain filter settings
+                    if ($record->getType() === 'url' && $urlQuery !== false) {
+                        $uri .= '?'.$urlQuery;
                     }
 
                     $this->menu[$type] .= '<li class="' . $class . ' item"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';

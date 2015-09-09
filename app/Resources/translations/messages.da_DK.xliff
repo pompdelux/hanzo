@@ -398,11 +398,6 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
                 <source>add.product.to.wishlist</source>
                 <target>Tilføj Shoppingliste</target>
             </trans-unit>
-			<trans-unit id="late.delivery.notice">
-        <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bemærk:</strong> Din ordre bliver først afsendt, når alle varer er på lager.]]></target>
-      </trans-unit>
-
         </body>
     </file>
 </xliff>
