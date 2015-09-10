@@ -16,16 +16,13 @@ if (empty($env[1])) {
     $lang = $env[1];
 }
 
-// prefix all other than dev
-if ('dev' != $env[0]) {
-    switch ($env[1]) {
-        default:
-            $dbPrefix = $env[0].'_'.$lang.'_';
-            break;
-        case 'com':
-            $dbPrefix = $env[0].'_dk_';
-            break;
-    }
+switch ($env[1]) {
+    default:
+    $dbPrefix = $env[0].'_'.$lang.'_';
+    break;
+    case 'com':
+        $dbPrefix = $env[0].'_dk_';
+        break;
 }
 
 // ffs this is just not right !!!
@@ -60,7 +57,6 @@ try {
 // Default settings
 if (!empty($results)) {
     foreach ($results as $result) {
-
         $prefix = 'core.';
         if ('assets_version' === $result['c_key']) {
             $prefix = '';
