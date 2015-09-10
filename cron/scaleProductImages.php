@@ -63,9 +63,9 @@ _dbug("\n", false);
 _dbug("images resized to these presets: ".implode(', ', $_sizes));
 
 mail(
-    'hd@pompdelux.dk,un@bellcom.dk',
+    'it-drift@pompdelux.dk,pdl@bellcom.dk',
     'billedeimporten er nu færdig !',
     "Hej der,\n\nSå er produktbilledeimporten færdig for denne gang.\n\nover and out.\n",
-    "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
-    '-fpompdelux@pompdelux.com'
+    "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
+    '-fit-drift@pompdelux.dk'
 );

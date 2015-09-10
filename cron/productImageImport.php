@@ -376,34 +376,34 @@ if (count($image_records_to_delete)) {
         }
     }
 
-    $txt = "Hey der!\n\nFølgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
+    $txt = "Følgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
     foreach ($image_records_to_delete as $k => $image) {
         $txt .= " - {$image}\n";
     }
-    $txt .= "\nbum og sov godt!\n";
+    $txt .= "\n";
 
     mail(
-        'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
+        'it-drift@pompdelux.dk,pdl@bellcom.dk',
         'slettede billeder i billedeimporten',
         $txt,
-        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
-        '-fpompdelux@pompdelux.com'
+        "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
+        '-fit-drift@pompdelux.dk'
     );}
 
 
 if (count($failed)) {
-    $txt = "Hey taber!\n\nDer er fejl i følgende produktbilleder:\n\n";
+    $txt = "Der er fejl i følgende produktbilleder:\n\n";
     foreach ($failed as $image) {
         $txt .= " - {$image}\n";
     }
-    $txt .= "\nFix dem, nu!\n";
+    $txt .= "\nRet dem venligst\n";
 
     mail(
-        'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
+        'it-drift@pompdelux.dk,pdl@bellcom.dk',
         'fejl i billedeimporten',
         $txt,
-        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
-        '-fpompdelux@pompdelux.com'
+        "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
+        '-fit-drift@pompdelux.dk'
     );
 }
 

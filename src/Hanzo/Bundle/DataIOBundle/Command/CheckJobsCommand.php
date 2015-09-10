@@ -36,16 +36,16 @@ class CheckJobsCommand extends ContainerAwareCommand
         // NICETO: not hardcoded ...
         if (count($this->errors)) {
             $header = array(
-                "From: pompdelux@pompdelux.dk",
-                "Return-Path: pompdelux@pompdelux.dk",
-                "Errors-To: pompdelux@pompdelux.dk",
+                "From: it-drift@pompdelux.dk",
+                "Return-Path: it-drift@pompdelux.dk",
+                "Errors-To: it-drift@pompdelux.dk",
             );
 
             mail(
-                'hd@pompdelux.dk,sc@pompdelux.dk',
+                'it-drift@pompdelux.dk',
                 'Fejl i cronjob', "Fejlbesked:\n" . implode("\n", $this->errors) . "\n\n-- \nMr. Miyagi",
                 implode("\r\n", $header),
-                '-fpompdelux@pompdelux.dk'
+                '-fit-drift@pompdelux.dk'
             );
         }
     }
