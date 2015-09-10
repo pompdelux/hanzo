@@ -175,13 +175,13 @@ namespace :deploy do
   desc "Send email after deploy"
   task :send_email do
     capifony_pretty_print "--> Sending deploy status mail"
-    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{stage} deployed' -c hd@pompdelux.dk -c cc@pompdelux.dk pdl@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}\nNew current release: #{current_release}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): #{hosts}\nWhats new:\n#{deploydiff}' | mail -s 'Hanzo #{stage} deployed' -c it-drift@pompdelux.dk pdl@bellcom.dk"
     capifony_puts_ok
   end
   desc "Send email after rollback"
   task :send_email_rollback do
     capifony_pretty_print "--> Sending rollback status mail"
-    run_locally "echo 'Rollback of hanzo branch: #{branch}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): (#{hosts})' | mail -s 'Hanzo #{stage} rolled back' -c hd@pompdelux.dk -c cc@pompdelux.dk pdl@bellcom.dk"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}\nRun from: #{hostname}:#{pwd}\nBy user: #{whoami}\nOn hosts (empty if all): (#{hosts})' | mail -s 'Hanzo #{stage} rolled back' -c it-drift@pompdelux.dk pdl@bellcom.dk"
     capifony_puts_ok
   end
   desc "Rollback warning"

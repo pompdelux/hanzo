@@ -70,9 +70,9 @@ class DefaultController extends CoreController
         $fraudId = 'fraud_mail_send_'.$order->getId();
         if (($totalOrderQuantity >= 100) && !$session->has($fraudId)) {
             $mail = $this->get('mail_manager');
-            $mail->setTo('hd@pompdelux.dk', 'Heinrich Dalby');
+            $mail->setTo('it-drift@pompdelux.dk', 'IT drift');
             $mail->setSubject("Måske en snyder på spil.");
-            $mail->setBody("Hej,\n\nKig lige på ".$request->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$totalOrderQuantity." vare i kurven.\n\n-- \nmvh\nspambotten per\n");
+            $mail->setBody("Hej,\n\nKig lige på ".$request->getLocale()." ordre: #".$order->getId()."\n\nDenne har ".$totalOrderQuantity." varer i kurven.\n\n-- \nmvh kurvebotten\n\n");
             $mail->send();
             $session->set($fraudId, true);
         }

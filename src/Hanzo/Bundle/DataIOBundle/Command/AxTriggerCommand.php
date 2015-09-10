@@ -52,19 +52,18 @@ class AxTriggerCommand extends ContainerAwareCommand
             $output->writeln('AX communication error: <error>'.$error.'</error>');
         }
 
-        // NICETO: not hardcoded ...
         if ($error) {
             $header = array(
-                "From: pompdelux@pompdelux.dk",
-                "Return-Path: pompdelux@pompdelux.dk",
-                "Errors-To: pompdelux@pompdelux.dk",
+                "From: it-drift@pompdelux.dk",
+                "Return-Path: it-drift@pompdelux.dk",
+                "Errors-To: it-drift@pompdelux.dk",
             );
 
             mail(
-                'hd@pompdelux.dk',
+                'it-drift@pompdelux.dk',
                 'Fejl fra lagersync cron (' . $endpoint . ')', "Fejlbesked:\n" . $error . "\n\n-- \nMr. Miyagi",
                 implode("\r\n", $header),
-                '-fpompdelux@pompdelux.dk'
+                '-fit-drift@pompdelux.dk'
             );
         }
     }

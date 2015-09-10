@@ -88,8 +88,8 @@ class EditUsageCommand extends ContainerAwareCommand
         }
 
         $mailer = $this->getContainer()->get('mail_manager');
-        $mailer->setTo(['hd@pompdelux.dk','un@bellcom.dk']);
-        $mailer->setFrom('mail@pompdelux.dk');
+        $mailer->setTo(['it-drift@pompdelux.dk','pdl@bellcom.dk']);
+        $mailer->setFrom('it-drift@pompdelux.dk');
         $mailer->setSubject('et stk ordrefil');
         $mailer->setBody("Hej der,\n\nSå er der tal at se på..\n\n-- \nmvh robotten\n");
         $mailer->addAttachment('/tmp/os.csv');
