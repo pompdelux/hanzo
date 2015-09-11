@@ -335,7 +335,7 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
 				<li><a href="/da_DK/forside/om-pompdelux/kontakt">Kontakt</a></li>
                 </ul>
 				<br>
-				<a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="http://static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a>
+				<a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="//static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%">

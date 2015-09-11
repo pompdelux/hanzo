@@ -118,17 +118,17 @@ foreach($images_found as $image) {
 
 
 if (count($failed)) {
-    $txt = "Hey taber!\n\nDer er fejl i følgende produktbilleder:\n\n";
+    $txt = "Der er fejl i følgende produktbilleder:\n\n";
     foreach ($failed as $image) {
         $txt .= " - {$image}\n";
     }
-    $txt .= "\nFix dem, nu!\n";
+    $txt .= "\nRet dem venligst!\n";
 
     mail(
-        'hd@pompdelux.dk,un@bellcom.dk',
+        'it-drift@pompdelux.dk,pdl@bellcom.dk',
         'fejl i mannequin billedeimporten',
         $txt,
-        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
-        '-fhd@pompdelux.dk'
+        "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
+        '-fit-drift@pompdelux.dk'
     );
 }

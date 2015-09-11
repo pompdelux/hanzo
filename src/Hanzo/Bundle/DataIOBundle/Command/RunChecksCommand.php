@@ -87,35 +87,32 @@ class RunChecksCommand extends ContainerAwareCommand
      */
     protected function sendMail($email)
     {
-        $type = 'GO!';
+        $type = 'Build godkendt';
         if (count($this->errors)) {
-            $type = 'NEEEEEEEJ !!!! HVAD LAVER DU ???';
+            $type = 'Build fejlet';
         }
 
         $recipients = [
-            'hd@pompdelux.dk',
-            'cc@pompdelux.dk',
-            'un@bellcom.dk',
-            'mmh@bellcom.dk',
+            'it-drift@pompdelux.dk',
         ];
 
         if ($email) {
             $recipients = [$email];
         }
 
-        if ('GO!' == $type){
+        if ('Build godkendt' == $type){
             $text = "Alle pre-deploy checks ok, der må deployes!";
         } else {
             $recipients[] = 'pdl@bellcom.dk';
-            $text = "Såskudaogs! Der er fejl i skidtet, der må IKKE deployes!\n\nhttp://www.nooooooooooooooo.com/\n\n".implode("\n", $this->errors);
+            $text = "Der er fejl i builded, der må IKKE deployes! ".implode("\n", $this->errors);
         }
 
-        $text .= "\n\nmvh\n-- \nMr. Miyagi";
+        $text .= "\n\nmvh\n-- \nMr. Build bot";
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Hanzo deploy validation: '.$type)
-            ->setFrom('pompdelux@pompdelux.dk')
-            ->setReturnPath('pompdelux@pompdelux.dk')
+            ->setFrom('it-drift@pompdelux.dk')
+            ->setReturnPath('it-drift@pompdelux.dk')
             ->setTo($recipients)
             ->setBody($text)
         ;

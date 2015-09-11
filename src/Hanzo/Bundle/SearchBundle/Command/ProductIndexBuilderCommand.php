@@ -142,11 +142,11 @@ class ProductIndexBuilderCommand extends ContainerAwareCommand
         if (!$this->quiet) {
             $txt = '';
             mail(
-                'hd@pompdelux.dk,cc@pompdelux.dk,pdl@bellcom.dk',
+                'it-drift@pompdelux.dk,pdl@bellcom.dk',
                 'Indekserings job "'.$jobName.'" færdigt',
                 $txt,
-                "Reply-To: hd@pompdelux.dk\r\nReturn-Path: pompdelux@pompdelux.com\r\nErrors-To: pompdelux@pompdelux.com\r\n",
-                '-fpompdelux@pompdelux.com'
+                "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
+                '-fit-drift@pompdelux.dk'
             );
         }
     }
