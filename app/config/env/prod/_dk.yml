@@ -3,6 +3,7 @@ framework:
     session:
         cookie_path: '/da_DK'
 
+# Needed so we can switch connections in admin
 propel:
     dbal:
         default_connection: pdldbdk1
