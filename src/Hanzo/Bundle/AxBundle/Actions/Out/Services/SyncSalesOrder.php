@@ -226,9 +226,10 @@ class SyncSalesOrder extends BaseService
      */
     private function buildSalesLines()
     {
-        $hostessDiscount = 0.00;
-        $lineDiscount    = 0.00;
-        $products        = [];
+        $hostessDiscount       = 0.00;
+        $lineDiscount          = 0.00;
+        $products              = [];
+        $this->promotionsAdded = [];
 
         /** @var \Hanzo\Model\OrdersLines $line */
         foreach ($this->orderLines as $line) {
