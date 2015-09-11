@@ -77,6 +77,7 @@ App.register('ProductFinder', function() {
 
         // setup typeahead search
         $_element.find(identifiers.searchField).typeahead({
+            limit  : 30,
             name   : "sku",
             remote : {
                 url: url,
