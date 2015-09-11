@@ -2712,6 +2712,8 @@ aside.js-slider h3 span.open {
   border: 1px solid #c0c0c0;
   width: 97%;
   padding: 5px;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 #body-wishlist .tt-is-under-cursor {
   padding: 0 5px;
