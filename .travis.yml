@@ -24,4 +24,3 @@ script:
 notifications:
     webhooks:
         - http://tools.pompdelux.com/travis-hook.php
-
