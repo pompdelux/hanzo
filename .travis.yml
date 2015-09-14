@@ -6,11 +6,8 @@ php:
 services:
   - redis-server
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get --reinstall install -qq language-pack-da language-pack-de language-pack-en language-pack-fi language-pack-nb language-pack-nl language-pack-se
-
 before_script:
+  - sudo locale-gen da_DK.utf8 de_AT.utf8 de_CH.utf8 de_DE.utf8 en_DK.utf8 fi_FI.utf8 nb_NO.utf8 nl_NL.utf8
   - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'date.timezone = "Europe/Copenhagen"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp app/config/parameters.ini.dist app/config/parameters.ini
@@ -21,15 +18,7 @@ script:
   - phpunit -c app/
   - php app/console hanzo:run-checks
 
-notifications:
-#  email:
-#    recipients:
-#      - pdl@bellcom.dk
-#      - hd@pompdelux.dk
-#      - lv@pompdelux.dk
-#    on_success: always
-#    on_failure: always
-  webhooks:
-    urls:
-      - http://tools.pompdelux.com/travis-hook.php
-    on_start: true
+webhooks:
+  urls:
+    - http://tools.pompdelux.com/travis-hook.php
+  on_start: true
