@@ -6,10 +6,6 @@ php:
 services:
   - redis-server
 
-env:
-  global:
-    secure: IKS1LBGMWdyoqEhC++UQ9L8xNA9h4diVQJWJ5ABS+sskPmXEyw/ByWGtXtoR/6u+MWbS89HW8OImqnOJ/gzdffAAcaSaZ6eNKU14V6GdVYFXkQhjLhXSIz4T9BUiyAA4CWgCrKC60C51eG6cw5W9MaqoyOBVF+//VrJsm7HlDkU=
-
 before_script:
   - sudo locale-gen da_DK.utf8 de_AT.utf8 de_CH.utf8 de_DE.utf8 en_DK.utf8 fi_FI.utf8 nb_NO.utf8 nl_NL.utf8
   - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
@@ -22,15 +18,7 @@ script:
   - phpunit -c app/
   - php app/console hanzo:run-checks
 
-notifications:
-#  email:
-#    recipients:
-#      - pdl@bellcom.dk
-#      - hd@pompdelux.dk
-#      - lv@pompdelux.dk
-#    on_success: always
-#    on_failure: always
-  webhooks:
-    urls:
-      - http://tools.pompdelux.com/travis-hook.php
-    on_start: true
+webhooks:
+  urls:
+    - http://tools.pompdelux.com/travis-hook.php
+  on_start: true
