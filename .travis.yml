@@ -1,10 +1,6 @@
 # don't use sudo to get the new travis builds on docker
 sudo: false
 
-cache:
-  directories:
-    - $HOME/vendor
-
 language: php
 
 php:
@@ -13,16 +9,16 @@ php:
 services:
   - redis-server
 
-addons:
-  apt:
-    packages:
-    - language-pack-da
-    - language-pack-de
-    - language-pack-en
-    - language-pack-fi
-    - language-pack-nb
-    - language-pack-nl
-    - language-pack-se
+#addons:
+#  apt:
+#    packages:
+#    - language-pack-da
+#    - language-pack-de
+#    - language-pack-en
+#    - language-pack-fi
+#    - language-pack-nb
+#    - language-pack-nl
+#    - language-pack-se
 
 before_script:
   - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
