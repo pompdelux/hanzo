@@ -440,6 +440,7 @@
       <em>En order kan ha följande status:</em><br><br>
       <b>Väntar</b><br>
      Din order är ännu inte expiderad, och du kan redigera din order. Du kan redigera, lägga till, ta bort varor eller radera din order.<br>Obs! När du har redigerat måste man göra en ny betalning. Den tidigare kortreservationen annulleras automatiskt. <br><br>
+	 <b>Observera:</b> Om du använder Visa Electron eller MasterCard vid redigeringen, kommer ännu en reservation av det totala beloppet att genomföras. Reservationen av det totala beloppet på din ursprungliga order kommer då att makuleras hos POMPdeLUX. Det kan dock gå upp till 6 veckor, innan reservationen släpps hos din bank.<br><br>
       <b>Avbryt redigering</b><br>
       Du har troligtvis avbrutit redigeringen. Klicka på knappen ”Avbryt redigering”, så kan du redigera din order igen.<br><br>
       <b>Under behandling</b><br>

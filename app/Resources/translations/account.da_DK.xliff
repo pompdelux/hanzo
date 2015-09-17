@@ -453,6 +453,7 @@
       <em>Din ordre kan have følgende status:</em><br><br>
       <b>Afventer</b><br>
       Din ordre er endnu ikke ekspederet, og du kan redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. <br>Bemærk: Efter redigering skal betalingen gennemføres igen – tidligere betalingsreservation bliver automatisk slettet.<br><br>
+	  <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod gå op til 6 uger, før reservationen ophæves af dit pengeinstitut.<br><br>
       <b>Stop editering</b><br>
       Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
       <b>Under behandling</b><br>

@@ -449,6 +449,7 @@
       <em>Your order can have the following status:</em><br><br>
       <b>Pending</b><br>
       Your order has not been processed yet, and you can still change it. You can add, change or cancel items on your order.<br>Please note: To complete the editing you must proceed to payment – previous payment reservation will automatically be cancelled. It can sometimes take up to 30 days until the reservation will be cancelled on your credit card. <br><br>
+	  <b>Please note:</b> When you edit your order, and you use Visa Electron or MasterCard for the editing, the amount for each “new” order is automatically reserved again. The reservation of the amount on your original order will naturally be cancelled immediately by POMPdeLUX. The length of time the previous registered sum remains on your credit card can take up to 6 weeks.<br><br>
       <b>Stop editing</b><br>
       You have been logged out while editing your order. Click on ”Stop editing” and you can then start all over again with your editing.<br><br>
       <b>Being processed</b><br>

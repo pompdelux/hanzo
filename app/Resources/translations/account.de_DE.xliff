@@ -453,6 +453,7 @@
       <em>Ihre Bestellung kann folgenden Status haben:</em><br><br>
       <b>Warten auf Bearbeitung</b><br>
       Ihre Bestellung ist noch nicht in Bearbeitung und Sie können Ihre Bestellung noch bearbeiten. Sie können Ihre Bestellung ändern oder etwas hinzufügen bzw. entfernen.<br>Bitte beachten Sie: Nachdem Sie die Änderungen vorgenommen haben, muss die Zahlung nochmals durchgeführt werden – frühere Zahlungsreservationen werden automatisch gelöscht. <br><br>
+	  <b>Bitte beachten Sie:</b> Wenn Sie eine Visa Electron oder MasterCard bei der Änderung Ihrer Bestellung benutzen, wird der Totalbetrag Ihrer Bestellung automatisch nochmals auf Ihrer Kreditkarte reserviert. Die Reservation der ursprünglichen Bezahlung wird jedoch sofort von POMPdeLUX aufgehoben. Es kann jedoch bis zu 6 Wochen dauern bis der Betrag vom Geldinstitut wieder freigegeben wird.<br><br>
       <b>Bearbeitung stoppen</b><br>
       Sie haben evtl. Ihre Bearbeitung abgebrochen. Drücken Sie auf die Schaltfläche ”Bearbeitung stoppen”, danach können Sie Ihre Bestellung erneut bearbeiten.<br><br>
       <b>Wird bearbeitet</b><br>
