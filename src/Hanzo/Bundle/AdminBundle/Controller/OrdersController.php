@@ -283,7 +283,7 @@ class OrdersController extends CoreController
 
     public function syncStatusAction(Request $request, $status = 'failed')
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_SUPPORT') ) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
