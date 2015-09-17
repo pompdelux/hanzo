@@ -9,7 +9,7 @@ propel:
         default_connection: pdldbdk1
         connections:
             pdldbdk1:
-                driver:               %database_driver%
+                driver:               %dev_dk_database_driver%
                 user:                 %dev_dk_database_user%
                 password:             %dev_dk_database_password%
                 dsn:                  mysql:host=%dev_dk_database_host%;dbname=%dev_dk_database_name%;charset=utf8
@@ -25,49 +25,49 @@ propel:
 #                        dsn:          %dev_dk_database_slave_1_dsn%
 # ------------------------------------------------------------------------------------------
             pdldbde1:
-                driver:               %database_driver%
+                driver:               %dev_de_database_driver%
                 user:                 %dev_de_database_user%
                 password:             %dev_de_database_password%
                 dsn:                  mysql:host=%dev_de_database_host%;dbname=%dev_de_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbfi1:
-                driver:               %database_driver%
+                driver:               %dev_fi_database_driver%
                 user:                 %dev_fi_database_user%
                 password:             %dev_fi_database_password%
                 dsn:                  mysql:host=%dev_fi_database_host%;dbname=%dev_fi_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbnl1:
-                driver:               %database_driver%
+                driver:               %dev_nl_database_driver%
                 user:                 %dev_nl_database_user%
                 password:             %dev_nl_database_password%
                 dsn:                  mysql:host=%dev_nl_database_host%;dbname=%dev_nl_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbno1:
-                driver:               %database_driver%
+                driver:               %dev_no_database_driver%
                 user:                 %dev_no_database_user%
                 password:             %dev_no_database_password%
                 dsn:                  mysql:host=%dev_no_database_host%;dbname=%dev_no_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbse1:
-                driver:               %database_driver%
+                driver:               %dev_se_database_driver%
                 user:                 %dev_se_database_user%
                 password:             %dev_se_database_password%
                 dsn:                  mysql:host=%dev_se_database_host%;dbname=%dev_se_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbat1:
-                driver:               %database_driver%
+                driver:               %dev_at_database_driver%
                 user:                 %dev_at_database_user%
                 password:             %dev_at_database_password%
                 dsn:                  mysql:host=%dev_at_database_host%;dbname=%dev_at_database_name%;charset=utf8
                 options:              {}
                 attributes:           {}
             pdldbch1:
-                driver:               %database_driver%
+                driver:               %dev_ch_database_driver%
                 user:                 %dev_ch_database_user%
                 password:             %dev_ch_database_password%
                 dsn:                  mysql:host=%dev_ch_database_host%;dbname=%dev_ch_database_name%;charset=utf8
