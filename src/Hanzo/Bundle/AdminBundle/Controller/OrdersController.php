@@ -56,8 +56,8 @@ class OrdersController extends CoreController
         if(null != $domain_key){
             $orders = $orders
                 ->useOrdersAttributesQuery()
-                    ->filterByCKey('domain_key')
-                    ->filterByCValue($domain_key)
+                ->filterByCKey('domain_key')
+                ->filterByCValue($domain_key)
                 ->endUse()
                 ->joinOrdersAttributes()
             ;
@@ -192,10 +192,10 @@ class OrdersController extends CoreController
                     'key'  => $attribute->getCKey(),
                     'file' => $attribute->getCValue(),
                     'path' => $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
-                        'folder' => $folder,
-                        'file'   => $attribute->getCValue(),
-                        'key'    => md5(time())
-                    ))
+                            'folder' => $folder,
+                            'file'   => $attribute->getCValue(),
+                            'key'    => md5(time())
+                        ))
                 ];
             } else {
                 $attributes[] = $attribute;
@@ -578,7 +578,7 @@ class OrdersController extends CoreController
                     'required' => false
                 )
             )->getForm()
-            ;
+        ;
 
         $updated_orders = array();
         if ('POST' === $request->getMethod()) {
@@ -595,7 +595,7 @@ class OrdersController extends CoreController
                     ->where('orders.id >= ?', $form_data['id-from'])
                     ->where('orders.id <= ?', $form_data['id-to'])
                     ->where('orders.id NOT IN ?', $excluded_ids)
-                    ;
+                ;
                 if($form_data['state-from'] != '')
                     $orders = $orders->filterByState($form_data['state-from']);
 
@@ -651,16 +651,16 @@ class OrdersController extends CoreController
         if ( $status['is_error'] )
         {
             return $this->json_response(array(
-                'status' => false,
+                    'status' => false,
+                    'data'   => $status
+                )
+            );
+        }
+        return $this->json_response(array(
+                'status' => true,
                 'data'   => $status
             )
         );
-        }
-        return $this->json_response(array(
-            'status' => true,
-            'data'   => $status
-        )
-    );
     }
 
     /**
@@ -867,7 +867,7 @@ class OrdersController extends CoreController
                     ]
                 ])
                 ->getForm()
-                ;
+            ;
             $template_data['form'] = $form->createView();
         }
 
@@ -901,10 +901,10 @@ class OrdersController extends CoreController
                         'key'  => $attribute['CKey'],
                         'file' => $attribute['CValue'],
                         'path' => $cdn . 'pdf.php?' . http_build_query(array(
-                            'folder' => $folder,
-                            'file'   => $attribute['CValue'],
-                            'key'    => md5(time())
-                        ))
+                                'folder' => $folder,
+                                'file'   => $attribute['CValue'],
+                                'key'    => md5(time())
+                            ))
                     ];
                 } else {
                     $attributes[] = $attribute;
@@ -935,7 +935,7 @@ class OrdersController extends CoreController
         $orders = OrdersDeletedLogQuery::create()
             ->filterByOrdersId($ids)
             ->find($this->getDbConnection())
-            ;
+        ;
 
         /** @var OrdersDeletedLog $record */
         foreach ($orders as $record) {
@@ -966,7 +966,7 @@ class OrdersController extends CoreController
             OrdersAttributesQuery::create()
                 ->findByOrdersId($order->getId(), $this->getDbConnection())
                 ->delete($this->getDbConnection())
-                ;
+            ;
             $order->clearOrdersAttributess();
 
             // attributes
@@ -1045,7 +1045,7 @@ class OrdersController extends CoreController
             ->filterByOrdersId($orders_id)
             ->filterByState($state)
             ->delete($this->getDbConnection())
-            ;
+        ;
 
         return $this->json_response([
             'status'  => true,
