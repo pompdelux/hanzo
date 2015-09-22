@@ -39,7 +39,7 @@ class OrdersController extends CoreController
 
     public function indexAction(Request $request, $customer_id, $domain_key, $pager)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -283,7 +283,7 @@ class OrdersController extends CoreController
 
     public function syncStatusAction(Request $request, $status = 'failed')
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_SUPPORT') ) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
