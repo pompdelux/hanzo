@@ -3,6 +3,36 @@ var gothia = (function ($) {
 
     var confirmInit = function () {
         $("#gothia-payment-step-2").show();
+        var $errorBlock = $('.form-error-block'),
+            $submit = $('#action-submit-gothia-confirm');
+
+        $("#form_bank_account_no").on('blur focusout', function(event) {
+          var ibanRegEx = /DE\d{20}/i;
+
+          if (!$errorBlock.hasClass('off')) {
+            $errorBlock.addClass('off');
+          }
+          if (!ibanRegEx.test($(this).val())) {
+            $submit.prop('disabled', true).hide();
+            $errorBlock.removeClass('off').html(Translator.trans('checkout.payment.gothia.iban.error'));
+          } else {
+            $errorBlock.addClass('off');
+            $submit.prop('disabled', false).show();
+          }
+        });
+
+        $("#form_bank_id").on('blur focusout', function(event) {
+          if (!$errorBlock.hasClass('off')) {
+            $errorBlock.addClass('off');
+          }
+          if ($(this).val().length != 11) {
+            $submit.prop('disabled', true).hide();
+            $errorBlock.removeClass('off').html(Translator.trans('checkout.payment.gothia.bic.error'));
+          } else {
+            $errorBlock.addClass('off');
+            $submit.prop('disabled', false).show();
+          }
+        });
 
         $("#gothia-confirm-container form").on('submit', function (event) {
             event.preventDefault();

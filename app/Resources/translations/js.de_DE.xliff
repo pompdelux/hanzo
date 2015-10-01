@@ -434,6 +434,14 @@
                 <source>cookie_notice.fdih.link</source>
                 <target>http://www.pompdelux.com/de_DE/home/kundendienst/uber-den-webshop</target>
             </trans-unit>
+            <trans-unit id="checkout.payment.gothia.iban.error">
+                <source>checkout.payment.gothia.iban.error</source>
+                <target>Tekst her</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.gothia.bic.error">
+                <source>checkout.payment.gothia.bic.error</source>
+                <target>Tekst her</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
