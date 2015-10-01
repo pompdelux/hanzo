@@ -436,11 +436,11 @@
             </trans-unit>
             <trans-unit id="checkout.payment.gothia.iban.error">
                 <source>checkout.payment.gothia.iban.error</source>
-                <target>Tekst her</target>
+                <target>Bitte prüfen Sie die IBAN-Nr.</target>
             </trans-unit>
             <trans-unit id="checkout.payment.gothia.bic.error">
                 <source>checkout.payment.gothia.bic.error</source>
-                <target>Tekst her</target>
+                <target>Bitte prüfen Sie die BIC-Nr.</target>
             </trans-unit>
         </body>
     </file>
