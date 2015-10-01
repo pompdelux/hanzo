@@ -283,7 +283,7 @@ class OrdersController extends CoreController
 
     public function syncStatusAction(Request $request, $status = 'failed')
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_SUPPORT') ) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SUPPORT") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -313,7 +313,7 @@ class OrdersController extends CoreController
      */
     public function resendFailedEntryAction($orderId, $state)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
@@ -374,7 +374,7 @@ class OrdersController extends CoreController
 
     public function resyncAction($order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
