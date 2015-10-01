@@ -1025,7 +1025,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansøgning er nu sendt.</p><br/><p>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Majbrit Christensen på tlf. 87 36 13 29</p>]]></target>
+                <target><![CDATA[<p>Din ansøgning er nu sendt.</p><br/><p>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Katrine Fæster Agesen  på tlf. 87 36 13 29</p>]]></target>
             </trans-unit>
         </body>
     </file>
