@@ -39,7 +39,7 @@ class OrdersController extends CoreController
 
     public function indexAction(Request $request, $customer_id, $domain_key, $pager)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS") or hasRole("ROLE_CUSTOMERS_SERVICE") or hasRole("ROLE_SUPPORT")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -157,7 +157,7 @@ class OrdersController extends CoreController
 
     public function viewAction(Request $request, $order_id)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_LOGISTICS") or hasRole("ROLE_CUSTOMERS_SERVICE") or hasRole("ROLE_SUPPORT")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -313,7 +313,7 @@ class OrdersController extends CoreController
      */
     public function resendFailedEntryAction($orderId, $state)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SUPPORT") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
@@ -475,7 +475,7 @@ class OrdersController extends CoreController
      */
     public function deleteAction(Request $request, $order_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SUPPORT")'))) {
             throw new AccessDeniedException();
         }
 
