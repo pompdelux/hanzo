@@ -16,6 +16,8 @@ use Hanzo\Model\FreeShipping;
 use Hanzo\Model\FreeShippingQuery;
 use Hanzo\Model\ShippingMethodsQuery;
 
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+
 class ShippingController extends CoreController
 {
 
@@ -29,7 +31,7 @@ class ShippingController extends CoreController
      */
     public function listFreeBreaksAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
@@ -163,7 +165,7 @@ class ShippingController extends CoreController
      */
     public function listShippingModulesAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 

@@ -139,9 +139,9 @@ class CustomersController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        $readOnly = !$this->get('security.context')->isGranted('ROLE_ADMIN');
+        $readOnly = !$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'));
         $readOnlyEnabled = !$this->get('security.context')->isGranted(
-            new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SALES")')
+            new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SALES") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")')
         );
 
         $customer = CustomersQuery::create()
@@ -251,7 +251,7 @@ class CustomersController extends CoreController
      */
     public function editAddressAction(Request $request, $id, $type)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
