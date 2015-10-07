@@ -722,7 +722,7 @@ class CmsController extends CoreController
                 'title'  => 'Katalog',
             ],
             'admin_shipping_index' => [
-                'access' => ['ROLE_ADMIN'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE_EXTRA'],
                 'title'  => 'Fragt',
             ],
             'admin_settings_washing_instructions' => [
