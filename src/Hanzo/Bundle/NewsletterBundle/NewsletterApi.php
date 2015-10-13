@@ -14,10 +14,10 @@ use Hanzo\Core\Hanzo,
  **/
 class NewsletterApi
 {
-    protected $domainKey   = null;
-    protected $mailer      = null;
-    protected $provider    = null;
-    protected $cache       = null;
+    public $domainKey   = null;
+    protected $mailer   = null;
+    protected $provider = null;
+    protected $cache    = null;
 
     /**
      * __construct
@@ -26,11 +26,19 @@ class NewsletterApi
      **/
     public function __construct( $mailer, $provider, $cache )
     {
-        // TODO: priority: low, hardcoded vars
         $this->mailer      = $mailer;
         $this->domainKey   = Hanzo::getInstance()->get('core.domain_key');
         $this->provider    = $provider;
         $this->cache       = $cache;
+    }
+
+    /**
+     * @param string $key
+     */
+    public function setDomainKey($key)
+    {
+        $this->domainKey           = $key;
+        $this->provider->domainKey = $key;
     }
 
     /**
@@ -54,7 +62,7 @@ class NewsletterApi
      * @return stdClass
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function subscribe( $email, $list_id, Array $extraData = [] )
+    public function subscribe($email, $list_id, Array $extraData = [])
     {
         if (is_array($list_id))
         {
@@ -314,8 +322,7 @@ class NewsletterApi
         $language = 'EN';
         // EN, DK, DE, NO, SE
 
-        $domainKey = Hanzo::getInstance()->get('core.domain_key');
-        switch ($domainKey)
+        switch ($this->domainKey)
         {
             case 'SalesDK':
             case 'DK':
