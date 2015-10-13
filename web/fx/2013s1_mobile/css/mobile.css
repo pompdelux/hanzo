@@ -1288,13 +1288,8 @@ form.buy .add-buttons .submit-button {
   display: none;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-sprite, .colorbuttons-_aqua-melange, .colorbuttons-_aqua, .colorbuttons-_black-melange, .colorbuttons-_black-wide-stripe, .colorbuttons-_black, .colorbuttons-_black9light-rose, .colorbuttons-_black9off-white, .colorbuttons-_blue-balloon, .colorbuttons-_blue-denim, .colorbuttons-_blue-melange, .colorbuttons-_blue-stripe, .colorbuttons-_blue, .colorbuttons-_blue9navy, .colorbuttons-_blue9off-white, .colorbuttons-_blue9rose, .colorbuttons-_blue9star, .colorbuttons-_blue9yellow, .colorbuttons-_bright-blue, .colorbuttons-_brown, .colorbuttons-_copper9black, .colorbuttons-_dark-blue-melange, .colorbuttons-_dark-grey-melange, .colorbuttons-_dark-grey, .colorbuttons-_dark-mint, .colorbuttons-_dark-petrol, .colorbuttons-_dark-purple, .colorbuttons-_dark-rose, .colorbuttons-_dusty-blue, .colorbuttons-_dusty-brown, .colorbuttons-_eggplant, .colorbuttons-_green-narrow-stripe, .colorbuttons-_green, .colorbuttons-_green9navy, .colorbuttons-_grey-melange, .colorbuttons-_grey-melange9petrol, .colorbuttons-_grey, .colorbuttons-_grey9black, .colorbuttons-_grey9blue, .colorbuttons-_grey9mint, .colorbuttons-_hazelnut, .colorbuttons-_khaki, .colorbuttons-_light-blue-denim, .colorbuttons-_light-blue, .colorbuttons-_light-green, .colorbuttons-_light-grey-balloon, .colorbuttons-_light-grey, .colorbuttons-_light-mint, .colorbuttons-_light-purple-bird, .colorbuttons-_light-purple, .colorbuttons-_light-rose-balloon, .colorbuttons-_light-rose-bird, .colorbuttons-_light-rose, .colorbuttons-_light-rose9black, .colorbuttons-_light-rose9navy, .colorbuttons-_light9purple, .colorbuttons-_mint-bird, .colorbuttons-_mint-grey, .colorbuttons-_mint, .colorbuttons-_mint9grey, .colorbuttons-_navy-melange-block, .colorbuttons-_navy-melange-stripe, .colorbuttons-_navy-melange, .colorbuttons-_navy-mix, .colorbuttons-_navy-narrow-stripe, .colorbuttons-_navy-stripe, .colorbuttons-_navy-wide-stripe, .colorbuttons-_navy, .colorbuttons-_navy9blue, .colorbuttons-_navy9camel, .colorbuttons-_navy9green, .colorbuttons-_navy9grey-melange, .colorbuttons-_navy9greymelange, .colorbuttons-_navy9off-white, .colorbuttons-_navy9palm, .colorbuttons-_navy9petrol, .colorbuttons-_navy9red, .colorbuttons-_navy9shoe, .colorbuttons-_off-white-bird, .colorbuttons-_off-white-check, .colorbuttons-_off-white, .colorbuttons-_off-white9blue, .colorbuttons-_off-white9mint, .colorbuttons-_olive, .colorbuttons-_orange, .colorbuttons-_peach, .colorbuttons-_petrol-melange, .colorbuttons-_petrol-stripe, .colorbuttons-_petrol, .colorbuttons-_plum, .colorbuttons-_purple-balloon, .colorbuttons-_purple, .colorbuttons-_purple9blue, .colorbuttons-_purple9navy, .colorbuttons-_red, .colorbuttons-_rose-melange, .colorbuttons-_rose, .colorbuttons-_rose9black, .colorbuttons-_rose9grey, .colorbuttons-_rose9navy, .colorbuttons-_rose9off-white, .colorbuttons-_sand, .colorbuttons-_white, .colorbuttons-_yellow, .colorbuttons-_yellow9off-white, a.product-color .colorbuttons-_aqua-melange, a.product-color.current .colorbuttons-_aqua-melange, a.product-color:hover .colorbuttons-_aqua-melange, a.product-color .colorbuttons-_aqua, a.product-color.current .colorbuttons-_aqua, a.product-color:hover .colorbuttons-_aqua, a.product-color .colorbuttons-_black-melange, a.product-color.current .colorbuttons-_black-melange, a.product-color:hover .colorbuttons-_black-melange, a.product-color .colorbuttons-_black-wide-stripe, a.product-color.current .colorbuttons-_black-wide-stripe, a.product-color:hover .colorbuttons-_black-wide-stripe, a.product-color .colorbuttons-_black9light-rose, a.product-color.current .colorbuttons-_black9light-rose, a.product-color:hover .colorbuttons-_black9light-rose, a.product-color .colorbuttons-_black9off-white, a.product-color.current .colorbuttons-_black9off-white, a.product-color:hover .colorbuttons-_black9off-white, a.product-color .colorbuttons-_black, a.product-color.current .colorbuttons-_black, a.product-color:hover .colorbuttons-_black, a.product-color .colorbuttons-_blue-denim, a.product-color.current .colorbuttons-_blue-denim, a.product-color:hover .colorbuttons-_blue-denim, a.product-color .colorbuttons-_blue-melange, a.product-color.current .colorbuttons-_blue-melange, a.product-color:hover .colorbuttons-_blue-melange, a.product-color .colorbuttons-_blue-stripe, a.product-color.current .colorbuttons-_blue-stripe, a.product-color:hover .colorbuttons-_blue-stripe, a.product-color .colorbuttons-_blue9navy, a.product-color.current .colorbuttons-_blue9navy, a.product-color:hover .colorbuttons-_blue9navy, a.product-color .colorbuttons-_blue9off-white, a.product-color.current .colorbuttons-_blue9off-white, a.product-color:hover .colorbuttons-_blue9off-white, a.product-color .colorbuttons-_blue9rose, a.product-color.current .colorbuttons-_blue9rose, a.product-color:hover .colorbuttons-_blue9rose, a.product-color .colorbuttons-_blue9star, a.product-color.current .colorbuttons-_blue9star, a.product-color:hover .colorbuttons-_blue9star, a.product-color .colorbuttons-_blue9yellow, a.product-color.current .colorbuttons-_blue9yellow, a.product-color:hover .colorbuttons-_blue9yellow, a.product-color .colorbuttons-_blue, a.product-color.current .colorbuttons-_blue, a.product-color:hover .colorbuttons-_blue, a.product-color .colorbuttons-_bright-blue, a.product-color.current .colorbuttons-_bright-blue, a.product-color:hover .colorbuttons-_bright-blue, a.product-color .colorbuttons-_brown, a.product-color.current .colorbuttons-_brown, a.product-color:hover .colorbuttons-_brown, a.product-color .colorbuttons-_copper9black, a.product-color.current .colorbuttons-_copper9black, a.product-color:hover .colorbuttons-_copper9black, a.product-color .colorbuttons-_dark-blue-melange, a.product-color.current .colorbuttons-_dark-blue-melange, a.product-color:hover .colorbuttons-_dark-blue-melange, a.product-color .colorbuttons-_dark-grey-melange, a.product-color.current .colorbuttons-_dark-grey-melange, a.product-color:hover .colorbuttons-_dark-grey-melange, a.product-color .colorbuttons-_dark-grey, a.product-color.current .colorbuttons-_dark-grey, a.product-color:hover .colorbuttons-_dark-grey, a.product-color .colorbuttons-_dark-mint, a.product-color.current .colorbuttons-_dark-mint, a.product-color:hover .colorbuttons-_dark-mint, a.product-color .colorbuttons-_dark-petrol, a.product-color.current .colorbuttons-_dark-petrol, a.product-color:hover .colorbuttons-_dark-petrol, a.product-color .colorbuttons-_dark-purple, a.product-color.current .colorbuttons-_dark-purple, a.product-color:hover .colorbuttons-_dark-purple, a.product-color .colorbuttons-_dark-rose, a.product-color.current .colorbuttons-_dark-rose, a.product-color:hover .colorbuttons-_dark-rose, a.product-color .colorbuttons-_dusty-blue, a.product-color.current .colorbuttons-_dusty-blue, a.product-color:hover .colorbuttons-_dusty-blue, a.product-color .colorbuttons-_dusty-brown, a.product-color.current .colorbuttons-_dusty-brown, a.product-color:hover .colorbuttons-_dusty-brown, a.product-color .colorbuttons-_eggplant, a.product-color.current .colorbuttons-_eggplant, a.product-color:hover .colorbuttons-_eggplant, a.product-color .colorbuttons-_green-narrow-stripe, a.product-color.current .colorbuttons-_green-narrow-stripe, a.product-color:hover .colorbuttons-_green-narrow-stripe, a.product-color .colorbuttons-_green9navy, a.product-color.current .colorbuttons-_green9navy, a.product-color:hover .colorbuttons-_green9navy, a.product-color .colorbuttons-_green, a.product-color.current .colorbuttons-_green, a.product-color:hover .colorbuttons-_green, a.product-color .colorbuttons-_grey-melange9petrol, a.product-color.current .colorbuttons-_grey-melange9petrol, a.product-color:hover .colorbuttons-_grey-melange9petrol, a.product-color .colorbuttons-_grey-melange, a.product-color.current .colorbuttons-_grey-melange, a.product-color:hover .colorbuttons-_grey-melange, a.product-color .colorbuttons-_grey9black, a.product-color.current .colorbuttons-_grey9black, a.product-color:hover .colorbuttons-_grey9black, a.product-color .colorbuttons-_grey9blue, a.product-color.current .colorbuttons-_grey9blue, a.product-color:hover .colorbuttons-_grey9blue, a.product-color .colorbuttons-_grey9mint, a.product-color.current .colorbuttons-_grey9mint, a.product-color:hover .colorbuttons-_grey9mint, a.product-color .colorbuttons-_grey, a.product-color.current .colorbuttons-_grey, a.product-color:hover .colorbuttons-_grey, a.product-color .colorbuttons-_hazelnut, a.product-color.current .colorbuttons-_hazelnut, a.product-color:hover .colorbuttons-_hazelnut, a.product-color .colorbuttons-_khaki, a.product-color.current .colorbuttons-_khaki, a.product-color:hover .colorbuttons-_khaki, a.product-color .colorbuttons-_light-blue-denim, a.product-color.current .colorbuttons-_light-blue-denim, a.product-color:hover .colorbuttons-_light-blue-denim, a.product-color .colorbuttons-_light-blue, a.product-color.current .colorbuttons-_light-blue, a.product-color:hover .colorbuttons-_light-blue, a.product-color .colorbuttons-_light-green, a.product-color.current .colorbuttons-_light-green, a.product-color:hover .colorbuttons-_light-green, a.product-color .colorbuttons-_light-grey-balloon, a.product-color.current .colorbuttons-_light-grey-balloon, a.product-color:hover .colorbuttons-_light-grey-balloon, a.product-color .colorbuttons-_light-grey, a.product-color.current .colorbuttons-_light-grey, a.product-color:hover .colorbuttons-_light-grey, a.product-color .colorbuttons-_light-mint, a.product-color.current .colorbuttons-_light-mint, a.product-color:hover .colorbuttons-_light-mint, a.product-color .colorbuttons-_light-purple-bird, a.product-color.current .colorbuttons-_light-purple-bird, a.product-color:hover .colorbuttons-_light-purple-bird, a.product-color .colorbuttons-_light-purple, a.product-color.current .colorbuttons-_light-purple, a.product-color:hover .colorbuttons-_light-purple, a.product-color .colorbuttons-_light-rose-balloon, a.product-color.current .colorbuttons-_light-rose-balloon, a.product-color:hover .colorbuttons-_light-rose-balloon, a.product-color .colorbuttons-_light-rose-bird, a.product-color.current .colorbuttons-_light-rose-bird, a.product-color:hover .colorbuttons-_light-rose-bird, a.product-color .colorbuttons-_light-rose9black, a.product-color.current .colorbuttons-_light-rose9black, a.product-color:hover .colorbuttons-_light-rose9black, a.product-color .colorbuttons-_light-rose9navy, a.product-color.current .colorbuttons-_light-rose9navy, a.product-color:hover .colorbuttons-_light-rose9navy, a.product-color .colorbuttons-_light-rose, a.product-color.current .colorbuttons-_light-rose, a.product-color:hover .colorbuttons-_light-rose, a.product-color .colorbuttons-_mint-bird, a.product-color.current .colorbuttons-_mint-bird, a.product-color:hover .colorbuttons-_mint-bird, a.product-color .colorbuttons-_mint-grey, a.product-color.current .colorbuttons-_mint-grey, a.product-color:hover .colorbuttons-_mint-grey, a.product-color .colorbuttons-_mint9grey, a.product-color.current .colorbuttons-_mint9grey, a.product-color:hover .colorbuttons-_mint9grey, a.product-color .colorbuttons-_mint, a.product-color.current .colorbuttons-_mint, a.product-color:hover .colorbuttons-_mint, a.product-color .colorbuttons-_navy-melange-block, a.product-color.current .colorbuttons-_navy-melange-block, a.product-color:hover .colorbuttons-_navy-melange-block, a.product-color .colorbuttons-_navy-melange-stripe, a.product-color.current .colorbuttons-_navy-melange-stripe, a.product-color:hover .colorbuttons-_navy-melange-stripe, a.product-color .colorbuttons-_navy-melange, a.product-color.current .colorbuttons-_navy-melange, a.product-color:hover .colorbuttons-_navy-melange, a.product-color .colorbuttons-_navy-narrow-stripe, a.product-color.current .colorbuttons-_navy-narrow-stripe, a.product-color:hover .colorbuttons-_navy-narrow-stripe, a.product-color .colorbuttons-_navy-stripe, a.product-color.current .colorbuttons-_navy-stripe, a.product-color:hover .colorbuttons-_navy-stripe, a.product-color .colorbuttons-_navy-wide-stripe, a.product-color.current .colorbuttons-_navy-wide-stripe, a.product-color:hover .colorbuttons-_navy-wide-stripe, a.product-color .colorbuttons-_navy9blue, a.product-color.current .colorbuttons-_navy9blue, a.product-color:hover .colorbuttons-_navy9blue, a.product-color .colorbuttons-_navy9camel, a.product-color.current .colorbuttons-_navy9camel, a.product-color:hover .colorbuttons-_navy9camel, a.product-color .colorbuttons-_navy9green, a.product-color.current .colorbuttons-_navy9green, a.product-color:hover .colorbuttons-_navy9green, a.product-color .colorbuttons-_navy9greymelange, a.product-color.current .colorbuttons-_navy9greymelange, a.product-color:hover .colorbuttons-_navy9greymelange, a.product-color .colorbuttons-_navy9off-white, a.product-color.current .colorbuttons-_navy9off-white, a.product-color:hover .colorbuttons-_navy9off-white, a.product-color .colorbuttons-_navy9palm, a.product-color.current .colorbuttons-_navy9palm, a.product-color:hover .colorbuttons-_navy9palm, a.product-color .colorbuttons-_navy9petrol, a.product-color.current .colorbuttons-_navy9petrol, a.product-color:hover .colorbuttons-_navy9petrol, a.product-color .colorbuttons-_navy9red, a.product-color.current .colorbuttons-_navy9red, a.product-color:hover .colorbuttons-_navy9red, a.product-color .colorbuttons-_navy9shoe, a.product-color.current .colorbuttons-_navy9shoe, a.product-color:hover .colorbuttons-_navy9shoe, a.product-color .colorbuttons-_navy, a.product-color.current .colorbuttons-_navy, a.product-color:hover .colorbuttons-_navy, a.product-color .colorbuttons-_off-white-bird, a.product-color.current .colorbuttons-_off-white-bird, a.product-color:hover .colorbuttons-_off-white-bird, a.product-color .colorbuttons-_off-white-check, a.product-color.current .colorbuttons-_off-white-check, a.product-color:hover .colorbuttons-_off-white-check, a.product-color .colorbuttons-_off-white9blue, a.product-color.current .colorbuttons-_off-white9blue, a.product-color:hover .colorbuttons-_off-white9blue, a.product-color .colorbuttons-_off-white9mint, a.product-color.current .colorbuttons-_off-white9mint, a.product-color:hover .colorbuttons-_off-white9mint, a.product-color .colorbuttons-_off-white, a.product-color.current .colorbuttons-_off-white, a.product-color:hover .colorbuttons-_off-white, a.product-color .colorbuttons-_olive, a.product-color.current .colorbuttons-_olive, a.product-color:hover .colorbuttons-_olive, a.product-color .colorbuttons-_orange, a.product-color.current .colorbuttons-_orange, a.product-color:hover .colorbuttons-_orange, a.product-color .colorbuttons-_peach, a.product-color.current .colorbuttons-_peach, a.product-color:hover .colorbuttons-_peach, a.product-color .colorbuttons-_petrol-melange, a.product-color.current .colorbuttons-_petrol-melange, a.product-color:hover .colorbuttons-_petrol-melange, a.product-color .colorbuttons-_petrol-stripe, a.product-color.current .colorbuttons-_petrol-stripe, a.product-color:hover .colorbuttons-_petrol-stripe, a.product-color .colorbuttons-_petrol, a.product-color.current .colorbuttons-_petrol, a.product-color:hover .colorbuttons-_petrol, a.product-color .colorbuttons-_plum, a.product-color.current .colorbuttons-_plum, a.product-color:hover .colorbuttons-_plum, a.product-color .colorbuttons-_purple9blue, a.product-color.current .colorbuttons-_purple9blue, a.product-color:hover .colorbuttons-_purple9blue, a.product-color .colorbuttons-_purple9navy, a.product-color.current .colorbuttons-_purple9navy, a.product-color:hover .colorbuttons-_purple9navy, a.product-color .colorbuttons-_purple, a.product-color.current .colorbuttons-_purple, a.product-color:hover .colorbuttons-_purple, a.product-color .colorbuttons-_red, a.product-color.current .colorbuttons-_red, a.product-color:hover .colorbuttons-_red, a.product-color .colorbuttons-_rose-melange, a.product-color.current .colorbuttons-_rose-melange, a.product-color:hover .colorbuttons-_rose-melange, a.product-color .colorbuttons-_rose9black, a.product-color.current .colorbuttons-_rose9black, a.product-color:hover .colorbuttons-_rose9black, a.product-color .colorbuttons-_rose9grey, a.product-color.current .colorbuttons-_rose9grey, a.product-color:hover .colorbuttons-_rose9grey, a.product-color .colorbuttons-_rose9navy, a.product-color.current .colorbuttons-_rose9navy, a.product-color:hover .colorbuttons-_rose9navy, a.product-color .colorbuttons-_rose9off-white, a.product-color.current .colorbuttons-_rose9off-white, a.product-color:hover .colorbuttons-_rose9off-white, a.product-color .colorbuttons-_rose, a.product-color.current .colorbuttons-_rose, a.product-color:hover .colorbuttons-_rose, a.product-color .colorbuttons-_sand, a.product-color.current .colorbuttons-_sand, a.product-color:hover .colorbuttons-_sand, a.product-color .colorbuttons-_white, a.product-color.current .colorbuttons-_white, a.product-color:hover .colorbuttons-_white, a.product-color .colorbuttons-_yellow9off-white, a.product-color.current .colorbuttons-_yellow9off-white, a.product-color:hover .colorbuttons-_yellow9off-white, a.product-color .colorbuttons-_yellow, a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbuttons-_yellow, a.product-color .colorbuttons-_blue-balloon, a.product-color.current .colorbuttons-_blue-balloon, a.product-color:hover .colorbuttons-_blue-balloon, a.product-color .colorbuttons-_purple-balloon, a.product-color.current .colorbuttons-_purple-balloon, a.product-color:hover .colorbuttons-_purple-balloon, a.product-color .colorbuttons-_navy9grey-melange, a.product-color.current .colorbuttons-_navy9grey-melange, a.product-color:hover .colorbuttons-_navy9grey-melange, a.product-color .colorbuttons-_navy-mix, a.product-color.current .colorbuttons-_navy-mix, a.product-color:hover .colorbuttons-_navy-mix {
   background-image: url('/fx/mobile/../images/colorbuttons-se0cd0e216d.png');
-=======
-.colorbuttons-sprite, .colorbuttons-_aqua-melange, .colorbuttons-_aqua, .colorbuttons-_black-melange, .colorbuttons-_black-wide-stripe, .colorbuttons-_black, .colorbuttons-_black9off-white, .colorbuttons-_blue-denim, .colorbuttons-_blue-melange, .colorbuttons-_blue, .colorbuttons-_blue9navy, .colorbuttons-_blue9off-white, .colorbuttons-_blue9rose, .colorbuttons-_blue9star, .colorbuttons-_blue9yellow, .colorbuttons-_bright-blue, .colorbuttons-_brown, .colorbuttons-_copper9black, .colorbuttons-_dark-blue-melange, .colorbuttons-_dark-grey-melange, .colorbuttons-_dark-grey, .colorbuttons-_dark-grey_melange_active, .colorbuttons-_dark-rose, .colorbuttons-_dusty-blue, .colorbuttons-_dusty-brown, .colorbuttons-_eggplant, .colorbuttons-_green-narrow-stripe, .colorbuttons-_green, .colorbuttons-_grey-melange, .colorbuttons-_grey, .colorbuttons-_grey9black, .colorbuttons-_grey9blue, .colorbuttons-_hazelnut, .colorbuttons-_khaki, .colorbuttons-_light-blue-denim, .colorbuttons-_light-blue, .colorbuttons-_light-grey, .colorbuttons-_light-rose, .colorbuttons-_navy-melange-block, .colorbuttons-_navy-melange-stripe, .colorbuttons-_navy-melange, .colorbuttons-_navy-narrow-stripe, .colorbuttons-_navy-wide-stripe, .colorbuttons-_navy, .colorbuttons-_navy9blue, .colorbuttons-_navy9camel, .colorbuttons-_navy9green, .colorbuttons-_navy9off-white, .colorbuttons-_navy9palm, .colorbuttons-_navy9petrol, .colorbuttons-_navy9red, .colorbuttons-_navy9shoe, .colorbuttons-_navy_stripe, .colorbuttons-_off-white, .colorbuttons-_off-white9blue, .colorbuttons-_peach, .colorbuttons-_petrol-stripe, .colorbuttons-_petrol, .colorbuttons-_plum, .colorbuttons-_red, .colorbuttons-_rose-melange, .colorbuttons-_rose, .colorbuttons-_rose9black, .colorbuttons-_rose9grey, .colorbuttons-_rose9navy, .colorbuttons-_rose9off-white, .colorbuttons-_sand, .colorbuttons-_white, .colorbuttons-_yellow, .colorbuttons-_yellow9off-white, a.product-color .colorbuttons-_aqua-melange, a.product-color.current .colorbuttons-_aqua-melange, a.product-color:hover .colorbuttons-_aqua-melange, a.product-color .colorbuttons-_aqua, a.product-color.current .colorbuttons-_aqua, a.product-color:hover .colorbuttons-_aqua, a.product-color .colorbuttons-_black9off-white, a.product-color.current .colorbuttons-_black9off-white, a.product-color:hover .colorbuttons-_black9off-white, a.product-color .colorbuttons-_black-melange, a.product-color.current .colorbuttons-_black-melange, a.product-color:hover .colorbuttons-_black-melange, a.product-color .colorbuttons-_black, a.product-color.current .colorbuttons-_black, a.product-color:hover .colorbuttons-_black, a.product-color .colorbuttons-_blue9navy, a.product-color.current .colorbuttons-_blue9navy, a.product-color:hover .colorbuttons-_blue9navy, a.product-color .colorbuttons-_blue9off-white, a.product-color.current .colorbuttons-_blue9off-white, a.product-color:hover .colorbuttons-_blue9off-white, a.product-color .colorbuttons-_blue9star, a.product-color.current .colorbuttons-_blue9star, a.product-color:hover .colorbuttons-_blue9star, a.product-color .colorbuttons-_blue-denim, a.product-color.current .colorbuttons-_blue-denim, a.product-color:hover .colorbuttons-_blue-denim, a.product-color .colorbuttons-_blue-melange, a.product-color.current .colorbuttons-_blue-melange, a.product-color:hover .colorbuttons-_blue-melange, a.product-color .colorbuttons-_blue, a.product-color.current .colorbuttons-_blue, a.product-color:hover .colorbuttons-_blue, a.product-color .colorbuttons-_copper9black, a.product-color.current .colorbuttons-_copper9black, a.product-color:hover .colorbuttons-_copper9black, a.product-color .colorbuttons-_dark-rose, a.product-color.current .colorbuttons-_dark-rose, a.product-color:hover .colorbuttons-_dark-rose, a.product-color .colorbuttons-_dusty-blue, a.product-color.current .colorbuttons-_dusty-blue, a.product-color:hover .colorbuttons-_dusty-blue, a.product-color .colorbuttons-_eggplant, a.product-color.current .colorbuttons-_eggplant, a.product-color:hover .colorbuttons-_eggplant, a.product-color .colorbuttons-_green, a.product-color.current .colorbuttons-_green, a.product-color:hover .colorbuttons-_green, a.product-color .colorbuttons-_grey9blue, a.product-color.current .colorbuttons-_grey9blue, a.product-color:hover .colorbuttons-_grey9blue, a.product-color .colorbuttons-_grey-melange, a.product-color.current .colorbuttons-_grey-melange, a.product-color:hover .colorbuttons-_grey-melange, a.product-color .colorbuttons-_grey, a.product-color.current .colorbuttons-_grey, a.product-color:hover .colorbuttons-_grey, a.product-color .colorbuttons-_hazelnut, a.product-color.current .colorbuttons-_hazelnut, a.product-color:hover .colorbuttons-_hazelnut, a.product-color .colorbuttons-_khaki, a.product-color.current .colorbuttons-_khaki, a.product-color:hover .colorbuttons-_khaki, a.product-color .colorbuttons-_light-blue-denim, a.product-color.current .colorbuttons-_light-blue-denim, a.product-color:hover .colorbuttons-_light-blue-denim, a.product-color .colorbuttons-_light-blue, a.product-color.current .colorbuttons-_light-blue, a.product-color:hover .colorbuttons-_light-blue, a.product-color .colorbuttons-_light-rose, a.product-color.current .colorbuttons-_light-rose, a.product-color:hover .colorbuttons-_light-rose, a.product-color .colorbuttons-_navy9blue, a.product-color.current .colorbuttons-_navy9blue, a.product-color:hover .colorbuttons-_navy9blue, a.product-color .colorbuttons-_navy9camel, a.product-color.current .colorbuttons-_navy9camel, a.product-color:hover .colorbuttons-_navy9camel, a.product-color .colorbuttons-_navy9off-white, a.product-color.current .colorbuttons-_navy9off-white, a.product-color:hover .colorbuttons-_navy9off-white, a.product-color .colorbuttons-_navy9palm, a.product-color.current .colorbuttons-_navy9palm, a.product-color:hover .colorbuttons-_navy9palm, a.product-color .colorbuttons-_navy9petrol, a.product-color.current .colorbuttons-_navy9petrol, a.product-color:hover .colorbuttons-_navy9petrol, a.product-color .colorbuttons-_navy9green, a.product-color.current .colorbuttons-_navy9green, a.product-color:hover .colorbuttons-_navy9green, a.product-color .colorbuttons-_navy9shoe, a.product-color.current .colorbuttons-_navy9shoe, a.product-color:hover .colorbuttons-_navy9shoe, a.product-color .colorbuttons-_navy-melange-block, a.product-color.current .colorbuttons-_navy-melange-block, a.product-color:hover .colorbuttons-_navy-melange-block, a.product-color .colorbuttons-_navy-melange, a.product-color.current .colorbuttons-_navy-melange, a.product-color:hover .colorbuttons-_navy-melange, a.product-color .colorbuttons-_navy-melange-stripe, a.product-color.current .colorbuttons-_navy-melange-stripe, a.product-color:hover .colorbuttons-_navy-melange-stripe, a.product-color .colorbuttons-_navy, a.product-color.current .colorbuttons-_navy, a.product-color:hover .colorbuttons-_navy, a.product-color .colorbuttons-_off-white9blue, a.product-color.current .colorbuttons-_off-white9blue, a.product-color:hover .colorbuttons-_off-white9blue, a.product-color .colorbuttons-_off-white, a.product-color.current .colorbuttons-_off-white, a.product-color:hover .colorbuttons-_off-white, a.product-color .colorbuttons-_peach, a.product-color.current .colorbuttons-_peach, a.product-color:hover .colorbuttons-_peach, a.product-color .colorbuttons-_red, a.product-color.current .colorbuttons-_red, a.product-color:hover .colorbuttons-_red, a.product-color .colorbuttons-_rose9black, a.product-color.current .colorbuttons-_rose9black, a.product-color:hover .colorbuttons-_rose9black, a.product-color .colorbuttons-_rose9grey, a.product-color.current .colorbuttons-_rose9grey, a.product-color:hover .colorbuttons-_rose9grey, a.product-color .colorbuttons-_rose9navy, a.product-color.current .colorbuttons-_rose9navy, a.product-color:hover .colorbuttons-_rose9navy, a.product-color .colorbuttons-_rose9off-white, a.product-color.current .colorbuttons-_rose9off-white, a.product-color:hover .colorbuttons-_rose9off-white, a.product-color .colorbuttons-_rose-melange, a.product-color.current .colorbuttons-_rose-melange, a.product-color:hover .colorbuttons-_rose-melange, a.product-color .colorbuttons-_rose, a.product-color.current .colorbuttons-_rose, a.product-color:hover .colorbuttons-_rose, a.product-color .colorbuttons-_sand, a.product-color.current .colorbuttons-_sand, a.product-color:hover .colorbuttons-_sand, a.product-color .colorbuttons-_white, a.product-color.current .colorbuttons-_white, a.product-color:hover .colorbuttons-_white, a.product-color .colorbuttons-_yellow9off-white, a.product-color.current .colorbuttons-_yellow9off-white, a.product-color:hover .colorbuttons-_yellow9off-white, a.product-color .colorbuttons-_yellow, a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbuttons-_yellow {
-  background-image: url('/fx/mobile/../images/colorbuttons-s0be8af992d.png');
->>>>>>> Autogen
   background-repeat: no-repeat;
 }
 
@@ -1459,26 +1454,13 @@ form.buy .add-buttons .submit-button {
   background-position: 0 -1170px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_dark-mint {
   background-position: 0 -1196px;
 }
 .colorbuttons-_dark-mint:active, .colorbuttons-_dark-mint._dark-mint-active {
   background-position: 0 -1222px;
-=======
-.colorbuttons-_dark-grey_melange_active {
-  background-position: 0 -1014px;
 }
 
-.colorbuttons-_dark-rose {
-  background-position: 0 -1040px;
->>>>>>> Autogen
-}
-.colorbuttons-_dark-rose:active, .colorbuttons-_dark-rose._dark-rose-active {
-  background-position: 0 -1066px;
-}
-
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_dark-petrol {
   background-position: 0 -1248px;
 }
@@ -1530,89 +1512,11 @@ form.buy .add-buttons .submit-button {
 
 .colorbuttons-_green {
   background-position: 0 -1612px;
-=======
-.colorbuttons-_dusty-blue {
-  background-position: 0 -1092px;
-}
-.colorbuttons-_dusty-blue:active, .colorbuttons-_dusty-blue._dusty-blue-active {
-  background-position: 0 -1118px;
-}
-
-.colorbuttons-_dusty-brown {
-  background-position: 0 -1144px;
-}
-.colorbuttons-_dusty-brown:active, .colorbuttons-_dusty-brown._dusty-brown-active {
-  background-position: 0 -1170px;
-}
-
-.colorbuttons-_eggplant {
-  background-position: 0 -1196px;
-}
-.colorbuttons-_eggplant:active, .colorbuttons-_eggplant._eggplant-active {
-  background-position: 0 -1222px;
-}
-
-.colorbuttons-_green-narrow-stripe {
-  background-position: 0 -1248px;
-}
-.colorbuttons-_green-narrow-stripe:active, .colorbuttons-_green-narrow-stripe._green-narrow-stripe-active {
-  background-position: 0 -1274px;
-}
-
-.colorbuttons-_green {
-  background-position: 0 -1300px;
-}
-.colorbuttons-_green:active, .colorbuttons-_green._green-active {
-  background-position: 0 -1326px;
-}
-
-.colorbuttons-_grey-melange {
-  background-position: 0 -1352px;
-}
-.colorbuttons-_grey-melange:active, .colorbuttons-_grey-melange._grey-melange-active {
-  background-position: 0 -1378px;
-}
-
-.colorbuttons-_grey {
-  background-position: 0 -1404px;
-}
-.colorbuttons-_grey:active, .colorbuttons-_grey._grey-active {
-  background-position: 0 -1534px;
-}
-
-.colorbuttons-_grey9black {
-  background-position: 0 -1430px;
-}
-.colorbuttons-_grey9black:active, .colorbuttons-_grey9black._grey9black-active {
-  background-position: 0 -1456px;
-}
-
-.colorbuttons-_grey9blue {
-  background-position: 0 -1482px;
-}
-.colorbuttons-_grey9blue:active, .colorbuttons-_grey9blue._grey9blue-active {
-  background-position: 0 -1508px;
-}
-
-.colorbuttons-_hazelnut {
-  background-position: 0 -1560px;
-}
-.colorbuttons-_hazelnut:active, .colorbuttons-_hazelnut._hazelnut-active {
-  background-position: 0 -1586px;
-}
-
-.colorbuttons-_khaki {
-  background-position: 0 -1612px;
-}
-.colorbuttons-_khaki:active, .colorbuttons-_khaki._khaki-active {
-  background-position: 0 -1638px;
->>>>>>> Autogen
 }
 .colorbuttons-_green:active, .colorbuttons-_green._green-active {
   background-position: 0 -1690px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_green9navy {
   background-position: 0 -1638px;
 }
@@ -1622,26 +1526,11 @@ form.buy .add-buttons .submit-button {
 
 .colorbuttons-_grey-melange {
   background-position: 0 -1716px;
-=======
-.colorbuttons-_light-blue-denim {
-  background-position: 0 -1664px;
-}
-.colorbuttons-_light-blue-denim:active, .colorbuttons-_light-blue-denim._light-blue-denim-active {
-  background-position: 0 -1690px;
-}
-
-.colorbuttons-_light-blue {
-  background-position: 0 -1716px;
-}
-.colorbuttons-_light-blue:active, .colorbuttons-_light-blue._light-blue-active {
-  background-position: 0 -1742px;
->>>>>>> Autogen
 }
 .colorbuttons-_grey-melange:active, .colorbuttons-_grey-melange._grey-melange-active {
   background-position: 0 -1794px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_grey-melange9petrol {
   background-position: 0 -1742px;
 }
@@ -1651,26 +1540,11 @@ form.buy .add-buttons .submit-button {
 
 .colorbuttons-_grey {
   background-position: 0 -1820px;
-=======
-.colorbuttons-_light-grey {
-  background-position: 0 -1768px;
-}
-.colorbuttons-_light-grey:active, .colorbuttons-_light-grey._light-grey-active {
-  background-position: 0 -1794px;
-}
-
-.colorbuttons-_light-rose {
-  background-position: 0 -1820px;
-}
-.colorbuttons-_light-rose:active, .colorbuttons-_light-rose._light-rose-active {
-  background-position: 0 -1846px;
->>>>>>> Autogen
 }
 .colorbuttons-_grey:active, .colorbuttons-_grey._grey-active {
   background-position: 0 -2002px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_grey9black {
   background-position: 0 -1846px;
 }
@@ -1785,131 +1659,11 @@ form.buy .add-buttons .submit-button {
 
 .colorbuttons-_light-rose9black {
   background-position: 0 -2678px;
-=======
-.colorbuttons-_navy-melange-block {
-  background-position: 0 -1872px;
-}
-.colorbuttons-_navy-melange-block:active, .colorbuttons-_navy-melange-block._navy-melange-block-active {
-  background-position: 0 -1898px;
-}
-
-.colorbuttons-_navy-melange-stripe {
-  background-position: 0 -1924px;
-}
-.colorbuttons-_navy-melange-stripe:active, .colorbuttons-_navy-melange-stripe._navy-melange-stripe-active {
-  background-position: 0 -1950px;
-}
-
-.colorbuttons-_navy-melange {
-  background-position: 0 -1976px;
-}
-.colorbuttons-_navy-melange:active, .colorbuttons-_navy-melange._navy-melange-active {
-  background-position: 0 -2002px;
-}
-
-.colorbuttons-_navy-narrow-stripe {
-  background-position: 0 -2028px;
-}
-.colorbuttons-_navy-narrow-stripe:active, .colorbuttons-_navy-narrow-stripe._navy-narrow-stripe-active {
-  background-position: 0 -2054px;
-}
-
-.colorbuttons-_navy-wide-stripe {
-  background-position: 0 -2080px;
-}
-.colorbuttons-_navy-wide-stripe:active, .colorbuttons-_navy-wide-stripe._navy-wide-stripe-active {
-  background-position: 0 -2106px;
-}
-
-.colorbuttons-_navy {
-  background-position: 0 -2132px;
-}
-.colorbuttons-_navy:active, .colorbuttons-_navy._navy-active {
-  background-position: 0 -2574px;
-}
-
-.colorbuttons-_navy9blue {
-  background-position: 0 -2158px;
-}
-.colorbuttons-_navy9blue:active, .colorbuttons-_navy9blue._navy9blue-active {
-  background-position: 0 -2184px;
-}
-
-.colorbuttons-_navy9camel {
-  background-position: 0 -2210px;
-}
-.colorbuttons-_navy9camel:active, .colorbuttons-_navy9camel._navy9camel-active {
-  background-position: 0 -2236px;
-}
-
-.colorbuttons-_navy9green {
-  background-position: 0 -2262px;
-}
-.colorbuttons-_navy9green:active, .colorbuttons-_navy9green._navy9green-active {
-  background-position: 0 -2288px;
-}
-
-.colorbuttons-_navy9off-white {
-  background-position: 0 -2314px;
-}
-.colorbuttons-_navy9off-white:active, .colorbuttons-_navy9off-white._navy9off-white-active {
-  background-position: 0 -2340px;
-}
-
-.colorbuttons-_navy9palm {
-  background-position: 0 -2366px;
-}
-.colorbuttons-_navy9palm:active, .colorbuttons-_navy9palm._navy9palm-active {
-  background-position: 0 -2392px;
-}
-
-.colorbuttons-_navy9petrol {
-  background-position: 0 -2418px;
-}
-.colorbuttons-_navy9petrol:active, .colorbuttons-_navy9petrol._navy9petrol-active {
-  background-position: 0 -2444px;
-}
-
-.colorbuttons-_navy9red {
-  background-position: 0 -2470px;
-}
-.colorbuttons-_navy9red:active, .colorbuttons-_navy9red._navy9red-active {
-  background-position: 0 -2496px;
-}
-
-.colorbuttons-_navy9shoe {
-  background-position: 0 -2522px;
-}
-.colorbuttons-_navy9shoe:active, .colorbuttons-_navy9shoe._navy9shoe-active {
-  background-position: 0 -2548px;
-}
-
-.colorbuttons-_navy_stripe {
-  background-position: 0 -2600px;
-}
-.colorbuttons-_navy_stripe:active, .colorbuttons-_navy_stripe._navy_stripe-active {
-  background-position: 0 -2626px;
-}
-
-.colorbuttons-_off-white {
-  background-position: 0 -2652px;
-}
-.colorbuttons-_off-white:active, .colorbuttons-_off-white._off-white-active {
-  background-position: 0 -2730px;
-}
-
-.colorbuttons-_off-white9blue {
-  background-position: 0 -2678px;
-}
-.colorbuttons-_off-white9blue:active, .colorbuttons-_off-white9blue._off-white9blue-active {
-  background-position: 0 -2704px;
->>>>>>> Autogen
 }
 .colorbuttons-_light-rose9black:active, .colorbuttons-_light-rose9black._light-rose9black-active {
   background-position: 0 -2704px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_light-rose9navy {
   background-position: 0 -2730px;
 }
@@ -1979,89 +1733,11 @@ form.buy .add-buttons .submit-button {
 
 .colorbuttons-_navy-narrow-stripe {
   background-position: 0 -3250px;
-=======
-.colorbuttons-_peach {
-  background-position: 0 -2756px;
-}
-.colorbuttons-_peach:active, .colorbuttons-_peach._peach-active {
-  background-position: 0 -2782px;
-}
-
-.colorbuttons-_petrol-stripe {
-  background-position: 0 -2808px;
-}
-.colorbuttons-_petrol-stripe:active, .colorbuttons-_petrol-stripe._petrol-stripe-active {
-  background-position: 0 -2834px;
-}
-
-.colorbuttons-_petrol {
-  background-position: 0 -2860px;
-}
-.colorbuttons-_petrol:active, .colorbuttons-_petrol._petrol-active {
-  background-position: 0 -2886px;
-}
-
-.colorbuttons-_plum {
-  background-position: 0 -2912px;
-}
-.colorbuttons-_plum:active, .colorbuttons-_plum._plum-active {
-  background-position: 0 -2938px;
-}
-
-.colorbuttons-_red {
-  background-position: 0 -2964px;
-}
-.colorbuttons-_red:active, .colorbuttons-_red._red-active {
-  background-position: 0 -2990px;
-}
-
-.colorbuttons-_rose-melange {
-  background-position: 0 -3016px;
-}
-.colorbuttons-_rose-melange:active, .colorbuttons-_rose-melange._rose-melange-active {
-  background-position: 0 -3042px;
-}
-
-.colorbuttons-_rose {
-  background-position: 0 -3068px;
-}
-.colorbuttons-_rose:active, .colorbuttons-_rose._rose-active {
-  background-position: 0 -3302px;
-}
-
-.colorbuttons-_rose9black {
-  background-position: 0 -3094px;
-}
-.colorbuttons-_rose9black:active, .colorbuttons-_rose9black._rose9black-active {
-  background-position: 0 -3120px;
-}
-
-.colorbuttons-_rose9grey {
-  background-position: 0 -3146px;
-}
-.colorbuttons-_rose9grey:active, .colorbuttons-_rose9grey._rose9grey-active {
-  background-position: 0 -3172px;
-}
-
-.colorbuttons-_rose9navy {
-  background-position: 0 -3198px;
-}
-.colorbuttons-_rose9navy:active, .colorbuttons-_rose9navy._rose9navy-active {
-  background-position: 0 -3224px;
-}
-
-.colorbuttons-_rose9off-white {
-  background-position: 0 -3250px;
-}
-.colorbuttons-_rose9off-white:active, .colorbuttons-_rose9off-white._rose9off-white-active {
-  background-position: 0 -3276px;
->>>>>>> Autogen
 }
 .colorbuttons-_navy-narrow-stripe:active, .colorbuttons-_navy-narrow-stripe._navy-narrow-stripe-active {
   background-position: 0 -3276px;
 }
 
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 .colorbuttons-_navy-stripe {
   background-position: 0 -3302px;
 }
@@ -2088,34 +1764,6 @@ form.buy .add-buttons .submit-button {
 }
 .colorbuttons-_navy9blue:active, .colorbuttons-_navy9blue._navy9blue-active {
   background-position: 0 -3458px;
-=======
-.colorbuttons-_sand {
-  background-position: 0 -3328px;
-}
-.colorbuttons-_sand:active, .colorbuttons-_sand._sand-active {
-  background-position: 0 -3354px;
-}
-
-.colorbuttons-_white {
-  background-position: 0 -3380px;
-}
-.colorbuttons-_white:active, .colorbuttons-_white._white-active {
-  background-position: 0 -3406px;
-}
-
-.colorbuttons-_yellow {
-  background-position: 0 -3432px;
-}
-.colorbuttons-_yellow:active, .colorbuttons-_yellow._yellow-active {
-  background-position: 0 -3510px;
-}
-
-.colorbuttons-_yellow9off-white {
-  background-position: 0 -3458px;
-}
-.colorbuttons-_yellow9off-white:active, .colorbuttons-_yellow9off-white._yellow9off-white-active {
-  background-position: 0 -3484px;
->>>>>>> Autogen
 }
 
 .colorbuttons-_navy9camel {
@@ -2506,7 +2154,6 @@ a.product-color .colorbuttons-_blue9navy:active, a.product-color .colorbuttons-_
 a.product-color.current .colorbuttons-_blue9navy, a.product-color:hover .colorbuttons-_blue9navy {
   background-position: 0 -624px;
 }
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
 a.product-color .colorbuttons-_blue9off-white {
   background-position: 0 -650px;
   height: 26px;
@@ -2674,26 +2321,10 @@ a.product-color.current .colorbuttons-_dark-rose, a.product-color:hover .colorbu
 }
 a.product-color .colorbuttons-_dusty-blue {
   background-position: 0 -1404px;
-=======
-a.product-color .colorbuttons-_dark-rose {
-  background-position: 0 -1040px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_dark-rose:active, a.product-color .colorbuttons-_dark-rose._dark-rose-active {
-  background-position: 0 -1066px;
-}
-a.product-color.current .colorbuttons-_dark-rose, a.product-color:hover .colorbuttons-_dark-rose {
-  background-position: 0 -1066px;
-}
-a.product-color .colorbuttons-_dusty-blue {
-  background-position: 0 -1092px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_dusty-blue:active, a.product-color .colorbuttons-_dusty-blue._dusty-blue-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -1430px;
 }
 a.product-color.current .colorbuttons-_dusty-blue, a.product-color:hover .colorbuttons-_dusty-blue {
@@ -2712,20 +2343,10 @@ a.product-color.current .colorbuttons-_dusty-brown, a.product-color:hover .color
 }
 a.product-color .colorbuttons-_eggplant {
   background-position: 0 -1508px;
-=======
-  background-position: 0 -1118px;
-}
-a.product-color.current .colorbuttons-_dusty-blue, a.product-color:hover .colorbuttons-_dusty-blue {
-  background-position: 0 -1118px;
-}
-a.product-color .colorbuttons-_eggplant {
-  background-position: 0 -1196px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_eggplant:active, a.product-color .colorbuttons-_eggplant._eggplant-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -1534px;
 }
 a.product-color.current .colorbuttons-_eggplant, a.product-color:hover .colorbuttons-_eggplant {
@@ -3382,273 +3003,10 @@ a.product-color.current .colorbuttons-_purple, a.product-color:hover .colorbutto
 }
 a.product-color .colorbuttons-_red {
   background-position: 0 -4810px;
-=======
-  background-position: 0 -1222px;
-}
-a.product-color.current .colorbuttons-_eggplant, a.product-color:hover .colorbuttons-_eggplant {
-  background-position: 0 -1222px;
-}
-a.product-color .colorbuttons-_green {
-  background-position: 0 -1300px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_green:active, a.product-color .colorbuttons-_green._green-active {
-  background-position: 0 -1326px;
-}
-a.product-color.current .colorbuttons-_green, a.product-color:hover .colorbuttons-_green {
-  background-position: 0 -1326px;
-}
-a.product-color .colorbuttons-_grey9blue {
-  background-position: 0 -1482px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_grey9blue:active, a.product-color .colorbuttons-_grey9blue._grey9blue-active {
-  background-position: 0 -1508px;
-}
-a.product-color.current .colorbuttons-_grey9blue, a.product-color:hover .colorbuttons-_grey9blue {
-  background-position: 0 -1508px;
-}
-a.product-color .colorbuttons-_grey-melange {
-  background-position: 0 -1352px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_grey-melange:active, a.product-color .colorbuttons-_grey-melange._grey-melange-active {
-  background-position: 0 -1378px;
-}
-a.product-color.current .colorbuttons-_grey-melange, a.product-color:hover .colorbuttons-_grey-melange {
-  background-position: 0 -1378px;
-}
-a.product-color .colorbuttons-_grey {
-  background-position: 0 -1404px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_grey:active, a.product-color .colorbuttons-_grey._grey-active {
-  background-position: 0 -1534px;
-}
-a.product-color.current .colorbuttons-_grey, a.product-color:hover .colorbuttons-_grey {
-  background-position: 0 -1534px;
-}
-a.product-color .colorbuttons-_hazelnut {
-  background-position: 0 -1560px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_hazelnut:active, a.product-color .colorbuttons-_hazelnut._hazelnut-active {
-  background-position: 0 -1586px;
-}
-a.product-color.current .colorbuttons-_hazelnut, a.product-color:hover .colorbuttons-_hazelnut {
-  background-position: 0 -1586px;
-}
-a.product-color .colorbuttons-_khaki {
-  background-position: 0 -1612px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_khaki:active, a.product-color .colorbuttons-_khaki._khaki-active {
-  background-position: 0 -1638px;
-}
-a.product-color.current .colorbuttons-_khaki, a.product-color:hover .colorbuttons-_khaki {
-  background-position: 0 -1638px;
-}
-a.product-color .colorbuttons-_light-blue-denim {
-  background-position: 0 -1664px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_light-blue-denim:active, a.product-color .colorbuttons-_light-blue-denim._light-blue-denim-active {
-  background-position: 0 -1690px;
-}
-a.product-color.current .colorbuttons-_light-blue-denim, a.product-color:hover .colorbuttons-_light-blue-denim {
-  background-position: 0 -1690px;
-}
-a.product-color .colorbuttons-_light-blue {
-  background-position: 0 -1716px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_light-blue:active, a.product-color .colorbuttons-_light-blue._light-blue-active {
-  background-position: 0 -1742px;
-}
-a.product-color.current .colorbuttons-_light-blue, a.product-color:hover .colorbuttons-_light-blue {
-  background-position: 0 -1742px;
-}
-a.product-color .colorbuttons-_light-rose {
-  background-position: 0 -1820px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_light-rose:active, a.product-color .colorbuttons-_light-rose._light-rose-active {
-  background-position: 0 -1846px;
-}
-a.product-color.current .colorbuttons-_light-rose, a.product-color:hover .colorbuttons-_light-rose {
-  background-position: 0 -1846px;
-}
-a.product-color .colorbuttons-_navy9blue {
-  background-position: 0 -2158px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9blue:active, a.product-color .colorbuttons-_navy9blue._navy9blue-active {
-  background-position: 0 -2184px;
-}
-a.product-color.current .colorbuttons-_navy9blue, a.product-color:hover .colorbuttons-_navy9blue {
-  background-position: 0 -2184px;
-}
-a.product-color .colorbuttons-_navy9camel {
-  background-position: 0 -2210px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9camel:active, a.product-color .colorbuttons-_navy9camel._navy9camel-active {
-  background-position: 0 -2236px;
-}
-a.product-color.current .colorbuttons-_navy9camel, a.product-color:hover .colorbuttons-_navy9camel {
-  background-position: 0 -2236px;
-}
-a.product-color .colorbuttons-_navy9off-white {
-  background-position: 0 -2314px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9off-white:active, a.product-color .colorbuttons-_navy9off-white._navy9off-white-active {
-  background-position: 0 -2340px;
-}
-a.product-color.current .colorbuttons-_navy9off-white, a.product-color:hover .colorbuttons-_navy9off-white {
-  background-position: 0 -2340px;
-}
-a.product-color .colorbuttons-_navy9palm {
-  background-position: 0 -2366px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9palm:active, a.product-color .colorbuttons-_navy9palm._navy9palm-active {
-  background-position: 0 -2392px;
-}
-a.product-color.current .colorbuttons-_navy9palm, a.product-color:hover .colorbuttons-_navy9palm {
-  background-position: 0 -2392px;
-}
-a.product-color .colorbuttons-_navy9petrol {
-  background-position: 0 -2418px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9petrol:active, a.product-color .colorbuttons-_navy9petrol._navy9petrol-active {
-  background-position: 0 -2444px;
-}
-a.product-color.current .colorbuttons-_navy9petrol, a.product-color:hover .colorbuttons-_navy9petrol {
-  background-position: 0 -2444px;
-}
-a.product-color .colorbuttons-_navy9green {
-  background-position: 0 -2262px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9green:active, a.product-color .colorbuttons-_navy9green._navy9green-active {
-  background-position: 0 -2288px;
-}
-a.product-color.current .colorbuttons-_navy9green, a.product-color:hover .colorbuttons-_navy9green {
-  background-position: 0 -2288px;
-}
-a.product-color .colorbuttons-_navy9shoe {
-  background-position: 0 -2522px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy9shoe:active, a.product-color .colorbuttons-_navy9shoe._navy9shoe-active {
-  background-position: 0 -2548px;
-}
-a.product-color.current .colorbuttons-_navy9shoe, a.product-color:hover .colorbuttons-_navy9shoe {
-  background-position: 0 -2548px;
-}
-a.product-color .colorbuttons-_navy-melange-block {
-  background-position: 0 -1872px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy-melange-block:active, a.product-color .colorbuttons-_navy-melange-block._navy-melange-block-active {
-  background-position: 0 -1898px;
-}
-a.product-color.current .colorbuttons-_navy-melange-block, a.product-color:hover .colorbuttons-_navy-melange-block {
-  background-position: 0 -1898px;
-}
-a.product-color .colorbuttons-_navy-melange {
-  background-position: 0 -1976px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy-melange:active, a.product-color .colorbuttons-_navy-melange._navy-melange-active {
-  background-position: 0 -2002px;
-}
-a.product-color.current .colorbuttons-_navy-melange, a.product-color:hover .colorbuttons-_navy-melange {
-  background-position: 0 -2002px;
-}
-a.product-color .colorbuttons-_navy-melange-stripe {
-  background-position: 0 -1924px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy-melange-stripe:active, a.product-color .colorbuttons-_navy-melange-stripe._navy-melange-stripe-active {
-  background-position: 0 -1950px;
-}
-a.product-color.current .colorbuttons-_navy-melange-stripe, a.product-color:hover .colorbuttons-_navy-melange-stripe {
-  background-position: 0 -1950px;
-}
-a.product-color .colorbuttons-_navy {
-  background-position: 0 -2132px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_navy:active, a.product-color .colorbuttons-_navy._navy-active {
-  background-position: 0 -2574px;
-}
-a.product-color.current .colorbuttons-_navy, a.product-color:hover .colorbuttons-_navy {
-  background-position: 0 -2574px;
-}
-a.product-color .colorbuttons-_off-white9blue {
-  background-position: 0 -2678px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_off-white9blue:active, a.product-color .colorbuttons-_off-white9blue._off-white9blue-active {
-  background-position: 0 -2704px;
-}
-a.product-color.current .colorbuttons-_off-white9blue, a.product-color:hover .colorbuttons-_off-white9blue {
-  background-position: 0 -2704px;
-}
-a.product-color .colorbuttons-_off-white {
-  background-position: 0 -2652px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_off-white:active, a.product-color .colorbuttons-_off-white._off-white-active {
-  background-position: 0 -2730px;
-}
-a.product-color.current .colorbuttons-_off-white, a.product-color:hover .colorbuttons-_off-white {
-  background-position: 0 -2730px;
-}
-a.product-color .colorbuttons-_peach {
-  background-position: 0 -2756px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_peach:active, a.product-color .colorbuttons-_peach._peach-active {
-  background-position: 0 -2782px;
-}
-a.product-color.current .colorbuttons-_peach, a.product-color:hover .colorbuttons-_peach {
-  background-position: 0 -2782px;
-}
-a.product-color .colorbuttons-_red {
-  background-position: 0 -2964px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_red:active, a.product-color .colorbuttons-_red._red-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -4836px;
 }
 a.product-color.current .colorbuttons-_red, a.product-color:hover .colorbuttons-_red {
@@ -3667,20 +3025,10 @@ a.product-color.current .colorbuttons-_rose-melange, a.product-color:hover .colo
 }
 a.product-color .colorbuttons-_rose9black {
   background-position: 0 -4940px;
-=======
-  background-position: 0 -2990px;
-}
-a.product-color.current .colorbuttons-_red, a.product-color:hover .colorbuttons-_red {
-  background-position: 0 -2990px;
-}
-a.product-color .colorbuttons-_rose9black {
-  background-position: 0 -3094px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_rose9black:active, a.product-color .colorbuttons-_rose9black._rose9black-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -4966px;
 }
 a.product-color.current .colorbuttons-_rose9black, a.product-color:hover .colorbuttons-_rose9black {
@@ -3688,20 +3036,10 @@ a.product-color.current .colorbuttons-_rose9black, a.product-color:hover .colorb
 }
 a.product-color .colorbuttons-_rose9grey {
   background-position: 0 -4992px;
-=======
-  background-position: 0 -3120px;
-}
-a.product-color.current .colorbuttons-_rose9black, a.product-color:hover .colorbuttons-_rose9black {
-  background-position: 0 -3120px;
-}
-a.product-color .colorbuttons-_rose9grey {
-  background-position: 0 -3146px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_rose9grey:active, a.product-color .colorbuttons-_rose9grey._rose9grey-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5018px;
 }
 a.product-color.current .colorbuttons-_rose9grey, a.product-color:hover .colorbuttons-_rose9grey {
@@ -3709,20 +3047,10 @@ a.product-color.current .colorbuttons-_rose9grey, a.product-color:hover .colorbu
 }
 a.product-color .colorbuttons-_rose9navy {
   background-position: 0 -5044px;
-=======
-  background-position: 0 -3172px;
-}
-a.product-color.current .colorbuttons-_rose9grey, a.product-color:hover .colorbuttons-_rose9grey {
-  background-position: 0 -3172px;
-}
-a.product-color .colorbuttons-_rose9navy {
-  background-position: 0 -3198px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_rose9navy:active, a.product-color .colorbuttons-_rose9navy._rose9navy-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5070px;
 }
 a.product-color.current .colorbuttons-_rose9navy, a.product-color:hover .colorbuttons-_rose9navy {
@@ -3730,20 +3058,10 @@ a.product-color.current .colorbuttons-_rose9navy, a.product-color:hover .colorbu
 }
 a.product-color .colorbuttons-_rose9off-white {
   background-position: 0 -5096px;
-=======
-  background-position: 0 -3224px;
-}
-a.product-color.current .colorbuttons-_rose9navy, a.product-color:hover .colorbuttons-_rose9navy {
-  background-position: 0 -3224px;
-}
-a.product-color .colorbuttons-_rose9off-white {
-  background-position: 0 -3250px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_rose9off-white:active, a.product-color .colorbuttons-_rose9off-white._rose9off-white-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5122px;
 }
 a.product-color.current .colorbuttons-_rose9off-white, a.product-color:hover .colorbuttons-_rose9off-white {
@@ -3751,31 +3069,10 @@ a.product-color.current .colorbuttons-_rose9off-white, a.product-color:hover .co
 }
 a.product-color .colorbuttons-_rose {
   background-position: 0 -4914px;
-=======
-  background-position: 0 -3276px;
-}
-a.product-color.current .colorbuttons-_rose9off-white, a.product-color:hover .colorbuttons-_rose9off-white {
-  background-position: 0 -3276px;
-}
-a.product-color .colorbuttons-_rose-melange {
-  background-position: 0 -3016px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-_rose-melange:active, a.product-color .colorbuttons-_rose-melange._rose-melange-active {
-  background-position: 0 -3042px;
-}
-a.product-color.current .colorbuttons-_rose-melange, a.product-color:hover .colorbuttons-_rose-melange {
-  background-position: 0 -3042px;
-}
-a.product-color .colorbuttons-_rose {
-  background-position: 0 -3068px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_rose:active, a.product-color .colorbuttons-_rose._rose-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5148px;
 }
 a.product-color.current .colorbuttons-_rose, a.product-color:hover .colorbuttons-_rose {
@@ -3783,20 +3080,10 @@ a.product-color.current .colorbuttons-_rose, a.product-color:hover .colorbuttons
 }
 a.product-color .colorbuttons-_sand {
   background-position: 0 -5174px;
-=======
-  background-position: 0 -3302px;
-}
-a.product-color.current .colorbuttons-_rose, a.product-color:hover .colorbuttons-_rose {
-  background-position: 0 -3302px;
-}
-a.product-color .colorbuttons-_sand {
-  background-position: 0 -3328px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_sand:active, a.product-color .colorbuttons-_sand._sand-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5200px;
 }
 a.product-color.current .colorbuttons-_sand, a.product-color:hover .colorbuttons-_sand {
@@ -3804,20 +3091,10 @@ a.product-color.current .colorbuttons-_sand, a.product-color:hover .colorbuttons
 }
 a.product-color .colorbuttons-_white {
   background-position: 0 -5226px;
-=======
-  background-position: 0 -3354px;
-}
-a.product-color.current .colorbuttons-_sand, a.product-color:hover .colorbuttons-_sand {
-  background-position: 0 -3354px;
-}
-a.product-color .colorbuttons-_white {
-  background-position: 0 -3380px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_white:active, a.product-color .colorbuttons-_white._white-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5252px;
 }
 a.product-color.current .colorbuttons-_white, a.product-color:hover .colorbuttons-_white {
@@ -3825,20 +3102,10 @@ a.product-color.current .colorbuttons-_white, a.product-color:hover .colorbutton
 }
 a.product-color .colorbuttons-_yellow9off-white {
   background-position: 0 -5304px;
-=======
-  background-position: 0 -3406px;
-}
-a.product-color.current .colorbuttons-_white, a.product-color:hover .colorbuttons-_white {
-  background-position: 0 -3406px;
-}
-a.product-color .colorbuttons-_yellow9off-white {
-  background-position: 0 -3458px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_yellow9off-white:active, a.product-color .colorbuttons-_yellow9off-white._yellow9off-white-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5330px;
 }
 a.product-color.current .colorbuttons-_yellow9off-white, a.product-color:hover .colorbuttons-_yellow9off-white {
@@ -3846,20 +3113,10 @@ a.product-color.current .colorbuttons-_yellow9off-white, a.product-color:hover .
 }
 a.product-color .colorbuttons-_yellow {
   background-position: 0 -5278px;
-=======
-  background-position: 0 -3484px;
-}
-a.product-color.current .colorbuttons-_yellow9off-white, a.product-color:hover .colorbuttons-_yellow9off-white {
-  background-position: 0 -3484px;
-}
-a.product-color .colorbuttons-_yellow {
-  background-position: 0 -3432px;
->>>>>>> Autogen
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-_yellow:active, a.product-color .colorbuttons-_yellow._yellow-active {
-<<<<<<< 29a38506cdc4445a070e23c3662a7eae25a7e726
   background-position: 0 -5356px;
 }
 a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbuttons-_yellow {
@@ -3908,12 +3165,6 @@ a.product-color .colorbuttons-_navy-mix:active, a.product-color .colorbuttons-_n
 }
 a.product-color.current .colorbuttons-_navy-mix, a.product-color:hover .colorbuttons-_navy-mix {
   background-position: 0 -3224px;
-=======
-  background-position: 0 -3510px;
-}
-a.product-color.current .colorbuttons-_yellow, a.product-color:hover .colorbuttons-_yellow {
-  background-position: 0 -3510px;
->>>>>>> Autogen
 }
 
 .quantity-discount-table {
