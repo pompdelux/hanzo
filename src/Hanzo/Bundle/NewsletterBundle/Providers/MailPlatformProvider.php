@@ -6,6 +6,13 @@ use Hanzo\Core\Hanzo;
 
 class MailPlatformProvider extends BaseProvider
 {
+    public $domainKey;
+
+    public function __construct()
+    {
+        $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
+    }
+
     /**
      * subscriberCreate
      *
@@ -48,7 +55,7 @@ class MailPlatformProvider extends BaseProvider
             'details' => [
                 'emailaddress' => $subscriber_id,
                 'listid'       => $list_id,
-                ],
+            ],
         ];
 
         $optionalParams = ['customfields'];
@@ -85,7 +92,7 @@ class MailPlatformProvider extends BaseProvider
                 'sendthankyou' => 'true',
                 'language'     => 'EN',
                 'formid'       => $this->getUnsubscribeFormId($list_id),
-                ],
+            ],
         ];
 
         if ($list_id !== false)
@@ -120,7 +127,7 @@ class MailPlatformProvider extends BaseProvider
         $request->body   = [
             'details' => [
                 'emailaddress' => $subscriber_id,
-                ],
+            ],
         ];
 
         return $request->execute();
@@ -145,7 +152,7 @@ class MailPlatformProvider extends BaseProvider
 
         $requestBody = [
             'details' => ['subscriberid' => $ext_id],
-            ];
+        ];
 
         $request->body = $requestBody;
 
@@ -169,7 +176,7 @@ class MailPlatformProvider extends BaseProvider
             'details' => [
                 'emailaddress' => $subscriber_id,
                 'listid'      => $list_id,
-                ],
+            ],
         ];
 
         $request         = $this->getRequest();
@@ -199,7 +206,7 @@ class MailPlatformProvider extends BaseProvider
             'details' => [
                 'emailaddress' => $subscriber_id,
                 'listids'      => $list_ids,
-                ],
+            ],
         ];
 
         // $optionalParams = ['active_only', 'not_bounced', 'return_listid'];
@@ -235,9 +242,8 @@ class MailPlatformProvider extends BaseProvider
                 'format'                => 'html',
                 'confirmed'             => 'false',
                 'confirm_language'      => 'EN',
-                // Results in an increased amounts for 500 errors
-                // 'add_to_autoresponders' => 1,
-                ],
+                'add_to_autoresponders' => 1,
+            ],
         ];
 
         $optionalParams = ['format', 'confirmed', 'confirm_language', 'add_to_autoresponders', 'customfields'];
@@ -248,6 +254,8 @@ class MailPlatformProvider extends BaseProvider
         $request->type   = 'subscribers';
         $request->method = 'AddSubscriberToList';
         $request->body   = $requestBody;
+        // Run using beanstalk
+        $request->async  = true;
 
         return $request->execute();
     }
@@ -270,7 +278,7 @@ class MailPlatformProvider extends BaseProvider
         $request->body   = [
             'details' => [
                 'emailaddress' => $subscriber_id,
-                ],
+            ],
         ];
 
         return $request->execute();
@@ -295,7 +303,7 @@ class MailPlatformProvider extends BaseProvider
             'details' => [
                 'start'   => 0,
                 'perpage' => 50,
-                ],
+            ],
         ];
 
         $optionalParams = ['start', 'perpage'];
@@ -317,14 +325,13 @@ class MailPlatformProvider extends BaseProvider
      */
     protected function getRequest()
     {
-        $domainKey = Hanzo::getInstance()->get('core.domain_key');
         $username  = false;
         $token     = false;
 
         $baseUrl = 'http://client2.mailmailmail.net';
         $query   = 'xml.php';
 
-        switch ($domainKey)
+        switch ($this->domainKey)
         {
             case 'SalesDK':
             case 'DK':

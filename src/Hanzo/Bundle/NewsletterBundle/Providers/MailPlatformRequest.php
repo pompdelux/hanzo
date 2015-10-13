@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\NewsletterBundle\Providers;
 
+use Hanzo\Core\Hanzo;
+
 class MailPlatformRequest
 {
     /**
@@ -24,6 +26,13 @@ class MailPlatformRequest
      * @var string
      */
     protected $query;
+
+    /**
+     * baseUrl
+     *
+     * @var string
+     */
+    protected $baseUrl;
 
     /**
      * Request type
@@ -54,6 +63,15 @@ class MailPlatformRequest
     public $dumpXML = false;
 
     /**
+     * async
+     *
+     * - Query request in beanstalk
+     *
+     * @var boolean
+     */
+    public $async = false;
+
+    /**
      * __construct
      *
      * @param string $username
@@ -69,6 +87,7 @@ class MailPlatformRequest
         $this->username = $username;
         $this->token    = $token;
         $this->query    = $query;
+        $this->baseUrl  = $baseUrl;
         $this->client   = new \Guzzle\Http\Client($baseUrl);
     }
 
@@ -98,21 +117,59 @@ class MailPlatformRequest
      */
     public function execute()
     {
-        $requestData = $this->buildRequest();
-        $request = $this->client->post($this->query);
-        $request->setBody($requestData);
-
         if ($this->dumpXML === true)
         {
             error_log(__LINE__.':'.__FILE__.':> '.PHP_EOL.$requestData); // hf@bellcom.dk debugging
         }
 
-        $rawResponse = $request->send();
+        if ($this->async)
+        {
+            $this->queueForAsyncHandling();
+            // As we do not know the status of the request, we must assume it went ok
+            $response = new MailPlatformResponse();;
+            $response->setStatus(BaseResponse::REQUEST_SUCCESS);
+        }
+        else
+        {
+            $requestData = $this->buildRequest();
+            $request = $this->client->post($this->query);
+            $request->setBody($requestData);
 
-        $parser = new MailPlatformResponseParser($rawResponse, $this);
-        $response = $parser->parse();
+            $rawResponse = $request->send();
+
+            $parser = new MailPlatformResponseParser($rawResponse, $this);
+            $response = $parser->parse();
+        }
 
         return $response;
+    }
+
+    /**
+     * queueForAsyncHandling
+     *
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function queueForAsyncHandling()
+    {
+        $pheanstalkQueue = Hanzo::getInstance()->container->get('leezy.pheanstalk');
+
+        $options = [
+            'username' => $this->username,
+            'token'    => $this->token,
+            'query'    => $this->query,
+            'baseUrl'  => $this->baseUrl,
+            'type'     => $this->type,
+            'method'   => $this->method,
+            'body'     => $this->body,
+        ];
+
+        $data = json_encode($options);
+
+        $priority = \Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY;
+        $delay    = \Pheanstalk_PheanstalkInterface::DEFAULT_DELAY;
+
+        return $pheanstalkQueue->putInTube('mailplatform', $data, $priority, $delay);
     }
 
     /**
