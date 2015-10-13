@@ -116,11 +116,17 @@
 
         <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
         <input type="hidden" id="master" name="master" value="{{ product.sku }}">
+
+    <div class="grid_8 alpha omega add-buttons">
+        <a href="{{ path('_account_wishlist_add_item') }}" class="wishlist js-is-anonymous">{{ "add.product.to.wishlist"|trans }}</a>
+    </div>
+
       </form>
 
     {% endif %}
 
     </div>
+
     <div id="accordion">
       <h4><span>{{ "product.details"|trans }}</span></h4>
       <div class="pane">
