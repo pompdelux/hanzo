@@ -34,7 +34,7 @@ class CmsController extends CoreController
      */
     public function indexAction($locale)
     {
-        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN")'))) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_MARKETING") or hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -714,7 +714,7 @@ class CmsController extends CoreController
                 'title'  => 'Medarbejdere',
             ],
             'admin_orders' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_LOGISTICS', 'ROLE_CUSTOMERS_SERVICE'],
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_LOGISTICS', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_SUPPORT'],
                 'title'  => 'Ordrer',
             ],
             'admin_products' => [
@@ -722,7 +722,7 @@ class CmsController extends CoreController
                 'title'  => 'Katalog',
             ],
             'admin_shipping_index' => [
-                'access' => ['ROLE_ADMIN'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE_EXTRA'],
                 'title'  => 'Fragt',
             ],
             'admin_settings_washing_instructions' => [
@@ -734,11 +734,11 @@ class CmsController extends CoreController
                 'title'  => 'Gavekort',
             ],
             'admin_coupons' => [
-                'access' => ['ROLE_ADMIN'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE_EXTRA'],
                 'title'  => 'Rabatkoder',
             ],
             'admin_postalcode' => [
-                'access' => ['ROLE_ADMIN'],
+                'access' => ['ROLE_ADMIN', 'ROLE_CUSTOMERS_SERVICE_EXTRA'],
                 'title'  => 'Postnumre',
             ],
             'admin_helpdesk' => [

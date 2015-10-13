@@ -3,168 +3,172 @@
  */
 
 .body-product .main {
-	.social-buttons{
-		display: inline;
-	}
-	.title,
-	h1.title{
-		font-weight: bold;
-		margin-bottom: 5px;
-	}
-	.title,
-	h1.title,
-	.prices {
-		font-family: $font-sans;
-		clear: none;
-	}
+    .social-buttons{
+        display: inline;
+    }
+    .title,
+    h1.title{
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .title,
+    h1.title,
+    .prices {
+        font-family: $font-sans;
+        clear: none;
+    }
 
-	h4{
-		padding: 6px 0;
-		font-size: 1.17em;
-	}
+    h4{
+        padding: 6px 0;
+        font-size: 1.17em;
+    }
 
 
-	form.buy {
-		position: relative;
-		margin-bottom: 20px;
-		min-height: 140px;
+    form.buy {
+        position: relative;
+        margin-bottom: 20px;
+        min-height: 140px;
 
-		label {
-			select {
-				width: 60%;
-			}
-		}
+        .add-buttons {
+          position: inherit;
+        }
 
-		.submit-button {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			font-size: 0;
-			line-height: 0;
-			background-color: #fff;
-		}
-	}
+        label {
+            select {
+                width: 60%;
+            }
+        }
 
-	.show-size-guide {
-		display: block;
-		padding: 5px 3px;
-		img{
-			padding-bottom: 50px;
-		}
-	}
+        .submit-button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 0;
+            line-height: 0;
+            background-color: #fff;
+        }
+    }
 
-	.style-guide {
-		padding-bottom: 10px;
-		.element {
-			position: relative;
-			a.element-item {
-				// 4 on a row.
-				width: 24%;
-				text-align: center;
-			}
-			a.buy-set{
-				position: absolute;
-				bottom: 0;
-				right: 0;
-			}
-		}
-	}
+    .show-size-guide {
+        display: block;
+        padding: 5px 3px;
+        img{
+            padding-bottom: 50px;
+        }
+    }
 
-	.latest-seen-poducts a{
-		// 4 on a row.
-		width: 24%;
-		text-align: center;
-	}
+    .style-guide {
+        padding-bottom: 10px;
+        .element {
+            position: relative;
+            a.element-item {
+                // 4 on a row.
+                width: 24%;
+                text-align: center;
+            }
+            a.buy-set{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    }
 
-	#accordion {
-		border-bottom: 1px solid #888;
-		h4 {
-			border-top: 1px solid #888;
-			span {
-        		background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
-				margin-right: 5px;
-				display: block;
-			}
-			&.current {
-				border-bottom: 1px solid #888;
-				span {
-                	background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
-				}
-			}
-		}
+    .latest-seen-poducts a{
+        // 4 on a row.
+        width: 24%;
+        text-align: center;
+    }
 
-		.pane {
-			padding: 4px 0;
-		}
-	}
+    #accordion {
+        border-bottom: 1px solid #888;
+        h4 {
+            border-top: 1px solid #888;
+            span {
+                background: url(/fx/images/icons/icons/arrow_right.png) center right no-repeat;
+                margin-right: 5px;
+                display: block;
+            }
+            &.current {
+                border-bottom: 1px solid #888;
+                span {
+                    background: url(/fx/images/icons/icons/arrow_down.png) center right no-repeat;
+                }
+            }
+        }
 
-	#slideshow{
-		position: relative;
-		text-align: center;
-		clear: both;
-		.navigation .prev,
-		.navigation .next{
-			display: inline-block;
-			width: 50px;
-			height: 50px;
-			background: url(/fx/images/icons/icons/button-left-black.png) no-repeat left #FFF;
-			z-index: 310;
-			position: absolute;
-			left: 0;
-			top: 50%;
-			margin-top: -25px;
-		}
-		.navigation .next{
-			right: 0;
-			left: auto;
-			background: url(/fx/images/icons/icons/button-right-black.png) no-repeat right #FFF;
-		}
-		.video {
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-	}
+        .pane {
+            padding: 4px 0;
+        }
+    }
 
-	.productimage-large img {
-		height: 260px;
-	}
+    #slideshow{
+        position: relative;
+        text-align: center;
+        clear: both;
+        .navigation .prev,
+        .navigation .next{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: url(/fx/images/icons/icons/button-left-black.png) no-repeat left #FFF;
+            z-index: 310;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -25px;
+        }
+        .navigation .next{
+            right: 0;
+            left: auto;
+            background: url(/fx/images/icons/icons/button-right-black.png) no-repeat right #FFF;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .productimage-large img {
+        height: 260px;
+    }
 }
 
 .prices {
-	.normal,
-	.discount {
-		display: block;
-	}
-	.description {
-		font-family: $font-sans;
-		font-size: $small_size
-	}
+    .normal,
+    .discount {
+        display: block;
+    }
+    .description {
+        font-family: $font-sans;
+        font-size: $small_size
+    }
 }
 
 .body-buy-set .main {
-	h2.title {
-		font-weight: normal;
-		text-transform: none;
-	}
-	form.buy {
-		label {
-			width: 100%;
-			select {
-				width: 56%;
-			}
-		}
-	}
+    h2.title {
+        font-weight: normal;
+        text-transform: none;
+    }
+    form.buy {
+        label {
+            width: 100%;
+            select {
+                width: 56%;
+            }
+        }
+    }
 }
 
 a.product-color{
-	white-space: normal;
+    white-space: normal;
 }
 
 a.video-popper, #video-player-container a.video {
-	.sprite{
-		@include icons-sprite(video);
-		height: icons-sprite-height(video) - 1px;
-		width: icons-sprite-width(video) - 1px;
-	}
+    .sprite{
+        @include icons-sprite(video);
+        height: icons-sprite-height(video) - 1px;
+        width: icons-sprite-width(video) - 1px;
+    }
 }

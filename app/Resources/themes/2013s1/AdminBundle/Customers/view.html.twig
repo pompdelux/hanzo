@@ -92,7 +92,7 @@
                 <td>{{ address.latitude }}</td>
                 <td>{{ address.longitude }}</td>
                 <th class="controles">
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CUSTOMERS_SERVICE_EXTRA') %}
                     <a href="{{ path('admin_customer_address', {'id' : address.customersid , 'type' : address.type }) }}" class="glyphicon glyphicon-edit" title="{{ 'admin.customers.address.edit'|trans({}, 'admin') }}"></a>
                 {% endif %}
                 </th>

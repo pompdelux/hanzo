@@ -3538,6 +3538,9 @@ footer .copy li {
   margin-bottom: 20px;
   min-height: 140px;
 }
+.body-product .main form.buy .add-buttons {
+  position: inherit;
+}
 .body-product .main form.buy label select {
   width: 60%;
 }

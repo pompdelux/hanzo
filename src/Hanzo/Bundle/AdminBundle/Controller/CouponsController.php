@@ -22,11 +22,13 @@ use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\DomainsSettingsQuery;
 
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+
 class CouponsController extends CoreController
 {
     public function indexAction($pager)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -87,7 +89,7 @@ class CouponsController extends CoreController
 
     public function viewAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -191,7 +193,7 @@ class CouponsController extends CoreController
 
     public function deleteAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
@@ -222,7 +224,7 @@ class CouponsController extends CoreController
 
     public function batchAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 

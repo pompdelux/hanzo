@@ -16,7 +16,7 @@
         {% endblock %}
     {% endif %}
 
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPPORT') %}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPPORT') or is_granted('ROLE_CUSTOMERS_SERVICE_EXTRA') %}
 
         <div class="row">
             <h2>Ordresynkronisering</h2>

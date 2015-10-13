@@ -8,6 +8,8 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Symfony\Component\HttpFoundation\Request;
 
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+
 class PostalCodeController extends CoreController
 {
     /**
@@ -16,7 +18,7 @@ class PostalCodeController extends CoreController
      */
     public function indexAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -64,7 +66,7 @@ class PostalCodeController extends CoreController
      */
     public function editAction(Request $request)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
@@ -159,7 +161,7 @@ class PostalCodeController extends CoreController
      */
     public function deleteAction(Request $request, $country, $id = null)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             return $this->redirect($this->generateUrl('admin'));
         }
 
