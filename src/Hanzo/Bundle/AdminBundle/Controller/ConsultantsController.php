@@ -182,7 +182,7 @@ class ConsultantsController extends CoreController
         );
 
         $form = $this->createFormBuilder($consultant_data);
-        if ($security->isGranted('ROLE_ADMIN') || $security->isGranted('ROLE_SALES')) {
+        if ($security->isGranted('ROLE_ADMIN') || $security->isGranted('ROLE_SALES') || $security->isGranted('ROLE_CUSTOMERS_SERVICE_EXTRA')) {
             $form = $form->add('first_name', 'text',
                 array(
                     'label' => 'admin.customer.first_name.label',
