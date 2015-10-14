@@ -21,11 +21,10 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 
 class BundleController extends CoreController
 {
-    public function viewAction($image_id)
+    public function viewAction($image_id, $return)
     {
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
-        $route = $this->get('request')->get('_route');
         $router = $this->get('router');
 
         $cache_id = array('product.image.bundle', $image_id);
@@ -33,9 +32,6 @@ class BundleController extends CoreController
 
         if (empty($products)) {
             $product_ids = array();
-
-            $router_keys = include $this->container->getParameter('kernel.cache_dir') . '/category_map.php';
-            $locale = strtolower($hanzo->get('core.locale'));
 
             $main_product = ProductsQuery::create()
                 ->useProductsI18nQuery()
@@ -63,15 +59,16 @@ class BundleController extends CoreController
             }
 
             $product_ids[] = $main_product->getId();
-            $products2category = ProductsToCategoriesQuery::create()
-                ->useProductsQuery()
-                ->filterBySku($main_product->getSku())
-                ->endUse()
-                ->findOne()
-            ;
-
-            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-            $product_route = $router_keys[$key];
+            /**
+             * As a product can be in more than one category we have to find the correct one
+             *
+             * The category_map.php was used for that
+             * - But if the product is in category X, and that one does not have an cms page it is not going to be in the map.
+             * - Looping over the result is also not an option because the first matching one might also be wrong.
+             * - So we use the route send in the return var
+             *
+             */
+            $product_route = $return;
 
             // Without this i18n behaviour uses da_DK
             $main_product->setLocale($hanzo->get('core.locale'));
@@ -118,16 +115,7 @@ class BundleController extends CoreController
             ;
 
             foreach ($result as $product) {
-
-                $products2category = ProductsToCategoriesQuery::create()
-                    ->useProductsQuery()
-                    ->filterBySku($product->getSku())
-                    ->endUse()
-                    ->findOne()
-                ;
-
-                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-                $product_route = $router_keys[$key];
+                $product_route = $return;
 
                 // Without this i18n behaviour uses da_DK
                 $product->setLocale($hanzo->get('core.locale'));
