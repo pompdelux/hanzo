@@ -109,7 +109,7 @@
                             <a href="{{ item.url }}" title="{{ product.title ~ ', ' ~ item.color }}">{{ product_image_tag(item.image, '114x200', {'alt': product.title ~ ', ' ~ item.color}) }}</a>
                         {% endfor %}
                     {% endspaceless %}
-                    <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
+                    <a href="{{ path('product_set', {'image_id': id, 'return': _route}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
                 </div>
             {% endfor %}
         </div>
