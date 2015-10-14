@@ -7,7 +7,7 @@ product_info:
         product_id: \d+
 
 product_set:
-    pattern:    /product/bundle/{image_id}
+    pattern:    /product/bundle/{image_id}/{return}
     defaults:
         _controller: ProductBundle:Bundle:view
         image_id: 1
