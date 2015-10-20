@@ -12,7 +12,7 @@ class DefaultController extends CoreController
     {
         // redirect hack
         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            if ($this->get('security.context')->isGranted('ROLE_CUSTOMERS_SERVICE') && !$this->get('security.context')->isGranted('ROLE_CUSTOMERS_SERVICE_EXTRA')) {
+            if ($this->get('security.context')->isGranted('ROLE_CUSTOMERS_SERVICE') && !$this->get('security.context')->isGranted('ROLE_CUSTOMERS_SERVICE_EXTRA') && !$this->get('security.context')->isGranted('ROLE_SUPPORT')) {
                 return $this->redirect($this->generateUrl('admin_customers'));
             }
 
