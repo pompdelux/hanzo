@@ -105,7 +105,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'nh@pompdelux.dk'       => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
         'tta@pompdelux.dk'      => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
         // support
-        'hf+support@bellcom.dk' => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],
         'cr@pompdelux.dk'       => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],
         'ma@pompdelux.dk'       => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],
         'hbo@pompdelux.dk'      => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],

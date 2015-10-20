@@ -88,6 +88,7 @@ class DomainVoter implements VoterInterface
             !in_array('ROLE_STATS', $user->getRoles()) &&
             !in_array('ROLE_DESIGN', $user->getRoles()) &&
             !in_array('ROLE_CUSTOMERS_SERVICE', $user->getRoles()) &&
+            !in_array('ROLE_SUPPORT', $user->getRoles()) &&
             !in_array('ROLE_LOGISTICS', $user->getRoles()) &&
             ('webshop' === $this->container->get('kernel')->getStoreMode()) &&
             ($customer->getGroupsId() !== 1)
