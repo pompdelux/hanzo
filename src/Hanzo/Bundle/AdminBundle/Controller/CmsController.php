@@ -706,7 +706,7 @@ class CmsController extends CoreController
                 'title'  => 'Kunder',
             ],
             'admin_consultants' => [
-                'access' => ['ROLE_ADMIN', 'ROLE_SALES'],
+                'access' => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE_EXTRA'],
                 'title'  => 'Shopping Advisor',
             ],
             'admin_employees' => [
