@@ -18,11 +18,8 @@
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-compass": "^0.7.2",
-    "grunt-modernizr": "^0.5.2",
+    "grunt-modernizr": "metaloha/grunt-modernizr#d6657bf302bd9288e25a513197fb0e30c64ce677",
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-cssmin": "^0.9.0"
-  },
-  "dependencies": {
-    "grunt-modernizr": "^0.5.2"
   }
 }
