@@ -27,7 +27,6 @@
               <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
                   {{ product_image_tag(product.image, '234x410', {
-                    'alt' : product.alt,
                     'data-flip': product_image_url(product.image_flip, '234x410'),
                     'height' : '410',
                     'width' : '234',
