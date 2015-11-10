@@ -281,6 +281,9 @@ trait KernelTrait
             if (is_file('/etc/vagrant_box_build_time')) {
                 return true;
             }
+            if (is_dir('/vagrant/.vagrant')) {
+                return true;
+            }
         }
 
         return false;
