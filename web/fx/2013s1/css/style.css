@@ -5612,7 +5612,7 @@ nav.navigation-main > ul.outer > li a {
 nav.navigation-main > ul.outer > li > a {
   font-size: 14px;
   letter-spacing: .8px;
-  padding: 10px 15px;
+  padding: 10px 12px;
   text-transform: uppercase;
 }
 nav.navigation-main > ul.outer > li > a:after {
