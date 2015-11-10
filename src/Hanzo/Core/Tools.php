@@ -934,7 +934,9 @@ class Tools
             'XL'       => 50,
             ];
 
-        $firstValue = strtoupper(array_shift(array_keys($sizes)));
+        $s = array_keys($sizes);
+        $s = array_shift($s);
+        $firstValue = strtoupper($s);
 
         if (isset($sizeMap[$firstValue])) {
             uksort($sizes, function($a, $b) use ($sizeMap) {
