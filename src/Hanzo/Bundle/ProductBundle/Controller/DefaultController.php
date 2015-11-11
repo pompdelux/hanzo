@@ -171,9 +171,9 @@ class DefaultController extends CoreController
             );
         }
 
+        // If there are any references to this image,
+        // Prepend an overview 01 image of the current product to the array using array_unshift.
         foreach ($images_references as $image_id => &$references) {
-            // If there are any references to this image,
-            // Add an overview of the current product at the top of the array.
             if (count($references['references']) > 0) {
                 array_unshift($references['references'], array(
                     'title' => $product->getSku(),
@@ -184,6 +184,15 @@ class DefaultController extends CoreController
                         'title'=> Tools::stripText($product->getSku()),
                     ), TRUE),
                 ));
+            }
+        }
+
+        // Replace all overview_02 with 01
+        foreach ($images_references as $image_id => &$references) {
+            foreach ($references['references'] as &$image) {
+                if (strpos($image['image'],'overview_02') !== false) {
+                    $image['image'] = str_replace('overview_02', 'overview_01', $image['image']);
+                }
             }
         }
 
@@ -199,7 +208,7 @@ class DefaultController extends CoreController
         $result = ProductsWashingInstructionsQuery::create()
             ->filterByLocale($hanzo->get('core.locale'))
             ->findOneByCode($product->getWashing())
-        ;
+            ;
 
         // As seo text is related to a product style we have to look at the first product id
         // Currently the SEO text import/export duplicates the meta info to all varients
@@ -233,7 +242,7 @@ class DefaultController extends CoreController
             'colors' => $colors,
             'all_colors' => $all_colors,
             'sizes' => $sizes,
-            'images_references' => $images_references,
+            // 'images_references' => $images_references,
             'has_video' => (bool) $product->getHasVideo(),
         );
 
@@ -242,8 +251,8 @@ class DefaultController extends CoreController
         $prices = ProductsDomainsPricesPeer::getProductsPrices(array($data['id']));
         $data['prices'] = array_shift($prices);
 
-        $images_references = $data['images_references'];
-        unset($data['images_references']);
+        // $images_references = $data['images_references'];
+        // unset($data['images_references']);
 
         $this->get('twig')->addGlobal('page_type', 'product-'.$data['id']);
         $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
