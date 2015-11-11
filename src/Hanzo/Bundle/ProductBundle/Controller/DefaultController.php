@@ -149,6 +149,7 @@ class DefaultController extends CoreController
                 ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                 ->joinWithProductsImages()
                 ->useProductsImagesQuery()
+                    ->addDescendingOrderByColumn('IMAGE')
                     ->filterByType('overview')
                     ->where('products_images.COLOR = products_images_product_references.COLOR')
                 ->endUse()
