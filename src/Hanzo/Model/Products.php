@@ -22,6 +22,13 @@ class Products extends BaseProducts
      */
     public function getPostfixedSize(Translator $translator)
     {
+        $disallowed_product_categories_postfix = array(
+          'AmbroseSocksSS16',
+          'YpresSocksSS16',
+          'BoiseKNEESOCKSAW15',
+          'AmarilloSOCKSAW15',
+          'TalbottSOCKSAW15'
+        );
         $size = $this->getSize();
 
         // if there are any text in the size value, we do not postfix "One size cm" is just wiered ;)
@@ -29,7 +36,13 @@ class Products extends BaseProducts
             return $size;
         }
 
+        // If we shouldnt show postfix for the product category
+        if (in_array($this->master, $disallowed_product_categories_postfix)) {
+            return $size;
+        }
+
         $sizeLabel = $translator->trans('size.label.postfix');
+
         if ('size.label.postfix' === $sizeLabel) {
             $sizeLabel = '';
         }
