@@ -475,7 +475,7 @@ class OrdersController extends CoreController
      */
     public function deleteAction(Request $request, $order_id)
     {
-        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SUPPORT")'))) {
+        if (false === $this->get('security.context')->isGranted(new Expression('hasRole("ROLE_ADMIN") or hasRole("ROLE_SUPPORT") or hasRole("ROLE_CUSTOMERS_SERVICE_EXTRA")'))) {
             throw new AccessDeniedException();
         }
 
