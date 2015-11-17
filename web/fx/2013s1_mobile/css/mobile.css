@@ -975,6 +975,9 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
   letter-spacing: 1px;
   margin-bottom: 6px;
 }
+.body-buy-set form.buy label select {
+  width: 234px;
+}
 
 .body-product .main h1.title,
 .body-product .main h2.title,
