@@ -1,7 +1,8 @@
 <?php
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Hanzo\Bundle\AdminBundle\Exporter\SeoTextExporter;
+use Hanzo\Bundle\AdminBundle\Exporter\SeoCSVTextExporter;
+use Hanzo\Bundle\AdminBundle\Exporter\SeoXMLTextExporter;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\CmsQuery;
 use Hanzo\Model\LanguagesQuery;
@@ -43,18 +44,18 @@ class SeoTextsController extends CoreController
      */
     public function exportAction(Request $request)
     {
-        $exporter = new SeoTextExporter();
+        #$exporter = new SeoXMLTextExporter();
+        $exporter = new SeoCSVTextExporter();
         $exporter->setDBConnection($this->getDbConnection());
 
         $locale      = $request->request->get('locale');
-        $exportTypes = $request->request->get('export_types');
+        $exportType = $request->request->get('export_type');
 
-        if (empty($exportTypes)) {
+        if (!in_array($exportType, ['products', 'cms'])) {
             $this->get('session')->getFlashBag()->add('warning', 'No export types selected');
 
             return $this->redirect($this->generateUrl('admin_tools_seo_index'));
         }
-
 
         if (!$locale) {
             $locale = LanguagesQuery::create()
@@ -63,11 +64,11 @@ class SeoTextsController extends CoreController
                 ->getLocale();
         }
 
-        $data = $exporter->getDataAsXML($locale, $exportTypes);
+        $data = $exporter->getData($locale, $exportType);
 
         return new Response($data, 200, [
-            'Content-Type' => 'application/xml',
-            'Content-Disposition' => 'attachment; filename="seo_texts_'.$locale.'.xml"',
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="seo-texts-'.$exportType.'-'.$locale.'.csv"',
         ]);
     }
 

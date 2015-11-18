@@ -30,12 +30,12 @@
 <form action="{{ path('admin_tools_seo_export') }}" id="seo-export" class="form-inline" method="POST">
     <label>
       Products:
-      <input type="checkbox" name="export_types[]" value="products" checked>
+      <input type="radio" name="export_type" value="products">
     </label>
     <br>
     <label>
       CMS:
-      <input type="checkbox" name="export_types[]" value="cms" checked>
+      <input type="radio" name="export_type" value="cms">
     </label>
     <br>
     <input class="button btn btn-success" type="submit" value="Eksporter">
