@@ -13,15 +13,17 @@ class SeoCsvTextImporter extends BaseSeoTextImporter implements SeoTextImporterI
 {
     public function handle(File $file)
     {
+        // The filename format matters: seo-texts-(products|cms)-(locale).csv
         list ($part, $locale) = explode('-', str_replace(['seo-texts-'], '', $file->getBasename('.csv')));
+
+        // Only accept locales in the current locale scope.
+        if ($this->locale !== $locale) {
+            throw new SeoTextImporterException('Some errors happened: Uploaded fields <locale> tag does not match the selected database: "'.$locale.'" vs. "'.$this->locale.'"');
+        }
 
         $handler = $file->openFile();
         $handler->setFlags(\SplFileObject::READ_CSV | \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
         $handler->setCsvControl(';');
-
-        if ($this->locale !== $locale) {
-            throw new SeoTextImporterException('Some errors happened: Uploaded fields <locale> tag does not match the selected database: "'.$locale.'" vs. "'.$this->locale.'"');
-        }
 
         $errors = [];
 
@@ -30,16 +32,19 @@ class SeoCsvTextImporter extends BaseSeoTextImporter implements SeoTextImporterI
             ++$i;
 
             // skip header line
-            if (1 == $i) {
+            if (1 === $i) {
                 continue;
             }
 
             if ('cms' == $part) {
+                // Extract cms page is, meta title and description.
                 list($id, , , $title, $description) = $row;
             } elseif ('products' == $part) {
+                // Extract product id, sku, meta title and description.
                 list($id, $sku, $title, $description) = $row;
             }
 
+            // For some reason Propel dumps null values as "N;" - and I cannot figure out how to remove these from the export.
             $title = trim($title, 'N;');
             $description = trim($description, 'N;');
 

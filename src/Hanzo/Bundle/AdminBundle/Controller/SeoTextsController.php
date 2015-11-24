@@ -94,12 +94,15 @@ class SeoTextsController extends CoreController
         $file = $uploadedFile->move(sys_get_temp_dir(), $fileName);
         $mimeType = $uploadedFile->getClientMimeType();
 
+        // We determine importer based on the input files mime type.
+        // Currently csv and xml files are accepted.
         if ('text/csv' == $mimeType) {
             $importer = new SeoCsvTextImporter($dbLocale, $this->getDbConnection());
         } elseif ('text/xml' == $mimeType) {
             $importer = new SeoXMLTextImporter($dbLocale, $this->getDbConnection());
         } else {
             $this->get('session')->getFlashBag()->add('warning', 'Unsupported file format, only use xml or csv files.');
+
             return $this->redirect($this->generateUrl('admin_tools_seo_index'));
         }
 
