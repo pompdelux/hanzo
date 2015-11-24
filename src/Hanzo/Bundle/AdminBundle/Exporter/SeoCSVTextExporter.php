@@ -13,7 +13,18 @@ use Hanzo\Model\CmsQuery;
 class SeoCSVTextExporter extends \PropelCSVParser
 {
     /**
-     * @param \PropelPDO|\PDO $connection
+     * SeoCSVTextExporter constructor.
+     *
+     * @param string $delimiter
+     */
+    public function __construct($delimiter = ',')
+    {
+        $this->quoting   = self::QUOTE_NONNUMERIC;
+        $this->delimiter = $delimiter;
+    }
+
+    /**
+     * @param \PropelPDO|\Propel $connection
      */
     public function setDBConnection($connection)
     {
@@ -32,8 +43,6 @@ class SeoCSVTextExporter extends \PropelCSVParser
         if (is_null($this->getDBConnection())) {
             throw new \OutOfBoundsException("Database connection needs to be set.");
         }
-
-        $this->quoting = self::QUOTE_NONNUMERIC;
 
         return $this->listFromArray($this->build($locale, $exportTypes));
     }
