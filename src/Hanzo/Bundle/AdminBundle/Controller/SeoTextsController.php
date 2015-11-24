@@ -45,10 +45,10 @@ class SeoTextsController extends CoreController
     public function exportAction(Request $request)
     {
         #$exporter = new SeoXMLTextExporter();
-        $exporter = new SeoCSVTextExporter();
+        $exporter = new SeoCSVTextExporter(';');
         $exporter->setDBConnection($this->getDbConnection());
 
-        $locale      = $request->request->get('locale');
+        $locale     = $request->request->get('locale');
         $exportType = $request->request->get('export_type');
 
         if (!in_array($exportType, ['products', 'cms'])) {
