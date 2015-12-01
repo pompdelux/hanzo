@@ -73,7 +73,7 @@ class SeoCSVTextExporter extends \PropelCSVParser
             $description = '';
 
             if ($seo->count()) {
-                $seo = $seo->first();
+                $seo         = $seo->getFirst();
                 $title       = $seo->getMetaTitle();
                 $description = $seo->getMetaDescription();
             }
@@ -114,8 +114,8 @@ class SeoCSVTextExporter extends \PropelCSVParser
                 'id'               => $page->getId(),
                 'title'            => str_replace('&nbsp;', '', $page->getTitle()),
                 'path'             => '/'.$locale.'/'.$page->getPath(),
-                'meta_title'       => $page->getMetaTitle(),
-                'meta_description' => $page->getMetaDescription(),
+                'meta_title'       => $page->getMetaTitle() ?: '',
+                'meta_description' => $page->getMetaDescription() ?: '',
             ];
         }
 
