@@ -635,7 +635,7 @@ class MenuController extends CoreController
             }
         } else {
             $query->useCmsI18nQuery()
-                ->filterByOnMobile(true)
+                ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->filterByIsActive(true)
                 ->endUse()
                 ;
