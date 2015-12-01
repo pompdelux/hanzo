@@ -92,11 +92,11 @@ class SeoTextsController extends CoreController
             ->getLocale();
 
         $file = $uploadedFile->move(sys_get_temp_dir(), $fileName);
-        $mimeType = $uploadedFile->getClientMimeType();
+        $mimeType = strtolower($uploadedFile->getClientMimeType());
 
         // We determine importer based on the input files mime type.
         // Currently csv and xml files are accepted.
-        if ('text/csv' == $mimeType) {
+        if (in_array($mimeType, ['application/vnd.ms-excel', 'text/csv'])) {
             $importer = new SeoCsvTextImporter($dbLocale, $this->getDbConnection());
         } elseif ('text/xml' == $mimeType) {
             $importer = new SeoXMLTextImporter($dbLocale, $this->getDbConnection());
