@@ -65,7 +65,7 @@ class SeoTextsController extends CoreController
 
         $data = $exporter->getData($locale, $exportType);
 
-        return new Response($data, 200, [
+        return new Response("\xEF\xBB\xBF".$data, 200, [
             'Content-Encoding'    => 'UTF-8',
             'Content-Type'        => 'text/csv; charset=UTF-8',
             'Content-Disposition' => 'attachment; filename="seo-texts-'.$exportType.'-'.$locale.'.csv"',
