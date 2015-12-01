@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
@@ -312,7 +312,6 @@ Du kan läsa mer om ångerrätten under <a href="/sv_SE/forside/kundservice/vill
 				 <ul class="menu">
 				 <li><a href="http://instagram.com/pompdelux_official" target="_blank"> Instagram</a></li>
 				<li><a href="https://www.facebook.com/POMPdeLUX.dk?brand_redir=650144638425188" target="_blank">Facebook</a></li>
-				 <li><a href="/sv_SE/forside/katalog/backstage-video">Backstage video</a></li>
                 </ul>
                 ]]></target>
             </trans-unit>
