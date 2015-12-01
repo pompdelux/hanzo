@@ -18,7 +18,6 @@ script:
   - phpunit -c app/
   - php app/console hanzo:run-checks
 
-webhooks:
-  urls:
-    - http://tools.pompdelux.com/travis-hook.php
-  on_start: true
+notifications:
+  webhooks: http://tools.pompdelux.com/travis-hook.php
+
