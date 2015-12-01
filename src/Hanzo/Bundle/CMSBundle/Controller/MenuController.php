@@ -137,8 +137,8 @@ class MenuController extends CoreController
             $item = CmsQuery::create()
                 ->filterByCmsThreadId($this->cms_thread)
                 ->useCmsI18nQuery('i18n')
-                    ->filterByLocale($this->locale)
-                    ->filterByPath(trim($this->path, '/'))
+                ->filterByLocale($this->locale)
+                ->filterByPath(trim($this->path, '/'))
                 ->endUse()
                 ->findOne()
             ;
@@ -190,7 +190,7 @@ class MenuController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByOnMobile(true)
+                ->filterByOnMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
@@ -299,7 +299,7 @@ class MenuController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
+                ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
@@ -434,7 +434,7 @@ class MenuController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
+                ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->orderBySort()
@@ -619,9 +619,9 @@ class MenuController extends CoreController
 
         $query = CmsQuery::create()
             ->useCmsThreadQuery()
-                ->useCmsThreadI18nQuery()
-                    ->filterByTitle($title)
-                ->endUse()
+            ->useCmsThreadI18nQuery()
+            ->filterByTitle($title)
+            ->endUse()
             ->endUse()
             ->joinWithI18n($locale)
             ->orderBySort()
@@ -640,7 +640,7 @@ class MenuController extends CoreController
                 ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->filterByIsActive(true)
                 ->endUse()
-                ;
+            ;
         }
 
         $result = $query->find();
