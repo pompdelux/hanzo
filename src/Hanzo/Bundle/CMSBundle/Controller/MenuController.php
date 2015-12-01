@@ -435,9 +435,9 @@ class MenuController extends CoreController
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
                     ->filterByOnMobile(true)
+                        ->_or()
+                    ->filterByOnlyMobile(true)
                 ->endUse()
-                ->joinWithI18n($this->locale)
-                ->orderBySort()
                 ->filterByParentId($parent_id)
             ;
 
