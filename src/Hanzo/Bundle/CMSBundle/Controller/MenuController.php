@@ -299,7 +299,7 @@ class MenuController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByOnMobile(true)
+                    ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->endUse()
                 ->joinWithI18n($this->locale)
                 ->filterByCmsThreadId($this->cms_thread)
@@ -434,10 +434,8 @@ class MenuController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->useCmsI18nQuery()
-                    ->filterByOnMobile(true)
+                    ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->endUse()
-                ->joinWithI18n($this->locale)
-                ->orderBySort()
                 ->filterByParentId($parent_id)
             ;
 
@@ -637,7 +635,7 @@ class MenuController extends CoreController
             }
         } else {
             $query->useCmsI18nQuery()
-                ->filterByOnMobile(true)
+                ->filterByOnMobile(true)->_or()->filterByOnlyMobile(true)
                 ->filterByIsActive(true)
                 ->endUse()
                 ;
