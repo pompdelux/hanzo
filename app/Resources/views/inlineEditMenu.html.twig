@@ -20,9 +20,10 @@
             {% else %}
                 <i class="fa fa-unlock fa-box green" title="synlig på live site"></i>
             {% endif %}
-            {% if page.updatedAt is defined %}
-                <span class="ts">{{ page.updatedAt|date("d/m 'y H:i") }} - {{ page.updatedBy|split('@')[0] }}</span>
-            {% endif %}
+
+            {#{% if page.updatedAt is function %}#}
+                {#<span class="ts">{{ page.updatedAt|date("d/m 'y H:i") }} - {{ page.updatedBy|split('@')[0] }}</span>#}
+            {#{% endif %}#}
             </li>
         {% endif %}
         {% if product is defined %}
