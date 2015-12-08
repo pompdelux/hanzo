@@ -51,6 +51,8 @@ class AdvisorController extends CoreController
             'embedded_content' => $this->renderView($tpl, $settings),
             'parent_id'        => $cms->getParentId() ?: $page->getId(),
             'browser_title'    => $page->getTitle(),
+            'meta_title'       => $page->getMetaTitle(),
+            'meta_description' => $page->getMetaDescription(),
         ]);
     }
 
