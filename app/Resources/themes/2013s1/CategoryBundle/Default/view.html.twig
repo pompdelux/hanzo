@@ -1,20 +1,17 @@
 {% extends layout %}
 
 {% block meta %}
-{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
-{{ meta_tags('og:description,description') }}
-<meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
+{% if meta_description is empty %}
+    {% set meta_description = ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags %}
 {% endif %}
-{% if meta_description is not empty %}
-<meta name="description" content="{{ meta_description }}">
-{% else %}
-<meta name="description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
-{% endif %}
-{% if meta_title is not empty %}
-<meta name="title" content="{{ meta_title }}">
-{% endif%}
+{{ meta_tags('', {
+    'title'         : meta_title|default(''),
+    'og:title'      : meta_title|default(''),
+    'description'   : meta_description|default(''),
+    'og:description': meta_description|default(''),
+    'og:type'       : meta_type|default('product.group')
+}) }}
 {% endblock %}
-
 {% block content %}
 
 <header class="grid_8 alpha omega">
