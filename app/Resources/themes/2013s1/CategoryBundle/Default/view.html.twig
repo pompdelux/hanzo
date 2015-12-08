@@ -13,9 +13,14 @@
 {% if meta_title is not empty %}
 <meta name="title" content="{{ meta_title }}">
 {% endif%}
+
+{% if (show_type == 'overview') or (app.request.uri|split('?')|length == 2) %}
+<link rel="canonical" href="{{ url(app.request.get('_route')) }}">
+{% endif %}
 {% endblock %}
 
 {% block content %}
+
 
 <header class="grid_8 alpha omega">
     <hgroup>

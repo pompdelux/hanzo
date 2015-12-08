@@ -46,7 +46,7 @@ class DefaultController extends CoreController
     {
         $hanzo     = Hanzo::getInstance();
         $container = $hanzo->container;
-        $locale    = $this->getRequest()->getLocale();
+        $locale    = $request->getLocale();
 
         // TODO: should not be set here !!
         $cms_page = CmsPeer::getByPK($cms_id, $locale);
@@ -93,6 +93,7 @@ class DefaultController extends CoreController
                 $metaDescription          = !empty($cms_page->getMetaDescription()) ? $cms_page->getMetaDescription() : '';
                 $data['meta_title']       = $metaTitle;
                 $data['meta_description'] = $metaDescription;
+                $data['show_type']        = $show;
                 $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
                 $this->setCache($cache_id, $html, 5);
             }
@@ -526,7 +527,8 @@ class DefaultController extends CoreController
             }
         } else {
             $type = null;
-            $filterType = array_shift(array_keys($filters));
+            $filterType = array_keys($filters);
+            $filterType = array_shift($filterType);
             if (isset($filterTypeMapping[$filterType])) {
                 $type = $filterTypeMapping[$filterType];
             }
