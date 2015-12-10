@@ -298,6 +298,9 @@ class BundleController extends CoreController
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
                 $product_route = $router_keys[$key];
 
+                // Without this i18n behaviour uses da_DK
+                $product->setLocale($hanzo->get('core.locale'));
+
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
