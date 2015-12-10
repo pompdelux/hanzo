@@ -287,7 +287,7 @@ class BundleController extends CoreController
                 $product_route = $router_keys[$key];
 
                 // Without this i18n behaviour uses da_DK
-                $product->setLocale($hanzo->get('core.locale'));
+//                $product->setLocale($hanzo->get('core.locale'));
 
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
