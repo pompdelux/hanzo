@@ -10,7 +10,7 @@ use Hanzo\Model\CmsQuery;
  *
  * @package Hanzo\Bundle\AdminBundle\Exporter
  */
-class SeoTextExporter extends \PropelXMLParser
+class SeoXMLTextExporter extends \PropelXMLParser
 {
     /**
      * @param \PropelPDO|\PDO $connection
@@ -22,12 +22,12 @@ class SeoTextExporter extends \PropelXMLParser
 
     /**
      * @param string $locale
-     * @param Array  $exportTypes
+     * @param mixed  $exportTypes
      *
      * @return string
      * @throws \OutOfBoundsException
      */
-    public function getDataAsXML($locale, Array $exportTypes)
+    public function getData($locale, $exportTypes)
     {
         if (is_null($this->getDBConnection())) {
             throw new \OutOfBoundsException("Database connection needs to be set.");
@@ -37,12 +37,12 @@ class SeoTextExporter extends \PropelXMLParser
     }
 
     /**
-     * @param array      $array
-     * @param DOMElement $rootElement
-     * @param string     $charset
-     * @param boolean    $removeNumbersFromKeys
+     * @param array       $array
+     * @param \DOMElement $rootElement
+     * @param string      $charset
+     * @param boolean     $removeNumbersFromKeys
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     protected function arrayToDOM($array, $rootElement, $charset = null, $removeNumbersFromKeys = false)
     {
@@ -106,7 +106,12 @@ class SeoTextExporter extends \PropelXMLParser
                 $description = $seo[0]['MetaDescription'];
             }
 
-            $data['product'.$i++] = ['id' => $product->getId(), 'sku' => $product->getSku(), 'metatitle' => $title, 'metadescription' => $description];
+            $data['product'.$i++] = [
+                'id'              => $product->getId(),
+                'sku'             => $product->getSku(),
+                'metatitle'       => $title,
+                'metadescription' => $description
+            ];
         }
 
         return $data;
@@ -136,7 +141,13 @@ class SeoTextExporter extends \PropelXMLParser
             $path        = $page->getPath();
 
             // Numbers are removed from key when using listFromArray
-            $data['cmspage'.$i++] = ['id' => $page->getId(), 'title' => $name, 'path' => $path, 'metatitle' => $title, 'metadescription' => $description];
+            $data['cmspage'.$i++] = [
+                'id'              => $page->getId(),
+                'title'           => $name,
+                'path'            => $path,
+                'metatitle'       => $title,
+                'metadescription' => $description
+            ];
         }
 
         return $data;
@@ -161,9 +172,11 @@ class SeoTextExporter extends \PropelXMLParser
      */
     private function build($locale, $exportTypes)
     {
-        $data = [
-            'locale' => $locale,
-        ];
+        if (!is_array($exportTypes)) {
+            $exportTypes = [$exportTypes];
+        }
+
+        $data = ['locale' => $locale];
 
         if (in_array('products', $exportTypes)) {
             $data['products'] = $this->exportProducts($locale);

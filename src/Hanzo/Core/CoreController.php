@@ -235,11 +235,7 @@ class CoreController extends Controller
     /**
      * Gets the connection for which database to use
      *
-<<<<<<< HEAD
-     * @return Propel connection
-=======
-     * @return \PropelPDO|\PDO
->>>>>>> master
+     * @return \PropelPDO
      */
     public function getDbConnection()
     {
@@ -254,11 +250,7 @@ class CoreController extends Controller
     /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
-<<<<<<< HEAD
-     * @param int $language_id
-=======
      * @param int $languageId
->>>>>>> master
      *
      * @return string
      */

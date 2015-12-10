@@ -140,19 +140,35 @@ class MiscExtension extends Twig_Extension
 
 
     /**
-    * Returns any meta data associated with this domain.
-    *
-    * @param string exclude specific tag names.
-    * @return string
-    */
-    public function metaTags($exclude = '')
+     * Returns any meta data associated with this domain.
+     *
+     * @param string $exclude   Specific tag names.
+     * @param array  $overrides Add overrides from templates.
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function metaTags($exclude = '', array $overrides = [])
     {
         $exclude = explode(',', trim($exclude));
+        $exclude = array_combine($exclude, $exclude);
 
         // move to GoogleBundle
         array_unshift($exclude, 'google-site-verification');
 
         $meta = Hanzo::getInstance()->getByNs('meta');
+
+        foreach ($overrides as $key => $value) {
+            if (empty($value)) {
+                continue;
+            }
+
+            if (isset($exclude[$key])) {
+                unset($exclude[$key]);
+            }
+
+            $meta[$key] = $value;
+        }
 
         $result = '';
         foreach ($meta as $key => $value) {

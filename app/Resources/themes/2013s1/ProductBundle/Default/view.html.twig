@@ -1,22 +1,24 @@
 {% extends layout %}
 
 {% block meta %}
-    {{ meta_tags('og:type,og:title,og:image,og:description,description') }}
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ product.title }}">
-    <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
-    <meta property="og:description" content="{{ product.description|og_description }}">
-    {% if meta_description is not empty %}
-    <meta name="description" content="{{ meta_description }}">
-    {% else %}
-    <meta name="description" content="{{ product.description|og_description }}">
-    {% endif%}
-    {% if meta_title is not empty %}
-    <meta name="title" content="{{ meta_title }}">
-    {% endif%}
-    <link rel="canonical" href="{{ url(_route, {'product_id' : product.id, 'title' : product.sku|strip_tags }) }}"/>
-{% endblock %}
+    {% if meta_description is empty %}
+        {% set meta_description = product.description|og_description %}
+    {% endif %}
 
+    {% if meta_title is empty %}
+        {% set meta_title = product.title %}
+    {% endif %}
+
+{{ meta_tags('', {
+    'title'         : meta_title|default(''),
+    'og:title'      : meta_title|default(''),
+    'description'   : meta_description|default(''),
+    'og:description': meta_description|default(''),
+    'og:type'       : meta_type|default('product'),
+    'og:image'      : product_image_url(product.main_image.name, '0x200')
+}) }}
+<link rel="canonical" href="{{ app.request.uri|split('?')[0] }}">
+{% endblock %}
 {% block content %}
     {#
     <div class="grid_8 alpha omega">
