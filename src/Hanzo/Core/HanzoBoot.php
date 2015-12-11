@@ -68,6 +68,14 @@ class HanzoBoot
         $container = $this->kernel->getContainer();
         $request   = $event->getRequest();
         $attr      = $request->attributes;
+        $treat_as_pc = array(
+          'tablet-ipad',
+          'tablet-android',
+          'tablet-rim',
+          'tablet-hp',
+          'tablet-kindle',
+          'tablet-microsoft',
+          );
 
         $attr->set('_request_type', $event->getRequestType());
 
@@ -78,7 +86,10 @@ class HanzoBoot
             if ($container->hasParameter('x_ua_device') &&
                 $container->getParameter('x_ua_device')
             ) {
-                if ($container->getParameter('x_ua_device') != 'tablet-ipad') {
+                if (in_array($container->getParameter('x_ua_device'), $treat_as_pc)) {
+                    $device = 'pc';
+                }
+                else {
                     $device = $container->getParameter('x_ua_device');
                 }
             }
