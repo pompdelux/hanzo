@@ -80,18 +80,17 @@ class HanzoBoot
         $attr->set('_request_type', $event->getRequestType());
 
         if ($request->headers->has('x-ua-device')) {
-            $device = $request->headers->get('x-ua-device');
+            $device = 'pc';
+
+            if (! in_array($request->headers->get('x-ua-device'), $treat_as_pc)) {
+                $device = $request->headers->get('x-ua-device');
+            }
         } else {
             $device = 'pc';
             if ($container->hasParameter('x_ua_device') &&
                 $container->getParameter('x_ua_device')
             ) {
-                if (in_array($container->getParameter('x_ua_device'), $treat_as_pc)) {
-                    $device = 'pc';
-                }
-                else {
-                    $device = $container->getParameter('x_ua_device');
-                }
+                $device = $container->getParameter('x_ua_device');
             }
         }
 
