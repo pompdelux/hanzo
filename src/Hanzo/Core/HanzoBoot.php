@@ -80,10 +80,10 @@ class HanzoBoot
         $attr->set('_request_type', $event->getRequestType());
 
         if ($request->headers->has('x-ua-device')) {
-            $device = 'pc';
+            $device = $request->headers->get('x-ua-device');
 
-            if (! in_array($request->headers->get('x-ua-device'), $treat_as_pc)) {
-                $device = $request->headers->get('x-ua-device');
+            if (in_array($request->headers->get('x-ua-device'), $treat_as_pc)) {
+                $device = 'pc';
             }
         } else {
             $device = 'pc';
