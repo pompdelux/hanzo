@@ -78,9 +78,8 @@ class HanzoBoot
             if ($container->hasParameter('x_ua_device') &&
                 $container->getParameter('x_ua_device')
             ) {
-                if ($container->getParameter('x_ua_device') != 'tablet-ipad') {
-                    $device = $container->getParameter('x_ua_device');
-                }
+                $device = $container->getParameter('x_ua_device');
+                //if ($container->getParameter('x_ua_device') != 'tablet-ipad') {}
             }
         }
 
