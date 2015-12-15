@@ -2,31 +2,17 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use Hanzo\Model\CmsI18nQuery;
-use Hanzo\Model\CmsQuery;
-use Hanzo\Model\SearchProductsTagsQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-
+use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\CmsPeer;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
-use Hanzo\Model\ProductsImagesCategoriesSortPeer;
-use Hanzo\Model\CategoriesPeer;
-
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\Products;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
-
-use Hanzo\Model\SearchProductsTagsPeer;
-
-
-use Hanzo\Model\CmsPeer;
+use Hanzo\Model\ProductsQuery;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends CoreController
 {
@@ -549,23 +535,21 @@ class DefaultController extends CoreController
     }
 
     /**
-     * @param mixed $cms_page
      * Ugly hack to traverse to top item
      * - Needed because an extra level was introduced: Pige > Overtøj > Jakker
+     *
+     * @param mixed $cms_page
+     * @return int
      */
     public function getTopLevelCMSPage($cms_page)
     {
         $locale   = $this->getRequest()->getLocale();
         $topLevel = CmsPeer::getByPK($cms_page->getParentId(), $locale);
 
-        if (is_null($topLevel))
-        {
+        if (is_null($topLevel)) {
             $topLevel = $cms_page;
-        }
-        else
-        {
-            while ($topLevel->getParentId() != NULL)
-            {
+        } else {
+            while ($topLevel->getParentId() != NULL) {
                 $topLevel = CmsPeer::getByPK($topLevel->getParentId(), $locale);
             }
         }
@@ -577,7 +561,7 @@ class DefaultController extends CoreController
      * Extracts the json from the CMS page (which again is loaded from the xliff files)
      *
      * @param string $locale
-     * @param int $id
+     * @param int $cmsId
      * @param string $settingsName
      * @param bool $fixNumeric Loop over array to fix key/value
      *
@@ -705,7 +689,7 @@ class DefaultController extends CoreController
                 'color'    => [ 'tag_type' => 'product',  'id' => 'color',   ],
                 'tokens'   => [ 'tag_type' => 'tag',      'id' => 'eco',     ],
                 'discount' => [ 'tag_type' => 'discount', 'id' => 'discount',],
-                ];
+            ];
         }
     }
 
@@ -716,7 +700,7 @@ class DefaultController extends CoreController
      * @param mixed $show
      * @param mixed $pager
      *
-     * @return void
+     * @return string
      * @author Henrik Farre <hf@bellcom.dk>
      */
     protected function getCacheId($show, $pager, $topLevelId = null, $skipFilters = false, $cacheKeys = [])
