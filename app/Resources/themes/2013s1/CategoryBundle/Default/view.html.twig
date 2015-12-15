@@ -11,9 +11,14 @@
     'og:description': meta_description|default(''),
     'og:type'       : meta_type|default('product.group')
 }) }}
-{% endblock %}
-{% block content %}
 
+{% if (show_type == 'overview') or (app.request.uri|split('?')|length == 2) %}
+<link rel="canonical" href="{{ url(app.request.get('_route')) }}">
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
 <header class="grid_8 alpha omega">
     <hgroup>
         {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}

@@ -74,6 +74,7 @@ class MiscExtension extends Twig_Extension
             'og_description' => new Twig_Filter_Method($this, 'ogDescription'),
             'strip_tags' => new Twig_Filter_Method($this, 'stripTags'),
             'tag_safe' => new Twig_Filter_Method($this, 'tagSafe'),
+            'slugify' => new Twig_Filter_Method($this, 'slugify'),
         );
     }
 
@@ -510,5 +511,15 @@ class MiscExtension extends Twig_Extension
         }
 
         return preg_replace('/[^a-z0-9_-]/i', '', $value);
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    public function slugify($value)
+    {
+        return Tools::stripText($value);
     }
 }

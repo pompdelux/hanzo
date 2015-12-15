@@ -4,33 +4,36 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
-use Hanzo\Model\ProductsImagesPeer;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
+use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\CoreController;
-
-use Hanzo\Model\CmsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
+use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
-use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsSeoI18nQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends CoreController
 {
-    public function viewAction($product_id)
+    /**
+     * @param Request $request
+     * @param int     $product_id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function viewAction(Request $request, $product_id)
     {
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
 
         $router = $this->get('router');
-        $route = $this->get('request')->get('_route');
-        $focus = $this->get('request')->get('focus', FALSE);
+        $route = $request->get('_route');
+        $focus = $request->get('focus', false);
 
         $products = ProductsI18nQuery::create()
             ->joinWithProducts()
@@ -40,11 +43,11 @@ class DefaultController extends CoreController
                 ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($hanzo->get('core.domain_id'))
-                    ->filterByFromDate(array('max' => 'now'))
+                    ->filterByFromDate(['max' => 'now'])
                     ->_or()
                     ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
                     ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
-                    ->where(array('c1', 'c2'), 'AND')
+                    ->where(['c1', 'c2'], 'AND')
                 ->endUse()
                 ->joinWithProductsDomainsPrices()
                 ->joinWithProductsImages()
@@ -61,8 +64,8 @@ class DefaultController extends CoreController
         $product = $products[0]->getProducts();
 
         // find all product images
-        $images = array();
-        $image_ids = array();
+        $images = [];
+        $image_ids = [];
 
         $c = new \Criteria();
         $c->addAscendingOrderByColumn(ProductsImagesPeer::COLOR);
@@ -75,13 +78,13 @@ class DefaultController extends CoreController
             $number = isset($path_params[3]) ? (int)$path_params[3] : 0;
             $image_ids[] = $image->getId(); // Used for references
 
-            $images[$image->getId()] = array(
-                'id' => $image->getId(),
-                'name' => $image->getImage(),
-                'color' => $image->getColor(),
-                'type' => $image->getType(),
+            $images[$image->getId()] = [
+                'id'     => $image->getId(),
+                'name'   => $image->getImage(),
+                'color'  => $image->getColor(),
+                'type'   => $image->getType(),
                 'number' => $number,
-            );
+            ];
         }
 
         // Use to kep an array of all images with keys. array_shift broke the keys.
@@ -104,8 +107,8 @@ class DefaultController extends CoreController
         }
         ksort($sorted_images);
 
-        $all_colors = $colors = $sizes = array();
-        $product_ids = array();
+        $all_colors = $colors = $sizes = [];
+        $product_ids = [];
         $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
         $sizes = [];
@@ -114,8 +117,8 @@ class DefaultController extends CoreController
         foreach ($variants as $v) {
             $all_colors[$v->getColor()] = $v->getColor();
             $sizes[$v->getSize()] = [
-                'label' => $v->getPostfixedSize($translator),
-                'value' => $v->getSize(),
+                'label'    => $v->getPostfixedSize($translator),
+                'value'    => $v->getSize(),
                 'in_stock' => false,
             ];
         }
@@ -157,34 +160,34 @@ class DefaultController extends CoreController
             ->find()
         ;
 
-        $images_references = array();
+        $images_references = [];
         foreach ($references as $ref) {
             $sku = $ref->getProducts()->getTitle();
-            $images_references[$ref->getProductsImagesId()]['references'][$ref->getProductsId()] = array(
+            $images_references[$ref->getProductsImagesId()]['references'][$ref->getProductsId()] = [
                 'title' => $sku,
                 'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                 'image' => $ref->getVirtualColumn('products_imagesIMAGE'),
-                'url' => $router->generate($route, array(
+                'url'   => $router->generate($route, [
                     'product_id' => $ref->getProductsId(),
-                    'title'=> Tools::stripText($sku),
-                    'focus'=> $ref->getVirtualColumn('products_imagesID'),
-                ), TRUE),
-            );
+                    'title'      => Tools::stripText($sku),
+                    'focus'      => $ref->getVirtualColumn('products_imagesID'),
+                ], TRUE),
+            ];
         }
 
         // If there are any references to this image,
         // Prepend an overview 01 image of the current product to the array using array_unshift.
         foreach ($images_references as $image_id => &$references) {
             if (count($references['references']) > 0) {
-                array_unshift($references['references'], array(
+                array_unshift($references['references'], [
                     'title' => $product->getSku(),
                     'color' => '',
                     'image' => preg_replace('/_set_[0-9]+/', '_overview_01', $all_images[$image_id]['name']),
-                    'url' => $router->generate($route, array(
+                    'url'   => $router->generate($route, [
                         'product_id' => $product->getId(),
-                        'title'=> Tools::stripText($product->getSku()),
-                    ), TRUE),
-                ));
+                        'title'      => Tools::stripText($product->getSku()),
+                    ], TRUE),
+                ]);
             }
         }
 
@@ -202,7 +205,7 @@ class DefaultController extends CoreController
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
 
-        $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
+        $description = $translator->trans($translation_key, ['%cdn%' => $hanzo->get('core.cdn')], 'products');
         $description = preg_replace($find, $replace, $description);
 
         $washing = '';
@@ -230,26 +233,26 @@ class DefaultController extends CoreController
             $washing = preg_replace($find, $replace, $washing);
         }
 
-        $data = array(
-            'id' => $product->getId(),
-            'sku' => $product->getSku(),
-            'title' => $product->getTitle(),
-            'description' => $description,
-            'washing' => $washing,
-            'main_image' => $main_image,
-            'images' => $sorted_images,
-            'prices' => [],
-            'out_of_stock' => $product->getIsOutOfStock(),
-            'colors' => $colors,
-            'all_colors' => $all_colors,
-            'sizes' => $sizes,
-            // 'images_references' => $images_references,
-            'has_video' => (bool) $product->getHasVideo(),
-        );
+        $data = [
+            'id'                => $product->getId(),
+            'sku'               => $product->getSku(),
+            'title'             => $product->getTitle(),
+            'description'       => $description,
+            'washing'           => $washing,
+            'main_image'        => $main_image,
+            'images'            => $sorted_images,
+            'prices'            => [],
+            'out_of_stock'      => $product->getIsOutOfStock(),
+            'colors'            => $colors,
+            'all_colors'        => $all_colors,
+            'sizes'             => $sizes,
+//            'images_references' => $images_references,
+            'has_video'         => (bool)$product->getHasVideo(),
+        ];
 
 
         // find and calculate prices
-        $prices = ProductsDomainsPricesPeer::getProductsPrices(array($data['id']));
+        $prices = ProductsDomainsPricesPeer::getProductsPrices([$data['id']]);
         $data['prices'] = array_shift($prices);
 
         // $images_references = $data['images_references'];
@@ -259,15 +262,16 @@ class DefaultController extends CoreController
         $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
 
         $this->setSharedMaxAge(300);
-        $response = $this->render('ProductBundle:Default:view.html.twig', array(
-            'page_type' => 'product',
-            'product' => $data,
-            'references' => $images_references,
-            'browser_title' => $product->getTitle(),
-            '_route' => $route,
-            'meta_title' => $metaTitle,
+        $response = $this->render('ProductBundle:Default:view.html.twig', [
+            'page_type'        => 'product',
+            'product'          => $data,
+            'references'       => $images_references,
+            'browser_title'    => $product->getTitle(),
+            '_route'           => $route,
+            'meta_title'       => $metaTitle,
             'meta_description' => $metaDescription,
-        ));
+        ]);
+
         return $response;
     }
 }
