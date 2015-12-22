@@ -2,12 +2,8 @@
 
 namespace Hanzo\Bundle\SearchBundle;
 
-use Hanzo\Model\SearchProductsTagsQuery,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools
-    ;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Core\Tools;
 
 class ProductIndexBuilder extends IndexBuilder
 {
@@ -17,11 +13,11 @@ class ProductIndexBuilder extends IndexBuilder
      * @var array
      */
     private $indexes = [
-                'product'      => false,
-                'category'     => false,
-                'tag'          => false,
-                'discount'     => false,
-                ];
+        'product'  => false,
+        'category' => false,
+        'tag'      => false,
+        'discount' => false,
+    ];
 
     /**
      * Inserts data
@@ -36,6 +32,7 @@ class ProductIndexBuilder extends IndexBuilder
             if ($name == 'default') {
                 continue;
             }
+
             $connection = $this->getConnection($name);
 
             foreach ($this->getLocales($connection) as $locale) {
@@ -47,12 +44,12 @@ class ProductIndexBuilder extends IndexBuilder
     /**
      * setIndexes sets which indexes should be worked on, ALL for... all
      *
-     * @param Array $indexes
+     * @param array $indexes
      *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    public function setIndexes(Array $indexes)
+    public function setIndexes(array $indexes)
     {
         $this->resetIndexes();
 
