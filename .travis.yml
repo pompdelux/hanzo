@@ -7,9 +7,7 @@ services:
   - redis-server
 
 before_script:
-  - locale -a
   - sudo locale-gen en_GB.utf8 da_DK.utf8 de_AT.utf8 de_CH.utf8 de_DE.utf8 en_DK.utf8 fi_FI.utf8 nb_NO.utf8 nl_NL.utf8
-  - locale -a
   - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'date.timezone = "Europe/Copenhagen"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp app/config/parameters.ini.dist app/config/parameters.ini
