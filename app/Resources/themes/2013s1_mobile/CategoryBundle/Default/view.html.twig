@@ -1,13 +1,16 @@
 {% extends layout %}
 
 {% block meta %}
-{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
-{{ meta_tags('og:description,description') }}
-<meta property="og:description" content="{{ ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags }}">
-{% endif %}
-{% if meta_description is not empty %}
-<meta name="description" content="{{ meta_description }}">
-{% endif %}
+  {% if meta_description is empty %}
+    {% set meta_description = ('headers.'~page_type)|trans({}, 'category')|raw|strip_tags %}
+  {% endif %}
+  {{ meta_tags('', {
+    'title'         : meta_title|default(''),
+    'og:title'      : meta_title|default(''),
+    'description'   : meta_description|default(''),
+    'og:description': meta_description|default(''),
+    'og:type'       : meta_type|default('product.group')
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -80,6 +83,9 @@
                   {% endif %}
                   {% if product.out_of_stock %}
                   <div class="out-of-stock"></div>
+                  {% endif %}
+                  {% if product.prices.sales is defined %}
+                    <div class="discount-badge discountbadges-pct{{ product.prices.sales.sales_pct|round(0) }}"></div>
                   {% endif %}
                 </a>
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product-description">
