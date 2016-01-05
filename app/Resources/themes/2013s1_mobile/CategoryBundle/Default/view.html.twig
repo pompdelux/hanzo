@@ -143,6 +143,9 @@
           <? if(data[i].out_of_stock) {?>
           <div class="out-of-stock"></div>
           <? }?>
+          <? if(undefined === data[i].prices.sales) {?>
+          <div class="discount-badge discountbadges-pct<?=Math.round(product.prices.sales.sales_pct)?>"></div>
+          <? }?>
         </a>
         <a href="<?=data[i].url?>" title="<?=Translator.trans('more.product.info', {'%name%' : data[i].title})?>">
           <span class="title"><?=data[i].title?></span>
