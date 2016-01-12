@@ -3,7 +3,6 @@
 namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Hanzo\Core\Hanzo;
@@ -69,10 +68,12 @@ class BundleController extends CoreController
              * - Looping over the result is also not an option because the first matching one might also be wrong.
              * - So we use the route send in the return var
              *
+             * If $return route is empty, we fallback to the old version tho..
              */
             if (empty($return)) {
                 $return = $this->productToCategryRoute($request->getLocale(), $main_product);
             }
+
             $product_route = $return;
 
             // Without this i18n behaviour uses da_DK
@@ -270,7 +271,7 @@ class BundleController extends CoreController
                 $combines[] = 'combine_' . $i;
             }
             $result = $result->where($combines, 'or')
-                ->groupByProductsId()
+                    ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
                 ->useProductsDomainsPricesQuery()
