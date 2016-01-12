@@ -612,7 +612,7 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Lähetä Ostoslista tutullesi</target>
+                <target>Lähetä Shopping Advisorille</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
