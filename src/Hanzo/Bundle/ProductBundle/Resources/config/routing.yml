@@ -11,6 +11,7 @@ product_set:
     defaults:
         _controller: ProductBundle:Bundle:view
         image_id: 1
+        return: ''
     requirements:
         image_id: \d+
 
