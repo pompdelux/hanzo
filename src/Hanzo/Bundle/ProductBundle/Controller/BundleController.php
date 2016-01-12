@@ -74,6 +74,7 @@ class BundleController extends CoreController
             if (empty($return)) {
                 $return = $this->productToCategryRoute($request->getLocale(), $main_product);
             }
+
             $product_route = $return;
 
             // Without this i18n behaviour uses da_DK
