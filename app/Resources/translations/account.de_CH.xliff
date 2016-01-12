@@ -616,7 +616,7 @@ Um jedoch sicherzustellen, dass dabei keine Fehler aufgetreten sind, möchten wi
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Shoppingliste an einen Freund senden</target>
+                <target>Shoppingliste an einen Shopping Advisor senden</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
