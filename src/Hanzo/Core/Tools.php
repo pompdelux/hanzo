@@ -927,16 +927,15 @@ class Tools
     public static function sortSizes(&$sizes)
     {
         $sizeMap = [
-            'XS'       => 10,
-            'S'        => 20,
-            'M'        => 30,
-            'L'        => 40,
-            'XL'       => 50,
-            ];
+            'XS' => 10,
+            'S'  => 20,
+            'M'  => 30,
+            'L'  => 40,
+            'XL' => 50,
+        ];
 
-        $s = array_keys($sizes);
-        $s = array_shift($s);
-        $firstValue = strtoupper($s);
+        $firstValue = array_keys($sizes);
+        $firstValue = strtoupper(array_shift($firstValue));
 
         if (isset($sizeMap[$firstValue])) {
             uksort($sizes, function($a, $b) use ($sizeMap) {
