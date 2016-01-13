@@ -37,3 +37,17 @@ ax:
 consignor:
     shipment_server:
         endpoint: "https://www.shipmentserver.com/ship/ShipmentServerModule.dll"
+
+stock:
+    warehouses:
+        main:
+            - da_DK
+            - de_AT
+            - de_DE
+            - fi_FI
+            - nl_NL
+            - sv_SE
+            - en_GB
+        norway:
+            - nb_NO
+            - de_CH
