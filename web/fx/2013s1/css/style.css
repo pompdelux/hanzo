@@ -3955,6 +3955,9 @@ body.domain-at #newsletterModal.type3 .wrapper form input.button {
   font-family: Tahoma, Geneva, Verdana, sans-serif !important;
   width: 264px;
 }
+.body-pages .newsletter-form-simple .text-button {
+  text-decoration: underline;
+}
 
 article div ul {
   margin-left: 20px;
