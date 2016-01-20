@@ -56,12 +56,10 @@ class DefaultController extends CoreController
                 $cms_page = CmsPeer::getByPK($cms_id, $locale);
                 $settings = $cms_page->getSettings(null, false);
 
-                // Define classes to the body, dependently on the context of the category.
+                // Define classes to the body, dependently on the context of the category. TODO fix hack
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-                if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
-                    $classes .= ' category-girl';
-                } elseif (preg_match('/(dreng|boy|kille|poika|gutt|junge|jongen)/', $container->get('request')->getPathInfo())) {
-                    $classes .= ' category-boy';
+                if ($gender = $this->getCategoryGender()) {
+                    $classes .= ' category-' . $gender;
                 }
 
                 $this->get('twig')->addGlobal('route', $container->get('request')->get('_route'));
@@ -358,12 +356,52 @@ class DefaultController extends CoreController
 
             $product_route = str_replace('category_', 'product_', $route);
 
+            // Rejected products
+            $rejected_product_colors = [
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+              'SnowJrJACKETGirlAW15' => [
+                'girl' => ['black'],
+                'boy' => ['black'],
+              ],
+            ];
+
             foreach ($result as $record) {
                 $image = $record->getProductsImages()->getImage();
 
                 // Only use 01.
                 if (preg_match('/_01.[jpg|png]/', $image)) {
                     $product = $record->getProducts();
+
+                    $sku = $product->getSku();
+                    $color = strtolower($record->getProductsImages()->getColor());
+                    $gender = $this->getCategoryGender();
+
+                    // Reject product
+                    if (isset($rejected_product_colors[$sku][$gender])) {
+
+                        if (in_array($color, $rejected_product_colors[$sku][$gender])) {
+                            continue;
+                        }
+                    }
 
                     $product_ids[] = $product->getId();
                     $product->setLocale($locale);
@@ -768,4 +806,23 @@ class DefaultController extends CoreController
 
         return $cacheId;
     }
+
+    protected function getCategoryGender() {
+        if (isset($this->categoryGender)) {
+            return $this->categoryGender;
+        }
+
+        $hanzo     = Hanzo::getInstance();
+        $container = $hanzo->container;
+
+        // Define classes to the body, dependently on the context of the category.
+        if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+            $this->categoryGender = 'girl';
+        } elseif (preg_match('/(dreng|boy|kille|poika|gutt|junge|jongen)/', $container->get('request')->getPathInfo())) {
+            $this->categoryGender = 'boy';
+        }
+
+        return $this->categoryGender;
+    }
 }
+
