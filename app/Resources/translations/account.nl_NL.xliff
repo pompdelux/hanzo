@@ -615,7 +615,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Stuur je Shoppinglijst aan iemand die je kent</target>
+                <target>Stuur je Shoppinglijst naar een Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>

@@ -611,7 +611,7 @@ After this you can easily continue shopping.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.send_list.header">
                 <source>wishlist.send_list.header</source>
-                <target>Send the Shoppinglist to someone you know</target>
+                <target>Send the Shoppinglist to a Shopping Advisor</target>
             </trans-unit>
             <trans-unit id="wishlist.send_list.description">
                 <source>wishlist.send_list.description</source>
