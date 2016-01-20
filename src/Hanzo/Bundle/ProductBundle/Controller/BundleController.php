@@ -2,19 +2,12 @@
 
 namespace Hanzo\Bundle\ProductBundle\Controller;
 
-use Criteria;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\Products;
-use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
@@ -22,6 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BundleController extends CoreController
 {
+    /**
+     * @param Request $request
+     * @param int     $image_id
+     * @param string  $return
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
     public function viewAction(Request $request, $image_id, $return)
     {
         $hanzo = Hanzo::getInstance();
@@ -36,24 +37,23 @@ class BundleController extends CoreController
 
             $main_product = ProductsQuery::create()
                 ->useProductsI18nQuery()
-                ->filterByLocale($request->getLocale())
+                    ->filterByLocale($request->getLocale())
                 ->endUse()
                 ->useProductsImagesQuery()
-                ->filterById($image_id)
+                    ->filterById($image_id)
                 ->endUse()
                 ->filterByIsActive(true)
                 ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                 ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($hanzo->get('core.domain_id'))
-                ->filterByFromDate(array('max' => 'now'))
-                ->_or()
-                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
-                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
-                ->where(array('c1', 'c2'), 'AND')
+                    ->filterByDomainsId($hanzo->get('core.domain_id'))
+                    ->filterByFromDate(array('max' => 'now'))
+                    ->_or()
+                    ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                    ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                    ->where(array('c1', 'c2'), 'AND')
                 ->endUse()
                 ->joinWithProductsImages()
-                ->findOne()
-            ;
+                ->findOne();
 
             if (!$main_product instanceof Products) {
                 return $this->redirect($this->generateUrl('_homepage'));
@@ -72,7 +72,7 @@ class BundleController extends CoreController
              * If $return route is empty, we fallback to the old version tho..
              */
             if (empty($return)) {
-                $return = $this->productToCategryRoute($request->getLocale(), $main_product);
+                $return = $this->productToCategoryRoute($request->getLocale(), $main_product);
             }
 
             $product_route = $return;
@@ -97,29 +97,28 @@ class BundleController extends CoreController
 
             $result = ProductsQuery::create()
                 ->useProductsI18nQuery()
-                ->filterByLocale($request->getLocale())
+                    ->filterByLocale($request->getLocale())
                 ->endUse()
                 ->useProductsImagesProductReferencesQuery()
-                ->filterByProductsImagesId($image_id)
+                    ->filterByProductsImagesId($image_id)
                 ->endUse()
                 ->filterByIsActive(true)
                 ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                 ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($hanzo->get('core.domain_id'))
-                ->filterByFromDate(array('max' => 'now'))
-                ->_or()
-                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
-                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
-                ->where(array('c1', 'c2'), 'AND')
+                    ->filterByDomainsId($hanzo->get('core.domain_id'))
+                    ->filterByFromDate(array('max' => 'now'))
+                    ->_or()
+                    ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                    ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                    ->where(array('c1', 'c2'), 'AND')
                 ->endUse()
                 ->useProductsImagesQuery()
-                ->filterByType('overview')
-                ->where('products_images.COLOR = products_images_product_references.COLOR')
-                ->groupByProductsId()
+                    ->filterByType('overview')
+                    ->where('products_images.COLOR = products_images_product_references.COLOR')
+                    ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
-                ->find()
-            ;
+                ->find();
 
             foreach ($result as $product) {
                 // handle bare return urls.
@@ -181,12 +180,12 @@ class BundleController extends CoreController
                 $products[$id]['washing'] = $washing;
             }
 
-            //$this->setCache($cache_id, $products);
+            $this->setCache($cache_id, $products);
         }
 
         foreach ($products as $id => $product) {
             $variants = ProductsQuery::create()->findByMaster($product['master']);
-            $products_id = [];
+
             $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
@@ -208,16 +207,23 @@ class BundleController extends CoreController
 
         $this->setSharedMaxAge(86400);
         $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
-        $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
+        $response = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products'  => $products,
         ));
 
-        return $responce;
+        return $response;
     }
 
 
-    public function customAction($set)
+    /**
+     * @param Request $request
+     * @param string  $set
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function customAction(Request $request, $set)
     {
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
@@ -230,7 +236,6 @@ class BundleController extends CoreController
             $set = explode(',', $set);
 
             $where = [];
-            $products_ids = [];
             foreach ($set as $product) {
                 $pieces = explode('-', $product, 2);
 
@@ -247,44 +252,43 @@ class BundleController extends CoreController
             }
 
             $router_keys = include $this->container->getParameter('kernel.cache_dir').'/category_map.php';
-            $locale = strtolower($hanzo->get('core.locale'));
+            $locale = strtolower($request->getLocale());
 
             $result = ProductsQuery::create()
                 ->useProductsI18nQuery()
-                ->filterByLocale($hanzo->get('core.locale'))
+                    ->filterByLocale($request->getLocale())
                 ->endUse()
                 ->filterByIsActive(true)
                 ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
                 ->useProductsI18nQuery()
-                ->filterByLocale($hanzo->get('core.locale'))
+                    ->filterByLocale($request->getLocale())
                 ->endUse()
                 ->useProductsImagesQuery()
-                ->filterByType('overview')
-            ;
+                    ->filterByType('overview');
+
             // Add all sets to conditions seperately.
             $combines = [];
             foreach ($where as $i => $where_clause) {
                 $result = $result->condition('id_' . $i, 'products_images.products_id = ?', $where_clause['ProductsId'])
                     ->condition('color_' . $i, 'products_images.color = ?', $where_clause['Color'])
-                    ->combine(array('id_' . $i, 'color_' . $i), 'and', 'combine_' . $i)
-                ;
+                    ->combine(array('id_' . $i, 'color_' . $i), 'and', 'combine_' . $i);
 
                 $combines[] = 'combine_' . $i;
             }
+
             $result = $result->where($combines, 'or')
-                ->groupByProductsId()
+                    ->groupByProductsId()
                 ->endUse()
                 ->joinWithProductsImages()
                 ->useProductsDomainsPricesQuery()
-                ->filterByDomainsId($hanzo->get('core.domain_id'))
-                ->filterByFromDate(array('max' => 'now'))
-                ->_or()
-                ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
-                ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
-                ->where(array('c1', 'c2'), 'AND')
+                    ->filterByDomainsId($hanzo->get('core.domain_id'))
+                    ->filterByFromDate(array('max' => 'now'))
+                    ->_or()
+                    ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                    ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                    ->where(array('c1', 'c2'), 'AND')
                 ->endUse()
-                ->find()
-            ;
+                ->find();
 
             $products = [];
             foreach ($result as $product) {
@@ -292,14 +296,13 @@ class BundleController extends CoreController
                     ->useProductsQuery()
                     ->filterBySku($product->getSku())
                     ->endUse()
-                    ->findOne()
-                ;
+                    ->findOne();
 
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
                 $product_route = $router_keys[$key];
 
                 // Without this i18n behaviour uses da_DK
-                $product->setLocale($hanzo->get('core.locale'));
+                $product->setLocale($request->getLocale());
 
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
@@ -329,7 +332,6 @@ class BundleController extends CoreController
             $replace = '$1="' . str_replace(['https:', 'http:'], '', $hanzo->get('core.cdn'));
 
             foreach ($products as $id => $product) {
-
                 $translation_key = 'description.' . Tools::stripText($product['master'], '_', false);
 
                 $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
@@ -337,7 +339,7 @@ class BundleController extends CoreController
 
                 $washing = null;
                 $result = ProductsWashingInstructionsQuery::create()
-                    ->filterByLocale($hanzo->get('core.locale'))
+                    ->filterByLocale($request->getLocale())
                     ->findOneByCode($product['washing_id']);
 
                 if ($result instanceof ProductsWashingInstructions) {
@@ -358,7 +360,7 @@ class BundleController extends CoreController
             }
 
             $variants = ProductsQuery::create()->findByMaster($product['master']);
-            $products_id = [];
+
             $sizes = [];
             foreach ($variants as $v) {
                 $product_ids[] = $v->getId();
@@ -382,12 +384,12 @@ class BundleController extends CoreController
 
         $this->setSharedMaxAge(86400);
         $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
-        $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
+        $response = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products'  => $products,
         ));
 
-        return $responce;
+        return $response;
     }
 
     /**
@@ -398,7 +400,7 @@ class BundleController extends CoreController
      *
      * @return bool
      */
-    private function productToCategryRoute($locale, Products $product)
+    private function productToCategoryRoute($locale, Products $product)
     {
         static $routerKeys;
 
@@ -410,8 +412,7 @@ class BundleController extends CoreController
             ->useProductsQuery()
             ->filterBySku($product->getSku())
             ->endUse()
-            ->find()
-        ;
+            ->find();
 
         foreach ($products2category as $item) {
             $key = '_' . strtolower($locale) . '_' . $item->getCategoriesId();
