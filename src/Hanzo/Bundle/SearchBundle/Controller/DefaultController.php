@@ -388,7 +388,24 @@ class DefaultController extends CoreController
 
             if (isset($router_keys[$key])) {
                 $product_route = $router_keys[$key];
+            } else {
+                $products2category = ProductsToCategoriesQuery::create()
+                  ->useProductsQuery()
+                  ->filterById($record['id'])
+                  ->endUse()
+                  ->find()
+                ;
+
+                foreach ($products2category AS $product_category) {
+                    $key = '_' . strtolower($locale) . '_' . $product_category->getCategoriesId();
+
+                    if (isset($router_keys[$key])) {
+                        $product_route = $router_keys[$key];
+                        break;
+                    }
+                }
             }
+
             if (!empty($product_route)) {
                 $result[] = array(
                     'sku' => $record['title'],
