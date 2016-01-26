@@ -40,17 +40,18 @@
 						"174",
 						"176",
 						"177",
-						"181", 
+						"181",
 						"183"
                     ],
                     "colors": "",
+                    "color_sort": "White,Yellow,Black",
                     "colormap": {
                              "Black": [
                                 "Black",
                                 "Copper/Black",
                                 "Black Wide Stripe",
                                 "Grey/Black"
-                                
+
                             ],
                            "Blue": [
                                 "Dusty Blue",
@@ -74,7 +75,7 @@
                             ],
                             "Denim": [
                                 "Blue Denim"
-                                
+
                             ],
                             "Grey": [
                                 "Grey",
@@ -84,16 +85,16 @@
                                 "Dark Grey Melange",
                                 "Dusty Brown",
                                 "Grey/Black"
-                                
+
                              ],
                             "Petrol": [
                                 "Petrol",
-                                "Copper/Black"  
-                                
+                                "Copper/Black"
+
                               ],
                             "Plum": [
-                                "Plum"     
-                                
+                                "Plum"
+
                             ],
                             "Rose": [
                                 "Rose",
@@ -107,16 +108,16 @@
                                 "Sand",
                                 "Brown",
                                 "Dusty Brown"
-                                
+
                              ],
                             "White": [
                                 "Off White",
                                 "White"
-                                    
-                            ],                           
+
+                            ],
                             "Yellow": [
                                 "Yellow",
-                                "Blue/Yellow" 
+                                "Blue/Yellow"
                             ]
                         },
                         "sizes": {
@@ -187,7 +188,7 @@
                                 "Copper/Black",
                                 "Black Wide Stripe",
                                 "Grey/Black"
-                                
+
                             ],
                            "Blue": [
                                 "Dusty Blue",
@@ -211,13 +212,13 @@
                             ],
                             "Denim": [
                                 "Blue Denim"
-                               
+
                             ],
                             "Green": [
                                 "Green",
                                 "Navy/Green",
                                 "Green Narrow Stripe"
-                                    
+
                             ],
                             "Grey": [
                                 "Grey",
@@ -227,7 +228,7 @@
                                 "Dark Grey Melange",
                                 "Dusty Brown",
                                 "Grey/Black"
-                                
+
                              ],
                             "Petrol": [
                                 "Petrol",
@@ -238,7 +239,7 @@
                                 "Sand",
                                 "Brown",
                                 "Dusty Brown"
-                                
+
                              ],
                             "White": [
                                 "Off White",
