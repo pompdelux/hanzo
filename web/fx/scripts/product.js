@@ -327,6 +327,7 @@
                 }
             });
 
+            /* Duplicated in mobile version */
             $(document).on('click', '.buy .wishlist', function(event) {
                 event.preventDefault();
 
