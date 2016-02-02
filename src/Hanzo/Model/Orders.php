@@ -1208,24 +1208,23 @@ class Orders extends BaseOrders
      * returns latest delivery date.
      *
      * @param string $format
-     * @param string $domainKey
+     * @param bool   $override
      *
      * @throws Exception
      * @throws PropelException
      * @return mixed|string
      */
-    public function getExpectedDeliveryDate($format = 'Y-m-d', $domainKey = '')
+    public function getExpectedDeliveryDate($format = 'Y-m-d', $override = false)
     {
         $now        = date('Ymd');
         $latest     = 0;
         $expectedAt = '';
 
-        if (empty($domainKey)) {
+        if (false == $override) {
             $result     = Hanzo::getInstance()->get('HD.expected_delivery_date');
             $expectedAt = $result ?: '';
         } else {
-            $setting = DomainsSettingsQuery::create()
-                ->filterByDomainKey($domainKey)
+            $setting = SettingsQuery::create()
                 ->filterByNs('HD')
                 ->filterByCKey('expected_delivery_date')
                 ->findOne($this->getDBConnection());
