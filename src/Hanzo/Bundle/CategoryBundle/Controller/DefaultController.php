@@ -423,6 +423,15 @@ class DefaultController extends CoreController
               'LeanderShellLtJacketSS16'   => [
                 'boy' => ['plum'],
               ],
+              // Testing
+              'LeanderShellLtJacketSS16'   => [
+                'girl' => ['blue', 'grey'],
+                'boy'  => ['plum'],
+              ],
+              'LeanderShellLtJacketSS16'   => [
+                'girl' => ['blue', 'grey'],
+                'boy'  => ['plum'],
+              ],
             ];
 
             foreach ($result as $record) {
