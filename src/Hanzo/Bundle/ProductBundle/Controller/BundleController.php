@@ -121,6 +121,7 @@ class BundleController extends CoreController
             ;
 
             foreach ($result as $product) {
+<<<<<<< HEAD
                 // handle bare return urls.
                 if (empty($return)) {
                     $product_route = $this->productToCategryRoute($request->getLocale(), $product);
@@ -130,6 +131,25 @@ class BundleController extends CoreController
                         continue;
                     }
                 }
+=======
+                $products2category = ProductsToCategoriesQuery::create()
+                    ->useProductsQuery()
+                    ->filterBySku($product->getSku())
+                    ->endUse()
+                    ->findOne()
+                ;
+
+                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+
+                // un: 2016-01-12
+                // needed to prevent fatal errors in AT where there
+                // are some sync issues in the categories table (AW15)
+                if (empty($router_keys[$key])) {
+                    continue;
+                }
+
+                $product_route = $router_keys[$key];
+>>>>>>> f/1119_images-on-top
 
                 // Without this i18n behaviour uses da_DK
                 $product->setLocale($request->getLocale());

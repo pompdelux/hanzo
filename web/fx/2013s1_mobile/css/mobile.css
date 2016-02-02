@@ -3949,9 +3949,6 @@ div.sub-menu {
 .body-pages article div > div:nth-child(1) h2 {
   margin-top: 10px;
 }
-.body-pages article div > div:nth-child(n+2) {
-  display: table-header-group;
-}
 
 table {
   width: 100%;
