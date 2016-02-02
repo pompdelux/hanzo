@@ -424,11 +424,11 @@ class DefaultController extends CoreController
                 'boy' => ['plum'],
               ],
               // Testing
-              'LeanderShellLtJacketSS16'   => [
+              'SnowLtSUITAW15'   => [
                 'girl' => ['blue', 'grey'],
                 'boy'  => ['plum'],
               ],
-              'LeanderShellLtJacketSS16'   => [
+              'SNOWJrSUITAW15'   => [
                 'girl' => ['blue', 'grey'],
                 'boy'  => ['plum'],
               ],
