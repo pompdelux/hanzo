@@ -358,29 +358,47 @@ class DefaultController extends CoreController
 
             // Rejected products
             $rejected_product_colors = [
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LeanderShellLtBibPantsSS16' => [
+                'girl' => ['navy'],
+                'boy'  => ['plum'],
               ],
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LeanderShellPantsSS16'      => [
+                'girl' => ['navy'],
+                'boy'  => ['plum'],
               ],
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LilydaleJrRaincoatSS16'     => [
+                'girl' => ['green', 'navy'],
+                'boy'  => ['purple', 'rose'],
               ],
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LilydaleLtRainsuitSS16'     => [
+                'girl' => ['green', 'navy'],
+                'boy'  => ['purple', 'rose'],
               ],
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LeeSoftshellJrJacketSS16'   => [
+                'girl' => ['green', 'navy'],
+                'boy'  => ['purple', 'rose'],
               ],
-              'SnowJrJACKETGirlAW15' => [
-                'girl' => ['black'],
-                'boy' => ['black'],
+              'LeeSoftshellLtJacketSS16'   => [
+                'girl' => ['green', 'navy'],
+                'boy'  => ['purple', 'rose'],
+              ],
+              'LeeSoftshellLtSuitSS16'     => [
+                'girl' => ['green', 'navy'],
+                'boy'  => ['purple', 'rose'],
+              ],
+              'LommelJrFleeceJacketSS16'   => [
+                'girl' => ['green', 'navy', 'blue'],
+                'boy'  => ['purple', 'rose'],
+              ],
+              'LommelLtFleeceJacketSS16'   => [
+                'girl' => ['green', 'navy', 'blue'],
+                'boy'  => ['purple', 'rose'],
+              ],
+              'LeanderShellJrJacketSS16'   => [
+                'girl' => ['plum'],
+              ],
+              'LeanderShellLtJacketSS16'   => [
+                'girl' => ['plum'],
               ],
             ];
 
