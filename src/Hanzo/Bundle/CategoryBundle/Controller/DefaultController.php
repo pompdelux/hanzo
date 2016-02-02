@@ -418,10 +418,10 @@ class DefaultController extends CoreController
                 'boy'  => ['purple', 'rose'],
               ],
               'LeanderShellJrJacketSS16'   => [
-                'girl' => ['plum'],
+                'boy' => ['plum'],
               ],
               'LeanderShellLtJacketSS16'   => [
-                'girl' => ['plum'],
+                'boy' => ['plum'],
               ],
             ];
 
