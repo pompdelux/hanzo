@@ -56,7 +56,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     // NICETO: should not be hardcoded
     private $extended = [
         // admin
-        'hd@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        //'hd@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'sc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'cc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'mped@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -73,6 +73,7 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'de@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'       => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
+        'libe@pompdelux.dk'     => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
 // un: 3/11
 //        'design@pompdelux.dk'   => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // design
