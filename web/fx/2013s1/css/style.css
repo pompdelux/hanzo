@@ -921,8 +921,10 @@ ul.breadcrumb li.last i.arrow-right {
   color: white;
 }
 
-.domain-de.category-169 .main header hgroup h1,
+.domain-de.category-168 .main header hgroup h1, .domain-de.category-169 .main header hgroup h1,
+.domain-ch.category-168 .main header hgroup h1,
 .domain-ch.category-169 .main header hgroup h1,
+.domain-at.category-168 .main header hgroup h1,
 .domain-at.category-169 .main header hgroup h1 {
   text-transform: none;
 }
