@@ -368,6 +368,22 @@ ul.breadcrumb {
     }
 }
 
+// Fix β on DE sites
+.domain-de,
+.domain-ch,
+.domain-at {
+
+    &.category-169 {
+
+        .main header hgroup {
+
+            h1 {
+                text-transform: none;
+            }
+        }
+    }
+}
+
 .body-bycolour .main header,
 .body-bylook .main header,
 .body-category .main header{ // Specific for all categories
