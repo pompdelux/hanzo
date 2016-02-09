@@ -85,6 +85,7 @@ class MailService
             }
         }
 
+        $this->swift->setCharset('UTF-8');
         $this->swift->setSubject($subject);
 
         return $this;
