@@ -157,7 +157,7 @@ class ECommerceServices extends SoapService
 
                 // Mail credentials
                 $mailer = $this->hanzo->container->get('mail_manager');
-                $mailer->setTo('', 'POMPdeLUX IT afdeling');
+                $mailer->setTo('it-drift@pompdelux.dk', 'POMPdeLUX IT afdeling');
 
                 // Run through
                 foreach($missing AS $missingItem) {
