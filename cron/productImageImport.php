@@ -85,7 +85,9 @@ foreach ($images as $image) {
     // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
     // 9 is used as slash in color names, e.g. SnowSUITGIRLAW14_Navy9Rose_set_02.jpg
     // master         color             type     index
-    @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
+    @list($master, $color, $type, $index) = explode('_', pathinfo($image, PATHINFO_FILENAME));
+
+    $color = str_replace(['9', '-'], ['/', ' '], $color);
 
     // See if any product with master and color even exists
     $product_image_stmt->execute(array(
