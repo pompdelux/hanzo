@@ -613,7 +613,9 @@ class ECommerceServices extends SoapService
             $product = $item['product'];
 
             if (isset($item['inventory'])) {
-                $isOut = !((bool) $item['total']);
+                $isOut = ($item['total'] > 0)
+                    ? false
+                    : true;
 
                 // inventory to products
                 $stock_service->setLevels($product->getId(), $item['inventory']);
