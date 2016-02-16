@@ -3541,6 +3541,9 @@ footer .copy li {
   margin-bottom: 20px;
   min-height: 140px;
 }
+.body-product .main form.buy .add-buttons {
+  position: inherit;
+}
 .body-product .main form.buy label select {
   width: 60%;
 }
@@ -3945,9 +3948,6 @@ div.sub-menu {
 }
 .body-pages article div > div:nth-child(1) h2 {
   margin-top: 10px;
-}
-.body-pages article div > div:nth-child(n+2) {
-  display: table-header-group;
 }
 
 table {

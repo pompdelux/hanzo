@@ -139,6 +139,8 @@
         "Oekotex": ["153"]
     },
                         "discount": {
+						"50%": ["50"], 
+						"70%": ["70"]
                         }
 }
                 ]]></target>
@@ -265,6 +267,8 @@
                         "Oekotex": ["155"]
                         },
                         "discount": {
+						"50%": ["50"], 
+						"70%": ["70"]
                         }
                     }
                 ]]></target>
@@ -945,8 +949,8 @@
                     }
                 ]]></target>
             </trans-unit>
-             <trans-unit id="861.settings">
-                <source>861.settings</source>
+             <trans-unit id="903.settings">
+                <source>903.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "141",
