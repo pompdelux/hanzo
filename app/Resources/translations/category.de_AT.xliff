@@ -641,7 +641,7 @@
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
 	   <trans-unit id="headers.category-181">
-        <source>headers.category-181/source>
+        <source>headers.category-181</source>
         <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-181">
