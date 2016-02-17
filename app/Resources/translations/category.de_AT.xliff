@@ -431,21 +431,62 @@
         <source>faceted.show_results</source>
         <target>Ergebnisse anzeigen</target>
       </trans-unit>
+      <trans-unit id="headers.category-157">
+        <source>headers.category-157</source>
+        <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-157">
+        <source>description.category-157</source>
+        <target><![CDATA[<p>Ein wichtiger Bestandteil in der Garderobe von Mädchen ist Outdoor-Bekleidung. Bei POMPdeLUX führen wir immer eine große Vielfalt an Outdoor-Bekleidung für Mädchen. Unsere gesamte Outdoor-Bekleidung ist darauf ausgelegt, Kinder bei jedem Wetter warm und trocken zu halten. Insbesondere unsere technische Outdoor-Bekleidung bietet unvergleichlich hohe Qualität und Sicherheit, denn sie ist wasserdicht, winddicht und atmungsaktiv. Unsere Outdoor-Bekleidung für Mädchen ist mit einer Fülle toller Details ausgestattet. Hierzu gehören Reflexe ebenso wie eine abnehmbare Kapuze, ein Windfang, Fußschlaufen und praktische Taschen. Overalls, Jacken, Regen- und Skihosen sowie Fleecejacken sind ab Größe 80 bis 152 cm erhältlich. Bei uns finden Sie viele Anregungen für die Mädchengarderobe.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-158">
+        <source>headers.category-158</source>
+        <target><![CDATA[<h1>Oberteile</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-158">
+        <source>description.category-158</source>
+        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Oberteilen für Mädchen. Es ist nahezu unmöglich, unter den Blusen, Cardigans, Kleidern, Sweatshirts, Tops und T-Shirts seinen Favoriten zu finden, denn es gibt so viele schöne Styles, aus denen man auswählen kann. Stöbern Sie nach Herzenslust in femininen Rüschen und Spitzen, weichen und derben Nieten, süßen Schleifen, fantastischen Prints, Tüllröcken und tollem Strick - alle Artikel sind aus besten Materialien in toller Qualität gefertigt. Unsere Oberteile sind bereits ab Größe 80 cm und bis 152 cm erhältlich. Freuen Sie sich auf jede Menge Inspiration für die Mädchengarderobe.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-159">
+        <source>headers.category-159</source>
+        <target><![CDATA[<h1>Unterteile</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-159">
+        <source>description.category-159</source>
+        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Unterteilen für Mädchen. Hier finden Sie Hosen, Jeans, Jumpsuits, Leggings, Röcke und Shorts für alle Gelegenheiten, Zwecke und Jahreszeiten. Tolle Materialien und fantastisches Design sind das Markenzeichen von POMPdeLUX. Das gilt auch für die Qualität von unseren Unterteilen, die bereits ab Größe 80 cm und bis Größe 152 cm erhältlich sind. Außerdem können Sie sich jede Menge Inspiration für die Mädchengarderobe holen.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-160">
+        <source>headers.category-160</source>
+        <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-160">
+        <source>description.category-160</source>
+        <target><![CDATA[<p>POMPdeLUX fertigt Unterwäsche und Nachtwäsche, die man einfach gerne trägt. Deswegen verwenden wir nur weiche Materialien von hoher Qualität, die Mädchen garantiert gerne tragen. Unsere gesamte Nacht- und Unterwäsche ist deswegen selbstverständlich auch nach dem Oeko-Tex-Standard-100 hergestellt und trägt das GOTS-Siegel. Wir bei POMPdeLUX finden jedoch nicht, dass Unterwäsche und Nachtwäsche nur praktisch sein soll. Deswegen achten wir bei der Entwicklung auch ganz besonders auf ein schickes, raffiniertes Design. Die Kollektion bietet Unterhemden, Hipsters, Slips, Nachthemden, Schlafanzüge und Einteiler ab Größe 80 cm bis Größe 152 cm. Außerdem gibt es jede Menge Inspiration für die Mädchengarderobe.</p>]]></target>
+      </trans-unit>
       <trans-unit id="headers.category-161">
         <source>headers.category-161</source>
-        <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
+        <target><![CDATA[<h1>Accesoires</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-161">
         <source>description.category-161</source>
-        <target><![CDATA[<p>Ein wichtiger Bestandteil in der Garderobe von Mädchen ist Outdoor-Bekleidung. Bei POMPdeLUX führen wir immer eine große Vielfalt an Outdoor-Bekleidung für Mädchen. Unsere gesamte Outdoor-Bekleidung ist darauf ausgelegt, Kinder bei jedem Wetter warm und trocken zu halten. Insbesondere unsere technische Outdoor-Bekleidung bietet unvergleichlich hohe Qualität und Sicherheit, denn sie ist wasserdicht, winddicht und atmungsaktiv. Unsere Outdoor-Bekleidung für Mädchen ist mit einer Fülle toller Details ausgestattet. Hierzu gehören Reflexe ebenso wie eine abnehmbare Kapuze, ein Windfang, Fußschlaufen und praktische Taschen. Overalls, Jacken, Regen- und Skihosen sowie Fleecejacken sind ab Größe 80 bis 152 cm erhältlich. Bei uns finden Sie viele Anregungen für die Mädchengarderobe.</p>]]></target>
+        <target><![CDATA[<p></p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-162">
         <source>headers.category-162</source>
-        <target><![CDATA[<h1>Oberteile</h1>]]></target>
+        <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-162">
         <source>description.category-162</source>
-        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Oberteilen für Mädchen. Es ist nahezu unmöglich, unter den Blusen, Cardigans, Kleidern, Sweatshirts, Tops und T-Shirts seinen Favoriten zu finden, denn es gibt so viele schöne Styles, aus denen man auswählen kann. Stöbern Sie nach Herzenslust in femininen Rüschen und Spitzen, weichen und derben Nieten, süßen Schleifen, fantastischen Prints, Tüllröcken und tollem Strick - alle Artikel sind aus besten Materialien in toller Qualität gefertigt. Unsere Oberteile sind bereits ab Größe 80 cm und bis 152 cm erhältlich. Freuen Sie sich auf jede Menge Inspiration für die Mädchengarderobe.</p>]]></target>
+        <target><![CDATA[<p>Ein wichtiger Bestandteil in der Garderobe von Jungs ist Outdoor-Bekleidung. POMPdeLUX bietet für Jungs immer eine große Vielfalt unterschiedlicher Produkte. Unsere gesamte Outdoor-Bekleidung ist darauf ausgelegt, Jungs bei jedem Wetter warm und trocken zu halten. Insbesondere unsere technische Outdoor-Bekleidung bietet unvergleichlich hohe Qualität und Sicherheit, denn sie ist wasserdicht, winddicht und atmungsaktiv. Unsere Outdoor-Bekleidung für Jungs ist mit einer Fülle toller Details ausgestattet, wie beispielsweise Reflexe, einer abnehmbaren Kapuze, einem Windfang, Fußschlaufen und praktische Taschen. Schneeanzüge, Jacken, Regen- und Skihosen sowie Fleecejacken sind in den Größen 80 bis 152 cm erhältlich. Bei uns finden Sie außerdem jede Menge Anregungen für die Jungengarderobe. </p>]]></target>
+      </trans-unit>
+      <trans-unit id="headers.category-164">
+        <source>headers.category-164</source>
+        <target><![CDATA[<h1>Oberteile</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-164">
+        <source>description.category-164</source>
+        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Oberteilen für Jungs. Eines können wir Ihnen deswegen versprechen: es wird nicht leicht werden, unter den vielen Tops, Cardigans, Poloshirts, Hemden, Sportjacken, Sweaters, Sweatshirts, T-Shirts und Westen einen Favoriten zu finden, denn es gibt so viele tolle Styles! Stöbern Sie nach Herzenslust in coolen Emblemen, derben Nieten, tollen Farben, fantastischen Prints, College-Styles und tollem Strick - alle Artikel sind aus besten Materialien in toller Qualität gefertigt. Unsere Oberteile sind bereits ab Größe 80 cm und bis 152 cm erhältlich. Freuen Sie sich auf jede Menge Inspiration für die Jungengarderobe.
+</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-163">
         <source>headers.category-163</source>
@@ -453,79 +494,38 @@
       </trans-unit>
       <trans-unit id="description.category-163">
         <source>description.category-163</source>
-        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Unterteilen für Mädchen. Hier finden Sie Hosen, Jeans, Jumpsuits, Leggings, Röcke und Shorts für alle Gelegenheiten, Zwecke und Jahreszeiten. Tolle Materialien und fantastisches Design sind das Markenzeichen von POMPdeLUX. Das gilt auch für die Qualität von unseren Unterteilen, die bereits ab Größe 80 cm und bis Größe 152 cm erhältlich sind. Außerdem können Sie sich jede Menge Inspiration für die Mädchengarderobe holen.</p>]]></target>
-      </trans-unit>
-      <trans-unit id="headers.category-164">
-        <source>headers.category-164</source>
-        <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-164">
-        <source>description.category-164</source>
-        <target><![CDATA[<p>POMPdeLUX fertigt Unterwäsche und Nachtwäsche, die man einfach gerne trägt. Deswegen verwenden wir nur weiche Materialien von hoher Qualität, die Mädchen garantiert gerne tragen. Unsere gesamte Nacht- und Unterwäsche ist deswegen selbstverständlich auch nach dem Oeko-Tex-Standard-100 hergestellt und trägt das GOTS-Siegel. Wir bei POMPdeLUX finden jedoch nicht, dass Unterwäsche und Nachtwäsche nur praktisch sein soll. Deswegen achten wir bei der Entwicklung auch ganz besonders auf ein schickes, raffiniertes Design. Die Kollektion bietet Unterhemden, Hipsters, Slips, Nachthemden, Schlafanzüge und Einteiler ab Größe 80 cm bis Größe 152 cm. Außerdem gibt es jede Menge Inspiration für die Mädchengarderobe.</p>]]></target>
+        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Unterteilen für Jungs. Hier finden Sie Hosen, Jeans und Shorts für alle Gelegenheiten, Zwecke und Jahreszeiten. Tolle Materialien und fantastische Designs sind das Markenzeichen von POMPdeLUX. Das gilt auch für die Qualität von unseren Unterteilen, die bereits ab Größe 80 cm und bis Größe 152 cm erhältlich sind. Außerdem können Sie sich jede Menge Inspiration für die Jungengarderobe holen.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-165">
         <source>headers.category-165</source>
-        <target><![CDATA[<h1>Accesoires</h1>]]></target>
+        <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-165">
         <source>description.category-165</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX fertigt Unterwäsche und Nachtwäsche, die man einfach gerne trägt. Deswegen verwenden wir nur weiche Materialien von hoher Qualität, die Jungs mit Sicherheit gerne anziehen. Unsere gesamte Nacht- und Unterwäsche ist deswegen selbstverständlich auch nach dem Oeko-Tex-Standard-100 hergestellt und trägt das GOTS-Siegel. Wir bei POMPdeLUX finden jedoch nicht, dass Unterwäsche und Nachtwäsche nur praktisch sein soll. Deswegen achten wir bei der Entwicklung auch ganz besonders auf ein schickes, raffiniertes Design. Die Kollektion bietet Unterhemden, Boxershorts, Schlafanzüge und Einteiler ab Größe 80 cm bis Größe 152 cm. Außerdem gibt es jede Menge Inspiration für die Jungengarderobe.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-166">
         <source>headers.category-166</source>
-        <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
+        <target><![CDATA[<h1>Accesoires</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-166">
         <source>description.category-166</source>
-        <target><![CDATA[<p>Ein wichtiger Bestandteil in der Garderobe von Jungs ist Outdoor-Bekleidung. POMPdeLUX bietet für Jungs immer eine große Vielfalt unterschiedlicher Produkte. Unsere gesamte Outdoor-Bekleidung ist darauf ausgelegt, Jungs bei jedem Wetter warm und trocken zu halten. Insbesondere unsere technische Outdoor-Bekleidung bietet unvergleichlich hohe Qualität und Sicherheit, denn sie ist wasserdicht, winddicht und atmungsaktiv. Unsere Outdoor-Bekleidung für Jungs ist mit einer Fülle toller Details ausgestattet, wie beispielsweise Reflexe, einer abnehmbaren Kapuze, einem Windfang, Fußschlaufen und praktische Taschen. Schneeanzüge, Jacken, Regen- und Skihosen sowie Fleecejacken sind in den Größen 80 bis 152 cm erhältlich. Bei uns finden Sie außerdem jede Menge Anregungen für die Jungengarderobe. </p>]]></target>
-      </trans-unit>
-      <trans-unit id="headers.category-167">
-        <source>headers.category-167</source>
-        <target><![CDATA[<h1>Oberteile</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-167">
-        <source>description.category-167</source>
-        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Oberteilen für Jungs. Eines können wir Ihnen deswegen versprechen: es wird nicht leicht werden, unter den vielen Tops, Cardigans, Poloshirts, Hemden, Sportjacken, Sweaters, Sweatshirts, T-Shirts und Westen einen Favoriten zu finden, denn es gibt so viele tolle Styles! Stöbern Sie nach Herzenslust in coolen Emblemen, derben Nieten, tollen Farben, fantastischen Prints, College-Styles und tollem Strick - alle Artikel sind aus besten Materialien in toller Qualität gefertigt. Unsere Oberteile sind bereits ab Größe 80 cm und bis 152 cm erhältlich. Freuen Sie sich auf jede Menge Inspiration für die Jungengarderobe.
-</p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX fertigt für jede Kollektion unterschiedliches Zubehör. U. a. eine fantastische POMP-Tasche, die praktisch für ALLES verwendet werden kann. Eine supercoole und haltbare Tasche, die für Strandtouren ebenso verwendet werden kann wie fürs Badezeug, zum Übernachten oder als Geschenktasche mit Schleife. Sie bestimmen – die Möglichkeiten, die  POMPdeLUX-Zubehör bieten, sind unendlich.</p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-168">
         <source>headers.category-168</source>
-        <target><![CDATA[<h1>Unterteile</h1>]]></target>
+        <target><![CDATA[<h1>MÄDCHEN - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-168">
         <source>description.category-168</source>
-        <target><![CDATA[<p>Für jede Kollektion entwickelt POMPdeLUX eine riesige Auswahl an Unterteilen für Jungs. Hier finden Sie Hosen, Jeans und Shorts für alle Gelegenheiten, Zwecke und Jahreszeiten. Tolle Materialien und fantastische Designs sind das Markenzeichen von POMPdeLUX. Das gilt auch für die Qualität von unseren Unterteilen, die bereits ab Größe 80 cm und bis Größe 152 cm erhältlich sind. Außerdem können Sie sich jede Menge Inspiration für die Jungengarderobe holen.</p>]]></target>
+        <target><![CDATA[<p></p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-169">
         <source>headers.category-169</source>
-        <target><![CDATA[<h1>Unterwäsche / Nachtwäsche</h1>]]></target>
+        <target><![CDATA[<h1>JUNGE - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-169">
         <source>description.category-169</source>
-        <target><![CDATA[<p>POMPdeLUX fertigt Unterwäsche und Nachtwäsche, die man einfach gerne trägt. Deswegen verwenden wir nur weiche Materialien von hoher Qualität, die Jungs mit Sicherheit gerne anziehen. Unsere gesamte Nacht- und Unterwäsche ist deswegen selbstverständlich auch nach dem Oeko-Tex-Standard-100 hergestellt und trägt das GOTS-Siegel. Wir bei POMPdeLUX finden jedoch nicht, dass Unterwäsche und Nachtwäsche nur praktisch sein soll. Deswegen achten wir bei der Entwicklung auch ganz besonders auf ein schickes, raffiniertes Design. Die Kollektion bietet Unterhemden, Boxershorts, Schlafanzüge und Einteiler ab Größe 80 cm bis Größe 152 cm. Außerdem gibt es jede Menge Inspiration für die Jungengarderobe.</p>]]></target>
-      </trans-unit>
-      <trans-unit id="headers.category-170">
-        <source>headers.category-170</source>
-        <target><![CDATA[<h1>Accesoires</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-170">
-        <source>description.category-170</source>
-        <target><![CDATA[<p>POMPdeLUX fertigt für jede Kollektion unterschiedliches Zubehör. U. a. eine fantastische POMP-Tasche, die praktisch für ALLES verwendet werden kann. Eine supercoole und haltbare Tasche, die für Strandtouren ebenso verwendet werden kann wie fürs Badezeug, zum Übernachten oder als Geschenktasche mit Schleife. Sie bestimmen – die Möglichkeiten, die  POMPdeLUX-Zubehör bieten, sind unendlich.</p>]]></target>
-      </trans-unit>
-      <trans-unit id="headers.category-171">
-        <source>headers.category-171</source>
-        <target><![CDATA[<h1>Mädchen - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-171">
-        <source>description.category-171</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-      <trans-unit id="headers.category-172">
-        <source>headers.category-172</source>
-        <target><![CDATA[<h1>Junge - SUCHEN SIE HIER NACH DER GRÖβE IHRES KINDES</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-172">
-        <source>description.category-172</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
       <trans-unit id="headers.category-141">
@@ -536,28 +536,28 @@
         <source>description.category-141</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-	  <trans-unit id="headers.category-173">
-        <source>headers.category-173</source>
+	  <trans-unit id="headers.category-171">
+        <source>headers.category-171</source>
         <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-171">
+        <source>description.category-171</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	    <trans-unit id="headers.category-173">
+        <source>headers.category-173</source>
+        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-173">
         <source>description.category-173</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-	    <trans-unit id="headers.category-175">
+	   <trans-unit id="headers.category-175">
         <source>headers.category-175</source>
-        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
+        <target><![CDATA[<h1>Skihosen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-175">
         <source>description.category-175</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	   <trans-unit id="headers.category-177">
-        <source>headers.category-177</source>
-        <target><![CDATA[<h1>Skihosen</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-177">
-        <source>description.category-177</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
 	   <trans-unit id="headers.category-179">
@@ -568,84 +568,132 @@
         <source>description.category-179</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-	  <trans-unit id="headers.category-180">
-        <source>headers.category-180</source>
-        <target><![CDATA[<h1>Basics</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-180">
-        <source>description.category-180</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	   <trans-unit id="headers.category-184">
-        <source>headers.category-184</source>
-        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-184">
-        <source>description.category-184</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	     <trans-unit id="headers.category-186">
-        <source>headers.category-186</source>
-        <target><![CDATA[<h1>Pullover</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-186">
-        <source>description.category-186</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	   <trans-unit id="headers.category-174">
-        <source>headers.category-174</source>
-        <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-174">
-        <source>description.category-174</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	   <trans-unit id="headers.category-176">
-        <source>headers.category-176</source>
-        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-176">
-        <source>description.category-176</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
-	   <trans-unit id="headers.category-178">
+	  <trans-unit id="headers.category-178">
         <source>headers.category-178</source>
-        <target><![CDATA[<h1>Skihosen</h1>]]></target>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-178">
         <source>description.category-178</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-	  <trans-unit id="headers.category-181">
-        <source>headers.category-181</source>
-        <target><![CDATA[<h1>Basics</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-181">
-        <source>description.category-181</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
 	   <trans-unit id="headers.category-182">
         <source>headers.category-182</source>
-        <target><![CDATA[<h1>Westen</h1>]]></target>
+        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-182">
         <source>description.category-182</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-	   <trans-unit id="headers.category-183">
+	     <trans-unit id="headers.category-183">
         <source>headers.category-183</source>
-        <target><![CDATA[<h1>Fliegen</h1>]]></target>
+        <target><![CDATA[<h1>Pullover</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-183">
         <source>description.category-183</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
+	   <trans-unit id="headers.category-170">
+        <source>headers.category-170</source>
+        <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-170">
+        <source>description.category-170</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-172">
+        <source>headers.category-172</source>
+        <target><![CDATA[<h1>Schneeanzüge</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-172">
+        <source>description.category-172</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-174">
+        <source>headers.category-174</source>
+        <target><![CDATA[<h1>Skihosen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-174">
+        <source>description.category-174</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-177">
+        <source>headers.category-177</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-177">
+        <source>description.category-177</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-176">
+        <source>headers.category-176</source>
+        <target><![CDATA[<h1>Westen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-176">
+        <source>description.category-176</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-180">
+        <source>headers.category-180</source>
+        <target><![CDATA[<h1>Fliegen</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-180">
+        <source>description.category-180</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-181">
+        <source>headers.category-181</source>
+        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-181">
+        <source>description.category-181</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-184">
+        <source>headers.category-184</source>
+        <target><![CDATA[<h1>Kleider/Jumpsuits</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-184">
+        <source>description.category-184</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
 	   <trans-unit id="headers.category-185">
         <source>headers.category-185</source>
-        <target><![CDATA[<h1>Mützen und Handschuhe</h1>]]></target>
+        <target><![CDATA[<h1>Strumpfhosen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-185">
         <source>description.category-185</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-186">
+        <source>headers.category-186</source>
+        <target><![CDATA[<h1>Regenkleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-186">
+        <source>description.category-186</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-187">
+        <source>headers.category-187</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-187">
+        <source>description.category-187</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+<trans-unit id="headers.category-188">
+        <source>headers.category-188</source>
+        <target><![CDATA[<h1>Regenkleidung</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-188">
+        <source>description.category-188</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-189">
+        <source>headers.category-189</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-189">
+        <source>description.category-189</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
     </body>

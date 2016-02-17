@@ -535,6 +535,54 @@
         <source>description.category-141</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
+	   <trans-unit id="headers.category-184">
+        <source>headers.category-184</source>
+        <target><![CDATA[<h1>Klänningar/Jumpsuits</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-184">
+        <source>description.category-184</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-185">
+        <source>headers.category-185</source>
+        <target><![CDATA[<h1>Strumpbyxor</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-185">
+        <source>description.category-185</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-186">
+        <source>headers.category-186</source>
+        <target><![CDATA[<h1>Regnkläder</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-186">
+        <source>description.category-186</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	   <trans-unit id="headers.category-187">
+        <source>headers.category-187</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-187">
+        <source>description.category-187</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+<trans-unit id="headers.category-188">
+        <source>headers.category-188</source>
+        <target><![CDATA[<h1>Regnkläder</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-188">
+        <source>description.category-188</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  <trans-unit id="headers.category-189">
+        <source>headers.category-189</source>
+        <target><![CDATA[<h1>Basics</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-189">
+        <source>description.category-189</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
