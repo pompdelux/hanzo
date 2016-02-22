@@ -306,8 +306,8 @@ class SyncSalesOrder extends BaseService
              * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
              */
             $bagPrice  = 0.00;
-            $salesQty  = 2; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-            $itemId    = 'FREEPOMPBAGAW15';
+            $salesQty  = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
+            $itemId    = 'FREEPOMPBIGBAGSS16';
 
             switch($domainKey) {
                 case 'AT':
@@ -316,14 +316,14 @@ class SyncSalesOrder extends BaseService
                 case 'DE':
                 case 'FI':
                 case 'NL':
-                    $bagPrice = '1.95';
+                    $bagPrice = '4.99';
                     break;
                 case 'DK':
-                    $bagPrice = '10.00';
+                    $bagPrice = '40.00';
                     break;
                 case 'NO':
                 case 'SE':
-                    $bagPrice = '15.00';
+                    $bagPrice = '60.00';
                     break;
             }
 
@@ -332,7 +332,7 @@ class SyncSalesOrder extends BaseService
                 'SalesPrice'      => $bagPrice,
                 'LineDiscPercent' => 100,
                 'SalesQty'        => $salesQty,
-                'InventColorId'   => 'Grey',
+                'InventColorId'   => 'Off White',
                 'InventSizeId'    => 'One Size',
                 'SalesUnit'       => 'Stk.',
             ];
@@ -356,11 +356,11 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20150210;
-            $toDate   = 20151210;
-            $itemId   = 'FREEPOMPBAGAW15';
+            $fromDate = 20160225;
+            $toDate   = 20160510;
+            $itemId   = 'FREEPOMPBAGSS16';
 
-            // Also check if promition has been added allready
+            // Also check if promotion has been added already
             if (!isset($this->promotionsAdded[$itemId]) && (($fromDate <= $date) && ($toDate >= $date)) ||
                 ($this->inEdit && ($toDate >= $this->order->getCreatedAt('Ymd')))
             ) {
@@ -386,11 +386,11 @@ class SyncSalesOrder extends BaseService
                 }
 
                 $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                    'ItemId'          => 'FREEPOMPBAGAW15',
+                    'ItemId'          => 'FREEPOMPBAGSS16',
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
                     'SalesQty'        => $salesQty,
-                    'InventColorId'   => 'Grey',
+                    'InventColorId'   => 'Off White',
                     'InventSizeId'    => 'One Size',
                     'SalesUnit'       => 'Stk.',
                 ];
