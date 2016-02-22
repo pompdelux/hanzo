@@ -45,79 +45,63 @@
                     ],
                     "colors": "",
                         "colormap": {
-                            "Black": [
-                                "Black",
-                                "Copper/Black",
-                                "Black Wide Stripe",
-                                "Grey/Black"
-                                
-                            ],
-                           "Blue": [
-                                "Dusty Blue",
-                                "Blue",
-                                "Navy",
-                                "Blue/Rose",
-                                "Navy/Blue",
-                                "Navy/Green",
-                                "Petrol",
-                                "Petrol Stripe",
-                                "Navy Stripe",
-                                "Bright Blue",
-                                "Blue/Yellow",
-                                "Light Blue",
-                                "Blue Melange",
-                                "Navy Narrow",
-                                "Navy Wide",
-                                "Dark Blue Melange",
-                                "Navy/Red"
+                             "Black": [
+			"Black",
+			"Black/Light Rose"
+		],
+		"Blue": [
+			"Blue",
+			"Navy",
+			"Blue Denim",
+			"Purple/Blue",
+			"Light Rose/Navy",
+			"Blue Balloon",
+			"Navy/Off White"
+		],
+		"Denim": [
+			"Blue Denim"
+		],
+		"Grey": [
+			"Grey",
+			"Grey Melange",
+			"Light Grey",
+			"Light Grey Balloon"
+		],
 
-                            ],
-                            "Denim": [
-                                "Blue Denim"
-                                
-                            ],
-                            "Grey": [
-                                "Grey",
-                                "Grey Melange",
-                                "Dark Grey",
-                                "Light Grey",
-                                "Dark Grey Melange",
-                                "Dusty Brown",
-                                "Grey/Black"
-                                
-                             ],
-                            "Petrol": [
-                                "Petrol",
-                                "Copper/Black"  
-                                
-                              ],
-                            "Plum": [
-                                "Plum"     
-                                
-                            ],
-                            "Rose": [
-                                "Rose",
-                                "Dark Rose",
-                                "Light Rose",
-                                "Blue/Rose",
-                                "Copper/Black"
+		"Mint": [
+			"Off White/Mint",
+			"Light Mint",
+			"Light Mint",
+			"Mint",
+			"Dark Mint",
+			"Mint Bird"
+		],
+		"Plum": [
+			"Purple/Navy",
+			"Light Purple Bird",
+			"Dark Purple",
+			"Purple",
+			"Light Purple",
+			"Purple Balloon"
+		],
+		"Rose": [
+			"Rose",
+			"Light Rose",
+			"Black/Light Rose",
+			"Dark Rose",
+			"Light Rose Bird",
+			"Light Rose Balloon"
 
-							],
-                            "Sand/Brown": [
-                                "Sand",
-                                "Brown",
-                                "Dusty Brown"
-                                
-                             ],
-                            "White": [
-                                "Off White",
-                                "White"
-                                    
-                            ],                           
-                            "Yellow": [
-                                "Yellow",
-                                "Blue/Yellow" 
-                            ]
+		],
+		"White": [
+			"Navy/Off White",
+			"Off White",
+			"Off White Bird",
+			"Off White/Mint"
+		],
+		"Yellow": [
+			"Yellow"
+		]
                         },
                         "sizes": {
                             "80": ["80","80-86","50","52","XS","S","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
@@ -185,67 +169,61 @@
                     "colors": "",
                         "colormap": {
                              "Black": [
-                                "Black",
-                                "Copper/Black",
-                                "Black Wide Stripe",
-                                "Grey/Black"
-                                
-                            ],
-                           "Blue": [
-                                "Dusty Blue",
-                                "Blue",
-                                "Navy",
-                                "Blue/Rose",
-                                "Navy/Blue",
-                                "Navy/Green",
-                                "Petrol",
-                                "Petrol Stripe",
-                                "Navy Stripe",
-                                "Bright Blue",
-                                "Blue/Yellow",
-                                "Light Blue",
-                                "Blue Melange",
-                                "Navy Narrow",
-                                "Navy Wide",
-                                "Dark Blue Melange",
-                                "Navy/Red"
-
-                            ],
-                            "Denim": [
-                                "Blue Denim"
-                               
-                            ],
-                            "Green": [
-                                "Green",
-                                "Navy/Green",
-                                "Green Narrow Stripe"
-                                    
-                            ],
-                            "Grey": [
-                                "Grey",
-                                "Grey Melange",
-                                "Dark Grey",
-                                "Light Grey",
-                                "Dark Grey Melange",
-                                "Dusty Brown",
-                                "Grey/Black"
-                                
-                             ],
-                            "Petrol": [
-                                "Petrol",
-                                "Copper/Black"
-
-							],
-                            "Sand/Brown": [
-                                "Sand",
-                                "Brown",
-                                "Dusty Brown"
-                                
-                             ],
-                            "White": [
-                                "Off White",
-                                "White"
-                                ]
+			"Black"
+		],
+		"Blue": [
+			"Navy",
+			"Blue ",
+			"Navy/Blue",
+			"Blue Deimin",
+			"Navy/Off White",
+			"Light Blue Denim",
+			"Light Blue",
+			"Navy Mix",
+			"Navy Stripe",
+			"Petrol Melange",
+			"Blue Melange",
+			"Green/Navy",
+			"Navy/Blue",
+			"Blue Stripe",
+			"Dark Petrol",
+			"Grey Melange/Petrol",
+			"Navy/Grey Melange"
+		],
+		"Denim": [
+			"Blue Denim",
+			"Light Blue Denim"
+		],
+		"Green": [
+			"Green",
+			"Light Green",
+			"Navy/Green",
+			"Olive",
+			"Petrol"
+		],
+		"Grey": [
+			"Grey",
+			"Grey Melange",
+			"Grey Melange/Petrol",
+			"Navy/Grey Melange"
+		],
+		"Petrol": [
+			"Dark Petrol",
+			"Grey Melange/Petrol",
+			"Petrol",
+			"Petrol Melange"
+		],
+		"Sand/Brown": [
+			"Sand",
+			"Brown",
+			"Olive"
+		],
+		"White": [
+			"Off White",
+			"Off White Check",
+			"Navy/Off White ",
+			"White"
+		]
                         },
                        "sizes": {
                             "80": ["80","80-86","50","52","XS","S","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
