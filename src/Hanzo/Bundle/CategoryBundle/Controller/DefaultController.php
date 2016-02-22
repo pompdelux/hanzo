@@ -359,7 +359,7 @@ class DefaultController extends CoreController
             // Rejected products
             $rejected_product_colors = [
               'LeanderShellLtBibPantsSS16' => [
-                'girl' => ['blue'],
+                'girl' => ['blue', 'navy'],
                 'boy'  => ['plum'],
               ],
               'LeanderShellPantsSS16'      => [
@@ -375,29 +375,31 @@ class DefaultController extends CoreController
                 'boy'  => ['purple', 'rose'],
               ],
               'LeeSoftshellJrJacketSS16'   => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LeeSoftshellLtJacketSS16'   => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LeeSoftshellLtSuitSS16'     => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LommelJrFleeceJacketSS16'   => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LommelLtFleeceJacketSS16'   => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LeanderShellJrJacketSS16'   => [
+                'girl' => ['navy'],
                 'boy' => ['plum'],
               ],
               'LeanderShellLtJacketSS16'   => [
+                'girl' => ['navy'],
                 'boy' => ['plum'],
               ],
             ];
