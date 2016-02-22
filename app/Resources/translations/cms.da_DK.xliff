@@ -1,150 +1,1234 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="unable.to.delete.order.in.current.state">
-                <source>unable.to.delete.order.in.current.state</source>
-                <target>Ordren kan ikke slettes i dens nuværende tilstand.</target>
-            </trans-unit>
-            <trans-unit id="size.label.postfix">
-                <source>size.label.postfix</source>
-                <target> cm</target>
-            </trans-unit>
-            <trans-unit id="size.guide.link">
-                <source>size.guide.link</source>
-                <target>images/pages/Size_Guide_DK.jpg</target>
-            </trans-unit>
-            <trans-unit id="size.guide.link.text">
-                <source>size.guide.link.text</source>
-                <target>Size guide</target>
-            </trans-unit>
-            <trans-unit id="out.of.stock">
-                <source>out.of.stock</source>
-                <target>Udsolgt</target>
-            </trans-unit>
-            <trans-unit id="home">
-                <source>home</source>
-                <target>Til forsiden</target>
-            </trans-unit>
-            <trans-unit id="show.basket">
-                <source>show.basket</source>
-                <target>Vis kurv</target>
-            </trans-unit>
-            <trans-unit id="your.basket">
-                <source>your.basket</source>
-                <target>Din kurv</target>
-            </trans-unit>
-            <trans-unit id="choose">
-                <source>choose</source>
-                <target>Vælg</target>
-            </trans-unit>
-            <trans-unit id="quantity">
-                <source>quantity</source>
-                <target>Antal</target>
-            </trans-unit>
-            <trans-unit id="loading">
-                <source>loading</source>
-                <target>Loading</target>
-            </trans-unit>
-            <trans-unit id="more.product.info">
-                <source>more.product.info</source>
-                <target>Klik her for at mere information om %name%.</target>
-            </trans-unit>
-            <trans-unit id="all.products.out.of.stock">
-                <source>all.products.out.of.stock</source>
-                <target>Der er desværre ingen produkter at vise i denne kategori. Prøv at fravælge et eller flere af dine søgekriterier. Giver søgningen fortsat ingen resultater kan kategorien være udsolgt.</target>
-            </trans-unit>
-            <trans-unit id="pager.previous.page">
-                <source>pager.previous.page</source>
-                <target>Vis forrige side</target>
-            </trans-unit>
-            <trans-unit id="previous">
-                <source>previous</source>
-                <target>Forrige</target>
-            </trans-unit>
-            <trans-unit id="pager.page">
-                <source>pager.page</source>
-                <target>Vis side %page%</target>
-            </trans-unit>
-            <trans-unit id="pager.next.page">
-                <source>pager.next.page</source>
-                <target>Vis næste side</target>
-            </trans-unit>
-            <trans-unit id="next">
-                <source>next</source>
-                <target>Næste</target>
-            </trans-unit>
-            <trans-unit id="product.details">
-                <source>product.details</source>
-                <target>Varebeskrivelse</target>
-            </trans-unit>
-            <trans-unit id="care.instructions">
-                <source>care.instructions</source>
-                <target>Vaskeanvisning</target>
-            </trans-unit>
-            <trans-unit id="add.to.basket">
-                <source>add.to.basket</source>
-                <target>Læg i kurv</target>
-            </trans-unit>
-            <trans-unit id="product.added.to.cart">
-                <source>product.added.to.cart</source>
-                <target>"%product%" er nu lagt i din kurv</target>
-            </trans-unit>
-            <trans-unit id="product.out.of.stock">
-                <source>product.out.of.stock</source>
-                <target>"%product%" er desværre udsolgt</target>
-            </trans-unit>
-            <trans-unit id="products">
-                <source>products</source>
-                <target>Produkt(er)</target>
-            </trans-unit>
-            <trans-unit id="latest.shipment.date">
-                <source>latest.shipment.date</source>
-                <target>Afsendes senest</target>
-            </trans-unit>
-            <trans-unit id="price">
-                <source>price</source>
-                <target>Pris</target>
-            </trans-unit>
-            <trans-unit id="total">
-                <source>total</source>
-                <target>Samlet Beløb</target>
-            </trans-unit>
-            <trans-unit id="edit">
-                <source>edit</source>
-                <target>Rediger</target>
-            </trans-unit>
-            <trans-unit id="delete">
-                <source>delete</source>
-                <target>Slet</target>
-            </trans-unit>
-            <trans-unit id="size">
-                <source>size</source>
-                <target>Size</target>
-            </trans-unit>
-            <trans-unit id="color">
-                <source>color</source>
-                <target>Colour</target>
-            </trans-unit>
-            <trans-unit id="company.address">
-                <source>company.address</source>
-                <target>Firma</target>
-            </trans-unit>
-            <trans-unit id="date">
-                <source>date</source>
-                <target>Dato</target>
-            </trans-unit>
-            <trans-unit id="event.id">
-                <source>event.id</source>
-                <target>Arrangenments nr.</target>
-            </trans-unit>
-            <trans-unit id="store.address">
-                <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · maildk@POMPdeLUX.com · (+45) 8678 7871</target>
-            </trans-unit>
-            <trans-unit id="order.edit.global.notice">
-                <source>order.edit.global.notice</source>
-                <target><![CDATA[
+<file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+        <trans-unit id="861.settings">
+            <source>861.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "168",
+                        "embedded_category_id": [
+                            "12",
+                            "13",
+                            "14",
+                            "15",
+                            "16",
+                            "17",
+                            "18",
+                            "19",
+                            "21",
+                            "45",
+                            "46",
+                            "79",
+                            "81",
+                            "112",
+                            "113",
+                            "114",
+                            "115",
+                            "127",
+                            "131",
+                            "136",
+                            "137",
+                            "142",
+                            "143",
+                            "144",
+                            "145",
+                            "146",
+                            "147",
+                            "170",
+                            "172",
+                            "174",
+                            "176",
+                            "177",
+                            "181",
+                            "183"
+                        ],
+                        "colors": "",
+                        "colormap": {
+                            "Black": [
+                                "Black",
+                                "Copper/Black",
+                                "Black Wide Stripe",
+                                "Grey/Black"
+
+                            ],
+                            "Blue": [
+                                "Dusty Blue",
+                                "Blue",
+                                "Navy",
+                                "Blue/Rose",
+                                "Navy/Blue",
+                                "Navy/Green",
+                                "Petrol",
+                                "Petrol Stripe",
+                                "Navy Stripe",
+                                "Bright Blue",
+                                "Blue/Yellow",
+                                "Light Blue",
+                                "Blue Melange",
+                                "Navy Narrow",
+                                "Navy Wide",
+                                "Dark Blue Melange",
+                                "Navy/Red"
+
+                            ],
+                            "Denim": [
+                                "Blue Denim"
+
+                            ],
+                            "Grey": [
+                                "Grey",
+                                "Grey Melange",
+                                "Dark Grey",
+                                "Light Grey",
+                                "Dark Grey Melange",
+                                "Dusty Brown",
+                                "Grey/Black"
+
+                            ],
+                            "Petrol": [
+                                "Petrol",
+                                "Copper/Black"
+
+                            ],
+                            "Plum": [
+                                "Plum"
+
+                            ],
+                            "Rose": [
+                                "Rose",
+                                "Dark Rose",
+                                "Light Rose",
+                                "Blue/Rose",
+                                "Copper/Black"
+
+                            ],
+                            "Sand/Brown": [
+                                "Sand",
+                                "Brown",
+                                "Dusty Brown"
+
+                            ],
+                            "White": [
+                                "Off White",
+                                "White"
+
+                            ],
+                            "Yellow": [
+                                "Yellow",
+                                "Blue/Yellow"
+                            ]
+                        },
+                        "sizes": {
+                            "80": ["80", "80-86", "50", "52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "86": ["86", "80-86", "86-92", "86/92", "50", "52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "92": ["92", "86-92", "50", "52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "98": ["98", "98-104", "52", "54", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "104": ["104", "98-104", "52", "54", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "110": ["110", "110-116", "52", "54", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "116": ["116", "110-116", "52", "54", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "122": ["122", "122-128", "54", "56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "128": ["128", "122-128", "54", "56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "134": ["134", "134-140", "54", "56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "140": ["140", "134-140", "54", "56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "146": ["146", "146-152", "54", "56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                            "152": ["152", "146-152", "54", "56", "M", "L", "XL", "One Size", "20-22", "23-26", "27-30", "31-34", "35-38"]
+                        },
+                        "tokens": {
+                            "Økologi (GOTS)": ["154"],
+                            "Oekotex": ["153"]
+                        },
+                        "discount": {
+                            "50%": ["50"],
+                            "70%": ["70"]
+                        }
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="862.settings">
+            <source>862.settings</source>
+            <target><![CDATA[
+                    {
+                    "category_id": "169",
+                    "embedded_category_id": [
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "11",
+                        "43",
+                        "44",
+                        "83",
+                        "84",
+                        "116",
+                        "117",
+                        "118",
+                        "119",
+                        "120",
+                        "128",
+                        "132",
+                        "135",
+                        "148",
+                        "149",
+                        "150",
+                        "151",
+                        "152",
+						"171",
+						"173",
+						"175",
+						"178",
+						"179",
+						"180",
+						"182"
+                    ],
+                    "colors": "",
+                        "colormap": {
+                            "Black": [
+                                "Black",
+                                "Copper/Black",
+                                "Black Wide Stripe",
+                                "Grey/Black"
+
+                            ],
+                           "Blue": [
+                                "Dusty Blue",
+                                "Blue",
+                                "Navy",
+                                "Blue/Rose",
+                                "Navy/Blue",
+                                "Navy/Green",
+                                "Petrol",
+                                "Petrol Stripe",
+                                "Navy Stripe",
+                                "Bright Blue",
+                                "Blue/Yellow",
+                                "Light Blue",
+                                "Blue Melange",
+                                "Navy Narrow",
+                                "Navy Wide",
+                                "Dark Blue Melange",
+                                "Navy/Red"
+
+                            ],
+                            "Denim": [
+                                "Blue Denim"
+
+                            ],
+                            "Green": [
+                                "Green",
+                                "Navy/Green",
+                                "Green Narrow Stripe"
+
+                            ],
+                            "Grey": [
+                                "Grey",
+                                "Grey Melange",
+                                "Dark Grey",
+                                "Light Grey",
+                                "Dark Grey Melange",
+                                "Dusty Brown",
+                                "Grey/Black"
+
+                             ],
+                            "Petrol": [
+                                "Petrol",
+                                "Copper/Black"
+
+							],
+                            "Sand/Brown": [
+                                "Sand",
+                                "Brown",
+                                "Dusty Brown"
+
+                             ],
+                            "White": [
+                                "Off White",
+                                "White"
+                                ]
+                        },
+                       "sizes": {
+                            "80": ["80","80-86","50","52","XS","S","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "86": ["86","80-86","86-92","86/92","50","52","XS","S","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "92": ["92","86-92","50","52","XS","S","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "98": ["98","98-104","52","54","S","M","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "104": ["104","98-104","52","54","S","M","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "110": ["110","110-116","52","54","S","M","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "116": ["116","110-116","52","54","S","M","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "122": ["122","122-128","54","56","M","L","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "128": ["128","122-128","54","56","M","L","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "134": ["134","134-140","54","56","M","L","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "140": ["140","134-140","54","56","M","L","XL","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "146": ["146","146-152","54","56","M","L","XL","One Size","ONE SIZE","20-22","23-26","27-30","31-34","35-38"],
+                            "152": ["152","146-152","54","56","M","L","XL","One Size","20-22","23-26","27-30","31-34","35-38"]
+
+                        },
+                        "tokens": {
+                          "Økologi (GOTS)": ["156"],
+                          "Oekotex": ["155"]
+                        },
+                        "discount": {
+						"50%": ["50"],
+						"70%": ["70"]
+                        }
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="959.settings">
+            <source>959.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "157",
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="966.settings">
+            <source>966.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "12",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="967.settings">
+            <source>967.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "13",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="968.settings">
+            <source>968.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "14",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="969.settings">
+            <source>969.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "15",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1028.settings">
+            <source>1028.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "170",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1029.settings">
+            <source>1029.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "172",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1034.settings">
+            <source>1034.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "174",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1030.settings">
+            <source>1030.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "176",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1075.settings">
+            <source>1075.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "186",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="962.settings">
+            <source>962.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "158",
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="970.settings">
+            <source>970.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "16",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="971.settings">
+            <source>971.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "17",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="972.settings">
+            <source>972.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "18",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="973.settings">
+            <source>973.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "19",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="974.settings">
+            <source>974.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "21",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="975.settings">
+            <source>975.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "45",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1031.settings">
+            <source>1031.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "177",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1032.settings">
+            <source>1032.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "183",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1079.settings">
+            <source>1079.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "184",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="963.settings">
+            <source>963.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "159",
+                        "embedded_category_id": ["46","79","81","112","113","114","115"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="976.settings">
+            <source>976.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "46",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="977.settings">
+            <source>977.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "79",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="978.settings">
+            <source>978.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "81",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="979.settings">
+            <source>979.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "112",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="980.settings">
+            <source>980.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "113",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="981.settings">
+            <source>981.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "114",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="982.settings">
+            <source>982.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "115",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1081.settings">
+            <source>1081.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "187",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1084.settings">
+            <source>1084.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "185",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="964.settings">
+            <source>964.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "160",
+                        "embedded_category_id": ["127","131","136"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="983.settings">
+            <source>983.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "127",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="984.settings">
+            <source>984.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "131",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="985.settings">
+            <source>985.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "136",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="965.settings">
+            <source>965.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "161",
+                        "embedded_category_id": ["137","142","143","144","145","146","147","181"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="986.settings">
+            <source>986.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "137",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="987.settings">
+            <source>987.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "142",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="988.settings">
+            <source>988.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "143",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="989.settings">
+            <source>989.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "144",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="990.settings">
+            <source>990.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "145",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="991.settings">
+            <source>991.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "146",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="992.settings">
+            <source>992.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "147",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1033.settings">
+            <source>1033.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "181",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="993.settings">
+            <source>993.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "162",
+                        "embedded_category_id": ["5","6","7","8","171","173","175","118"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="870.settings">
+            <source>870.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "5",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="630.settings">
+            <source>630.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "6",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="627.settings">
+            <source>627.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "7",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="771.settings">
+            <source>771.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "8",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1035.settings">
+            <source>1035.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "171",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1036.settings">
+            <source>1036.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "173",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1037.settings">
+            <source>1037.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "175",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1038.settings">
+            <source>1038.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "118",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1080.settings">
+            <source>1080.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "188",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="994.settings">
+            <source>994.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "163",
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="626.settings">
+            <source>626.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "9",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="922.settings">
+            <source>922.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "11",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="628.settings">
+            <source>628.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "43",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="772.settings">
+            <source>772.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "44",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="632.settings">
+            <source>632.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "83",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="874.settings">
+            <source>874.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "84",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="633.settings">
+            <source>633.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "116",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="631.settings">
+            <source>631.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "117",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="634.settings">
+            <source>634.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "179",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1039.settings">
+            <source>1039.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "178",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="995.settings">
+            <source>995.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "164",
+                        "embedded_category_id": ["119","120","128"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="998.settings">
+            <source>998.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "119",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="999.settings">
+            <source>999.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "120",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1000.settings">
+            <source>1000.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "128",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1082.settings">
+            <source>1082.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "189",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="996.settings">
+            <source>996.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "165",
+                        "embedded_category_id": ["132","135","148"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1002.settings">
+            <source>1002.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "132",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1003.settings">
+            <source>1003.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "135",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1004.settings">
+            <source>1004.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "148",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="997.settings">
+            <source>997.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "166",
+                        "embedded_category_id": ["149","150","151","152","180","182"],
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1005.settings">
+            <source>1005.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "149",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1006.settings">
+            <source>1006.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "150",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1007.settings">
+            <source>1007.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "151",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1008.settings">
+            <source>1008.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "152",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1040.settings">
+            <source>1040.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "180",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1041.settings">
+            <source>1041.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "182",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+        <trans-unit id="1073.settings">
+            <source>1073.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "141",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+
+        <trans-unit id="job_application_form.name_label">
+            <source>job_application_form.name_label</source>
+            <target>Navn</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.address_label">
+            <source>job_application_form.address_label</source>
+            <target>Adresse</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.zipcode_label">
+            <source>job_application_form.zipcode_label</source>
+            <target>Postnummer</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.city_label">
+            <source>job_application_form.city_label</source>
+            <target>By</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.phone_label">
+            <source>job_application_form.phone_label</source>
+            <target>Telefon nr.</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.email_label">
+            <source>job_application_form.email_label</source>
+            <target>E-mail adresse</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.describe_yourself_label">
+            <source>job_application_form.describe_yourself_label</source>
+            <target>Hvem er du? (fx alder, familie og interesser)</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.describe_yourself_help">
+            <source>job_application_form.describe_yourself_help</source>
+            <target><![CDATA[Hvad har du lavet tidligere?<br>Hvad laver du i dag?<br>Hvad kan du bidrage med til POMPdeLUX?]]></target>
+        </trans-unit>
+        <trans-unit id="job_application_form.describe_motivation_label">
+            <source>job_application_form.describe_motivation_label</source>
+            <target><![CDATA[Hvorfor vil du gerne sælge POMPdeLUX børnetøj?<br>Hvorfor skal du være vores nye Shopping Advisor?<br>Hvor og hvordan blev du opmærksom på os?]]></target>
+        </trans-unit>
+        <trans-unit id="job_application_form.attach_image_label">
+            <source>job_application_form.attach_image_label</source>
+            <target>Vedhæft et vellignende billede af dig selv</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.attach_resume_label">
+            <source>job_application_form.attach_resume_label</source>
+            <target>Vedhæft dit CV</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.attach_resume_help">
+            <source>job_application_form.attach_resume_help</source>
+            <target> </target>
+        </trans-unit>
+        <trans-unit id="job_application_form.submit_value">
+            <source>job_application_form.submit_value</source>
+            <target>Send din ansøgning</target>
+        </trans-unit>
+        <trans-unit id="job_application_form.required">
+            <source>job_application_form.required</source>
+            <target>Skal udfyldes</target>
+        </trans-unit>
+        <trans-unit id="job_application.error.upload">
+            <source>job_application.error.upload</source>
+            <target>Fejl med uploadede fil.</target>
+        </trans-unit>
+        <trans-unit id="job_application.error.missing_field">
+            <source>job_application.error.missing_field</source>
+            <target>Felt skal udfyldes.</target>
+        </trans-unit>
+        <trans-unit id="job_application.error.missing_data">
+            <source>job_application.error.missing_data</source>
+            <target>Manglende data.</target>
+        </trans-unit>
+        <trans-unit id="job_application.success">
+            <source>job_application.success</source>
+            <target><![CDATA[<p>Din ansøgning er nu sendt.</p><br/><p>Hvis du har spørgsmål er du altid velkommen til at kontakte Sales Coordinator Katrine Fæster Agesen  på tlf. 87 36 13 29</p>]]></target>
+        </trans-unit>
+        <trans-unit id="unable.to.delete.order.in.current.state">
+            <source>unable.to.delete.order.in.current.state</source>
+            <target>Ordren kan ikke slettes i dens nuværende tilstand.</target>
+        </trans-unit>
+        <trans-unit id="size.label.postfix">
+            <source>size.label.postfix</source>
+            <target> cm</target>
+        </trans-unit>
+        <trans-unit id="size.guide.link">
+            <source>size.guide.link</source>
+            <target>images/pages/Size_Guide_DK.jpg</target>
+        </trans-unit>
+        <trans-unit id="size.guide.link.text">
+            <source>size.guide.link.text</source>
+            <target>Size guide</target>
+        </trans-unit>
+        <trans-unit id="out.of.stock">
+            <source>out.of.stock</source>
+            <target>Udsolgt</target>
+        </trans-unit>
+        <trans-unit id="home">
+            <source>home</source>
+            <target>Til forsiden</target>
+        </trans-unit>
+        <trans-unit id="show.basket">
+            <source>show.basket</source>
+            <target>Vis kurv</target>
+        </trans-unit>
+        <trans-unit id="your.basket">
+            <source>your.basket</source>
+            <target>Din kurv</target>
+        </trans-unit>
+        <trans-unit id="choose">
+            <source>choose</source>
+            <target>Vælg</target>
+        </trans-unit>
+        <trans-unit id="quantity">
+            <source>quantity</source>
+            <target>Antal</target>
+        </trans-unit>
+        <trans-unit id="loading">
+            <source>loading</source>
+            <target>Loading</target>
+        </trans-unit>
+        <trans-unit id="more.product.info">
+            <source>more.product.info</source>
+            <target>Klik her for at mere information om %name%.</target>
+        </trans-unit>
+        <trans-unit id="all.products.out.of.stock">
+            <source>all.products.out.of.stock</source>
+            <target>Der er desværre ingen produkter at vise i denne kategori. Prøv at fravælge et eller flere af dine søgekriterier. Giver søgningen fortsat ingen resultater kan kategorien være udsolgt.</target>
+        </trans-unit>
+        <trans-unit id="pager.previous.page">
+            <source>pager.previous.page</source>
+            <target>Vis forrige side</target>
+        </trans-unit>
+        <trans-unit id="previous">
+            <source>previous</source>
+            <target>Forrige</target>
+        </trans-unit>
+        <trans-unit id="pager.page">
+            <source>pager.page</source>
+            <target>Vis side %page%</target>
+        </trans-unit>
+        <trans-unit id="pager.next.page">
+            <source>pager.next.page</source>
+            <target>Vis næste side</target>
+        </trans-unit>
+        <trans-unit id="next">
+            <source>next</source>
+            <target>Næste</target>
+        </trans-unit>
+        <trans-unit id="product.details">
+            <source>product.details</source>
+            <target>Varebeskrivelse</target>
+        </trans-unit>
+        <trans-unit id="care.instructions">
+            <source>care.instructions</source>
+            <target>Vaskeanvisning</target>
+        </trans-unit>
+        <trans-unit id="add.to.basket">
+            <source>add.to.basket</source>
+            <target>Læg i kurv</target>
+        </trans-unit>
+        <trans-unit id="product.added.to.cart">
+            <source>product.added.to.cart</source>
+            <target>"%product%" er nu lagt i din kurv</target>
+        </trans-unit>
+        <trans-unit id="product.out.of.stock">
+            <source>product.out.of.stock</source>
+            <target>"%product%" er desværre udsolgt</target>
+        </trans-unit>
+        <trans-unit id="products">
+            <source>products</source>
+            <target>Produkt(er)</target>
+        </trans-unit>
+        <trans-unit id="latest.shipment.date">
+            <source>latest.shipment.date</source>
+            <target>Afsendes senest</target>
+        </trans-unit>
+        <trans-unit id="price">
+            <source>price</source>
+            <target>Pris</target>
+        </trans-unit>
+        <trans-unit id="total">
+            <source>total</source>
+            <target>Samlet Beløb</target>
+        </trans-unit>
+        <trans-unit id="edit">
+            <source>edit</source>
+            <target>Rediger</target>
+        </trans-unit>
+        <trans-unit id="delete">
+            <source>delete</source>
+            <target>Slet</target>
+        </trans-unit>
+        <trans-unit id="size">
+            <source>size</source>
+            <target>Size</target>
+        </trans-unit>
+        <trans-unit id="color">
+            <source>color</source>
+            <target>Colour</target>
+        </trans-unit>
+        <trans-unit id="company.address">
+            <source>company.address</source>
+            <target>Firma</target>
+        </trans-unit>
+        <trans-unit id="date">
+            <source>date</source>
+            <target>Dato</target>
+        </trans-unit>
+        <trans-unit id="event.id">
+            <source>event.id</source>
+            <target>Arrangenments nr.</target>
+        </trans-unit>
+        <trans-unit id="store.address">
+            <source>store.address</source>
+            <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · maildk@POMPdeLUX.com · (+45) 8678 7871</target>
+        </trans-unit>
+        <trans-unit id="order.edit.global.notice">
+            <source>order.edit.global.notice</source>
+            <target><![CDATA[
                   <h2>Bemærk:</h2>
                   <p>
                     Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
@@ -153,10 +1237,10 @@
                   <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten. Ønsker du at tilføje varer, skal du klikke på PIGE, DRENG, LILLE PIGE eller LILLE DRENG øverst på siden.</p>
                   <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og trykke på ”Fortsæt”. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br> <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod  gå op til 6 uger, før reservationen ophæves af dit pengeinstitut. </p>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="customer.service.contact.info">
-                <source>customer.service.contact.info</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="customer.service.contact.info">
+            <source>customer.service.contact.info</source>
+            <target><![CDATA[
                     <strong>Kundeservice</strong><br>
                     Telefon: (+45) 8678 7871<br>
                     E-mail: <a href="mailto:maildk@POMPdeLUX.com">maildk@POMPdeLUX.com</a><br>
@@ -164,10 +1248,10 @@
                     Fredag 9 - 14<br>
                     Lørdag, søndag og helligdage lukket.
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.address">
-                <source>footer.address</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="footer.address">
+            <source>footer.address</source>
+            <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
@@ -182,90 +1266,90 @@
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Del denne side på Facebook">Del på Facebook</a></li>
                     </ul>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.text">
-                <source>footer.text</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="footer.text">
+            <source>footer.text</source>
+            <target><![CDATA[
                     <ul>
                         <li><b>Fragt</b> fra 39,-</li>
                         <li><b>Leveringstid</b> %expected_delivery_date%</li>
                         <li><b>Ombytning</b> Gratis</li>
                     </ul>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="order.deleted">
-                <source>order.deleted</source>
-                <target>E-ordrenummer %id% er slettet</target>
-            </trans-unit>
-            <trans-unit id="buy.set">
-                <source>buy.set</source>
-                <target>Køb hele sættet</target>
-            </trans-unit>
-            <trans-unit id="buy.set.description">
-                <source>buy.set.description</source>
-                <target>Vælg den ønskede størrelse og farve ud for hver style du ønsker at putte i kurven.</target>
-            </trans-unit>
-            <trans-unit id="button.back">
-                <source>button.back</source>
-                <target>Shop videre</target>
-            </trans-unit>
-            <trans-unit id="button.find">
-                <source>button.find</source>
-                <target>Find</target>
-            </trans-unit>
-            <trans-unit id="browser.title">
-                <source>browser.title</source>
-                <target>POMPdeLUX - Vild med børnetøj</target>
-            </trans-unit>
-            <trans-unit id="create.account.vilkaar.link">
-                <source>create.account.vilkaar.link</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="order.deleted">
+            <source>order.deleted</source>
+            <target>E-ordrenummer %id% er slettet</target>
+        </trans-unit>
+        <trans-unit id="buy.set">
+            <source>buy.set</source>
+            <target>Køb hele sættet</target>
+        </trans-unit>
+        <trans-unit id="buy.set.description">
+            <source>buy.set.description</source>
+            <target>Vælg den ønskede størrelse og farve ud for hver style du ønsker at putte i kurven.</target>
+        </trans-unit>
+        <trans-unit id="button.back">
+            <source>button.back</source>
+            <target>Shop videre</target>
+        </trans-unit>
+        <trans-unit id="button.find">
+            <source>button.find</source>
+            <target>Find</target>
+        </trans-unit>
+        <trans-unit id="browser.title">
+            <source>browser.title</source>
+            <target>POMPdeLUX - Vild med børnetøj</target>
+        </trans-unit>
+        <trans-unit id="create.account.vilkaar.link">
+            <source>create.account.vilkaar.link</source>
+            <target><![CDATA[
                     <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">POMPdeLUX vilkår og betingelser.</a>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="category.selector.look">
-                <source>category.selector.look</source>
-                <target>Looks</target>
-            </trans-unit>
-            <trans-unit id="category.selector.overview">
-                <source>category.selector.overview</source>
-                <target>Overview</target>
-            </trans-unit>
-            <trans-unit id="options.title">
-                <source>options.title</source>
-                <target>Farve og størrelse</target>
-            </trans-unit>
-            <trans-unit id="choose.size.note">
-                <source>choose.size.note</source>
-                <target>(Størrelsen er barnets højde i cm.)</target>
-            </trans-unit>
-            <trans-unit id="click.to.zoom">
-                <source>click.to.zoom</source>
-                <target>Klik for zoom</target>
-            </trans-unit>
-            <trans-unit id="click.to.video">
-                <source>click.to.video</source>
-                <target>Video</target>
-            </trans-unit>
-            <trans-unit id="product.pictures.title">
-                <source>product.pictures.title</source>
-                <target>Billeder</target>
-            </trans-unit>
-            <trans-unit id="buy.the.set.title">
-                <source>buy.the.set.title</source>
-                <target>Køb sættet</target>
-            </trans-unit>
-            <trans-unit id="latest.seen.products.title">
-                <source>latest.seen.products.title</source>
-                <target>Jeg har også kigget på</target>
-            </trans-unit>
-            <trans-unit id="delivery.title">
-                <source>delivery.title</source>
-                <target>Levering</target>
-            </trans-unit>
-            <trans-unit id="delivery.info">
-                <source>delivery.info</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="category.selector.look">
+            <source>category.selector.look</source>
+            <target>Looks</target>
+        </trans-unit>
+        <trans-unit id="category.selector.overview">
+            <source>category.selector.overview</source>
+            <target>Overview</target>
+        </trans-unit>
+        <trans-unit id="options.title">
+            <source>options.title</source>
+            <target>Farve og størrelse</target>
+        </trans-unit>
+        <trans-unit id="choose.size.note">
+            <source>choose.size.note</source>
+            <target>(Størrelsen er barnets højde i cm.)</target>
+        </trans-unit>
+        <trans-unit id="click.to.zoom">
+            <source>click.to.zoom</source>
+            <target>Klik for zoom</target>
+        </trans-unit>
+        <trans-unit id="click.to.video">
+            <source>click.to.video</source>
+            <target>Video</target>
+        </trans-unit>
+        <trans-unit id="product.pictures.title">
+            <source>product.pictures.title</source>
+            <target>Billeder</target>
+        </trans-unit>
+        <trans-unit id="buy.the.set.title">
+            <source>buy.the.set.title</source>
+            <target>Køb sættet</target>
+        </trans-unit>
+        <trans-unit id="latest.seen.products.title">
+            <source>latest.seen.products.title</source>
+            <target>Jeg har også kigget på</target>
+        </trans-unit>
+        <trans-unit id="delivery.title">
+            <source>delivery.title</source>
+            <target>Levering</target>
+        </trans-unit>
+        <trans-unit id="delivery.info">
+            <source>delivery.info</source>
+            <target><![CDATA[
                     <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
     Du kan v&aelig;lge mellem tre forsendelsesmuligheder:
     <br /><br />
@@ -273,21 +1357,21 @@
       <br /><br />Privatpakke: Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Home Shopping eller Åbent Hus arrangement).<br /><br />Valgfri udlevering – Forsendelse til Pakkeboks: Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være Posthus, Postbutik eller den Pakkeboks der er tættest på dit hjem, dit arbejde eller din fritidsinteresse. Det er helt op til dig og du behøver ikke bruge det samme udleveringssted hver gang. Det koster DKK 39,00 at få leveret pakker til en Pakkeboks (dog kun DKK 29,00 hvis du køber varerne til et Home Shopping eller Åbent Hus arrangement).<br /><br />
     N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="return.title">
-                <source>return.title</source>
-                <target>Returnering</target>
-            </trans-unit>
-            <trans-unit id="return.info">
-                <source>return.info</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="return.title">
+            <source>return.title</source>
+            <target>Returnering</target>
+        </trans-unit>
+        <trans-unit id="return.info">
+            <source>return.info</source>
+            <target><![CDATA[
                     <p><b>RETURNERING</b><br>
 Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dages fortrydelsesret fra den dag, du modtager varen. Det er vigtigt, at varen returneres med hængemærker og i samme stand, som da du modtog den, hvis du ønsker at få ombyttet til en tilsvarende vare eller få tilbagebetalt det fulde returbeløb. Du kan læse mere om, hvordan du skal gøre, hvis du ønsker at returnere eller bytte en vare under <a href="/da_DK/forside/kundeservice/returnering" target="_blank">Returnering og Ombytning.</a><br> Du kan læse mere om fortrydelsesret i vores <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Vilkår og betingelser.</a>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_1">
-                <source>footer.menu_1</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="footer.menu_1">
+            <source>footer.menu_1</source>
+            <target><![CDATA[
                 <h2>KUNDESERVICE</h2>
                 <ul class="menu">
 				<li><a href="/da_DK/forside/kundeservice">Telefontider</a></li>
@@ -302,10 +1386,10 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
 				<li><a href="/da_DK/forside/kundeservice/fragt-og-levering">Fragt og levering</a></li>
                 </ul>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_2">
-                <source>footer.menu_2</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="footer.menu_2">
+            <source>footer.menu_2</source>
+            <target><![CDATA[
                 <h2>HOME SHOPPING</h2>
                 <ul class="menu">
 				<li><a href="/da_DK/forside/home-shopping">Bliv værtinde</a></li>
@@ -320,10 +1404,10 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
 				<li><a href="https://www.facebook.com/POMPdeLUXDK" target="_blank">Facebook</a></li>
 				</ul>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_3">
-                <source>footer.menu_3</source>
-                <target><![CDATA[
+        </trans-unit>
+        <trans-unit id="footer.menu_3">
+            <source>footer.menu_3</source>
+            <target><![CDATA[
                 <h2>MERE POMPDELUX</h2>
                 <ul class="menu">
                 <li><a href="/da_DK/forside/om-pompdelux">Om POMPdeLUX</a></li>
@@ -336,67 +1420,67 @@ Hvis du ønsker at ombytte eller returnere en vare, har du hos POMPdeLUX 14 dage
 				<br>
 				<a href="https://certifikat.emaerket.dk/pompdelux.com" target="_blank"><img src="//static.pompdelux.com/images/pages/Emærke_POMPdeLUX.png" width="58" height="61"></a>
                 ]]></target>
-            </trans-unit>
-            <trans-unit id="share.to.%method%">
-                <source>share.to.%method%</source>
-                <target>Del på %method%</target>
-            </trans-unit>
-            <trans-unit id="back.to.category">
-                <source>back.to.category</source>
-                <target>Tilbage til oversigten</target>
-            </trans-unit>
-            <trans-unit id="back">
-                <source>back</source>
-                <target>Tilbage</target>
-            </trans-unit>
-            <trans-unit id="on.stock">
-                <source>on.stock</source>
-                <target>På lager</target>
-            </trans-unit>
-            <trans-unit id="on.stock.yes">
-                <source>on.stock.yes</source>
-                <target>Ja</target>
-            </trans-unit>
-            <trans-unit id="on.stock.no">
-                <source>on.stock.no</source>
-                <target>Nej</target>
-            </trans-unit>
-            <trans-unit id="pager.pages.%total%">
-                <source>pager.pages.%total%</source>
-                <target>af %total%</target>
-            </trans-unit>
-            <trans-unit id="pager.see_all.%total%">
-                <source>pager.see_all.%total%</source>
-                <target>se alle(%total%)</target>
-            </trans-unit>
-            <trans-unit id="more.bundle.info">
-                <source>more.bundle.info</source>
-                <target>Klik her for at mere information.</target>
-            </trans-unit>
-            <trans-unit id="goto.top.link">
-                <source>goto.top.link</source>
-                <target>Til top</target>
-            </trans-unit>
-            <trans-unit id="product.prices.description">
-                <source>product.prices.description</source>
-                <target></target>
-            </trans-unit>
-            <trans-unit id="faceted.show.out.of.stock">
-                <source>faceted.show.out.of.stock</source>
-                <target>Vis også udsolgte varer</target>
-            </trans-unit>
-            <trans-unit id="faceted.reset.filter">
-                <source>faceted.reset.filter</source>
-                <target>» Nulstil filtre</target>
-            </trans-unit>
-            <trans-unit id="product.quantity.discount">
-                <source>product.quantity.discount</source>
-                <target>Køb %span% stk. og spar %discount% pr. stk.</target>
-            </trans-unit>
-            <trans-unit id="add.product.to.wishlist">
-                <source>add.product.to.wishlist</source>
-                <target>Tilføj Shoppingliste</target>
-            </trans-unit>
-        </body>
-    </file>
+        </trans-unit>
+        <trans-unit id="share.to.%method%">
+            <source>share.to.%method%</source>
+            <target>Del på %method%</target>
+        </trans-unit>
+        <trans-unit id="back.to.category">
+            <source>back.to.category</source>
+            <target>Tilbage til oversigten</target>
+        </trans-unit>
+        <trans-unit id="back">
+            <source>back</source>
+            <target>Tilbage</target>
+        </trans-unit>
+        <trans-unit id="on.stock">
+            <source>on.stock</source>
+            <target>På lager</target>
+        </trans-unit>
+        <trans-unit id="on.stock.yes">
+            <source>on.stock.yes</source>
+            <target>Ja</target>
+        </trans-unit>
+        <trans-unit id="on.stock.no">
+            <source>on.stock.no</source>
+            <target>Nej</target>
+        </trans-unit>
+        <trans-unit id="pager.pages.%total%">
+            <source>pager.pages.%total%</source>
+            <target>af %total%</target>
+        </trans-unit>
+        <trans-unit id="pager.see_all.%total%">
+            <source>pager.see_all.%total%</source>
+            <target>se alle(%total%)</target>
+        </trans-unit>
+        <trans-unit id="more.bundle.info">
+            <source>more.bundle.info</source>
+            <target>Klik her for at mere information.</target>
+        </trans-unit>
+        <trans-unit id="goto.top.link">
+            <source>goto.top.link</source>
+            <target>Til top</target>
+        </trans-unit>
+        <trans-unit id="product.prices.description">
+            <source>product.prices.description</source>
+            <target></target>
+        </trans-unit>
+        <trans-unit id="faceted.show.out.of.stock">
+            <source>faceted.show.out.of.stock</source>
+            <target>Vis også udsolgte varer</target>
+        </trans-unit>
+        <trans-unit id="faceted.reset.filter">
+            <source>faceted.reset.filter</source>
+            <target>» Nulstil filtre</target>
+        </trans-unit>
+        <trans-unit id="product.quantity.discount">
+            <source>product.quantity.discount</source>
+            <target>Køb %span% stk. og spar %discount% pr. stk.</target>
+        </trans-unit>
+        <trans-unit id="add.product.to.wishlist">
+            <source>add.product.to.wishlist</source>
+            <target>Tilføj Shoppingliste</target>
+        </trans-unit>
+    </body>
+</file>
 </xliff>
