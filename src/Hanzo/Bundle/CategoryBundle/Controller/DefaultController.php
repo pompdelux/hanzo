@@ -386,15 +386,15 @@ class DefaultController extends CoreController
                 'boy'  => ['plum'],
               ],
               'LeanderShellPantsSS16'      => [
-                'girl' => ['blue'],
+                'girl' => ['blue', 'navy'],
                 'boy'  => ['plum'],
               ],
               'LilydaleJrRaincoatSS16'     => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LilydaleLtRainsuitSS16'     => [
-                'girl' => ['green', 'blue'],
+                'girl' => ['green', 'blue', 'navy'],
                 'boy'  => ['purple', 'rose'],
               ],
               'LeeSoftshellJrJacketSS16'   => [
