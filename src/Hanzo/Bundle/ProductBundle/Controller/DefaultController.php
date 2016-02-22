@@ -191,7 +191,7 @@ class DefaultController extends CoreController
             }
         }
 
-        $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
+        $translation_key = 'description.' . Tools::stripText($product->getSku(), '-', false);
 
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
