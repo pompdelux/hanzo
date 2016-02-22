@@ -25,7 +25,6 @@ class BundleController extends CoreController
     {
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
-        $route = $this->get('request')->get('_route');
         $router = $this->get('router');
 
         $cache_id = array('product.image.bundle', $image_id);
@@ -78,15 +77,15 @@ class BundleController extends CoreController
 
             $image = $main_product->getProductsImagess()->getFirst();
             $products[$main_product->getId()] = array(
-                'id' => $main_product->getId(),
-                'master' => $main_product->getSku(),
-                'title' => $main_product->getTitle(),
-                'color' => $image->getColor(),
-                'image' => $image->getImage(),
-                'washing_id' => $main_product->getWashing(),
-                'url' => $router->generate($product_route, array(
+                'id'           => $main_product->getId(),
+                'master'       => $main_product->getSku(),
+                'title'        => $main_product->getTitle(),
+                'color'        => $image->getColor(),
+                'image'        => $image->getImage(),
+                'washing_id'   => $main_product->getWashing(),
+                'url'          => $router->generate($product_route, array(
                     'product_id' => $main_product->getId(),
-                    'title' => Tools::stripText($main_product->getSku()),
+                    'title'      => Tools::stripText($main_product->getSku()),
                 )),
                 'out_of_stock' => true,
             );
@@ -118,7 +117,6 @@ class BundleController extends CoreController
             ;
 
             foreach ($result as $product) {
-
                 $products2category = ProductsToCategoriesQuery::create()
                     ->useProductsQuery()
                     ->filterBySku($product->getSku())
@@ -127,6 +125,14 @@ class BundleController extends CoreController
                 ;
 
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+
+                // un: 2016-01-12
+                // needed to prevent fatal errors in AT where there
+                // are some sync issues in the categories table (AW15)
+                if (empty($router_keys[$key])) {
+                    continue;
+                }
+
                 $product_route = $router_keys[$key];
 
                 // Without this i18n behaviour uses da_DK
@@ -134,15 +140,15 @@ class BundleController extends CoreController
 
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
-                    'id' => $product->getId(),
-                    'master' => $product->getSku(),
-                    'title' => $product->getTitle(),
-                    'color' => $image->getColor(),
-                    'image' => $image->getImage(),
-                    'washing_id' => $product->getWashing(),
-                    'url' => $router->generate($product_route, array(
+                    'id'           => $product->getId(),
+                    'master'       => $product->getSku(),
+                    'title'        => $product->getTitle(),
+                    'color'        => $image->getColor(),
+                    'image'        => $image->getImage(),
+                    'washing_id'   => $product->getWashing(),
+                    'url'          => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
+                        'title'      => Tools::stripText($product->getSku()),
                     )),
                     'out_of_stock' => true,
                 );
@@ -159,7 +165,6 @@ class BundleController extends CoreController
             $replace = '$1="' . $hanzo->get('core.cdn');
 
             foreach ($products as $id => $product) {
-
                 $translation_key = 'description.' . Tools::stripText($product['master'], '_', false);
 
                 $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
@@ -183,7 +188,6 @@ class BundleController extends CoreController
         }
 
         foreach ($products as $id => $product) {
-
             $variants = ProductsQuery::create()->findByMaster($product['master']);
             $products_id = [];
             $sizes = [];
@@ -209,7 +213,7 @@ class BundleController extends CoreController
         $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
-            'products' => $products,
+            'products'  => $products,
         ));
 
         return $responce;
@@ -220,7 +224,6 @@ class BundleController extends CoreController
     {
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
-        $route = $this->get('request')->get('_route');
         $router = $this->get('router');
 
         $cache_id = array('product.bundle.custom', str_replace(',', '-', $set));
@@ -303,15 +306,15 @@ class BundleController extends CoreController
 
                 $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
-                    'id' => $product->getId(),
-                    'master' => $product->getSku(),
-                    'title' => $product->getTitle(),
-                    'color' => $image->getColor(),
-                    'image' => $image->getImage(),
-                    'washing_id' => $product->getWashing(),
-                    'url' => $router->generate($product_route, array(
+                    'id'           => $product->getId(),
+                    'master'       => $product->getSku(),
+                    'title'        => $product->getTitle(),
+                    'color'        => $image->getColor(),
+                    'image'        => $image->getImage(),
+                    'washing_id'   => $product->getWashing(),
+                    'url'          => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
+                        'title'      => Tools::stripText($product->getSku()),
                     )),
                     'out_of_stock' => true,
                 );
@@ -384,7 +387,7 @@ class BundleController extends CoreController
         $this->get('twig')->addGlobal('body_classes', 'body-product body-buy-set');
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
-            'products' => $products,
+            'products'  => $products,
         ));
 
         return $responce;
