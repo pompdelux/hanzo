@@ -231,6 +231,15 @@ class DefaultController extends CoreController
         $mappings['tokens']   = $this->getSettings($locale, $topLevel->getId(), 'tokens');
         $mappings['discount'] = $this->getSettings($locale, $topLevel->getId(), 'discount');
 
+        // UN: 2016.01.26
+        // needed to allow us to sort products by color.
+        $colorSort = $this->getSettings($locale, $topLevel->getId(), 'color_sort');
+        if (empty($colorSort)) {
+            $colorSort = false;
+        } elseif (is_array($colorSort)) {
+            $colorSort = array_pop($colorSort);
+        }
+
         $filters = [];
         if ($request->query->has('filter')) {
             $filters = $this->getFilters($mappings);
@@ -242,6 +251,11 @@ class DefaultController extends CoreController
         if (empty($filters['color'])) {
             if (!empty($settings->colors)) {
                 $filters['color'] = explode(',', $settings->colors);
+            }
+
+            // Allows us to have different sorts at the same time.
+            if (false !== $colorSort) {
+                $colorSort = explode(',', $colorSort);
             }
         }
 
@@ -260,13 +274,11 @@ class DefaultController extends CoreController
         $show_by_look = (bool) ($show === 'look');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
-        // Use embedded_category_id if exists, else fallback to category_id. This way we can support multiple categories on the same page
-        if (isset($settings->embedded_category_id))
-        {
+        // Use embedded_category_id if exists, else fallback to category_id.
+        // This way we can support multiple categories on the same page
+        if (isset($settings->embedded_category_id)){
             $category_ids_for_filter = $settings->embedded_category_id;
-        }
-        else
-        {
+        } else {
             $category_ids_for_filter = $settings->category_id;
         }
 
@@ -309,23 +321,20 @@ class DefaultController extends CoreController
         $records = [];
         $product_ids = [];
 
-        if (!$filterNoResultsFound)
-        {
+        if (!$filterNoResultsFound) {
             if ($request->query->get('show_all')) {
                 $result = $result->useProductsQuery()
-                    ->filterByIsOutOfStock(false)
-                    ->_or()
-                    ->filterByIsOutOfStock(true)
-                    ->endUse()
-                    ;
+                        ->filterByIsOutOfStock(false)
+                        ->_or()
+                        ->filterByIsOutOfStock(true)
+                    ->endUse();
             } else {
                 $result = $result->useProductsQuery()
-                    ->filterByIsOutOfStock(false)
-                    ->endUse()
-                    ;
+                        ->filterByIsOutOfStock(false)
+                    ->endUse();
             }
 
-            if (isset($filters['color'])) {
+            if (isset($filters['color']) || $colorSort) {
                 if ($use_filter) {
                     // when using filters we need descending order not ascending.
                     $result = $result->useProductsImagesQuery()
@@ -339,14 +348,28 @@ class DefaultController extends CoreController
                         ->filterByColor($filters['color'])
                         ->endUse();
                 } else {
-                    $result = $result->useProductsImagesQuery()
-                        ->addAscendingOrderByColumn(sprintf(
-                            "FIELD(%s, %s)",
-                            ProductsImagesPeer::COLOR,
-                            "'".implode("','", $filters['color'])."'"
+                    if (empty($filters['color']) && is_array($colorSort)) {
+                        // un: 2016.01.26
+                        // Using descending order and reversing the colors, we have
+                        // the possibility of only define some of the colors.
+                        $result = $result->useProductsImagesQuery()
+                            ->addDescendingOrderByColumn(sprintf(
+                                "FIELD(%s, %s)",
+                                ProductsImagesPeer::COLOR,
+                                "'".implode("','", array_reverse($colorSort))."'"
 
-                        ))
-                        ->endUse();
+                            ))
+                            ->endUse();
+                    } else {
+                        $result = $result->useProductsImagesQuery()
+                            ->addAscendingOrderByColumn(sprintf(
+                                "FIELD(%s, %s)",
+                                ProductsImagesPeer::COLOR,
+                                "'".implode("','", $filters['color'])."'"
+
+                            ))
+                            ->endUse();
+                    }
                 }
             } else {
                 $result = $result->orderBySort();
