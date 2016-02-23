@@ -41,7 +41,11 @@
 						"176",
 						"177",
 						"181",
-						"183"
+						"183",
+						"184",
+						"185",
+						"186",
+						"187"
                     ],
                     "colors": "",
                         "colormap": {
@@ -165,7 +169,9 @@
 						"178",
 						"179",
 						"180",
-						"182"
+						"182",
+						"188",
+						"189"
                     ],
                     "colors": "",
                         "colormap": {
@@ -258,7 +264,7 @@
                 <target><![CDATA[
                     {   
                         "category_id": "157",
-                        "embedded_category_id": ["12","13","14","15","170","172","174","176"],
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186"],
                         "colors": ""
                     }
                 ]]></target>
@@ -349,7 +355,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184"],
                         "colors": ""
                     }
                 ]]></target>
@@ -440,7 +446,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "159",
-                        "embedded_category_id": ["46","79","81","112","113","114","115"],
+                        "embedded_category_id": ["46","79","81","112","113","114","115","185","187"],
                         "colors": ""
                     }
                 ]]></target>
@@ -650,7 +656,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["5","6","7","8","171","173","175","118"],
+                        "embedded_category_id": ["5","6","7","8","171","173","175","118","188"],
                         "colors": ""
                     }
                 ]]></target>
@@ -841,7 +847,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128"],
+                        "embedded_category_id": ["119","120","128","189"],
                         "colors": ""
                     }
                 ]]></target>
