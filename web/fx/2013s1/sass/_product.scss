@@ -337,16 +337,19 @@ a.product-color {
   @include colorbutton(_khaki);
   @include colorbutton(_light-blue-denim);
   @include colorbutton(_light-blue);
-  @include colorbutton(_light-mint);
   @include colorbutton(_light-green);
   @include colorbutton(_light-grey-balloon);
   @include colorbutton(_light-grey);
+  @include colorbutton(_light-mint);
+  @include colorbutton(_light-purple-bird);
   @include colorbutton(_light-purple);
   @include colorbutton(_light-rose-balloon);
   @include colorbutton(_light-rose-bird);
   @include colorbutton(_light-rose9black);
   @include colorbutton(_light-rose9navy);
   @include colorbutton(_light-rose);
+  @include colorbutton(_mint-bird);
+  @include colorbutton(_mint-grey);
   @include colorbutton(_mint9grey);
   @include colorbutton(_mint);
   @include colorbutton(_navy-melange-block);
@@ -365,6 +368,7 @@ a.product-color {
   @include colorbutton(_navy9red);
   @include colorbutton(_navy9shoe);
   @include colorbutton(_navy);
+  @include colorbutton(_off-white-bird);
   @include colorbutton(_off-white-check);
   @include colorbutton(_off-white9blue);
   @include colorbutton(_off-white9mint);
@@ -376,8 +380,8 @@ a.product-color {
   @include colorbutton(_petrol-stripe);
   @include colorbutton(_petrol);
   @include colorbutton(_plum);
-  @include colorbutton(_purple9navy);
   @include colorbutton(_purple9blue);
+  @include colorbutton(_purple9navy);
   @include colorbutton(_purple);
   @include colorbutton(_red);
   @include colorbutton(_rose-melange);
