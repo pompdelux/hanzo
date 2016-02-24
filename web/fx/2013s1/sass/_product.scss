@@ -394,6 +394,11 @@ a.product-color {
   @include colorbutton(_white);
   @include colorbutton(_yellow9off-white);
   @include colorbutton(_yellow);
+
+  @include colorbutton(_blue-balloon);
+  @include colorbutton(_purple-balloon);
+  @include colorbutton(_navy9greymelange);
+  @include colorbutton(_navy-mix);
 }
 
 .quantity-discount-table {
