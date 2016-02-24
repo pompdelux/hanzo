@@ -335,7 +335,7 @@ class DefaultController extends CoreController
             }
 
             if (isset($filters['color']) || $colorSort) {
-                if ($use_filter) {
+                if ($use_filter && isset($filters['color'])) {
                     // when using filters we need descending order not ascending.
                     $result = $result->useProductsImagesQuery()
                         ->addDescendingOrderByColumn(sprintf(
@@ -376,6 +376,7 @@ class DefaultController extends CoreController
             }
 
             $result = $result->find();
+            Tools::log(\Propel::getConnection()->getLastExecutedQuery());
 
             $product_route = str_replace('category_', 'product_', $route);
 
