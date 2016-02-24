@@ -376,7 +376,6 @@ class DefaultController extends CoreController
             }
 
             $result = $result->find();
-            Tools::log(\Propel::getConnection()->getLastExecutedQuery());
 
             $product_route = str_replace('category_', 'product_', $route);
 
