@@ -311,12 +311,14 @@ class SyncSalesOrder extends BaseService
 
             switch($domainKey) {
                 case 'AT':
-                case 'CH':
                 case 'COM':
                 case 'DE':
                 case 'FI':
                 case 'NL':
                     $bagPrice = '4.99';
+                    break;
+                case 'CH':
+                    $bagPrice = '5.90';
                     break;
                 case 'DK':
                     $bagPrice = '40.00';
@@ -356,7 +358,7 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20160225;
+            $fromDate = 20160224;
             $toDate   = 20160510;
             $itemId   = 'FREEPOMPBAGSS16';
 
@@ -369,12 +371,14 @@ class SyncSalesOrder extends BaseService
 
                 switch($domainKey) {
                     case 'AT':
-                    case 'CH':
                     case 'COM':
                     case 'DE':
                     case 'FI':
                     case 'NL':
-                        $bagPrice = '1.95';
+                        $bagPrice = '1.99';
+                        break;
+                    case 'CH':
+                        $bagPrice = '1.90';
                         break;
                     case 'DK':
                         $bagPrice = '10.00';

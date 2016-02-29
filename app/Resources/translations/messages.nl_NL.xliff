@@ -189,7 +189,7 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <target><![CDATA[
                     <ul>
                         <li><b>Verzendkosten</b> vanaf EUR 6,-</li>
-                        <li><b>Levertijd</b> %expected_delivery_date%</li>
+                        <li><b>Verwerkingstijd</b> %expected_delivery_date%</li>
                         <li><b>Ruilen</b> Gratis</li>
                     </ul>
                 ]]></target>

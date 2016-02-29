@@ -1224,13 +1224,46 @@ class Orders extends BaseOrders
             $result     = Hanzo::getInstance()->get('HD.expected_delivery_date');
             $expectedAt = $result ?: '';
         } else {
-            $setting = SettingsQuery::create()
-                ->filterByNs('HD')
-                ->filterByCKey('expected_delivery_date')
-                ->findOne($this->getDBConnection());
+            $domainKey = $this->getAttributes($this->getDBConnection())->domain_key;
 
-            if ($setting && $setting->getCValue()) {
-                $expectedAt = $setting->getCValue();
+            /**
+             * This lump here is to prevent multiple requests to the database.
+             *
+             * It first checks the domains_settings table to see if there is any "expected_delivery_date"
+             * Using UNION SELECT we rin the same query on the settings table.
+             *
+             * This will return the value from the domains_settings table, if set - if not it will fallback to
+             * whats in the settings table.
+             *
+             * Using LIMIT ensures that we only get the first hit.
+             */
+            $sql = '
+                SELECT
+                    ds.c_value
+                FROM
+                    domains_settings AS ds
+                WHERE
+                    ds.ns = "HD"
+                AND
+                    ds.c_key = "expected_delivery_date"
+                AND
+                    ds.domain_key = "'.$domainKey.'"
+                UNION SELECT
+                    s.c_value
+                FROM
+                    settings AS s
+                WHERE
+                    s.ns = "HD"
+                AND
+                    s.c_key = "expected_delivery_date"
+                LIMIT 1
+            ';
+
+            $result = $this->getDBConnection()->query($sql);
+            $record = $result->fetchObject();
+
+            if ($record && $record->c_value) {
+                $expectedAt = $record->c_value;
             }
         }
 
