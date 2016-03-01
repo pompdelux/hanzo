@@ -10,12 +10,12 @@
 
 namespace Hanzo\Bundle\DiscountBundle\Handlers;
 
-
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\Products;
+use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsQuantityDiscountQuery;
 use Hanzo\Model\ProductsQuery;
 use Psr\Log\LoggerInterface;
@@ -96,13 +96,18 @@ class QuantityDiscountHandler
         }
 
         // disable quantity discount for shopping advisors and employees - if there personal discounts is in effect.
-        if ( strpos( strtolower(Hanzo::getInstance()->get('core.domain_key')), 'sales' ) === false )
-        {
+        if (strpos(strtolower(Hanzo::getInstance()->get('core.domain_key')), 'sales') === false) {
             $customer = $this->order->getCustomers();
             if (($customer instanceof Customers) &&
                 (1 < $customer->getGroupsId()) &&
                 (0 == Hanzo::getInstance()->get('webshop.disable_discounts'))
             ) {
+                return $this->order;
+            }
+
+            // Gift and friend purchases does not trigger quantity discount.
+            $attributes = $this->order->getAttributes();
+            if (isset($attributes->purchase->type) && in_array($attributes->purchase->type, ['gift', 'friend'])) {
                 return $this->order;
             }
         }
@@ -132,6 +137,51 @@ class QuantityDiscountHandler
 
             $line->setPrice($line->getOriginalPrice() - $discount);
             $line->save();
+        }
+
+        return $this->order;
+    }
+
+    /**
+     * In the checkout flow we need to recalculate.
+     *
+     * @return Orders
+     */
+    public function reCalculate()
+    {
+        $attributes = $this->order->getAttributes();
+        if (isset($attributes->purchase, $attributes->purchase->type) &&
+            in_array($attributes->purchase->type, ['gift', 'friend'])
+        ) {
+            $lines = $this->order->getOrdersLiness();
+
+            $productIds = [];
+            foreach ($lines as $line) {
+                if ('product' == $line->getType()) {
+                    $productIds[] = $line->getProductsId();
+                }
+            }
+
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($productIds);
+
+            foreach ($lines as $line) {
+                if ('product' == $line->getType()) {
+                    $price = $prices[$line->getProductsId()];
+                    $original = $price['normal']['price'];
+
+                    if (isset($price['sales'], $price['sales']['price'])) {
+                        $vat      = $price['sales']['vat'];
+                        $price    = $price['sales']['price'];
+                    } else {
+                        $vat      = $price['normal']['vat'];
+                        $price    = $price['normal']['price'];
+                    }
+
+                    $line->setPrice($price);
+                    $line->setVat($vat);
+                    $line->setOriginalPrice($original);
+                }
+            }
         }
 
         return $this->order;

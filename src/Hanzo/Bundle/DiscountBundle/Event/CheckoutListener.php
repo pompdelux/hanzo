@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\DiscountBundle\Event;
 
 use Hanzo\Bundle\DiscountBundle\Handlers\CouponHandler;
 use Hanzo\Bundle\DiscountBundle\Handlers\PersonalDiscountHandler;
+use Hanzo\Bundle\DiscountBundle\Handlers\QuantityDiscountHandler;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\GiftCards;
@@ -15,17 +16,45 @@ use Symfony\Bridge\Monolog\Logger;
 
 class CheckoutListener
 {
+    /**
+     * @var Logger
+     */
     protected $logger;
-    protected $coupon_handler;
-    protected $personal_discount_handler;
 
-    public function __construct(Logger $logger, CouponHandler $coupon_handler, PersonalDiscountHandler $personal_discount_handler)
+    /**
+     * @var CouponHandler
+     */
+    protected $couponHandler;
+
+    /**
+     * @var PersonalDiscountHandler
+     */
+    protected $personalDiscountHandler;
+
+    /**
+     * @var QuantityDiscountHandler
+     */
+    protected $quantityDiscountHandler;
+
+    /**
+     * CheckoutListener constructor.
+     *
+     * @param Logger                  $logger
+     * @param CouponHandler           $couponHandler
+     * @param PersonalDiscountHandler $personalDiscountHandler
+     * @param QuantityDiscountHandler $quantityDiscountHandler
+     */
+    public function __construct(Logger $logger, CouponHandler $couponHandler, PersonalDiscountHandler $personalDiscountHandler, QuantityDiscountHandler $quantityDiscountHandler)
     {
-        $this->logger                    = $logger;
-        $this->coupon_handler            = $coupon_handler;
-        $this->personal_discount_handler = $personal_discount_handler;
+        $this->logger                  = $logger;
+        $this->couponHandler           = $couponHandler;
+        $this->personalDiscountHandler = $personalDiscountHandler;
+        $this->quantityDiscountHandler = $quantityDiscountHandler;
     }
 
+    /**
+     * @param FilterOrderEvent $event
+     */
     public function onFinalize(FilterOrderEvent $event)
     {
         $order    = $event->getOrder();
@@ -36,8 +65,9 @@ class CheckoutListener
             return;
         }
 
-        $order = $this->personal_discount_handler->initialize($order)->handle();
-        $order = $this->coupon_handler->initialize($order)->handle();
+        $order = $this->personalDiscountHandler->initialize($order)->handle();
+        $order = $this->quantityDiscountHandler->initialize($order)->reCalculate();
+        $order = $this->couponHandler->initialize($order)->handle();
     }
 
 
