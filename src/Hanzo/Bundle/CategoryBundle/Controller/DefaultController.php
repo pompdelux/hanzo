@@ -445,7 +445,7 @@ class DefaultController extends CoreController
 
                     $sku = $product->getSku();
                     $color = strtolower($record->getProductsImages()->getColor());
-                    $gender = $this->getCategoryGender();
+                    $gender = strtolower($this->getCategoryGender());
 
                     // Reject product
                     if (isset($rejected_product_colors[$sku][$gender])) {
@@ -868,7 +868,7 @@ class DefaultController extends CoreController
         $container = $hanzo->container;
 
         // Define classes to the body, dependently on the context of the category.
-        if (preg_match('/(pige|girl|tjej|tytto|jente)/', $container->get('request')->getPathInfo())) {
+        if (preg_match('/(pige|girl|tjej|tytto|jente|madchen|meisje)/', $container->get('request')->getPathInfo())) {
             $this->categoryGender = 'girl';
         } elseif (preg_match('/(dreng|boy|kille|poika|gutt|junge|jongen)/', $container->get('request')->getPathInfo())) {
             $this->categoryGender = 'boy';
