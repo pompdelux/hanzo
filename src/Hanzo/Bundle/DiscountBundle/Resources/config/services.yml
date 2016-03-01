@@ -17,6 +17,7 @@ services:
             - @logger
             - @hanzo.discount.handler.coupon_handler
             - @hanzo.discount.handler.personal_discount_handler
+            - @hanzo.discount.handler.quantity_discount_handler
         tags:
             - { name: kernel.event_listener, event: order.summery.updated, method: onFinalize, priority: 20 }
 
@@ -26,6 +27,7 @@ services:
             - @logger
             - @hanzo.discount.handler.coupon_handler
             - @hanzo.discount.handler.personal_discount_handler
+            - @hanzo.discount.handler.quantity_discount_handler
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected, priority: 100 }
 
