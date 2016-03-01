@@ -173,7 +173,7 @@ class SendOrderConfirmationMail
             'shipping_title'   => $shippingTitle,
             'shipping_cost'    => $shippingCost,
             'shipping_fee'     => $shippingFee,
-            'expected_at'      => $order->getExpectedDeliveryDate('d-m-Y', true),
+            'expected_at'      => $order->getExpectedDeliveryDate('d-m-Y', $attributes->global->domain_key),
             'username'         => $order->getCustomers($this->dbConn)->getEmail(),
             'password'         => $order->getCustomers($this->dbConn)->getPasswordClear(),
             'event_id'         => $eventId,
