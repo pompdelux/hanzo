@@ -1208,62 +1208,37 @@ class Orders extends BaseOrders
      * returns latest delivery date.
      *
      * @param string $format
-     * @param bool   $override
+     * @param string $domainKey
      *
      * @throws Exception
      * @throws PropelException
      * @return mixed|string
      */
-    public function getExpectedDeliveryDate($format = 'Y-m-d', $override = false)
+    public function getExpectedDeliveryDate($format = 'Y-m-d', $domainKey = false)
     {
         $now        = date('Ymd');
         $latest     = 0;
         $expectedAt = '';
 
-        if (false == $override) {
+        if (false === $domainKey) {
             $result     = Hanzo::getInstance()->get('HD.expected_delivery_date');
             $expectedAt = $result ?: '';
         } else {
-            $domainKey = $this->getAttributes($this->getDBConnection())->domain_key;
+            $setting = DomainsSettingsQuery::create()
+                ->filterByDomainKey($domainKey)
+                ->filterByCKey('expected_delivery_date')
+                ->filterByNs('HD')
+                ->findOne($this->getDBConnection());
 
-            /**
-             * This lump here is to prevent multiple requests to the database.
-             *
-             * It first checks the domains_settings table to see if there is any "expected_delivery_date"
-             * Using UNION SELECT we rin the same query on the settings table.
-             *
-             * This will return the value from the domains_settings table, if set - if not it will fallback to
-             * whats in the settings table.
-             *
-             * Using LIMIT ensures that we only get the first hit.
-             */
-            $sql = '
-                SELECT
-                    ds.c_value
-                FROM
-                    domains_settings AS ds
-                WHERE
-                    ds.ns = "HD"
-                AND
-                    ds.c_key = "expected_delivery_date"
-                AND
-                    ds.domain_key = "'.$domainKey.'"
-                UNION SELECT
-                    s.c_value
-                FROM
-                    settings AS s
-                WHERE
-                    s.ns = "HD"
-                AND
-                    s.c_key = "expected_delivery_date"
-                LIMIT 1
-            ';
+            if (empty($setting)) {
+                $setting = SettingsQuery::create()
+                    ->filterByNs('HD')
+                    ->filterByCKey('expected_delivery_date')
+                    ->findOne($this->getDBConnection());
+            }
 
-            $result = $this->getDBConnection()->query($sql);
-            $record = $result->fetchObject();
-
-            if ($record && $record->c_value) {
-                $expectedAt = $record->c_value;
+            if ($setting && $setting->getCValue()) {
+                $expectedAt = $setting->getCValue();
             }
         }
 
@@ -1277,6 +1252,7 @@ class Orders extends BaseOrders
 
         return $expectedAt;
     }
+
 
     /**
      * @param bool $v
