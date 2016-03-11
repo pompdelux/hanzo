@@ -1,3 +1,4 @@
+
 <?xml version="1.0"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
@@ -530,7 +531,7 @@
       </trans-unit>
       <trans-unit id="headers.category-141">
         <source>headers.category-141</source>
-        <target><![CDATA[<h1>Final Sale</h1>]]></target>
+        <target><![CDATA[<h1>Summer Offers</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-141">
         <source>description.category-141</source>
