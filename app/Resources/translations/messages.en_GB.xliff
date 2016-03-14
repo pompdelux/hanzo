@@ -137,7 +137,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mailcom@POMPdeLUX.com • +45 8736 1000</target>
+                <target>POMPdeLUX ApS • Omega 3, Søften • DK-8382 Hinnerup • CVR-nr 29622035 • mailcom@POMPdeLUX.com • +45 8736 1000</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -167,8 +167,8 @@
                 <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
+                        <li>Omega 3, Søften</li>
+                        <li>DK-8382 Hinnerup</li>
                         <li>CVR-nr 29622035</li>
                         <li><a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a></li>
                         <li>+45 8736 1000</li><br>

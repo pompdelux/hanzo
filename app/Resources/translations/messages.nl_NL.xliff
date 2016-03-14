@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mailnl@POMPdeLUX.com • 085-3001100 (Nederlands en Engels)</target>
+                <target>POMPdeLUX NL B.V. c/o POMPdeLUX ApS • Omega 3, Søften • DK-8382 Hinnerup • BTW 851856147B01 • mailnl@POMPdeLUX.com • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -171,8 +171,8 @@ Bij het redigeren van je order wordt er een nieuwe iDEAL betaling gemaakt en wor
                 <target><![CDATA[
                     <ul>
                         <li>POMPdeLUX NL B.V. c/o POMPdeLUX ApS</li>
-                        <li>Møgelhøj 8</li>
-                        <li>DK-8520 Lystrup</li>
+                        <li>Omega 3, Søften</li>
+                        <li>DK-8382 Hinnerup</li>
                         <li>BTW 851856147B01</li>
                         <li><a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a></li>
                         <li>085-3001100 (Nederlands en Engels)</li><br>
