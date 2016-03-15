@@ -333,6 +333,10 @@
         <source>payment.dibs.paytype.master</source>
         <target>Mastercard/Eurocard (Gebyr DKK 0,00)</target>
       </trans-unit>
+      <trans-unit id="payment.dibs.paytype.mpo_nets">
+        <source>payment.dibs.paytype.mpo_nets</source>
+        <target>MobilePay (Gebyr DKK 0,00)</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.processing.title">
         <source>payment.dibs.processing.title</source>
         <target>Din ordre behandles af Webshoppen</target>
