@@ -56,11 +56,10 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
     // NICETO: should not be hardcoded
     private $extended = [
         // admin
-        //'hd@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'sc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'cc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'de@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
+        'sc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'mped@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'kst@pompdelux.dk'      => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'hanzo@bellcom.dk'      => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'hf@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -70,12 +69,9 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // stats
         'mh@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         'pd@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
-        'de@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'       => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         'libe@pompdelux.dk'     => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
-// un: 3/11
-//        'design@pompdelux.dk'   => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         // design
         'design@pompdelux.dk'   => ['ROLE_DESIGN', 'ROLE_EMPLOYEE'],
         // sales
@@ -95,8 +91,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'pf@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_CUSTOMERS_SERVICE_EXTRA', 'ROLE_EMPLOYEE'],
         'cd@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'hb@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-// un: 3/11
-//        'hbo@pompdelux.dk'      => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'js@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'ml@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'tt@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
