@@ -40,4 +40,12 @@
     </label>
   </li>
 {% endif %}
+{% if cardtypes.MPO_Nets is defined and cardtypes.MPO_Nets %}
+  <li>
+    <input type="radio" value="dibs:MPO_Nets" id="dibs_card_type_MPO_Nets" name="paytype"{% if selected_payment_type == 'dibs:MPO_Nets' %} checked{% endif %}>
+    <label for="dibs_card_type_MPO_Nets">
+      <img alt="MPO_Nets" src="{{ cdn }}fx/images/icons/mobilepay.jpg">  {{ 'payment.dibs.paytype.mpo_nets'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
 </ul>
