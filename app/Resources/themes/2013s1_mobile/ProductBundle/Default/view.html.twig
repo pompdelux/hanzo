@@ -21,6 +21,11 @@
 <div class="grid_8 alpha omega container_16">
   <div class="grid_8 alpha bottom-space">
 
+    <div class="grid_8 alpha omega history-link">
+        <a href="javascript:history.go(-1)" title="{{ 'back.to.category'|trans }}" class="back-button"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}
+        </a>
+    </div>
+
     <div id="slideshow" class="productimages">
 
       {% if product.has_video %}
