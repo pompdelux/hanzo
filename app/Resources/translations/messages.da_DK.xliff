@@ -188,7 +188,7 @@
                 <target><![CDATA[
                     <ul>
                         <li><b>Fragt</b> fra 39,-</li>
-                        <li><b>Ekspiditionstid</b> %expected_delivery_date%</li>
+                        <li><b>Ekspeditionstid</b> %expected_delivery_date%</li>
                         <li><b>Ombytning</b> Gratis</li>
                     </ul>
                 ]]></target>
