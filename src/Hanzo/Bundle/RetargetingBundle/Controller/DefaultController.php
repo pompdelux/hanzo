@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RetargetingBundle\Controller;
 
+use Hanzo\Model\ProductsImagesPeer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
