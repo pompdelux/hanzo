@@ -131,8 +131,13 @@ class DefaultController extends Controller
                 $product_ids[] = $product_id;
                 $images = ProductsImagesQuery::create()
                     ->filterByProductsId($product_id)
+                    ->filterByType('overview')
+                    ->orderByImage()
                     ->find()
                 ;
+
+                $criteria = new \Criteria();
+                $criteria->add(ProductsImagesPeer::TYPE, 'overview');
 
                 $items[] = [
                     'product_id' => $product_id,
@@ -142,7 +147,7 @@ class DefaultController extends Controller
                     ], true),
                     'name'  => $product_sku,
                     'price' => 0,
-                    'image' => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                    'image' => Tools::productImageUrl($product->getProductsImagess($criteria)->getFirst()->getImage(), '0x0'),
                 ];
 
                 foreach ($images as $image) {
