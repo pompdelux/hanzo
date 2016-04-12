@@ -20,7 +20,7 @@
         {{ render(controller('ShippingBundle:Address:form', {type: 'payment'})) }}
         {{ render(controller('ShippingBundle:Address:form', {type: 'CURRENT-SHIPPING-ADDRESS'})) }}
         <label class="off">
-            <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
+            <input type="checkbox" id="address-copy" checked="checked">{{ 'address.copy'|trans({}, 'checkout') }}
         </label>
     </div>
 
