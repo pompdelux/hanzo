@@ -131,7 +131,7 @@ class DefaultController extends Controller
                 $product_ids[] = $product_id;
                 $images = ProductsImagesQuery::create()
                     ->filterByProductsId($product_id)
-                    ->filterByType('overview')
+                    ->filterByType('set')
                     ->orderByImage()
                     ->find()
                 ;
