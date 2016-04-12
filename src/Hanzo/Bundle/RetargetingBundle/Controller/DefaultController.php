@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RetargetingBundle\Controller;
 
+use Hanzo\Model\ProductsImagesPeer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -131,10 +132,16 @@ class DefaultController extends Controller
                 $product_ids[] = $product_id;
                 $images = ProductsImagesQuery::create()
                     ->filterByProductsId($product_id)
+                    ->filterByType('set')
+                    ->orderByImage()
                     ->find()
                 ;
 
-                $items[] = [
+                $criteria = new \Criteria();
+                $criteria->add(ProductsImagesPeer::TYPE, 'set');
+                $image = $product->getProductsImagess($criteria)->getFirst()->getImage();
+
+                $items[$image] = [
                     'product_id' => $product_id,
                     'url'   => $router->generate($route, [
                         'product_id' => $product_id,
@@ -142,7 +149,7 @@ class DefaultController extends Controller
                     ], true),
                     'name'  => $product_sku,
                     'price' => 0,
-                    'image' => Tools::productImageUrl($product->getProductsImagess()->getFirst()->getImage(), '0x0'),
+                    'image' => Tools::productImageUrl($image, '0x0'),
                 ];
 
                 foreach ($images as $image) {
