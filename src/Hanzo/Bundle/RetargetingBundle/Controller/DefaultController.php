@@ -139,8 +139,9 @@ class DefaultController extends Controller
 
                 $criteria = new \Criteria();
                 $criteria->add(ProductsImagesPeer::TYPE, 'set');
+                $image = $product->getProductsImagess($criteria)->getFirst()->getImage();
 
-                $items[] = [
+                $items[$image] = [
                     'product_id' => $product_id,
                     'url'   => $router->generate($route, [
                         'product_id' => $product_id,
@@ -148,7 +149,7 @@ class DefaultController extends Controller
                     ], true),
                     'name'  => $product_sku,
                     'price' => 0,
-                    'image' => Tools::productImageUrl($product->getProductsImagess($criteria)->getFirst()->getImage(), '0x0'),
+                    'image' => Tools::productImageUrl($image, '0x0'),
                 ];
 
                 foreach ($images as $image) {
