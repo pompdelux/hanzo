@@ -54,37 +54,37 @@ class AddressController extends CoreController
         $deliveryMethodId = $order->getDeliveryMethod();
 
         if ($type == 'CURRENT-SHIPPING-ADDRESS') {
-            if ($deliveryMethodId && $order->getDeliveryFirstName()) {
-                $address = new Addresses();
-                $address->setCustomersId($customer_id);
-                $address->setFirstName($order->getDeliveryFirstName());
-                $address->setLastName($order->getDeliveryLastName());
-                $address->setAddressLine1($order->getDeliveryAddressLine1());
-                $address->setPostalCode($order->getDeliveryPostalCode());
-                $address->setCity($order->getDeliveryCity());
-                $address->setCountry($order->getDeliveryCountry());
-                $address->setCountriesId($order->getDeliveryCountriesId());
-                $address->setStateProvince($order->getDeliveryStateProvince());
-                $address->setExternalAddressId($order->getDeliveryExternalAddressId());
-
-                switch ($deliveryMethodId) {
-                    case 11:
-                        $type = 'company_shipping';
-                        $address->setType('company_shipping');
-                        $address->setCompanyName($order->getDeliveryCompanyName());
-                        break;
-                    case 12:
-                        $type = 'overnightbox';
-                        $address->setType('overnightbox');
-                        $address->setStateProvince(null);
-                        $address->setCompanyName($order->getDeliveryCompanyName());
-                        break;
-                    default:
-                        $type = 'shipping';
-                        $address->setType('shipping');
-                        break;
-                }
-            } else {
+//            if ($deliveryMethodId && $order->getDeliveryFirstName()) {
+//                $address = new Addresses();
+//                $address->setCustomersId($customer_id);
+//                $address->setFirstName($order->getDeliveryFirstName());
+//                $address->setLastName($order->getDeliveryLastName());
+//                $address->setAddressLine1($order->getDeliveryAddressLine1());
+//                $address->setPostalCode($order->getDeliveryPostalCode());
+//                $address->setCity($order->getDeliveryCity());
+//                $address->setCountry($order->getDeliveryCountry());
+//                $address->setCountriesId($order->getDeliveryCountriesId());
+//                $address->setStateProvince($order->getDeliveryStateProvince());
+//                $address->setExternalAddressId($order->getDeliveryExternalAddressId());
+//
+//                switch ($deliveryMethodId) {
+//                    case 11:
+//                        $type = 'company_shipping';
+//                        $address->setType('company_shipping');
+//                        $address->setCompanyName($order->getDeliveryCompanyName());
+//                        break;
+//                    case 12:
+//                        $type = 'overnightbox';
+//                        $address->setType('overnightbox');
+//                        $address->setStateProvince(null);
+//                        $address->setCompanyName($order->getDeliveryCompanyName());
+//                        break;
+//                    default:
+//                        $type = 'shipping';
+//                        $address->setType('shipping');
+//                        break;
+//                }
+//            } else {
                 $type = 'shipping';
                 $form = '<div class="block"><form action="" method="post" class="address"></form></div>';
 
@@ -97,8 +97,8 @@ class AddressController extends CoreController
                 }
 
                 return $this->response($form);
-            }
-        } else {
+//            }
+        } elseif ('payment' == $type) {
             $address = AddressesQuery::create()
               ->filterByCustomersId($customer_id)
               ->filterByType($type)
@@ -234,8 +234,14 @@ class AddressController extends CoreController
 
         $form = $builder->getForm();
 
+        $baseType = 'is-shipping';
+        if ('payment' == $type) {
+            $baseType = 'is-payment';
+        }
+
         $response = $this->render('ShippingBundle:Address:form.html.twig', [
             'type'           => $type,
+            'base_type'      => $baseType,
             'enable_locator' => $enableLocator,
             'form'           => $form->createView(),
         ]);
