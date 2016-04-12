@@ -264,10 +264,13 @@
             });
 
             $('#address-copy').on('change', function (e) {
-                var $copied = $('#address-block form:nth-child(2)');
+                $('#address-block .is-shipping').toggle();
 
+                var $copied = $('#address-block form:nth-child(2)');
+console.log($copied);
                 if (!copyAddress()) {
-                    // If address wasnt copied, reset the second.
+console.log('reset');
+                    // If address was'nt copied, reset the second.
                     $copied.each(function () {
                         this.reset();
                     });
@@ -320,8 +323,14 @@
                   "900", // AT  - DHL          Paketpost
                 ];
 
-                if (allowedTypes.indexOf(m) !== -1) {
-                    $('#address-copy').prop('checked', false).parent().removeClass('off');
+                if (allowedTypes.indexOf(m) !== -1) { // test
+                    $('#address-copy').prop('checked', true).parent().removeClass('off');
+
+                    // company addresses should not be copied.
+                    if (20 != m) {
+                        copyAddress();
+                        $('#address-block .is-shipping').hide();
+                    }
                 } else {
                     $('#address-copy').parent().addClass('off');
                 }
@@ -524,10 +533,12 @@
          */
         var copyAddress = function () {
             if ($('#address-copy').prop('checked')) {
-                var $copied = $('#address-block form:nth-child(2)');
+                var $copied = $('#address-block .is-shipping');
 
-                $('#address-block form:first input[type=text]').each(function (i) {
+                $('#address-block .is-payment input[type=text]').each(function (i) {
+console.log('#' + $(this).attr('id')+' :: '+$copied.find('#' + $(this).attr('id')).val());
                     $copied.find('#' + $(this).attr('id')).val($(this).val());
+console.log('#' + $(this).attr('id')+' :: '+$copied.find('#' + $(this).attr('id')).val());
                 });
 
                 return true;
