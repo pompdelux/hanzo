@@ -138,7 +138,7 @@ class DefaultController extends Controller
                 ;
 
                 $criteria = new \Criteria();
-                $criteria->add(ProductsImagesPeer::TYPE, 'overview');
+                $criteria->add(ProductsImagesPeer::TYPE, 'set');
 
                 $items[] = [
                     'product_id' => $product_id,
