@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\RetargetingBundle\Controller;
 
+use Hanzo\Model\ProductsImagesPeer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -137,7 +138,7 @@ class DefaultController extends Controller
                 ;
 
                 $criteria = new \Criteria();
-                $criteria->add(ProductsImagesPeer::TYPE, 'overview');
+                $criteria->add(ProductsImagesPeer::TYPE, 'set');
 
                 $items[] = [
                     'product_id' => $product_id,
