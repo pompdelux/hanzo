@@ -119,7 +119,7 @@ var dialoug = (function ($) {
     pub.notice = function (message, type, timeout, selector) {
         var $main;
 
-        if (selector === undefined) {
+        if ((selector === undefined) || ('' == selector)) {
             $main = $('#main');
         } else {
             $main = $(selector);

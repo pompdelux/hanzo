@@ -350,7 +350,11 @@
                 var xhr = $.post(this.href, $form.serialize());
 
                 xhr.done(function(data) {
-                    dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
+                    var selector = '';
+                    if ($trigger.data('notice-target')) {
+                        selector = $trigger.data('notice-target');
+                    }
+                    dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000, selector);
                 });
 
                 xhr.fail(function(jqXHR, textStatus, errorThrown) {
@@ -360,7 +364,7 @@
 
             $.get(base_url+'is-authendicated', function(response) {
                 if (response.status) {
-                    $('.add-buttons a').removeClass('js-is-anonymous');
+                    $('a.wishlist').removeClass('js-is-anonymous');
                 }
             });
         };
