@@ -191,3 +191,10 @@ aside.js-slider {
     }
 }
 
+.body-buy-set .wishlist {
+    margin-top: 10px;
+    display: inline-block;
+    @include icons-sprite(wishlist);
+    line-height: icons-sprite-height(wishlist);
+    padding-left: icons-sprite-width(wishlist) + 7px;
+}
