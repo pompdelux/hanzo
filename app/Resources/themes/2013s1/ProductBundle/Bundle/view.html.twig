@@ -36,7 +36,7 @@
           {% endif %}
           </div>
 
-          <form class="buy" action="{{ path('basket_add') }}">
+          <form class="buy" action="{{ path('basket_add') }}" id="buy-form-id-{{ loop.index }}">
           {% if product.out_of_stock %}
             {{ 'out.of.stock'|trans }}
           {% else %}
@@ -68,6 +68,11 @@
             <button type="submit" class="button pull-right">
               {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
             </button>
+
+            <div class="pull-right">
+              <a href="/da_DK/account/wishlist/add-item" class="wishlist js-is-anonymous" data-notice-target="#buy-form-id-{{ loop.index }}">Tilføj Shoppingliste</a>
+            </div>
+
             <input type="hidden" name="master" value="{{ product.master }}">
           {% endif %}
           </form>
