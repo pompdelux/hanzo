@@ -18,9 +18,19 @@
 #cboxContent {
   .dialoug {
     h2!, div.message! {}
+
     .buttons {
-      padding: 0 10px;
+      padding: 0 10px 30px 10px;
       a! {}
+
+		&:before,
+		&:after {
+			content: " "; // 1
+			display: table; // 2
+		}
+		&:after {
+			clear: both;
+		}
     }
   }
   .alert!, .confirm! {}
