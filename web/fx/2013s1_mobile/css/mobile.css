@@ -3805,7 +3805,14 @@ form.location-locator .locator-result tr:nth-child(odd) {
 }
 
 #cboxContent .dialoug .buttons {
-  padding: 0 10px;
+  padding: 0 10px 30px 10px;
+}
+#cboxContent .dialoug .buttons:before, #cboxContent .dialoug .buttons:after {
+  content: " ";
+  display: table;
+}
+#cboxContent .dialoug .buttons:after {
+  clear: both;
 }
 
 #cboxClose {
