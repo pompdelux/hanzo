@@ -304,7 +304,7 @@
         var xhr = $.post(this.href, $form.serialize());
 
         xhr.done(function(data) {
-          dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000);
+          dialoug.notice(Translator.trans('product.added.to.wishlist'), 'info', 3000, $form.parent());
         });
 
         xhr.fail(function(jqXHR, textStatus, errorThrown) {
@@ -314,7 +314,8 @@
 
       $.get(base_url+'is-authendicated', function(response) {
         if (response.status) {
-          $('.add-buttons a').removeClass('js-is-anonymous');
+          $('a.wishlist').removeClass('js-is-anonymous');
+          //$('.add-buttons a').removeClass('js-is-anonymous');
         }
       });
     };
