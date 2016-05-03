@@ -50,9 +50,18 @@
           </label>
         </div>
 
+        <div class="clearfix">
         <button type="submit" class="button pull-right">
           {{ 'add.to.basket'|trans }} <i class="fa fa-arrow-right"></i>
         </button>
+        </div>
+
+        <div class="clearfix">
+          <div class="pull-right">
+            <a href="/da_DK/account/wishlist/add-item" class="wishlist js-is-anonymous" data-notice-target="#buy-form-id-{{ loop.index }}">Tilføj Shoppingliste</a>
+          </div>
+        </div>
+
         <input type="hidden" name="master" value="{{ product.master }}">
       {% endif %}
       </form>
