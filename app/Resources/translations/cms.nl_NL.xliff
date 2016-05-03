@@ -993,6 +993,15 @@
                     }
                 ]]></target>
             </trans-unit>
+			<trans-unit id="917.settings">
+                <source>917.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "206",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
 
             <trans-unit id="job_application_form.name_label">
                 <source>job_application_form.name_label</source>
