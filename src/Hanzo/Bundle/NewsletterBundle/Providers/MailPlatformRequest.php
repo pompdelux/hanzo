@@ -117,6 +117,7 @@ class MailPlatformRequest
      */
     public function execute()
     {
+$this->async = false;
         if ($this->dumpXML === true)
         {
             error_log(__LINE__.':'.__FILE__.':> '.PHP_EOL.$requestData); // hf@bellcom.dk debugging
@@ -135,7 +136,13 @@ class MailPlatformRequest
             $request = $this->client->post($this->query);
             $request->setBody($requestData);
 
+error_log(print_r($request->getHeaderLines(), 1));
+error_log(print_r((string) $request->getBody(), 1));
+
             $rawResponse = $request->send();
+
+error_log(print_r($request->getResponse()->getHeaderLines(), 1));
+error_log(print_r($request->getResponse()->getBody(true), 1));
 
             $parser = new MailPlatformResponseParser($rawResponse, $this);
             $response = $parser->parse();
