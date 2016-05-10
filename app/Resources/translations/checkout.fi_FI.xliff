@@ -113,7 +113,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><b>Huom!:</b> Muista kertoa asiakkaalle tilauksen muokkaamisesta ja maksutavan muuttamisesta.</target>
+        <target>Huom! Muista kertoa asiakkaalle tilauksen muokkaamisesta ja maksutavan muuttamisesta.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
