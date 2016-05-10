@@ -129,11 +129,11 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Bankoverføring</target>
+        <target>Avventer valg av betalingsform</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[Velg betalingsmåte<br><br><b>Bemerk:</b> Bankoverføring må brukes dersom internettforbindelse mangler.]]></target>
+        <target><![CDATA[Velg betalingsmåte<br><br><b>Merk:</b> Husk å informere kunden om å redigere ordren og endre betalingsform.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
