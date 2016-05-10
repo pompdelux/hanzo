@@ -267,9 +267,7 @@
                 $('#address-block .is-shipping').toggle();
 
                 var $copied = $('#address-block form:nth-child(2)');
-console.log($copied);
                 if (!copyAddress()) {
-console.log('reset');
                     // If address was'nt copied, reset the second.
                     $copied.each(function () {
                         this.reset();
@@ -524,7 +522,6 @@ console.log('reset');
 
             jaiks.add('/checkout/payment/process', checkout.processPaymentButton);
             jaiks.exec();
-
         };
 
         /**
@@ -536,13 +533,12 @@ console.log('reset');
                 var $copied = $('#address-block .is-shipping');
 
                 $('#address-block .is-payment input[type=text]').each(function (i) {
-console.log('#' + $(this).attr('id')+' :: '+$copied.find('#' + $(this).attr('id')).val());
                     $copied.find('#' + $(this).attr('id')).val($(this).val());
-console.log('#' + $(this).attr('id')+' :: '+$copied.find('#' + $(this).attr('id')).val());
                 });
 
                 return true;
             }
+
             return false;
         };
 
