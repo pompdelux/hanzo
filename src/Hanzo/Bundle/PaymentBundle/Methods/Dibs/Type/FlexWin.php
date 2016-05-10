@@ -423,7 +423,9 @@ class FlexWin extends BasePaymentApi implements PaymentMethodApiInterface
         $settings['delivery11.Email']         = $order->getEmail();
         $settings['delivery12.OrderId']       = $order->getId();
 
-        if ($this->getTest()) {
+        // UN: 2016.05.10
+        // MobilePay does not support test mode!
+        if ($this->getTest() && ('MPO_Nets' !== $settings['paytype'])) {
             $settings["test"] = 'YES';
         }
 
