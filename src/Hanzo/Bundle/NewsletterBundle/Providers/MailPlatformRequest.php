@@ -117,26 +117,21 @@ class MailPlatformRequest
      */
     public function execute()
     {
-        if ($this->dumpXML === true)
-        {
+        if ($this->dumpXML === true) {
             error_log(__LINE__.':'.__FILE__.':> '.PHP_EOL.$requestData); // hf@bellcom.dk debugging
         }
 
-        if ($this->async)
-        {
+        if ($this->async) {
             $this->queueForAsyncHandling();
             // As we do not know the status of the request, we must assume it went ok
             $response = new MailPlatformResponse();;
             $response->setStatus(BaseResponse::REQUEST_SUCCESS);
-        }
-        else
-        {
+        } else {
             $requestData = $this->buildRequest();
             $request = $this->client->post($this->query);
             $request->setBody($requestData);
 
             $rawResponse = $request->send();
-
             $parser = new MailPlatformResponseParser($rawResponse, $this);
             $response = $parser->parse();
         }

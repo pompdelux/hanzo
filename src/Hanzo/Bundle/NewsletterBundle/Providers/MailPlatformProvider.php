@@ -336,7 +336,7 @@ class MailPlatformProvider extends BaseProvider
             case 'SalesDK':
             case 'DK':
                 $username  = 'pompdelux_dk';
-                $token     = 'c4bfaa0026f352e13aab064ea623e6cec3703e64';
+                $token     = '1d038106bb2575a0bc5c469427fa8ffe72ff39e7';
                 break;
             case 'COM':
                 $username  = 'pompdelux_com';
