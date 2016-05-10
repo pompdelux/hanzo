@@ -109,11 +109,11 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Maksu tilille</target>
+        <target>Odottaa maksutavan valintaa.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target>Maksa tilaus tilille: "yy-yy xx-xx-xx-xx-xx" 8 päivän kuluessa tavaroiden vastaanottamisesta.</target>
+        <target><b>Huom!:</b> Muista kertoa asiakkaalle tilauksen muokkaamisesta ja maksutavan muuttamisesta.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
