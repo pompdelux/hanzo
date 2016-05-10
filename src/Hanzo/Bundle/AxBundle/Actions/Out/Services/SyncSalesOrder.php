@@ -550,7 +550,7 @@ class SyncSalesOrder extends BaseService
                         $custPaymMode = 'DanKort';
                         break;
                     case 'MPO_NETS':
-                        $custPaymMode = 'mobilepay';
+                        $custPaymMode = 'Mobilepay';
                         break;
                     default:
                         $custPaymMode = 'VISA';
