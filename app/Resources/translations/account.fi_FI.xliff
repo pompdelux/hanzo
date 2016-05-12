@@ -496,9 +496,7 @@
                 <source>my.account.login.text</source>
                 <target><![CDATA[<h2>OMAT SIVUT</h2><p>Jotta voit nauttia lukuisista POMPdeLUXin tarjoamista eduista, sinun tulee rekisteröityä asiakkaaksi ennen kuin voit jatkaa ostoksiasi.<br><br>Rekisteröityneenä asiakkaana voit muun muassa:<br>
 			<ul>
-            <li>Tarkistaa ja korjata tilaustasi, kunnes se pakataan ja lähetetään varastoltamme.</li>
-            <li>Muuttaa tilaamiesi tuotteiden värejä ja kokoja.</li>
-            <li>Lisätä tai poistaa tuotteita niin kauan kuin niiden tilana on "Odottaa".</li>
+            <li>Tarkistaa tilauksesi ja seurata tilauksen tilaa, kunnes tilauksesi pakataan ja lähetetään varastoltamme.</li>
 			<li>Tarkastella aiempia tilauksia ja vanhoja laskuja.</li>
           </ul></p>]]></target>
             </trans-unit>

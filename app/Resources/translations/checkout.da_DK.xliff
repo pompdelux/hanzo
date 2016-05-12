@@ -136,7 +136,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Bemærk:</b> Husk at informere kunden om at redigere ordren og ændre betalingsform.]]></target>
+        <target><![CDATA[<b>Bemærk:</b> Husk at bede kunden om at redigere ordren og ændre betalingsform indenfor 24 timer, da ordren ellers slettes.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>

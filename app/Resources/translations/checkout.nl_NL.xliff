@@ -122,7 +122,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Vertel de klant om de bestelling te bewerken en de betaalmethode te wijzigen.]]></target>
+        <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Verzoek de klant om de bestelling binnen 24 uur te bewerken en de betaalmethode te wijzigen, omdat de bestelling anders wordt geannuleerd.]]></target>
       </trans-unit>
      <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
