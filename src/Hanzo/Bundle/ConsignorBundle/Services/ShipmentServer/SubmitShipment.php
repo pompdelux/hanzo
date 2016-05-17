@@ -149,6 +149,13 @@ class SubmitShipment
             ));
         }
 
+        $product_concept_id = $this->consignor->getOption('product_concept_id');
+
+        $weight = 1000;
+        if (9 == $product_concept_id) {
+            $weight = 5000;
+        }
+
         if ($service_id = $this->consignor->getOption('service_id')) {
             $service_id = [$service_id];
         } else {
@@ -164,15 +171,15 @@ class SubmitShipment
                 'Kind'          => 2,
                 'OrderNo'       => $this->order_id,
                 'ActorCSID'     => $this->consignor->getOption('actor'),
-                'ProdConceptID' => $this->consignor->getOption('product_concept_id'),
+                'ProdConceptID' => $product_concept_id,
                 'Services'      => $service_id,
                 'Addresses'     => [
                     $this->to_address->toArray(),
                     $this->from_address->toArray(),
                 ],
                 'Lines' => [[
-                    'LineWeight' => 1000,
-                    'PkgWeight'  => 1000,
+                    'LineWeight' => $weight,
+                    'PkgWeight'  => $weight,
                     'Pkgs'       => [
                         ['ItemNo' => 1]
                     ]
