@@ -118,11 +118,11 @@
       </trans-unit>
            <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Geld overmaken per bank</target>
+        <target>Wacht keuze betaalmethode af.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Bankoverschrijving alleen gebruiken als er geen internetverbinding is.]]></target>
+        <target><![CDATA[Kies betaalwijze<br><br><b>Let op: </b> Verzoek de klant om de bestelling binnen 24 uur te bewerken en de betaalmethode te wijzigen, omdat de bestelling anders wordt geannuleerd.]]></target>
       </trans-unit>
      <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>

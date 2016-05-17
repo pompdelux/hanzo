@@ -128,11 +128,11 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Banköverföring</target>
+        <target>Inväntar val av betalningsmetod.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Observera</b> att banköverföring <b><u>endast</u></b> får användas om det inte finns en internetförbindelse på arrangemanget.]]></target>
+        <target><![CDATA[Observera: Kom ihåg att be kunden om att redigera ordern och ändra betalningsform inom 24 timmar, annars makuleras ordern.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>

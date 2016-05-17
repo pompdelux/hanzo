@@ -113,7 +113,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target>Huom! Muista kertoa asiakkaalle tilauksen muokkaamisesta ja maksutavan muuttamisesta.</target>
+        <target>Huom! Muista pyytää asiakasta muokkaamaan tilausta ja muuttamaan maksutapaa 24 tunnin kuluessa, koska muuten tilaus poistetaan.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>

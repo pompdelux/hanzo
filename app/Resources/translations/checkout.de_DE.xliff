@@ -132,11 +132,11 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Banküberweisung</target>
+        <target>Bitte warten Sie die Auswahl der Bezahlform ab.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+        <target><![CDATA[<b>Hinweis:</b>Denkt daran, den Kunden mitzuteilen, dass Sie die Bestellung bearbeiten müssen und die Bezahlungsform innerhalb von 24 Stunden ändern müssen. Ansonsten wird die Bestellung gelöscht.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
