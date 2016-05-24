@@ -1319,10 +1319,9 @@ class ProductsController extends CoreController
         $csvData = $exporter->getDataAsCsv();
 
         return new Response($csvData, 200, [
-                'Content-Type' => 'text/csv',
-                'Content-Disposition' => 'attachment; filename="product_languages.csv"',
-            ]
-        );
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="product_languages.csv"',
+        ]);
     }
 
     /**
@@ -1379,7 +1378,7 @@ class ProductsController extends CoreController
                     'id'     => $data[0],
                     'title'  => trim($data[2]),
                     'locale' => $locale,
-                    ];
+                ];
 
                 $stmt->execute($values);
             }
