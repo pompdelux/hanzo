@@ -29,3 +29,10 @@
   text-decoration: none;
   color: black;
 }
+form.form-signin {
+  width:300px;
+  margin: 0 auto;
+}
+form.form-signin .form-control {
+  margin-bottom: 5px;
+}
