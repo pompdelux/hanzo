@@ -52,10 +52,13 @@ class LanguageExporter
 
         $products = ProductsQuery::create()
             ->filterByMaster(null, \Criteria::ISNULL)
-            ->select(['Id', 'Sku'])
+            ->useProductsI18nQuery('I')
+                ->filterByLocale('en_GB')
+            ->endUse()
+            ->select(['Id', 'Sku', 'I.Title'])
             ->find();
 
-        $data[] = ['Id', 'Sku', 'Title'];
+        $data[] = ['Id', 'Sku', 'Title (EN)'];
 
         foreach ($products as $product) {
             if (!$product) {
