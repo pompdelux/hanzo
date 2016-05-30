@@ -292,6 +292,11 @@ table{
         height: icons-sprite-height(pdf);
         width: icons-sprite-width(pdf);
     }
+    &.return{
+        @include icons-sprite(return);
+        height: icons-sprite-height(return);
+        width: icons-sprite-width(return);
+    }
     &.arrow-right{
         margin-left: 6px;
         @include icons-sprite(arrow_right);
