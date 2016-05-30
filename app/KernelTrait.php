@@ -173,7 +173,7 @@ trait KernelTrait
         list($env, $lang,) = explode('_', $this->getEnvironment());
 
         $base_dir = __DIR__.'/config/';
-        $config_dir = $base_dir.'/env/'.$env.'/';
+        $config_dir = $base_dir.'env/'.$env.'/';
 
         $mode = $this->getStoreMode();
 
@@ -187,6 +187,7 @@ trait KernelTrait
         if (is_file($config_dir.'local_config.yml')) {
             $loader->load($config_dir.'local_config.yml');
         }
+
         if (is_file($config_dir.'_local_'.$lang.'.yml')) {
             $loader->load($config_dir.'_local_'.$lang.'.yml');
         }
