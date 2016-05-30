@@ -397,7 +397,7 @@
       </trans-unit>
       <trans-unit id="address.copy">
          <source>address.copy</source>
-         <target>Leveringsadressen er den samme som betalingsadressen</target>
+         <target>Velg alternativ leveringsadresse</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
