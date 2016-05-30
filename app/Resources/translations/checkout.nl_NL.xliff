@@ -389,7 +389,7 @@
       </trans-unit>
             <trans-unit id="address.copy">
          <source>address.copy</source>
-         <target>Het afleveradres is hetzelfde als het privé-adres.</target>
+         <target>Kies een alternatief leveringsadres</target>
       </trans-unit>
             <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
