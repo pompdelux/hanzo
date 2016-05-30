@@ -322,7 +322,7 @@
                 ];
 
                 if (allowedTypes.indexOf(m) !== -1) { // test
-                    $('#address-copy').prop('checked', true).parent().removeClass('off');
+                    $('#address-copy').prop('checked', false).parent().removeClass('off');
 
                     // company addresses should not be copied.
                     if (20 != m) {
@@ -529,9 +529,8 @@
          * @return boolean True if address was copied.
          */
         var copyAddress = function () {
-            if ($('#address-copy').prop('checked')) {
+            if (false === $('#address-copy').prop('checked')) {
                 var $copied = $('#address-block .is-shipping');
-
                 $('#address-block .is-payment input[type=text]').each(function (i) {
                     $copied.find('#' + $(this).attr('id')).val($(this).val());
                 });
