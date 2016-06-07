@@ -119,6 +119,7 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 @import "../../2013s1/sass/_checkout";
 @import "../../2013s1/sass/_faq";
 @import "../../2013s1/sass/_wishlist";
+@import "../../2013s1/sass/_quickorder";
 @import "account";
 @import "basket";
 @import "category";
@@ -134,6 +135,7 @@ $filter-dropdown-hover-bg-color: $warm-gray;
 @import "topmenu";
 @import "video";
 @import "filters";
+@import "rma";
 
 /* Selection colours (easy to forget) */
 
@@ -291,6 +293,11 @@ table{
         @include icons-sprite(pdf);
         height: icons-sprite-height(pdf);
         width: icons-sprite-width(pdf);
+    }
+    &.return{
+        @include icons-sprite(return);
+        height: icons-sprite-height(return);
+        width: icons-sprite-width(return);
     }
     &.arrow-right{
         margin-left: 6px;
