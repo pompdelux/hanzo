@@ -1,0 +1,84 @@
+#body-rma {
+    .product-table {
+        border-collapse: collapse;
+        border-top: 1px solid #444;
+
+        .rma-submit {
+            display: none;
+        }
+    }
+
+    .basket {
+
+        td, th {
+            display: block;
+            width: 100%;
+            clear: both;
+        }
+
+        .item {
+            border-top: 1px solid #444;
+            border-bottom: 1px solid #444;
+
+            .actions {
+                margin-bottom: 10px;
+            }
+
+            .left {
+                padding-bottom: 0;
+
+                .actions {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+
+    .rma-form {
+        width: 99%;
+
+        label {
+            width: 100%;
+
+            select, input {
+                float: right;
+                height: 30px;
+                margin:0;
+            }
+        }
+
+        .rma-productreplacement label,
+        .rma-cause label {
+            width: auto;
+            float: left;
+            margin-right: 5px;
+        }
+
+        .rma-cause select,
+        .rma-activitycode {
+            width: 60%;
+        }
+
+        input {
+            &.master {
+                width: 100%;
+            }
+        }
+
+
+        select {
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+            border: 1px solid #444;
+            border-radius: 0;
+            padding: 6px 5px;
+            width: auto;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+        }
+    }
+}
