@@ -2,6 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+					<!-- PIGE -->
         <trans-unit id="861.settings">
             <source>861.settings</source>
             <target><![CDATA[
@@ -133,6 +134,7 @@
                     }
                 ]]></target>
         </trans-unit>
+				<!-- DRENG -->
         <trans-unit id="862.settings">
             <source>862.settings</source>
             <target><![CDATA[
@@ -347,13 +349,14 @@
                         "colors": ""
                     }
                 ]]></target>
+				<!-- OVERDELE pige -->
         </trans-unit>
         <trans-unit id="962.settings">
             <source>962.settings</source>
             <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208"],
                         "colors": ""
                     }
                 ]]></target>
@@ -435,6 +438,15 @@
             <target><![CDATA[
                     {
                         "category_id": "184",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+		<trans-unit id="1097.settings">
+            <source>1097.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "208",
                         "colors": ""
                     }
                 ]]></target>
@@ -739,13 +751,14 @@
                         "colors": ""
                     }
                 ]]></target>
+				<!-- Overdele dreng -->
         </trans-unit>
         <trans-unit id="994.settings">
             <source>994.settings</source>
             <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178","209"],
                         "colors": ""
                     }
                 ]]></target>
@@ -839,7 +852,16 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>
+        </trans-unit>	<!-- Dreng Langaermet T-shirt -->	
+		 <trans-unit id="1098.settings">
+            <source>1098.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "209",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>		
         <trans-unit id="995.settings">
             <source>995.settings</source>
             <target><![CDATA[

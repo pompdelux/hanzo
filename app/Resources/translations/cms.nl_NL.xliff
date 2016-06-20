@@ -350,7 +350,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207"],
                         "colors": ""
                     }
                 ]]></target>
@@ -436,6 +436,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Langaermet T-shirts PIGE -->
+			<trans-unit id="921.settings">
+                <source>921.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "207",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
@@ -742,7 +753,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","208"],
                         "colors": ""
                     }
                 ]]></target>
@@ -837,6 +848,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Langaermet T-shirts DRENG -->
+			 <trans-unit id="922.settings">
+                <source>922.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "208",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="839.settings">
                 <source>839.settings</source>
                 <target><![CDATA[
