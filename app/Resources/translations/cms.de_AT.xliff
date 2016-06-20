@@ -443,8 +443,8 @@
                 ]]></target>
             </trans-unit>
 			<!-- Langaermet T-shirts - pige -->
-			<trans-unit id="904.settings">
-                <source>904.settings</source>
+			<trans-unit id="918.settings">
+                <source>918.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "207",
