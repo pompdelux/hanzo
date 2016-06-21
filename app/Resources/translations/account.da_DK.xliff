@@ -448,14 +448,15 @@
             </trans-unit>
             <trans-unit id="my.account.description">
                 <source>my.account.description</source>
-                <target><![CDATA[ <p>
-      På Min Side kan du redigere i din ordre, samt udskrive returlabel og returseddel. Du kan ligeledes rette dine informationer og tilmelde/afmelde vores nyhedsbrev.<br><br>
+                <target>				
+				<!-- SIDE STARTER HER -->
+<![CDATA[ 
+				<p>
+      På Min Side kan du udskrive returlabel og returseddel. Du kan ligeledes rette dine informationer og tilmelde/afmelde vores nyhedsbrev.<br><br>
       <em>Din ordre kan have følgende status:</em><br><br>
       <b>Afventer</b><br>
-      Din ordre er endnu ikke ekspederet, og du kan redigere i din ordre. Du har mulighed for at ændre/tilføje/slette på din ordre. <br>Bemærk: Efter redigering skal betalingen gennemføres igen – tidligere betalingsreservation bliver automatisk slettet.<br><br>
-	  <b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard ved redigeringen, foretages der automatisk endnu en reservation af totalbeløbet på din ordre. Reservationen af totalbeløbet på din oprindelige ordre bliver dog straks annulleret af POMPdeLUX. Der kan derimod gå op til 6 uger, før reservationen ophæves af dit pengeinstitut.<br><br>
-      <b>Stop editering</b><br>
-      Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br>
+      Din ordre er endnu ikke ekspederet.
+	  <br><br>
       <b>Under behandling</b><br>
       Din ordre er nu i gang med at blive pakket på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br>
       <b>Faktureret</b><br>
@@ -465,7 +466,7 @@
       Klik på ikonet ud for din ordre for at følge din pakke. Track and Trace siden åbner i et nyt vindue.<br><br>
       <b>Returnering, ombytning og reklamation</b><br>
       Ønsker du at returnere en vare, klikker du på ikonet ud for din ordre nedenfor.<br>
-      Returlabel og returseddel ligger i hver sin PDF, og skal printes hver for sig. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. <br>
+      Returlabel og returseddel ligger i hver sin PDF, og skal printes hver for sig. Benytter du vores returlabel modregner vi kun DKK 29,- fra værdien af dine returvarer. <br><br>
 	  <b>Bemærk: Du sender pakken retur ved at aflevere den på posthuset eller ved en pakkeboks. </b><br>
       Returnerer du en vare med henblik på ombytning, eller har du modtaget en vare med fejl, returnerer du blot varen og vi sender dig en ny – selvfølgelig uden omkostninger for dig. Er varen udsolgt, tilbagefører vi varens købspris til dig.<br><br>
 	  Ønsker du at reklamere over en beskadiget eller defekt vare, kan du naturligvis lave en reklamation. Så snart du opdager fejlen bedes du kontakte os via vores reklamationsformular, som du finder <a href="https://www.pompdelux.com/da_DK/kundeservice/reklamation">her.</a> På den måde kan vi hurtigst muligt tilbyde dig en løsning på baggrund af dine informationer.<br><br>
