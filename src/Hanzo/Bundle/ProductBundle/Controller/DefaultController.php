@@ -7,10 +7,14 @@ use Criteria;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsDomainsPrices;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
+use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsSeoI18nQuery;
 use Hanzo\Model\ProductsWashingInstructions;
@@ -264,5 +268,156 @@ class DefaultController extends CoreController
         ]);
 
         return $response;
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function apiListAction(Request $request)
+    {
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => 'requires.login',
+            ], 401);
+        }
+
+        $cacheId = ['apiListAction', $request->getLocale()];
+        $data = $this->getCache($cacheId);
+
+        if (empty($data)) {
+            $data = $this->generateProductList($request);
+        }
+
+        $this->setCache($cacheId, $data, 600); // 10 min cache.
+
+        return $this->json_response($data);
+    }
+
+    private function generateProductList(Request $request)
+    {
+        $hanzo = Hanzo::getInstance();
+        $locale = $request->getLocale();
+        $translator = $this->get('translator');
+        $router = $this->container->get('router');
+
+        $cdn = $hanzo->get('core.cdn');
+        $find = '~(background|src)="(../|/)~';
+        $replace = '$1="' . $cdn;
+
+        $products = ProductsQuery::create()
+            ->joinProductsI18n()
+            ->useProductsI18nQuery()
+            ->filterByLocale($locale)
+            ->endUse()
+            ->filterByMaster(null)
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
+            ->find();
+
+        $data = [];
+        $productIds = [];
+
+        /** @var Products $product */
+        foreach ($products as $product) {
+            $id = $product->getId();
+            $productIds[$id] = $id;
+            $translation_key = 'description.' . Tools::stripText($product->getSku(), '-', false);
+
+            $description = $translator->trans($translation_key, ['%cdn%' => $cdn], 'products');
+            $description = preg_replace($find, $replace, $description);
+
+            $data[$id] = [
+                'id'          => $id,
+                'sku'         => $product->getSku(),
+                'url'         => $router->generate('product_info', ['product_id' => $id], true),
+                'title'       => $product->getCurrentTranslation()->getTitle(),
+                'description' => $description,
+                'images'      => $this->getImages($product),
+                'variants'    => $this->getVariants($product),
+            ];
+        }
+
+        foreach (ProductsDomainsPricesPeer::getProductsPrices($productIds) as $id => $prices) {
+            foreach ($prices as $type => $price) {
+                $price['formatted'] = $price['formattet'];
+                unset($price['currency'], $price['formattet']);
+                $prices[$type] = $price;
+            }
+            $data[$id]['prices'] = $prices;
+        }
+
+        sort($data);
+
+        return $data;
+    }
+
+    /**
+     * @param Products $master
+     *
+     * @return array
+     */
+    private function getVariants(Products $master)
+    {
+        $variants = ProductsQuery::create()
+            ->filterByMaster($master->getSku())
+            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
+            ->orderBySku()
+            ->find();
+
+        $data = [];
+
+        /** @var Products $variant */
+        foreach ($variants as $variant) {
+            $data[] = [
+                'id'       => $variant->getId(),
+                'sku'      => $variant->getSku(),
+                'color'    => $variant->getColor(),
+                'size'     => $variant->getSize(),
+                'in_stock' => !$variant->getIsOutOfStock(),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param Products $master
+     *
+     * @return array
+     */
+    private function getImages(Products $master)
+    {
+        $images = ProductsImagesQuery::create()
+            ->joinProductsImagesProductReferences()
+            ->filterByProductsId($master->getId())
+            ->find();
+
+        $data = [];
+
+        /** @var ProductsImages $image */
+        $i = 0;
+        foreach ($images as $image) {
+            $data[$i] = [
+                'src'        => Tools::productImageUrl($image->getImage(), '234x410'),
+                'type'       => $image->getType(),
+                'color'      => $image->getColor(),
+                'references' => [],
+            ];
+
+            foreach ($image->getProductsImagesProductReferencess() as $reference) {
+                $data[$i]['references'][] = [
+                    'src'        => Tools::productImageUrl($reference->getProductsImages()->getImage(), '234x410'),
+                    'color'      => $reference->getColor(),
+                    'product_id' => $reference->getProductsId(),
+                ];
+            }
+
+            $i++;
+        }
+
+        return $data;
     }
 }

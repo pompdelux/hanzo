@@ -80,7 +80,22 @@ class WishlistController extends CoreController
             return $this->json_response([
                 'status'  => false,
                 'message' => 'requires.login',
-            ]);
+            ], 401);
+        }
+
+        $requestContent = $request->getContent();
+
+        if ('{' === substr($requestContent, 0, 1)) {
+            $params = json_decode($requestContent, true);
+            $request = new Request(
+                $request->query->all(),
+                $params,
+                $request->attributes->all(),
+                $request->cookies->all(),
+                [],
+                $request->server->all(),
+                http_build_query($params)
+            );
         }
 
         // action indicates if this is an edit request
@@ -151,6 +166,7 @@ class WishlistController extends CoreController
             'status'      => true,
             'type'        => $type,
             'total_price' => Tools::moneyFormat($totalPrice),
+            'list_id'     => $item->getWishlistsId(),
         ]);
     }
 
@@ -166,12 +182,19 @@ class WishlistController extends CoreController
      */
     public function deleteItemAction(Request $request, $productId = null)
     {
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => 'requires.login',
+            ], 401);
+        }
+
+        $listId = $this->getWishlist()->getId();
         WishlistsLinesQuery::create()
-            ->filterByWishlistsId($this->getWishlist()->getId())
+            ->filterByWishlistsId($listId)
             ->filterByProductsId($productId)
             ->delete();
 
-        $totalPrice = 0;
         $products   = $this->getAllWishlistItems();
         $totalPrice = $this->calculateTotalPrice($products);
 
@@ -179,6 +202,7 @@ class WishlistController extends CoreController
             'status'      => true,
             'message'     => 'wishlist.line.removed',
             'total_price' => Tools::moneyFormat($totalPrice),
+            'list_id'     => $listId
         ]);
     }
 
@@ -375,6 +399,25 @@ class WishlistController extends CoreController
         return $this->render('AccountBundle:Wishlist:missing.html.twig', ['misses' => $misses]);
     }
 
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function apiGetUserWishlistAction()
+    {
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => 'requires.login',
+            ], 401);
+        }
+
+        $list = $this->getAllWishlistItems();
+        sort($list);
+
+        return $this->json_response($list);
+    }
+
     /**
      * calculateTotalPrice
      *
@@ -397,6 +440,8 @@ class WishlistController extends CoreController
 
     /**
      * @param mixed $productId
+     *
+     * @return array
      */
     protected function getPrices($productId)
     {
