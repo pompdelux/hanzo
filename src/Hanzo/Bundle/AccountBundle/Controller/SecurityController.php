@@ -3,7 +3,10 @@
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Hanzo\Core\CoreController;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersQuery;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
 
 /**
@@ -53,6 +56,39 @@ class SecurityController extends CoreController
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
             'target'        => $target,
+        ]);
+    }
+
+    /**
+     * Performs api login.
+     *
+     * Payload must be json and follow this pattern:
+     *  {"username": "", "password": ""}
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function apiLoginAction(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $user = CustomersQuery::create()
+            ->filterByEmail($data['username'])
+            ->filterByPassword(sha1($data['password']))
+            ->findOne();
+
+        if (!$user instanceof Customers) {
+            return $this->json_response([
+                'status' => false,
+            ], 403);
+        }
+
+        $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
+        $this->container->get('security.context')->setToken($token);
+
+        return $this->json_response([
+            'status' => true,
         ]);
     }
 
