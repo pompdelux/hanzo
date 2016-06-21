@@ -435,16 +435,17 @@
             </trans-unit>
             <trans-unit id="my.account.description">
                 <source>my.account.description</source>
-                <target><![CDATA[ <p>
-      På Min Side kan du redigere i din ordre og printe ut en returlapp og et returskjema. Du kan også rette i dine opplysninger og melde deg på/av nyhetsbrevet vårt.<br><br>
+                <target>
+				<!-- SIDE STARTER HER -->
+				<![CDATA[ 	
+				<p>
+      På Min Side kan du printe ut en returlapp og et returskjema. Du kan også melde deg på/av nyhetsbrevet vårt.<br><br>
       <em>Din ordre kan ha følgende status:</em><br><br>
       <b>Venter</b><br>
-      Din ordre er ikke ekspedert enda, og du kan redigere i ordren. Du har mulighet for å endre/tilføye/slette i ordren. <br>Merk: Etter redigering skal betalingen gjennomføres på nytt – tidligere betalingsreservasjon blir automatisk slettet.<br><br>
-	  <b>Merk:</b> Hvis du bruker Visa Electron eller MasterCard ved redigeringen, blir det automatisk foretatt enda en reservasjon av totalbeløpet på din ordre. Reservasjonen av totalbeløpet på din opprinnelige ordre blir straks annullert av POMPdeLUX. Det kan derimot gå opptil 6 uker før reservasjonen oppheves av ditt pengeinstitutt.<br><br>
-      <b>Stopp editering</b><br>
-      Du har eventuelt avbrutt redigeringen. Trykk på knappen ”Stopp editering”, og du kan deretter redigere i ordre på nytt.<br><br>
+      Din ordre er ikke ekspedert enda. Du har mulighet for å slette i ordren. <br><br>
+	  
       <b>Under behandling</b><br>
-     Din ordre blir nå pakket på lageret vårt og sendes til deg i løpet av 1-2 dager. Det er ikke mulig å redigere/bremse ordren.<br><br>
+     Din ordre blir nå pakket på lageret vårt og sendes til deg i løpet av 1-2 dager. Det er ikke mulig bremse ordren.<br><br>
       <b>Fakturert</b><br>
       Din ordre er sendt fra lageret vårt. Fakturaen finner du som en PDF-fil under kolonnen Faktura senest 24 timer etter sending.<br><br>
       <b>Når pakken er sendt/mottatt, har du følgende muligheter:</b><br><br>
