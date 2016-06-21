@@ -24,3 +24,10 @@ product_set_active_range:
     pattern: /set/active/product/range
     defaults:
         _controller: ProductBundle:Range:setRange
+
+product_api_list:
+    path: /api/products/
+    defaults:
+        _controller: ProductBundle:Default:apiList
+    methods: [GET]
+    schemes: [HTTPS]
