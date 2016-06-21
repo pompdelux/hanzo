@@ -2,6 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+		<!-- PIGE -->
             <trans-unit id="719.settings">
                 <source>719.settings</source>
                 <target><![CDATA[
@@ -128,11 +129,12 @@
         "Bio-Produkte (GOTS)": ["154"],
         "Oekotex": ["153"]
     },
-                        "discount": {
+                        "discount": {"50%": ["50"]
                         }
 }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG -->
             <trans-unit id="720.settings">
                 <source>720.settings</source>
                 <target><![CDATA[
@@ -252,7 +254,7 @@
                         "Bio-Produkte (GOTS)": ["156"],
                         "Oekotex": ["155"]
                         },
-                        "discount": {
+                        "discount": {"50%": ["50"]
                         }
                     }
                 ]]></target>

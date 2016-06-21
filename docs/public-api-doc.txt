@@ -1,0 +1,252 @@
+All requests must be send over HTTPS.
+All requests must be prefixed with the locale of the users account (dk: da_DK, nl_NL ect.)
+All requests must be "Content-Type: application/json"
+Prefix for all requests is: https://www.pompdelux.com/
+
+You must be logged in to perform any of the requests.
+
+All requests (except login) returns an error if you are not logged in:
+
+    Response:
+    {
+        "status": false,
+        "message": "requires.login",
+    }
+
+
+---------------------------------------------------------------------
+Login:
+    [POST] /da_DK/api/login/
+---------------------------------------------------------------------
+
+    Payload:
+    {
+        "username": "",
+        "password": ""
+    }
+
+    Response:
+    {
+        "status": true/false
+    }
+
+    If successful login, the session token is in the response headers cookie (PHPSESSID=xxx).
+    The session cookie must be send with all other requests.
+
+    username = the customers email address
+    password = the customers password
+
+
+---------------------------------------------------------------------
+Wishlist listing - shows any items currently in the list:
+    [GET] /api/wishlist/
+---------------------------------------------------------------------
+    The response returns an empty array if there is no items in the list.
+
+    Response (sample):
+    [
+        {
+            "color": "Grey Melange",
+            "id": "19171",
+            "image": "https:\/\/cdn.pompdelux.com\/images\/products\/thumb\/57x100,MagwayJrJACKETAW15_Grey-Melange_overview_01.jpg?1423823093",
+            "master": "MagwayJrJACKETAW15",
+            "quantity": "1",
+            "size": "116 cm",
+            "sku": "MagwayJrJACKETAW15 Grey Melange 116",
+            "title": "Magway Jr Sportsjakke",
+            "price_normal": "DKK 250,00",
+            "price_sale": false,
+            "price_formattet": "DKK 250,00",
+            "raw_price": "250.0000"
+        },
+        ...
+    ]
+
+    color        = color of the product
+    id           = id of the product variant
+    image        = url to the image
+    master       = reference to the master product
+    quantity     = how many is on the list
+    size         = product size
+    sku          = product variant sku
+    title        = product title
+    price_normal = formatted normal price
+    price_sale   = false or formatted sales price
+    raw_price    = raw price
+
+---------------------------------------------------------------------
+Add Item to wishlist:
+    [POST] /da_DK/api/wishlist/add-item/
+---------------------------------------------------------------------
+
+    Payload:
+    {
+    	"size": "116",
+    	"color": "Navy",
+    	"master": "ShellPANTSAW15",
+    	"quantity": 1
+    }
+
+    or
+
+    {
+        "product_id": 1234,
+        "quantity": 1
+    }
+
+    Response (sample):
+    {
+        "data": {
+            "color": "Navy",
+            "id": "20165",
+            "image": "https://www.pompdelux.com/images/products/thumb/57x100,ShellPANTSAW15_Navy_overview_01.jpg?1423823093",
+            "master": "ShellPANTSAW15",
+            "quantity": "1",
+            "size": "116 cm",
+            "sku": "ShellPANTSAW15 Navy 116",
+            "title": "Adventure Jr Skalbukser",
+            "price_normal": "DKK 250,00",
+            "price_sale": false,
+            "price_formattet": "DKK 250,00",
+            "raw_price": "250.0000"
+        },
+        "message": "",
+        "status": true,
+        "type": "add",
+        "total_price": "DKK 750,00",
+        "list_id": "KMZ96"
+    }
+
+    data.color           = product color
+    data.id              = the internal product_id - this is the id you must send if you wish to remove the line later
+    data.image           = main image for the style
+    data.master          = reference to the master product record
+    data.quantity        = how many of this product is in the list
+    data.size            = product size
+    data.sku             = variants sku code
+    data.title           = product title
+    data.price_normal    = normal price of the product
+    data.price_sale      = sales price - if any
+    data.price_formattet = locale formatted price
+    data.raw_price       = unformatted price
+    message              = not used
+    status               = false if the product could not be added, else true
+    type                 = action type
+    total_price          = total price of all products in the list
+    list_id              = list id (this is the one you should send to the SA when processing the order)
+
+
+---------------------------------------------------------------------
+Remove product from the wishlist:
+    [POST] /da_DK/api/wishlist/remove-item/{product_id}/
+---------------------------------------------------------------------
+
+    {product_id} = the id of the product to remove - this is the same as the data.id from above.
+
+    Response (sample):
+    {
+        "status": true,
+        "message": "wishlist.line.removed",
+        "total_price": "DKK 750,00",
+        "list_id": "KMZ96"
+    }
+
+
+---------------------------------------------------------------------
+Empty wishlist:
+    [POST] /api/wishlist/delete-all-items/
+---------------------------------------------------------------------
+
+    Response (sample):
+    {
+        "status": true,
+        "message": "wishlist.all.items.deleted"
+    }
+
+
+---------------------------------------------------------------------
+Product listing:
+    [GET] /api/products/
+---------------------------------------------------------------------
+
+    Response (sample):
+    [
+        {
+            "id": 17161,
+            "title": "Ace H\u00e5rpynt",
+            "description": "html formattet description",
+            "url": "https:\/\/www.pompdelux.com\/da_DK\/product\/view\/17161",
+            "sku": "AceHAIRDECOAW15",
+            "images": [
+                {
+                    "url": "https:\/\/cdn.pompdelux.com\/images\/products\/thumb\/234x410,AceHAIRDECOAW15_Black_set_01.jpg?1423823093",
+                    "type": "set",
+                    "color": "Black",
+                    "references": [
+                        {
+                            "url": "https:\/\/cdn.pompdelux.com\/images\/products\/thumb\/234x410,AceHAIRDECOAW15_Black_set_01.jpg?1423823093",
+                            "color": "Rose",
+                            "product_id": 18482
+                        }
+                    ]
+                },
+                {
+                    "url": "https:\/\/cdn.pompdelux.com\/images\/products\/thumb\/234x410,AceHAIRDECOAW15_Black_set_01.jpg?1423823093",
+                    "type": "set",
+                    "color": "Black",
+                    "references": []
+                },
+                ...
+            ],
+            "variants": [
+                {
+                    "id": 17165,
+                    "sku": "AceHAIRDECOAW15 Rose ONE SIZE",
+                    "color": "Rose",
+                    "size": "ONE SIZE",
+                    "in_stock": true
+                },
+                ...
+            ],
+            "prices": {
+                "normal": {
+                    "raw_price": "80.0000",
+                    "price": "100.0000",
+                    "vat": "20.0000",
+                    "sales_pct": 0,
+                    "formatted": "DKK 100,00"
+                },
+                ...
+            }
+        }
+    ]
+
+    id          = product id
+    sku         = product sku code
+    url         = direct product url
+    title       = product title
+    description = html formatted product description
+
+    images = array of product images
+    images.x.src        = image url
+    images.x.type       = type of image, can either be "set" or "overview"
+    images.x.color      = what color the image represents
+
+    images.x.references = array of product references
+    images.x.references.x.url        = url to the referenced product
+    images.x.references.x.color      = color of the referenced product
+    images.x.references.x.product_id = id of the referenced product
+
+    variants = array of product variants
+    variants.x.id       = variant product id
+    variants.x.sku      = sku code of the variant
+    variants.x.color    = color information
+    variants.x.size     = size information
+    variants.x.in_stock = true/false - indicates if a variant is in stock or not
+
+    prices = array of price infomation, there can be either one or two items in the array x can be one of "normal" and/or "sales" if there is a sales price, there is also a normal price
+    prices.x.raw_price = the unformatted price excl vat
+    prices.x.price     = the unformatted price incl vat
+    prices.x.vat       = vat amount
+    prices.x.sales_pct = discount (if any) in pct
+    prices.x.formatted = formatted total price

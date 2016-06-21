@@ -59,9 +59,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'cc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'tk@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'ksa@pompdelux.dk'      => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'de@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'sc@pompdelux.dk'       => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
-        'mped@pompdelux.dk'     => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // admin (bellcom)
         'hanzo@bellcom.dk'      => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         'hf@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
@@ -70,7 +67,6 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         'mn@bellcom.dk'         => ['ROLE_ADMIN', 'ROLE_SALES', 'ROLE_EMPLOYEE', 'ROLE_CONSULTANT'],
         // stats
         'mh@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
-        'pd@pompdelux.dk'       => ['ROLE_STATS', 'ROLE_EMPLOYEE'],
         // marketing
         'tj@pompdelux.dk'       => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
         'libe@pompdelux.dk'     => ['ROLE_MARKETING', 'ROLE_EMPLOYEE'],
@@ -79,30 +75,18 @@ class Customers extends BaseCustomers implements AdvancedUserInterface
         // sales
         'hp@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'kg@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mc@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mlade@pompdelux.dk'    => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'mle@pompdelux.dk'      => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'nj@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'pc@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'sj@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'ls@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
-        'eh@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         'ln@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_CUSTOMERS_SERVICE_EXTRA', 'ROLE_EMPLOYEE'],
         'ka@pompdelux.dk'       => ['ROLE_SALES', 'ROLE_CUSTOMERS_SERVICE', 'ROLE_CONSULTANT', 'ROLE_EMPLOYEE'],
         // customer service
         'pf@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_CUSTOMERS_SERVICE_EXTRA', 'ROLE_EMPLOYEE'],
         'cd@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'hb@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'js@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'ml@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'tt@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'vs@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'nk@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
-        'ep@pompdelux.dk'       => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         'lmach@pompdelux.dk'    => ['ROLE_CUSTOMERS_SERVICE', 'ROLE_EMPLOYEE'],
         // logistics
         'nh@pompdelux.dk'       => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
-        'tta@pompdelux.dk'      => ['ROLE_LOGISTICS', 'ROLE_EMPLOYEE'],
         // support
         'cr@pompdelux.dk'       => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],
         'ma@pompdelux.dk'       => ['ROLE_SUPPORT', 'ROLE_EMPLOYEE'],

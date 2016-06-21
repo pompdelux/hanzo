@@ -128,7 +128,7 @@
                         "Bio-Produkte (GOTS)": ["154"],
                         "Oekotex": ["153"]
                       },
-                      "discount": {
+                      "discount": {"50%": ["50"]
                       }
                     }
                 ]]></target>
@@ -251,7 +251,7 @@
                           "Bio-Produkte (GOTS)": ["156"],
                           "Oekotex": ["155"]
                           },
-                        "discount": {
+                        "discount": {"50%": ["50"]
                         }
                     }
                 ]]></target>
