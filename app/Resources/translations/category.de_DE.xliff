@@ -726,6 +726,27 @@ POMPdeLUX Regenjacken und -hosen für Jungen.
         <source>description.category-189</source>
         <target><![CDATA[<p>Weiche und angenehme Basisbekleidung bildet die Grundlage einer richtigen Jungengarderobe. Basisbekleidung von Jungen wird oft getragen und daher verwendet POMPdeLUX nur die allerbeste Qualität, die auch nach mehreren Waschgängen noch schön aussieht. POMPdeLUX produziert das ganze Jahr über Basisstyles für Jungen und bietet die Basisbekleidung an, die alle Jungen benötigen. Schnitte und Farbtöne, die auf unsere übrige Kinderbekleidung abgestimmt sind, damit die Basisteile ohne Probleme auf viele verschiedene Arten kombiniert werden können. Aber auch selbstständig getragen sind sie wirklich schön. Basisbekleidung für Jungen wird in Größen von 80 Zentimetern bis 152 cm entworfen und ist die beste Wahl für ein gutes Preis-Leistungs-Verhältnis und wenn man sich nicht mit weniger als der feinsten Qualität begnügen möchte. POMPdeLUX Basisober- und unterteile sind gute und schlichte Kinderbekleidung in schicken Farben, von der man ohne Probleme viel kaufen kann, ohne dass es gleich ein Vermögen kostet.</p>]]></target>
       </trans-unit>
+	  
+	  	   <!-- Langærmet T-shirts - pige -->
+	    <trans-unit id="headers.category-207">
+        <source>headers.category-207</source>
+        <target><![CDATA[<h1>Langarm T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-207">
+        <source>description.category-207</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - dreng -->
+	    <trans-unit id="headers.category-208">
+        <source>headers.category-208</source>
+        <target><![CDATA[<h1>Langarm T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-208">
+        <source>description.category-208</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
     </body>
   </file>
 </xliff>

@@ -739,6 +739,27 @@ POMPdeLUX regnjakker og bukser til drenge.</p>]]></target>
         <source>description.category-189</source>
         <target><![CDATA[<p>Blødt og behageligt basistøj danner hele grundlaget for en rigtig drengegarderobe. Drenges basistøj bliver flittigt brugt og derfor holder POMPdeLUX sig kun til de allerbedste kvaliteter, som bevarer sig pænt, uanset hvor mange ture det får i vaskemaskinen. POMPdeLUX producerer basisstyles til drenge året rundt og har alt det basistøj, som alle drenge har brug for. Snit og nuancer, er afstemt alt vores andet børnetøj, så basisting uden problemer kan kombineres på masser af måder, men er også rigtig flot at bruge alene. Basistøj til drenge designes i størrelserne 80 centimeter til 152 cm og er er et oplagt valg, hvis man vil have meget for pengene og ikke vil nøjes med mindre end den fineste kvalitet. POMPdeLUX basis over- og underdele er godt og enkelt børnetøj i flotte farver, som man sagtens kan købe meget af, uden at det koster en formue.</p>]]></target>
       </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - pige -->
+	    <trans-unit id="headers.category-208">
+        <source>headers.category-208</source>
+        <target><![CDATA[<h1>Langærmet T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-208">
+        <source>description.category-208</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - dreng -->
+	    <trans-unit id="headers.category-209">
+        <source>headers.category-209</source>
+        <target><![CDATA[<h1>Langærmet T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-209">
+        <source>description.category-209</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
     </body>
   </file>
 </xliff>

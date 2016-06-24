@@ -709,6 +709,27 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
         <source>description.category-189</source>
         <target><![CDATA[<p>Soft and comfortable basic clothing forms the foundation of a real boy’s wardrobe. The boy’s basic garments will be used frequently and we therefore recommend only to buy the very best quality that will last, no matter how many rounds it gets in the washing machine. POMPdeLUX producing basic styles for boys all year around and has all the basic styles boys need. Fits and shades are aligned with the rest of the collection so the basic styles can easily be combined in lots of ways although it also really nice alone. Basic styles for boys  are available in sizes from 80 cm to 152 cm and is an obvious choice if you want value for money and not settle for less than the finest quality. POMPdeLUX basics are good and simple children's clothes in beautiful colours that you can easily buy a greater amount of without it’s costing you a fortune.</p>]]></target>
       </trans-unit>
+	  
+	   <!-- Langærmet T-shirts - pige -->
+	    <trans-unit id="headers.category-208">
+        <source>headers.category-208</source>
+        <target><![CDATA[<h1>Long sleeved T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-208">
+        <source>description.category-208</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - dreng -->
+	    <trans-unit id="headers.category-209">
+        <source>headers.category-209</source>
+        <target><![CDATA[<h1>Long sleeved T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-209">
+        <source>description.category-209</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
     </body>
   </file>
 </xliff>
