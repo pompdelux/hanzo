@@ -41,23 +41,34 @@ class Stock
     protected $replicator;
 
     /**
+     * @var array
+     */
+    protected $connectionMap = [];
+
+    /**
      * @param string                   $locale
      * @param EventDispatcherInterface $eventDispatcher
      * @param Warehouse                $warehouse
      * @param PropelReplicator         $replicator
+     * @param array                    $connectionMap
      */
-    public function __construct($locale, EventDispatcherInterface $eventDispatcher, Warehouse $warehouse, PropelReplicator $replicator)
-    {
+    public function __construct(
+        $locale,
+        EventDispatcherInterface $eventDispatcher,
+        Warehouse $warehouse,
+        PropelReplicator $replicator,
+        array $connectionMap
+    ) {
         $this->locale          = $locale;
         $this->eventDispatcher = $eventDispatcher;
-        $warehouse->setLocation($locale);
-        $this->warehouse  = $warehouse;
-        $this->replicator = $replicator;
+        $this->warehouse       = $warehouse->setLocation($locale);
+        $this->replicator      = $replicator;
+        $this->connectionMap   = $connectionMap;
     }
 
-
     /**
-     * Change warehouse location, please be careful with this!
+     * Change warehouse location.
+     *   Please be careful with this!
      *
      * @param string $locale
      */
@@ -66,6 +77,20 @@ class Stock
         $this->warehouse->setLocation($locale);
     }
 
+    /**
+     * Change warehouse based on db connection name.
+     *   Please be careful with this!
+     *
+     * @param $name
+     */
+    public function changeLocationByConnectionName($name)
+    {
+        if (empty($this->connectionMap[$name])) {
+            throw new \InvalidArgumentException("'{$name}' not a known warehouse location.");
+        }
+
+        $this->warehouse->setLocation($this->connectionMap[$name], true);
+    }
 
     /**
      * fetch the stock put of db and save it in a static var
