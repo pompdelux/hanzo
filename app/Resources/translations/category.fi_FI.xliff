@@ -711,6 +711,27 @@ POMPdeLUX-sadetakit ja -housut.</p>]]></target>
         <source>description.category-189</source>
         <target><![CDATA[<p>Pehmeät ja mukavat perusvaatteet muodostavat hyvän perustan poikien vaatevarastolle. Poikien perusvaatteet ovat ahkerassa käytössä, ja POMPdeLUX käyttääkin siksi vain parhaita materiaaleja, jotka pysyvät hyvinä lukuisista pesukerroista huolimatta. POMPdeLUX valmistaa poikien perusvaatteita ympäri vuoden. Meiltä löytyy aina perusvaatteita, joita kaikki pojat tarvitsevat. Leikkaukset ja sävyt sopivat yhteen kaikkien muiden lastenvaatteidemme kanssa, joten perusvaatteita voi yhdistää monella tavalla. Ne sopivat upeasti käytettäväksi myös sellaisenaan. Poikien perusvaatteita on saatavana koosta 80 cm kokoon 152 cm asti. Ne ovat erinomainen valinta, jos halutaan saada rahoille vastinetta ja parasta mahdollista laatua. POMPdeLUX-perusyläosat ja -alaosat ovat hyviä, pelkistettyjä ja upeanvärisiä lastenvaatteita, joita voi helposti ostaa paljon ilman että se maksaisi omaisuuden.</p>]]></target>
       </trans-unit>
+	  
+	   <!-- Langærmet T-shirts - pige -->
+	    <trans-unit id="headers.category-207">
+        <source>headers.category-207</source>
+        <target><![CDATA[<h1>Pitkähihaiset T-paidat</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-207">
+        <source>description.category-207</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - dreng -->
+	    <trans-unit id="headers.category-208">
+        <source>headers.category-208</source>
+        <target><![CDATA[<h1>Pitkähihaiset T-paidat</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-208">
+        <source>description.category-208</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
     </body>
   </file>
 </xliff>

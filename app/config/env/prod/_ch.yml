@@ -18,6 +18,10 @@ propel:
                 options:              {}
                 attributes:           {}
 
+account:
+    consignor:
+        actor_id: 205
+
 consignor:
     shipment_server:
         options:

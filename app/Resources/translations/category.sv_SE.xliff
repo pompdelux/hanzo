@@ -632,6 +632,27 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
         <source>description.category-177</source>
         <target><![CDATA[<p>Snygga och användbara basplagg utgör själva grunden för en bra flickgarderob och det går därför inte att undgå att uppdatera den regelbundet. Speciellt basplagg används mycket och därför rekommenderar vi att välja den bästa kvalitet som håller länge. POMPdeLUX har alla basplagg du behöver för flickor. Allt tillverkas i sköna, mjuka kvaliteter. Passform och färgställningar gör att de lätt kan användas som de är eller matchas på mängd olika sätt med alla våra andra plagg från kollektionen. Bassortimentet för flickor finns i storlek 80 cm till 152 cm och när du väl har provat någon av det så blir det ditt självklara val i framtiden. Det är helt enkelt bra modeller i härliga färger som barnen kan växa ur långt innan det har slitits eller tvättas sönder. Priset på POMPdeLUX basunder- och överdelar gör det också möjligt att bygga en bra grund utan att bli ruinerad.</p>]]></target>
       </trans-unit>
+	  
+	   <!-- Langærmet T-shirts - pige -->
+	    <trans-unit id="headers.category-207">
+        <source>headers.category-207</source>
+        <target><![CDATA[<h1>Långärmade T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-207">
+        <source>description.category-207</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
+	  <!-- Langærmet T-shirts - dreng -->
+	    <trans-unit id="headers.category-208">
+        <source>headers.category-208</source>
+        <target><![CDATA[<h1>Långärmade T-shirts</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-208">
+        <source>description.category-208</source>
+        <target><![CDATA[<p></p>]]></target>
+      </trans-unit>
+	  
     </body>
   </file>
 </xliff>
