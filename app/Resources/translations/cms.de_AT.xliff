@@ -350,12 +350,13 @@
                     }
                 ]]></target>
             </trans-unit>
+					<!-- OVERDELE - pige -->
              <trans-unit id="820.settings">
                 <source>820.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207"],
                         "colors": ""
                     }
                 ]]></target>
@@ -441,6 +442,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Langaermet T-shirts - pige -->
+			<trans-unit id="918.settings">
+                <source>918.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "207",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="821.settings">
                 <source>821.settings</source>
                 <target><![CDATA[
@@ -747,7 +759,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "167",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","208"],
                         "colors": ""
                     }
                 ]]></target>
@@ -842,6 +854,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			
+			<trans-unit id="919.settings">
+                <source>919.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "208",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="835.settings">
                 <source>835.settings</source>
                 <target><![CDATA[

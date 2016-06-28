@@ -745,7 +745,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178","208"],
                         "colors": ""
                     }
                 ]]></target>
@@ -840,6 +840,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			
+			<trans-unit id="905.settings">
+                <source>905.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "208",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[

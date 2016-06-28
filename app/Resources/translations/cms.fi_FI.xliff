@@ -347,12 +347,13 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- OVERDELE - pige -->
              <trans-unit id="812.settings">
                 <source>812.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207"],
                         "colors": ""
                     }
                 ]]></target>
@@ -438,6 +439,17 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Langaermet T-shirts -pige -->
+			<trans-unit id="907.settings">
+                <source>907.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "207",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="813.settings">
                 <source>813.settings</source>
                 <target><![CDATA[
@@ -739,12 +751,13 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- OVERDELE - Dreng -->
             <trans-unit id="825.settings">
                 <source>825.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178","208"],
                         "colors": ""
                     }
                 ]]></target>
@@ -922,6 +935,18 @@
                     }
                 ]]></target>
             </trans-unit>
+			
+			<!-- Langaermet T-shirts - dreng -->
+			<trans-unit id="908.settings">
+                <source>908.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "208",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			
             <trans-unit id="828.settings">
                 <source>828.settings</source>
                 <target><![CDATA[
