@@ -24,6 +24,7 @@ class StockExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('stock.warehouses', $config['warehouses']);
+        $container->setParameter('stock.connection_map', $config['connection_map']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
