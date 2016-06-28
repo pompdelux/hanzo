@@ -28,7 +28,7 @@ class DefaultController extends CoreController
         }
 
         return $this->render('AdminBundle:Default:index.html.twig', array(
-            'database' => $request->getSession()->get('database'))
+            'database' => $request->getSession()->get('database', 'pdldbdk1'))
         );
     }
 
