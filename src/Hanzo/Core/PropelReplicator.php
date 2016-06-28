@@ -80,8 +80,9 @@ class PropelReplicator
             list($namespace, $name, $rest) = explode('.', $key, 3);
 
             // only add one connection, and only if the user is set
-            if (($rest == 'connection.user') &&
-                ($namespace == 'datasources')
+            if (('connection.user' === $rest)      &&
+                ('datasources'     === $namespace) &&
+                ('default'         !== $name)
             ) {
                 $value = trim($value);
                 if (!empty($value)) {
