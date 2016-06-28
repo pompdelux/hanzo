@@ -59,22 +59,26 @@ class Warehouse
      * Set the required warehouse location by locale.
      *
      * @param string $locale
+     * @param bool   $isConnection
      *
      * @return Warehouse
-     * @throws \InvalidArgumentException
      */
-    public function setLocation($locale)
+    public function setLocation($locale, $isConnection = false)
     {
-        if (isset($this->countryWarehouseMap[$locale])) {
+        if ($isConnection) {
+            $this->locationSetTo = $locale;
+        } else {
+            if (empty($this->countryWarehouseMap[$locale])) {
+                throw new \InvalidArgumentException("'{$locale}' not a known warehouse location.");
+            }
+
             $this->locationSetTo = $this->countryWarehouseMap[$locale];
-
-            $p = trim($this->basePrefix, ':');
-            $this->redis->setPrefix($p.'.'.$this->locationSetTo.':');
-
-            return $this;
         }
 
-        throw new \InvalidArgumentException("'{$locale}' not a known warehouse location.");
+        $p = trim($this->basePrefix, ':');
+        $this->redis->setPrefix($p.'.'.$this->locationSetTo.':');
+
+        return $this;
     }
 
 
@@ -244,7 +248,7 @@ class Warehouse
         }
 
         if (empty($relations[$this->locationSetTo])) {
-            $relations[$this->locationSetTo] = ['default'];
+            $relations[$this->locationSetTo] = ['pdldbdk1'];
         }
 
         return $relations[$this->locationSetTo];
