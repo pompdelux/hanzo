@@ -297,6 +297,12 @@ class DefaultController extends CoreController
         return $this->json_response($data);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return array
+     * @throws \Exception
+     */
     private function generateProductList(Request $request)
     {
         $hanzo = Hanzo::getInstance();
@@ -310,8 +316,12 @@ class DefaultController extends CoreController
 
         $products = ProductsQuery::create()
             ->joinProductsI18n()
+            ->joinProductsWashingInstructions()
+            ->useProductsWashingInstructionsQuery()
+                ->filterByLocale($locale)
+            ->endUse()
             ->useProductsI18nQuery()
-            ->filterByLocale($locale)
+                ->filterByLocale($locale)
             ->endUse()
             ->filterByMaster(null)
             ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
@@ -329,12 +339,19 @@ class DefaultController extends CoreController
             $description = $translator->trans($translation_key, ['%cdn%' => $cdn], 'products');
             $description = preg_replace($find, $replace, $description);
 
+            $washing = '';
+            if ($instructions = $product->getProductsWashingInstructions()) {
+                $washing = stripslashes($instructions->getDescription());
+                $washing = preg_replace($find, $replace, $washing);
+            }
+
             $data[$id] = [
                 'id'          => $id,
                 'sku'         => $product->getSku(),
                 'url'         => $router->generate('product_info', ['product_id' => $id], true),
                 'title'       => $product->getCurrentTranslation()->getTitle(),
                 'description' => $description,
+                'washing'     => $washing,
                 'images'      => $this->getImages($product),
                 'variants'    => $this->getVariants($product),
             ];
@@ -361,6 +378,8 @@ class DefaultController extends CoreController
      */
     private function getVariants(Products $master)
     {
+        $translator = $this->container->get('translator');
+
         $variants = ProductsQuery::create()
             ->filterByMaster($master->getSku())
             ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
@@ -371,12 +390,19 @@ class DefaultController extends CoreController
 
         /** @var Products $variant */
         foreach ($variants as $variant) {
+            $colorButton = Tools::fxImageUrl('images/colorbuttons/_'.strtolower(str_replace([' ', '/'], ['-', '9'], $variant->getColor())).'.png');
+
             $data[] = [
-                'id'       => $variant->getId(),
-                'sku'      => $variant->getSku(),
-                'color'    => $variant->getColor(),
-                'size'     => $variant->getSize(),
-                'in_stock' => !$variant->getIsOutOfStock(),
+                'id'         => $variant->getId(),
+                'sku'        => $variant->getSku(),
+                'color'      => $variant->getColor(),
+                'color_dots' => [
+                    'active'   => str_replace('.png', '_active.png', $colorButton),
+                    'inactive' => $colorButton,
+                ],
+                'size'       => $variant->getSize(),
+                'size_label' => str_replace($variant->getSize(), '', $variant->getPostfixedSize($translator)),
+                'in_stock'   => !$variant->getIsOutOfStock(),
             ];
         }
 
@@ -391,7 +417,7 @@ class DefaultController extends CoreController
     private function getImages(Products $master)
     {
         $images = ProductsImagesQuery::create()
-            ->joinProductsImagesProductReferences()
+            ->leftJoinProductsImagesProductReferences()
             ->filterByProductsId($master->getId())
             ->find();
 
@@ -404,15 +430,30 @@ class DefaultController extends CoreController
                 'src'        => Tools::productImageUrl($image->getImage(), '234x410'),
                 'type'       => $image->getType(),
                 'color'      => $image->getColor(),
-                'references' => [],
             ];
 
+            $references = [];
             foreach ($image->getProductsImagesProductReferencess() as $reference) {
-                $data[$i]['references'][] = [
-                    'src'        => Tools::productImageUrl($reference->getProductsImages()->getImage(), '234x410'),
+                $criteria = new Criteria();
+                $criteria->add(ProductsImagesPeer::TYPE, 'overview');
+                $criteria->add(ProductsImagesPeer::COLOR, $reference->getColor());
+                $criteria->add(ProductsImagesPeer::IMAGE, '%_overview_01%', Criteria::LIKE);
+                $criteria->setLimit(1);
+
+                $image = $reference->getProducts()
+                    ->getProductsImagess($criteria)
+                    ->getFirst()
+                    ->getImage();
+
+                $references[] = [
+                    'src'        => Tools::productImageUrl($image, '234x410'),
                     'color'      => $reference->getColor(),
                     'product_id' => $reference->getProductsId(),
                 ];
+            }
+
+            if (count($references)) {
+                $data[$i]['references'] = $references;
             }
 
             $i++;
