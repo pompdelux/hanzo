@@ -252,9 +252,10 @@ class ProductsController extends CoreController
 
             $stock = $this->container->get('stock');
 
-            // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-            if ('pdldbno1' === $request->getSession()->get('database')) {
-                $stock->changeLocation('nb_NO');
+            // Switch to the correct warehouse location.
+            $databaseConnectionName = $request->getSession()->get('database', 'pdldbdk1');
+            if ('pdldbdk1' !== $databaseConnectionName) {
+                $stock->changeLocationByConnectionName($databaseConnectionName);
             }
 
             $conn  = $this->getDbConnection();
@@ -274,9 +275,9 @@ class ProductsController extends CoreController
                 $data[$record['range']][$record['id']] = $record;
             }
 
-            // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-            if ('pdldbno1' === $request->getSession()->get('database')) {
-                $stock->changeLocation('da_DK');
+            // Switch back to the default warehouse location.
+            if ('pdldbdk1' !== $databaseConnectionName) {
+                $stock->changeLocationByConnectionName('pdldbdk1');
             }
 
             uksort($data, "strnatcmp");
@@ -1119,9 +1120,10 @@ class ProductsController extends CoreController
 
         $stock  = $this->container->get('stock');
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('nb_NO');
+        // Switch to the correct warehouse location.
+        $databaseConnectionName = $request->getSession()->get('database', 'pdldbdk1');
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName($databaseConnectionName);
         }
 
         $parser = new \PropelCSVParser();
@@ -1149,9 +1151,9 @@ class ProductsController extends CoreController
             }
         }
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('da_DK');
+        // Switch to the default warehouse location.
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName('pdldbdk1');
         }
 
         return new Response(
@@ -1180,11 +1182,10 @@ class ProductsController extends CoreController
     {
         $stock = $this->container->get('stock');
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        // The "why" is, no is not the same db/locale as the rest, and we need locale to switch
-        // warehouse, and so far the only way is to hardcode it..
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('nb_NO');
+        // Switch to the correct warehouse location.
+        $databaseConnectionName = $request->getSession()->get('database', 'pdldbdk1');
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName($databaseConnectionName);
         }
 
         $products = ProductsQuery::create()
@@ -1255,9 +1256,9 @@ class ProductsController extends CoreController
             }
         }
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('da_DK');
+        // Switch to the correct warehouse location.
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName('pdldbdk1');
         }
 
         return $this->render('AdminBundle:Products:stock.html.twig', [
@@ -1284,16 +1285,17 @@ class ProductsController extends CoreController
 
         $stock = $this->container->get('stock');
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('nb_NO');
+        // Switch to the correct warehouse location.
+        $databaseConnectionName = $request->getSession()->get('database', 'pdldbdk1');
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName($databaseConnectionName);
         }
 
         $stock->flushStyle($product);
 
-        // FIXME: now!!!! this is a major hack, and we need to figure out how to change this !
-        if ('pdldbno1' === $request->getSession()->get('database')) {
-            $stock->changeLocation('da_DK');
+        // Switch to the correct warehouse location.
+        if ('pdldbdk1' !== $databaseConnectionName) {
+            $stock->changeLocationByConnectionName('pdldbdk1');
         }
 
         $this->container->get('session')->getFlashBag()->add('notice', 'Lageret for "'.$product->getSku().'" er nu nulstillet.');
