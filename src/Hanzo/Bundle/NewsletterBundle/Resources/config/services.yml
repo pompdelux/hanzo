@@ -1,6 +1,7 @@
 parameters:
     newsletterapi.class: Hanzo\Bundle\NewsletterBundle\NewsletterApi
-    newsletterprovider.class: Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformProvider
+#    newsletterprovider.class: Hanzo\Bundle\NewsletterBundle\Providers\MailPlatformProvider
+    newsletterprovider.class: Hanzo\Bundle\NewsletterBundle\Providers\MailChimpProvider
 
 services:
     newsletterapi:
@@ -8,3 +9,4 @@ services:
         arguments: [@mail_manager, @newsletterprovider, @pdl.phpredis.main]
     newsletterprovider:
         class: %newsletterprovider.class%
+        arguments: [%core.domain_key%]
