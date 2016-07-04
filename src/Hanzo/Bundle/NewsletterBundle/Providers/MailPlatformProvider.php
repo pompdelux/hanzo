@@ -8,6 +8,23 @@ class MailPlatformProvider extends BaseProvider
 {
     public $domainKey;
 
+    /**
+     * Contains a hardcode list of domainkey -> listid relations
+     *
+     * @var array
+     */
+    protected $domainToListMap = [
+        'dk'  => 2002,
+        'com' => 2056,
+        'se'  => 2054,
+        'no'  => 2053,
+        'nl'  => 2048,
+        'fi'  => 2047,
+        'de'  => 2045,
+        'at'  => 2042,
+        'ch'  => 2044,
+    ];
+
     public function __construct()
     {
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
@@ -22,6 +39,12 @@ class MailPlatformProvider extends BaseProvider
      */
     public function subscriberCreate($subscriber_id, $list_id, Array $params = [])
     {
+        // Map external data to something the provider understands
+        $params = $this->mapExtraDataToProvider($params);
+
+        $language = $this->getLanguageForMails();
+        $params['confirm_language'] = $language;
+
         // If subscriber is unsubscribed (not deleted) we have to activate the subscriber first - else just create
         $response = $this->subscriberActivate($subscriber_id, $list_id);
         if ($response->getStatus() === BaseResponse::REQUEST_SUCCESS) {
@@ -82,6 +105,10 @@ class MailPlatformProvider extends BaseProvider
      */
     public function subscriberDelete($subscriber_id, $list_id = false, Array $params = [])
     {
+        $language = $this->getLanguageForMails();
+        $params = [];
+        $params['language'] = $language;
+
         $request         = $this->getRequest();
         $request->type   = 'subscribers';
         $request->method = 'UnsubscribeSubscriber';
@@ -455,5 +482,127 @@ class MailPlatformProvider extends BaseProvider
         }
 
         return $formId;
+    }
+
+
+    /**
+     * mapExtraDataToProvider
+     *
+     * @param array $data
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function mapExtraDataToProvider($data)
+    {
+        $params = [];
+
+        // TODO: Dropdown/date is not supported as it requires a sub key element
+        // see http://mailmailmail.net/xmlguide/index.php?rt=Subscribers&rm=Update
+
+        // Comment is: fieldtype, fieldname, description of content
+        $knownFields = [
+            'title'           => 1,   // dropdown, Title,
+            'first_name'      => 2,   // text, First Name
+            'last_name'       => 3,   // text, Last Name
+            'phone'           => 4,   // text, Phone
+            'mobile'          => 5,   // text, Mobile
+            'fax'             => 6,   // text, Fax
+            'birthdate'       => 7,   // date, Birth Date
+            'city'            => 8,   // text, City
+            'state'           => 9,   // text, State
+            'zip_code'        => 10,  // text, Postal/Zip Code
+            'country'         => 11,  // dropdown, Country
+            'name'            => 944, // txt, Navn
+            'barn_1'          => 939, // radiobutton, Barn 1, pige/dreng
+            'barn_1_bday'     => 933, // date, Barn 1 fødselsdag
+            'barn_2'          => 940, // radiobutton, Barn 1, pige/dreng
+            'barn_2_bday'     => 937, // date, Barn 1 fødselsdag
+            'barn_3'          => 938, // radiobutton, Barn 3, pige/dreng
+            'barn_3_bday'     => 941, // date, Barn 3 fødselsdag
+            'barn_4'          => 942, // radiobutton, Barn 3, pige/dreng
+            'barn_4_bday'     => 943, // date, Barn 3 fødselsdag
+            'email_frequency' => 921, // radiobutton, Email frequency
+        ];
+
+        /**
+         * Creates an array that looks like this:
+         *
+         * $params = [
+         *     'customfields' => [
+         *         'item' => [
+         *             ['2', 'tester'],
+         *             ['3', 'tester'],
+         *         ]
+         *         ],
+         *     ];
+         *
+         *  The first element in item is the field id in MailPlatform, the other is the value
+         *
+         */
+        foreach ($knownFields as $fieldName => $fieldId)
+        {
+            if (isset($data[$fieldName]))
+            {
+                $params['customfields']['item'][] = [$fieldId, $data[$fieldName]];
+            }
+        }
+
+        return $params;
+    }
+
+    /**
+     * getLanguageForMails
+     *
+     *
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
+    protected function getLanguageForMails()
+    {
+        // Set language for confirmation mail
+        $language = 'EN';
+        // EN, DK, DE, NO, SE
+
+        switch ($this->domainKey)
+        {
+            case 'SalesDK':
+            case 'DK':
+                $language = 'DK';
+                break;
+            case 'COM':
+                $language = 'EN';
+                break;
+            case 'SalesSE':
+            case 'SE':
+                $language = 'SE';
+                break;
+            case 'SalesNO':
+            case 'NO':
+                $language = 'NO';
+                break;
+            case 'SalesNL':
+            case 'NL':
+                $language = 'EN';
+                break;
+            case 'SalesFI':
+            case 'FI':
+                $language = 'EN';
+                break;
+            case 'SalesDE':
+            case 'DE':
+                $language = 'DE';
+                break;
+            case 'SalesAT':
+            case 'AT':
+                $language = 'DE';
+                break;
+            case 'SalesCH':
+            case 'CH':
+                $language = 'EN';
+                break;
+        }
+
+        return $language;
     }
 }
