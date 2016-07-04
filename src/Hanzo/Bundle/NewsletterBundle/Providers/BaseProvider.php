@@ -2,6 +2,12 @@
 
 namespace Hanzo\Bundle\NewsletterBundle\Providers;
 
+/**
+ * Class BaseProvider
+ *
+ * @author Henrik Farre <hf@bellcom.dk>
+ * @package Hanzo\Bundle\NewsletterBundle\Providers
+ */
 abstract class BaseProvider
 {
     /**
@@ -10,8 +16,7 @@ abstract class BaseProvider
      * @param string $subscriber_id
      * @param array $params
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberCreate($subscriber_id, $list_id, Array $params = []);
 
@@ -21,8 +26,7 @@ abstract class BaseProvider
      * @param string $subscriber_id
      * @param array $params
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberUpdate($subscriber_id, $list_id, Array $params = []);
 
@@ -33,8 +37,7 @@ abstract class BaseProvider
      * @param int $list_id
      * @param array $params
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberDelete($subscriber_id, $list_id, Array $params = []);
 
@@ -43,8 +46,7 @@ abstract class BaseProvider
      *
      * @param string $subscriber_id
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberGet($subscriber_id);
 
@@ -54,12 +56,9 @@ abstract class BaseProvider
      * @param string $subscriber_id
      * @param int $list_id
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberActivate($subscriber_id, $list_id);
-
-
 
     /**
      * subscriberIsSubscribed
@@ -67,8 +66,7 @@ abstract class BaseProvider
      * @param string $subscriber_id
      * @param array $list_ids
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberIsSubscribed($subscriber_id, Array $list_ids);
 
@@ -79,8 +77,7 @@ abstract class BaseProvider
      * @param int $list_id
      * @param array $params
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberAddToList($subscriber_id, $list_id, Array $params = []);
 
@@ -89,20 +86,33 @@ abstract class BaseProvider
      *
      * @param string $subscriber_id
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function subscriberGetSubscribedLists($subscriber_id);
-
-
 
     /**
      * listsGet
      *
      * @param array $params
      *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
+     * @return BaseResponse
      */
     abstract public function listsGet(Array $params = []);
+
+    /**
+     * Get list id for the current domain, if any.
+     * 
+     * @return mixed
+     */
+    public function getDomainListId()
+    {
+        if (!empty($this->domainToListMap) && !empty($this->domanKey)) {
+            $key = str_replace('sales', '', strtolower($this->domanKey));
+            if (isset($this->domainToListMap[$key])) {
+                return $this->domainToListMap[$key];
+            }
+        }
+
+        return 0;
+    }
 }
