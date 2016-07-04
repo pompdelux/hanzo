@@ -154,20 +154,25 @@
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
-                <target><![CDATA[<ul>
+                <target><![CDATA[
+                    <ul>
                         <li>POMPdeLUX FI OY c/o POMPdeLUX ApS</li>
                         <li>Omega 3, Søften</li>
                         <li>DK-8382 Hinnerup</li>
                         <li>CRN 2482288-5</li>
                         <li><a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a></li>
-                        <li>09 34870870</li><br>
-						<li>Tuotteiden palauttaminen: POMPdeLUX Aps</li>
+                        <li>09 34870870</li>
+                    </ul>
+                    <ul>
+						            <li>Tuotteiden palauttaminen: POMPdeLUX Aps</li>
                         <li>Grydhøjparken 10</li>
                         <li>DK-8381 Tilst</li>
+                    </ul>
+                    <ul>
                         <li><img src="%cdn%fx/images/creditcards_fi.png?%build%" alt="credit cards" title="credit cards"></li>
                         <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
-                    </ul>]]>
-                </target>
+                    </ul>
+                ]]></target>
             </trans-unit>
             <trans-unit id="footer.text">
                 <source>footer.text</source>
