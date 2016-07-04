@@ -451,8 +451,13 @@ class DefaultController extends CoreController
 
                 $image = $reference->getProducts()
                     ->getProductsImagess($criteria)
-                    ->getFirst()
-                    ->getImage();
+                    ->getFirst();
+
+                if (!$image) {
+                    continue;
+                }
+
+                $image = $image->getImage();
 
                 $references[] = [
                     'src'        => Tools::productImageUrl($image, '234x410'),
