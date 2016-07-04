@@ -53,6 +53,16 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $api = $this->getContainer()->get('newsletterapi');
+
+        // ccf5b8a169 = DK
+        //$response = $api->subscribe('jan@hansen.dk', 'ccf5b8a169', ['name' => 'test']);
+        $response = $api->unsubscribe('jan@hansen.dk', 'ccf5b8a169');
+
+        print_r($response);
+
+        return;
+
+        $api = $this->getContainer()->get('newsletterapi');
         $email = 'hf+mailplatform131@bellcom.dk';
         $list_id = 2002;
 
