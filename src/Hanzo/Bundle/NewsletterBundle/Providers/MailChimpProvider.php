@@ -51,11 +51,6 @@ class MailChimpProvider extends BaseProvider
     ];
 
     /**
-     * @var string
-     */
-    private $domainKey;
-    
-    /**
      * MailChimpProvider constructor.
      *
      * @param string $domainKey
