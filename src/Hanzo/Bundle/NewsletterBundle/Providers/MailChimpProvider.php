@@ -1,6 +1,7 @@
 <?php
 
 namespace Hanzo\Bundle\NewsletterBundle\Providers;
+use DrewM\MailChimp\MailChimp;
 
 /**
  * Class MailChimpProvider
@@ -151,9 +152,27 @@ class MailChimpProvider extends BaseProvider
         return $client->post("lists/{$list_id}/members", $data);
     }
 
+    /**
+     * @param array $params
+     *
+     * @return MailChimpResponse
+     */
     public function listsGet(array $params = [])
     {
-        // TODO: Implement listsGet() method.
+        $lists = [];
+        foreach ($this->domainToListMap as $country => $id) {
+            $lists[] = [
+                'listid'     => $id,
+                'name'       => $country,
+                'createdate' => '1466853412',
+                'ownerid'    => '',
+            ];
+        }
+
+        $response = new MailChimpResponse(new MailChimp($this->apiKey));
+        $response->setData(['list_info' => $lists]);
+
+        return $response;
     }
 
     // Not used any more.
