@@ -152,11 +152,9 @@ class NewsletterApi
     {
         // is_subscribed is not set, so $email is ignored
         $cache_id = $this->cache->generateKey([__METHOD__]);
-
         $cacheResult = $this->cache->get($cache_id);
 
-        if (is_object($cacheResult))
-        {
+        if (is_object($cacheResult)) {
             return $cacheResult;
         }
 
@@ -170,8 +168,7 @@ class NewsletterApi
         $combatibleResponse->content->msg   = $response->isError() ? $response->getErrorMessage() : 'ok';
         $combatibleResponse->content->lists = [];
 
-        foreach ($data['list_info'] as $list)
-        {
+        foreach ($data['list_info'] as $list) {
             $mapped                  = [];
             $mapped['id']            = $list['listid'];
             $mapped['name']          = $list['name'];
