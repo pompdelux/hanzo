@@ -468,6 +468,7 @@ class DefaultController extends CoreController
 
             if (count($references)) {
                 $data[$i]['references'] = $references;
+                $data[$i]['references_id'] = $image->getId();
             }
 
             $i++;
