@@ -449,18 +449,18 @@ class DefaultController extends CoreController
                 $criteria->add(ProductsImagesPeer::IMAGE, '%_overview_01%', Criteria::LIKE);
                 $criteria->setLimit(1);
 
-                $image = $reference->getProducts()
+                $img = $reference->getProducts()
                     ->getProductsImagess($criteria)
                     ->getFirst();
 
-                if (!$image) {
+                if (!$img) {
                     continue;
                 }
 
-                $image = $image->getImage();
+                $img = $img->getImage();
 
                 $references[] = [
-                    'src'        => Tools::productImageUrl($image, '234x410'),
+                    'src'        => Tools::productImageUrl($img, '234x410'),
                     'color'      => $reference->getColor(),
                     'product_id' => $reference->getProductsId(),
                 ];
