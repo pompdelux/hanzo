@@ -11,6 +11,17 @@ namespace Hanzo\Bundle\NewsletterBundle\Providers;
 abstract class BaseProvider
 {
     /**
+     * @var string
+     */
+    public $domainKey;
+
+    /**
+     * @var array
+     */
+    protected $domainToListMap = [];
+    protected $domainToLanguageMap = [];
+
+    /**
      * subscriberCreate
      *
      * @param string $subscriber_id
@@ -106,8 +117,8 @@ abstract class BaseProvider
      */
     public function getDomainListId()
     {
-        if (!empty($this->domainToListMap) && !empty($this->domanKey)) {
-            $key = str_replace('sales', '', strtolower($this->domanKey));
+        if (!empty($this->domainToListMap) && !empty($this->domainKey)) {
+            $key = str_replace('sales', '', strtolower($this->domainKey));
             if (isset($this->domainToListMap[$key])) {
                 return $this->domainToListMap[$key];
             }

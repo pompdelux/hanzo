@@ -6,8 +6,6 @@ use Hanzo\Core\Hanzo;
 
 class MailPlatformProvider extends BaseProvider
 {
-    public $domainKey;
-
     /**
      * Contains a hardcode list of domainkey -> listid relations
      *
