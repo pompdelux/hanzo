@@ -7,6 +7,7 @@ services:
     - redis-server
 
 before_install:
+    - pecl install redis
     - sudo locale-gen en_GB.utf8 da_DK.utf8 de_AT.utf8 de_CH.utf8 de_DE.utf8 en_DK.utf8 fi_FI.utf8 nb_NO.utf8 nl_NL.utf8
     - echo 'date.timezone = "Europe/Copenhagen"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
