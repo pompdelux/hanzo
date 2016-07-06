@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="newsletter_2">
         <source>block.subscribe.name_label</source>
-        <target>Name</target>
+        <target>First name</target>
       </trans-unit>
       <trans-unit id="newsletter_3">
         <source>block.subscribe.email_label</source>
