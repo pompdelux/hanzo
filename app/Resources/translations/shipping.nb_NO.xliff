@@ -59,7 +59,7 @@
         <target>Valinnainen toimitus – Lähetys noutopisteeseen</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
-        <source>shipping_method.name.12</source>
+        <source>shipping_method.desc.12</source>
         <target>Voit valita vapaasti, mistä Suomessa haluat noutaa pakettisi. Valitsetko Postin tai noutopisteen, joka on lähinnä kotiasi, työpaikkaasi, mökkiäsi tai...? Voit itse päättää, eikä sinun tarvitse käyttää samaa toimitusosoitetta joka kerta.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
