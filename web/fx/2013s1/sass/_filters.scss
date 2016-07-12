@@ -81,7 +81,7 @@ ul.filter-dropdown {
       margin-right: 5px;
       padding: 10px 10px 10px 5px;
       font-size: 13px;
-      color: #fff;
+      color: #262626;
       text-transform: uppercase;
       text-align: center;
       background-color: $filter-dropdown-hover-bg-color;
@@ -93,7 +93,7 @@ ul.filter-dropdown {
       > .icon {
         position: absolute;
         right: 8px;
-        color: #000;
+        color: #262626;
         text-align: center;
       }
     }
@@ -195,7 +195,7 @@ ul.filter-dropdown {
             display: block;
             font-size: 12px;
             line-height: 16px;
-            color: #fff;
+            color: #262626;
             margin: 0;
             padding: 3px 0;
             @include clearfix;
