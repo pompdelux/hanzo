@@ -266,11 +266,14 @@ div header.row {
     position: absolute;
     top: -6px; // top menu bottom margin.
     right: 0px;
-    background: #a2a2a2;
+    background: #cdcdcd;
     padding: 5px 10px 0;
     -webkit-border-radius: 0px 0px 20px 20px;
     -moz-border-radius: 0px 0px 20px 20px;
     border-radius: 0px 0px 20px 20px;
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.25);
     li{
         padding: 8px;
         vertical-align: middle;

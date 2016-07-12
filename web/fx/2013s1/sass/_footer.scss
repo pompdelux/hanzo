@@ -29,7 +29,7 @@ footer{
 			}
 		}
 		.newsletter{
-			background-color: #B5AB8C;
+			background-color: #c2b9a8;
 			position: relative;
 
 			h2 {
@@ -107,7 +107,8 @@ footer{
 		font-family:$font-sans;
 		font-weight:$font-weight-thin;
 		ul{
-			display: inline-block;
+			margin-top: 10px;
+
 			li{
 				display: inline-block;
 				padding: 0 5px;
