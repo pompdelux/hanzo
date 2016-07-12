@@ -451,6 +451,10 @@
               <a href="/nb_NO/forside/kundeservice/vilkar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
         </trans-unit>
+      <trans-unit id="overnightbox.address">
+        <source>overnightbox.address</source>
+        <target>Vaihtoehtoinen toimitusosoite</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
