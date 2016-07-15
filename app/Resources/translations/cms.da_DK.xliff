@@ -128,7 +128,8 @@
                         },
                         "tokens": {
                             "Økologi (GOTS)": ["154"],
-                            "Oekotex": ["153"]
+                            "Oekotex": ["153"],
+							"Uld": ["210"]
                         },
                         "discount": {"50%": ["50"]
 						
@@ -255,7 +256,8 @@
                         },
                         "tokens": {
                           "Økologi (GOTS)": ["156"],
-                          "Oekotex": ["155"]
+                          "Oekotex": ["155"],
+						  "Uld": ["211"]
                         },
                         "discount": {"50%": ["50"]
                         }
