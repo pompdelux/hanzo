@@ -110,7 +110,7 @@ class WishlistController extends CoreController
 
             if (!is_object($product)) {
               return $this->json_response([
-                'message'     => 'The product is not on stock.',
+                'message'     => 'product.no.stock',
                 'status'      => false,
               ], 409);
             }
