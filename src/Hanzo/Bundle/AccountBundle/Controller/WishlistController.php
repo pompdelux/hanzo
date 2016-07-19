@@ -107,6 +107,13 @@ class WishlistController extends CoreController
         $productId = $request->request->get('product_id');
         if (empty($productId)) {
             $product = ProductsPeer::findFromRequest($request);
+
+            if (!is_object($product)) {
+              return $this->json_response([
+                'message'     => 'product.no.stock',
+                'status'      => false,
+              ], 409);
+            }
             $productId = $product->getId();
         }
 
