@@ -4,7 +4,6 @@
 
 // Main navigation
 nav.navigation-main {
-  background-color: $category-menu-bg-color;
   padding: 0;
 
   // Outer
@@ -20,7 +19,7 @@ nav.navigation-main {
       // Link (all)
       a {
         display: block;
-        color: #fff;
+        color: #262626;
         letter-spacing: 1px;
       }
 
@@ -66,7 +65,8 @@ nav.navigation-main {
 
           // Link
           > a {
-            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: underline;
           }
 
           // Link (all)

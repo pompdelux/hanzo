@@ -16,6 +16,12 @@ footer{
 		letter-spacing: 0;
 		font-weight: bold;
 	}
+	> .grid_8 {
+
+		.hr {
+			margin-bottom: 10px;
+		}
+	}
 	.footer-menu{
 		li{
 			padding: 0 0 7px;
@@ -29,7 +35,7 @@ footer{
 			}
 		}
 		.newsletter{
-			background-color: #B5AB8C;
+			background-color: #c2b9a8;
 			position: relative;
 
 			h2 {
@@ -107,7 +113,8 @@ footer{
 		font-family:$font-sans;
 		font-weight:$font-weight-thin;
 		ul{
-			display: inline-block;
+			margin-top: 10px;
+
 			li{
 				display: inline-block;
 				padding: 0 5px;
