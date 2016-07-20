@@ -1,89 +1,108 @@
 body {
-  background: #fff url(/fx/images/POMPdeLUX_logo_SS12.png) no-repeat 25px 24px;
+    font-family: 'Muli', Tahoma, serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Merriweather', Tahoma;
-  margin-top: 0;
-  padding-top: 0;
-  color: #231f20;
+    font-family: 'Muli', Tahoma, serif;
+    margin-top: 0;
+    padding-top: 0;
+    color: #231f20;
 }
+
 h1 {
-  font-size: 13px;
-  padding-bottom: 7px;
-  padding-left: 20px;
-  position: absolute;
-  left: 492px;
-  top: 230px;
+    font-size: 13px;
+    padding-bottom: 7px;
+    padding-left: 20px;
+    position: absolute;
+    left: 492px;
+    top: 230px;
+}
+
+.logo-wrapper {
+    padding-top: 65px;
+    padding-bottom: 40px;
+    text-align: center;
 }
 
 #selector {
-  position: absolute;
-  top: 127px;
-  left: 180px;
-  background: #fff url(/fx/images/splash_bg.jpg) no-repeat center center;
-  width: 700px;
-  height: 605px;
+    position: relative;
+    margin: auto;
+    background: url(/fx/images/splash_bg.jpg) no-repeat top center;
+    width: 700px;
+    height: 605px;
 }
 
 #selector ul {
-  position: absolute;
-  left: 504px;
-  top: 251px;
-  list-style: none;
-  height: 100px;
-  margin: 0;
-  padding: 0;
+    position: absolute;
+    top: 251px;
+    right: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    width: 200px;
 }
+
 #selector ul li {
-  line-height: 2em;
-  float: left;
-  width: 50%;
-  text-align: center;
+    line-height: 2em;
+    float: left;
+    width: 50%;
+    text-align: center;
 }
 
 li a {
-  color: #231f20;
-  text-decoration: none;
+    color: #231f20;
+    text-decoration: none;
 }
+
 li a:hover {
-  font-weight: bold;
+    text-decoration: underline;
 }
 
 @media all and (max-width: 780px) {
-  body {
-    background: #fff url(/fx/images/POMPdeLUX_logo_SS12.png) no-repeat center 24px;
-  }
-  h1 {
-    font-size: 18px;
-    text-transform: uppercase;
-    padding: 0;
-    border-bottom: 2px solid #7b7577;
-    position: inherit;
-    left: 0;
-    top: 0;
-  }
-  #selector {
-    background: none;
-    position: relative;
-    width: 100%;
-    left: 0px;
-    top: 200px;
-    height: auto;
-    text-align: center;
-  }
-  #selector ul {
-    position: inherit;
-    left: 0;
-    padding: 0;
-    top: 0;
-  }
-  #selector ul li {
-    float: none;
-    width: 100%;
-  }
-  #selector ul li a {
-    padding: 5px;
-    display: inline-block;
-  }
+    body {
+        background: #fff url(/fx/images/220x49,POMPdeLUX_logo_SS16.png) no-repeat center 30px;
+    }
+
+    .logo-wrapper {
+        display: none;
+    }
+
+    h1 {
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 0;
+        border-bottom: 2px solid #7b7577;
+        position: inherit;
+        left: 0;
+        top: 0;
+    }
+
+    #selector {
+        background: none;
+        position: relative;
+        width: 100%;
+        left: 0px;
+        top: 110px;
+        height: auto;
+        text-align: center;
+    }
+
+    #selector ul {
+        position: inherit;
+        left: 0;
+        padding: 0;
+        top: 0;
+        width: auto;
+    }
+
+    #selector ul li {
+        float: none;
+        width: 100%;
+    }
+
+    #selector ul li a {
+        padding: 5px;
+        display: inline-block;
+    }
 }

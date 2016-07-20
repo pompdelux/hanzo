@@ -27,8 +27,7 @@
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//netdna.bootstrapcdn.com">
-
-<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 <link rel="stylesheet" href="{{ asset_url('fx/build/desktop.min.css') }}">
@@ -81,9 +80,11 @@
         </ul>
     </nav>
     <header class="grid_8 row">
-        <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
-            {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
-        </a>
+        <div class="logo-wrapper">
+            <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}" class="logo-link">
+                {{ fx_image_tag('images/POMPdeLUX_logo_SS16.png', '220x49', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+            </a>
+        </div>
 
     {% if simple_layout is not defined %}
         <nav id="secondary-links">
