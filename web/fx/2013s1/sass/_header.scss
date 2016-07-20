@@ -2,10 +2,24 @@
 | _header
  */
 
+// Import mixins
+@import "mixins";
+
 $topbar-color: #dcd8d2;
 
+.logo-wrapper {
+    display: block;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.logo-link {
+    display: inline-block;
+}
+
 #logo {
-    margin-top: 6px;
+    display: block;
 }
 
 .top-bar {
@@ -261,7 +275,9 @@ ul.horizontal,
 
 div header.row {
     position:relative;
+    @include clearfix;
 }
+
 #secondary-links {
     position: absolute;
     top: -6px; // top menu bottom margin.
