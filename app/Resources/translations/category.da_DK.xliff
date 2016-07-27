@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="headers.category-12">
         <source>headers.category-12</source>
-        <target><![CDATA[<h1>Fleece</h1>]]></target>
+        <target><![CDATA[<h1>Fleece til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-12">
         <source>description.category-12</source>
@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="headers.category-13">
         <source>headers.category-13</source>
-        <target><![CDATA[<h1>Jakker</h1>]]></target>
+        <target><![CDATA[<h1>Jakker til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-13">
         <source>description.category-13</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="headers.category-14">
         <source>headers.category-14</source>
-        <target><![CDATA[<h1>Skaljakker og skalbukser</h1>]]></target>
+        <target><![CDATA[<h1>Skaljakker og skalbukser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-14">
         <source>description.category-14</source>
@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="headers.category-15">
         <source>headers.category-15</source>
-        <target><![CDATA[<h1>Softshell</h1>]]></target>
+        <target><![CDATA[<h1>Softshell til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-15">
         <source>description.category-15</source>
@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="headers.category-16">
         <source>headers.category-16</source>
-        <target><![CDATA[<h1>Bluser</h1>]]></target>
+        <target><![CDATA[<h1>Bluser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-16">
         <source>description.category-16</source>
@@ -46,7 +46,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-17">
         <source>headers.category-17</source>
-        <target><![CDATA[<h1>Cardigans</h1>]]></target>
+        <target><![CDATA[<h1>Cardigans til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-17">
         <source>description.category-17</source>
@@ -55,7 +55,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-18">
         <source>headers.category-18</source>
-        <target><![CDATA[<h1>Kjoler</h1>]]></target>
+        <target><![CDATA[<h1>Kjoler til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-18">
         <source>description.category-18</source>
@@ -63,7 +63,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-19">
         <source>headers.category-19</source>
-        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+        <target><![CDATA[<h1>Sweatshirts til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-19">
         <source>description.category-19</source>
@@ -71,7 +71,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-21">
         <source>headers.category-21</source>
-        <target><![CDATA[<h1>Toppe</h1>]]></target>
+        <target><![CDATA[<h1>Toppe til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-21">
         <source>description.category-21</source>
@@ -79,7 +79,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-45">
         <source>headers.category-45</source>
-        <target><![CDATA[<h1>T-Shirts</h1>]]></target>
+        <target><![CDATA[<h1>T-Shirts til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-45">
         <source>description.category-45</source>
@@ -87,7 +87,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-46">
         <source>headers.category-46</source>
-        <target><![CDATA[<h1>Bukser</h1>]]></target>
+        <target><![CDATA[<h1>Bukser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-46">
         <source>description.category-46</source>
@@ -95,7 +95,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-79">
         <source>headers.category-79</source>
-        <target><![CDATA[<h1>Jeans</h1>]]></target>
+        <target><![CDATA[<h1>Jeans til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-79">
         <source>description.category-79</source>
@@ -103,7 +103,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-81">
         <source>headers.category-81</source>
-        <target><![CDATA[<h1>Jumpsuits</h1>]]></target>
+        <target><![CDATA[<h1>Jumpsuits til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-81">
         <source>description.category-81</source>
@@ -111,7 +111,7 @@ Alle POMPdeLUX bluser til piger er i den sublime stil og kvalitet kombineret med
       </trans-unit>
       <trans-unit id="headers.category-112">
         <source>headers.category-112</source>
-        <target><![CDATA[<h1>Leggings</h1>]]></target>
+        <target><![CDATA[<h1>Leggings til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-112">
         <source>description.category-112</source>
@@ -121,7 +121,7 @@ Farverne er hentet direkte fra vores POMPdeLUX palet, så der kan kombineres med
       </trans-unit>
       <trans-unit id="headers.category-113">
         <source>headers.category-113</source>
-        <target><![CDATA[<h1>Nederdele</h1>]]></target>
+        <target><![CDATA[<h1>Nederdele til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-113">
         <source>description.category-113</source>
@@ -130,7 +130,7 @@ POMPdeLUX sætter, med stor fornøjelse sus i små skørter fra størrelse 80 cm
       </trans-unit>
       <trans-unit id="headers.category-114">
         <source>headers.category-114</source>
-        <target><![CDATA[<h1>Shorts</h1>]]></target>
+        <target><![CDATA[<h1>Shorts til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-114">
         <source>description.category-114</source>
@@ -138,7 +138,7 @@ POMPdeLUX sætter, med stor fornøjelse sus i små skørter fra størrelse 80 cm
       </trans-unit>
       <trans-unit id="headers.category-115">
         <source>headers.category-115</source>
-        <target><![CDATA[<h1>Strømpebukser</h1>]]></target>
+        <target><![CDATA[<h1>Strømpebukser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-115">
         <source>description.category-115</source>
@@ -146,7 +146,7 @@ POMPdeLUX sætter, med stor fornøjelse sus i små skørter fra størrelse 80 cm
       </trans-unit>
       <trans-unit id="headers.category-127">
         <source>headers.category-127</source>
-        <target><![CDATA[<h1>Bodystockings</h1>]]></target>
+        <target><![CDATA[<h1>Bodystockings til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-127">
         <source>description.category-127</source>
@@ -155,7 +155,7 @@ laver bodystockings til piger fra størrelse 80 cm til størrelse 98 cm som båd
       </trans-unit>
       <trans-unit id="headers.category-131">
         <source>headers.category-131</source>
-        <target><![CDATA[<h1>Nattøj</h1>]]></target>
+        <target><![CDATA[<h1>Nattøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-131">
         <source>description.category-131</source>
@@ -163,7 +163,7 @@ laver bodystockings til piger fra størrelse 80 cm til størrelse 98 cm som båd
       </trans-unit>
       <trans-unit id="headers.category-136">
         <source>headers.category-136</source>
-        <target><![CDATA[<h1>Undertøj</h1>]]></target>
+        <target><![CDATA[<h1>Undertøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-136">
         <source>description.category-136</source>
@@ -171,7 +171,7 @@ laver bodystockings til piger fra størrelse 80 cm til størrelse 98 cm som båd
       </trans-unit>
       <trans-unit id="headers.category-137">
         <source>headers.category-137</source>
-        <target><![CDATA[<h1>Badetøj</h1>]]></target>
+        <target><![CDATA[<h1>Badetøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-137">
         <source>description.category-137</source>
@@ -179,7 +179,7 @@ laver bodystockings til piger fra størrelse 80 cm til størrelse 98 cm som båd
       </trans-unit>
       <trans-unit id="headers.category-142">
         <source>headers.category-142</source>
-        <target><![CDATA[<h1>Bælter</h1>]]></target>
+        <target><![CDATA[<h1>Bælter til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-142">
         <source>description.category-142</source>
@@ -188,7 +188,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-143">
         <source>headers.category-143</source>
-        <target><![CDATA[<h1>Hatte</h1>]]></target>
+        <target><![CDATA[<h1>Hatte til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-143">
         <source>description.category-143</source>
@@ -196,7 +196,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-144">
         <source>headers.category-144</source>
-        <target><![CDATA[<h1>Hårpynt</h1>]]></target>
+        <target><![CDATA[<h1>Hårpynt til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-144">
         <source>description.category-144</source>
@@ -204,7 +204,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-145">
         <source>headers.category-145</source>
-        <target><![CDATA[<h1>Strømper</h1>]]></target>
+        <target><![CDATA[<h1>Strømper til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-145">
         <source>description.category-145</source>
@@ -212,7 +212,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-146">
         <source>headers.category-146</source>
-        <target><![CDATA[<h1>Tørklæder</h1>]]></target>
+        <target><![CDATA[<h1>Tørklæder til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-146">
         <source>description.category-146</source>
@@ -220,7 +220,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-147">
         <source>headers.category-147</source>
-        <target><![CDATA[<h1>Tilbehør</h1>]]></target>
+        <target><![CDATA[<h1>Tilbehør til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-147">
         <source>description.category-147</source>
@@ -228,7 +228,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-5">
         <source>headers.category-5</source>
-        <target><![CDATA[<h1>Fleece</h1>]]></target>
+        <target><![CDATA[<h1>Fleece til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-5">
         <source>description.category-5</source>
@@ -236,7 +236,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-6">
         <source>headers.category-6</source>
-        <target><![CDATA[<h1>Jakker</h1>]]></target>
+        <target><![CDATA[<h1>Jakker til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-6">
         <source>description.category-6</source>
@@ -244,7 +244,7 @@ POMPdeLUX bælter til piger, er smarte og funktionelle. De kan bruges ikke bare 
       </trans-unit>
       <trans-unit id="headers.category-7">
         <source>headers.category-7</source>
-        <target><![CDATA[<h1>Skaljakker og skalbukser</h1>]]></target>
+        <target><![CDATA[<h1>Skaljakker og skalbukser til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-7">
         <source>description.category-7</source>
@@ -253,7 +253,7 @@ Skaljakker og skalbukser til drenge, er nemt at trække i, har de bedste pasform
       </trans-unit>
       <trans-unit id="headers.category-8">
         <source>headers.category-8</source>
-        <target><![CDATA[<h1>Softshell</h1>]]></target>
+        <target><![CDATA[<h1>Softshell til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-8">
         <source>description.category-8</source>
@@ -264,7 +264,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-9">
         <source>headers.category-9</source>
-        <target><![CDATA[<h1>Bluser</h1>]]></target>
+        <target><![CDATA[<h1>Bluser til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-9">
         <source>description.category-9</source>
@@ -272,7 +272,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-11">
         <source>headers.category-11</source>
-        <target><![CDATA[<h1>Cardigans</h1>]]></target>
+        <target><![CDATA[<h1>Cardigans til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-11">
         <source>description.category-11</source>
@@ -280,7 +280,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-43">
         <source>headers.category-43</source>
-        <target><![CDATA[<h1>Poloshirts</h1>]]></target>
+        <target><![CDATA[<h1>Poloshirts til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-43">
         <source>description.category-43</source>
@@ -288,7 +288,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-44">
         <source>headers.category-44</source>
-        <target><![CDATA[<h1>Skjorter</h1>]]></target>
+        <target><![CDATA[<h1>Skjorter til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-44">
         <source>description.category-44</source>
@@ -296,7 +296,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-83">
         <source>headers.category-83</source>
-        <target><![CDATA[<h1>Sportsjakker</h1>]]></target>
+        <target><![CDATA[<h1>Sportsjakker til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-83">
         <source>description.category-83</source>
@@ -304,7 +304,7 @@ Alle POMPdeLUX softshell produkter til drenge er selvfølgelig både vindtætte 
       </trans-unit>
       <trans-unit id="headers.category-84">
         <source>headers.category-84</source>
-        <target><![CDATA[<h1>Sweaters</h1>]]></target>
+        <target><![CDATA[<h1>Sweaters til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-84">
         <source>description.category-84</source>
@@ -313,7 +313,7 @@ Desværre, deler børn ikke altid vi voksnes begejstring over sweaters og strik 
       </trans-unit>
       <trans-unit id="headers.category-116">
         <source>headers.category-116</source>
-        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+        <target><![CDATA[<h1>Sweatshirts til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-116">
         <source>description.category-116</source>
@@ -321,7 +321,7 @@ Desværre, deler børn ikke altid vi voksnes begejstring over sweaters og strik 
       </trans-unit>
       <trans-unit id="headers.category-117">
         <source>headers.category-117</source>
-        <target><![CDATA[<h1>T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>T-shirts til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-117">
         <source>description.category-117</source>
@@ -329,7 +329,7 @@ Desværre, deler børn ikke altid vi voksnes begejstring over sweaters og strik 
       </trans-unit>
       <trans-unit id="headers.category-118">
         <source>headers.category-118</source>
-        <target><![CDATA[<h1>Veste</h1>]]></target>
+        <target><![CDATA[<h1>Veste til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-118">
         <source>description.category-118</source>
@@ -337,7 +337,7 @@ Desværre, deler børn ikke altid vi voksnes begejstring over sweaters og strik 
       </trans-unit>
       <trans-unit id="headers.category-119">
         <source>headers.category-119</source>
-        <target><![CDATA[<h1>Bukser</h1>]]></target>
+        <target><![CDATA[<h1>Bukser til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-119">
         <source>description.category-119</source>
@@ -346,7 +346,7 @@ POMPdeLUX designer drengebukser, - baggy, regular, slimfit, sweatpants, chinos o
       </trans-unit>
       <trans-unit id="headers.category-120">
         <source>headers.category-120</source>
-        <target><![CDATA[<h1>Jeans</h1>]]></target>
+        <target><![CDATA[<h1>Jeans til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-120">
         <source>description.category-120</source>
@@ -354,7 +354,7 @@ POMPdeLUX designer drengebukser, - baggy, regular, slimfit, sweatpants, chinos o
       </trans-unit>
       <trans-unit id="headers.category-128">
         <source>headers.category-128</source>
-        <target><![CDATA[<h1>Shorts</h1>]]></target>
+        <target><![CDATA[<h1>Shorts til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-128">
         <source>description.category-128</source>
@@ -363,7 +363,7 @@ Vi har alle variationer af skønne shorts til drenge, både lange og korte model
       </trans-unit>
       <trans-unit id="headers.category-132">
         <source>headers.category-132</source>
-        <target><![CDATA[<h1>Bodystockings</h1>]]></target>
+        <target><![CDATA[<h1>Bodystockings til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-132">
         <source>description.category-132</source>
@@ -372,7 +372,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-135">
         <source>headers.category-135</source>
-        <target><![CDATA[<h1>Nattøj</h1>]]></target>
+        <target><![CDATA[<h1>Nattøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-135">
         <source>description.category-135</source>
@@ -380,7 +380,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-148">
         <source>headers.category-148</source>
-        <target><![CDATA[<h1>Undertøj</h1>]]></target>
+        <target><![CDATA[<h1>Undertøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-148">
         <source>description.category-148</source>
@@ -388,7 +388,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-149">
         <source>headers.category-149</source>
-        <target><![CDATA[<h1>Badetøj</h1>]]></target>
+        <target><![CDATA[<h1>Badetøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-149">
         <source>description.category-149</source>
@@ -396,7 +396,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-150">
         <source>headers.category-150</source>
-        <target><![CDATA[<h1>Hatte</h1>]]></target>
+        <target><![CDATA[<h1>Hatte til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-150">
         <source>description.category-150</source>
@@ -404,7 +404,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-151">
         <source>headers.category-151</source>
-        <target><![CDATA[<h1>Strømper</h1>]]></target>
+        <target><![CDATA[<h1>Strømper til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-151">
         <source>description.category-151</source>
@@ -412,7 +412,7 @@ flotte og holdbare versioner. Se vores flotte udvalg, hvis du har brug for en ek
       </trans-unit>
       <trans-unit id="headers.category-152">
         <source>headers.category-152</source>
-        <target><![CDATA[<h1>Tilbehør</h1>]]></target>
+        <target><![CDATA[<h1>Tilbehør til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-152">
         <source>description.category-152</source>
@@ -450,7 +450,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-157">
         <source>headers.category-157</source>
-        <target><![CDATA[<h1>Overtøj</h1>]]></target>
+        <target><![CDATA[<h1>Overtøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-157">
         <source>description.category-157</source>
@@ -459,7 +459,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>  
       <trans-unit id="headers.category-158">
         <source>headers.category-158</source>
-        <target><![CDATA[<h1>Overdele</h1>]]></target>
+        <target><![CDATA[<h1>Overdele til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-158">
         <source>description.category-158</source>
@@ -467,7 +467,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-159">
         <source>headers.category-159</source>
-        <target><![CDATA[<h1>Underdele</h1>]]></target>
+        <target><![CDATA[<h1>Underdele til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-159">
         <source>description.category-159</source>
@@ -475,7 +475,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-160">
         <source>headers.category-160</source>
-        <target><![CDATA[<h1>Undertøj og nattøj</h1>]]></target>
+        <target><![CDATA[<h1>Undertøj og nattøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-160">
         <source>description.category-160</source>
@@ -483,7 +483,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-161">
         <source>headers.category-161</source>
-        <target><![CDATA[<h1>Tilbehør</h1>]]></target>
+        <target><![CDATA[<h1>Tilbehør til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-161">
         <source>description.category-161</source>
@@ -491,7 +491,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-162">
         <source>headers.category-162</source>
-        <target><![CDATA[<h1>Overtøj</h1>]]></target>
+        <target><![CDATA[<h1>Overtøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-162">
         <source>description.category-162</source>
@@ -500,7 +500,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-163">
         <source>headers.category-163</source>
-        <target><![CDATA[<h1>Overdele</h1>]]></target>
+        <target><![CDATA[<h1>Overdele til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-163">
         <source>description.category-163</source>
@@ -508,7 +508,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="headers.category-164">
         <source>headers.category-164</source>
-        <target><![CDATA[<h1>Underdele</h1>]]></target>
+        <target><![CDATA[<h1>Underdele til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-164">
         <source>description.category-164</source>
@@ -517,7 +517,7 @@ Vi har ikke bare fokus på stil, for, men i særdeleshed også pasformen – for
       </trans-unit>
       <trans-unit id="headers.category-165">
         <source>headers.category-165</source>
-        <target><![CDATA[<h1>Undertøj og nattøj</h1>]]></target>
+        <target><![CDATA[<h1>Undertøj og nattøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-165">
         <source>description.category-165</source>
@@ -525,7 +525,7 @@ Vi har ikke bare fokus på stil, for, men i særdeleshed også pasformen – for
       </trans-unit>
       <trans-unit id="headers.category-166">
         <source>headers.category-166</source>
-        <target><![CDATA[<h1>Tilbehør</h1>]]></target>
+        <target><![CDATA[<h1>Tilbehør til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-166">
         <source>description.category-166</source>
@@ -558,7 +558,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
 	  <trans-unit id="headers.category-170">
         <source>headers.category-170</source>
-        <target><![CDATA[<h1>Adventure - funktionelt overtøj</h1>]]></target>
+        <target><![CDATA[<h1>Adventure - funktionelt overtøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
@@ -566,7 +566,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
 	  <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
-        <target><![CDATA[<h1>Flyverdragter</h1>]]></target>
+        <target><![CDATA[<h1>Flyverdragter til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-172">
         <source>description.category-172</source>
@@ -574,7 +574,7 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
 	  <trans-unit id="headers.category-174">
         <source>headers.category-174</source>
-        <target><![CDATA[<h1>Skibukser</h1>]]></target>
+        <target><![CDATA[<h1>Skibukser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-174">
         <source>description.category-174</source>
@@ -585,7 +585,7 @@ Alle POMPdeLUX skibukser til piger har en pasform, der giver en god bevægelsesf
       </trans-unit>
 	   <trans-unit id="headers.category-176">
         <source>headers.category-176</source>
-        <target><![CDATA[<h1>Veste</h1>]]></target>
+        <target><![CDATA[<h1>Veste til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-176">
         <source>description.category-176</source>
@@ -595,7 +595,7 @@ Som alt andet POMPdeLUX tøj, er vores veste designet med livlige og naturlige b
       </trans-unit>
 	  <trans-unit id="headers.category-177">
         <source>headers.category-177</source>
-        <target><![CDATA[<h1>Basis</h1>]]></target>
+        <target><![CDATA[<h1>Basis til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-177">
         <source>description.category-177</source>
@@ -603,7 +603,7 @@ Som alt andet POMPdeLUX tøj, er vores veste designet med livlige og naturlige b
       </trans-unit>
 	  <trans-unit id="headers.category-181">
         <source>headers.category-181</source>
-        <target><![CDATA[<h1>Huer & vanter</h1>]]></target>
+        <target><![CDATA[<h1>Huer & vanter til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-181">
         <source>description.category-181</source>
@@ -613,7 +613,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	  <trans-unit id="headers.category-183">
         <source>headers.category-183</source>
-        <target><![CDATA[<h1>Sweaters</h1>]]></target>
+        <target><![CDATA[<h1>Sweaters til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-183">
         <source>description.category-183</source>
@@ -621,7 +621,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	    <trans-unit id="headers.category-184">
         <source>headers.category-184</source>
-        <target><![CDATA[<h1>Kjoler/Jumpsuits</h1>]]></target>
+        <target><![CDATA[<h1>Kjoler/Jumpsuits til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-184">
         <source>description.category-184</source>
@@ -629,7 +629,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	   <trans-unit id="headers.category-185">
         <source>headers.category-185</source>
-        <target><![CDATA[<h1>Strømpebukser</h1>]]></target>
+        <target><![CDATA[<h1>Strømpebukser til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-185">
         <source>description.category-185</source>
@@ -637,7 +637,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	  <trans-unit id="headers.category-186">
         <source>headers.category-186</source>
-        <target><![CDATA[<h1>Regntøj</h1>]]></target>
+        <target><![CDATA[<h1>Regntøj til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-186">
         <source>description.category-186</source>
@@ -645,7 +645,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	   <trans-unit id="headers.category-187">
         <source>headers.category-187</source>
-        <target><![CDATA[<h1>Basis</h1>]]></target>
+        <target><![CDATA[<h1>Basis til piger</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-187">
         <source>description.category-187</source>
@@ -653,7 +653,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	  <trans-unit id="headers.category-171">
         <source>headers.category-171</source>
-        <target><![CDATA[<h1>Adventure - funktionelt overtøj</h1>]]></target>
+        <target><![CDATA[<h1>Adventure - funktionelt overtøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-171">
         <source>description.category-171</source>
@@ -661,7 +661,7 @@ Der findes flere forskellige versioner af POMPdeLUX huer og vanter både til de 
       </trans-unit>
 	  <trans-unit id="headers.category-173">
         <source>headers.category-173</source>
-        <target><![CDATA[<h1>Flyverdragt</h1>]]></target>
+        <target><![CDATA[<h1>Flyverdragt til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-173">
         <source>description.category-173</source>
@@ -670,7 +670,7 @@ POMPdeLUX flyverdragter til drenge er skabt til at bevæge sig meget i og samtid
       </trans-unit>
 	  <trans-unit id="headers.category-175">
         <source>headers.category-175</source>
-        <target><![CDATA[<h1>Skibukser</h1>]]></target>
+        <target><![CDATA[<h1>Skibukser til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-175">
         <source>description.category-175</source>
@@ -681,7 +681,7 @@ Pasformen på alle POMPdeLUX skibukser til drenge, giveren høj grad af frihed t
       </trans-unit>
 	   <trans-unit id="headers.category-178">
         <source>headers.category-178</source>
-        <target><![CDATA[<h1>Basis</h1>]]></target>
+        <target><![CDATA[<h1>Basis til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-178">
         <source>description.category-178</source>
@@ -690,7 +690,7 @@ pengene og ikke vil nøjes med mindre end den fineste kvalitet. POMPdeLUX basis 
       </trans-unit>
 	   <trans-unit id="headers.category-179">
         <source>headers.category-179</source>
-        <target><![CDATA[<h1>Veste</h1>]]></target>
+        <target><![CDATA[<h1>Veste til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-179">
         <source>description.category-179</source>
@@ -700,7 +700,7 @@ Alt POMPdeLUX kendetegnes ved gode og behagelige pasformer og vores veste er fre
       </trans-unit>
 	  <trans-unit id="headers.category-180">
         <source>headers.category-180</source>
-        <target><![CDATA[<h1>Butterfly</h1>]]></target>
+        <target><![CDATA[<h1>Butterfly til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-180">
         <source>description.category-180</source>
@@ -712,7 +712,7 @@ POMPdeLUX er tilpasset drenge, så de er behagelige og elastiske at have om hals
       </trans-unit>
 	   <trans-unit id="headers.category-182">
         <source>headers.category-182</source>
-        <target><![CDATA[<h1>Huer & Vanter</h1>]]></target>
+        <target><![CDATA[<h1>Huer & Vanter til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-182">
         <source>description.category-182</source>
@@ -724,7 +724,7 @@ større drenge kan være udenfor, selv i meget lave temperaturer og alligevel tr
       </trans-unit>
 	  <trans-unit id="headers.category-188">
         <source>headers.category-188</source>
-        <target><![CDATA[<h1>Regntøj</h1>]]></target>
+        <target><![CDATA[<h1>Regntøj til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-188">
         <source>description.category-188</source>
@@ -733,7 +733,7 @@ POMPdeLUX regnjakker og bukser til drenge.</p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-189">
         <source>headers.category-189</source>
-        <target><![CDATA[<h1>Basis</h1>]]></target>
+        <target><![CDATA[<h1>Basis til drenge</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-189">
         <source>description.category-189</source>
