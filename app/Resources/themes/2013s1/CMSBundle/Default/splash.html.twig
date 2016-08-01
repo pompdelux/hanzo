@@ -18,6 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="all">
 
+<link href='https://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
 <link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/boilerplate.css" />
 <link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/splash.css" />
@@ -28,7 +29,11 @@
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
 
+
 <div id="container">
+  <div class="logo-wrapper">
+    {{ fx_image_tag('images/POMPdeLUX_logo_SS16.png', '220x49', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+  </div>
   <div id="selector">
     <h1></h1>
     <ul>
