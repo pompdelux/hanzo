@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\WishlistsQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -87,8 +88,13 @@ class SecurityController extends CoreController
         $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
         $this->container->get('security.context')->setToken($token);
 
+        $list = WishlistsQuery::create()
+            ->filterByCustomersId($user->getId())
+            ->findOne();
+
         return $this->json_response([
-            'status' => true,
+            'status'  => true,
+            'list_id' => $list ? $list->getId() : null,
         ]);
     }
 

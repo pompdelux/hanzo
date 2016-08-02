@@ -341,6 +341,15 @@ class DefaultController extends CoreController
 
         /** @var Products $product */
         foreach ($products as $product) {
+            $product->setLocale($locale);
+
+            $images = $this->getImages($product);
+            $variants = $this->getVariants($product);
+
+            if (empty($images) || empty($variants)) {
+                continue;
+            }
+
             $id = $product->getId();
             $productIds[$id] = $id;
             $translation_key = 'description.' . Tools::stripText($product->getSku(), '-', false);
@@ -361,8 +370,8 @@ class DefaultController extends CoreController
                 'title'       => $product->getCurrentTranslation()->getTitle(),
                 'description' => $description,
                 'washing'     => $washing,
-                'images'      => $this->getImages($product),
-                'variants'    => $this->getVariants($product),
+                'images'      => $images,
+                'variants'    => $variants,
             ];
         }
 
