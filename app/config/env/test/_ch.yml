@@ -8,15 +8,15 @@ framework:
 
 propel:
     dbal:
-        default_connection:           default
+        default_connection: pdldbch1
         connections:
-            default:
-                driver:               %database_driver%
-                user:                 %test_ch_database_user%
-                password:             %test_ch_database_password%
-                dsn:                  mysql:host=%test_ch_database_host%;dbname=%test_ch_database_name%
-                options:              {}
-                attributes:           {}
+            pdldbch1:
+                driver:     %database_driver%
+                user:       %test_ch_database_user%
+                password:   %test_ch_database_password%
+                dsn:        mysql:host=%test_ch_database_host%;dbname=%test_ch_database_name%
+                options:    {}
+                attributes: {}
 
 consignor:
     shipment_server: ~
