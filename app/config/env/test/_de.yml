@@ -8,15 +8,29 @@ framework:
 
 propel:
     dbal:
-        default_connection:           default
+        default_connection: pdldbde1
         connections:
-            default:
-                driver:               %database_driver%
-                user:                 %test_de_database_user%
-                password:             %test_de_database_password%
-                dsn:                  mysql:host=%test_de_database_host%;dbname=%test_de_database_name%
-                options:              {}
-                attributes:           {}
+            pdldbde1:
+                driver:     %database_driver%
+                user:       %test_de_database_user%
+                password:   %test_de_database_password%
+                dsn:        mysql:host=%test_de_database_host%;dbname=%test_de_database_name%
+                options:    {}
+                attributes: {}
+            pdldbat1:
+                driver:     %database_driver%
+                user:       %test_at_database_user%
+                password:   %test_at_database_password%
+                dsn:        mysql:host=%test_at_database_host%;dbname=%test_at_database_name%
+                options:    {}
+                attributes: {}
+            pdldbnl1:
+                driver:     %database_driver%
+                user:       %test_nl_database_user%
+                password:   %test_nl_database_password%
+                dsn:        mysql:host=%test_nl_database_host%;dbname=%test_nl_database_name%
+                options:    {}
+                attributes: {}
 
 account:
     consignor:
