@@ -636,21 +636,22 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
 	   <!-- Langærmet T-shirts - pige -->
 	    <trans-unit id="headers.category-207">
         <source>headers.category-207</source>
-        <target><![CDATA[<h1>Långärmade T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Långärmad t-shirts till flickor</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-207">
         <source>description.category-207</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Våra POMPdeLUX långärmade t-shirts till flickor är det perfekta och flexibla basplagget som kan användas på oändligt många sätt året runt. Kvaliteten är så härlig och tunn att t-shirten kan användas som den är. De dagar då solen skiner skyddar den bättre än en kortärmad tröja. Under de kalla månaderna är en långärmad t-shirt ett perfekt supplement till en massa olika plagg och då våra långärmade t-shirts alltid passar med kollektionens färgskala är de enkla att mixa och matcha med andra POMPdeLUX flickplagg så som klänningar, kjolar, cardigans, fleecejackor och allt annat.En POMPdeLUX långärmad t-shirt till flickor är helt klassisk och superpraktisk och därför helt oumbärlig i flickgarderoben oavsett årstid och väder.</p>]]></target>
       </trans-unit>
 	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
-        <target><![CDATA[<h1>Långärmade T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Långärmad t-shirts till pojkar</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-208">
         <source>description.category-208</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Med en POMPdeLUX långärmad t-shirt till pojkar får man ett perfekt basplagg med många fina användningsmöjligheter året runt. Kvaliteten är så pass tunn och behaglig att den är skön att ha på som den är när vädret tillåter då den kan skydda lite mot solen. När det blir kyligare är en långärmad t-shirt det bästa plagg gatt kombinera med andra kläder och då de alltid produceras i säsongens aktuella färger är de alltid lätta att kombinera med andra POMPdeLUX pojkkläder, t.ex. cardigans, fleecetröjor och annat. Kombinera också gärna den långärmade t-shirten med favoritskjortan eller den kortärmade favorit t-shirten så blir den långärmade t-shirtens livslängd längre.
+En POMPdeLUX långärmad t-shirt till pojkar är alltså klassisk och närmast oumbärlig för pojkar i alla åldrar – både på kalla och varma dagar, precis som den är eller i kombination med någon av våra andra överdelar.</p>]]></target>
       </trans-unit>
 	  
     </body>

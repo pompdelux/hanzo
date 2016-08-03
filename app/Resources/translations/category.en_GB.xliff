@@ -713,21 +713,23 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
 	   <!-- Langærmet T-shirts - pige -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
-        <target><![CDATA[<h1>Long sleeved T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Long-sleeved T-shirt for girls</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-208">
         <source>description.category-208</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Our POMPdeLUX long-sleeved t-shirts for girls are the perfect and flexible basic item that can be used in countless ways throughout the year. The quality is so lovely and thin that the t-shirt can be worn on its own. On days when the sun shines it protects better than a short-sleeved shirt. During the cold months a long-sleeved t-shirt is a perfect supplement to a lot of different items and our long-sleeve t-shirts will always match the collection's colours and are easy to mix and match with other POMPdeLUX girls' garments such as dresses, skirts, cardigans, fleece jackets etc.
+A POMPdeLUX long-sleeved t-shirt for girls is classic and super practical and therefore absolutely indispensable in the girl's wardrobe, regardless of season or weather.</p>]]></target>
       </trans-unit>
 	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-209">
         <source>headers.category-209</source>
-        <target><![CDATA[<h1>Long sleeved T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Long sleeved t-shirt for boys</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-209">
         <source>description.category-209</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>A POMPdeLUX long-sleeved t-shirt is the perfect basic style to wear all year round. The quality is so thin and comfortable that it is perfect to wear as it is when the weather is nice and warm as it can protect against the sun. When it’s getting colder, a long-sleeved t-shirt the best style to match with other clothes, and as they are always produced the season's colours, they are easy to mix and match with other POMPdeLUX boy clothes, e.g. cardigans, fleece jackets etc. Match with your favourite shirt or your favouite t-shirt and the long-sleeved t-shirt will last longer.  
+A POMPdeLUX long-sleeved t-shirt for boys is classic and almost indispensable for boys of all ages - both cold and warm days, just as it is or mixed and matched with our other tops.</p>]]></target>
       </trans-unit>
 	  
     </body>
