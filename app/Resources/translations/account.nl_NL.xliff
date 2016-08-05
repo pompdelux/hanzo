@@ -569,7 +569,7 @@ Hierna kun je gewoon doorgaan met winkelen.<br></p>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Hier kun je een lijstje opstellen met de stijlen die je tijdens een Home Shopping arrangement of een Open Huis wilt bestellen. Je Shoppinglijst wordt automatisch opgeslagen.</p>
+                    <p>Hier kun je een lijstje opstellen met de stijlen die je tijdens een Social Shopping arrangement of een Open Huis wilt bestellen. Je Shoppinglijst wordt automatisch opgeslagen.</p>
                     <ul>
                         <li>Klik op "Mijn shoppinglijst". Je Shoppinglijst krijgt een uniek nummer toebedeeld dat je aan je Shopping Advisor door moet geven.</li>
                         <li>Voeg de stijlen toe die je wilt kopen.</li>
