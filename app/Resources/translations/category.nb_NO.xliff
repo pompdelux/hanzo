@@ -631,21 +631,23 @@ Vi har ikke bare fokus på stil, men spesielt også passformen – for produktet
 	  	   <!-- Langærmet T-shirts - pige -->
 	    <trans-unit id="headers.category-207">
         <source>headers.category-207</source>
-        <target><![CDATA[<h1>Langermet T-skjorte</h1>]]></target>
+        <target><![CDATA[<h1>Langermet t-shirt til jenter</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-207">
         <source>description.category-207</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>POMPdeLUX' langermede t-shirts til jenter er det perfekte og fleksible basistøyet som kan brukes på et hav av måter, hele året. Kvaliteten er så lekker og så pass tynn at t-shirten fint kan brukes for seg. I fint vær beskytter den bedre mot solen enn en kortermet bluse. I de kalde månedene er en langermet t-shirt et supert supplement til mange forskjellige klesplagg, og da våre langermede t-shirts alltid er i tråd med kolleksjonens fargeskala, er det veldig enkelt å mikse og sette sammen med annet POMPdeLUX jentetøy, som kjoler, skjørt, cardigans, fleecejakker og mye annet.
+En POMPdeLUX langermet t-shirt til jenter er helt klassisk og super praktisk og derfor absolutt uunnværlig i jentegarderoben, uansett årstid og vær.</p>]]></target>
       </trans-unit>
 	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
-        <target><![CDATA[<h1>Langermet T-skjorte</h1>]]></target>
+        <target><![CDATA[<h1>Langermet t-shirt til gutter</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-208">
         <source>description.category-208</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>Med en POMPdeLUX langermet t-shirt til gutter får man et perfekt basis-plagg med mange fine bruksmuligheter hele året. Kvaliteten er så tynn og god at den er fin å bruke for deg selv når været tillater det og hvor den kan skjerme litt for solen. Når kulden biter, er en langermet t-shirt det beste supplementet til andre klær, og da de alltid fremstilles i sesongens aktuelle farger, er de veldig fine å kombinere med annet POMPdeLUX guttetøy, som cardigans, fleecetrøyer og annet. Kombiner også gjerne langermede t-shirts med yndlingsskjorten eller en kortermet favoritt t-shirt slik at levetiden blir litt forlenget.
+En POMPdeLUX langermet t-shirt til gutter er altså klassisk og nesten uunnværlig for alle størrelser, både på varme og kalde dager, bare som de er, eller sammen med noen andre av våre overdeler til gutter.</p>]]></target>
       </trans-unit>
 	  
     </body>

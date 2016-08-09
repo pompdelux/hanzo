@@ -734,21 +734,29 @@ POMPdeLUX Regenjacken und -hosen für Jungen.
 	   <!-- Langærmet T-shirts - pige -->
 	    <trans-unit id="headers.category-207">
         <source>headers.category-207</source>
-        <target><![CDATA[<h1>Langarm T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Langarmshirt für Mädchen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-207">
         <source>description.category-207</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>
+		Unser POMPdeLUX Langarmshirt für Mädchen ist die perfekte und flexible Basiskleidung, welche man das ganze Jahr über auf die unterschiedlichsten Weisen tragen kann. Die Qualität ist so toll und angenehm dünn, dass man das T-Shirt gut alleine tragen kann. An den Tagen, wo das Wetter gut ist, schützt es sogar besser vor der Sonne als ein Kurzarmshirt. In den kalten Monaten ist ein Langarmshirt die perfekte Ergänzung zu vielen anderen Looks und da unsere Langarmshirts immer mit der Farbskala der Kollektion übereinstimmen sind sie ganz simpel zu kombinieren und lassen sich mit der restlichen POMPdeLUX-Kleidung, sowie Kleidern, Röcken, Strickjacken, Fleecejacken usw., zusammensetzen. 
+Ein POMPdeLUX Langarmshirt für Mädchen ist klassisch und super praktisch und daher absolut unentbehrlich in der Mädchengarderobe, egal zu welchem Wetter oder Jahreszeit.
+		</p>]]></target>
       </trans-unit>
 	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
-        <target><![CDATA[<h1>Langarm T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>Langarmshirt für Jungs</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-208">
         <source>description.category-208</source>
-        <target><![CDATA[<p></p>]]></target>
+        <target><![CDATA[<p>
+		Mit einem Langarmshirt für Jungs von POMPdeLUX bekommt man ein perfektes Kleidungsstück, welches man das ganze Jahr über auf verschiedene Weisen anwenden kann. Die Qualität ist so dünn und gut, dass man es gut alleine tragen kann, sofern das Wetter dies zulässt und es kann gleichzeitig die Sonne etwas abhalten. 
+Wenn die Kälte einzieht, bietet das Langarmshirt die perfekte Ergänzung zur Kleidung und da sie immer in den saisonalen Farben hergestellt werden, kann man sie perfekt mit der restlichen POMPdeLUX-Jungskleidung, wie z.B. Strickjacken, Fleecejacken usw., kombinieren. 
+Kombinieren Sie also einfach das Langarmshirt mit dem Lieblingshemd oder dem Lieblings-Kurzarmshirt, sodass dessen Lebenszeit etwas verlängert wird. 
+Ein POMPdeLUX Langarmshirt für Jungs ist also klassisch und so gut wie unentbehrlich in allen Größen, - an warmen sowie an kalten Tagen, einfach so wie sie sind oder zusammen mit unseren anderen Oberteilen. 
+		</p>]]></target>
       </trans-unit>
 	  
     </body>

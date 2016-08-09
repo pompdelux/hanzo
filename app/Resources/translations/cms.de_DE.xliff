@@ -127,10 +127,10 @@
                          },
                     "tokens": {
                         "Bio-Produkte (GOTS)": ["154"],
-                        "Oekotex": ["153"]
+                        "Oekotex": ["153"],
+		                "Wolle": ["209"]
                       },
-                      "discount": {"50%": ["50"],
-								   "70%": ["70"]
+                      "discount": {
                       }
                     }
                 ]]></target>
@@ -252,10 +252,10 @@
                         },
                         "tokens": {
                           "Bio-Produkte (GOTS)": ["156"],
-                          "Oekotex": ["155"]
+                          "Oekotex": ["155"],
+		                  "Wolle": ["210"]
                           },
-                        "discount": {"50%": ["50"],
-									 "70%": ["70"]
+                        "discount": {
                         }
                     }
                 ]]></target>

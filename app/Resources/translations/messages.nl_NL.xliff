@@ -301,7 +301,7 @@ Je kunt meer lezen over het recht van retour in onze <a href="/nl_NL/voorpagina/
             <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>HOME SHOPPING</h2>
+                <h2>SOCIAL SHOPPING</h2>
                 <ul class="menu">
 				<li><a href="/nl_NL/voorpagina/home-shopping">Word gastvrouw</a></li>
                     <li><a href="/nl_NL/voorpagina/vind-een-consulent">Vind een Shopping Advisor</a></li>
