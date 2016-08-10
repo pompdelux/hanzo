@@ -74,6 +74,7 @@ class NewsletterApi
 
         // Wrap response in something the rest of the system expects
         $combatibleResponse               = new \stdClass();
+        $combatibleResponse->action       = $response->getAction();
         $combatibleResponse->is_error     = $response->isError();
         $combatibleResponse->content      = new \stdClass();
         $combatibleResponse->content->msg = $response->isError() ? $response->getErrorMessage() : 'ok';
