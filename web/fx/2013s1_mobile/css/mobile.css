@@ -62,7 +62,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-repeat: no-repeat;
 }
 
-.icons-sprite, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_down_triangle_with_notch, .icons-arrow_left, .icons-arrow_left_triangle_with_notch, .icons-arrow_right, .icons-arrow_right_triangle_with_notch, .icons-arrow_up, .icons-arrow_up_triangle_with_notch, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-wishlist, .icons-zoom, .body-buy-set .wishlist, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, form.buy .sizeguide, form.buy .add-buttons a.wishlist, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.arrow-right, .sprite.arrow-left {
+.icons-sprite, .icons-Hearticon, .icons-Kundeservice_Green, .icons-Kundeservice_Red, .icons-Kundeservice_Yellow, .icons-Oeko_Tex, .icons-Step1, .icons-Step2, .icons-Step3, .icons-Step4, .icons-arrow_down, .icons-arrow_down_triangle_with_notch, .icons-arrow_left, .icons-arrow_left_triangle_with_notch, .icons-arrow_right, .icons-arrow_right_triangle_with_notch, .icons-arrow_up, .icons-arrow_up_triangle_with_notch, .icons-arrowbox_left, .icons-arrowbox_right, .icons-basket-grey, .icons-basket, .icons-button-left-black, .icons-button-left, .icons-button-right-black, .icons-button-right, .icons-catwalk, .icons-checkout, .icons-close, .icons-delete, .icons-delete_black, .icons-delete_icon, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-edit_icon, .icons-facebook, .icons-faq_icon, .icons-gots, .icons-gplus, .icons-instagram, .icons-kurv, .icons-magnifier, .icons-newsletter, .icons-newsletter_2, .icons-pdf, .icons-pinterest, .icons-print, .icons-return, .icons-returnlabel, .icons-search, .icons-shopping-bag, .icons-show, .icons-sizeguide, .icons-trackntrace, .icons-twitter, .icons-video, .icons-wishlist, .icons-zoom, .body-buy-set .wishlist, ul.tabs li a i, ul.tabs li a.current i, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, .body-product .main .productimage-large .prev, .body-product .main .productimage-large .next, form.buy .sizeguide, form.buy .add-buttons a.wishlist, table#order-status td a.trigger, footer .newsletter-block .sprite, #secondary-links li.basket .sprite, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf, .sprite.return, .sprite.arrow-right, .sprite.arrow-left {
   background-image: url('/fx/mobile/../images/icons/icons-s939085698f.png');
   background-repeat: no-repeat;
 }
@@ -3599,6 +3599,93 @@ aside.js-slider h3 span.open {
   padding-left: 33px;
 }
 
+form.quickorder,
+div.quickorder {
+  padding-bottom: 50px;
+}
+form.quickorder label,
+div.quickorder label {
+  display: inline-block;
+  width: auto;
+  float: left;
+}
+form.quickorder input, form.quickorder select,
+div.quickorder input,
+div.quickorder select {
+  margin-right: 5px;
+}
+form.quickorder .ui-autocomplete,
+div.quickorder .ui-autocomplete {
+  list-style-type: none;
+  padding: 0px 5px;
+  display: inline-block;
+}
+form.quickorder .ui-autocomplete .ui-menu-item,
+div.quickorder .ui-autocomplete .ui-menu-item {
+  cursor: pointer;
+}
+form.quickorder input.quantity,
+div.quickorder input.quantity {
+  width: 50px;
+  text-align: center;
+}
+form.quickorder input[type=submit],
+form.quickorder input[type=button],
+div.quickorder input[type=submit],
+div.quickorder input[type=button] {
+  margin-top: 28px;
+  float: left;
+}
+
+.tt-dropdown-menu {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  max-height: 150px;
+  overflow-y: scroll;
+  padding: 4px 0;
+  margin: 1px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+}
+.tt-dropdown-menu .tt-dataset-sku {
+  display: block;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  white-space: nowrap;
+  color: #333;
+}
+
+.tt-hint {
+  color: #999;
+}
+
+.tt-suggestion {
+  padding: 3px 15px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  background-color: #D9D9D9;
+}
+
+form.load-wishlist {
+  margin-bottom: 20px;
+}
+
+.wishlist-misses {
+  border: 3px solid #c18185;
+  padding: 10px;
+}
+
 #body-account article .grid_6 {
   display: table-footer-group;
 }
@@ -4679,6 +4766,69 @@ ul.filter-dropdown > li.open div.filter-dropdown-menu {
   display: none;
 }
 
+#body-rma .product-table {
+  border-collapse: collapse;
+  border-top: 1px solid #444;
+}
+#body-rma .product-table .rma-submit {
+  display: none;
+}
+#body-rma .basket td, #body-rma .basket th {
+  display: block;
+  width: 100%;
+  clear: both;
+}
+#body-rma .basket .item {
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+#body-rma .basket .item .actions {
+  margin-bottom: 10px;
+}
+#body-rma .basket .item .left {
+  padding-bottom: 0;
+}
+#body-rma .basket .item .left .actions {
+  padding-top: 0;
+}
+#body-rma .rma-form {
+  width: 99%;
+}
+#body-rma .rma-form label {
+  width: 100%;
+}
+#body-rma .rma-form label select, #body-rma .rma-form label input {
+  float: right;
+  height: 30px;
+  margin: 0;
+}
+#body-rma .rma-form .rma-productreplacement label,
+#body-rma .rma-form .rma-cause label {
+  width: auto;
+  float: left;
+  margin-right: 5px;
+}
+#body-rma .rma-form .rma-cause select,
+#body-rma .rma-form .rma-activitycode {
+  width: 60%;
+}
+#body-rma .rma-form input.master {
+  width: 100%;
+}
+#body-rma .rma-form select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  border-radius: 0;
+  padding: 6px 5px;
+  width: auto;
+}
+#body-rma .rma-form textarea {
+  display: block;
+  width: 100%;
+}
+
 /* Selection colours (easy to forget) */
 ::selection {
   background: #CCCCCC;
@@ -4834,6 +4984,11 @@ table.horizontal th {
 }
 .sprite.pdf {
   background-position: 0 -1398px;
+  height: 26px;
+  width: 26px;
+}
+.sprite.return {
+  background-position: 0 -1472px;
   height: 26px;
   width: 26px;
 }
