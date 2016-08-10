@@ -22,7 +22,8 @@ class MailChimpResponse extends BaseResponse
         $this->setData($response);
         $this->setStatus(BaseResponse::REQUEST_SUCCESS);
 
-        if ($mailChimp->getLastError()) {
+        // $mailChimp->getLastError() returns an invalid response, we do our own.
+        if (isset($response['title'], $response['detail'])) {
             $this->setStatus($response['status']);
             $this->setErrorMessage($response['title'].': '.$response['detail']);
         }
