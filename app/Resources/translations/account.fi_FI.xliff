@@ -566,7 +566,7 @@ Haluamme kuitenkin varmistaa, että tässä ei ole tapahtunut virhettä. Pyydäm
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Tässä voit laatia listan niistä tuotteista, joita haluat tilata Home Shopping- tai Avoimet ovet -tilaisuudessa. Ostoslistasi tallennetaan automaattisesti.</p>
+                    <p>Tässä voit laatia listan niistä tuotteista, joita haluat tilata Social Shopping- tai Avoimet ovet -tilaisuudessa. Ostoslistasi tallennetaan automaattisesti.</p>
                     <ul>
                         <li>Valitse "Ostoslistani". Ostoslistasi saa ainutkertaisen numeron, jota Shopping Advisorisi tulee käyttää.</li>
                         <li>Lisää tuotteet, jotka haluat ostaa.</li>

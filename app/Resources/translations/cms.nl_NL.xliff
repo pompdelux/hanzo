@@ -125,10 +125,10 @@
                          },
                     "tokens": {
                         "Ecologie": ["154"],
-                    "Oekotex": ["153"]
+                        "Oekotex": ["153"],
+		                "Wol": ["209"]
                                     },
-                        "discount": {"50%": ["50"],
-									 "70%": ["70"]
+                        "discount": {
                         }
                     }
                 ]]></target>
@@ -250,10 +250,10 @@
                         },
                         "tokens": {
                         "Ecologie": ["156"],
-                    "Oekotex": ["155"]
+                        "Oekotex": ["155"],
+		                "Wol": ["210"]
                                     },
-                        "discount": {"50%": ["50"],
-									 "70%": ["70"]
+                        "discount": {
                         }
                     }
                 ]]></target>

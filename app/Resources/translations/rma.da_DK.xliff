@@ -174,41 +174,41 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
                 <target>Navn*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.customer_number_label">
-              <source>rma.claims.form.customer_number_label</source>
-              <target>Kundenummer</target>
+                <source>rma.claims.form.customer_number_label</source>
+                <target>Kundenummer</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.order_number_label">
-              <source>rma.claims.form.order_number_label</source>
-              <target>E-ordrenummer*</target>
+                <source>rma.claims.form.order_number_label</source>
+                <target>E-ordrenummer*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
-              <source>rma.claims.form.product_info_label</source>
-              <target>Varens navn/farve/størrelse (se navn på din faktura)*</target>
+                <source>rma.claims.form.product_info_label</source>
+                <target>Varens navn/farve/størrelse (se navn på din faktura)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
-              <source>rma.claims.form.description_label</source>
-              <target>Beskrivelse af reklamationen*</target>
+                <source>rma.claims.form.description_label</source>
+                <target>Beskrivelse af reklamationen*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.file_heading">
-              <source>rma.claims.form.file_heading</source>
-              <target><![CDATA[Upload billeder af reklamationen:<br>
+                <source>rma.claims.form.file_heading</source>
+                <target><![CDATA[Upload billeder af reklamationen:<br>
                 (max 5 billeder på i alt 10MB)]]></target>
             </trans-unit>
             <trans-unit id="rma.claims.form.phone_label">
-              <source>rma.claims.form.phone_label</source>
-              <target>Telefonnummer*</target>
+                <source>rma.claims.form.phone_label</source>
+                <target>Telefonnummer*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.email_label">
-              <source>rma.claims.form.email_label</source>
-              <target>E-mail*</target>
+                <source>rma.claims.form.email_label</source>
+                <target>E-mail*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.send">
-              <source>rma.claims.form.send</source>
-              <target>Send reklamationsformular</target>
+                <source>rma.claims.form.send</source>
+                <target>Send reklamationsformular</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.required">
-              <source>rma.claims.form.required</source>
-              <target>* Skal udfyldes</target>
+                <source>rma.claims.form.required</source>
+                <target>* Skal udfyldes</target>
             </trans-unit>
             <trans-unit id="rma.claims.error.upload">
                 <source>rma.claims.error.upload</source>
@@ -223,11 +223,11 @@ For at kunne se sedlen, skal du have det gratis program Adobe Reader. Hvis du ik
                 <target>Manglende data.</target>
             </trans-unit>
             <trans-unit id="rma.claims.success">
-              <source>rma.claims.success</source>
-              <target>
-                <![CDATA[<p>Din reklamationsformular er nu sendt, og vi vender tilbage indenfor nogle dage med tilbagemelding om din sag.</p>
+                <source>rma.claims.success</source>
+                <target>
+                    <![CDATA[<p>Din reklamationsformular er nu sendt, og vi vender tilbage indenfor nogle dage med tilbagemelding om din sag.</p>
               <p>Hvis du har spørgsmål er du altid velkommen til at kontakte kundeservice på tlf. (+45) 8678 7871.</p>]]>
-              </target>
+                </target>
             </trans-unit>
             <trans-unit id="rma-form.message.not-reserved">
                 <source>rma-form.message.not-reserved</source>

@@ -266,7 +266,7 @@
             <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har därför möjlighet att följa ditt paket via ett kollinummer, från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett <a href="/sv_SE/forside/home-shopping">Home Shopping</a> arrangemang kostar frakten SEK 49,00. Om du beställer varor i vår Webshop kostar frakten SEK 69,00. <br />När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.
+                    <p>Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har därför möjlighet att följa ditt paket via ett kollinummer, från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett <a href="/sv_SE/forside/home-shopping">Social Shopping</a> arrangemang kostar frakten SEK 49,00. Om du beställer varor i vår Webshop kostar frakten SEK 69,00. <br />När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.
       <br />
       När du har mottagit ditt paket, bör du kontrollera varorna. Om paketet och/eller innehållet är skadat, ska du snarast kontakta vår Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
                 ]]></target>
@@ -304,7 +304,7 @@ Du kan läsa mer om ångerrätten under <a href="/sv_SE/forside/kundservice/vill
             <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>HOME SHOPPING</h2>
+                <h2>SOCIAL SHOPPING</h2>
                 <ul class="menu">
                     <li><a href="/sv_SE/forside/home-shopping">Bli värdinna</a></li>
                     <li><a href="/sv_SE/forside/home-shopping/hitta-saljare">Hitta Shopping Advisor</a></li>

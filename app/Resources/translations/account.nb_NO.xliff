@@ -571,7 +571,7 @@ Deretter kan du bare shoppe videre.</p><br>
             <trans-unit id="wishlist.add.description">
                 <source>wishlist.add.description</source>
                 <target><![CDATA[
-                    <p>Her kan du opprette en liste med styles som du ønsker å bestille ved et Home Shopping arrangement eller Åpent Hus. Din Shoppingliste lagres automatisk.</p>
+                    <p>Her kan du opprette en liste med styles som du ønsker å bestille ved et Social Shopping arrangement eller Åpent Hus. Din Shoppingliste lagres automatisk.</p>
                     <ul>
                         <li>Trykk på "Min shoppingliste". Shoppinglisten får et unikt nummer som din Shopping Advisor skal bruke.</li>
                         <li>Tilføy de styles som du ønsker å kjøpe.</li>

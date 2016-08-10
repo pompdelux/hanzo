@@ -157,7 +157,7 @@ class DefaultController extends CoreController
         $cacheKeys = [
             __FUNCTION__,
             $cms_id,
-            ];
+        ];
 
         $cache_id = $this->getCacheId($show, $pager, null, false, $cacheKeys);
         $html = $this->getCache($cache_id);
@@ -324,13 +324,13 @@ class DefaultController extends CoreController
         if (!$filterNoResultsFound) {
             if ($request->query->get('show_all')) {
                 $result = $result->useProductsQuery()
-                        ->filterByIsOutOfStock(false)
-                        ->_or()
-                        ->filterByIsOutOfStock(true)
+                    ->filterByIsOutOfStock(false)
+                    ->_or()
+                    ->filterByIsOutOfStock(true)
                     ->endUse();
             } else {
                 $result = $result->useProductsQuery()
-                        ->filterByIsOutOfStock(false)
+                    ->filterByIsOutOfStock(false)
                     ->endUse();
             }
 
@@ -877,4 +877,3 @@ class DefaultController extends CoreController
         return $this->categoryGender;
     }
 }
-

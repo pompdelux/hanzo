@@ -289,7 +289,7 @@ Voit lukea lisää katumisoikeudesta <a href="/fi_FI/koti/asiakaspalvelu/ehdotja
             <trans-unit id="footer.menu_2">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <h2>Home Shopping</h2>
+                <h2>Social Shopping</h2>
                 <ul class="menu">
 				<li><a href="/fi_FI/koti/home-shopping">Ryhdy emännäksi</a></li>
 				<li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja">Etsi Shopping Advisor</a></li>

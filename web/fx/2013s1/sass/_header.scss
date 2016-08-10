@@ -11,7 +11,6 @@ $topbar-color: #dcd8d2;
     display: block;
     padding-top: 50px;
     padding-bottom: 20px;
-    text-align: center;
 }
 
 .logo-link {
@@ -344,7 +343,7 @@ ul.breadcrumb {
         &.heading{
             a:hover{
                 text-decoration:none;
-            cursor: default;}
+                cursor: default;}
         }
         i.arrow-right{
             margin-top: 3px;

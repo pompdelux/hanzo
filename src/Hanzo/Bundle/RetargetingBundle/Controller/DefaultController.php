@@ -115,11 +115,11 @@ class DefaultController extends Controller
                 ->filterBySku($exclude, \Criteria::NOT_IN)
                 ->joinWithProductsImages()
                 ->useProductsToCategoriesQuery()
-                    ->filterByCategoriesId($category_id)
+                ->filterByCategoriesId($category_id)
                 ->endUse()
                 ->joinWithProductsI18n()
                 ->useProductsI18nQuery()
-                    ->filterByLocale($request->getLocale())
+                ->filterByLocale($request->getLocale())
                 ->endUse()
                 ->find()
             ;

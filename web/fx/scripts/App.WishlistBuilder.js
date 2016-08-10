@@ -32,7 +32,23 @@ App.register('WishlistBuilder', function() {
     };
 
     function updateTotal(total) {
-      $_total.text(total);
+        $_total.text(total);
+    }
+
+    function setActionAdd() {
+        $_actionField.val('add');
+    }
+
+    function setActionEdit() {
+        $_actionField.val('edit');
+    }
+
+    function setOldProductId(id) {
+        $_oldProductIdField.val(id);
+    }
+
+    function resetOldProductId() {
+        $_oldProductIdField.val("");
     }
 
     function setActionAdd() {
@@ -72,7 +88,7 @@ App.register('WishlistBuilder', function() {
                     $_target.prepend(yatzy.render('wishlistItemTpl', response.data));
 
                     $('.js-in-edit', $_target).fadeOut(function() {
-                       $(this).remove();
+                        $(this).remove();
                     });
                 }
 
@@ -157,7 +173,7 @@ App.register('WishlistBuilder', function() {
             $(this).closest('article').remove();
 
             xhr.done(function(response) {
-              updateTotal(response.total_price);
+                updateTotal(response.total_price);
             });
         });
     };

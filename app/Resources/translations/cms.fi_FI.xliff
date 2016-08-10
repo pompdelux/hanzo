@@ -127,10 +127,10 @@
                           },
                     "tokens": {
                         "Ekologi": ["154"],
-                    "Oekotex": ["153"]
+                        "Oekotex": ["153"],
+		                "Villa": ["209"]
                                     },
-                        "discount": {"50%": ["50"],
-									 "70%": ["70"]
+                        "discount": {
                         }
                     }
                 ]]></target>
@@ -252,10 +252,10 @@
                        },
                         "tokens": {
                         "Ekologi": ["156"],
-                    "Oekotex": ["155"]
+                        "Oekotex": ["155"],
+		                "Villa": ["210"]
                                     },
-                        "discount": {"50%": ["50"],
-									 "70%": ["70"]
+                        "discount": {
                         }
                     }
                 ]]></target>

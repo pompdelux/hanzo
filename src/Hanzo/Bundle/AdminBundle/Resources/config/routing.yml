@@ -927,4 +927,3 @@ admin_shipping_price_edit:
         _controller: AdminBundle:Shipping:editShippingModule
     requirements:
         id: \d+
-

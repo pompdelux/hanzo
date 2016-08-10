@@ -127,7 +127,9 @@ class BundleController extends CoreController
                     ->endUse()
                     ->findOne()
                 ;
-                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+
+                $key = '_' . $request->getLocale() . '_' . $products2category->getCategoriesId();
+
                 // un: 2016-01-12
                 // needed to prevent fatal errors in AT where there
                 // are some sync issues in the categories table (AW15)

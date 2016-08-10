@@ -15,20 +15,20 @@
         <h1>{{ 'events.create_event.header.text'|trans({}, 'events') }}</h1>
 
         {% for message in app.session.flashbag.get('notice') %}
-        <div class="message notice">
-            {{ message|trans({}, 'events') }}
-        </div>
+            <div class="message notice">
+                {{ message|trans({}, 'events') }}
+            </div>
         {% endfor %}
 
         <p>{{ 'events.create_event.description.text'|trans({}, 'events') }}</p>
         <div class="grid_3">
             <div id="find-customer">
-            {% if 'da_DK' == app.request.locale %}
-                <form id="find-customer-by-phone-form">
-                    <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}">
-                    <input type="submit" class="button" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
-                </form>
-            {% endif %}
+                {% if 'da_DK' == app.request.locale %}
+                    <form id="find-customer-by-phone-form">
+                        <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}">
+                        <input type="submit" class="button" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
+                    </form>
+                {% endif %}
                 <form id="find-customer-by-email-form">
                     <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}">
                     <input type="submit" class="button" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
@@ -50,70 +50,70 @@
 
 
 {% block javascript %}
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="/fx/scripts/jquery-ui-timepicker-addon.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        var $startEventDate = $('#events_event_date');
-        var $endEventDate   = $('#events_event_end_time');
-        var $form           = $endEventDate.closest('form');
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="/fx/scripts/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var $startEventDate = $('#events_event_date');
+            var $endEventDate   = $('#events_event_end_time');
+            var $form           = $endEventDate.closest('form');
 
-        $startEventDate.prop('readonly', true);
-        $endEventDate.prop('readonly', true);
+            $startEventDate.prop('readonly', true);
+            $endEventDate.prop('readonly', true);
 
-        function set_correct_picker() {
-            var $start_date = $('#events_event_date');
-            var $end_date   = $('#events_event_end_time');
-            var $form       = $end_date.closest('form');
-            var event_type  = $('#events_type', $form).val();
+            function set_correct_picker() {
+                var $start_date = $('#events_event_date');
+                var $end_date   = $('#events_event_end_time');
+                var $form       = $end_date.closest('form');
+                var event_type  = $('#events_type', $form).val();
 
-            // Home shopping
-            if (event_type == 'AR') {
-                $start_date.datetimepicker({
-                    minDate     : new Date("{{ 'today 1am'|date('r') }}"),
-                    stepMinute  : 15,
-                    controlType : 'select'
-                });
-            }
-
-            // Open house
-            else {
-
-                $.timepicker.datetimeRange(
-                    $start_date,
-                    $end_date, {
+                // Home shopping
+                if (event_type == 'AR') {
+                    $start_date.datetimepicker({
                         minDate     : new Date("{{ 'today 1am'|date('r') }}"),
-                        minInterval : (1000*60*60), // 1hr
                         stepMinute  : 15,
                         controlType : 'select'
                     });
+                }
+
+                // Open house
+                else {
+
+                    $.timepicker.datetimeRange(
+                            $start_date,
+                            $end_date, {
+                                minDate     : new Date("{{ 'today 1am'|date('r') }}"),
+                                minInterval : (1000*60*60), // 1hr
+                                stepMinute  : 15,
+                                controlType : 'select'
+                            });
+                }
             }
-        }
 
-        set_correct_picker();
-
-        if ('HUS' !== $('#events_type', $form).val()) {
-            var $e;
-
-            $e = $('#events_event_end_time', $form);
-            $e.val('');
-            $e.closest('div').addClass('off');
-
-            $e = $('#events_rsvp_type', $form);
-            $e.val('');
-            $e.closest('div').addClass('off');
-
-            $e = $('#events_public_note', $form);
-            $e.val('');
-            $e.closest('div').addClass('off');
-        }
-
-        $('#events_type', $form).change(function() {
-            $('#events_event_end_time', $form).closest('div').toggleClass('off');
-            $('#events_rsvp_type', $form).closest('div').toggleClass('off');
-            $('#events_public_note', $form).closest('div').toggleClass('off');
             set_correct_picker();
+
+            if ('HUS' !== $('#events_type', $form).val()) {
+                var $e;
+
+                $e = $('#events_event_end_time', $form);
+                $e.val('');
+                $e.closest('div').addClass('off');
+
+                $e = $('#events_rsvp_type', $form);
+                $e.val('');
+                $e.closest('div').addClass('off');
+
+                $e = $('#events_public_note', $form);
+                $e.val('');
+                $e.closest('div').addClass('off');
+            }
+
+            $('#events_type', $form).change(function() {
+                $('#events_event_end_time', $form).closest('div').toggleClass('off');
+                $('#events_rsvp_type', $form).closest('div').toggleClass('off');
+                $('#events_public_note', $form).closest('div').toggleClass('off');
+                set_correct_picker();
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}
