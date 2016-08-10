@@ -152,11 +152,11 @@ class DefaultController extends CoreController
         $extraData = ['name' => $name];
 
         $result = $api->subscribe($email, $active, $extraData);
-        $api->sendNotificationEmail('subscribe', $email, $name);
+        //$api->sendNotificationEmail('subscribe', $email, $name);
 
         return $this->json_response([
             'status'  => true,
-            'message' => $this->get('translator')->trans('subscribed.text', [], 'newsletter'),
+            'message' => $this->get('translator')->trans($result->action.'.text', [], 'newsletter'),
         ]);
     }
 
