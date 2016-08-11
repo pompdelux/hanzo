@@ -20,6 +20,7 @@
             <argument type="service" id="pdl.phpredis.stock" />
             <argument>%stock.warehouses%</argument>
             <argument type="service" id="hanzo.propel_replicator" />
+            <argument>%locale%</argument>
         </service>
     </services>
 </container>

@@ -20,6 +20,11 @@ class Warehouse
     private $basePrefix;
 
     /**
+     * @var string
+     */
+    private $locale;
+
+    /**
      * @var array
      */
     private $warehouseCountryMap = [];
@@ -39,12 +44,14 @@ class Warehouse
      * @param PHPRedis         $redis
      * @param array            $warehouses
      * @param PropelReplicator $replicator
+     * @param string           $locale
      */
-    public function __construct(PHPRedis $redis, array $warehouses, PropelReplicator $replicator = null)
+    public function __construct(PHPRedis $redis, array $warehouses, PropelReplicator $replicator = null, $locale = null)
     {
         $this->redis      = $redis;
         $this->basePrefix = $redis->getPrefix();
         $this->replicator = $replicator;
+        $this->locale     = $locale;
 
         $this->setWarehouses($warehouses);
 
@@ -248,7 +255,7 @@ class Warehouse
         }
 
         if (empty($relations[$this->locationSetTo])) {
-            $relations[$this->locationSetTo] = ['pdldbdk1'];
+            $relations[$this->locationSetTo] = ['pdldb'.strtolower(substr($this->locale, -2)).'1'];
         }
 
         return $relations[$this->locationSetTo];
