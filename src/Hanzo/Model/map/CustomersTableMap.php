@@ -53,6 +53,7 @@ class CustomersTableMap extends TableMap
         $this->addColumn('password_clear', 'PasswordClear', 'VARCHAR', false, 45, null);
         $this->addColumn('discount', 'Discount', 'DECIMAL', false, 8, 0);
         $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('may_be_contacted', 'MayBeContacted', 'BOOLEAN', true, 1, false);
         $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
