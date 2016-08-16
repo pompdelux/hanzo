@@ -467,6 +467,19 @@ Sie müssen Waren hinzufügen.
                 <a href="/de_CH/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
         </trans-unit>
+
+      <trans-unit id="checkout.confirm.may_contact.label">
+        <source>checkout.confirm.may_contact.label</source>
+        <target>Ja tak, jeg vil gerne medvirke i tilfredshedsundersøgelser m.m.</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.info_url">
+        <source>checkout.confirm.may_contact.info_url</source>
+        <target>/da_DK/forside/kundeservice/vilkaar-betingelser</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.info_label">
+        <source>checkout.confirm.may_contact.info_label</source>
+        <target>Læs mere her</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
