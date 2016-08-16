@@ -375,7 +375,7 @@
       </trans-unit>
       <trans-unit id="address.copy">
          <source>address.copy</source>
-         <target>Toimitusosoite on sama kuin maksuosoite</target>
+         <target>Valitse vaihtoehtoinen toimitusosoite</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

@@ -264,10 +264,11 @@
             });
 
             $('#address-copy').on('change', function (e) {
-                var $copied = $('#address-block form:nth-child(2)');
+                $('#address-block .is-shipping').toggle();
 
+                var $copied = $('#address-block form:nth-child(2)');
                 if (!copyAddress()) {
-                    // If address wasnt copied, reset the second.
+                    // If address was'nt copied, reset the second.
                     $copied.each(function () {
                         this.reset();
                     });
@@ -320,8 +321,14 @@
                   "900", // AT  - DHL          Paketpost
                 ];
 
-                if (allowedTypes.indexOf(m) !== -1) {
+                if (allowedTypes.indexOf(m) !== -1) { // test
                     $('#address-copy').prop('checked', false).parent().removeClass('off');
+
+                    // company addresses should not be copied.
+                    if (20 != m) {
+                        copyAddress();
+                        $('#address-block .is-shipping').hide();
+                    }
                 } else {
                     $('#address-copy').parent().addClass('off');
                 }
@@ -515,7 +522,6 @@
 
             jaiks.add('/checkout/payment/process', checkout.processPaymentButton);
             jaiks.exec();
-
         };
 
         /**
@@ -523,15 +529,15 @@
          * @return boolean True if address was copied.
          */
         var copyAddress = function () {
-            if ($('#address-copy').prop('checked')) {
-                var $copied = $('#address-block form:nth-child(2)');
-
-                $('#address-block form:first input[type=text]').each(function (i) {
+            if (false === $('#address-copy').prop('checked')) {
+                var $copied = $('#address-block .is-shipping');
+                $('#address-block .is-payment input[type=text]').each(function (i) {
                     $copied.find('#' + $(this).attr('id')).val($(this).val());
                 });
 
                 return true;
             }
+
             return false;
         };
 

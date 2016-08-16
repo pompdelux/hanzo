@@ -1,4 +1,4 @@
-<div class="block">
+<div class="block {{ base_type }}">
     <h3>{{ (type~'.address')|replace('_', '.')|trans({}, 'checkout') }}</h3>
 
 {% if enable_locator %}
