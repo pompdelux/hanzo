@@ -2,9 +2,11 @@
 
 namespace Hanzo\Bundle\AccountBundle\Event;
 
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\GothiaAccountsQuery;
 use Hanzo\Model\OrdersPeer;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * Class LoginListener
@@ -31,9 +33,9 @@ class LoginListener
     /**
      * Recalculate basket if nessesary.
      *
-     * @param Event $event
+     * @param InteractiveLoginEvent $event
      */
-    public function onSecurityInteractiveLogin(Event $event)
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
         $order = OrdersPeer::getCurrent();
 
@@ -42,5 +44,17 @@ class LoginListener
             $order->save();
         }
 
+        $user = $event->getAuthenticationToken()->getUser();
+
+        // Delete any attached shipping addresses.
+        AddressesQuery::create()
+            ->filterByType('shipping')
+            ->filterByCustomersId($user->getId())
+            ->delete();
+
+        // Delete any attached Avarto/Gothia account info
+        GothiaAccountsQuery::create()
+            ->filterByCustomersId($user->getId())
+            ->delete();
     }
 }
