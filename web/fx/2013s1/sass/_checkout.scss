@@ -54,6 +54,7 @@ form.address {
 		margin-bottom: 5px;
 	}
 
+    .checkout-confirm-may-contact,
     .checkout-confirm-terms {
         text-align: center;
         border: 3px solid $alert-border-color;
@@ -63,6 +64,10 @@ form.address {
         a {
             text-decoration: underline;
         }
+    }
+
+    .checkout-confirm-may-contact {
+        border: 3px solid $footer-color;
     }
 
     #checkout-buttons {
