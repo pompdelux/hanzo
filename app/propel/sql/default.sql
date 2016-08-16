@@ -208,6 +208,7 @@ CREATE TABLE `customers`
     `password_clear` VARCHAR(45),
     `discount` DECIMAL(8,2) DEFAULT 0.00,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+    `may_be_contacted` TINYINT(1) DEFAULT 0 NOT NULL,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -429,7 +430,7 @@ CREATE TABLE `languages`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(32) NOT NULL,
     `local_name` VARCHAR(45) NOT NULL,
-    `locale` VARCHAR(5) NOT NULL,
+    `locale` VARCHAR(12) NOT NULL,
     `iso2` VARCHAR(2) NOT NULL,
     `direction` VARCHAR(3) DEFAULT 'ltr' NOT NULL,
     PRIMARY KEY (`id`),
@@ -672,6 +673,32 @@ CREATE TABLE `products_stock`
     CONSTRAINT `fk_products_stock_1`
         FOREIGN KEY (`products_id`)
         REFERENCES `products` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- products_seo_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `products_seo_i18n`;
+
+CREATE TABLE `products_seo_i18n`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `products_id` INTEGER NOT NULL,
+    `meta_title` VARCHAR(255),
+    `meta_description` VARCHAR(255),
+    `locale` VARCHAR(5) NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `FI_products_seo_i18n_1` (`products_id`),
+    INDEX `FI_products_seo_i18n_locale_1` (`locale`),
+    CONSTRAINT `fk_products_seo_i18n_1`
+        FOREIGN KEY (`products_id`)
+        REFERENCES `products` (`id`)
+        ON DELETE CASCADE,
+    CONSTRAINT `fk_products_seo_i18n_locale_1`
+        FOREIGN KEY (`locale`)
+        REFERENCES `languages` (`locale`)
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -1164,9 +1191,10 @@ CREATE TABLE `search_products_tags`
     `master_products_id` INTEGER NOT NULL,
     `products_id` INTEGER NOT NULL,
     `token` VARCHAR(128) NOT NULL,
+    `type` VARCHAR(128) NOT NULL,
     `locale` VARCHAR(12) NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `index_token_locale` (`token`, `locale`),
+    INDEX `index_token_locale` (`token`, `type`, `locale`),
     INDEX `FI_spt_products_images_1` (`master_products_id`),
     INDEX `FI_spt_products_images_2` (`products_id`),
     CONSTRAINT `fk_spt_products_images_1`
@@ -1291,6 +1319,9 @@ CREATE TABLE `cms_i18n`
     `is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,
     `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     `on_mobile` TINYINT(1) DEFAULT 1 NOT NULL,
+    `only_mobile` TINYINT(1) DEFAULT 0 NOT NULL,
+    `meta_title` VARCHAR(255),
+    `meta_description` VARCHAR(255),
     PRIMARY KEY (`id`,`locale`),
     CONSTRAINT `cms_i18n_FK_1`
         FOREIGN KEY (`id`)
