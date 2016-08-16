@@ -107,6 +107,7 @@ class SyncCustomer extends BaseService
                     'CustName'               => $this->address->getName($this->translator),
                     'Email'                  => $this->customer->getEmail(),
                     'Phone'                  => $this->customer->getPhone(),
+                    'MayBeContacted'         => $this->customer->getMayBeContacted(),
                 ]
             ],
             'endpointDomain' => $this->getEndPoint(),
