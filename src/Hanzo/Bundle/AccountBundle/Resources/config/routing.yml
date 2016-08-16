@@ -80,6 +80,13 @@ _account_edit_address:
         type: ''
         shipping_id: ''
 
+_account_may_me_contacted:
+    path: /account/may-be-contacted
+    defaults:
+        _controller: AccountBundle:Default:mayBeContacted
+    methods: [POST]
+    schemes: [HTTPS]
+
 _account_check:
     path: /account/check/{type}
     defaults:
