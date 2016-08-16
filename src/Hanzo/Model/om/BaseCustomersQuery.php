@@ -40,6 +40,7 @@ use Hanzo\Model\Wishlists;
  * @method CustomersQuery orderByPasswordClear($order = Criteria::ASC) Order by the password_clear column
  * @method CustomersQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
  * @method CustomersQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
+ * @method CustomersQuery orderByMayBeContacted($order = Criteria::ASC) Order by the may_be_contacted column
  * @method CustomersQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method CustomersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -54,6 +55,7 @@ use Hanzo\Model\Wishlists;
  * @method CustomersQuery groupByPasswordClear() Group by the password_clear column
  * @method CustomersQuery groupByDiscount() Group by the discount column
  * @method CustomersQuery groupByIsActive() Group by the is_active column
+ * @method CustomersQuery groupByMayBeContacted() Group by the may_be_contacted column
  * @method CustomersQuery groupByCreatedAt() Group by the created_at column
  * @method CustomersQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -118,6 +120,7 @@ use Hanzo\Model\Wishlists;
  * @method Customers findOneByPasswordClear(string $password_clear) Return the first Customers filtered by the password_clear column
  * @method Customers findOneByDiscount(string $discount) Return the first Customers filtered by the discount column
  * @method Customers findOneByIsActive(boolean $is_active) Return the first Customers filtered by the is_active column
+ * @method Customers findOneByMayBeContacted(boolean $may_be_contacted) Return the first Customers filtered by the may_be_contacted column
  * @method Customers findOneByCreatedAt(string $created_at) Return the first Customers filtered by the created_at column
  * @method Customers findOneByUpdatedAt(string $updated_at) Return the first Customers filtered by the updated_at column
  *
@@ -132,6 +135,7 @@ use Hanzo\Model\Wishlists;
  * @method array findByPasswordClear(string $password_clear) Return Customers objects filtered by the password_clear column
  * @method array findByDiscount(string $discount) Return Customers objects filtered by the discount column
  * @method array findByIsActive(boolean $is_active) Return Customers objects filtered by the is_active column
+ * @method array findByMayBeContacted(boolean $may_be_contacted) Return Customers objects filtered by the may_be_contacted column
  * @method array findByCreatedAt(string $created_at) Return Customers objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Customers objects filtered by the updated_at column
  */
@@ -240,7 +244,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `groups_id`, `title`, `first_name`, `last_name`, `email`, `phone`, `password`, `password_clear`, `discount`, `is_active`, `created_at`, `updated_at` FROM `customers` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `groups_id`, `title`, `first_name`, `last_name`, `email`, `phone`, `password`, `password_clear`, `discount`, `is_active`, `may_be_contacted`, `created_at`, `updated_at` FROM `customers` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -685,6 +689,33 @@ abstract class BaseCustomersQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CustomersPeer::IS_ACTIVE, $isActive, $comparison);
+    }
+
+    /**
+     * Filter the query on the may_be_contacted column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByMayBeContacted(true); // WHERE may_be_contacted = true
+     * $query->filterByMayBeContacted('yes'); // WHERE may_be_contacted = true
+     * </code>
+     *
+     * @param     boolean|string $mayBeContacted The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CustomersQuery The current query, for fluid interface
+     */
+    public function filterByMayBeContacted($mayBeContacted = null, $comparison = null)
+    {
+        if (is_string($mayBeContacted)) {
+            $mayBeContacted = in_array(strtolower($mayBeContacted), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CustomersPeer::MAY_BE_CONTACTED, $mayBeContacted, $comparison);
     }
 
     /**
@@ -1613,7 +1644,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
     protected function basePreSelect(PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this));
+        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this, $con));
 
         return $this->preSelect($con);
     }
@@ -1625,7 +1656,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
      */
     protected function basePreDelete(PropelPDO $con)
     {
-        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this, $con));
         // event behavior
         // placeholder, issue #5
 
@@ -1641,7 +1672,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
     protected function basePostDelete($affectedRows, PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this, $con));
 
         return $this->postDelete($affectedRows, $con);
     }
@@ -1656,7 +1687,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
     protected function basePreUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this, $con));
 
         return $this->preUpdate($values, $con, $forceIndividualSaves);
     }
@@ -1670,7 +1701,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
     protected function basePostUpdate($affectedRows, PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this, $con));
 
         return $this->postUpdate($affectedRows, $con);
     }

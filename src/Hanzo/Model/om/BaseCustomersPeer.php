@@ -39,13 +39,13 @@ abstract class BaseCustomersPeer
     const TM_CLASS = 'Hanzo\\Model\\map\\CustomersTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 13;
+    const NUM_COLUMNS = 14;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 13;
+    const NUM_HYDRATE_COLUMNS = 14;
 
     /** the column name for the id field */
     const ID = 'customers.id';
@@ -80,6 +80,9 @@ abstract class BaseCustomersPeer
     /** the column name for the is_active field */
     const IS_ACTIVE = 'customers.is_active';
 
+    /** the column name for the may_be_contacted field */
+    const MAY_BE_CONTACTED = 'customers.may_be_contacted';
+
     /** the column name for the created_at field */
     const CREATED_AT = 'customers.created_at';
 
@@ -105,12 +108,12 @@ abstract class BaseCustomersPeer
      * e.g. CustomersPeer::$fieldNames[CustomersPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'GroupsId', 'Title', 'FirstName', 'LastName', 'Email', 'Phone', 'Password', 'PasswordClear', 'Discount', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'groupsId', 'title', 'firstName', 'lastName', 'email', 'phone', 'password', 'passwordClear', 'discount', 'isActive', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (CustomersPeer::ID, CustomersPeer::GROUPS_ID, CustomersPeer::TITLE, CustomersPeer::FIRST_NAME, CustomersPeer::LAST_NAME, CustomersPeer::EMAIL, CustomersPeer::PHONE, CustomersPeer::PASSWORD, CustomersPeer::PASSWORD_CLEAR, CustomersPeer::DISCOUNT, CustomersPeer::IS_ACTIVE, CustomersPeer::CREATED_AT, CustomersPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'GROUPS_ID', 'TITLE', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'PASSWORD', 'PASSWORD_CLEAR', 'DISCOUNT', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'groups_id', 'title', 'first_name', 'last_name', 'email', 'phone', 'password', 'password_clear', 'discount', 'is_active', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'GroupsId', 'Title', 'FirstName', 'LastName', 'Email', 'Phone', 'Password', 'PasswordClear', 'Discount', 'IsActive', 'MayBeContacted', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'groupsId', 'title', 'firstName', 'lastName', 'email', 'phone', 'password', 'passwordClear', 'discount', 'isActive', 'mayBeContacted', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (CustomersPeer::ID, CustomersPeer::GROUPS_ID, CustomersPeer::TITLE, CustomersPeer::FIRST_NAME, CustomersPeer::LAST_NAME, CustomersPeer::EMAIL, CustomersPeer::PHONE, CustomersPeer::PASSWORD, CustomersPeer::PASSWORD_CLEAR, CustomersPeer::DISCOUNT, CustomersPeer::IS_ACTIVE, CustomersPeer::MAY_BE_CONTACTED, CustomersPeer::CREATED_AT, CustomersPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'GROUPS_ID', 'TITLE', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'PASSWORD', 'PASSWORD_CLEAR', 'DISCOUNT', 'IS_ACTIVE', 'MAY_BE_CONTACTED', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'groups_id', 'title', 'first_name', 'last_name', 'email', 'phone', 'password', 'password_clear', 'discount', 'is_active', 'may_be_contacted', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
     /**
@@ -120,12 +123,12 @@ abstract class BaseCustomersPeer
      * e.g. CustomersPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'GroupsId' => 1, 'Title' => 2, 'FirstName' => 3, 'LastName' => 4, 'Email' => 5, 'Phone' => 6, 'Password' => 7, 'PasswordClear' => 8, 'Discount' => 9, 'IsActive' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'groupsId' => 1, 'title' => 2, 'firstName' => 3, 'lastName' => 4, 'email' => 5, 'phone' => 6, 'password' => 7, 'passwordClear' => 8, 'discount' => 9, 'isActive' => 10, 'createdAt' => 11, 'updatedAt' => 12, ),
-        BasePeer::TYPE_COLNAME => array (CustomersPeer::ID => 0, CustomersPeer::GROUPS_ID => 1, CustomersPeer::TITLE => 2, CustomersPeer::FIRST_NAME => 3, CustomersPeer::LAST_NAME => 4, CustomersPeer::EMAIL => 5, CustomersPeer::PHONE => 6, CustomersPeer::PASSWORD => 7, CustomersPeer::PASSWORD_CLEAR => 8, CustomersPeer::DISCOUNT => 9, CustomersPeer::IS_ACTIVE => 10, CustomersPeer::CREATED_AT => 11, CustomersPeer::UPDATED_AT => 12, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'GROUPS_ID' => 1, 'TITLE' => 2, 'FIRST_NAME' => 3, 'LAST_NAME' => 4, 'EMAIL' => 5, 'PHONE' => 6, 'PASSWORD' => 7, 'PASSWORD_CLEAR' => 8, 'DISCOUNT' => 9, 'IS_ACTIVE' => 10, 'CREATED_AT' => 11, 'UPDATED_AT' => 12, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'groups_id' => 1, 'title' => 2, 'first_name' => 3, 'last_name' => 4, 'email' => 5, 'phone' => 6, 'password' => 7, 'password_clear' => 8, 'discount' => 9, 'is_active' => 10, 'created_at' => 11, 'updated_at' => 12, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'GroupsId' => 1, 'Title' => 2, 'FirstName' => 3, 'LastName' => 4, 'Email' => 5, 'Phone' => 6, 'Password' => 7, 'PasswordClear' => 8, 'Discount' => 9, 'IsActive' => 10, 'MayBeContacted' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'groupsId' => 1, 'title' => 2, 'firstName' => 3, 'lastName' => 4, 'email' => 5, 'phone' => 6, 'password' => 7, 'passwordClear' => 8, 'discount' => 9, 'isActive' => 10, 'mayBeContacted' => 11, 'createdAt' => 12, 'updatedAt' => 13, ),
+        BasePeer::TYPE_COLNAME => array (CustomersPeer::ID => 0, CustomersPeer::GROUPS_ID => 1, CustomersPeer::TITLE => 2, CustomersPeer::FIRST_NAME => 3, CustomersPeer::LAST_NAME => 4, CustomersPeer::EMAIL => 5, CustomersPeer::PHONE => 6, CustomersPeer::PASSWORD => 7, CustomersPeer::PASSWORD_CLEAR => 8, CustomersPeer::DISCOUNT => 9, CustomersPeer::IS_ACTIVE => 10, CustomersPeer::MAY_BE_CONTACTED => 11, CustomersPeer::CREATED_AT => 12, CustomersPeer::UPDATED_AT => 13, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'GROUPS_ID' => 1, 'TITLE' => 2, 'FIRST_NAME' => 3, 'LAST_NAME' => 4, 'EMAIL' => 5, 'PHONE' => 6, 'PASSWORD' => 7, 'PASSWORD_CLEAR' => 8, 'DISCOUNT' => 9, 'IS_ACTIVE' => 10, 'MAY_BE_CONTACTED' => 11, 'CREATED_AT' => 12, 'UPDATED_AT' => 13, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'groups_id' => 1, 'title' => 2, 'first_name' => 3, 'last_name' => 4, 'email' => 5, 'phone' => 6, 'password' => 7, 'password_clear' => 8, 'discount' => 9, 'is_active' => 10, 'may_be_contacted' => 11, 'created_at' => 12, 'updated_at' => 13, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
     /**
@@ -210,6 +213,7 @@ abstract class BaseCustomersPeer
             $criteria->addSelectColumn(CustomersPeer::PASSWORD_CLEAR);
             $criteria->addSelectColumn(CustomersPeer::DISCOUNT);
             $criteria->addSelectColumn(CustomersPeer::IS_ACTIVE);
+            $criteria->addSelectColumn(CustomersPeer::MAY_BE_CONTACTED);
             $criteria->addSelectColumn(CustomersPeer::CREATED_AT);
             $criteria->addSelectColumn(CustomersPeer::UPDATED_AT);
         } else {
@@ -224,6 +228,7 @@ abstract class BaseCustomersPeer
             $criteria->addSelectColumn($alias . '.password_clear');
             $criteria->addSelectColumn($alias . '.discount');
             $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.may_be_contacted');
             $criteria->addSelectColumn($alias . '.created_at');
             $criteria->addSelectColumn($alias . '.updated_at');
         }

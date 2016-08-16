@@ -132,6 +132,13 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     protected $is_active;
 
     /**
+     * The value for the may_be_contacted field.
+     * Note: this column has a database default value of: false
+     * @var        boolean
+     */
+    protected $may_be_contacted;
+
+    /**
      * The value for the created_at field.
      * @var        string
      */
@@ -285,6 +292,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $this->groups_id = 1;
         $this->discount = '0.00';
         $this->is_active = true;
+        $this->may_be_contacted = false;
     }
 
     /**
@@ -417,6 +425,17 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     {
 
         return $this->is_active;
+    }
+
+    /**
+     * Get the [may_be_contacted] column value.
+     *
+     * @return boolean
+     */
+    public function getMayBeContacted()
+    {
+
+        return $this->may_be_contacted;
     }
 
     /**
@@ -747,6 +766,35 @@ abstract class BaseCustomers extends BaseObject implements Persistent
     } // setIsActive()
 
     /**
+     * Sets the value of the [may_be_contacted] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Customers The current object (for fluent API support)
+     */
+    public function setMayBeContacted($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->may_be_contacted !== $v) {
+            $this->may_be_contacted = $v;
+            $this->modifiedColumns[] = CustomersPeer::MAY_BE_CONTACTED;
+        }
+
+
+        return $this;
+    } // setMayBeContacted()
+
+    /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -814,6 +862,10 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 return false;
             }
 
+            if ($this->may_be_contacted !== false) {
+                return false;
+            }
+
         // otherwise, everything was equal, so return true
         return true;
     } // hasOnlyDefaultValues()
@@ -847,8 +899,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $this->password_clear = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
             $this->discount = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
             $this->is_active = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-            $this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->may_be_contacted = ($row[$startcol + 11] !== null) ? (boolean) $row[$startcol + 11] : null;
+            $this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -858,7 +911,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 13; // 13 = CustomersPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 14; // 14 = CustomersPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Customers object", $e);
@@ -969,7 +1022,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
 
         $con->beginTransaction();
         try {
-            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this, $con));
             $deleteQuery = CustomersQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
@@ -977,7 +1030,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $deleteQuery->delete($con);
                 $this->postDelete($con);
                 // event behavior
-                EventDispatcherProxy::trigger(array('delete.post', 'model.delete.post'), new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('delete.post','model.delete.post'), new ModelEvent($this, $con));
                 $con->commit();
                 $this->setDeleted(true);
             } else {
@@ -1018,7 +1071,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         try {
             $ret = $this->preSave($con);
             // event behavior
-            EventDispatcherProxy::trigger('model.save.pre', new ModelEvent($this));
+            EventDispatcherProxy::trigger(array('model.save.pre'), new ModelEvent($this, $con));
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
                 // timestampable behavior
@@ -1029,7 +1082,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                     $this->setUpdatedAt(time());
                 }
                 // event behavior
-                EventDispatcherProxy::trigger('model.insert.pre', new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('model.insert.pre'), new ModelEvent($this, $con));
             } else {
                 $ret = $ret && $this->preUpdate($con);
                 // timestampable behavior
@@ -1037,27 +1090,38 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                     $this->setUpdatedAt(time());
                 }
                 // event behavior
-                EventDispatcherProxy::trigger(array('update.pre', 'model.update.pre'), new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('update.pre','model.update.pre'), new ModelEvent($this, $con));
             }
             if ($ret) {
                 $affectedRows = $this->doSave($con);
                 if ($isInsert) {
                     $this->postInsert($con);
                     // event behavior
-                    EventDispatcherProxy::trigger('model.insert.post', new ModelEvent($this));
+                    EventDispatcherProxy::trigger(array('model.insert.post'), new ModelEvent($this, $con));
                 } else {
                     $this->postUpdate($con);
                     // event behavior
-                    EventDispatcherProxy::trigger(array('update.post', 'model.update.post'), new ModelEvent($this));
+                    EventDispatcherProxy::trigger(array('update.post','model.update.post'), new ModelEvent($this, $con));
                 }
                 $this->postSave($con);
                 // event behavior
-                EventDispatcherProxy::trigger('model.save.post', new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('model.save.post'), new ModelEvent($this, $con));
                 CustomersPeer::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
             $con->commit();
+
+
+            if($affectedRows>0 && $ret){
+                if($isInsert) {
+                   EventDispatcherProxy::trigger(array('model.insert.after'), new ModelEvent($this, $con));
+                } else {
+                   EventDispatcherProxy::trigger(array('model.update.after'), new ModelEvent($this, $con));
+                }
+
+                EventDispatcherProxy::trigger(array('model.save.after'), new ModelEvent($this, $con));
+            }
 
             return $affectedRows;
         } catch (Exception $e) {
@@ -1311,6 +1375,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) {
             $modifiedColumns[':p' . $index++]  = '`is_active`';
         }
+        if ($this->isColumnModified(CustomersPeer::MAY_BE_CONTACTED)) {
+            $modifiedColumns[':p' . $index++]  = '`may_be_contacted`';
+        }
         if ($this->isColumnModified(CustomersPeer::CREATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`created_at`';
         }
@@ -1360,6 +1427,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                         break;
                     case '`is_active`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
+                        break;
+                    case '`may_be_contacted`':
+                        $stmt->bindValue($identifier, (int) $this->may_be_contacted, PDO::PARAM_INT);
                         break;
                     case '`created_at`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1625,9 +1695,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 return $this->getIsActive();
                 break;
             case 11:
-                return $this->getCreatedAt();
+                return $this->getMayBeContacted();
                 break;
             case 12:
+                return $this->getCreatedAt();
+                break;
+            case 13:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1670,8 +1743,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
             $keys[8] => $this->getPasswordClear(),
             $keys[9] => $this->getDiscount(),
             $keys[10] => $this->getIsActive(),
-            $keys[11] => $this->getCreatedAt(),
-            $keys[12] => $this->getUpdatedAt(),
+            $keys[11] => $this->getMayBeContacted(),
+            $keys[12] => $this->getCreatedAt(),
+            $keys[13] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1780,9 +1854,12 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->setIsActive($value);
                 break;
             case 11:
-                $this->setCreatedAt($value);
+                $this->setMayBeContacted($value);
                 break;
             case 12:
+                $this->setCreatedAt($value);
+                break;
+            case 13:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1820,8 +1897,9 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if (array_key_exists($keys[8], $arr)) $this->setPasswordClear($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setDiscount($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setIsActive($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
+        if (array_key_exists($keys[11], $arr)) $this->setMayBeContacted($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
     }
 
     /**
@@ -1844,6 +1922,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) $criteria->add(CustomersPeer::PASSWORD_CLEAR, $this->password_clear);
         if ($this->isColumnModified(CustomersPeer::DISCOUNT)) $criteria->add(CustomersPeer::DISCOUNT, $this->discount);
         if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) $criteria->add(CustomersPeer::IS_ACTIVE, $this->is_active);
+        if ($this->isColumnModified(CustomersPeer::MAY_BE_CONTACTED)) $criteria->add(CustomersPeer::MAY_BE_CONTACTED, $this->may_be_contacted);
         if ($this->isColumnModified(CustomersPeer::CREATED_AT)) $criteria->add(CustomersPeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(CustomersPeer::UPDATED_AT)) $criteria->add(CustomersPeer::UPDATED_AT, $this->updated_at);
 
@@ -1919,6 +1998,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $copyObj->setPasswordClear($this->getPasswordClear());
         $copyObj->setDiscount($this->getDiscount());
         $copyObj->setIsActive($this->getIsActive());
+        $copyObj->setMayBeContacted($this->getMayBeContacted());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -4167,6 +4247,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
         $this->password_clear = null;
         $this->discount = null;
         $this->is_active = null;
+        $this->may_be_contacted = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->alreadyInSave = false;

@@ -515,7 +515,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     protected function basePreSelect(PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this));
+        EventDispatcherProxy::trigger('query.select.pre', new QueryEvent($this, $con));
 
         return $this->preSelect($con);
     }
@@ -527,7 +527,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      */
     protected function basePreDelete(PropelPDO $con)
     {
-        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('delete.pre','query.delete.pre'), new QueryEvent($this, $con));
         // event behavior
         // placeholder, issue #5
 
@@ -543,7 +543,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     protected function basePostDelete($affectedRows, PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('delete.post','query.delete.post'), new QueryEvent($this, $con));
 
         return $this->postDelete($affectedRows, $con);
     }
@@ -558,7 +558,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     protected function basePreUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('update.pre', 'query.update.pre'), new QueryEvent($this, $con));
 
         return $this->preUpdate($values, $con, $forceIndividualSaves);
     }
@@ -572,7 +572,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     protected function basePostUpdate($affectedRows, PropelPDO $con)
     {
         // event behavior
-        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this));
+        EventDispatcherProxy::trigger(array('update.post', 'query.update.post'), new QueryEvent($this, $con));
 
         return $this->postUpdate($affectedRows, $con);
     }

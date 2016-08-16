@@ -523,7 +523,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
 
         $con->beginTransaction();
         try {
-            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this));
+            EventDispatcherProxy::trigger(array('delete.pre','model.delete.pre'), new ModelEvent($this, $con));
             $deleteQuery = ProductsQuantityDiscountQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
@@ -531,7 +531,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
                 $deleteQuery->delete($con);
                 $this->postDelete($con);
                 // event behavior
-                EventDispatcherProxy::trigger(array('delete.post', 'model.delete.post'), new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('delete.post','model.delete.post'), new ModelEvent($this, $con));
                 $con->commit();
                 $this->setDeleted(true);
             } else {
@@ -572,35 +572,46 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
         try {
             $ret = $this->preSave($con);
             // event behavior
-            EventDispatcherProxy::trigger('model.save.pre', new ModelEvent($this));
+            EventDispatcherProxy::trigger(array('model.save.pre'), new ModelEvent($this, $con));
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
                 // event behavior
-                EventDispatcherProxy::trigger('model.insert.pre', new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('model.insert.pre'), new ModelEvent($this, $con));
             } else {
                 $ret = $ret && $this->preUpdate($con);
                 // event behavior
-                EventDispatcherProxy::trigger(array('update.pre', 'model.update.pre'), new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('update.pre','model.update.pre'), new ModelEvent($this, $con));
             }
             if ($ret) {
                 $affectedRows = $this->doSave($con);
                 if ($isInsert) {
                     $this->postInsert($con);
                     // event behavior
-                    EventDispatcherProxy::trigger('model.insert.post', new ModelEvent($this));
+                    EventDispatcherProxy::trigger(array('model.insert.post'), new ModelEvent($this, $con));
                 } else {
                     $this->postUpdate($con);
                     // event behavior
-                    EventDispatcherProxy::trigger(array('update.post', 'model.update.post'), new ModelEvent($this));
+                    EventDispatcherProxy::trigger(array('update.post','model.update.post'), new ModelEvent($this, $con));
                 }
                 $this->postSave($con);
                 // event behavior
-                EventDispatcherProxy::trigger('model.save.post', new ModelEvent($this));
+                EventDispatcherProxy::trigger(array('model.save.post'), new ModelEvent($this, $con));
                 ProductsQuantityDiscountPeer::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
             $con->commit();
+
+
+            if($affectedRows>0 && $ret){
+                if($isInsert) {
+                   EventDispatcherProxy::trigger(array('model.insert.after'), new ModelEvent($this, $con));
+                } else {
+                   EventDispatcherProxy::trigger(array('model.update.after'), new ModelEvent($this, $con));
+                }
+
+                EventDispatcherProxy::trigger(array('model.save.after'), new ModelEvent($this, $con));
+            }
 
             return $affectedRows;
         } catch (Exception $e) {
