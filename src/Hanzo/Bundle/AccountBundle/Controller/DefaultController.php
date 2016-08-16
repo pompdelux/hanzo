@@ -561,4 +561,21 @@ class DefaultController extends CoreController
 
         return $this->redirect($this->generateUrl('_account'));
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function mayBeContactedAction(Request $request)
+    {
+        $customer = CustomersPeer::getCurrent();
+
+        if ($customer instanceof Customers) {
+            $customer->setMayBeContacted($request->request->get('answer'));
+            $customer->save();
+        }
+
+        return $this->json_response(['status' => true]);
+    }
 }
