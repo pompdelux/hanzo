@@ -38,6 +38,14 @@
         <source>subscribed.text</source>
         <target>You are now subscribed to our newsletter.</target>
       </trans-unit>
+      <trans-unit id="exists.text">
+        <source>exists.text</source>
+        <target>You are already signed up for our newsletter.</target>
+      </trans-unit>
+      <trans-unit id="resubscribed.text">
+        <source>resubscribed.text</source>
+        <target>We have sent you an email where you will have to confirm your sign up.</target>
+      </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>You have now unsubscribed from POMPdeLUX newsletter.</target>

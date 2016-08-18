@@ -43,16 +43,14 @@
                 <source>unsubscribed.text</source>
                 <target>Du er nu afmeldt POMPdeLUX nyhedsbrev.</target>
             </trans-unit>
-
             <trans-unit id="exists.text">
                 <source>exists.text</source>
-                <target>Du er allerede tilmeldt.</target>
+                <target>Du er allerede tilmeldt vores nyhedsbrev.</target>
             </trans-unit>
             <trans-unit id="resubscribed.text">
                 <source>resubscribed.text</source>
-                <target>Vi har sendt en mail hvor du kan bekræfte din tilmelding.</target>
+                <target>Vi har sendt dig en mail, hvor du skal bekræfte din tilmelding.</target>
             </trans-unit>
-
             <trans-unit id="invalid.email.address">
                 <source>invalid.email.address</source>
                 <target>Den indtastede e-mailaddresse er ikke en gyldig adresse.</target>
