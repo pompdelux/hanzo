@@ -25,32 +25,58 @@ abstract class BaseResponse
     protected $data;
 
     /**
+     * is one of:
+     *   - exists
+     *   - subscribed
+     *   - resubscribed
+     *   - unsubscribed
+     *
+     * @var string
+     */
+    protected $action;
+
+    /**
      * undocumented class variable
      *
      * @var string
      */
     protected $errorMessage = NULL;
 
+    /**
+     * @return bool
+     */
     public function isSuccess()
     {
         return ($this->status == self::REQUEST_SUCCESS);
     }
 
+    /**
+     * @return bool
+     */
     public function isError()
     {
         return ($this->status != self::REQUEST_SUCCESS);
     }
 
+    /**
+     * @param $code
+     */
     public function setStatus($code)
     {
         $this->status = $code;
     }
 
+    /**
+     * @param $message
+     */
     public function setErrorMessage($message)
     {
         $this->errorMessage = $message;
     }
 
+    /**
+     * @return string
+     */
     public function getErrorMessage()
     {
         return $this->errorMessage;
@@ -59,8 +85,7 @@ abstract class BaseResponse
     /**
      * getStatus
      * @return int
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getStatus()
     {
         return $this->status;
@@ -69,8 +94,7 @@ abstract class BaseResponse
     /**
      * getData
      * @return array
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function getData()
     {
         return $this->data;
@@ -82,10 +106,29 @@ abstract class BaseResponse
      * @param array $data
      *
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
+     */
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+    /**
+     * @param string $action
+     *
+     * @return $this
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 }

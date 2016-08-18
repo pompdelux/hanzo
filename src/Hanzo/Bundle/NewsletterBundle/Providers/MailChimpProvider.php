@@ -108,13 +108,18 @@ class MailChimpProvider extends BaseProvider
     {
         $client = $this->getMailChimpClient();
         $response = $client->get("lists/{$list_id}/members/".$client->subscriberHash($subscriber_id));
+        $response->setAction('exists');
 
         if (($response->getStatus() === BaseResponse::REQUEST_SUCCESS) &&
-            ('subscribed' != $response->getData()['status'])
+            ('unsubscribed' === $response->getData()['status'])
         ) {
             $response = $client->patch("lists/{$list_id}/members/".$client->subscriberHash($subscriber_id), [
-                'status' => 'subscribed',
+                'status' => 'pending',
             ]);
+
+            if (($response->getStatus() === BaseResponse::REQUEST_SUCCESS)) {
+                $response->setAction('resubscribed');
+            }
         }
 
         return $response;
@@ -145,7 +150,13 @@ class MailChimpProvider extends BaseProvider
 
         $client = $this->getMailChimpClient();
 
-        return $client->post("lists/{$list_id}/members", $data);
+        $response =  $client->post("lists/{$list_id}/members", $data);
+
+        if ($response->getStatus() === BaseResponse::REQUEST_SUCCESS) {
+            $response->setAction('subscribed');
+        }
+
+        return $response;
     }
 
     /**

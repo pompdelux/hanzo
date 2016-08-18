@@ -318,6 +318,41 @@ class DefaultController extends CoreController
         $locale = $request->getLocale();
         $translator = $this->get('translator');
         $router = $this->container->get('router');
+        $domainKey = $hanzo->get('core.domain_key');
+
+        $sql = "
+            SELECT
+                c_value
+            FROM
+                settings
+            WHERE
+                c_key = 'active_product_range'
+            AND
+                ns = 'core'
+            UNION SELECT
+                c_value
+            FROM
+                domains_settings
+            WHERE
+                c_key = 'active_product_range'
+            AND
+                domain_key IN (?, ?)
+            AND
+                ns = 'core'
+        ";
+
+        $con = \Propel::getConnection();
+        $statement = $con->prepare($sql);
+        $statement->execute([
+            $domainKey,
+            'Sales'.$domainKey
+        ]);
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+        $range = [];
+        while ($record = $statement->fetch()) {
+            $range[] = $record['c_value'];
+        }
 
         $cdn = $hanzo->get('core.cdn');
         $find = '~(background|src)="(../|/)~';
@@ -333,7 +368,7 @@ class DefaultController extends CoreController
             ->filterByLocale($locale)
             ->endUse()
             ->filterByMaster(null)
-            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
+            ->filterByRange($range)
             ->find();
 
         $data = [];
