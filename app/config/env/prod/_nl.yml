@@ -5,9 +5,9 @@ framework:
 
 propel:
     dbal:
-        default_connection: default
+        default_connection: pdldbnl1
         connections:
-            default:
+            pdldbnl1:
                 driver:               %database_driver%
                 user:                 %prod_nl_database_user%
                 password:             %prod_nl_database_password%
