@@ -38,6 +38,14 @@
         <source>subscribed.text</source>
         <target>Je bent nu aangemeld voor onze nieuwsbrief.</target>
       </trans-unit>
+      <trans-unit id="exists.text">
+        <source>exists.text</source>
+        <target>Je bent al aangemeld voor onze nieuwsbrief.</target>
+      </trans-unit>
+      <trans-unit id="resubscribed.text">
+        <source>resubscribed.text</source>
+        <target>We hebben je een e-mail gestuurd met het verzoek je inschrijving te bevestigen.</target>
+      </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target> Je hebt je zojuist afgemeld voor de POMPdeLUX nieuwsbrief.</target>
