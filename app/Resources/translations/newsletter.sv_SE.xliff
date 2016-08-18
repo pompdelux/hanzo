@@ -38,6 +38,14 @@
         <source>subscribed.text</source>
         <target>Du är nu registrerad till vårt nyhetsbrev.</target>
       </trans-unit>
+      <trans-unit id="exists.text">
+        <source>exists.text</source>
+        <target>Du har redan anmält dig till att få vårt nyhetsbrev .</target>
+      </trans-unit>
+      <trans-unit id="resubscribed.text">
+        <source>resubscribed.text</source>
+        <target>Vi har skickat ett mail till dig där du ska bekräfta din anmälan.</target>
+      </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>Du har nu blivit avregistrerad från POMPdeLUX nyhetsbrev.</target>

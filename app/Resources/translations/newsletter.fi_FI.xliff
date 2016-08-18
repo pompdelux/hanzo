@@ -38,6 +38,14 @@
         <source>subscribed.text</source>
         <target>Olet nyt tilannut uutiskirjeemme.</target>
       </trans-unit>
+      <trans-unit id="exists.text">
+        <source>exists.text</source>
+        <target>Olet jo tilannut uutiskirjeemme.</target>
+      </trans-unit>
+      <trans-unit id="resubscribed.text">
+        <source>resubscribed.text</source>
+        <target>Olemme lähettäneet sinulle sähköpostin, jossa sinun pitää vahvistaa tilauksesi.</target>
+      </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>Sinut on nyt poistettu POMPdeLUX uutiskirjeen listalta.</target>
