@@ -426,7 +426,6 @@ class DefaultController extends CoreController
 
         $variants = ProductsQuery::create()
             ->filterByMaster($master->getSku())
-            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->orderBySku()
             ->find();
 
