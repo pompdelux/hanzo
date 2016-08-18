@@ -4,8 +4,11 @@
     'domain' : '{{ app.request.getHttpHost() }}',
     'path' : '{{ path('_homepage', {'_locale' : app.request.locale}) }}'
   };
-  var base_url = '{{ url('_homepage', {'_locale' : app.request.locale}) }}';
+  var base_url = window.location.protocol+'//'+window.location.hostname+'/{{ app.request.locale }}/';
   var cdn_url = '{{ cdn }}';
+{#
+  var base_url = '{{ url('_homepage', {'_locale' : app.request.locale}) }}';
+#}
 </script>
 
 <script src="{{ asset_url('fx/build/modernizr-custom.js') }}"></script>
