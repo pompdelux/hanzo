@@ -6,7 +6,7 @@
   };
   var base_url = window.location.protocol+'//'+window.location.hostname+'/{{ app.request.locale }}/';
   var cdn_url = '{{ cdn }}';
-{#
+{# for some reason this resolves to ssl ???
   var base_url = '{{ url('_homepage', {'_locale' : app.request.locale}) }}';
 #}
 </script>
