@@ -69,4 +69,3 @@ ax:
 consignor:
     shipment_server:
         endpoint: "https://www.shipmentserver.com/ship/ShipmentServerModule.dll"
-

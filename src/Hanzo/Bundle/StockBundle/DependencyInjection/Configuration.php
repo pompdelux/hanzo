@@ -30,6 +30,12 @@ class Configuration implements ConfigurationInterface
                         ->prototype('scalar')->end()
                     ->end()
                 ->end()
+                ->arrayNode('connection_map')
+                    ->isRequired()
+                    ->requiresAtLeastOneElement()
+                    ->useAttributeAsKey('alias', true)
+                    ->prototype('scalar')->end()
+                ->end()
             ->end()
         ;
 
