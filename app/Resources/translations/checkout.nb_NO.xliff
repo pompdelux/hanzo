@@ -289,7 +289,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance AS faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min Side som en pdf fil innen 24 timer.]]></target>
+        <target><![CDATA[arvato Finance AS faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 25,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min Side som en pdf fil innen 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

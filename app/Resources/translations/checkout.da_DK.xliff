@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
+        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 25,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
