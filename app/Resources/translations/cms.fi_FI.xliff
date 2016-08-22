@@ -169,148 +169,147 @@
                 <source>739.settings</source>
                 <target><![CDATA[
                     {
-                    "category_id": "169",
-                    "embedded_category_id": [
-                        "5",
-                        "6",
-                        "7",
-                        "8",
-                        "9",
-                        "11",
-                        "43",
-                        "44",
-                        "83",
-                        "84",
-                        "116",
-                        "117",
-                        "118",
-                        "119",
-                        "120",
-                        "128",
-                        "132",
-                        "135",
-                        "148",
-                        "149",
-                        "150",
-                        "151",
-                        "152",
-						"171",
-						"173",
-						"175",
-						"178",
-						"179",
-						"180",
-						"182",
-						"188",
-						"189",
-						"208"
-                    ],
-                    "colors": "",
-			"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
-                        "colormap": {
-                             "Black": [
-			"Black",
-            "Black Melange"
-		],
-		"Blue": [
-			"Navy",
-			"Blue ",
-			"Navy/Blue",
-			"Blue Car",
-			"Blue Man",
-			"Blue Melange",
-			"Blue Scooter",
-			"Blue Text",
-			"Blue/Grey Melange",
-			"Dark Blue",
-			"Dark Blue Melange",
-			"Navy Check",
-			"Navy Melange",
-			"Navy Small Stripe",
-			"Navy Stripe",
-			"Navy/Grey Melange"
-		],
-        "Brown": [
-			"Brown",
-			"Brown Melange",
-            "Beige",
-            "Beige Melange",
-            "Mushroom"
-            ],
-		"Denim": [
-			"Blue Denim",
-			"Black Denim",
-            "Grey Denim",
-            "Dark Grey Denim"
-		],
-        "Eggplant": [
-			"Eggplant"
-		],
-		"Green": [
-			"Green",
-			"Green Melange",
-			"Green/Green Melange",
-			"Dark Green",
-			"Dusty Green"
-		],
-		"Grey": [
-			"Grey",
-			"Grey Melange",
-			"Grey Melange/Petrol",
-			"Grey/Black",
-            "Grey/Mushroom ",
-            "Light Grey",
-            "Light Grey Melange",
-            "Dark Grey",
-            "Dark Grey/Black",
-            "Dark Grey Melange"
-		],
-		"Khaki/Olive": [
-			"Khaki/Olive",
-			"Khaki",
-			"Olive"
-		],
-        "Petrol": [
-			"Petrol",
-			"Petrol Melange",
-			"Petrol/Blue",
-			"Petrol/Grey Melange",
-            "Dark Petrol",
-            "Dark Petrol Melange"
-		],
-		"White": [
-			"White",
-            "White/Petrol",
-			"Off White Melange",
-			"Off White/Black",
-			"Off White/Navy"
-		]
-        "Yellow": [
-			"Yellow/Navy Melange"
-		]
-                        },
-                       "sizes": {
-                             "80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "92": ["92", "86-92", "92-98", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "98": ["98", "98-104", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "104": ["104", "98-104", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "110": ["110", "110-116", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "116": ["116", "110-116", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "122": ["122", "122-128", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "128": ["128", "122-128", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "134": ["134", "134-140", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "140": ["140", "134-140", "54", "56", "54-56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "146": ["146", "146-152", "54", "56", "54-56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
-                            "152": ["152", "146-152", "54", "56", "54-56", "M", "L", "XL", "One Size", "20-22", "23-26", "27-30", "31-34", "35-38"]
-                       },
-                        "tokens": {
-                        "Ekologi": ["156"],
-                        "Oekotex": ["155"],
-		                "Villa": ["210"]
-                                    },
-                        "discount": {
-                        }
+                    	"category_id": "169",
+                    	"embedded_category_id": [
+                    		"5",
+                    		"6",
+                    		"7",
+                    		"8",
+                    		"9",
+                    		"11",
+                    		"43",
+                    		"44",
+                    		"83",
+                    		"84",
+                    		"116",
+                    		"117",
+                    		"118",
+                    		"119",
+                    		"120",
+                    		"128",
+                    		"132",
+                    		"135",
+                    		"148",
+                    		"149",
+                    		"150",
+                    		"151",
+                    		"152",
+                    		"171",
+                    		"173",
+                    		"175",
+                    		"178",
+                    		"179",
+                    		"180",
+                    		"182",
+                    		"188",
+                    		"189",
+                    		"208"
+                    	],
+                    	"colors": "",
+                    	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
+                    	"colormap": {
+                    		"Black": [
+                    			"Black",
+                    			"Black Melange"
+                    		],
+                    		"Blue": [
+                    			"Navy",
+                    			"Blue ",
+                    			"Navy/Blue",
+                    			"Blue Car",
+                    			"Blue Man",
+                    			"Blue Melange",
+                    			"Blue Scooter",
+                    			"Blue Text",
+                    			"Blue/Grey Melange",
+                    			"Dark Blue",
+                    			"Dark Blue Melange",
+                    			"Navy Check",
+                    			"Navy Melange",
+                    			"Navy Small Stripe",
+                    			"Navy Stripe",
+                    			"Navy/Grey Melange"
+                    		],
+                    		"Brown": [
+                    			"Brown",
+                    			"Brown Melange",
+                    			"Beige",
+                    			"Beige Melange",
+                    			"Mushroom"
+                    		],
+                    		"Denim": [
+                    			"Blue Denim",
+                    			"Black Denim",
+                    			"Grey Denim",
+                    			"Dark Grey Denim"
+                    		],
+                    		"Eggplant": [
+                    			"Eggplant"
+                    		],
+                    		"Green": [
+                    			"Green",
+                    			"Green Melange",
+                    			"Green/Green Melange",
+                    			"Dark Green",
+                    			"Dusty Green"
+                    		],
+                    		"Grey": [
+                    			"Grey",
+                    			"Grey Melange",
+                    			"Grey Melange/Petrol",
+                    			"Grey/Black",
+                    			"Grey/Mushroom ",
+                    			"Light Grey",
+                    			"Light Grey Melange",
+                    			"Dark Grey",
+                    			"Dark Grey/Black",
+                    			"Dark Grey Melange"
+                    		],
+                    		"Khaki/Olive": [
+                    			"Khaki/Olive",
+                    			"Khaki",
+                    			"Olive"
+                    		],
+                    		"Petrol": [
+                    			"Petrol",
+                    			"Petrol Melange",
+                    			"Petrol/Blue",
+                    			"Petrol/Grey Melange",
+                    			"Dark Petrol",
+                    			"Dark Petrol Melange"
+                    		],
+                    		"White": [
+                    			"White",
+                    			"White/Petrol",
+                    			"Off White Melange",
+                    			"Off White/Black",
+                    			"Off White/Navy"
+                    		],
+                    		"Yellow": [
+                    			"Yellow/Navy Melange"
+                    		]
+                    	},
+                    	"sizes": {
+                    		"80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"92": ["92", "86-92", "92-98", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"98": ["98", "98-104", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"104": ["104", "98-104", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"110": ["110", "110-116", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"116": ["116", "110-116", "52", "54", "50-52", "54-56", "S", "M", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"122": ["122", "122-128", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"128": ["128", "122-128", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"134": ["134", "134-140", "54", "56", "54-56", "M", "L", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"140": ["140", "134-140", "54", "56", "54-56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"146": ["146", "146-152", "54", "56", "54-56", "M", "L", "XL", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
+                    		"152": ["152", "146-152", "54", "56", "54-56", "M", "L", "XL", "One Size", "20-22", "23-26", "27-30", "31-34", "35-38"]
+                    	},
+                    	"tokens": {
+                    		"Ekologi": ["156"],
+                    		"Oekotex": ["155"],
+                    		"Villa": ["210"]
+                    	},
+                    	"discount": {}
                     }
                 ]]></target>
             </trans-unit>
