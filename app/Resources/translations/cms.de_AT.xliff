@@ -50,67 +50,98 @@
 						"207"
                     ],
                     "colors": "",
-					"color_sort": "Rose,Light Rose,Black/Light Rose,Dark Rose,Light Rose Bird,Light Rose Balloon,Light Rose/Navy,Purple/Navy,Light Purple Bird,Dark Purple,Purple,Light Purple,Purple Balloon,Off White/Mint,Light Mint,Mint,Dark Mint,Mint Bird,Navy,Blue,Blue Denim,Purple/Navy,Light Rose/Navy,Navy/Off White,Navy/Off White,Off White,Off White Bird,Off White/Mint,Grey,Grey Melange,Light Grey,Light Grey Balloon,Black/Light Rose,Black,Yellow,Blue Denim,Light Blue Denim",
-    "colormap": {
-         "Black": [
+						"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange, Mint, Mint,Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy",
+                        "colormap": {
+                                "Black": [
 			"Black",
-			"Black/Light Rose"
+            "Black Melange"
 		],
 		"Blue": [
-			"Blue",
 			"Navy",
-			"Blue Denim",
-			"Purple/Blue",
-			"Light Rose/Navy",
-			"Blue Balloon",
-			"Navy/Off White"
+			"Blue ",
+			"Navy/Blue",
+			"Blue Car",
+			"Blue Man",
+			"Blue Melange",
+			"Blue Scooter",
+			"Blue Text",
+			"Blue/Grey Melange",
+			"Dark Blue",
+			"Dark Blue Melange",
+			"Navy Check",
+			"Navy Melange",
+			"Navy Small Stripe",
+			"Navy Stripe",
+			"Navy/Grey Melange"
 		],
+        "Brown": [
+			"Brown",
+			"Brown Melange",
+            "Beige",
+            "Beige Melange",
+            "Mushroom"
+            ],
 		"Denim": [
-			"Blue Denim"
+			"Blue Denim",
+			"Black Denim",
+            "Grey Denim",
+            "Dark Grey Denim"
+	        ],
+        "Green": [
+			"Green",
+			"Green Melange",
+			"Green/Green Melange",
+			"Dark Green",
+			"Dusty Green"
 		],
 		"Grey": [
 			"Grey",
 			"Grey Melange",
-			"Light Grey",
-			"Light Grey Balloon"
+			"Grey Melange/Petrol",
+			"Grey/Black",
+            "Grey/Mushroom ",
+            "Light Grey",
+            "Light Grey Melange",
+            "Dark Grey",
+            "Dark Grey/Black",
+            "Dark Grey Melange"
+		     ],
+        "Mint": [
+			"Mint"
 		],
-
-		"Mint": [
-			"Off White/Mint",
-			"Light Mint",
-			"Light Mint",
-			"Mint",
-			"Dark Mint",
-			"Mint Bird"
-		],
-		"Plum": [
-			"Purple/Navy",
-			"Light Purple Bird",
-			"Dark Purple",
+        "Purple": [
 			"Purple",
-			"Light Purple",
-			"Purple Balloon"
+            "Purple/Blue",
+            "Purple/Dark Blue",
+            "Purple/Navy",
+            "Dark Purple",
+            "Dark Purple/Navy",
+            "Dark Purple Print",
+            "Light Purple"
 		],
-		"Rose": [
+        "Rose": [
 			"Rose",
-			"Light Rose",
-			"Black/Light Rose",
-			"Dark Rose",
-			"Light Rose Bird",
-			"Light Rose Balloon"
-
+            "Rose/Black",
+            "Rose/Dark Grey",
+            "Dark Rose",
+            "Dark Rose Print",
+            "Light Rose",
+            "Light Rose Circle",
+            "Light Rose Heart",
+            "Light Rose Rabbit",
+            "Light Rose Tree",
+            "Light Rose/Dark Blue",
+            "Light Rose/Green"
 		],
-		"White": [
-			"Navy/Off White",
-			"Off White",
-			"Off White Bird",
-			"Off White/Mint"
-		],
-		"Yellow": [
-			"Yellow"
+        "White": [
+			"White",
+            "White/Petrol",
+            "Off White Melange",
+            "Off White/Black",
+            "Off White/Navy"
 		]
-
                         },
+						
     "sizes": {
                             "80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
                             "86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
@@ -180,66 +211,90 @@
 						"208"
                     ],
                     "colors": "",
-					"color_sort": "Blue,Navy,Blue Denim,Navy/Off White,Light Blue Denim,Light Blue,Navy Mix,Navy Stripe,Petrol Melange,Blue Melang,Green/Navy,Navy/Blue,Blue Stripe,Dark Petrol,Grey Melange/Petrol,Navy/Grey Melange,Petrol,Petrol Melange,Dark Petrol,Grey Melange/Petrol,Grey,Grey Melange/Petrol,Navy/Grey Melange,Grey Melange,Green,Green/Navy,Olive,Brown,Sand,Navy/Off White,Black,Black/Light Rose,Denim,Blue Denim,Light Blue Denim",
+			"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
                         "colormap": {
                              "Black": [
-			"Black"
+			"Black",
+            "Black Melange"
 		],
 		"Blue": [
 			"Navy",
 			"Blue ",
 			"Navy/Blue",
-			"Blue Deimin",
-			"Navy/Off White",
-			"Light Blue Denim",
-			"Light Blue",
-			"Navy Mix",
-			"Navy Stripe",
-			"Petrol Melange",
+			"Blue Car",
+			"Blue Man",
 			"Blue Melange",
-			"Green/Navy",
-			"Navy/Blue",
-			"Blue Stripe",
-			"Dark Petrol",
-			"Grey Melange/Petrol",
+			"Blue Scooter",
+			"Blue Text",
+			"Blue/Grey Melange",
+			"Dark Blue",
+			"Dark Blue Melange",
+			"Navy Check",
+			"Navy Melange",
+			"Navy Small Stripe",
+			"Navy Stripe",
 			"Navy/Grey Melange"
 		],
+        "Brown": [
+			"Brown",
+			"Brown Melange",
+            "Beige",
+            "Beige Melange",
+            "Mushroom"
+            ],
 		"Denim": [
 			"Blue Denim",
-			"Light Blue Denim"
+			"Black Denim",
+            "Grey Denim",
+            "Dark Grey Denim"
+		],
+        "Eggplant": [
+			"Eggplant"
 		],
 		"Green": [
 			"Green",
-			"Light Green",
-			"Navy/Green",
-			"Olive",
-			"Petrol"
+			"Green Melange",
+			"Green/Green Melange",
+			"Dark Green",
+			"Dusty Green"
 		],
 		"Grey": [
 			"Grey",
 			"Grey Melange",
 			"Grey Melange/Petrol",
-			"Navy/Grey Melange"
+			"Grey/Black",
+            "Grey/Mushroom ",
+            "Light Grey",
+            "Light Grey Melange",
+            "Dark Grey",
+            "Dark Grey/Black",
+            "Dark Grey Melange"
 		],
-		"Petrol": [
-			"Dark Petrol",
-			"Grey Melange/Petrol",
-			"Petrol",
-			"Petrol Melange"
-		],
-		"Sand/Brown": [
-			"Sand",
-			"Brown",
+		"Khaki/Olive": [
+			"Khaki/Olive",
+			"Khaki",
 			"Olive"
 		],
+        "Petrol": [
+			"Petrol",
+			"Petrol Melange",
+			"Petrol/Blue",
+			"Petrol/Grey Melange",
+            "Dark Petrol",
+            "Dark Petrol Melange"
+		],
 		"White": [
-			"Off White",
-			"Off White Check",
-			"Navy/Off White ",
-			"White"
+			"White",
+            "White/Petrol",
+			"Off White Melange",
+			"Off White/Black",
+			"Off White/Navy"
 		]
-
+        "Yellow": [
+			"Yellow/Navy Melange"
+		]
                         },
+						
                        "sizes": {
                             "80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
                             "86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
