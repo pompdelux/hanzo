@@ -7,7 +7,10 @@
         <parameter key="payment.dibsapi.class">Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi</parameter>
         <parameter key="payment.gothiaapi.class">Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi</parameter>
         <parameter key="payment.gothiadeapi.class">Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaDEApi</parameter>
+
         <parameter key="payment.manualpaymentapi.class">Hanzo\Bundle\PaymentBundle\Methods\ManualPayment\ManualPaymentApi</parameter>
+        <parameter key="payment.invoicepaymentapi.class">Hanzo\Bundle\PaymentBundle\Methods\InvoicePayment\InvoicePaymentApi</parameter>
+
         <parameter key="payment.giftcardapi.class">Hanzo\Bundle\PaymentBundle\Methods\GiftCard\GiftCardApi</parameter>
         <parameter key="payment.pensioapi.class">Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi</parameter>
         <parameter key="payment.paypalapi.class">Hanzo\Bundle\PaymentBundle\Methods\PayPal\PayPalApi</parameter>
@@ -50,6 +53,15 @@
                 <argument type="string">%kernel.environment%</argument>
             </argument>
             <argument type="string">%payment.manualpaymentapi.class%</argument>
+            <tag name="payment.api" />
+        </service>
+
+        <service id="payment.invoicepaymentapi" class="%payment.invoicepaymentapi.class%" factory-service="service_factory" factory-method="get">
+            <argument type="string">invoicepaymentapi</argument>
+            <argument type="collection">
+                <argument type="string">%kernel.environment%</argument>
+            </argument>
+            <argument type="string">%payment.invoicepaymentapi.class%</argument>
             <tag name="payment.api" />
         </service>
 
