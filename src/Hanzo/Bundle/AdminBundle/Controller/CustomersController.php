@@ -91,24 +91,24 @@ class CustomersController extends CoreController
             $pages = [];
             foreach ($customers->getLinks(10) as $page) {
                 if ($qClean) {
-                    $pages[$page] = $router->generate($route, ['pager' => $page, 'q' => $qClean], true);
+                    $pages[$page] = $router->generate($route, ['pager' => $page, 'q' => $qClean, 'domain_key' => $domain_key], true);
                 } else {
-                    $pages[$page] = $router->generate($route, ['pager' => $page], true);
+                    $pages[$page] = $router->generate($route, ['pager' => $page, 'domain_key' => $domain_key], true);
                 }
             }
 
             // If search query, add it to the route
             if ($qClean) {
                 $paginate = [
-                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage(), 'q' => $qClean], true)),
-                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage(), 'q' => $qClean], true)),
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage(), 'q' => $qClean, 'domain_key' => $domain_key], true)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage(), 'q' => $qClean, 'domain_key' => $domain_key], true)),
                     'pages' => $pages,
                     'index' => $pager
                 ];
             } else {
                 $paginate = [
-                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage()], true)),
-                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage()], true)),
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getNextPage(), 'domain_key' => $domain_key], true)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, ['pager' => $customers->getPreviousPage(), 'domain_key' => $domain_key], true)),
                     'pages' => $pages,
                     'index' => $pager
                 ];
