@@ -66,11 +66,21 @@ class BundleController extends CoreController
                 ->useProductsQuery()
                 ->filterBySku($main_product->getSku())
                 ->endUse()
-                ->findOne()
+                ->find()
             ;
 
-            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-            $product_route = $router_keys[$key];
+            foreach ($products2category as $p2c) {
+                $key = '_' . $locale . '_' . $p2c->getCategoriesId();
+
+                if (isset($router_keys[$key])) {
+                    $product_route = $router_keys[$key];
+                    break;
+                }
+            }
+
+            if (empty($product_route)) {
+                $product_route = 'product_info';
+            }
 
             // Without this i18n behaviour uses da_DK
             $main_product->setLocale($hanzo->get('core.locale'));
