@@ -285,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia betaalkosten EUR 5,00</target>
+        <target>Gothia betaalkosten EUR 3,00</target>
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>
@@ -442,6 +442,18 @@
                 <label for="js_checkout_confirm_terms">Ik bevestig dat ik de heb gelezen en geaccepteerd</label>
                 <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" class="js-external">POMPdeLUX Voorwaarden</a>.
           ]]></target>
+        </trans-unit>
+        <trans-unit id="payment.invoicepayment.title">
+            <source>payment.invoicepayment.title</source>
+            <target>Betales via faktura</target>
+        </trans-unit>
+        <trans-unit id="payment.invoicepayment.text">
+            <source>payment.invoicepayment.text</source>
+            <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+        </trans-unit>
+        <trans-unit id="payment.invoicepayment.label">
+            <source>payment.invoicepayment.label</source>
+            <target>Fakturabetaling</target>
         </trans-unit>
     </body>
   </file>

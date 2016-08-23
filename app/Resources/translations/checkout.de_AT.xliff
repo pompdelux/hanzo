@@ -307,7 +307,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia-Rechnung(Gebühr 5,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Rechnung(Gebühr 0,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.gothia_lv.desc">
         <source>payment.gothia_lv.desc</source>
@@ -475,9 +475,21 @@ Sie müssen Waren hinzufügen.
                 <a href="/de_AT/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
         </trans-unit>
-<trans-unit id="late.delivery.notice">
+      <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
         <target><![CDATA[[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Betales via faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Fakturabetaling</target>
       </trans-unit>
     </body>
   </file>

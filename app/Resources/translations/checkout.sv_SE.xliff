@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance AB faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
+        <target><![CDATA[arvato Finance AB faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 25,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
@@ -453,6 +453,18 @@
                 <a href="/sv_SE/forside/kundservice/villkor" class="js-external">POMPdeLUX Villkor</a>.
           ]]></target>
         </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Betales via faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Fakturabetaling</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

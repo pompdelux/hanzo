@@ -435,7 +435,6 @@ class DefaultController extends CoreController
 
         $variants = ProductsQuery::create()
             ->filterByMaster($master->getSku())
-            ->filterByRange($this->container->get('hanzo_product.range')->getCurrentRange())
             ->orderBySku()
             ->find();
 
@@ -470,8 +469,8 @@ class DefaultController extends CoreController
     private function getImages(Products $master)
     {
         $images = ProductsImagesQuery::create()
-            ->leftJoinProductsImagesProductReferences()
             ->filterByProductsId($master->getId())
+            ->groupByImage()
             ->find();
 
         $data = [];

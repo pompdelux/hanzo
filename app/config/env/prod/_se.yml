@@ -8,9 +8,9 @@ framework:
 
 propel:
     dbal:
-        default_connection: default
+        default_connection: pdldbse1
         connections:
-            default:
+            pdldbse1:
                 driver:               %database_driver%
                 user:                 %prod_se_database_user%
                 password:             %prod_se_database_password%

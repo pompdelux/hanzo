@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
+        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 25,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -464,6 +464,18 @@
               <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer</label>
               <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Betales via faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Fakturabetaling</target>
       </trans-unit>
     </body>
   </file>

@@ -271,7 +271,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 4,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.]]></target>
+        <target><![CDATA[arvato Finance-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 3,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -429,6 +429,18 @@
                 <a href="/fi_FI/koti/asiakaspalvelu/ehdotjavaatimukset" class="js-external">POMPdeLUXin ehdot</a>.
             ]]></target>
         </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Betales via faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Fakturabetaling</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
