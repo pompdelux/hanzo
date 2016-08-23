@@ -1,0 +1,12 @@
+<h2>{{ 'payment.invoicepayment.title'|trans({}, 'checkout') }}</h2>
+
+<form name="payment-invoicepayment" id="invoicepayment" action="{{  path('invoicepayment_callback') }}" method="post">
+  <ul class="payment-methods" id="payment-method-invoicepayment">
+    <li>
+      <p>{{ 'payment.invoicepayment.text'|trans({}, 'checkout')|raw }}</p>
+
+      <input type="radio" value="invoicepayment" id="pbb" name="paytype">
+      <label for="pbb">{{ 'payment.invoicepayment.label'|trans({}, 'checkout') }}</label>
+    </li>
+  </ul>
+</form>
