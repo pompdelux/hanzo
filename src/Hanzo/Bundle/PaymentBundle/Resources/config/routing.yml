@@ -74,6 +74,11 @@ _manualpayment_callback:
     pattern:  /payment/manualpayment/callback
     defaults: { _controller: PaymentBundle:ManualPayment:callback }
 
+# INVOICE }-------------------------
+_invoicepayment_callback:
+    pattern:  /payment/invoicepayment/callback
+    defaults: { _controller: PaymentBundle:InvoicePayment:callback }
+
 # GiftCard }----------------------
 _gift_card_callback:
     pattern:  /payment/gift-card/callback
