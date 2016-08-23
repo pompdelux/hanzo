@@ -465,6 +465,18 @@
               <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
       </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Betales via faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Fakturabetaling</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
