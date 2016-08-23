@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
+use Doctrine\Common\Collections\Criteria;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -10,6 +11,7 @@ use Hanzo\Model\CmsPeer;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,6 +95,12 @@ class DefaultController extends CoreController
         return $this->response($html);
     }
 
+    /**
+     * @param string $view
+     * @param string $filter
+     *
+     * @return Response
+     */
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
         $filterMap = array(
@@ -108,6 +116,7 @@ class DefaultController extends CoreController
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
+            ->filterBySku('FREEPOMP%', \Criteria::NOT_LIKE)
             ->filterByRange($productRange)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId($domainId)
