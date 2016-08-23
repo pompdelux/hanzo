@@ -585,9 +585,6 @@ class SyncSalesOrder extends BaseService
                 break;
 
             case 'manualpayment':
-                $custPaymMode = 'Bank';
-                break;
-
             case 'invoicepayment':
                 $custPaymMode = 'Faktura';
                 break;
