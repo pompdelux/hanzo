@@ -76,6 +76,26 @@ class BundleController extends CoreController
 
             $product_route = $return;
 
+//            $products2category = ProductsToCategoriesQuery::create()
+//                ->useProductsQuery()
+//                ->filterBySku($main_product->getSku())
+//                ->endUse()
+//                ->find()
+//            ;
+//
+//            foreach ($products2category as $p2c) {
+//                $key = '_' . strtolower($request->getLocale()) . '_' . $p2c->getCategoriesId();
+//
+//                if (isset($router_keys[$key])) {
+//                    $product_route = $router_keys[$key];
+//                    break;
+//                }
+//            }
+//
+//            if (empty($product_route)) {
+//                $product_route = 'product_info';
+//            }
+
             // Without this i18n behaviour uses da_DK
             $main_product->setLocale($request->getLocale());
 
@@ -428,6 +448,6 @@ class BundleController extends CoreController
             }
         }
 
-        return false;
+        return 'product_info';
     }
 }

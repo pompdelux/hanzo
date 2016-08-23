@@ -108,7 +108,7 @@ class AddressController extends CoreController
         // to enable address locator or not.
         $enableLocator = ($type != 'payment' && in_array($deliveryMethodId, [12, 71]));
 
-        if (!$address) {
+        if (empty($address)) {
             $address = new Addresses();
             $address->setType($type);
             $address->setCustomersId($customer_id);
