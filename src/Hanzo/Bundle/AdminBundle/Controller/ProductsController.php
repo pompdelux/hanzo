@@ -638,7 +638,7 @@ class ProductsController extends CoreController
             ->filterById($id)
             ->findOne($this->getDbConnection());
 
-        if ($style instanceof ProductsQuery) {
+        if ($style instanceof Products) {
             $style->delete($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
