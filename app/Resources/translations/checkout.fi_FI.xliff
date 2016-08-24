@@ -113,7 +113,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target>Huom! Muista pyytää asiakasta muokkaamaan tilausta ja muuttamaan maksutapaa 24 tunnin kuluessa, koska muuten tilaus poistetaan.</target>
+        <target>Huom! Muista pyytää asiakasta muokkaamaan tilausta ja muuttamaan maksutapa 24 tunnin kuluessa tai muuten tilaus poistetaan.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
@@ -271,7 +271,8 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 3,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.]]></target>
+        <target><![CDATA[Tarjoamme yhteistyössä arvato Financen kanssa asiakkaillemme mahdollisuuden maksaa ostoksensa laskulla. Laskun maksuehto on 30 päivää ja laskutuslisä on 3 euroa. Laskulla ostaminen edellyttää että olet yli 18-vuotias, sinulla on  vakituinen väestörekisterin mukainen osoite Suomessa johon toimitus tapahtuu ja luottotietosi ovat kunnossa. Jos ostoksesi summa ylittää 50 euroa, saat laskun jossa tarjotaan mahdollisuutta maksaa osissa. Sinä päätät itse haluatko maksaa erissä. Tämä edellyttää luottoehtojen hyväksymistä sekä laskulla mainitun minimierän maksamista.
+Tarkat ehdot löytyvät linkistä: <a href="https://www.arvato.com/content/dam/arvato/documents/arvato%20Finance%20LUOTTOEHDOT.pdf" target="_blank">PDF.</a> ]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

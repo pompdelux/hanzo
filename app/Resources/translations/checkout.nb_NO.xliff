@@ -133,7 +133,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[Velg betalingsmåte<br><br><b>Merk:</b> Husk å be kunden om å redigere ordren og endre betalingsform innenfor 24 timer da ordren ellers vil bli slettet.]]></target>
+        <target><![CDATA[Velg betalingsmåte<br><br><b>Merk:</b> Husk å be kunden om å redigere ordren og endre betalingsformen innenfor 24 timer, ellers blir ordren slettet.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
@@ -289,7 +289,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance AS faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 25,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min Side som en pdf fil innen 24 timer.]]></target>
+        <target><![CDATA[Vi tilbyr faktura i samarbeid med arvato Finance AS. Betalingsfristen er 30 dager. Hvis du velger å betale med faktura vil det påløpe et gebyr på NOK 25. For å betale med faktura må du ha fylt 18 år, være folkeregistrert i Norge samt bli godkjent i kredittvurderingen som gjennomføres ved kjøpet.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

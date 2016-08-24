@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Bankoverførsel</target>
+        <target>Afventer valg af betalingsform</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance A/S faktura (Gebyr DKK 25,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min Side som en pdf indenfor 24 timer. <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">Se betalingsbetingelser for PayByBill.</a>]]></target>
+        <target><![CDATA[Hvis du vælger at betale med arvato, vil et gebyr på 25 DKK blive påført fakturaen. Betalingsbetingelserne er 30 dage. For at kunne betale med faktura skal du være minimum 18 år og have dansk folkeregistereadresse. Det er også et krav, at du bliver godkendt i kreditgodkendelsesprocessen. arvato giver dig muligheden for at delbetale din faktura, når du har handlet for mere end kr. 500,-. På din faktura fremgår det om det er muligt at delbetale din faktura, og hvordan du logger på arvato.com for at godkende vilkår, samt vælge antal måneder som du vil dele din faktura op i. Læs mere om delbetaling <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">her.</a> Vær opmærksom på, at fakturaen kun kommer på mail. Se betalingsbetingelser for arvato.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

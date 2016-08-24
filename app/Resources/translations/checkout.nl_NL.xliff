@@ -118,7 +118,7 @@
       </trans-unit>
            <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Wacht keuze betaalmethode af.</target>
+        <target>vraag de klant om binnen 24 uur haar bestelling te bewerken en de betaalmethode te wijzigen, omdat de bestelling anders wordt gewist.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
