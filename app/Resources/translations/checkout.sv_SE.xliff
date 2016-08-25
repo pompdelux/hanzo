@@ -128,11 +128,11 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Inväntar val av betalningsmetod.</target>
+        <target>Väntar på val av betalningssätt.</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[Observera: Kom ihåg att be kunden om att redigera ordern och ändra betalningsform inom 24 timmar, annars makuleras ordern.]]></target>
+        <target><![CDATA[OBS: Kom ihåg att be kunden om att uppdatera ordern och ändra betalningssätt inom 24 timmar annars raderas ordern.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[arvato Finance AB faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 25,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar.]]></target>
+        <target><![CDATA[arvato Finance AB faktura (Väljer du att betala med arvato så tillkommer en avgift på SEK 25,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min Sida som pdf fil inom 24 timmar. <br> För att delbetala din faktura behöver du göra en ansökan om delbetalning samt godkänna villkoren. Detta gör du på www.fakturainfo.se. Observera att fakturan skickas till den e-mailadress du angav vid köpet.<a href="https://www.pompdelux.com/sv_SE/forside/kundservice/villkor" target="_blank">Läs mer</a>]]></target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
