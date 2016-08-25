@@ -132,15 +132,15 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Banküberweisung</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+        <target><![CDATA[<b>Bitte beachten:</b> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Banküberweisung</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
@@ -469,15 +469,15 @@ Sie müssen Waren hinzufügen.
         </trans-unit>
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
-        <target>Wahl der Bezahlungsform noch ausstehend</target>
+        <target>Rechnung (Gebühr 0,00 EUR).</target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.text">
         <source>payment.invoicepayment.text</source>
-        <target><![CDATA[<strong>Bitte beachten:</strong> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
+        <target><![CDATA[Die Rechnung wird per Email an Sie gesendet sobald wir Ihre Waren versenden. Die Rechnung wird Ihnen dann ebenfalls unter „Meine Seite“ als PDF-Datei innerhalb von 24 Std. zur Verfügung stehen. Die Zahlungsfrist beträgt 30 Tage.<br><br>BEACHTEN SIE BITTE, DASS DIE RECHNUNG IHNEN NUR PER EMAIL ZUGESENDET WIRD.]]></target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
-        <target>Wahl der Bezahlungsform noch ausstehend</target>
+        <target>Rechnung</target>
       </trans-unit>
     </body>
   </file>
