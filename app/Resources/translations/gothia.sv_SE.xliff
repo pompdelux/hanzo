@@ -61,7 +61,7 @@ Vänligen kontakta arvato Finance AB kundservice på: 0340-664444<br>I övriga f
       </trans-unit>
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
-        <target><![CDATA[Följande information kommer att användas för att verifiera dig hos arvato Finance AB PayByBill.<br>
+        <target><![CDATA[Följande information kommer att användas för att verifiera dig hos arvato Finance AB<br>
 Om inte din adress stämmer, ska du ändra den under "Min Sida".<br>
 Om du har varit kund hos arvato Finance AB tidigare, finns ditt personnummer sparat via ditt kundkonto.]]></target>
       </trans-unit>
