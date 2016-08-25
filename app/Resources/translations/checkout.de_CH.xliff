@@ -469,15 +469,15 @@ Sie müssen Waren hinzufügen.
         </trans-unit>
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
-        <target>Betales via faktura</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.text">
         <source>payment.invoicepayment.text</source>
-        <target><![CDATA[En eller anden beskrivende tekst af fakturabetalingen.]]></target>
+        <target><![CDATA[<strong>Bitte beachten:</strong> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
-        <target>Fakturabetaling</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
     </body>
   </file>
