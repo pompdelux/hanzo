@@ -3,7 +3,7 @@
   <li>
     <p>{{ 'payment.invoicepayment.text'|trans({}, 'checkout')|raw }}</p>
 
-    <input type="radio" value="invoicepayment:invoicepayment" id="pbb" name="paytype"{% if selected_payment_type == 'invoicepayment:invoicepayment' %} checked{% endif %}>
-    <label for="pbb">{{ 'payment.invoicepayment.label'|trans({}, 'checkout') }}</label>
+    <input type="radio" value="invoicepayment:invoicepayment" id="invoicepayment-lbl" name="paytype"{% if selected_payment_type == 'invoicepayment:invoicepayment' %} checked{% endif %}>
+    <label for="invoicepayment-lbl">{{ 'payment.invoicepayment.label'|trans({}, 'checkout') }}</label>
   </li>
 </ul>
