@@ -13,14 +13,14 @@
             <trans-unit id="rma.form.description">
                 <source>rma.form.description</source>
                 <target><![CDATA[
-                    <p>F&uuml;r jeden Artikel den Sie umtauschen m&ouml;chten, w&auml;hlen Sie bitte eine Aktivit&auml;t und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen m&ouml;chten, erstellen Sie bitte einen R&uuml;cksendeschein per Bestellung. Ihre Umtauschwaren senden Sie nat&uuml;rlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den R&uuml;cksendeschein/die R&uuml;cksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem R&uuml;cksendeschein, welcher erstellt wird, wenn Sie auf „R&uuml;cksendeschein erstellen“ klicken.<br><br>Um sich den Schein anzeigen zu lassen, ben&ouml;tigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, k&ouml;nnen Sie es hier downloaden.<br />
+                    <p>Für jeden Artikel den Sie umtauschen m&ouml;chten, wählen Sie bitte eine Aktivität und einen Grund. Notieren Sie bitte ebenfalls eventuelle Kommentare zu jedem einzelnen Artikel. Falls Sie Artikel von verschiedenen Bestellungen umtauschen m&ouml;chten, erstellen Sie bitte einen Rücksendeschein per Bestellung. Ihre Umtauschwaren senden Sie natürlich in ein und demselben Paket, egal ob diese von mehreren Bestellungen stammen. Denken Sie dran, den Rücksendeschein/die Rücksendescheine in das Paket zu legen. Lesen Sie mehr zum Umtausch Ihrer Ware auf dem Rücksendeschein, welcher erstellt wird, wenn Sie auf „Rücksendeschein erstellen“ klicken.<br><br>Um sich den Schein anzeigen zu lassen, ben&ouml;tigen Sie das kostenlose Programm Adobe Reader. Sollten Sie dieses Programm nicht haben, können Sie es hier downloaden.<br />
     <br />
     <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"><img src="//static.pompdelux.com/images/pages/PDF_logo.jpg" width="158" height="39" border="0" title="POMPdeLUX" /></a><br /></p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
-                <target>Aktivit&auml;t</target>
+                <target>Aktivität</target>
             </trans-unit>
             <trans-unit id="rma.form.label.cause">
                 <source>rma.form.label.cause</source>
@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Aktivit&auml;t w&auml;hlen --</target>
+                <target>-- Aktivität wählen --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Grund w&auml;hlen --</target>
+                <target>-- Grund wählen --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Umtausch in andere Gr&ouml;sse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
+                <target>Umtausch in andere Grösse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
@@ -120,33 +120,33 @@
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>
-<b>R&uuml;ckgabe (Kaufr&uuml;ckzug), Umtausch, Reklamation</b><br>
-Es ist wichtig, dass die Ware mit H&auml;ngeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommt, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben m&ouml;chten.<br><br>
+<b>Rückgabe (Kaufrückzug), Umtausch, Reklamation</b><br>
+Es ist wichtig, dass die Ware mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zurückkommt, wenn Sie den Umtausch in eine gleichwertige Ware wünschen oder Ihr Geld zurück haben möchten.<br><br>
 
-Wenn Sie das Geld zur&uuml;ck haben m&ouml;chten, hat unser DHL R&uuml;cksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
+Wenn Sie das Geld zurück haben möchten, hat unser DHL Rücksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
 
-Wenn Sie einen Umtausch in eine andere Gr&ouml;&szlig;e, Farbe oder eine andere Ware w&uuml;nschen, ist die R&uuml;cksendung kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen. Bitte beachten Sie, dass Ihr Umtausch den Warenwert der zur&uuml;ckgesendeten Ware nicht &uuml;berschreiten darf. Wir weisen darauf hin, dass die Ware im Voraus nicht reserviert werden kann. <br><br>
+Wenn Sie einen Umtausch in eine andere Grö&szlig;e, Farbe oder eine andere Ware wünschen, ist die Rücksendung kostenlos, sofern Sie unser DHL Rücksendeetikett nutzen. Bitte beachten Sie, dass Ihr Umtausch den Warenwert der zurückgesendeten Ware nicht überschreiten darf. Wir weisen darauf hin, dass die Ware im Voraus nicht reserviert werden kann. <br><br>
 
-Wenn Sie eine Reklamation oder falsch zugestellte Ware zur&uuml;cksenden, ist die R&uuml;cksendung ebenfalls kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen.<br><br> 
+Wenn Sie eine Reklamation oder falsch zugestellte Ware zurücksenden, ist die Rücksendung ebenfalls kostenlos, sofern Sie unser DHL Rücksendeetikett nutzen.<br><br> 
 
-Bitte nutzen Sie unbedingt ausschlie&szlig;lich unser <a href="https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140">DHL R&uuml;cksendeetikett</a>, um sicherzustellen, dass das Paket an eine unserer Verteilerstellen in Deutschland weitergeleitet werden kann.<br><br>
+Bitte nutzen Sie unbedingt ausschlie&szlig;lich unser <a href="https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140">DHL Rücksendeetikett</a>, um sicherzustellen, dass das Paket an eine unserer Verteilerstellen in Deutschland weitergeleitet werden kann.<br><br>
 
   
-<b>R&uuml;ckzahlung</b><br>
+<b>Rückzahlung</b><br>
 Haben Sie beim Kauf eine Kreditkarte verwendet, wird der Gutschriftbetrag auf dieselbe Kreditkarte zurückgezahlt. <br><br>
-Haben Sie beim Kauf PayPal-Bezahlung gew&auml;hlt, erfolgt die Gutschrift auf Ihr PayPal-Konto. <br><br>
+Haben Sie beim Kauf PayPal-Bezahlung gewählt, erfolgt die Gutschrift auf Ihr PayPal-Konto. <br><br>
 Wenn Sie den Rechnungsbetrag an POMPdeLUX überwiesen haben, kontaktieren Sie bitte unseren Kundenservice und geben Ihre Kontoverbindung an. <br><br>
 
 Bitte beachten Sie: Auch wenn Sie eine Gutschrift für Ihre Rücksendung erwarten, muss die ausstehende Rechnung innerhalb von 30 Tagen erfolgen. <br><br>
 
-Sollten Sie Fragen oder Kommentare haben, freuen wir uns von Ihnen zu h&ouml;ren: <a href="mailto:mailat@pompelux.com">mailat@pompelux.com</a><br><br>
+Sollten Sie Fragen oder Kommentare haben, freuen wir uns von Ihnen zu hören: <a href="mailto:mailat@pompelux.com">mailat@pompelux.com</a><br><br>
 
 Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br>
 </p>]]></target>
             </trans-unit>			
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target><![CDATA[Aktivit&auml;t]]></target>
+                <target><![CDATA[Aktivität]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
