@@ -281,7 +281,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia betaalkosten EUR 5,00]]></target>
+        <target><![CDATA[Gothia betaalkosten EUR 3,00]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
