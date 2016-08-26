@@ -119,18 +119,30 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bei POMPdeLUX ist es einfach, Waren zur&uuml;ckzuschicken. Der einfachste Weg ist, dieser R&uuml;cksendeschein auszuf&uuml;llen und mit zusenden.<br> 
-Es ist wichtig, dass die Ware mit H&auml;ngeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommen, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben m&ouml;chten.<br><br>
-<b>R&uuml;ckgabe, Umtausch, Reklamation</b><br>
-Wenn Sie eine Ware zur&uuml;cksenden m&ouml;chten, verwenden Sie bitte unbedingt unser R&uuml;cksendeetikett, welches Sie auf &quot;Meine Seite&quot; finden. <br><br>
-Wenn Sie eine Ware in eine andere Gr&ouml;sse oder Farbe umtauschen m&ouml;chten, hat das R&uuml;cksendeetikett keinen Wert und der Versand f&uuml;r die R&uuml;cksendung ist somit kostenfrei. Bitte beachten Sie, dass Sie nur in eine andere Ware umtauschen k&ouml;nnen, sofern die neue Ware nicht den Kaufpreis der zur&uuml;ckgesendeten Waren &uuml;bersteigt. Bitte beachten Sie, dass die Ware hiermit nicht reserviert ist.<br><br>
-Wenn Sie das Geld zur&uuml;ck haben m&ouml;chten, hat das R&uuml;cksendeetikett einen Wert von EUR 5,95 der von dem Betrag der retournierten Waren entgegengerechnet wird. <br><br>
-Wenn Sie eine Reklamation haben oder eine falsch gelieferte Ware erhalten haben, ist die R&uuml;cksendung dieser ebenfalls kostenlos bei Anwendung unseres R&uuml;cksendeetiketts. <br><br>
+                <target><![CDATA[<p>
+<b>R&uuml;ckgabe (Kaufr&uuml;ckzug), Umtausch, Reklamation</b>
+Es ist wichtig, dass die Ware mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommt, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben möchten.<br><br>
+
+Wenn Sie das Geld zur&uuml;ck haben möchten, hat unser DHL R&uuml;cksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
+
+Wenn Sie einen Umtausch in eine andere Größe, Farbe oder eine andere Ware w&uuml;nschen, ist die R&uuml;cksendung kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen. Bitte beachten Sie, dass Ihr Umtausch den Warenwert der zur&uuml;ckgesendeten Ware nicht &uuml;berschreiten darf. Wir weisen darauf hin, dass die Ware im Voraus nicht reserviert werden kann. <br><br>
+
+Wenn Sie eine Reklamation oder falsch zugestellte Ware zur&uuml;cksenden, ist die R&uuml;cksendung ebenfalls kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen.<br><br> 
+
+Bitte nutzen Sie unbedingt ausschlie&szlig;lich unser <a href="https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140">DHL R&uuml;cksendeetikett</a>, um sicherzustellen, dass das Paket an eine unserer Verteilerstellen in Deutschland weitergeleitet werden kann.<br><br>
+
+  
 <b>R&uuml;ckzahlung</b><br>
-Bei Kreditkartenzahlung wird der zur&uuml;ckzuzahlende Betrag an Ihre Kreditkarte zur&uuml;ckgezahlt. <br><br>
-Bei PayPal Zahlung wird der zur&uuml;ckzuzahlende Betrag an Ihr PayPal Konto zur&uuml;ckgezahlt.<br><br> 
-Bei Zahlung per Rechnung wenden Sie sich bitte an POMPdeLUX: 01/5350375. <br><br>
-<b>Bitte beachten Sie:</b> Auch wenn Sie auf eine Gutschrift zu Ihren zur&uuml;ckgesendeten Waren erwarten, &uuml;berweisen Sie bitte den kompletten f&auml;lligen Rechnungsbetrag innerhalb von 30 Tagen um einer Mahngeb&uuml;hr zu entgehen. Weitere Informationen erhalten Sie unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br></p>]]></target>
+Haben Sie beim Kauf eine Kreditkarte verwendet, wird der Gutschriftbetrag auf dieselbe Kreditkarte zurückgezahlt. <br><br>
+Haben Sie beim Kauf PayPal-Bezahlung gewählt, erfolgt die Gutschrift auf Ihr PayPal-Konto. <br><br>
+Wenn Sie den Rechnungsbetrag an POMPdeLUX überwiesen haben, kontaktieren Sie bitte unseren Kundenservice und geben Ihre Kontoverbindung an. <br><br>
+
+Bitte beachten Sie: Auch wenn Sie eine Gutschrift für Ihre Rücksendung erwarten, muss die ausstehende Rechnung innerhalb von 30 Tagen erfolgen. <br><br>
+
+Sollten Sie Fragen oder Kommentare haben, freuen wir uns von Ihnen zu hören: <a href="mailto:mailat@pompelux.com">mailat@pompelux.com</a><br><br>
+
+Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br>
+</p>]]></target>
             </trans-unit>			
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

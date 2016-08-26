@@ -120,13 +120,25 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hos POMPdeLUX er det enkelt å bytte eller returnere en vare. Den enkleste måten å gjøre dette på er ved å fylle ut og sende med dette returskjemaet.Det er viktig at varen returneres med hengemerker og i samme stand som da du mottok den, hvis du ønsker å få byttet den til en tilsvarende vare eller få tilbakebetalt det fulle kjøpsbeløpet.<br><br> 
+                <target><![CDATA[<p>Hos POMPdeLUX er det enkelt &aring; bytte eller returnere en vare. Den enkleste m&aring;ten &aring; gj&oslash;re dette p&aring; er ved &aring; fylle ut og sende med dette returskjemaet.<br><br> 
 <b>Returnering, bytting, reklamasjon</b><br>
-Hvis du ønsker å returnere en vare, kan du benytte vår forhåndsbetalte returlapp som du finner på Min Side. Hvis denne brukes, motregner vi kun  NOK 69,- fra verdien av dine returvarer.<br><br>
-Hvis du ønsker å bytte til en annen størrelse, farge eller til en helt annen vare, er returforsendelsen fraktfri hvis du benytter vår forutbetalte returlapp. Legg merke til at du kun kan bytte til en vare som ikke overstiger returvarens pris. Vi gjør oppmerksom på at varen ikke blir reservert.<br><br>
-Hvis du ønsker å returnere en reklamasjon eller feil levert vare, er returforsendelsen også fraktfri for deg hvis du benytter vår forhåndsbetalte returlapp.<br><br><b>Tilbakebetaling</b><br>
-Har du benyttet kortbetaling, overføres ditt returbeløp til det betalingskortet du brukte ved bestilling.<br><br>
-Har du brukt PayPal, overføres beløpet til din PayPal-konto.<br><br>Har du brukt PayByBill, ber vi deg om å kontakte arvato Finance A/S på tlf.: 22 87 89 70.<br><br>Merk: Selv om du mangler en kreditnota på dine returvarer, skal du betale din utestående faktura i løpet av 30 dager.<br><br>For ytterligere informasjon, se vennligst: <a href="/nb_NO/" target="_blank">www.pompdelux.no</a></p>]]></target>
+Varen skal returneres med hengemerker og i samme stand som da du mottok den hvis du &oslash;nsker &aring; f&aring; byttet til en tilsvarende vare eller f&aring; tilbakebetalt fullt kj&oslash;psbel&oslash;p.<br><br> 
+
+Hvis du &oslash;nsker &aring; returnere en vare og benytter v&aring;rt forh&aring;ndsbetalte returmerke, motregner vi kun NOK 69,- fra verdien av dine returvarer.<br><br>
+
+Hvis du &oslash;nsker &aring; bytte til en annen st&oslash;rrelse, farge eller til en helt annen vare, er returforsendelsen fraktfri hvis du benytter v&aring;rt forh&aring;ndsbetalte returmerke. Legg merke til at du kun kan bytte til en vare som ikke overstiger returvarens pris. Vi gj&oslash;r oppmerksom p&aring; at varen ikke reserveres.<br><br>
+
+Hvis du &oslash;nsker &aring; returnere en reklamasjon eller feil-levert vare, er returforsendelsen ogs&aring; fraktfri for deg hvis du benytter v&aring;rt forh&aring;ndsbetalte returskjema.<br><br>
+
+<b>Tilbakebetaling</b><br>
+Har du betalt med kort, overf&oslash;res returbel&oslash;pet til det betalingskortet du brukte ved bestilling.<br><br>
+Har du betalt via PayPal, overf&oslash;res bel&oslash;pet til din PayPal-konto.<br><br>
+Har du betalt via PayByBill, skal du vennligst kontakte Arvato Finance A/S p&aring; tlf.: +47 2287 8970.<br><br>
+Merk: Selv om du avventer en kreditnota p&aring; dine returvarer, skal du betale utest&aring;ende faktura innenfor 30 dager.<br><br>
+
+Hvis du har ytterligere kommentarer, er du velkommen til &aring; kontakte oss p&aring; <a href="mailto:mailno@POMPdeLUX.com">mailno@POMPdeLUX.com</a><br><br>
+
+For ytterligere informasjon, se vennligst: <a href="https://www.pompdelux.com/nb_NO/">www.pompdelux.no</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
