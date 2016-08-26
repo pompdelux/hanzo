@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Aktivit&auml;t w&auml;hlen --</target>
+                <target>-- Aktivität wählen --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Grund w&auml;hlen --</target>
+                <target>-- Grund wählen --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Umtausch in andere Gr&ouml;sse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
+                <target>Umtausch in andere Grösse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen m&ouml;chten. Bitte beachten Sie, dass die Verf&uuml;gbarkeit der Ware nicht garantiert werden kann.</target>
+                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen möchten. Bitte beachten Sie, dass die Verfügbarkeit der Ware nicht garantiert werden kann.</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
