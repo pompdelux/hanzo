@@ -20,7 +20,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.activitycode">
                 <source>rma.form.label.activitycode</source>
-                <target>Aktivität</target>
+                <target>Aktivit&auml;t</target>
             </trans-unit>
             <trans-unit id="rma.form.label.cause">
                 <source>rma.form.label.cause</source>
@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Aktivität wählen --</target>
+                <target>-- Aktivit&auml;t w&auml;hlen --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Grund wählen --</target>
+                <target>-- Grund w&auml;hlen --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Umtausch in andere Grösse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
+                <target>Umtausch in andere Gr&ouml;sse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen möchten. Bitte beachten Sie, dass die Verfügbarkeit der Ware nicht garantiert werden kann.</target>
+                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen m&ouml;chten. Bitte beachten Sie, dass die Verfügbarkeit der Ware nicht garantiert werden kann.</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
@@ -121,11 +121,11 @@
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>
 <b>R&uuml;ckgabe (Kaufr&uuml;ckzug), Umtausch, Reklamation</b><br>
-Es ist wichtig, dass die Ware mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommt, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben möchten.<br><br>
+Es ist wichtig, dass die Ware mit H&auml;ngeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommt, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben m&ouml;chten.<br><br>
 
-Wenn Sie das Geld zur&uuml;ck haben möchten, hat unser DHL R&uuml;cksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
+Wenn Sie das Geld zur&uuml;ck haben m&ouml;chten, hat unser DHL R&uuml;cksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
 
-Wenn Sie einen Umtausch in eine andere Größe, Farbe oder eine andere Ware w&uuml;nschen, ist die R&uuml;cksendung kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen. Bitte beachten Sie, dass Ihr Umtausch den Warenwert der zur&uuml;ckgesendeten Ware nicht &uuml;berschreiten darf. Wir weisen darauf hin, dass die Ware im Voraus nicht reserviert werden kann. <br><br>
+Wenn Sie einen Umtausch in eine andere Gr&ouml;&szlig;e, Farbe oder eine andere Ware w&uuml;nschen, ist die R&uuml;cksendung kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen. Bitte beachten Sie, dass Ihr Umtausch den Warenwert der zur&uuml;ckgesendeten Ware nicht &uuml;berschreiten darf. Wir weisen darauf hin, dass die Ware im Voraus nicht reserviert werden kann. <br><br>
 
 Wenn Sie eine Reklamation oder falsch zugestellte Ware zur&uuml;cksenden, ist die R&uuml;cksendung ebenfalls kostenlos, sofern Sie unser DHL R&uuml;cksendeetikett nutzen.<br><br> 
 
@@ -134,19 +134,19 @@ Bitte nutzen Sie unbedingt ausschlie&szlig;lich unser <a href="https://globalmai
   
 <b>R&uuml;ckzahlung</b><br>
 Haben Sie beim Kauf eine Kreditkarte verwendet, wird der Gutschriftbetrag auf dieselbe Kreditkarte zurückgezahlt. <br><br>
-Haben Sie beim Kauf PayPal-Bezahlung gewählt, erfolgt die Gutschrift auf Ihr PayPal-Konto. <br><br>
+Haben Sie beim Kauf PayPal-Bezahlung gew&auml;hlt, erfolgt die Gutschrift auf Ihr PayPal-Konto. <br><br>
 Wenn Sie den Rechnungsbetrag an POMPdeLUX überwiesen haben, kontaktieren Sie bitte unseren Kundenservice und geben Ihre Kontoverbindung an. <br><br>
 
 Bitte beachten Sie: Auch wenn Sie eine Gutschrift für Ihre Rücksendung erwarten, muss die ausstehende Rechnung innerhalb von 30 Tagen erfolgen. <br><br>
 
-Sollten Sie Fragen oder Kommentare haben, freuen wir uns von Ihnen zu hören: <a href="mailto:mailat@pompelux.com">mailat@pompelux.com</a><br><br>
+Sollten Sie Fragen oder Kommentare haben, freuen wir uns von Ihnen zu h&ouml;ren: <a href="mailto:mailat@pompelux.com">mailat@pompelux.com</a><br><br>
 
 Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pompdelux.at</a><br>
 </p>]]></target>
             </trans-unit>			
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>
-                <target><![CDATA[Aktivität]]></target>
+                <target><![CDATA[Aktivit&auml;t]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.cause">
                 <source>rma.slip.thead.cause</source>
@@ -190,7 +190,7 @@ Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pom
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Name der Ware/Farbe/Grösse (siehe Rechnung)*</target>
+              <target>Name der Ware/Farbe/Gr&ouml;sse (siehe Rechnung)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>
@@ -198,7 +198,7 @@ Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pom
             </trans-unit>
             <trans-unit id="rma.claims.form.file_heading">
               <source>rma.claims.form.file_heading</source>
-              <target><![CDATA[Laden Sie Bilder der Reklamation hoch:<br>(Max. 5 Bilder von Gesamtgröße 10MB)]]></target>
+              <target><![CDATA[Laden Sie Bilder der Reklamation hoch:<br>(Max. 5 Bilder von Gesamtgr&ouml;&szlig;e 10MB)]]></target>
             </trans-unit>
             <trans-unit id="rma.claims.form.phone_label">
               <source>rma.claims.form.phone_label</source>

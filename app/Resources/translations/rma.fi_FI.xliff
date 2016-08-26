@@ -119,7 +119,7 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>POMPdeLUXilla tuotteiden vaihtaminen tai palauttaminen sujuu helposti. Helpoiten se onnistuu, kun t&auml;yt&auml;t t&auml;m&auml;n palautuslomakkeen ja liit&auml;t sen mukaan l&auml;hetykseen.<br><br> 
+                <target><![CDATA[<p>POMPdeLUXilla tuotteiden vaihtaminen tai palauttaminen sujuu helposti. Helpoiten se onnistuu, kun t&auml;yt&auml;t t&auml;m&auml;n palautuslomakkeen ja liit&auml;t sen mukaan l&auml;hetykseen<br><br> 
 <b>Palautus, vaihto, reklamaatio</b><br>
 Tuote tulee palauttaa tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai koko ostosumman takaisin.<br><br> 
 
