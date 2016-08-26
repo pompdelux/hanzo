@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.default">
                 <source>rma.form.activity.default</source>
-                <target>-- Aktivität wählen --</target>
+                <target>-- Aktivit&auml;t w&auml;hlen --</target>
             </trans-unit>
             <trans-unit id="rma.form.cause.default">
                 <source>rma.form.cause.default</source>
-                <target>-- Grund wählen --</target>
+                <target>-- Grund w&auml;hlen --</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.return">
                 <source>rma.form.activity.return</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="rma.form.activity.replacement.causes">
                 <source>rma.form.activity.replacement.causes</source>
-                <target>Umtausch in andere Grösse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
+                <target>Umtausch in andere Gr&ouml;sse|Umtausch in eine andere Farbe|Umtausch zu einem anderen Artikel</target>
             </trans-unit>
             <trans-unit id="rma.form.activity.warranty.causes">
                 <source>rma.form.activity.warranty.causes</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="rma.form.label.replacement">
                 <source>rma.form.label.replacement</source>
-                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen m&ouml;chten. Bitte beachten Sie, dass die Verfügbarkeit der Ware nicht garantiert werden kann.</target>
+                <target>Geben Sie den Produktnamen des Artikels an zu welchem Sie gerne umtauschen m&ouml;chten. Bitte beachten Sie, dass die Verf&uuml;gbarkeit der Ware nicht garantiert werden kann.</target>
             </trans-unit>
             <trans-unit id="rma.form.placeholder.produkt">
                 <source>rma.form.placeholder.produkt</source>
@@ -190,7 +190,7 @@ Weitere Informationen finden Sie unter <a href="/de_AT/" target="_blank">www.pom
             </trans-unit>
             <trans-unit id="rma.claims.form.product_info_label">
               <source>rma.claims.form.product_info_label</source>
-              <target>Name der Ware/Farbe/Gr&ouml;sse (siehe Rechnung)*</target>
+              <target>Name der Ware/Farbe/Grösse (siehe Rechnung)*</target>
             </trans-unit>
             <trans-unit id="rma.claims.form.description_label">
               <source>rma.claims.form.description_label</source>
