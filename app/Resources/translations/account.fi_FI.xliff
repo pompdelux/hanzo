@@ -434,14 +434,11 @@
             </trans-unit>
            <trans-unit id="my.account.description">
                 <source>my.account.description</source>
-                <target><![CDATA[ <p>
+                <target><![CDATA[<p>
      Omilla sivuilla voit muokata tilausta, tulostaa palautustarran ja palautuslomakkeen. Voit myös muokata omia tietojasi ja tilata/perua uutiskirjeemme.<br><br>
       <em>Tilauksellasi voi olla seuraavat tilat:</em><br><br>
       <b>Odottaa</b><br>
-      Tilaustasi ei ole vielä toimitettu, ja voit muokata sitä. Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita.<br>Huomaa: Muokkaamisen jälkeen sinun tulee suorittaa maksu uudelleen – aiempi maksuvaraus poistuu automaattisesti.<br><br>
-	  <b>Huom!</b> Jos käytät muokkaamisen yhteydessä Visa Electronia tai MasterCardia, kortiltasi varataan automaattisesti tilauksen kokonaissumma. POMPdeLUX peruuttaa heti alkuperäisen tilauksen katevarauksen. Saattaa kuitenkin kulua jopa 6 viikkoa ennen kuin pankkisi poistaa katevarauksen.<br><br>
-      <b>Keskeytä muokkaus</b><br>
-      Voit halutessasi keskeyttää muokkauksen. Paina Keskeytä muokkaus -painiketta ja voit myöhemmin muokata tilaustasi uudelleen.<br><br>
+      Tilaustasi ei ole  vielä toimitettu.<br><br>
       <b>Käsittelyssä</b><br>
       Tilauksesi on nyt käsittelyssä. Se pakataan varastollamme ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br>
       <b>Laskutettu</b><br>
@@ -450,10 +447,15 @@
       <b>Lähetyksen seuraaminen</b><br>
      Napsauta tilauksen kohdalla olevaa kuvaketta, jos haluat seurata pakettiasi. Track and Trace -sivu avautuu uuteen ikkunaan.<br><br>
       <b>Palautus, vaihto ja reklamaatio</b><br>
-      Jos haluat palauttaa tuotteen, napsauta kuvaketta tilauksen kohdalla<br>
-      Palautusetiketti ja palautuslomake ovat omina PDF-tiedostoinaan ja ne molemmat tulee tulostaa. Jos käytät palautustarraamme, on palauttaminen maksutonta. <br>
-      Jos palautat tuotteen vaihtoon tai jos olet saanut viallisen tuotteen, voit vain palauttaa tuotteen ja lähetämme sinulle uuden – sinulle ei luonnollisesti aiheudu tästä kustannuksia. Jos tuote on loppuunmyyty, hyvitämme tuotteen ostohinnan.<br><br>
-	  Voit luonnollisesti reklamoida tuotteen, jos se on vahingoittunut tai viallinen. Otathan meihin yhteyttä tästä löytyvän <a href="https://www.pompdelux.com/fi_FI/asiakaspalvelu/reklamaatiolomake">reklamaatiolomakkeen</a> kautta heti virheen havaittuasi. Näin voimme mahdollisimman pian tarjota sinulle ratkaisun tietojesi perusteella.<br><br>
+      Jos  haluat&nbsp;<u>palauttaa</u>&nbsp;tuotteen ja käytät valmiiksi maksettua  palautustarraamme, vähennämme vain 7,25 EUR palautustuotteidesi arvosta.<strong> </strong><br>
+Jos  haluat&nbsp;<u>vaihtaa</u>&nbsp;toiseen kokoon, väriin tai kokonaan toiseen  tuotteeseen, palautuslähetys on maksuton, jos käytät valmiiksi maksettua  palautustarraa.&nbsp;<br>
+Huomaa, että voit vaihtaa vain tuotteeseen, jonka hinta ei ylitä palautettavan  tuotteen hintaa.&nbsp;<br>
+Huomaathan, että tuotteita ei varata.<br>
+Palautuslähetys  on maksuton myös siinä tapauksessa, jos haluat palauttaa&nbsp;<u>reklamoitavan</u>&nbsp;tai&nbsp;<u>väärin toimitetun  tuotteen</u>.</p>
+Voit luonnollisesti reklamoida tuotteen, jos se  on vahingoittunut tai viallinen. Otathan meihin yhteyttä tästä löytyvän&nbsp;<a href="https://www.pompdelux.com/fi_FI/asiakaspalvelu/reklamaatiolomake">reklamaatiolomakkeen</a>&nbsp;kautta heti virheen havaittuasi. Näin voimme  mahdollisimman pian tarjota sinulle ratkaisun tietojesi perusteella.<br>
+<br>
+Huomaa, että olet vastuussa lähetyksestä/tuotteista ennen kuin vastaanotamme  ne. Säästä siksi postin kuitti ja mahdollinen seurantanumero. Huomaathan, että  emme vastaanota postiennakkolähetyksiä.&nbsp;<br>
+<br><br>
       <b>Palautuslomake</b><br>
       Jos et löydä tuotetta, jonka haluat palauttaa, interaktiivisesta palautuslomakkeesta, voit napsauttaa linkkiä tässä ja tulostaa palautuslomakkeen manuaalisesti. <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_FI.pdf">» Palautuslomake (PDF)</a>
       <br><br>

@@ -120,7 +120,7 @@
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
                 <target><![CDATA[<p>
-<b>R&uuml;ckgabe (Kaufr&uuml;ckzug), Umtausch, Reklamation</b>
+<b>R&uuml;ckgabe (Kaufr&uuml;ckzug), Umtausch, Reklamation</b><br>
 Es ist wichtig, dass die Ware mit Hängeetiketten und im gleichen Zustand wie aus der Originalverpackung, zur&uuml;ckkommt, wenn Sie den Umtausch in eine gleichwertige Ware w&uuml;nschen oder Ihr Geld zur&uuml;ck haben möchten.<br><br>
 
 Wenn Sie das Geld zur&uuml;ck haben möchten, hat unser DHL R&uuml;cksendeetikett einen Wert von 5,95 EUR, welcher von dem Betrag der retournierten Waren abgezogen wird.<br><br>
