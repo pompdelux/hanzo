@@ -194,6 +194,11 @@ class CustomersController extends CoreController
                 'translation_domain' => 'admin',
                 'required'           => false,
                 'disabled'           => $readOnlyEnabled,
+            ])->add('may_be_contacted', 'checkbox', [
+                'label'              => 'admin.customer.may_be_contacted.label',
+                'translation_domain' => 'admin',
+                'required'           => false,
+                'disabled'           => $readOnlyEnabled,
             ])->getForm();
 
         if ('POST' === $request->getMethod()) {
