@@ -334,7 +334,7 @@ class SyncSalesOrder extends BaseService
                 'SalesPrice'      => $bagPrice,
                 'LineDiscPercent' => 100,
                 'SalesQty'        => $salesQty,
-                'InventColorId'   => 'Off White',
+                'InventColorId'   => 'Navy',
                 'InventSizeId'    => 'One Size',
                 'SalesUnit'       => 'Stk.',
             ];
@@ -358,8 +358,8 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20160224;
-            $toDate   = 20160510;
+            $fromDate = 20160825;
+            $toDate   = 20161106;
             $itemId   = 'FREEPOMPBAGAW16';
 
             // Also check if promotion has been added already
@@ -390,11 +390,11 @@ class SyncSalesOrder extends BaseService
                 }
 
                 $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
-                    'ItemId'          => 'FREEPOMPBAGAW16',
+                    'ItemId'          => $itemId,
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
                     'SalesQty'        => $salesQty,
-                    'InventColorId'   => 'Off White',
+                    'InventColorId'   => 'Navy',
                     'InventSizeId'    => 'One Size',
                     'SalesUnit'       => 'Stk.',
                 ];

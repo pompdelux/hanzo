@@ -450,7 +450,7 @@
               <label for="js_checkout_confirm_terms">Jeg bestiller hermed overstående og bekrefter at jeg har lest og aksepterer</label>
               <a href="/nb_NO/forside/kundeservice/vilkar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
-        </trans-unit>
+      </trans-unit>
       <trans-unit id="overnightbox.address">
         <source>overnightbox.address</source>
         <target>Vaihtoehtoinen toimitusosoite</target>
@@ -466,6 +466,23 @@
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
         <target>Fakturabetaling</target>
+      </trans-unit>
+
+      <trans-unit id="checkout.confirm.may_contact.text">
+        <source>checkout.confirm.may_contact.text</source>
+        <target>Jeg gir hermed samtykke til at POMdeLUX eller dennes samarbeidspartner, Communication Research ApS, kan kontakte meg elektronisk via e-mail, SMS/MMS eller lignende elektronisk medium (herunder sosiale medier) med tilbud om å delta i en eller flere kundetilfredshets- eller markedsundersøkelser som har et kommersielt markedsføringsmessig formål eller innhold. Samtykket omfatter kundetilfredshets- og markedsundersøkelser som har til hensikt å fremme avsetningen av POMPdeLUX’ varer, formuegoder eller tjenesteytelser, herunder utbedre kjennskap til POMPdeLUX og de varene, formuegoder eller tjenesteytelser, som POMPdeLUX leverer. Jeg er kjent med at jeg til enhver tid kan tilbakekalle mitt samtykke.</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.required">
+        <source>checkout.confirm.may_contact.required</source>
+        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.yes_label">
+        <source>checkout.confirm.may_contact.yes_label</source>
+        <target>Ja, gerne</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.no_label">
+        <source>checkout.confirm.may_contact.no_label</source>
+        <target>Nej tak</target>
       </trans-unit>
     </body>
   </file>

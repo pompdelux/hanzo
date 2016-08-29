@@ -33,10 +33,26 @@
         {{ render(controller('CheckoutBundle:Default:summery')) }}
     </div>
 
+    <div class="checkout-confirm-may-contact">
+        <div class="text">
+        {{ 'checkout.confirm.may_contact.text'|trans({}, 'checkout')|raw }}
+        </div>
+
+        <div class="radios">
+            <p>{{ 'checkout.confirm.may_contact.required'|trans({}, 'checkout') }}</p>
+            <label for="checkout_confirm_may_contact_yes">{{ 'checkout.confirm.may_contact.yes_label'|trans({}, 'checkout') }}</label>
+            <input type="radio" name="checkout_confirm_may_contact" id="checkout_confirm_may_contact_yes" value="1">
+            |
+            <input type="radio" name="checkout_confirm_may_contact" id="checkout_confirm_may_contact_no" value="0">
+            <label for="checkout_confirm_may_contact_no">{{ 'checkout.confirm.may_contact.no_label'|trans({}, 'checkout') }}</label>
+        </div>
+    </div>
+
     <div class="checkout-confirm-terms">
         {{ 'checkout.confirm.terms'|trans({}, 'checkout')|raw }}
         <input type="checkbox" name="checkout_confirm_terms" id="js_checkout_confirm_terms">
     </div>
+
     <div id="checkout-buttons">
         <a class="button" href="{{ path('basket_view') }}"><i class="fa fa-arrow-left"></i> {{ 'button.back'|trans({}, 'checkout') }}</a>
         <a class="button pull-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}<i class="fa fa-arrow-right"></i></a>

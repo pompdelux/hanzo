@@ -120,16 +120,23 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Hos POMPdeLUX är det enkelt att byta eller returnera en vara. Det bekvämaste sättet är att fylla i och bifoga denna retursedel.<br>
-Det är viktigt att varan returneras med etiketter och i samma tillstånd som när du tog emot den om du vill byta varan mot en motsvarande vara eller få hela inköpsbeloppet återbetalt.<br><br> 
-<b>Retur, byte och reklamation</b><br>
-Om du vill returnera en vara kan du använda vår förbetalda returetikett som du hittar på Min Sida. Om du använder returetiketten drar vi endast av SEK 49,- från returvarornas värde.<br>
-Om du vill byta till en annan storlek, färg eller en helt annan vara är returförsändelsen fraktfri om du använder vår förbetalda returetikett. Observera att du endast kan byta till en vara som inte är dyrare än returvaran. Vänligen observera att varan inte reserveras. <br>Returförsändelsen är fraktfri för dig även om du vill returnera en reklamation eller en fellevererad vara, förutsatt att du använder vår förbetalda returetikett.<br><br>
-<b>Återbetalning</b><br>
-Om du betalat med kort överförs returbeloppet till det kontokort som du använde vid din beställning.<br><br>
-Har du använt PayPal överförs beloppet till ditt PayPal-konto.<br><br>
-Har du använt PayByBill ber vi dig kontakta arvato Finance A/S på tel: 0340-664444.<br><br>
-Obs! Även om du väntar på en kreditnota för dina returvaror ska du alltid betala din obetalda faktura inom 30 dagar.<br>För närmare information, se: <a href="/sv_SE/" target="_blank">www.pompdelux.se</a></p>]]></target>
+                <target><![CDATA[<p>Hos POMPdeLUX &auml;r det enkelt att byta eller returnera en vara. Det bekv&auml;maste s&auml;ttet &auml;r att fylla i och bifoga denna retursedel.<br>
+<b>Returnering, byte, reklamation</b><br>
+Varan ska alltid returneras med lapparna kvar och i samma skick som den mottogs f&ouml;r att byta till en ny vara eller f&ouml;r att returnera varan och f&aring; pengarna tillbaka.<br>
+
+Om du &ouml;nskar att returnera en vara och anv&auml;nder v&aring;r f&ouml;rbetalda returetikett drar vi endast 49 kr f&ouml;r f&ouml;rs&auml;ndelsen. Beloppet avr&auml;knas automatiskt fr&aring;n v&auml;rdet av dina returvaror.<br><br>
+
+Om du &ouml;nskar att byta till en annan storlek, f&auml;rg eller till en helt annan vara &auml;r returf&ouml;rs&auml;ndelsen fraktfri om du anv&auml;nder v&aring;r f&ouml;rbetalda returetikett. Observera att du endast kan byta till en vara som inte &ouml;verstiger returvarans pris. Observera att varan inte kan reserveras.<br><br>
+
+Om du &ouml;nskar att returnera en reklamation eller fellevererad vara &auml;r returf&ouml;rs&auml;ndelsen ocks&aring; fraktfri om du anv&auml;nder v&aring;r f&ouml;rbetalda returetikett. <br><br>
+
+<b>&Aring;terbetalning</b><br>
+Om du betalat med betalkort &ouml;verf&ouml;rs ditt returbelopp till det betalkort som anv&auml;ndes vid best&auml;llning. <br>
+Om du betalat med PayPal &ouml;verf&ouml;rs beloppet till ditt PayPal konto.<br> 
+Om du har valt arvato kommer Arvato Finans AB att &aring;terbetala pengarna till dig. V&auml;nligen kontakta dem p&aring; telefon: 0340 664444. <br>
+Observera: &Auml;ven om du inv&auml;ntar en kreditfaktura ska din ursprungliga faktura betalas inom 30 dagar. <br><br>
+
+F&ouml;r mer information: <a href="https://www.pompdelux.com/sv_SE/">www.pompdelux.se</a> </p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

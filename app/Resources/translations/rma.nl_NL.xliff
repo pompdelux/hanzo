@@ -119,7 +119,29 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>Bij POMPdeLUX is het eenvoudig om te ruilen en retourneren. <br>Wil je artikelen retourneren naar POMPdeLUX, vul dan graag het meegestuurde retourformulier in en stuur het in de oorspronkelijke verpakking met de prijskaartjes enz. eraan terug.<br><br>Retourneer je een beschadigd of verkeerd geleverd artikel, dan betaal je geen verzendkosten. <br><br>Wil je ruilen voor een andere maat, kleur of artikel, dan is dat ook gratis.<br><br>Het nieuwe artikel mag niet duurder zijn dan het artikel dat je hebt teruggestuurd. Wees er op attent, dat het artikel niet gereserveerd kan worden. Als het artikel dat je wilt hebben is uitverkocht, betalen we je je geld terug. Heb je betaald met een creditcard, dan wordt het bedrag teruggestort op de creditcard die je voor de bestelling hebt gebruikt.<br><br><em>Heb je gebruik gemaakt van PayPal, wordt het bedrag terug gestort op je PayPal-account.</em>Heb je PayByBill gebruikt, dan verzoeken we je contact op te nemen met Gothia BV - Klantenservice via tel: 078 - 751 80 22 of e-mail: <a href="afsinfo.nl@gothiagroup.com" target="_blank">afsinfo.nl@gothiagroup.com</a><br><b>Let op:</b>hoewel je voor je retourzending een creditnota zult ontvangen, moet je je factuur nog steeds binnen de 30 dagen betalen. Voor meer informatie zie: <a href="/nl_NL/" target="_blank">www.pompdelux.nl</a></p>]]></target>
+                <target><![CDATA[<p>Bij POMPdeLUX is het eenvoudig om te ruilen en retourneren. <br><br>
+<b>Retourneren, ruilen, reclameren</b> <br>
+Om een artikel te ruilen of de volledige aankoopsom terug te krijgen: retourneer het artikel met het prijskaartje eraan. En in dezelfde staat als waarin je het hebt ontvangen.<br><br>
+
+Wil je een artikel retourneren en je geld terugkrijgen? Als je het retourlabel afdrukt met behulp van de bovenstaande link, dan kost het retourlabel EUR 7. Dit bedrag trekken we van de waarde van je retourartikelen.<br><br>
+
+Wil je een artikel ruilen voor een andere maat of kleur of een ander artikel ontvangen? Dan kan dat gratis, als je het retourlabel afdrukt met behulp van de bovenstaande link. Onthou dat je alleen kunt ruilen voor een artikel dat niet duurder is dan dat wat je terugstuurt. We reserveren geen artikelen.<br><br>
+
+Wil je een reclamatie of een verkeerd geleverd artikel retourneren? Dan kan dat gratis, als je het retourlabel afdrukt met behulp van de bovenstaande link.<br><br>
+
+<b>Terugbetaling</b> <br>
+Heb je betaald met een creditcard? Dan storten we het geld terug op de kaart die je bij je bestelling hebt gebruikt.<br>
+Heb je betaald met PayPal? Dan maken we het bedrag over naar je PayPal-account.<br>
+Heb je arvato gebruikt? Dan wordt het geld automatisch teruggestort op je rekening. Heb je hierover nog vragen, neem dan contact op met Gothia BV op telefoonnummer: 078-7518022
+
+Let op: al verwacht je een creditnota voor je retourartikelen, toch moet je je open factuur binnen 30 dagen betalen.<br><br>
+
+Heb je nog opmerkingen, dan kun je contact met ons opnemen via <a href="mailto:mailnl@POMPdeLUX.com">mailnl@POMPdeLUX.com</a><br><br>
+
+Voor meer informatie kijk je op: <a href="https://www.pompdelux.com/nl_NL/">www.pompdelux.nl</a><br><br>
+
+
+</p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

@@ -44,7 +44,12 @@ class LoginListener
             $order->save();
         }
 
+        /** @var \Hanzo\Model\Customers $user */
         $user = $event->getAuthenticationToken()->getUser();
+
+        // Reset "may be contacted" to false
+        $user->setMayBeContacted(false);
+        $user->save();
 
         // Delete any attached shipping addresses.
         AddressesQuery::create()

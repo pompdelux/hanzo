@@ -119,14 +119,41 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>At POMPdeLUX it is easy to exchange or return items. The easiest way to do this is to fill in this form and return it with the item/s.<br><br>
-It is important that the item is returned with tags and in the same condition that you received it in if you wish to make an exchange for a similar product or receive a refund of the full amount. <br><br>
-<b>Returns, Exchanges, Complaints</b><br>
-If you wish to return an item, you must pay for shipping costs associated with the return of the goods. We will however refund the postage charges for parcels sent with standard priority through the national post service. <br><br>If you wish to make an exchange for another size, colour, different product altogether, the costs of return shipping is naturally free and we will refund the postage charges for parcels sent with standard priority through the national post service. Please note that it is only possible to exchange for another item that does not cost more than the original item. Please note that the item will not be reserved. <br><br>
-If you wish to return a defective or incorrect item, the return shipping costs will also be refunded as described above. <br><br>
-Refund of Payment
-If you paid by card then your refund will be returned to the card you used when ordering.<br><br>
-For further information, please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a></p>]]></target>
+                <target><![CDATA[<p>At POMPdeLUX it is easy to exchange or return items. The easiest way to do this is to fill in this form and return it with the items.<br><br>
+
+<b>Returning/exchanging an item – EU-country:</b><br>
+&nbsp;&nbsp;1. Pack the item – The delivery bag, which you received your goods in may be used.<br>
+&nbsp;&nbsp;2. Fill out and attach this return note.<br>
+&nbsp;&nbsp;3. Attach the return label on your parcel – return label can be found here: www.pompdelux.com/Kundeservice/Returns<br>
+&nbsp;&nbsp;4. Hand in your return parcel at your national postal service.<br><br>
+
+If you want to return an item from an EU country (and get a full refund) you will have print the return label from the link above, we will deduct the shipping cost in your reimbursement.<br><br>
+
+If you want to exchange an item for a different size, colour or to a completely different item, the return shipping is free of charge if you use our prepaid return label. If you choose to use another way of returning you goods, we will refund a maximum of EUR 15/shipping.<br>
+Please note that you can only exchange for an item that does not exceed the returned item's price. Please note that the item cannot be reserved.<br><br>
+
+If you want to return a faulty item or an incorrectly supplied item, the return is also free of charge if you use our prepaid return label. If you choose to use another way of returning you goods, we will refund a maximum of EUR 15/shipping.<br><br>
+
+<b>Returning/ exchanging an item – Non EU Country:</b><br>
+&nbsp;&nbsp;1. Pack the item – The delivery bag, which you received your goods in may be used.<br>
+&nbsp;&nbsp;2. Fill out and attach this return note.<br>
+&nbsp;&nbsp;3. You will pay the postage – we will refund according to the following requirements – however maximum € 20/ shipping. <br>
+&nbsp;&nbsp;4. Hand in your return parcel at your national postal service.<br><br>
+
+If you want to return an item from an Non EU country (and get a full refund) you have to pay the postage.<br><br>
+
+If you want to exchange an item for a different size, colour or to a completely different item, you have to pay the postage - we will however reimburse you a maximum of EUR 20/ shipping. Please note that you can only exchange for an item that does not exceed the returned item's price. Please note that the item cannot be reserved.<br><br><br>
+
+ 
+If you want to return a faulty item or an incorrectly supplied item, you have to pay the postage - we will however reimburse you a maximum of EUR 20/ shipping.<br><br>
+
+<b>Refunds</b><br>
+If you have used card payment, the refund will be transferred to the same card, you used when placing your order.<br><br>
+
+If you have further comments, please contacts us on <a href="mailto:mailcom@POMPdeLUX.com">mailcom@POMPdeLUX.com</a><br><br>
+
+For further information, please visit: <a href="/en_GB/" target="_blank">www.pompdelux.com</a><br><br>
+</p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

@@ -119,18 +119,24 @@
             </trans-unit>
             <trans-unit id="rma.slip.description">
                 <source>rma.slip.description</source>
-                <target><![CDATA[<p>POMPdeLUXilla tuotteiden vaihtaminen tai palauttaminen sujuu helposti. Helpoiten se onnistuu, kun täytät tämän palautuslomakkeen ja liität sen mukaan lähetykseen.<br><br>
-				On tärkeää, että tuote palautetaan tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai koko ostosumman takaisin.<br><br> 
+                <target><![CDATA[<p>POMPdeLUXilla tuotteiden vaihtaminen tai palauttaminen sujuu helposti. Helpoiten se onnistuu, kun t&auml;yt&auml;t t&auml;m&auml;n palautuslomakkeen ja liit&auml;t sen mukaan l&auml;hetykseen.<br><br> 
 <b>Palautus, vaihto, reklamaatio</b><br>
-Jos haluat palauttaa tuotteen, voit käyttää palautusetikettiämme, jonka löydät Omilta Sivuilta ja jolla palautus on maksutonta.<br><br> 
-Jos haluat vaihtaa toiseen kokoon, väriin tai kokonaan toiseen tuotteeseen, palautuslähetys on maksuton, jos käytät palautusetikettiämme. Huomaa, että voit vaihtaa vain tuotteeseen, jonka hinta ei ylitä palautettavan tuotteen hintaa. Huomaathan, ettei tuotteelle tule varausta.<br><br> 
-Palautuslähetys on maksuton myös siinä tapauksessa, jos haluat palauttaa reklamoitavan tai väärin toimitetun tuotteen ja käytät palautusetikettiämme.<br><br> 
-<b>Takaisinmaksu<b>
-Jos olet maksanut kortilla, palautussumma siirretään maksukortille, jota olet käyttänyt tilauksen yhteydessä.<br><br>
-Jos olet käyttänyt PayPalia, summa siirretään PayPal-tilillesi.<br><br>
-Jos olet käyttänyt PayByBillia, pyydämme sinua ottamaan yhteyttä arvato Financeen, puh. 020 722 9462. <br>
-Huomaa: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin maksaa avoinna oleva lasku 30 päivän kuluessa.<br><br>Katso lisätietoja osoitteesta:
- <a href="/fi_FI/" target="_blank">www.pompdelux.fi</a></p>]]></target>
+Tuote tulee palauttaa tuote- ja hintalappuineen ja samassa kunnossa kuin vastaanottaessasi tuotteen, jos haluat saada tilalle vastaavan tuotteen tai koko ostosumman takaisin.<br><br> 
+
+Jos haluat palauttaa tuotteen ja k&auml;yt&auml;t valmiiksi maksettua palautustarraamme, v&auml;henn&auml;mme vain 7,25 EUR palautustuotteidesi arvosta.<br><br>
+
+Jos haluat vaihtaa toiseen kokoon, v&auml;riin tai kokonaan toiseen tuotteeseen, palautusl&auml;hetys on maksuton, jos k&auml;yt&auml;t valmiiksi maksettua palautustarraamme. Huomaa, ett&auml; voit vaihtaa vain tuotteeseen, jonka hinta ei ylit&auml; palautettavan tuotteen hintaa. Huomaathan, ett&auml; tuotteita ei varata.<br><br>
+
+Palautusl&auml;hetys on maksuton my&ouml;s siin&auml; tapauksessa, jos haluat palauttaa reklamoitavan tai v&auml;&auml;rin toimitetun tuotteen ja k&auml;yt&auml;t valmiiksi maksettua palautustarraamme.
+<br><br> 
+<b>Takaisinmaksu</b><br>
+Jos olet maksanut kortilla, palautussumma siirret&auml;&auml;n tilatessasi k&auml;ytt&auml;m&auml;llesi maksukortille.<br>
+Jos olet k&auml;ytt&auml;nyt PayPalia, summa siirret&auml;&auml;n PayPal-tilillesi.<br>
+Jos olet maksanut laskulla, ota yhteytt&auml; Arvato Financeen, puh. 020 722 9462.<br>
+Huomautus: Vaikka odotat hyvityslaskua palautustuotteistasi, sinun tulee kuitenkin maksaa avoinna oleva lasku
+30 p&auml;iv&auml;n kuluessa.<br><br>
+
+Jos sinulla on kysytt&auml;v&auml;&auml;, voit ottaa yhteytt&auml; osoitteeseen <a href="mailto:mailfi@POMPdeLUX.com">mailfi@POMPdeLUX.com</a> Katso lis&auml;tietoja osoitteesta <a href="https://www.pompdelux.com/fi_FI">www.pompdelux.fi</a></p>]]></target>
             </trans-unit>
             <trans-unit id="rma.slip.thead.activitycode">
                 <source>rma.slip.thead.activitycode</source>

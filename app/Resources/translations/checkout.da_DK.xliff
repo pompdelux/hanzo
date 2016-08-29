@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Hvis du vælger at betale med arvato, vil et gebyr på 25 DKK blive påført fakturaen. Betalingsbetingelserne er 30 dage. For at kunne betale med faktura skal du være minimum 18 år og have dansk folkeregistereadresse. Det er også et krav, at du bliver godkendt i kreditgodkendelsesprocessen. arvato giver dig muligheden for at delbetale din faktura, når du har handlet for mere end kr. 500,-. På din faktura fremgår det om det er muligt at delbetale din faktura, og hvordan du logger på arvato.com for at godkende vilkår, samt vælge antal måneder som du vil dele din faktura op i. Læs mere om delbetaling <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">her.</a> Vær opmærksom på, at fakturaen kun kommer på mail. Se betalingsbetingelser for arvato.]]></target>
+        <target><![CDATA[Hvis du vælger at betale med arvato, vil et gebyr på 25 DKK blive påført fakturaen. Betalingsbetingelserne er 30 dage. For at kunne betale med faktura skal du være minimum 18 år og have dansk folkeregistereadresse. Det er også et krav, at du bliver godkendt i kreditgodkendelsesprocessen. arvato giver dig muligheden for at delbetale din faktura, når du har handlet for mere end kr. 500,-. På din faktura fremgår det om det er muligt at delbetale din faktura, og hvordan du logger på www.fakturainfo.dk for at godkende vilkår, samt vælge antal måneder som du vil dele din faktura op i. Læs mere om delbetaling <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/vilkaar-betingelser" target="_blank">her.</a> Vær opmærksom på, at fakturaen kun kommer på mail. Se betalingsbetingelser for arvato.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -476,6 +476,23 @@
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
         <target>Fakturabetaling</target>
+      </trans-unit>
+
+      <trans-unit id="checkout.confirm.may_contact.text">
+        <source>checkout.confirm.may_contact.text</source>
+        <target>Jeg giver hermed samtykke til, at POMPdeLUX eller dennes samarbejdspartner, Communication Research ApS, må kontakte mig elektronisk via e-mail, sms/mms eller lignende elektronisk medie (herunder sociale medier) med tilbud om at deltage i en eller flere kundetilfredsheds- eller markedsundersøgelser, der har et kommercielt markedsføringsmæssigt formål eller indhold. Samtykket omfatter sådanne kundetilfredsheds- og markedsundersøgelser, der har til hensigt at fremme afsætningen af POMPdeLUX’s varer, formuegoder eller tjenesteydelser, herunder udbedre kendskab til POMPdeLUX og de varer, formuegoder eller tjenesteydelser, som POMPdeLUX leverer. Jeg er bekendt med, at jeg til enhver tid kan tilbagekalde mit samtykke.</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.required">
+        <source>checkout.confirm.may_contact.required</source>
+        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.yes_label">
+        <source>checkout.confirm.may_contact.yes_label</source>
+        <target>Ja, gerne</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.no_label">
+        <source>checkout.confirm.may_contact.no_label</source>
+        <target>Nej tak</target>
       </trans-unit>
     </body>
   </file>

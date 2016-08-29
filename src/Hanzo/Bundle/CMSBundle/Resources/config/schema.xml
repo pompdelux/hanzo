@@ -180,6 +180,7 @@
         <column name="password_clear" type="VARCHAR" size="45" required="false"/>
         <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
         <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+        <column name="may_be_contacted" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
         <foreign-key foreignTable="groups" onUpdate="CASCADE">
             <reference local="groups_id" foreign="id"/>
         </foreign-key>
