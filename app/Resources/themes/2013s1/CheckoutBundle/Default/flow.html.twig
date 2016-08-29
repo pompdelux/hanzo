@@ -34,9 +34,18 @@
     </div>
 
     <div class="checkout-confirm-may-contact">
-        <label for="js-checkout-confirm-may-contact">{{ 'checkout.confirm.may_contact.label'|trans({}, 'checkout')|raw }}</label>
-        <a href="{{ 'checkout.confirm.may_contact.info_url'|trans({}, 'checkout') }}" class="js-external">{{ 'checkout.confirm.may_contact.info_label'|trans({}, 'checkout') }}</a>.
-        <input type="checkbox" name="checkout_confirm_may_contact" id="js-checkout-confirm-may-contact">
+        <div class="text">
+        {{ 'checkout.confirm.may_contact.text'|trans({}, 'checkout')|raw }}
+        </div>
+
+        <div class="radios">
+            <p>{{ 'checkout.confirm.may_contact.required'|trans({}, 'checkout') }}</p>
+            <label for="checkout_confirm_may_contact_yes">{{ 'checkout.confirm.may_contact.yes_label'|trans({}, 'checkout') }}</label>
+            <input type="radio" name="checkout_confirm_may_contact" id="checkout_confirm_may_contact_yes" value="1">
+            |
+            <input type="radio" name="checkout_confirm_may_contact" id="checkout_confirm_may_contact_no" value="0">
+            <label for="checkout_confirm_may_contact_no">{{ 'checkout.confirm.may_contact.no_label'|trans({}, 'checkout') }}</label>
+        </div>
     </div>
 
     <div class="checkout-confirm-terms">
