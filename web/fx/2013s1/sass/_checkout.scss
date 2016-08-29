@@ -61,6 +61,7 @@ form.address {
         padding: 10px;
         display: block;
         margin: 20px 5px;
+
         a {
             text-decoration: underline;
         }
@@ -68,6 +69,29 @@ form.address {
 
     .checkout-confirm-may-contact {
         border: 3px solid $footer-color;
+
+        p {
+            display: none;
+        }
+
+        .text {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            border: 3px solid $alert-border-color;
+            padding: 10px;
+
+            p {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        div {
+            text-align: center;
+        }
     }
 
     #checkout-buttons {
