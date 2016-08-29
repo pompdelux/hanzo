@@ -434,17 +434,21 @@
             ]]></target>
         </trans-unit>
 
-      <trans-unit id="checkout.confirm.may_contact.label">
-        <source>checkout.confirm.may_contact.label</source>
-        <target>Ja tak, jeg vil gerne medvirke i tilfredshedsundersøgelser m.m.</target>
+      <trans-unit id="checkout.confirm.may_contact.text">
+        <source>checkout.confirm.may_contact.text</source>
+        <target>I hereby consent to POMPdeLUX or their partner, Communication Research Ltd., may contact me electronically via e -mail, SMS / MMS or other electronic media (including social media) with offers to participate in one or several customer satisfaction or market surveys which has a commercial marketing purpose or content. The consent includes customer satisfaction and market surveys, which intends to promote the sale of POMPdeLUX 's products, property or services, including knowledge about POMPdeLUX and the products, property or services POMPdeLUX delivers. I am aware that I may, at any time, revoke my consent.</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.info_url">
-        <source>checkout.confirm.may_contact.info_url</source>
-        <target>/da_DK/forside/kundeservice/vilkaar-betingelser</target>
+      <trans-unit id="checkout.confirm.may_contact.required">
+        <source>checkout.confirm.may_contact.required</source>
+        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.info_label">
-        <source>checkout.confirm.may_contact.info_label</source>
-        <target>Læs mere her</target>
+      <trans-unit id="checkout.confirm.may_contact.yes_label">
+        <source>checkout.confirm.may_contact.yes_label</source>
+        <target>Yes please</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.no_label">
+        <source>checkout.confirm.may_contact.no_label</source>
+        <target>No thanks</target>
       </trans-unit>
     </body>
   </file>
