@@ -156,6 +156,13 @@
                  */
                 $('.msg.error').toggleClass('hidden error');
 
+                // may contact - TODO: needs error block ?
+                if (0 === $('.checkout-confirm-may-contact input:checked').length) {
+                    $('.checkout-confirm-may-contact .radios').addClass('error');
+                    $('html,body').animate({ scrollTop: $('.checkout-confirm-may-contact').offset().top - 20 });
+                    return;
+                }
+
                 // shipping
                 if (!checkout.getStepStatus('shipping')) {
                     var $block = $('#shipping-block');
@@ -279,18 +286,20 @@
                 $('#checkout-buttons').hide();
             }
 
-            $('#js-checkout-confirm-may-contact').on('change', function() {
-                $.post(base_url+'account/may-be-contacted', {
-                    answer: $(this).prop("checked")
-                });
-            });
-
             $('.checkout-confirm-terms input[type=checkbox]').on('change', function () {
                 if ($(this).prop("checked")) {
                     $('#checkout-buttons').show();
                 } else {
                     $('#checkout-buttons').hide();
                 }
+            });
+
+            // Register may-be-contacted value on customer.
+            $('.checkout-confirm-may-contact input').on('change', function() {
+                $('.checkout-confirm-may-contact .radios').removeClass('error');
+                $.post(base_url+'account/may-be-contacted', {
+                    answer: $(this).prop("value")
+                });
             });
         };
 
