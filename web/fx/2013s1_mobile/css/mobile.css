@@ -3999,6 +3999,24 @@ form.address .error {
 #body-checkout .checkout-confirm-may-contact {
   border: 3px solid #444;
 }
+#body-checkout .checkout-confirm-may-contact p {
+  display: none;
+}
+#body-checkout .checkout-confirm-may-contact .text {
+  text-align: left;
+  margin-bottom: 10px;
+}
+#body-checkout .checkout-confirm-may-contact .error {
+  border: 3px solid #c18185;
+  padding: 10px;
+}
+#body-checkout .checkout-confirm-may-contact .error p {
+  display: block;
+  margin-bottom: 5px;
+}
+#body-checkout .checkout-confirm-may-contact div {
+  text-align: center;
+}
 #body-checkout #checkout-buttons {
   display: none;
 }
