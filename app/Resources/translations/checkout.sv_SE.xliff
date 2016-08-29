@@ -454,17 +454,21 @@
           ]]></target>
         </trans-unit>
 
-      <trans-unit id="checkout.confirm.may_contact.label">
-        <source>checkout.confirm.may_contact.label</source>
-        <target>Ja tak, jeg vil gerne medvirke i tilfredshedsundersøgelser m.m.</target>
+      <trans-unit id="checkout.confirm.may_contact.text">
+        <source>checkout.confirm.may_contact.text</source>
+        <target>Jag samtycker härmed att POMPdeLUX eller deras samarbetspartner, Communication Research ApS, får kontakta mig elektroniskt via e-mail, sms/mms eller liknande elektronisk media (inkluderat social medier) med erbjudande om att deltaga i en eller flera kundtillfredställdhets – eller marknadsundersökningar som har ett kommersiellt marknadsförningsmässigt syfte eller innehåll. Samtycket omfattar kundtillfredställdhets –och marknadsundersökningar med syfte att främja försäljningen av POMPdeLUX produkter, egendommar eller tjänster, inklusive bredda kunskapen kring POMPdeLUX och de produkter, egendomar eller tjänster POMPdeLUX levererar. Jag är medveten om att jag när som helst kan återkalla mitt samtycke.</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.info_url">
-        <source>checkout.confirm.may_contact.info_url</source>
-        <target>/da_DK/forside/kundeservice/vilkaar-betingelser</target>
+      <trans-unit id="checkout.confirm.may_contact.required">
+        <source>checkout.confirm.may_contact.required</source>
+        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
       </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.info_label">
-        <source>checkout.confirm.may_contact.info_label</source>
-        <target>Læs mere her</target>
+      <trans-unit id="checkout.confirm.may_contact.yes_label">
+        <source>checkout.confirm.may_contact.yes_label</source>
+        <target>Ja, gerne</target>
+      </trans-unit>
+      <trans-unit id="checkout.confirm.may_contact.no_label">
+        <source>checkout.confirm.may_contact.no_label</source>
+        <target>Nej tak</target>
       </trans-unit>
     </body>
   </file>
