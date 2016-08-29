@@ -1094,6 +1094,10 @@
         <source>admin.customer.is_active.label</source>
         <target>Aktiveret</target>
       </trans-unit>
+      <trans-unit id="admin.customer.may_be_contacted.label">
+        <source>admin.customer.may_be_contacted.label</source>
+        <target>Må kontaktes</target>
+      </trans-unit>
       <trans-unit id="admin.consultant.initials.label">
         <source>admin.consultant.initials.label</source>
         <target>Initialer</target>
