@@ -286,12 +286,6 @@
                 $('#checkout-buttons').hide();
             }
 
-            $('#js-checkout-confirm-may-contact').on('change', function() {
-                $.post(base_url+'account/may-be-contacted', {
-                    answer: $(this).prop("checked")
-                });
-            });
-
             $('.checkout-confirm-terms input[type=checkbox]').on('change', function () {
                 if ($(this).prop("checked")) {
                     $('#checkout-buttons').show();
