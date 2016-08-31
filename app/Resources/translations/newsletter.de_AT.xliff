@@ -38,6 +38,14 @@
         <source>subscribed.text</source>
         <target>Sie haben sich erfolgreich für unseren Newsletter angemeldet.</target>
       </trans-unit>
+      <trans-unit id="exists.text">
+        <source>exists.text</source>
+        <target>Sie haben bereits unseren Newsletter abonniert.</target>
+      </trans-unit>
+      <trans-unit id="resubscribed.text">
+        <source>resubscribed.text</source>
+        <target>Wir haben Ihnen eine Email gesendet, in welcher Sie Ihre Anmeldung bestätigen können.</target>
+      </trans-unit>
       <trans-unit id="unsubscribed.text">
         <source>unsubscribed.text</source>
         <target>Sie haben sich erfolgreich vom Newsletter von POMPdeLUX abgemeldet.</target>
