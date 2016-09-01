@@ -136,7 +136,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Banköverföring</target>
+        <target>Väntar på val av betalningssätt.</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
