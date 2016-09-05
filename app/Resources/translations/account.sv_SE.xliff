@@ -599,7 +599,7 @@ Därefter kan du enkelt shoppa vidare.<br></p>
             </trans-unit>
             <trans-unit id="wishlist.number">
                 <source>wishlist.number</source>
-                <target><![CDATA[Shoppinglista Nr: <span>%number%</span>]]></target>
+                <target><![CDATA[Shoppinglista ID: <span>%number%</span>]]></target>
             </trans-unit>
             <trans-unit id="add.to.wishlist">
                 <source>add.to.wishlist</source>
