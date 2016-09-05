@@ -1157,7 +1157,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Hakemuksesi on nyt lähetetty.</p><br/><p>Jos sinulla on kysyttävää, voit aina ottaa yhteyttä Sales Coordinator Nina Jenseniin, numeroon 09-34871060.</p>]]></target>
+                <target><![CDATA[<p>Hakemuksesi on nyt lähetetty.</p><br/><p>Jos sinulla on kysyttävää, voit aina ottaa yhteyttä Sales Coordinator Niina Korhoseen, numeroon 09-34871060.</p>]]></target>
             </trans-unit>
         </body>
     </file>
