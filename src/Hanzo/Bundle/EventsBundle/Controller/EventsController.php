@@ -354,11 +354,11 @@ class EventsController extends CoreController
         if ($event instanceof Events) {
 
             // no deleting old events
-            if ($event->getEventDate('U') < time()) {
-                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
-
-                return $this->redirect($this->generateUrl('events_index'));
-            }
+//            if ($event->getEventDate('U') < time()) {
+//                $this->get('session')->getFlashBag()->add('notice', 'event.too.old.to.delete');
+//
+//                return $this->redirect($this->generateUrl('events_index'));
+//            }
 
             $consultant = CustomersQuery::create()->joinWithConsultants()->findPK($event->getConsultantsId());
             // Send some emails for the host and participants
