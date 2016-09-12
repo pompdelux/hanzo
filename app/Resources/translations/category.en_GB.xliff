@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="headers.category-12">
         <source>headers.category-12</source>
-        <target><![CDATA[<h1>Fleece</h1>]]></target>
+        <target><![CDATA[<h1>Fleece for girls <br>– Every girl’s favourite!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-12">
         <source>description.category-12</source>
@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="headers.category-13">
         <source>headers.category-13</source>
-        <target><![CDATA[<h1>Jackets</h1>]]></target>
+        <target><![CDATA[<h1>Jackets for girls <br>– We have styles for all seasons</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-13">
         <source>description.category-13</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="headers.category-14">
         <source>headers.category-14</source>
-        <target><![CDATA[<h1>Shell jackets and shell pants</h1>]]></target>
+        <target><![CDATA[<h1>Shell jackets and shell pants for girls – Check this!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-14">
         <source>description.category-14</source>
@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="headers.category-15">
         <source>headers.category-15</source>
-        <target><![CDATA[<h1>Softshell</h1>]]></target>
+        <target><![CDATA[<h1>Softshell for girls – Find all POMPdeLUX styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-15">
         <source>description.category-15</source>
@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="headers.category-16">
         <source>headers.category-16</source>
-        <target><![CDATA[<h1>Blouses</h1>]]></target>
+        <target><![CDATA[<h1>Blouses for girls – Find all our adorable blouses here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-16">
         <source>description.category-16</source>
@@ -45,7 +45,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-17">
         <source>headers.category-17</source>
-        <target><![CDATA[<h1>Cardigans</h1>]]></target>
+        <target><![CDATA[<h1>Cardigans for girls – Nice, stylish cardigans</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-17">
         <source>description.category-17</source>
@@ -61,7 +61,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-19">
         <source>headers.category-19</source>
-        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+        <target><![CDATA[<h1>Sweatshirts for girls <br>– We have the best children’s clothing</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-19">
         <source>description.category-19</source>
@@ -69,7 +69,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-21">
         <source>headers.category-21</source>
-        <target><![CDATA[<h1>Tops</h1>]]></target>
+        <target><![CDATA[<h1>Tops for girls <br>– Find all POMPdeLUX styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-21">
         <source>description.category-21</source>
@@ -77,7 +77,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-45">
         <source>headers.category-45</source>
-        <target><![CDATA[<h1>T-Shirts</h1>]]></target>
+        <target><![CDATA[<h1>T-Shirts for girls – Find the POMPdeLUX collection here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-45">
         <source>description.category-45</source>
@@ -85,7 +85,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-46">
         <source>headers.category-46</source>
-        <target><![CDATA[<h1>Pants</h1>]]></target>
+        <target><![CDATA[<h1>Pants for girls <br>– Jeans and leggings for girls as well</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-46">
         <source>description.category-46</source>
@@ -93,7 +93,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-79">
         <source>headers.category-79</source>
-        <target><![CDATA[<h1>Jeans</h1>]]></target>
+        <target><![CDATA[<h1>Jeans for girls <br>– Lots of styles in stock</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-79">
         <source>description.category-79</source>
@@ -127,7 +127,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-114">
         <source>headers.category-114</source>
-        <target><![CDATA[<h1>Shorts</h1>]]></target>
+        <target><![CDATA[<h1>Shorts for girls – Bring the sunshine!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-114">
         <source>description.category-114</source>
@@ -223,7 +223,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-5">
         <source>headers.category-5</source>
-        <target><![CDATA[<h1>Fleece</h1>]]></target>
+        <target><![CDATA[<h1>Fleece for boys <br>– Find all our different styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-5">
         <source>description.category-5</source>
@@ -239,7 +239,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-7">
         <source>headers.category-7</source>
-        <target><![CDATA[<h1>Shell jackets and shell pants</h1>]]></target>
+        <target><![CDATA[<h1>Shell jackets and Shell pants for boys – Shop now!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-7">
         <source>description.category-7</source>
@@ -248,7 +248,7 @@ Shell jackets and shell trousers for boys have the best fits and optimal protect
       </trans-unit>
       <trans-unit id="headers.category-8">
         <source>headers.category-8</source>
-        <target><![CDATA[<h1>Softshell</h1>]]></target>
+        <target><![CDATA[<h1>Softshell for boys – POMPdeLUX clothes that last</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-8">
         <source>description.category-8</source>
@@ -257,7 +257,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-9">
         <source>headers.category-9</source>
-        <target><![CDATA[<h1>Blouses</h1>]]></target>
+        <target><![CDATA[<h1>Blouses for boys – Find all cool blouses here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-9">
         <source>description.category-9</source>
@@ -265,7 +265,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-11">
         <source>headers.category-11</source>
-        <target><![CDATA[<h1>Cardigans</h1>]]></target>
+        <target><![CDATA[<h1>Cardigans for boys – A classic style</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-11">
         <source>description.category-11</source>
@@ -273,7 +273,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-43">
         <source>headers.category-43</source>
-        <target><![CDATA[<h1>Polo shirts</h1>]]></target>
+        <target><![CDATA[<h1>Polo shirts for boys – Nice styles for young gentlemen</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-43">
         <source>description.category-43</source>
@@ -281,7 +281,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-44">
         <source>headers.category-44</source>
-        <target><![CDATA[<h1>Shirts</h1>]]></target>
+        <target><![CDATA[<h1>Shirts for boys – Find nice boy styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-44">
         <source>description.category-44</source>
@@ -289,7 +289,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-83">
         <source>headers.category-83</source>
-        <target><![CDATA[<h1>Sports jackets</h1>]]></target>
+        <target><![CDATA[<h1>Sports jackets for boys <br>– Cool college style for everyone</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-83">
         <source>description.category-83</source>
@@ -297,7 +297,7 @@ Our POMPdeLUX softshell products for boys are windproof and water-repellent. Sof
       </trans-unit>
       <trans-unit id="headers.category-84">
         <source>headers.category-84</source>
-        <target><![CDATA[<h1>Pullovers</h1>]]></target>
+        <target><![CDATA[<h1>Pullovers for boys <br>– Great styles all year round</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-84">
         <source>description.category-84</source>
@@ -306,7 +306,7 @@ Unfortunately, children do not always share adult’s enthusiasm for pullovers a
       </trans-unit>
       <trans-unit id="headers.category-116">
         <source>headers.category-116</source>
-        <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+        <target><![CDATA[<h1>Sweatshirts for boys <br>– Soft, classic clothes for children</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-116">
         <source>description.category-116</source>
@@ -314,7 +314,7 @@ Unfortunately, children do not always share adult’s enthusiasm for pullovers a
       </trans-unit>
       <trans-unit id="headers.category-117">
         <source>headers.category-117</source>
-        <target><![CDATA[<h1>T-shirts</h1>]]></target>
+        <target><![CDATA[<h1>T-shirts for boys – Get all POMPdeLUX styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-117">
         <source>description.category-117</source>
@@ -330,7 +330,7 @@ Unfortunately, children do not always share adult’s enthusiasm for pullovers a
       </trans-unit>
       <trans-unit id="headers.category-119">
         <source>headers.category-119</source>
-        <target><![CDATA[<h1>Pants</h1>]]></target>
+        <target><![CDATA[<h1>Pants for boys <br>– Lots of jeans in stock as well</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-119">
         <source>description.category-119</source>
@@ -339,7 +339,7 @@ POMPdeLUX designs boy pants - baggy, regular, slim fit, sweatpants, chinos and j
       </trans-unit>
       <trans-unit id="headers.category-120">
         <source>headers.category-120</source>
-        <target><![CDATA[<h1>Jeans</h1>]]></target>
+        <target><![CDATA[<h1>Jeans for boys <br>– Find all our cool styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-120">
         <source>description.category-120</source>
@@ -347,7 +347,7 @@ POMPdeLUX designs boy pants - baggy, regular, slim fit, sweatpants, chinos and j
       </trans-unit>
       <trans-unit id="headers.category-128">
         <source>headers.category-128</source>
-        <target><![CDATA[<h1>Shorts</h1>]]></target>
+        <target><![CDATA[<h1>Shorts for boys – Bring the summer!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-128">
         <source>description.category-128</source>
@@ -441,7 +441,7 @@ beautiful, durable versions. See our great selection if you need an extra nice q
       </trans-unit>
       <trans-unit id="headers.category-157">
         <source>headers.category-157</source>
-        <target><![CDATA[<h1>Outerwear</h1>]]></target>
+        <target><![CDATA[<h1>POMPdeLUX outerwear for girls <br> – Find outerwear for every season here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-157">
         <source>description.category-157</source>
@@ -450,7 +450,7 @@ All snowsuits, jackets, trousers and fleece jackets are available from size 80 c
       </trans-unit>
       <trans-unit id="headers.category-158">
         <source>headers.category-158</source>
-        <target><![CDATA[<h1>Top clothing</h1>]]></target>
+        <target><![CDATA[<h1>Tops for girls – Find all the styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-158">
         <source>description.category-158</source>
@@ -458,7 +458,7 @@ All snowsuits, jackets, trousers and fleece jackets are available from size 80 c
       </trans-unit>
       <trans-unit id="headers.category-159">
         <source>headers.category-159</source>
-        <target><![CDATA[<h1>Bottom clothing</h1>]]></target>
+        <target><![CDATA[<h1>Bottoms for girls – Find inspiration here </h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-159">
         <source>description.category-159</source>
@@ -482,7 +482,7 @@ All snowsuits, jackets, trousers and fleece jackets are available from size 80 c
       </trans-unit>
       <trans-unit id="headers.category-162">
         <source>headers.category-162</source>
-        <target><![CDATA[<h1>Outerwear</h1>]]></target>
+        <target><![CDATA[<h1>POMPdeLUX outerwear for boys <br> – Find outerwear for all kinds of weather</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-162">
         <source>description.category-162</source>
@@ -491,7 +491,7 @@ A lot of boys will now be well dressed because our jackets, trousers, snowsuits 
       </trans-unit>
       <trans-unit id="headers.category-163">
         <source>headers.category-163</source>
-        <target><![CDATA[<h1>Top clothing</h1>]]></target>
+        <target><![CDATA[<h1>Tops for boys – Shop all the cool styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-163">
         <source>description.category-163</source>
@@ -499,7 +499,7 @@ A lot of boys will now be well dressed because our jackets, trousers, snowsuits 
       </trans-unit>
       <trans-unit id="headers.category-164">
         <source>headers.category-164</source>
-        <target><![CDATA[<h1>Bottom clothing</h1>]]></target>
+        <target><![CDATA[<h1>Bottoms for boys <br>– You will find all boy styles here </h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-164">
         <source>description.category-164</source>
@@ -549,7 +549,7 @@ We do not just focus on style, but also in particular the fit - because only wit
       </trans-unit>
 	  <trans-unit id="headers.category-170">
         <source>headers.category-170</source>
-        <target><![CDATA[<h1>Adventure - wearable outerwear</h1>]]></target>
+        <target><![CDATA[<h1>Adventure outerwear for girls <br>– Wearable outerwear</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
@@ -557,11 +557,11 @@ We do not just focus on style, but also in particular the fit - because only wit
       </trans-unit>
 	  <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
-        <target><![CDATA[<h1>Snowsuits</h1>]]></target>
+        <target><![CDATA[<h1>Snowsuits for girls</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-172">
         <source>description.category-172</source>
-        <target><![CDATA[<p>POMPdeLUX is always able to supply a wide and beautiful range of outerwear for girls. Especially popular are our great snowsuits and there are many obvious reasons. They are available in sizes from 80 cm to 152 cm and are not only nice to look at and available to an affordable price and have all the features and details that characterize high quality snowsuits. Just like everything else from POMPdeLUX our snowsuits are designed and produced focusing on children's optimal well-being.  Snowsuits are therefore designed for children who love outdoor life - even if it's cold. POMPdeLUX snowsuits for girls keep what we promise and are therefore the right combination of mobility, durability and security that children need in their development. Snowsuits come in a variety of beautiful editions and lovely colours, all in the same unique quality that does not wear out before the children grow out of them.</p>]]></target>
+        <target><![CDATA[<p>You can always rely on, that POMPdeLUX has a wide and stunning range of outerwear for girls. Especially popular are our fantastic snowsuits and there are many reasons for this. They are available in sizes from 80 cm to 152 cm, and are not just stylish to look at and affordable, they also have all the features and details that characterize snowsuits of high quality. Like all children's clothing from POMdeLUX, we develop our snowsuits with focus on comfort. The snowsuits are produced for children who love outdoor adventure - even when the temperature drops. POMPdeLUX snowsuits for girls are the perfect combination of mobility, durability and safety - just what children need to thrive. The snowsuits are available in many styles and lovely colours, all in the same unique quality that is not worn out before the kids have grown out of them.</p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-174">
         <source>headers.category-174</source>
@@ -581,7 +581,7 @@ We do not just focus on style, but also in particular the fit - because only wit
       </trans-unit>
 	  <trans-unit id="headers.category-177">
         <source>headers.category-177</source>
-        <target><![CDATA[<h1>Basics</h1>]]></target>
+        <target><![CDATA[<h1>Basic styles for girls – Find all the fantastic basic styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-177">
         <source>description.category-177</source>
@@ -597,7 +597,7 @@ We do not just focus on style, but also in particular the fit - because only wit
       </trans-unit>
 	  <trans-unit id="headers.category-183">
         <source>headers.category-183</source>
-        <target><![CDATA[<h1>Pullovers</h1>]]></target>
+        <target><![CDATA[<h1>Pullovers for girls <br>– We dress children all year round</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-183">
         <source>description.category-183</source>
@@ -606,7 +606,7 @@ When the weather is inpredictable is a nice warm pullover a necessity and can be
       </trans-unit>
 	  <trans-unit id="headers.category-171">
         <source>headers.category-171</source>
-        <target><![CDATA[<h1>Adventure - wearable outerwear</h1>]]></target>
+        <target><![CDATA[<h1>Adventure outerwear for boys <br>– Perfectly dressed!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-171">
         <source>description.category-171</source>
@@ -614,7 +614,7 @@ When the weather is inpredictable is a nice warm pullover a necessity and can be
       </trans-unit>
 	  <trans-unit id="headers.category-173">
         <source>headers.category-173</source>
-        <target><![CDATA[<h1>Snowsuits</h1>]]></target>
+        <target><![CDATA[<h1>Snowsuits for boys <br>– Nice and wearable!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-173">
         <source>description.category-173</source>
@@ -631,7 +631,7 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
       </trans-unit>
 	   <trans-unit id="headers.category-178">
         <source>headers.category-178</source>
-        <target><![CDATA[<h1>Basics</h1>]]></target>
+        <target><![CDATA[<h1>Basic styles for boys – Shop our basic styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-178">
         <source>description.category-178</source>
@@ -663,7 +663,7 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
       </trans-unit>
 	   <trans-unit id="headers.category-184">
         <source>headers.category-184</source>
-        <target><![CDATA[<h1>Dresses/Jumpsuits</h1>]]></target>
+        <target><![CDATA[<h1>Dresses and Jumpsuits – Cute and girly style</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-184">
         <source>description.category-184</source>
@@ -679,7 +679,7 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
       </trans-unit>
 	  <trans-unit id="headers.category-186">
         <source>headers.category-186</source>
-        <target><![CDATA[<h1>Rainwear</h1>]]></target>
+        <target><![CDATA[<h1>Rainwear for girls – Good quality and good price</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-186">
         <source>description.category-186</source>
@@ -695,7 +695,7 @@ POMPdeLUX snowsuits for boys are made for movement and yet last long. Our snowsu
       </trans-unit>
 <trans-unit id="headers.category-188">
         <source>headers.category-188</source>
-        <target><![CDATA[<h1>Rainwear</h1>]]></target>
+        <target><![CDATA[<h1>Rainwear for boys – Good quality and good price</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-188">
         <source>description.category-188</source>
