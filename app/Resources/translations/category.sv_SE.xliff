@@ -110,7 +110,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
       </trans-unit>
       <trans-unit id="headers.category-112">
         <source>headers.category-112</source>
-        <target><![CDATA[<h1>Leggings</h1>]]></target>
+        <target><![CDATA[<h1>Leggings för flickor <br>– Se säsongens härliga flickplagg här.</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-112">
         <source>description.category-112</source>
@@ -118,7 +118,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
       </trans-unit>
       <trans-unit id="headers.category-113">
         <source>headers.category-113</source>
-        <target><![CDATA[<h1>Kjolar</h1>]]></target>
+        <target><![CDATA[<h1>Kjolar för flickor – Fina och flickiga plagg!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-113">
         <source>description.category-113</source>
@@ -135,7 +135,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-115">
         <source>headers.category-115</source>
-        <target><![CDATA[<h1>Strumpbyxor</h1>]]></target>
+        <target><![CDATA[<h1>Stumpbyxor till flickor <br>– Både varma och fina!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-115">
         <source>description.category-115</source>
@@ -143,7 +143,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-127">
         <source>headers.category-127</source>
-        <target><![CDATA[<h1>Bodys</h1>]]></target>
+        <target><![CDATA[<h1>Bodys till flickor <br>– Se hela vårt härliga utbud här</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-127">
         <source>description.category-127</source>
@@ -167,7 +167,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-137">
         <source>headers.category-137</source>
-        <target><![CDATA[<h1>Badkläder</h1>]]></target>
+        <target><![CDATA[<h1>Badkläder för flickor <br>– Se vår söta kollektion här</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-137">
         <source>description.category-137</source>
@@ -183,7 +183,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-143">
         <source>headers.category-143</source>
-        <target><![CDATA[<h1>Hattar</h1>]]></target>
+        <target><![CDATA[<h1>Hattar till flickor <br>– Snygga hattar till sol och sommar!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-143">
         <source>description.category-143</source>
@@ -191,7 +191,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-144">
         <source>headers.category-144</source>
-        <target><![CDATA[<h1>Håraccessoarer</h1>]]></target>
+        <target><![CDATA[<h1>Håraccessoarer till flickor <br>– Matchar POMPdeLUX kläder perfekt!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-144">
         <source>description.category-144</source>
@@ -199,7 +199,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-145">
         <source>headers.category-145</source>
-        <target><![CDATA[<h1>Strumpor</h1>]]></target>
+        <target><![CDATA[<h1>Strumpor till flickor <br>– Passar perfekt till POMPdeLUX kläder!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-145">
         <source>description.category-145</source>
@@ -207,7 +207,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
       </trans-unit>
       <trans-unit id="headers.category-146">
         <source>headers.category-146</source>
-        <target><![CDATA[<h1>Scarves</h1>]]></target>
+        <target><![CDATA[<h1>Scarves till flickor <br>– Hitta allt från POMPdeLUX här!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-146">
         <source>description.category-146</source>
@@ -356,7 +356,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-132">
         <source>headers.category-132</source>
-        <target><![CDATA[<h1>Bodys</h1>]]></target>
+        <target><![CDATA[<h1>Bodys till pojkar – Hitta hela sortimentet här</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-132">
         <source>description.category-132</source>
@@ -380,7 +380,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-149">
         <source>headers.category-149</source>
-        <target><![CDATA[<h1>Badkläder</h1>]]></target>
+        <target><![CDATA[<h1>Badkläder för pojkar – Allt till den stora baddagen!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-149">
         <source>description.category-149</source>
@@ -388,7 +388,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-150">
         <source>headers.category-150</source>
-        <target><![CDATA[<h1>Hattar</h1>]]></target>
+        <target><![CDATA[<h1>Hattar för pojkar <br>– Coola hattar som skyddar mot solen!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-150">
         <source>description.category-150</source>
@@ -396,7 +396,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-151">
         <source>headers.category-151</source>
-        <target><![CDATA[<h1>Strumpor</h1>]]></target>
+        <target><![CDATA[<h1>Strumpor till pojkar <br>– I den välkända POMPdeLUX-stilen.</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-151">
         <source>description.category-151</source>
@@ -404,7 +404,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-152">
         <source>headers.category-152</source>
-        <target><![CDATA[<h1>Accessoarer</h1>]]></target>
+        <target><![CDATA[<h1>Accessoarer för pojkar <br>– Små detaljer som gör skillnad</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-152">
         <source>description.category-152</source>
@@ -465,7 +465,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-160">
         <source>headers.category-160</source>
-        <target><![CDATA[<h1>Underkläder och nattkläder</h1>]]></target>
+        <target><![CDATA[<h1>Underkläder och nattkläder för flickor</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-160">
         <source>description.category-160</source>
@@ -473,7 +473,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-161">
         <source>headers.category-161</source>
-        <target><![CDATA[<h1>Accessoarer</h1>]]></target>
+        <target><![CDATA[<h1>Accessoarer för flickor <br>– Små saker med stor effekt.</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-161">
         <source>description.category-161</source>
@@ -505,7 +505,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
       </trans-unit>
       <trans-unit id="headers.category-165">
         <source>headers.category-165</source>
-        <target><![CDATA[<h1>Underkläder och nattkläder</h1>]]></target>
+        <target><![CDATA[<h1>Underkläder och nattkläder till pojkar</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-165">
         <source>description.category-165</source>

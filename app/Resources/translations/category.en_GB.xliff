@@ -109,7 +109,7 @@ All POMPdeLUX blouses for girls are designed with the sublime style and quality 
       </trans-unit>
       <trans-unit id="headers.category-112">
         <source>headers.category-112</source>
-        <target><![CDATA[<h1>Leggings</h1>]]></target>
+        <target><![CDATA[<h1>Leggings for girls <br>– See the season’s stunning girl styles here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-112">
         <source>description.category-112</source>
@@ -118,7 +118,7 @@ The colours are taken directly from our POMPdeLUX palette, so that they can be c
       </trans-unit>
       <trans-unit id="headers.category-113">
         <source>headers.category-113</source>
-        <target><![CDATA[<h1>Skirts</h1>]]></target>
+        <target><![CDATA[<h1>Skirts for girls <br>– Cute and girly styles!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-113">
         <source>description.category-113</source>
@@ -135,7 +135,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-115">
         <source>headers.category-115</source>
-        <target><![CDATA[<h1>Tights</h1>]]></target>
+        <target><![CDATA[<h1>Tights for girls <br>– Nice and warm!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-115">
         <source>description.category-115</source>
@@ -143,7 +143,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-127">
         <source>headers.category-127</source>
-        <target><![CDATA[<h1>Bodysuits</h1>]]></target>
+        <target><![CDATA[<h1>Bodysuits for girls <br>– Find our lovely selection here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-127">
         <source>description.category-127</source>
@@ -167,7 +167,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-137">
         <source>headers.category-137</source>
-        <target><![CDATA[<h1>Swimwear</h1>]]></target>
+        <target><![CDATA[<h1>Swimwear for girls <br>– See our adorable collection here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-137">
         <source>description.category-137</source>
@@ -183,7 +183,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-143">
         <source>headers.category-143</source>
-        <target><![CDATA[<h1>Hats</h1>]]></target>
+        <target><![CDATA[<h1>Hats for girls <br>– Lovely hats for summer and sunny days!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-143">
         <source>description.category-143</source>
@@ -191,7 +191,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-144">
         <source>headers.category-144</source>
-        <target><![CDATA[<h1>Hair deco</h1>]]></target>
+        <target><![CDATA[<h1>Hair deco for girls <br>– Match POMPdeLUX clothes perfectly!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-144">
         <source>description.category-144</source>
@@ -199,7 +199,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-145">
         <source>headers.category-145</source>
-        <target><![CDATA[<h1>Socks</h1>]]></target>
+        <target><![CDATA[<h1>Socks for girls <br>– Match POMPdeLUX clothes perfectly!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-145">
         <source>description.category-145</source>
@@ -207,7 +207,7 @@ POMPdeLUX creates, with great pleasure, an ocean of small skirts from size 80 cm
       </trans-unit>
       <trans-unit id="headers.category-146">
         <source>headers.category-146</source>
-        <target><![CDATA[<h1>Scarfs</h1>]]></target>
+        <target><![CDATA[<h1>Scarfs for girls <br>– Find everything from POMPdeLUX here!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-146">
         <source>description.category-146</source>
@@ -356,7 +356,7 @@ We have a range of nice shorts for boys, both long and short styles, plain and w
       </trans-unit>
       <trans-unit id="headers.category-132">
         <source>headers.category-132</source>
-        <target><![CDATA[<h1>Bodysuits</h1>]]></target>
+        <target><![CDATA[<h1>Bodysuits for boys – Find the entire range here</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-132">
         <source>description.category-132</source>
@@ -381,7 +381,7 @@ beautiful, durable versions. See our great selection if you need an extra nice q
       </trans-unit>
       <trans-unit id="headers.category-149">
         <source>headers.category-149</source>
-        <target><![CDATA[<h1>Swimwear</h1>]]></target>
+        <target><![CDATA[<h1>Swimwear for boys <br>– Everything you need to go swimming!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-149">
         <source>description.category-149</source>
@@ -389,7 +389,7 @@ beautiful, durable versions. See our great selection if you need an extra nice q
       </trans-unit>
       <trans-unit id="headers.category-150">
         <source>headers.category-150</source>
-        <target><![CDATA[<h1>Hats</h1>]]></target>
+        <target><![CDATA[<h1>Hats for boys <br>– Cool hats that protects against the sun!</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-150">
         <source>description.category-150</source>
@@ -397,7 +397,7 @@ beautiful, durable versions. See our great selection if you need an extra nice q
       </trans-unit>
       <trans-unit id="headers.category-151">
         <source>headers.category-151</source>
-        <target><![CDATA[<h1>Socks</h1>]]></target>
+        <target><![CDATA[<h1>Socks for boys <br>– In the well-known POMPdeLUX style.</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-151">
         <source>description.category-151</source>
@@ -405,7 +405,7 @@ beautiful, durable versions. See our great selection if you need an extra nice q
       </trans-unit>
       <trans-unit id="headers.category-152">
         <source>headers.category-152</source>
-        <target><![CDATA[<h1>Accessories</h1>]]></target>
+        <target><![CDATA[<h1>Accessories for boys <br>– Details that add that little extra</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-152">
         <source>description.category-152</source>
@@ -466,7 +466,7 @@ All snowsuits, jackets, trousers and fleece jackets are available from size 80 c
       </trans-unit>
       <trans-unit id="headers.category-160">
         <source>headers.category-160</source>
-        <target><![CDATA[<h1>Underwear and nightwear</h1>]]></target>
+        <target><![CDATA[<h1>Underwear and nightwear for girls</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-160">
         <source>description.category-160</source>
@@ -474,7 +474,7 @@ All snowsuits, jackets, trousers and fleece jackets are available from size 80 c
       </trans-unit>
       <trans-unit id="headers.category-161">
         <source>headers.category-161</source>
-        <target><![CDATA[<h1>Accessories</h1>]]></target>
+        <target><![CDATA[<h1>Accessories for girls <br>– Details that add THAT extra</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-161">
         <source>description.category-161</source>
@@ -509,7 +509,7 @@ We do not just focus on style, but also in particular the fit - because only wit
       </trans-unit>
       <trans-unit id="headers.category-165">
         <source>headers.category-165</source>
-        <target><![CDATA[<h1>Underwear and nightwear</h1>]]></target>
+        <target><![CDATA[<h1>Underwear and nightwear for boys</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-165">
         <source>description.category-165</source>
