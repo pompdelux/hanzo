@@ -32,8 +32,16 @@ class DefaultController extends CoreController
      * @throws Exception
      * @throws \PropelException
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        // last stop for disabled, but active online users.
+        if (!$this->getUser()->isEnabled()) {
+            $this->get('security.context')->setToken(null);
+            $request->getSession()->invalidate();
+
+            return $this->redirect($this->generateUrl('login'));
+        }
+
         $order = OrdersPeer::getCurrent(true);
 
         if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
@@ -74,6 +82,21 @@ class DefaultController extends CoreController
      **/
     public function summeryAction()
     {
+        // last stop for disabled, but active online users.
+        if (!$this->getUser()->isEnabled()) {
+            if ( $this->get('request')->isXmlHttpRequest() ) {
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response([
+                        'status' => error,
+                        'message' => $this->container->get('translator')->trans('User account is disabled.', [], 'account'),
+                        'data' => ['goto' => $this->generateUrl('login')]
+                    ]);
+                }
+            }
+        }
+
+
+
         $invalidOrderMessage = '';
 
         // we only want the master data here, no slaves thank you...
