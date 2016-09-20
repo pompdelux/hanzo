@@ -36,19 +36,17 @@ var near_you_params = {
                         <?= data[i].avatar ?>
                         <strong>{{ 'open.house.label'|trans({}, 'events') }}</strong>
                         <? jQuery.each(data[i].events, function(i, event) { ?>
-                            <? jQuery.each(event.dates, function(ii, date) { ?>
-                                <div class="open-house-block">
-                                    <?= date.date ?><br>
-                                    <p>
-                                        <?= event.address ?><br>
-                                        <?= event.zip ?> <?= event.city ?><br>
-                                    </p>
-                                    <?= date.rsvp ?><br>
-                                <? if (date.note) { ?>
-                                    <p><em><?= date.note ?></em></p>
-                                <? } ?>
-                                </div>
-                            <? }); ?>
+                            <div class="open-house-block">
+                                <?= event.date ?><br>
+                                <p>
+                                    <?= event.address ?><br>
+                                    <?= event.zip ?> <?= event.city ?><br>
+                                </p>
+                                <?= event.rsvp ?><br>
+                            <? if (event.note) { ?>
+                                <p><em><?= event.note ?></em></p>
+                            <? } ?>
+                            </div>
                         <? }); ?>
 
                     <? } else { ?>
