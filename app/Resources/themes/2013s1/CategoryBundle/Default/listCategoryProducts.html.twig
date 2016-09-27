@@ -20,19 +20,20 @@
     {% if products|length > 0 %}
       <div class="old-item">
         {% for product in products %}
-          {% set _lazy = (loop.index > 3) ? true : false %}
+          {% set _lazy = (loop.index > 2) ? true : false %}
           {% if loop.index % 3 == 1 %}
             <div class="grid_6 alpha omega row">
           {% endif %}
-              <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+              <div class="block block-num-{{ loop.index }} grid_3 {% if loop.index % 2 == 1 and loop.index is not divisibleby(2) %} alpha {% endif %}{% if loop.index is divisibleby(2) %} omega {% endif %}">
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
-                  {{ product_image_tag(product.image, '234x410', {
+                  {{ product_image_tag(product.image, '351x615', {
                     'alt' : product.alt,
-                    'data-flip': product_image_url(product.image_flip, '234x410'),
-                    'height' : '410',
-                    'width' : '234',
+                    'data-flip': product_image_url(product.image_flip, '351x615'),
+                    'height' : '615',
+                    'width' : '351',
                     'lazy': _lazy,
                     'noscript': _lazy
+
                   }) }}
                   {% if product.prices.sales is defined and show_new_price_badge %}
                   <div class="new-price"></div>
@@ -56,7 +57,7 @@
                   </span>
                 </a>
               </div>
-          {% if loop.index is divisibleby(3) or loop.last %}
+          {% if loop.index is divisibleby(2) or loop.last %}
             </div>
           {% endif %}
         {% endfor %}
