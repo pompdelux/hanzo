@@ -238,6 +238,7 @@ class AdvisorController extends CoreController
                 $note  = str_replace("\n", '<br>', Tools::stripTags($event->getPublicNote()));
 
                 $events[$cid][] = [
+                    'code' => $event->getCode(),
                     'address' => $event->getAddressLine1(),
                     'city'    => $event->getCity(),
                     'host'    => $event->getHost(),
