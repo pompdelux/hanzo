@@ -8,6 +8,8 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsPeer;
+use Hanzo\Model\om\BaseProductsImagesCategoriesSortPeer;
+use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
@@ -242,7 +244,7 @@ class DefaultController extends CoreController
 
         // UN: 2016.01.26
         // needed to allow us to sort products by color.
-        $colorSort = $this->getSettings($locale, $topLevel->getId(), 'color_sort');
+        #$colorSort = $this->getSettings($locale, $topLevel->getId(), 'color_sort');
         if (empty($colorSort)) {
             $colorSort = false;
         } elseif (is_array($colorSort)) {
@@ -381,7 +383,20 @@ class DefaultController extends CoreController
                     }
                 }
             } else {
-                $result = $result->orderBySort();
+                $ob = is_array($category_ids_for_filter)
+                    ? implode(',', $category_ids_for_filter)
+                    : $category_ids_for_filter;
+                $result = $result
+                    ->addDescendingOrderByColumn(sprintf(
+                        "FIELD(%s, %s)",
+                        BaseProductsImagesCategoriesSortPeer::CATEGORIES_ID,
+                        $ob
+                    ))
+                    ->useProductsQuery()
+                        ->orderBySku()
+                    ->endUse()
+                    ->orderBySort();
+                //$result = $result;
             }
 
             $result = $result->find();

@@ -129,7 +129,7 @@ class CMSRouterLoader implements LoaderInterface
                             'cms_id'        => $id,
                             'category_id'   => $settings->category_id,
                             'pager'         => 1,
-                            'show'          => 'look',
+                            'show'          => 'overview',
                             'ip_restricted' => true,
                         ], [
                             'show' => 'look|overview',
