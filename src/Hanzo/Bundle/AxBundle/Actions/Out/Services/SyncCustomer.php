@@ -96,10 +96,17 @@ class SyncCustomer extends BaseService
 
         $this->translator->setLocale(Tools::getLocaleFromDomainKey($this->getEndPoint()));
 
+        $customerId = $this->customer->getId();
+        if ($this->customer->getMayBeContacted()) {
+            $customerId .= '-M1';
+        } else {
+            $customerId .= '-M0';
+        }
+
         $this->data = [
             'customer' => [
                 'CustTable' => [
-                    'AccountNum'             => $this->customer->getId(),
+                    'AccountNum'             => $customerId,
                     'AddressCity'            => $this->address->getCity(),
                     'AddressCountryRegionId' => $this->address->getCountries()->getIso2(),
                     'AddressStreet'          => $this->address->getAddressLine1(),
@@ -107,6 +114,7 @@ class SyncCustomer extends BaseService
                     'CustName'               => $this->address->getName($this->translator),
                     'Email'                  => $this->customer->getEmail(),
                     'Phone'                  => $this->customer->getPhone(),
+//                    'MayContact' => ''
                 ]
             ],
             'endpointDomain' => $this->getEndPoint(),
