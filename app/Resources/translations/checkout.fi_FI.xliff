@@ -117,7 +117,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Maksu tilille</target>
+        <target>Odottaa maksutavan valintaa</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
@@ -442,7 +442,6 @@ Tarkat ehdot löytyvät linkistä: <a href="https://www.arvato.com/content/dam/a
         <source>payment.invoicepayment.label</source>
         <target>Fakturabetaling</target>
       </trans-unit>
-
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
         <target>Annan täten suostumukseni siihen, että POMPdeLUX tai sen yhteistyökumppani, Communication Research ApS, voi ottaa minuun yhteyttä sähköpostitse, tekstiviestillä/multimediaviestillä tai muun sähköisen median (mukaan lukien sosiaalisten medioiden) kautta tarjotakseen osallistumista yhteen tai useampaan asiakastyytyväisyys- tai markkinatutkimukseen, jolla on kaupallinen markkinointitarkoitus tai vastaavaa sisältöä. Suostumus käsittää sellaiset asiakastyytyväisyys- ja markkinointitutkimukset, joiden tarkoituksena on edistää POMPdeLUXin tuotteiden, hyödykkeiden tai palveluiden markkinointia, mukaan lukien POMPdeLUXin ja sen toimittamien tuotteiden, hyödykkeiden ja palveluiden tunnettavuuden parantaminen. Olen tietoinen, että voin milloin tahansa perua suostumukseni.</target>

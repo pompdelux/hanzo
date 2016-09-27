@@ -194,21 +194,20 @@ stock:
             - fi_FI
             - sv_SE
             - en_GB
-        norway:
-            - nb_NO
-        eu_south:
             - de_AT
             - de_DE
             - nl_NL
+        norway:
+            - nb_NO
     connection_map:
         pdldbdk1: main
         pdldbfi1: main
         pdldbse1: main
         pdldbch1: main
+        pdldbde1: main
+        pdldbnl1: main
+        pdldbat1: main
         pdldbno1: norway
-        pdldbde1: eu_south
-        pdldbnl1: eu_south
-        pdldbat1: eu_south
 
 google:
     site_verification:     ~

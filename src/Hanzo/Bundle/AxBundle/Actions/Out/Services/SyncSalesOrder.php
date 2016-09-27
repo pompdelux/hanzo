@@ -575,7 +575,9 @@ class SyncSalesOrder extends BaseService
                 break;
 
             case 'invoicepayment':
-                $custPaymMode = 'Faktura';
+                $custPaymMode = 'Bank';
+                // HACK to bypass WSDL restrictions.
+                $this->data['salesOrder']['SalesTable']['CustAccount'] .= '-F1';
                 break;
 
             case 'pensio':

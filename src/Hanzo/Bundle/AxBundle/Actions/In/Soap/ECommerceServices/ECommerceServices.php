@@ -592,6 +592,16 @@ class ECommerceServices extends SoapService
                 : 0
             ;
 
+            // If the ordered date is today, or less than,
+            // we do not add "ordered" inventory records.
+            if ((0 < (int) $item->InventQtyAvailOrdered) &&
+                $item->InventQtyAvailOrderedDate &&
+                (str_replace('-', '', $item->InventQtyAvailOrderedDate) <= date('Ymd'))
+            ) {
+                $item->InventQtyAvailOrdered = 0;
+                $item->InventQtyAvailOrderedDate = 0;
+            }
+
             // never allow negative stock
             $physical = (int) $item->InventQtyAvailPhysical;
             if ($physical < 0) {

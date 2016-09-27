@@ -137,7 +137,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Bankoverføring</target>
+        <target>Avventer valg av betalingsform</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
@@ -467,7 +467,6 @@
         <source>payment.invoicepayment.label</source>
         <target>Fakturabetaling</target>
       </trans-unit>
-
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
         <target>Jeg gir hermed samtykke til at POMdeLUX eller dennes samarbeidspartner, Communication Research ApS, kan kontakte meg elektronisk via e-mail, SMS/MMS eller lignende elektronisk medium (herunder sosiale medier) med tilbud om å delta i en eller flere kundetilfredshets- eller markedsundersøkelser som har et kommersielt markedsføringsmessig formål eller innhold. Samtykket omfatter kundetilfredshets- og markedsundersøkelser som har til hensikt å fremme avsetningen av POMPdeLUX’ varer, formuegoder eller tjenesteytelser, herunder utbedre kjennskap til POMPdeLUX og de varene, formuegoder eller tjenesteytelser, som POMPdeLUX leverer. Jeg er kjent med at jeg til enhver tid kan tilbakekalle mitt samtykke.</target>

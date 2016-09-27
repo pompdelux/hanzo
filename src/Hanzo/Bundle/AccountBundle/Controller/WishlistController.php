@@ -660,7 +660,7 @@ class WishlistController extends CoreController
         $prices    = $this->getPrices($item['products_id']);
         $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
 
-        if ('size.label.postfix' === $sizeLabel) {
+        if (preg_match('/[a-z]/i', $item['size']) || ('size.label.postfix' === $sizeLabel)) {
             $sizeLabel = '';
         }
 

@@ -432,7 +432,7 @@
                 <label for="js_checkout_confirm_terms">I confirm the above order and confirm that I have read and accept POMPdeLUX terms and conditions</label>
                 <a href="/en_GB/home/customer-service/terms-and-conditions" class="js-external">Terms and conditions</a>.
             ]]></target>
-      </trans-unit>
+        </trans-unit>
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
         <target>Betales via faktura</target>
@@ -445,7 +445,6 @@
         <source>payment.invoicepayment.label</source>
         <target>Fakturabetaling</target>
       </trans-unit>
-
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
         <target>I hereby consent to POMPdeLUX or their partner, Communication Research Ltd., may contact me electronically via e -mail, SMS / MMS or other electronic media (including social media) with offers to participate in one or several customer satisfaction or market surveys which has a commercial marketing purpose or content. The consent includes customer satisfaction and market surveys, which intends to promote the sale of POMPdeLUX 's products, property or services, including knowledge about POMPdeLUX and the products, property or services POMPdeLUX delivers. I am aware that I may, at any time, revoke my consent.</target>
