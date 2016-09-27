@@ -6,13 +6,13 @@ If this should not be hardcoded to false, then pass the value via:
 AdvisorController > open_house/finder.html.twig > MapsExtension > this tpl
 #}
 <script type="text/javascript">
-    var near_you_params = {
-        type              : geo_zipcode_params.type || "{{ type }}",
-        lat               : {{ lat }},
-        lon               : {{ lon }},
-        all               : {{ all|default('false') }},
-        auto_load_results : {{ all|default('false') }}
-    };
+var near_you_params = {
+    type : geo_zipcode_params.type || "{{ type }}",
+    lat : {{ lat }},
+    lon : {{ lon }},
+    all : {{ all|default('false') }},
+    auto_load_results : {{ all|default('false') }}
+};
 </script>
 
 <script type="text/html" id="consultantItem">
@@ -33,24 +33,21 @@ AdvisorController > open_house/finder.html.twig > MapsExtension > this tpl
                 </div>
                 <div class="note">
                     <? if (undefined !== data[i].events && data[i].events.length) { ?>
-                    <?= data[i].avatar ?>
-                    <strong>{{ 'open.house.label'|trans({}, 'events') }}</strong>
-                    <? jQuery.each(data[i].events, function(i, event) { ?>
-                    <? jQuery.each(event.dates, function(ii, date) { ?>
-                    <div class="open-house-block">
-                        <?= date.date ?><br>
-                        <p>
-                            <?= event.address ?><br>
-                            <?= event.zip ?> <?= event.city ?><br>
-                        </p>
-                        <?= date.rsvp ?><br>
-                        <? if (date.note) { ?>
-                        <p><em><?= date.note ?></em></p>
-                        <? } ?>
-                    </div>
-                    <? }); ?>
-                    <? }); ?>
-
+                        <?= data[i].avatar ?>
+                        <strong>{{ 'open.house.label'|trans({}, 'events') }}</strong>
+                        <? jQuery.each(data[i].events, function(i, event) { ?>
+                            <div class="open-house-block">
+                                <?= event.date ?><br>
+                                <p>
+                                    <?= event.address ?><br>
+                                    <?= event.zip ?> <?= event.city ?><br>
+                                </p>
+                                <?= event.rsvp ?><br>
+                            <? if (event.note) { ?>
+                                <p><em><?= event.note ?></em></p>
+                            <? } ?>
+                            </div>
+                        <? }); ?>
                     <? } else { ?>
                     <?= data[i].info ?>
                     <? } ?>
