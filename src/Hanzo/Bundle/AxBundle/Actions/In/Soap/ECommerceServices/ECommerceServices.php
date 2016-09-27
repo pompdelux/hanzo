@@ -1151,7 +1151,7 @@ class ECommerceServices extends SoapService
         $error = [];
 
         $provider = strtolower($order->getBillingMethod());
-        if (in_array($provider, ['paybybill', 'gothia', 'manualpayment'])) {
+        if (in_array($provider, ['paybybill', 'gothia', 'manualpayment', 'invoicepayment'])) {
             return true;
         }
 
