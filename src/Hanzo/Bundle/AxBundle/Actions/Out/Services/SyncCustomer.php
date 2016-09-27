@@ -98,9 +98,9 @@ class SyncCustomer extends BaseService
 
         $customerId = $this->customer->getId();
         if ($this->customer->getMayBeContacted()) {
-            $customerId .= 'M1';
+            $customerId .= '-M1';
         } else {
-            $customerId .= 'M0';
+            $customerId .= '-M0';
         }
 
         $this->data = [
