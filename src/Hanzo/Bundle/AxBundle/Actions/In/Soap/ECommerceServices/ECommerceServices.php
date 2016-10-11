@@ -192,33 +192,24 @@ class ECommerceServices extends SoapService
                             $i18n->setContent($item->ItemName);
                             $product->addProductsI18n($i18n);
                         }
-
-                        // bind product to categories
-                        foreach ($categories as $category) {
-                            $p2c = new ProductsToCategories();
-                            $p2c->setCategoriesId($category->getId());
-                            $product->addProductsToCategories($p2c);
-                        }
-
                     } else {
                         foreach ($product->getProductsI18ns() as $translation) {
                             $translation->setTitle($item->ItemName);
                         }
 
+                        // We have to clear old category bindings before attaching new ones.
                         ProductsToCategoriesQuery::create()
                             ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
                             ->delete()
                         ;
                         $product->clearProductsToCategoriess();
+                    }
 
-                        $collection = new PropelCollection();
-                        foreach ($categories as $category) {
-                            $data = new ProductsToCategories();
-                            $data->setCategoriesId($category->getId());
-                            $data->setProductsId($product->getId());
-                            $collection->prepend($data);
-                        }
-                        $product->setProductsToCategoriess($collection);
+                    // Bind product to categories
+                    foreach ($categories as $category) {
+                        $p2c = new ProductsToCategories();
+                        $p2c->setCategoriesId($category->getId());
+                        $product->addProductsToCategories($p2c);
                     }
 
                     $product->setRange(substr($item->ItemId, -4));
