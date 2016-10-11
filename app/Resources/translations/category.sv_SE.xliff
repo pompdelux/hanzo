@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="headers.category-12">
                 <source>headers.category-12</source>
-                <target><![CDATA[<h1>Fleece</h1>]]></target>
+                <target><![CDATA[<h1>Fleece till flickor <br>– Alla små flickors favorit!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-12">
                 <source>description.category-12</source>
@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="headers.category-13">
                 <source>headers.category-13</source>
-                <target><![CDATA[<h1>Jackor</h1>]]></target>
+                <target><![CDATA[<h1>Jackor till flickor <br>– Vi har plagg för alla årstier</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-13">
                 <source>description.category-13</source>
@@ -20,7 +20,7 @@
             </trans-unit>
             <trans-unit id="headers.category-14">
                 <source>headers.category-14</source>
-                <target><![CDATA[<h1>Skaljackor och skalbyxor</h1>]]></target>
+                <target><![CDATA[<h1>Skaljackor och skalbyxor till flickor – Titta här!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-14">
                 <source>description.category-14</source>
@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="headers.category-15">
                 <source>headers.category-15</source>
-                <target><![CDATA[<h1>Softshell</h1>]]></target>
+                <target><![CDATA[<h1>Softshell för flickor – Hitta allt från POMPdeLUX här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-15">
                 <source>description.category-15</source>
@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="headers.category-16">
                 <source>headers.category-16</source>
-                <target><![CDATA[<h1>Blusar</h1>]]></target>
+                <target><![CDATA[<h1>Blusar för flickor – Se all våra fina blusar här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-16">
                 <source>description.category-16</source>
@@ -46,7 +46,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-17">
                 <source>headers.category-17</source>
-                <target><![CDATA[<h1>Koftor</h1>]]></target>
+                <target><![CDATA[<h1>Koftor för flickor – Snygga, stilsäkra koftor</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-17">
                 <source>description.category-17</source>
@@ -62,7 +62,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-19">
                 <source>headers.category-19</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+                <target><![CDATA[<h1>Sweatshirts för flickor <br>– Vi har de bästa barnkläderna</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-19">
                 <source>description.category-19</source>
@@ -70,7 +70,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-21">
                 <source>headers.category-21</source>
-                <target><![CDATA[<h1>Toppar</h1>]]></target>
+                <target><![CDATA[<h1>Toppar för flickor <br>– Hitta allt från POMPdeLUX här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-21">
                 <source>description.category-21</source>
@@ -78,7 +78,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-45">
                 <source>headers.category-45</source>
-                <target><![CDATA[<h1>T-Shirts</h1>]]></target>
+                <target><![CDATA[<h1>T-Shirts för flickor – Få POMPdeLUX kollektionen här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-45">
                 <source>description.category-45</source>
@@ -86,7 +86,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-46">
                 <source>headers.category46</source>
-                <target><![CDATA[<h1>Byxor</h1>]]></target>
+                <target><![CDATA[<h1>Byxor för flickor <br>– Även jeans och leggings för flickor</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-46">
                 <source>description.category-46</source>
@@ -94,7 +94,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-79">
                 <source>headers.category-79</source>
-                <target><![CDATA[<h1>Jeans</h1>]]></target>
+                <target><![CDATA[<h1>Jeans för flickor <br>– Alltid många modeller på lager</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-79">
                 <source>description.category-79</source>
@@ -110,7 +110,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-112">
                 <source>headers.category-112</source>
-                <target><![CDATA[<h1>Leggings</h1>]]></target>
+                <target><![CDATA[<h1>Leggings för flickor <br>– Se säsongens härliga flickplagg här.</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-112">
                 <source>description.category-112</source>
@@ -118,7 +118,7 @@ Alla POMPdeLUX blusar för håller stil och kvalitet i kombination med ett bra p
             </trans-unit>
             <trans-unit id="headers.category-113">
                 <source>headers.category-113</source>
-                <target><![CDATA[<h1>Kjolar</h1>]]></target>
+                <target><![CDATA[<h1>Kjolar för flickor – Fina och flickiga plagg!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-113">
                 <source>description.category-113</source>
@@ -127,7 +127,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-114">
                 <source>headers.category-114</source>
-                <target><![CDATA[<h1>Shorts</h1>]]></target>
+                <target><![CDATA[<h1>Shorts för flickor – Så kan solen titta fram!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-114">
                 <source>description.category-114</source>
@@ -135,7 +135,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-115">
                 <source>headers.category-115</source>
-                <target><![CDATA[<h1>Strumpbyxor</h1>]]></target>
+                <target><![CDATA[<h1>Stumpbyxor till flickor <br>– Både varma och fina!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-115">
                 <source>description.category-115</source>
@@ -143,7 +143,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-127">
                 <source>headers.category-127</source>
-                <target><![CDATA[<h1>Bodys</h1>]]></target>
+                <target><![CDATA[<h1>Bodys till flickor <br>– Se hela vårt härliga utbud här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-127">
                 <source>description.category-127</source>
@@ -167,7 +167,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-137">
                 <source>headers.category-137</source>
-                <target><![CDATA[<h1>Badkläder</h1>]]></target>
+                <target><![CDATA[<h1>Badkläder för flickor <br>– Se vår söta kollektion här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-137">
                 <source>description.category-137</source>
@@ -183,7 +183,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-143">
                 <source>headers.category-143</source>
-                <target><![CDATA[<h1>Hattar</h1>]]></target>
+                <target><![CDATA[<h1>Hattar till flickor <br>– Snygga hattar till sol och sommar!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-143">
                 <source>description.category-143</source>
@@ -191,7 +191,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-144">
                 <source>headers.category-144</source>
-                <target><![CDATA[<h1>Håraccessoarer</h1>]]></target>
+                <target><![CDATA[<h1>Håraccessoarer till flickor <br>– Matchar POMPdeLUX kläder perfekt!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-144">
                 <source>description.category-144</source>
@@ -199,7 +199,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-145">
                 <source>headers.category-145</source>
-                <target><![CDATA[<h1>Strumpor</h1>]]></target>
+                <target><![CDATA[<h1>Strumpor till flickor <br>– Passar perfekt till POMPdeLUX kläder!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-145">
                 <source>description.category-145</source>
@@ -207,7 +207,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-146">
                 <source>headers.category-146</source>
-                <target><![CDATA[<h1>Scarves</h1>]]></target>
+                <target><![CDATA[<h1>Scarves till flickor <br>– Hitta allt från POMPdeLUX här!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-146">
                 <source>description.category-146</source>
@@ -223,7 +223,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-5">
                 <source>headers.category-5</source>
-                <target><![CDATA[<h1>Fleece</h1>]]></target>
+                <target><![CDATA[<h1>Fleece till pojkar <br>– Många olika modeller här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-5">
                 <source>description.category-5</source>
@@ -239,7 +239,7 @@ POMPdeLUX designar med stor glädje små kjolar från storlek 80 cm upp till sto
             </trans-unit>
             <trans-unit id="headers.category-7">
                 <source>headers.category-7</source>
-                <target><![CDATA[<h1>Skaljackor och skalbyxor</h1>]]></target>
+                <target><![CDATA[<h1>Skaljackor och skalbyxor till pojkar – Köp nu!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-7">
                 <source>description.category-7</source>
@@ -248,7 +248,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-8">
                 <source>headers.category-8</source>
-                <target><![CDATA[<h1>Softshell</h1>]]></target>
+                <target><![CDATA[<h1>Softshell för pojkar – POMPdeLUX-plagg som håller</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-8">
                 <source>description.category-8</source>
@@ -256,7 +256,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-9">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Blusar</h1>]]></target>
+                <target><![CDATA[<h1>Blusar för pojkar – Hitta alla coola tröjor här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-9">
                 <source>description.category-9</source>
@@ -264,7 +264,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-11">
                 <source>headers.category-11</source>
-                <target><![CDATA[<h1>Koftor</h1>]]></target>
+                <target><![CDATA[<h1>Koftor för pojkar – Klassisk i pojkgarderoben</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-11">
                 <source>description.category-11</source>
@@ -272,7 +272,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-43">
                 <source>headers.category-43</source>
-                <target><![CDATA[<h1>Pikètröjor</h1>]]></target>
+                <target><![CDATA[<h1>Pikètröjor för pojkar <br>– Fina kläder till små gentlemen</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-43">
                 <source>description.category-43</source>
@@ -280,7 +280,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-44">
                 <source>headers.category-44</source>
-                <target><![CDATA[<h1>Skjortor</h1>]]></target>
+                <target><![CDATA[<h1>Skjortor för pojkar <br>– Hitta härliga pojkplagg här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-44">
                 <source>description.category-44</source>
@@ -288,7 +288,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-83">
                 <source>headers.category-83</source>
-                <target><![CDATA[<h1>Sportsjackor</h1>]]></target>
+                <target><![CDATA[<h1>Sportsjackor för pojkar – Cool collegestil för alla</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-83">
                 <source>description.category-83</source>
@@ -296,7 +296,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-84">
                 <source>headers.category-84</source>
-                <target><![CDATA[<h1>Stickade tröjor</h1>]]></target>
+                <target><![CDATA[<h1>Stickade tröjor för pojkar <br>– Bra kläder hela året runt</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-84">
                 <source>description.category-84</source>
@@ -304,7 +304,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-116">
                 <source>headers.category-116</source>
-                <target><![CDATA[<h1>Sweatshirts</h1>]]></target>
+                <target><![CDATA[<h1>Sweatshirts för pojkar <br>– Mjsuka, klassiska barnkläder</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-116">
                 <source>description.category-116</source>
@@ -312,7 +312,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-117">
                 <source>headers.category-117</source>
-                <target><![CDATA[<h1>T-shirts</h1>]]></target>
+                <target><![CDATA[<h1>T-shirts för pojkar – Hitta alla POMPdeLUX plagg här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-117">
                 <source>description.category-117</source>
@@ -328,7 +328,7 @@ Skaljackor och skalbyxor för pojkar är lätta att dra på, de har fantastisk p
             </trans-unit>
             <trans-unit id="headers.category-119">
                 <source>headers.category-119</source>
-                <target><![CDATA[<h1>Byxor</h1>]]></target>
+                <target><![CDATA[<h1>Byxor för pojkar <br>– Även många jeansmodeller på lager</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-119">
                 <source>description.category-119</source>
@@ -338,7 +338,7 @@ POMPdeLUX designar pojkbyxor - baggy, normal, slim fit, träningsbyxor, chinos o
             </trans-unit>
             <trans-unit id="headers.category-120">
                 <source>headers.category-120</source>
-                <target><![CDATA[<h1>Jeans</h1>]]></target>
+                <target><![CDATA[<h1>Jeans för pojkar <br>– Hitta alla coola modeller här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-120">
                 <source>description.category-120</source>
@@ -346,7 +346,7 @@ POMPdeLUX designar pojkbyxor - baggy, normal, slim fit, träningsbyxor, chinos o
             </trans-unit>
             <trans-unit id="headers.category-128">
                 <source>headers.category-128</source>
-                <target><![CDATA[<h1>Shorts</h1>]]></target>
+                <target><![CDATA[<h1>Shorts för pojkar – Så kan sommaren komma!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-128">
                 <source>description.category-128</source>
@@ -356,7 +356,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-132">
                 <source>headers.category-132</source>
-                <target><![CDATA[<h1>Bodys</h1>]]></target>
+                <target><![CDATA[<h1>Bodys till pojkar – Hitta hela sortimentet här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-132">
                 <source>description.category-132</source>
@@ -380,7 +380,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-149">
                 <source>headers.category-149</source>
-                <target><![CDATA[<h1>Badkläder</h1>]]></target>
+                <target><![CDATA[<h1>Badkläder för pojkar – Allt till den stora baddagen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-149">
                 <source>description.category-149</source>
@@ -388,7 +388,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-150">
                 <source>headers.category-150</source>
-                <target><![CDATA[<h1>Hattar</h1>]]></target>
+                <target><![CDATA[<h1>Hattar för pojkar <br>– Coola hattar som skyddar mot solen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-150">
                 <source>description.category-150</source>
@@ -396,7 +396,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-151">
                 <source>headers.category-151</source>
-                <target><![CDATA[<h1>Strumpor</h1>]]></target>
+                <target><![CDATA[<h1>Strumpor till pojkar <br>– I den välkända POMPdeLUX-stilen.</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-151">
                 <source>description.category-151</source>
@@ -404,7 +404,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-152">
                 <source>headers.category-152</source>
-                <target><![CDATA[<h1>Accessoarer</h1>]]></target>
+                <target><![CDATA[<h1>Accessoarer för pojkar <br>– Små detaljer som gör skillnad</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-152">
                 <source>description.category-152</source>
@@ -440,7 +440,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-157">
                 <source>headers.category-157</source>
-                <target><![CDATA[<h1>Ytterkläder</h1>]]></target>
+                <target><![CDATA[<h1>Ytterkläder - Flicka</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-157">
                 <source>description.category-157</source>
@@ -449,7 +449,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-158">
                 <source>headers.category-158</source>
-                <target><![CDATA[<h1>Överdelar</h1>]]></target>
+                <target><![CDATA[<h1>Överdelar för flickor – Hitta hela sortimentet här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-158">
                 <source>description.category-158</source>
@@ -457,7 +457,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-159">
                 <source>headers.category-159</source>
-                <target><![CDATA[<h1>Underdelar</h1>]]></target>
+                <target><![CDATA[<h1>Underdelar för flickor – Bli härligt inspirerad här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-159">
                 <source>description.category-159</source>
@@ -465,7 +465,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-160">
                 <source>headers.category-160</source>
-                <target><![CDATA[<h1>Underkläder och nattkläder</h1>]]></target>
+                <target><![CDATA[<h1>Underkläder och nattkläder för flickor</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-160">
                 <source>description.category-160</source>
@@ -473,7 +473,7 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-161">
                 <source>headers.category-161</source>
-                <target><![CDATA[<h1>Accessoarer</h1>]]></target>
+                <target><![CDATA[<h1>Accessoarer för flickor <br>– Små saker med stor effekt.</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-161">
                 <source>description.category-161</source>
@@ -481,16 +481,15 @@ Vi har alla varianter av snygga shorts för pojkar, både långa och korta model
             </trans-unit>
             <trans-unit id="headers.category-162">
                 <source>headers.category-162</source>
-                <target><![CDATA[<h1>Ytterkläder</h1>]]></target>
+                <target><![CDATA[<h1>POMPdeLUX ytterkläder för pojkar <br>– Hitta ytterkläder för alla väder här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-162">
                 <source>description.category-162</source>
-                <target><![CDATA[<p>POMPdeLUX är en erfaren leverantör av ett stort och bra utbud av ytterkläder för pojkar. Våra robusta och smarta overaller är en stor succé och det finns en flera goda skäl till detta. Våra overaller tillverkas i storlekar från 80 cm till 152 cm, de är inte bara coola att se på och tillgängliga till bra priser, de är också funktionella och fulla med praktiska detaljer precis som en riktigt bra overall ska vara. Precis som alla POMPdeLUX barnkläder och ytterkläder designas våra overaller med främst ett syfte, att barnet ska trivas i plagget.
-POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för att hålla till aktiv lek och rörelse. Våra overaller finns i flera modeller och fina färger och de håller hög standard  både när det gäller kvalitet och säkerhet.</p>]]></target>
+                <target><![CDATA[<p>Året om har barn behov för funktionella ytterkläder. Varje säsong har POMPdeLUX ett otroligt utbud av ytterkläder för pojkar som passar till alla slags väder och som dessutom lever upp till alla de krav som ställs på moderna barnkläder. Varje ytterplagg designas med fokus på att hålla barn varma och torra och samtidigt ge optimal frihet till lek och rörelse. Våra tekniska ytterkläder är tillverkade i en utomordentlig kvalitet, dvs. säkerheten är i topp och plaggen är vind- och vattentäta och andas. Den bästa komfort, säkerhet och slitstyrka blir samlat här. Lägg märke till alla de fina och praktiska detaljer som alltid kännetecknar ytterkläder från POMPdeLUX – bl.a. fickor, resår under foten, avtagbar huva, vindstopp och reflexer. Vi har tänkt på allt. Många killar kan få sköna och praktiska ytterkläder på eftersom jackor, överdragsbyxor, overaller m.m. tillverkas i storlek 80 cm till 152 cm.</p>]]></target>
             </trans-unit>
             <trans-unit id="headers.category-163">
                 <source>headers.category-163</source>
-                <target><![CDATA[<h1>Överdelar</h1>]]></target>
+                <target><![CDATA[<h1>Överdelar för pojkar – Köp alla coola styles här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-163">
                 <source>description.category-163</source>
@@ -498,7 +497,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-164">
                 <source>headers.category-164</source>
-                <target><![CDATA[<h1>Underdelar</h1>]]></target>
+                <target><![CDATA[<h1>Underdelar till pojkar <br>– Du hittar alla pojkplagg här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-164">
                 <source>description.category-164</source>
@@ -506,7 +505,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-165">
                 <source>headers.category-165</source>
-                <target><![CDATA[<h1>Underkläder och nattkläder</h1>]]></target>
+                <target><![CDATA[<h1>Underkläder och nattkläder till pojkar</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-165">
                 <source>description.category-165</source>
@@ -538,7 +537,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-141">
                 <source>headers.category-141</source>
-                <target><![CDATA[<h1>Summer Offers</h1>]]></target>
+                <target><![CDATA[<h1>ANNIVERSARY SALE</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-141">
                 <source>description.category-141</source>
@@ -546,7 +545,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-183">
                 <source>headers.category-183</source>
-                <target><![CDATA[<h1>Stickade tröjor</h1>]]></target>
+                <target><![CDATA[<h1>Stickade tröjor för flickor <br>– Vi klär barn året runt</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-183">
                 <source>description.category-183</source>
@@ -554,7 +553,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-184">
                 <source>headers.category-184</source>
-                <target><![CDATA[<h1>Klänningar/Jumpsuits</h1>]]></target>
+                <target><![CDATA[<h1>Klänningar och jumpsuits för flickor <br>– Söt och flickig stil</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-184">
                 <source>description.category-184</source>
@@ -570,7 +569,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-186">
                 <source>headers.category-186</source>
-                <target><![CDATA[<h1>Regnkläder</h1>]]></target>
+                <target><![CDATA[<h1>Regnkläder för flickor – Bra kvalitet och bra pris</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-186">
                 <source>description.category-186</source>
@@ -586,7 +585,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-188">
                 <source>headers.category-188</source>
-                <target><![CDATA[<h1>Regnkläder</h1>]]></target>
+                <target><![CDATA[<h1>Regnkläder för pojkar – Bra kvalitet och bra pris</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-188">
                 <source>description.category-188</source>
@@ -602,7 +601,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-170">
                 <source>headers.category-170</source>
-                <target><![CDATA[<h1>Adventure- funktions ytterkläder</h1>]]></target>
+                <target><![CDATA[<h1>Adventure ytterkläder för flickor <br>– Superfunktionella!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-170">
                 <source>description.category-170</source>
@@ -610,15 +609,31 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-171">
                 <source>headers.category-171</source>
-                <target><![CDATA[<h1>Adventure- funktions ytterkläder</h1>]]></target>
+                <target><![CDATA[<h1>Adventure ytterkläder för pojkar <br>– Perfekt påklädd!</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-171">
                 <source>description.category-171</source>
                 <target><![CDATA[<p>Adventure kollektionen är DET alla killar med passion för friluftsliv - oavsett vad vädret ser ut - behöver! Ytterkläder som kan något utöver det vanliga.  Alla pojkar kommer att vara väl förberedda i POMPdeLUX Adventure ytterkläder och som förälder kan du alltid lita på att ditt barn förblir torrt och inte kommer att frysa. Det finns absolut ingen anledning att oroa sig för säkerheten, varje detalj är noga genomtänkt och utformad för att uppfylla alla krav för korrekt klädsel för pojkar i storlek från 80 cm till 152 cm. POMPdeLUX Adventure overaller, fleecejackor, överdragsbyxor etc. för pojkar  har den nödvändiga kvalitet och hållbarhet och massor av smarta detaljer som gör den stora skillnaden jämfört med andra ytterkläder på marknaden. Massor av funktion och framför allt en stor rörelsefrihet som behövs när man ska utforska världen .</p>]]></target>
             </trans-unit>
+            <trans-unit id="headers.category-172">
+                <source>headers.category-172</source>
+                <target><![CDATA[<h1>Overaller för flickor <br>– Fina och funktionella!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="description.category-172">
+                <source>description.category-172</source>
+                <target><![CDATA[<p>Man kan alltid lita på att POMPdeLUX har ett stort, härligt sortiment av ytterkläder för flickor. Särskilt populära är våra fantastiska overaller och det finns många anledningar till detta. De finns i storlekar från 80 cm till 152 cm och är inte bara snygga att titta på och prisvärda, de har dessutom alla funktioner och detaljer som kännetecknar overaller av hög kvalitet. Precis som alla barnkläder från POMdeLUX utvecklas våra overaller med fokus på komfort. Overallerna är därför producerade för barn som älskar äventyr utomhus – även om det är kallt. POMPdeLUX overaller för flickor håller vad de lovar och är den perfekta kombinationen av rörelsefrihet, slitstyrka och säkerhet – precis som barn behöver för att utvecklas. Overallerna finns i många härliga varianter och snygga färger, alla i samma unika kvalitet som inte slits upp innan barnen vuxit ur dem.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="headers.category-173">
+                <source>headers.category-173</source>
+                <target><![CDATA[<h1>Overaller till pojkar <br>– Fina och funktionella!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="description.category-173">
+                <source>description.category-173</source>
+                <target><![CDATA[<p>Man kan alltid lita på att POMPdeLUX har ett stort, härligt sortiment av ytterkläder för pojkar. Särskilt populära är våra fantastiska overaller och det finns många anledningar till detta. De finns i storlekar från 80 cm till 152 cm och är inte bara snygga att titta på och prisvärda, de har dessutom alla funktioner och detaljer som kännetecknar overaller av hög kvalitet. Precis som alla barnkläder från POMdeLUX utvecklas våra overaller med fokus på komfort. Overallerna är därför producerade för barn som älskar äventyr utomhus – även om det är kallt. POMPdeLUX overaller för pojkar håller vad de lovar och är den perfekta kombinationen av rörelsefrihet, slitstyrka och säkerhet – precis som barn behöver för att utvecklas. Overallerna finns i många härliga varianter och snygga färger, alla i samma unika kvalitet som inte slits upp innan barnen vuxit ur dem.</p>]]></target>
+            </trans-unit>
             <trans-unit id="headers.category-178">
                 <source>headers.category-178</source>
-                <target><![CDATA[<h1>Basics</h1>]]></target>
+                <target><![CDATA[<h1>Basplagg för pojkar – Köp våra härliga basplagg här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-178">
                 <source>description.category-178</source>
@@ -626,7 +641,7 @@ POMPdeLUX overaller för pojkar är gjorda för att röra sig mycket i och för 
             </trans-unit>
             <trans-unit id="headers.category-177">
                 <source>headers.category-177</source>
-                <target><![CDATA[<h1>Basics</h1>]]></target>
+                <target><![CDATA[<h1>Basplagg för flickor – Hitta alla härliga basplagg här</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-177">
                 <source>description.category-177</source>

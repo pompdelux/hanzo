@@ -237,33 +237,24 @@ class ECommerceServices extends SoapService
                             $i18n->setContent($item->ItemName);
                             $product->addProductsI18n($i18n);
                         }
-
-                        // bind product to categories
-                        foreach ($categories as $category) {
-                            $p2c = new ProductsToCategories();
-                            $p2c->setCategoriesId($category->getId());
-                            $product->addProductsToCategories($p2c);
-                        }
-
                     } else {
                         foreach ($product->getProductsI18ns() as $translation) {
                             $translation->setTitle($item->ItemName);
                         }
 
+                        // We have to clear old category bindings before attaching new ones.
                         ProductsToCategoriesQuery::create()
                             ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
                             ->delete()
                         ;
                         $product->clearProductsToCategoriess();
+                    }
 
-                        $collection = new PropelCollection();
-                        foreach ($categories as $category) {
-                            $data = new ProductsToCategories();
-                            $data->setCategoriesId($category->getId());
-                            $data->setProductsId($product->getId());
-                            $collection->prepend($data);
-                        }
-                        $product->setProductsToCategoriess($collection);
+                    // Bind product to categories
+                    foreach ($categories as $category) {
+                        $p2c = new ProductsToCategories();
+                        $p2c->setCategoriesId($category->getId());
+                        $product->addProductsToCategories($p2c);
                     }
 
                     $product->setRange(substr($item->ItemId, -4));
@@ -767,15 +758,31 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncCustomerResult', ['unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum]);
         }
 
-        $group_id = ($data->AccountNum < 15000 ? 2 : ($data->AccountNum < 20000 ? 3 : 1));
+        $accountId = $data->AccountNum;
+        $mayContact = null;
 
-        $customer = CustomersQuery::create()->findOneById($data->AccountNum);
+        if (false !== strpos($accountId, '-')) {
+            list($accountId, $mayContact) = explode('-', $data->AccountNum);
+        }
+
+        $group_id = ($accountId < 15000 ? 2 : ($accountId < 20000 ? 3 : 1));
+
+        $customer = CustomersQuery::create()->findOneById($accountId);
         if (!$customer instanceof Customers) {
             $customer = new Customers();
-            $customer->setId($data->AccountNum);
+            $customer->setId($accountId);
             // we never update passwords
             $customer->setPassword(sha1($data->Phone));
             $customer->setPasswordClear($data->Phone);
+        }
+
+        switch ($mayContact) {
+            case 'M0';
+                $customer->setMayBeContacted(false);
+                break;
+            case 'M1';
+                $customer->setMayBeContacted(true);
+                break;
         }
 
         if ($group_id > 1) {

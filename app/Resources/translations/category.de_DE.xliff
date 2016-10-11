@@ -454,7 +454,7 @@ die Oeko-Tex Standard 100-Kennzeichnung. Das heißt, dass sie weder für die Umw
             </trans-unit>
             <trans-unit id="headers.category-157">
                 <source>headers.category-157</source>
-                <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
+                <target><![CDATA[<h1>Oberbekleidung für Mädchen <br>– Hier finden Sie Oberbekleidung für das ganze Jahr</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-157">
                 <source>description.category-157</source>
@@ -496,7 +496,7 @@ Alle Overalls, Jacken, Überziehhosen und Fleece-Jacken gibt es in Größen von 
             </trans-unit>
             <trans-unit id="headers.category-162">
                 <source>headers.category-162</source>
-                <target><![CDATA[<h1>Oberbekleidung</h1>]]></target>
+                <target><![CDATA[<h1>Oberbekleidung für Jungen <br>– Hier finden Sie Oberbekleidung für jedes Wetter</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-162">
                 <source>description.category-162</source>
@@ -556,7 +556,7 @@ Wir fokussieren nicht nur auf den Stil, sondern auch auf die Passform – denn n
             </trans-unit>
             <trans-unit id="headers.category-141">
                 <source>headers.category-141</source>
-                <target><![CDATA[<h1>Summer Offers</h1>]]></target>
+                <target><![CDATA[<h1>ANNIVERSARY SALE</h1>]]></target>
             </trans-unit>
             <trans-unit id="description.category-141">
                 <source>description.category-141</source>
