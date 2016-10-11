@@ -304,6 +304,9 @@ class SyncSalesOrder extends BaseService
                 'SalesUnit'  =>  'Stk.',
             ];
 
+// ONLY DONE IN TESTING BRANCH
+return;
+
             /*
              * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
              */
@@ -352,6 +355,10 @@ class SyncSalesOrder extends BaseService
      */
     public function buildPromotions()
     {
+
+// ONLY DONE IN TESTING BRANCH
+return;
+
         $date = date('Ymd');
         $domainKey = str_replace('SALES', '', strtoupper($this->getAttribute('global', 'domain_key')));
 
