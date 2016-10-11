@@ -74,15 +74,15 @@ class DefaultController extends CoreController
             // in the rma pdf.
             $address = new Addresses();
             $address->setTitle($order->getDeliveryTitle());
-            $address->setFirstName($order->getDeliveryFirstName());
-            $address->setLastName($order->getDeliveryLastName());
-            $address->setAddressLine1($order->getDeliveryAddressLine1());
-            $address->setAddressLine2($order->getDeliveryAddressLine2());
-            $address->setPostalCode($order->getDeliveryPostalCode());
-            $address->setCity($order->getDeliveryCity());
-            $address->setCountry($order->getDeliveryCountry());
-            $address->setStateProvince($order->getDeliveryStateProvince());
-            $address->setCompanyName($order->getDeliveryCompanyName());
+            $address->setFirstName($order->getBillingFirstName());
+            $address->setLastName($order->getBillingLastName());
+            $address->setAddressLine1($order->getBillingAddressLine1());
+            $address->setAddressLine2($order->getBillingAddressLine2());
+            $address->setPostalCode($order->getBillingPostalCode());
+            $address->setCity($order->getBillingCity());
+            $address->setCountry($order->getBillingCountry());
+            $address->setStateProvince($order->getBillingStateProvince());
+            $address->setCompanyName($order->getBillingCompanyName());
 
             $addressFormatter = $this->get('hanzo.address_formatter');
             $addressBlock     = mb_convert_encoding($addressFormatter->format($address), 'HTML-ENTITIES', 'UTF-8');
