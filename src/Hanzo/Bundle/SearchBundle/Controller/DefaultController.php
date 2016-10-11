@@ -384,7 +384,10 @@ class DefaultController extends CoreController
 
             $product_ids[$record['id']] = $record['id'];
 
+            // First try to see if the primary category has a link.
             $key1 = '_' . strtolower($locale) . '_' . $record['primary_categories_id'];
+
+            // Then take the first category found, fallback is scanning the db.
             $key2 = '_' . strtolower($locale) . '_' . $record['categories_id'];
 
             $product_route = '';
