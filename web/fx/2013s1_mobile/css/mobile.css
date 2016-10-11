@@ -4134,6 +4134,10 @@ div.invalid-order {
   display: inline-block;
 }
 
+#body-checkout.domain-de .payment-methods label[for=gothia] img {
+  display: none;
+}
+
 /**
 | _faq
 */
