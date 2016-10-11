@@ -29,8 +29,8 @@
 
           <h2>Kontakt</h2>
           <p>Bei Fragen wenden Sie sich bitte an uns.</p>
-          <p>Telefon 040-35715072</p>
-          <p>E-Mail: <a href="mailto:mailat@pompdelux.com">mailat@pompdelux.com</a></p>
+          <p>Telefon 044 201 33 33</p>
+          <p>E-Mail: <a href="mailto:mailch@pompdelux.com">mailch@pompdelux.com</a></p>
 
           <h2>Meine Seite</h2>
           <p>
@@ -41,13 +41,13 @@
           <h2>FAQ</h2>
           <p>
             Hier finden Sie oft gestellte Fragen über und Antworten von POMPdeLUX.<br>
-            <a href="/de_AT/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
+            <a href="/de_CH/kundendienst/telefonzeiten/faq">&raquo; FAQ</a>
           </p>
 
           <h2>Neuigkeiten</h2>
           <p>
             Im Menü Neuigkeiten finden Sie immer die aktuellsten Neuigkeiten.<br>
-            <a href="/de_AT/home/neuigkeiten">&raquo; Neuigkeiten</a>
+            <a href="/de_CH/home/neuigkeiten">&raquo; Neuigkeiten</a>
           </p>
         ]]></target>
       </trans-unit>
@@ -142,18 +142,6 @@
         <source>payment.manualpayment.label</source>
         <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
-        <target>Banküberweisung</target>
-      </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
-      </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
-        <target>Banküberweisung</target>
-      </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
         <target>Zahlungs-ID</target>
@@ -188,7 +176,7 @@
       </trans-unit>
       <trans-unit id="product.size">
         <source>product.size</source>
-        <target>Grösse</target>
+        <target>Größe</target>
       </trans-unit>
       <trans-unit id="product.color">
         <source>product.color</source>
@@ -255,8 +243,12 @@
         <target>Es sind keine Waren in Ihrem Warenkorb.</target>
       </trans-unit>
       <trans-unit id="no.such.product.in.cart">
-          <source>no.such.product.in.cart</source>
-          <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
+        <source>no.such.product.in.cart</source>
+        <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind. ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -274,7 +266,7 @@
         <source>late.delivery.date.notice</source>
         <target><![CDATA[
           <p>Ihre Bestellung enthält eine oder mehrere Waren, die wir zurzeit nicht auf Lager haben. Die Bestellung wird verpackt, wenn wir alle Waren auf Lager haben.</p>
-          <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäss spätestens verschickt am: <strong>%date%</strong>.</p>
+          <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
       <trans-unit id="status.20">
@@ -307,7 +299,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia-Rechnung(Gebühr 0,00 Euro). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+        <target><![CDATA[Gothia-Rechnung (Gebühr 5,00 CHF). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
       </trans-unit>
       <trans-unit id="payment.gothia_lv.desc">
         <source>payment.gothia_lv.desc</source>
@@ -355,29 +347,29 @@
       </trans-unit>
       <trans-unit id="discount.private">
         <source>discount.private</source>
-        <target>Ermässigung:</target>
+        <target>Ermäßigung:</target>
       </trans-unit>
       <trans-unit id="discount.group">
         <source>discount.group</source>
-        <target>Ermässigung:</target>
+        <target>Ermäßigung:</target>
       </trans-unit>
       <trans-unit id="discount.hostess">
         <source>discount.hostess</source>
-        <target>Gastgeberinnenermässigung:</target>
+        <target>Gastgeberinnenermäßigung:</target>
       </trans-unit>
       <trans-unit id="discount.friend">
         <source>discount.friend</source>
-        <target>Ermässigung:</target>
+        <target>Ermäßigung:</target>
       </trans-unit>
       <trans-unit id="discount.gift">
         <source>discount.gift</source>
-        <target>Ermässigung:</target>
+        <target>Ermäßigung:</target>
       </trans-unit>
       <trans-unit id="product.group.u">
         <source>product.group.u</source>
         <target>UNISEX</target>
       </trans-unit>
-	  <trans-unit id="product.group.g">
+      <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>GIRL</target>
       </trans-unit>
@@ -394,51 +386,51 @@
         <target>LITTLE BOY</target>
       </trans-unit>
       <trans-unit id="gift_card">
-         <source>gift_card</source>
-         <target>Geschenkgutschein</target>
+        <source>gift_card</source>
+        <target>Geschenkgutschein</target>
       </trans-unit>
       <trans-unit id="toggle.gift_card.form">
-         <source>toggle.gift_card.form</source>
-         <target>» Gutscheincode eingeben</target>
+        <source>toggle.gift_card.form</source>
+        <target>» Gutscheincode eingeben</target>
       </trans-unit>
       <trans-unit id="invalid.gift_card.code">
-         <source>invalid.gift_card.code</source>
-         <target>Ungültiger Gutscheincode</target>
+        <source>invalid.gift_card.code</source>
+        <target>Ungültiger Gutscheincode</target>
       </trans-unit>
       <trans-unit id="gift_card.label">
-         <source>gift_card.label</source>
-         <target>Gutscheincode:</target>
+        <source>gift_card.label</source>
+        <target>Gutscheincode:</target>
       </trans-unit>
       <trans-unit id="apply.gift_card.discount">
-         <source>apply.gift_card.discount</source>
-         <target>Speichern</target>
+        <source>apply.gift_card.discount</source>
+        <target>Speichern</target>
       </trans-unit>
       <trans-unit id="gift_card.description">
-         <source>gift_card.description</source>
-         <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
+        <source>gift_card.description</source>
+        <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
       </trans-unit>
       <trans-unit id="address.copy">
-         <source>address.copy</source>
-         <target>Wählen Sie eine alternative Lieferadresse</target>
+        <source>address.copy</source>
+        <target>Wählen Sie eine alternative Lieferadresse</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
-         <source>dibs.down.message</source>
-         <target><![CDATA[
+        <source>dibs.down.message</source>
+        <target><![CDATA[
           Lieber Kunde,<br>
-          das Zahlungssystem (DIBS) ist im Augenblick ausser Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
-          Mit freundlichen Grüssen<br>
+          das Zahlungssystem (DIBS) ist im Augenblick außer Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
+          Mit freundlichen Grüßen<br>
           POMPdeLUX
           ]]></target>
       </trans-unit>
       <trans-unit id="basket.header">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_AT/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_CH/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
-        <target>Ihre Gastgeberinnenermässigung überschreitet Ihren Gesamtbetrag.
-Sie müssen Waren hinzufügen.
-</target>
+        <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
+          Sie müssen Waren hinzufügen.
+        </target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
@@ -468,18 +460,13 @@ Sie müssen Waren hinzufügen.
         <source>coupon.invalid.code</source>
         <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms">
-            <source>checkout.confirm.terms</source>
-            <target><![CDATA[
+      <trans-unit id="checkout.confirm.terms">
+        <source>checkout.confirm.terms</source>
+        <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere</label>
-                <a href="/de_AT/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
+                <a href="/de_CH/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
-        </trans-unit>
-      <trans-unit id="late.delivery.notice">
-        <source>late.delivery.notice</source>
-        <target><![CDATA[[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
       </trans-unit>
-<<<<<<< HEAD
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
         <target>Rechnung (Gebühr 0,00 EUR).</target>
@@ -492,9 +479,6 @@ Sie müssen Waren hinzufügen.
         <source>payment.invoicepayment.label</source>
         <target>Rechnung</target>
       </trans-unit>
-=======
-
->>>>>>> f/1196-extra-customer-field
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
         <target>Hiermit gebe ich mein Einverständnis damit, dass POMPdeLUX oder dessen Kooperationspartner, Communication Research ApS, mich elektronisch über Email, SMS/MMS oder eine ähnliche elektronische Medie (u.a. Soziale Medien) mit Angeboten zur Teilnahme an einer oder mehreren Kundenzufriedenheitsuntersuchungen oder Marktforschungsuntersuchungen, welche einen kommerziellen oder marketingspezifischen Inhalt haben, kontaktieren darf. Die Einverständniserklärung umfasst solche Kundenzufriedenheits- und Marketinguntersuchungen, welche den Zweck erfüllen, den Absatz von POMPdeLUX-Waren zu steigern, vermögenswirksamer zu werden oder die Dienstleistungen, welche POMPdeLUX anbietet, hierunter auch den Bekanntheitsgrad von POMPdeLUX und dessen Waren, zu steigern. Mir ist bekannt, dass ich meine Einverständnis zu jedem Zeitpunkt zurückziehen kann. </target>
