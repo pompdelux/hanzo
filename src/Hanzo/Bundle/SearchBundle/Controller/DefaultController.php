@@ -333,6 +333,7 @@ class DefaultController extends CoreController
         $sql = "
             SELECT
                 p.id,
+                p.primary_categories_id,
                 p18.title,
                 p.is_out_of_stock,
                 p2c.categories_id,
@@ -383,11 +384,14 @@ class DefaultController extends CoreController
 
             $product_ids[$record['id']] = $record['id'];
 
-            $product_route = '';
-            $key = '_' . strtolower($locale) . '_' . $record['categories_id'];
+            $key1 = '_' . strtolower($locale) . '_' . $record['primary_categories_id'];
+            $key2 = '_' . strtolower($locale) . '_' . $record['categories_id'];
 
-            if (isset($router_keys[$key])) {
-                $product_route = $router_keys[$key];
+            $product_route = '';
+            if (isset($router_keys[$key1])) {
+                $product_route = $router_keys[$key1];
+            } elseif (isset($router_keys[$key2])) {
+                $product_route = $router_keys[$key2];
             } else {
                 $products2category = ProductsToCategoriesQuery::create()
                   ->useProductsQuery()
