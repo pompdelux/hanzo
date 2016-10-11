@@ -287,7 +287,7 @@
             }
 
             $('.checkout-confirm-terms input[type=checkbox]').on('change', function () {
-                if ($(this).prop("checked")) {
+                if ($(this).prop("checked") && $('.checkout-confirm-may-contact input:checked').length) {
                     $('#checkout-buttons').show();
                 } else {
                     $('#checkout-buttons').hide();
