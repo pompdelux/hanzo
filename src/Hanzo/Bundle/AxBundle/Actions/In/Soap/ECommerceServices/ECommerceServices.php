@@ -713,15 +713,31 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncCustomerResult', ['unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum]);
         }
 
-        $group_id = ($data->AccountNum < 15000 ? 2 : ($data->AccountNum < 20000 ? 3 : 1));
+        $accountId = $data->AccountNum;
+        $mayContact = null;
 
-        $customer = CustomersQuery::create()->findOneById($data->AccountNum);
+        if (false !== strpos($accountId, '-')) {
+            list($accountId, $mayContact) = explode('-', $data->AccountNum);
+        }
+
+        $group_id = ($accountId < 15000 ? 2 : ($accountId < 20000 ? 3 : 1));
+
+        $customer = CustomersQuery::create()->findOneById($accountId);
         if (!$customer instanceof Customers) {
             $customer = new Customers();
-            $customer->setId($data->AccountNum);
+            $customer->setId($accountId);
             // we never update passwords
             $customer->setPassword(sha1($data->Phone));
             $customer->setPasswordClear($data->Phone);
+        }
+
+        switch ($mayContact) {
+            case 'M0';
+                $customer->setMayBeContacted(false);
+                break;
+            case 'M1';
+                $customer->setMayBeContacted(true);
+                break;
         }
 
         if ($group_id > 1) {
