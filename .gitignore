@@ -17,6 +17,8 @@
 /web/images/FB/
 /web/images/frontpage/*.jpg
 /web/images/frontpage/*.gif
+/web/images/frontpage/2016-*
+/web/images/frontpage/Frontpage_*
 /web/images/admin/
 /web/images/bestillingslister/
 /web/images/consultants*/
