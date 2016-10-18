@@ -999,12 +999,13 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Dreng acessories -->
             <trans-unit id="841.settings">
                 <source>841.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "166",
-                        "embedded_category_id": ["149","150","151","152","181","183"],
+                        "embedded_category_id": ["149","150","151","152","180","182"],
                         "colors": ""
                     }
                 ]]></target>

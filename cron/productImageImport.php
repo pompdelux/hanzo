@@ -18,25 +18,65 @@ if (empty($images_found)) {
     exit;
 }
 
-// hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541 -->>
-/* $renamedImages = [];
-foreach ($images_found as $file) {
-    $path = dirname($file);
-    $newName = $path .'/'.strtolower(basename($file));
+/**
+ * Find categories by product id's in target databases.
+ *
+ * @param \PDO   $connection      DB connection object.
+ * @param string $connection_name Name of the connection, used for the internal cache.
+ * @param int    $products_id     Product id.
+ *
+ * @return array
+ */
+function findProductCategories(PDO $connection, $connection_name, $products_id) {
+    static $cache;
 
-    // Only rename if names are different
-    if ( $file != $newName ) {
-        if ( !rename($file, $newName) ) {
-            _dbug("Could not rename $file to $newName");
-            continue;
-        }
+    if (empty($cache)) {
+        $cache = [];
     }
 
-    $renamedImages[] = $newName;
+    if (!empty($cache[$connection_name]) && isset($cache[$connection_name][$products_id])) {
+        return $cache[$connection_name][$products_id];
+    }
+
+    if (empty($cache[$connection_name])) {
+        $cache[$connection_name] = [];
+    }
+    if (empty($cache[$connection_name][$products_id])) {
+        $cache[$connection_name][$products_id] = [];
+    }
+
+    /** @var PDOStatement $stmt */
+    $stmt = $connection->prepare('
+        SELECT 
+            p2c.categories_id, 
+            c.context 
+        FROM  
+            products_to_categories AS p2c 
+        JOIN categories AS c ON (
+                c.id = p2c.categories_id
+            ) 
+        WHERE 
+            p2c.products_id = :products_id
+            AND (
+                c.context != "" 
+                OR 
+                c.context IS NOT NULL
+            )
+        ',
+        array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)
+    );
+
+    $stmt->execute([
+        ':products_id' => $products_id
+    ]);
+
+    foreach ($stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
+        $cache[$connection_name][$products_id][$record->categories_id] = $record->categories_id;
+    }
+
+    return $cache[$connection_name][$products_id];
 }
 
-$images_found = $renamedImages; */
-// <<-- hf@bellcom.dk, 02-dec-2014: quick and dirty lowercase fix, gh:#541
 
 $images = array();
 foreach ($images_found as $file) {
@@ -67,16 +107,15 @@ _dbug("importing ".count($images)." images");
 ksort($images, SORT_REGULAR);
 
 // create index from sort.
-$product_images = array();
-$product_ids = array();
-$product_categories_ids = array();
-$product_categories_all_ids = array();
-$failed = array();
+$product_images = [];
+$product_ids = [];
+$product_categories_ids = [];
+$product_categories_all_ids = [];
+$failed = [];
 
 // DK == vip
 $pdo = $_databases['vip'];
 $products_stmt      = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-$categories_stmt    = $pdo->prepare('SELECT p2c.categories_id, c.context FROM products_to_categories AS p2c JOIN categories AS c ON (c.id = p2c.categories_id) WHERE p2c.products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
@@ -90,10 +129,10 @@ foreach ($images as $image) {
     $color = str_replace(['9', '-'], ['/', ' '], $color);
 
     // See if any product with master and color even exists
-    $product_image_stmt->execute(array(
+    $product_image_stmt->execute([
         ':master' => $master,
         ':color' => $color
-    ));
+    ]);
 
     $product_image = $product_image_stmt->fetchColumn();
 
@@ -107,9 +146,9 @@ foreach ($images as $image) {
     }
 
     if (empty($product_ids[$master])) {
-        $products_stmt->execute(array(
+        $products_stmt->execute([
             ':master' => $master
-        ));
+        ]);
         $products_id = $products_stmt->fetchColumn();
 
         if (empty($products_id)) {
@@ -118,19 +157,6 @@ foreach ($images as $image) {
         }
 
         $product_ids[$master] = $products_id;
-
-        // fetch categories for the product
-        $categories_stmt->execute(array(
-            ':products_id' => $products_id
-        ));
-
-        foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
-            if (preg_match('/[_|-]/', $record->context)) {
-                $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
-            }
-
-            $product_categories_all_ids[$products_id][$record->categories_id] = $record->categories_id;
-        }
     }
 
     $product_images[$master][] = $image;
@@ -179,49 +205,53 @@ $category_sql = '
         sort = 100
 ';
 
-$image2id = array();
+$image2id = [];
 foreach ($_databases as $key => $conn) {
     // prepare statements for the different databases
 
     _dbug("using database: {$key}");
 
     if ($key == 'vip') {
-        $product_stm = $conn->prepare($product_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $select_stm = $conn->prepare($select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $product_stm = $conn->prepare($product_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $select_stm = $conn->prepare($select_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
     } else {
-        $product_stm = $conn->prepare($product_slave_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $select_stm = $conn->prepare($select_slave_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $product_stm = $conn->prepare($product_slave_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $select_stm = $conn->prepare($select_slave_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
     }
 
-    $category_select_stm = $conn->prepare($category_select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-    $category_stm = $conn->prepare($category_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $category_select_stm = $conn->prepare($category_select_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+    $category_stm = $conn->prepare($category_sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
 
     if ($key == 'vip') {
         _dbug("finding master products");
         foreach ($product_images as $master => $images) {
             $products_id = $product_ids[$master];
+            $category_ids = findProductCategories($conn, $key, $products_id);
+
+            $product_categories_ids[$key][$products_id] = $category_ids;
+            $product_categories_all_ids[$key][$products_id] = $category_ids;
 
             // loop images into db
             foreach($images as $image) {
                 @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
                 $index = (int) $index;
 
-                $select_stm->execute(array(
+                $select_stm->execute([
                     ':products_id' => $products_id,
                     ':image' => $image,
                     ':color' => $color,
                     ':type' => $type,
-                ));
+                ]);
                 $image_id = $select_stm->fetchColumn();
 
                 // image does not exist, add it
                 if (!$image_id) {
-                    $product_stm->execute(array(
+                    $product_stm->execute([
                         ':products_id' => $products_id,
                         ':image' => $image,
                         ':color' => $color,
                         ':type' => $type,
-                    ));
+                    ]);
                     $image_id = $conn->lastInsertId();
                     $image2id[$image] = $image_id;
                 } else {
@@ -230,23 +260,23 @@ foreach ($_databases as $key => $conn) {
 
                 // add image to "products_images_to_categories"
                 if (1 === $index) {
-                    foreach ($product_categories_ids[$products_id] as $category_id) {
-                        $category_select_stm->execute(array(
+                    foreach ($category_ids as $category_id) {
+                        $category_select_stm->execute([
                             ':products_id' => $products_id,
                             ':categories_id' => $category_id,
                             ':products_images_id' => $image_id,
-                        ));
+                        ]);
 
                         // skip existing
                         if (0 < $category_select_stm->fetchColumn()) {
                             continue;
                         }
 
-                        $category_stm->execute(array(
+                        $category_stm->execute([
                             ':products_id' => $products_id,
                             ':categories_id' => $category_id,
                             ':products_images_id' => $image_id,
-                        ));
+                        ]);
                     }
                 }
             }
@@ -255,6 +285,10 @@ foreach ($_databases as $key => $conn) {
         _dbug("pushing info to 'slaves'");
         foreach ($product_images as $master => $images) {
             $products_id = $product_ids[$master];
+            $category_ids = findProductCategories($conn, $key, $products_id);
+
+            $product_categories_ids[$key][$products_id] = $category_ids;
+            $product_categories_all_ids[$key][$products_id] = $category_ids;
 
             foreach($images as $image) {
                 if (empty($image2id[$image])) {
@@ -266,40 +300,40 @@ foreach ($_databases as $key => $conn) {
 
                 $image_id = $image2id[$image];
 
-                $select_stm->execute(array(
+                $select_stm->execute([
                     ':id' => $image_id,
-                ));
+                ]);
                 $check = $select_stm->fetchColumn();
 
                 if (!$check) {
-                    $product_stm->execute(array(
+                    $product_stm->execute([
                         ':id' => $image_id,
                         ':products_id' => $products_id,
                         ':image' => $image,
                         ':color' => $color,
                         ':type' => $type,
-                    ));
+                    ]);
                 }
 
                 // add image to "products_images_to_categories"
                 if (1 === $index) {
-                    foreach ($product_categories_ids[$products_id] as $category_id) {
-                        $category_select_stm->execute(array(
+                    foreach ($category_ids as $category_id) {
+                        $category_select_stm->execute([
                             ':products_id' => $products_id,
                             ':categories_id' => $category_id,
                             ':products_images_id' => $image_id,
-                        ));
+                        ]);
 
                         // skip existing
                         if (0 < $category_select_stm->fetchColumn()) {
                             continue;
                         }
 
-                        $category_stm->execute(array(
+                        $category_stm->execute([
                             ':products_id' => $products_id,
                             ':categories_id' => $category_id,
                             ':products_images_id' => $image_id,
-                        ));
+                        ]);
                     }
                 }
             }
@@ -325,7 +359,7 @@ $images_stmt->execute();
 
 $product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-$image_records_to_delete = array();
+$image_records_to_delete = [];
 while ($record = $images_stmt->fetchObject()) {
     // note we check for both old and new style image names.
 
@@ -339,10 +373,10 @@ while ($record = $images_stmt->fetchObject()) {
     $image_records_to_delete[$record->id] = $record->image;
 
     // Find the master with correct color
-    $product_stmt->execute(array(
+    $product_stmt->execute([
         ':master' => $record->master,
         ':color' => $record->color
-    ));
+    ]);
 
     $image_master = $product_stmt->fetchColumn();
     if (!$image_master > 0) {
@@ -354,7 +388,7 @@ while ($record = $images_stmt->fetchObject()) {
 // remove images from unused categories
 _dbug("delete unused image-to-category relations.");
 foreach ($_databases as $key => $conn) {
-    foreach ($product_categories_all_ids as $products_id => $categories) {
+    foreach ($product_categories_all_ids[$key] as $products_id => $categories) {
         $ids = implode(',', $categories);
         $conn->exec('DELETE FROM products_images_categories_sort WHERE products_id = '.$products_id.' AND categories_id NOT IN('.$ids.')');
     }
@@ -383,6 +417,7 @@ if (count($image_records_to_delete)) {
         $txt .= " - {$image}\n";
     }
     $txt .= "\n";
+    _dbug($txt);
 
     mail(
         'it-drift@pompdelux.dk,pdl@bellcom.dk',
@@ -390,7 +425,8 @@ if (count($image_records_to_delete)) {
         $txt,
         "Reply-To: it-drift@pompdelux.dk\r\nReturn-Path: it-drift@pompdelux.dk\r\nErrors-To: it-drift@pompdelux.dk\r\n",
         '-fit-drift@pompdelux.dk'
-    );}
+    );
+}
 
 
 if (count($failed)) {
@@ -399,6 +435,7 @@ if (count($failed)) {
         $txt .= " - {$image}\n";
     }
     $txt .= "\nRet dem venligst\n";
+    _dbug($txt);
 
     mail(
         'it-drift@pompdelux.dk,pdl@bellcom.dk',
