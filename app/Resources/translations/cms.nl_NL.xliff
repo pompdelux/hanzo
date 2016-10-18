@@ -1005,7 +1005,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "166",
-                        "embedded_category_id": ["149","150","151","152"],
+                        "embedded_category_id": ["149","150","151","152","180","182"],
                         "colors": ""
                     }
                 ]]></target>
