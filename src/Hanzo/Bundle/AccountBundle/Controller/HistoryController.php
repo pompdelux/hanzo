@@ -92,6 +92,7 @@ class HistoryController extends CoreController
     public function blockAction($limit = 6, $link = true, $route = false, $pager = 1)
     {
         $hanzo = Hanzo::getInstance();
+        $domainKey  = $hanzo->get('core.domain_key');
         $customer = CustomersPeer::getCurrent();
 
         if (empty($route)) {
@@ -155,7 +156,11 @@ class HistoryController extends CoreController
                     $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
                 }
 
-                $return_label_url = $this->getReturnLabelUrl($record->getId());
+                if ('DE' == substr($domainKey, -2)) {
+                    $return_label_url = 'https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140';
+                } else {
+                    $return_label_url = $this->getReturnLabelUrl($record->getId());
+                }
             }
 
             $orders[] = [
