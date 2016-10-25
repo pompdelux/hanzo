@@ -436,7 +436,7 @@
 
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
-        <target>I hereby consent to POMPdeLUX or their partner, Communication Research Ltd., may contact me electronically via e -mail, SMS / MMS or other electronic media (including social media) with offers to participate in one or several customer satisfaction or market surveys which has a commercial marketing purpose or content. The consent includes customer satisfaction and market surveys, which intends to promote the sale of POMPdeLUX 's products, property or services, including knowledge about POMPdeLUX and the products, property or services POMPdeLUX delivers. I am aware that I may, at any time, revoke my consent.</target>
+        <target>I hereby consent to POMPdeLUX or their partner, Communication Research Ltd., may contact me electronically via e -mail, SMS / MMS or other electronic media (including social media) with offers to participate in one or several customer satisfaction or market surveys which has a commercial marketing purpose or content. The consent includes customer satisfaction and market surveys, which intends to promote the sale of POMPdeLUX 's products, property or services, including knowledge about POMPdeLUX and the products, property or services POMPdeLUX delivers. I am aware that I may, at any time, revoke my consent. To do this, you can simply contact our customer service.</target>
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.required">
         <source>checkout.confirm.may_contact.required</source>

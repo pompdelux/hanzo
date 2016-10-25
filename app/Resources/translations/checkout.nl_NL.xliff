@@ -446,7 +446,7 @@
 
         <trans-unit id="checkout.confirm.may_contact.text">
             <source>checkout.confirm.may_contact.text</source>
-            <target>Ik geef hierbij toestemming dat POMPdeLUX of hun partner, Communication Research Ltd., mij elektronisch mag benaderen via e -mail, SMS / MMS of op andere elektronische media (inclusief de sociale media) met het aanbod mee te doen aan een of meer klanttevredenheids- of marktonderzoeken die een commercieel doeleinde of inhoud hebben. Deze toestemming omvat klanttevredenheids- en marktonderzoeken die de verkoop van POMPdeLUX producten, eigendommen of diensten willen promoten, inclusief de kennis over POMPdeLUX en de producten, eigendommen of diensten die POMPdeLUX levert. Ik ben me ervan bewust dat ik deze toestemming op elk gewenst moment weer kan intrekken.</target>
+            <target>Ik geef hierbij toestemming dat POMPdeLUX of hun partner, Communication Research Ltd., mij elektronisch mag benaderen via e -mail, SMS / MMS of op andere elektronische media (inclusief de sociale media) met het aanbod mee te doen aan een of meer klanttevredenheids- of marktonderzoeken die een commercieel doeleinde of inhoud hebben. Deze toestemming omvat klanttevredenheids- en marktonderzoeken die de verkoop van POMPdeLUX producten, eigendommen of diensten willen promoten, inclusief de kennis over POMPdeLUX en de producten, eigendommen of diensten die POMPdeLUX levert. Ik ben me ervan bewust dat ik deze toestemming op elk gewenst moment weer kan intrekken. Dit kan u doen, door onze klantendienst te raadplegen.</target>
         </trans-unit>
         <trans-unit id="checkout.confirm.may_contact.required">
             <source>checkout.confirm.may_contact.required</source>
