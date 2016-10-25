@@ -481,23 +481,6 @@
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
-        <target>Hiermit gebe ich mein Einverständnis damit, dass POMPdeLUX oder dessen Kooperationspartner, Communication Research ApS, mich elektronisch über Email, SMS/MMS oder eine ähnliche elektronische Medie (u.a. Soziale Medien) mit Angeboten zur Teilnahme an einer oder mehreren Kundenzufriedenheitsuntersuchungen oder Marktforschungsuntersuchungen, welche einen kommerziellen oder marketingspezifischen Inhalt haben, kontaktieren darf. Die Einverständniserklärung umfasst solche Kundenzufriedenheits- und Marketinguntersuchungen, welche den Zweck erfüllen, den Absatz von POMPdeLUX-Waren zu steigern, vermögenswirksamer zu werden oder die Dienstleistungen, welche POMPdeLUX anbietet, hierunter auch den Bekanntheitsgrad von POMPdeLUX und dessen Waren, zu steigern. Mir ist bekannt, dass ich meine Einverständnis zu jedem Zeitpunkt zurückziehen kann. </target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.required">
-        <source>checkout.confirm.may_contact.required</source>
-        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.yes_label">
-        <source>checkout.confirm.may_contact.yes_label</source>
-        <target>Ja, gerne</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.no_label">
-        <source>checkout.confirm.may_contact.no_label</source>
-        <target>Nej tak</target>
-        </trans-unit>
-
-      <trans-unit id="checkout.confirm.may_contact.text">
-        <source>checkout.confirm.may_contact.text</source>
         <target>Hiermit gebe ich mein Einverständnis damit, dass POMPdeLUX oder dessen Kooperationspartner, Communication Research ApS, mich elektronisch über Email, SMS/MMS oder eine ähnliche elektronische Medie (u.a. Soziale Medien) mit Angeboten zur Teilnahme an einer oder mehreren Kundenzufriedenheitsuntersuchungen oder Marktforschungsuntersuchungen, welche einen kommerziellen oder marketingspezifischen Inhalt haben, kontaktieren darf. Die Einverständniserklärung umfasst solche Kundenzufriedenheits- und Marketinguntersuchungen, welche den Zweck erfüllen, den Absatz von POMPdeLUX-Waren zu steigern, vermögenswirksamer zu werden oder die Dienstleistungen, welche POMPdeLUX anbietet, hierunter auch den Bekanntheitsgrad von POMPdeLUX und dessen Waren, zu steigern. Mir ist bekannt, dass ich meine Einverständnis zu jedem Zeitpunkt zurückziehen kann. Hierzu wenden Sie sich einfach an unseren Kundenservice.</target>
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.required">
