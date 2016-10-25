@@ -465,6 +465,7 @@
               <a href="/da_DK/forside/kundeservice/vilkaar-betingelser" class="js-external">POMPdeLUX vilkår</a>.
           ]]></target>
       </trans-unit>
+
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
         <target>Betales via faktura</target>
@@ -479,7 +480,7 @@
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
-        <target>Jeg giver hermed samtykke til, at POMPdeLUX eller dennes samarbejdspartner, Communication Research ApS, må kontakte mig elektronisk via e-mail, sms/mms eller lignende elektronisk medie (herunder sociale medier) med tilbud om at deltage i en eller flere kundetilfredsheds- eller markedsundersøgelser, der har et kommercielt markedsføringsmæssigt formål eller indhold. Samtykket omfatter sådanne kundetilfredsheds- og markedsundersøgelser, der har til hensigt at fremme afsætningen af POMPdeLUX’s varer, formuegoder eller tjenesteydelser, herunder udbedre kendskab til POMPdeLUX og de varer, formuegoder eller tjenesteydelser, som POMPdeLUX leverer. Jeg er bekendt med, at jeg til enhver tid kan tilbagekalde mit samtykke.</target>
+        <target>Jeg giver hermed samtykke til, at POMPdeLUX eller dennes samarbejdspartner, Communication Research ApS, må kontakte mig elektronisk via e-mail, sms/mms eller lignende elektronisk medie (herunder sociale medier) med tilbud om at deltage i en eller flere kundetilfredsheds- eller markedsundersøgelser, der har et kommercielt markedsføringsmæssigt formål eller indhold. Samtykket omfatter sådanne kundetilfredsheds- og markedsundersøgelser, der har til hensigt at fremme afsætningen af POMPdeLUX’s varer, formuegoder eller tjenesteydelser, herunder udbedre kendskab til POMPdeLUX og de varer, formuegoder eller tjenesteydelser, som POMPdeLUX leverer. Jeg er bekendt med, at jeg til enhver tid kan tilbagekalde mit samtykke. For at gøre dette, skal du blot kontakte vores kundeservice.</target>
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.required">
         <source>checkout.confirm.may_contact.required</source>
