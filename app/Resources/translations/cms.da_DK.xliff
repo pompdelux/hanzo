@@ -603,7 +603,7 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>
+        </trans-unit><!-- PIGE Undertoej og nattøj -->
         <trans-unit id="964.settings">
             <source>964.settings</source>
             <target><![CDATA[
@@ -969,13 +969,13 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>
+        </trans-unit><!-- DRENG Undertoej og nattøj -->
         <trans-unit id="996.settings">
             <source>996.settings</source>
             <target><![CDATA[
                     {
                         "category_id": "165",
-                        "embedded_category_id": ["132","135","148"],
+                        "embedded_category_id": ["132","135","148","211"],
                         "colors": ""
                     }
                 ]]></target>
