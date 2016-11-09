@@ -562,7 +562,12 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
       </trans-unit>
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
-        <target><![CDATA[<p>Som navnet antyder, så er vores Adventure kollektion skabt til børn, der nyder at gå på opdagelse i al slags vejr og derfor kræver overtøj lidt ud over det sædvanlige. Vores Adventure overtøj holder børnene helt tørre og de kommer aldrig til at fryse. Sikkerheden og funktionaliteten går hånd i hånd og der er ikke sparet på intelligente detaljer, som tydelige reflekser, fine lommer, smarte hætter der kan tages af, praktiske vindfang i ærmerne og elastiske fodstropper. Forarbejdningen efterlader absolut ingen ønsker og materialerne er virkelig slidstærke og meget holdbare. POMPdeLUX Adventure overtøj til piger, findes i størrelse 80 cm til 150 cm. Kollektionen er nøje afstemt hver enkelt sæsons vejrmæssige udfordringer, så du altid trygt kan sende din pige afsted udendørs på eventyr i vores fleecejakker, flyverdragter og andre former for overtøj, fordi du har garanti for at hun forbliver tør, varm og velklædt.</p>]]></target>
+        <target><![CDATA[<p>
+		<div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/DK/Adventure_AW16_DK/">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_DK.jpg"></a>
+   </div>
+		<!--Som navnet antyder, så er vores Adventure kollektion skabt til børn, der nyder at gå på opdagelse i al slags vejr og derfor kræver overtøj lidt ud over det sædvanlige. Vores Adventure overtøj holder børnene helt tørre og de kommer aldrig til at fryse. Sikkerheden og funktionaliteten går hånd i hånd og der er ikke sparet på intelligente detaljer, som tydelige reflekser, fine lommer, smarte hætter der kan tages af, praktiske vindfang i ærmerne og elastiske fodstropper. Forarbejdningen efterlader absolut ingen ønsker og materialerne er virkelig slidstærke og meget holdbare. POMPdeLUX Adventure overtøj til piger, findes i størrelse 80 cm til 150 cm. Kollektionen er nøje afstemt hver enkelt sæsons vejrmæssige udfordringer, så du altid trygt kan sende din pige afsted udendørs på eventyr i vores fleecejakker, flyverdragter og andre former for overtøj, fordi du har garanti for at hun forbliver tør, varm og velklædt.--></p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
