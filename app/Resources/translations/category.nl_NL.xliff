@@ -548,7 +548,12 @@
 	  <!-- PIGE START -->
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
-        <target><![CDATA[<p>Zoals de naam al aangeeft, is onze Adventure-collectie ontworpen voor kinderen die ervan houden om in allerlei soorten weer op verkenning te gaan en die daarom buitenkleding nodig hebben die gewoon iets meer kan. Onze Adventure buitenkleding houdt je kinderen droog en ze zullen het er nooit koud in hebben. Veiligheid en functionaliteit gaan hand in hand en we zijn niet zuinig geweest met details zoals duidelijk zichtbare reflectoren, mooie zakken, handige capuchons die je van de kleding af kunt halen, praktische windvangers in de mouwen en elastische bandjes onder de voeten. De bewerking laat niets te wensen over en het materiaal is slijtvast en buitengewoon duurzaam. POMPdeLUX Adventure buitenkleding voor de meisjes is verkrijgbaar van maat 80 tot en met 152. De collectie is altijd afgestemd op het weer van het seizoen, zodat je je meisje met een gerust hart op pad kunt sturen in onze fleecejassen, skipakken, jumpsuits en andere buitenkleding. Je weet namelijk dat ze droog, warm en goed gekleed is.</p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/NL/Adventure_AW16_NL/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_NL.jpg"></a>
+   </div>
+		<!--Zoals de naam al aangeeft, is onze Adventure-collectie ontworpen voor kinderen die ervan houden om in allerlei soorten weer op verkenning te gaan en die daarom buitenkleding nodig hebben die gewoon iets meer kan. Onze Adventure buitenkleding houdt je kinderen droog en ze zullen het er nooit koud in hebben. Veiligheid en functionaliteit gaan hand in hand en we zijn niet zuinig geweest met details zoals duidelijk zichtbare reflectoren, mooie zakken, handige capuchons die je van de kleding af kunt halen, praktische windvangers in de mouwen en elastische bandjes onder de voeten. De bewerking laat niets te wensen over en het materiaal is slijtvast en buitengewoon duurzaam. POMPdeLUX Adventure buitenkleding voor de meisjes is verkrijgbaar van maat 80 tot en met 152. De collectie is altijd afgestemd op het weer van het seizoen, zodat je je meisje met een gerust hart op pad kunt sturen in onze fleecejassen, skipakken, jumpsuits en andere buitenkleding. Je weet namelijk dat ze droog, warm en goed gekleed is.--></p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
@@ -606,7 +611,12 @@
       </trans-unit>
       <trans-unit id="description.category-171">
         <source>description.category-171</source>
-        <target><![CDATA[<p>De Adventure-collectie is geknipt voor alle ventjes die ervan houden om buiten te zijn – ongeacht of het weerbericht goed of slecht weer voorspelt. En die daarom buitenkleding nodig hebben die wat meer kan dan de gebruikelijke kleding. Alle jongens zullen warm gekleed gaan in de POMPdeLUX Adventure buitenkleding en als ouder kun je erop vertrouwen dat je kind droog blijft en het niet koud heeft. Aan de veiligheid is ook gedacht, want elk detail is doordacht en ontworpen om aan de eisen te voldoen die er aan degelijke kleding voor jongens met maat 80-152 worden gesteld. De POMPdeLUX skipakken, fleecejassen, broeken enzovoorts voor de jongens hebben de juiste kwaliteit en slijtvastheid en bovendien een heleboel innovatieve details waardoor de kleding beter is dan andere buitenkleding op de markt. De kleding bezit een functionaliteit en een vrijheid om erin te kunnen bewegen en de wereld te verkennen.</p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/NL/Adventure_AW16_NL/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_NL.jpg"></a>
+   </div>
+		<!--De Adventure-collectie is geknipt voor alle ventjes die ervan houden om buiten te zijn – ongeacht of het weerbericht goed of slecht weer voorspelt. En die daarom buitenkleding nodig hebben die wat meer kan dan de gebruikelijke kleding. Alle jongens zullen warm gekleed gaan in de POMPdeLUX Adventure buitenkleding en als ouder kun je erop vertrouwen dat je kind droog blijft en het niet koud heeft. Aan de veiligheid is ook gedacht, want elk detail is doordacht en ontworpen om aan de eisen te voldoen die er aan degelijke kleding voor jongens met maat 80-152 worden gesteld. De POMPdeLUX skipakken, fleecejassen, broeken enzovoorts voor de jongens hebben de juiste kwaliteit en slijtvastheid en bovendien een heleboel innovatieve details waardoor de kleding beter is dan andere buitenkleding op de markt. De kleding bezit een functionaliteit en een vrijheid om erin te kunnen bewegen en de wereld te verkennen.--></p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-173">
         <source>headers.category-173</source>
