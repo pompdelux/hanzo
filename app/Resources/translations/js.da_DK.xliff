@@ -428,7 +428,7 @@
             </trans-unit>
             <trans-unit id="checkout.confirm.mobile.text">
                 <source>checkout.confirm.mobile.text</source>
-                <target><![CDATA[Når du vælger pakkeboks som levering, skal du huske at tjekke, at dit mobilnummer er udfyldt korrekt. Indtast herefter dit postnummer, for at få vist nærmeste udleveringssted.]]></target>
+                <target><![CDATA[Når du vælger pakkeboks som levering, skal du huske at tjekke, at dit mobilnummer er udfyldt korrekt. (Eks. 12345678)<br> Indtast herefter dit postnummer, for at få vist nærmeste udleveringssted.]]></target>
             </trans-unit>
             <trans-unit id="wishlist.select.size">
                 <source>wishlist.select.size</source>
