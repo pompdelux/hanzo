@@ -627,6 +627,7 @@ Wir fokussieren nicht nur auf den Stil, sondern auch auf die Passform – denn n
         <source>headers.category-171</source>
         <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
       </trans-unit>
+	 <trans-unit id="description.category-171">
         <source>description.category-171</source>
         <target><![CDATA[<p>
 		<div class="grid_6 alpha omega">  
