@@ -73,13 +73,24 @@ class HistoryController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
-        $event = new FilterOrderEvent($order);
-        $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
+        $locked = false;
+        if (Orders::STATE_PENDING < $order->getState()) {
+            $locked = true;
+            $transKey = 'unable.to.lock.order';
+        } else {
+            $event = new FilterOrderEvent($order);
+            $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
 
-        $status = $event->getStatus();
+            $status = $event->getStatus();
+            if (false === $status->code) {
+                $locked = true;
+                $transKey = $status->message;
+            }
+        }
 
-        if (false === $status->code) {
-            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
+
+        if ($locked) {
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($transKey, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
