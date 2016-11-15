@@ -554,7 +554,12 @@ Emme keskity vain tyyliin vain myös mitoitukseen – vain täysin oikein mitoit
       </trans-unit>
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
-        <target><![CDATA[<p>Nimensä mukaisesti Adventure-mallistomme on tarkoitettu lapsille, jotka seikkailevat mielellään joka säässä ja tarvitsevat sitä varten hieman tavallista paremmat ulkovaatteet. Adventure-ulkovaatteet pitävät lapset kuivina ja lämpiminä. Turvallisuus ja toiminnallisuus kulkevat käsi kädessä, ja vaatteissa on monia nerokkaita yksityiskohtia, kuten selkeät heijastimet, hienot taskut, irrotettavat huput, kätevät tuulilukot hihansuissa ja joustavat jalkalenkit. Kehityksessä on toteutettu kaikki toiveet, ja pitkäikäiset materiaalit kestävät erittäin kovaa kulutusta. Tyttöjen POMPdeLUX Adventure -ulkovaatteita on saatavana koossa 80–152 cm. Malliston suunnittelussa on huomioitu säähän liittyvät haasteet jokaisen vuodenajan osalta. Voit aina turvallisesti lähettää tyttösi ulos seikkailemaan fleecetakeissamme, haalareissamme ja muissa ulkovaatteissamme, sillä hän pysyy taatusti kuivana ja lämpimänä.</p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/FI/Adventure_AW16_FI/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_FI.jpg"></a>
+   </div>
+		<!--Nimensä mukaisesti Adventure-mallistomme on tarkoitettu lapsille, jotka seikkailevat mielellään joka säässä ja tarvitsevat sitä varten hieman tavallista paremmat ulkovaatteet. Adventure-ulkovaatteet pitävät lapset kuivina ja lämpiminä. Turvallisuus ja toiminnallisuus kulkevat käsi kädessä, ja vaatteissa on monia nerokkaita yksityiskohtia, kuten selkeät heijastimet, hienot taskut, irrotettavat huput, kätevät tuulilukot hihansuissa ja joustavat jalkalenkit. Kehityksessä on toteutettu kaikki toiveet, ja pitkäikäiset materiaalit kestävät erittäin kovaa kulutusta. Tyttöjen POMPdeLUX Adventure -ulkovaatteita on saatavana koossa 80–152 cm. Malliston suunnittelussa on huomioitu säähän liittyvät haasteet jokaisen vuodenajan osalta. Voit aina turvallisesti lähettää tyttösi ulos seikkailemaan fleecetakeissamme, haalareissamme ja muissa ulkovaatteissamme, sillä hän pysyy taatusti kuivana ja lämpimänä.--></p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-172">
         <source>headers.category-172</source>
@@ -610,7 +615,12 @@ Emme keskity vain tyyliin vain myös mitoitukseen – vain täysin oikein mitoit
       </trans-unit>
       <trans-unit id="description.category-171">
         <source>description.category-171</source>
-        <target><![CDATA[<p>Adventure-mallisto sopii hyvin kaikille pojille, jotka pitävät ulkoilusta – säällä kuin säällä – ja joilla on käyttöä tavallista paremmille ulkovaatteille. POMPdeLUXin Adventure-ulkovaatteissa pojat ovat hyvin puettuja ja vanhempana voit luottaa siihen, että lapsesi pysyy kuivana ja lämpimänä. Turvallisuudestakaan ei tarvitse olla huolissaan, sillä kaikki yksityiskohdat ovat tarkkaan harkittuja ja suunnittelussa on huomioitu kaikki vaatimukset, joita 80–150 cm kokoisten poikien ulkovaatteille asetetaan. POMPdeLUXin poikien Adventure-haalareissa, -fleecetakeissa, -ulkohousuissa jne. on tarvittava laatu ja kulutuksenkestävyys sekä paljon pieniä innovatiivisia yksityiskohtia, jotka saavat aikaan suuren eron muihin markkinoilla oleviin ulkovaatteisiin verrattuna. Paljon hyviä ominaisuuksia ja ennen kaikkea paljon tilaa liikkua ja tutkia maailmaa.</p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/FI/Adventure_AW16_FI/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_FI.jpg"></a>
+   </div>
+		<!--Adventure-mallisto sopii hyvin kaikille pojille, jotka pitävät ulkoilusta – säällä kuin säällä – ja joilla on käyttöä tavallista paremmille ulkovaatteille. POMPdeLUXin Adventure-ulkovaatteissa pojat ovat hyvin puettuja ja vanhempana voit luottaa siihen, että lapsesi pysyy kuivana ja lämpimänä. Turvallisuudestakaan ei tarvitse olla huolissaan, sillä kaikki yksityiskohdat ovat tarkkaan harkittuja ja suunnittelussa on huomioitu kaikki vaatimukset, joita 80–150 cm kokoisten poikien ulkovaatteille asetetaan. POMPdeLUXin poikien Adventure-haalareissa, -fleecetakeissa, -ulkohousuissa jne. on tarvittava laatu ja kulutuksenkestävyys sekä paljon pieniä innovatiivisia yksityiskohtia, jotka saavat aikaan suuren eron muihin markkinoilla oleviin ulkovaatteisiin verrattuna. Paljon hyviä ominaisuuksia ja ennen kaikkea paljon tilaa liikkua ja tutkia maailmaa.--></p>]]></target>
       </trans-unit>
 	  <trans-unit id="headers.category-173">
         <source>headers.category-173</source>

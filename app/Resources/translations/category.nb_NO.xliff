@@ -601,7 +601,12 @@ Vi har ikke bare fokus på stil, men spesielt også passformen – for produktet
       </trans-unit>
       <trans-unit id="description.category-170">
         <source>description.category-170</source>
-        <target><![CDATA[<p>Som navnet antyder er vår Adventure-kolleksjon utviklet for barn som liker å gå på oppdagelse i alle slags vær, og som derfor krever yttertøy som er litt utenom det vanlige. Vårt Adventure-yttertøy holder barna helt tørre, og de kommer aldri til å fryse. Sikkerhet og funksjonalitet går hånd i hånd, og vi har ikke spart på de smarte detaljene, som tydelige reflekser, fine lommer, smarte avtakbare hetter, praktiske vindfang i ermene og elastiske fotstropper. Forarbeidet utelater ingenting, og materialene er virkelig slitesterke og svært holdbare. POMPdeLUX Adventure-yttertøy til jenter finnes i størrelse 80 cm til 150 cm. Kolleksjonen er nøye tilpasset de værmessige utfordringene ved hver av årstidene, så du kan trygt sende jenta avsted på eventyr utendørs i våre fleecejakker, dresser og andre former for yttertøy, fordi du er garantert at hun forblir tørr, varm og velkledd.</p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/NO/Adventure_AW16_NO/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_NO.jpg"></a>
+   </div>
+		<!--Som navnet antyder er vår Adventure-kolleksjon utviklet for barn som liker å gå på oppdagelse i alle slags vær, og som derfor krever yttertøy som er litt utenom det vanlige. Vårt Adventure-yttertøy holder barna helt tørre, og de kommer aldri til å fryse. Sikkerhet og funksjonalitet går hånd i hånd, og vi har ikke spart på de smarte detaljene, som tydelige reflekser, fine lommer, smarte avtakbare hetter, praktiske vindfang i ermene og elastiske fotstropper. Forarbeidet utelater ingenting, og materialene er virkelig slitesterke og svært holdbare. POMPdeLUX Adventure-yttertøy til jenter finnes i størrelse 80 cm til 150 cm. Kolleksjonen er nøye tilpasset de værmessige utfordringene ved hver av årstidene, så du kan trygt sende jenta avsted på eventyr utendørs i våre fleecejakker, dresser og andre former for yttertøy, fordi du er garantert at hun forblir tørr, varm og velkledd.--></p>]]></target>
       </trans-unit>
 	   <trans-unit id="headers.category-171">
         <source>headers.category-171</source>
@@ -609,7 +614,12 @@ Vi har ikke bare fokus på stil, men spesielt også passformen – for produktet
       </trans-unit>
       <trans-unit id="description.category-171">
         <source>description.category-171</source>
-        <target><![CDATA[<p>Adventure-kolleksjonen gjør virkelig susen for alle gutter som liker seg utendørs - uansett hva værvarselet sier, og som derfor trenger yttertøy som takler litt mer enn det vanlige. Alle gutter vil være godt påkledd i POMPdeLUX Adventure-yttertøy, og som forelder kan du alltid stole på at barnet forblir tørt og ikke fryser. Det er absolutt heller ikke grunn til å bekymre seg for sikkerheten. Hver eneste detalj er nøye uttenkt og designet, for å overholde alle krav som stilles til riktig påkledning for gutter i størrelse 80 – 150 cm. POMPdeLUX Adventure dresser, fleecejakker, overtrekksbukser osv. til gutter har den kvaliteten og slitestyrken som trengs, og mange små, innovative detaljer, som utgjør en stor forskjell, sammenlignet med annet yttertøy på markedet. Mange funksjoner, og fremfor alt mye frihet til å bevege seg og utforske verden. </p>]]></target>
+        <target><![CDATA[<p>
+   <div class="grid_6 alpha omega">
+  <a href="http://ipaper.ipapercms.dk/POMPdeLUX/NO/Adventure_AW16_NO/" target="_blank">
+  <img src="http://static.pompdelux.com/images/landingpages/w46-Adventure/Top_NO.jpg"></a>
+   </div>
+		<!--Adventure-kolleksjonen gjør virkelig susen for alle gutter som liker seg utendørs - uansett hva værvarselet sier, og som derfor trenger yttertøy som takler litt mer enn det vanlige. Alle gutter vil være godt påkledd i POMPdeLUX Adventure-yttertøy, og som forelder kan du alltid stole på at barnet forblir tørt og ikke fryser. Det er absolutt heller ikke grunn til å bekymre seg for sikkerheten. Hver eneste detalj er nøye uttenkt og designet, for å overholde alle krav som stilles til riktig påkledning for gutter i størrelse 80 – 150 cm. POMPdeLUX Adventure dresser, fleecejakker, overtrekksbukser osv. til gutter har den kvaliteten og slitestyrken som trengs, og mange små, innovative detaljer, som utgjør en stor forskjell, sammenlignet med annet yttertøy på markedet. Mange funksjoner, og fremfor alt mye frihet til å bevege seg og utforske verden.--> </p>]]></target>
 		 </trans-unit>
 		 <trans-unit id="headers.category-177">
         <source>headers.category-177</source>
