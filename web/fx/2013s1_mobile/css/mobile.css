@@ -4047,7 +4047,8 @@ form.address .error {
   border: 1px solid #7B7577;
 }
 #body-checkout div .address .message.notice {
-  border: 2px solid #A00;
+  border: 2px solid #c9c9c9;
+  background-color: #f5f5f5;
   padding: 10px;
   margin: 5px 0;
 }

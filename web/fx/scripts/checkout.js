@@ -118,6 +118,7 @@
                         method = 'overnightbox';
                         if ('da' === lang) {
                             $('#form_phone').parent().addClass('message notice');
+                            $('#form_phone').attr('placeholder', 'Eks: 11223344');
                             dialoug.alert(
                                 Translator.trans('checkout.confirm.mobile.title'),
                                 Translator.trans('checkout.confirm.mobile.text')
