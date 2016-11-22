@@ -163,8 +163,12 @@
 		                "Wolle": ["209"]
                     },
                         "discount": {
+								"20%": ["20"], 
+								"25%": ["25"], 
+								"30%": ["30"], 
+								"50%": ["50"]
                         }
-                    }
+					}	
                 ]]></target>
             </trans-unit><!-- DRENG Hovedkategori -->
             <trans-unit id="717.settings">
@@ -313,8 +317,13 @@
                     		"Oekotex": ["155"],
                     		"Wolle": ["210"]
                     	},
-                    	"discount": {}
-                    }
+                    	"discount": {
+								"20%": ["20"], 
+								"25%": ["25"], 
+								"30%": ["30"], 
+								"50%": ["50"]
+                        }
+					}	
                 ]]></target>
             </trans-unit>
             <trans-unit id="807.settings">
