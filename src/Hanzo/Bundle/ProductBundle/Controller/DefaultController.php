@@ -65,6 +65,7 @@ class DefaultController extends CoreController
             throw $this->createNotFoundException($translator->trans('product.not.found'));
         }
 
+        /** @var Products $product */
         $product = $products[0]->getProducts();
 
         // find all product images
@@ -240,6 +241,7 @@ class DefaultController extends CoreController
         $data = [
             'id'                => $product->getId(),
             'sku'               => $product->getSku(),
+            'range'             => $product->getRange(),
             'title'             => $product->getTitle(),
             'description'       => $description,
             'washing'           => $washing,
@@ -253,7 +255,6 @@ class DefaultController extends CoreController
 //            'images_references' => $images_references,
             'has_video'         => (bool)$product->getHasVideo(),
         ];
-
 
         // find and calculate prices
         $prices = ProductsDomainsPricesPeer::getProductsPrices([$data['id']]);

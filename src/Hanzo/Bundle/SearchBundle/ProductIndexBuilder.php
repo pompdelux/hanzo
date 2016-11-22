@@ -2,12 +2,8 @@
 
 namespace Hanzo\Bundle\SearchBundle;
 
-use Hanzo\Model\SearchProductsTagsQuery,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools
-    ;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Core\Tools;
 
 class ProductIndexBuilder extends IndexBuilder
 {
@@ -309,12 +305,12 @@ class ProductIndexBuilder extends IndexBuilder
                 ->useProductsToCategoriesQuery()
                     ->filterByCategoriesId($categories)
                 ->endUse()
-                ->find();
+                ->find($connection);
 
             foreach ($masterProducts as $masterProduct) {
                 $products = ProductsQuery::create()
                     ->filterByMaster($masterProduct->getSku())
-                    ->find();
+                    ->find($connection);
 
                 foreach ($products as $product) {
                     $tokenValue = Tools::stripText($token);
