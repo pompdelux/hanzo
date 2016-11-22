@@ -167,7 +167,7 @@
 								"30%": ["30"], 
 								"50%": ["50"]
                         }
-					}	
+					 }	
                 ]]></target>
             </trans-unit>
             <trans-unit id="736.settings">
@@ -322,7 +322,7 @@
 								"30%": ["30"], 
 								"50%": ["50"]
                         }
-					}	
+					 }	
                 ]]></target>
             </trans-unit>
             <trans-unit id="803.settings">

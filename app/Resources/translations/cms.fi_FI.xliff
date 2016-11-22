@@ -166,7 +166,7 @@
 								"30%": ["30"], 
 								"50%": ["50"]
                         }
-                    }
+                     }
                 ]]></target>
             </trans-unit><!-- DRENG Hovedkategori -->
             <trans-unit id="739.settings">
@@ -320,7 +320,7 @@
 								"30%": ["30"], 
 								"50%": ["50"]
                         }
-                    }
+                     }
                 ]]></target>
             </trans-unit>
              <trans-unit id="811.settings">
