@@ -132,9 +132,14 @@ class MiscExtension extends Twig_Extension
      */
     public function parse($string, $parameters = array())
     {
+        $hanzo = Hanzo::getInstance();
+
         $find = '~(background|src)="(../|/)~';
-        $replace = '$1="' . Hanzo::getInstance()->get('core.cdn');
+        $replace = '$1="' . $hanzo->get('core.cdn');
         $string = preg_replace($find, $replace, $string);
+
+        $device = $hanzo->container->get('request')->attributes->get('_x_device');
+        $parameters['is_mobile_device'] = preg_match('/^mobile/i', $device);
 
         return $this->twig_string->parse($string, $parameters);
     }
