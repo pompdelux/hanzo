@@ -704,12 +704,14 @@ class Tools
             $preset = '';
         }
 
+        $hanzo = self::getHanzoInstance();
+
         $url = parse_url($src);
         $file = basename($url['path']);
         $dir  = dirname($url['path']);
 
         $url['path'] = $dir . '/' . $preset . $file;
-        $url['query'] = self::getHanzoInstance()->get('core.assets_version', 'z4');
+        $url['query'] = $hanzo->get('core.assets_version', 'z4');
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
@@ -718,6 +720,13 @@ class Tools
 
         if (self::isSecure()) {
             $url['scheme'] = 'https';
+        }
+
+        // Only allow the port number hack in dev mode.
+        if (preg_match('/^dev_/', $hanzo->get('core.env'))) {
+            if (isset($_SERVER['SERVER_PORT']) && !in_array($_SERVER['SERVER_PORT'], ['80', '443'])) {
+                $url['host'] .= ':'.$_SERVER['SERVER_PORT'];
+            }
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
