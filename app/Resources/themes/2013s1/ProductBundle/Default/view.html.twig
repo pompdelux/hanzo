@@ -185,7 +185,12 @@
                             </select>
                         </label>
 
-                        <a href="{{ image_path(cdn ~ 'size.guide.link'|trans ) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
+                        {% if product.range == 'AW16' %}
+                            {% set sizeguide_url = 'size.guide.link'|trans %}
+                        {% else %}
+                            {% set sizeguide_url = 'images/sizeguide/' ~ product.sku ~ '-' ~ html_lang|upper ~ '.jpg' %}
+                        {% endif %}
+                        <a href="{{ image_path(cdn ~ sizeguide_url) }}" class="colorbox sizeguide">{{ 'size.guide.link.text'|trans }}</a>
                     </div>
 
                     <div class="grid_3 omega add-buttons">

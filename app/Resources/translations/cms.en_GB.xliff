@@ -162,8 +162,12 @@
 		                "Wool": ["210"]
                       },
                         "discount": {
+								"20%": ["20"], 
+								"25%": ["25"], 
+								"30%": ["30"], 
+								"40%": ["40"]
                         }
-                    }
+                     }
                 ]]></target>
             </trans-unit>
             <trans-unit id="862.settings">
@@ -310,8 +314,13 @@
                    		"Oekotex": ["155"],
                    		"Wool": ["211"]
                    	},
-                   	"discount": {}
-                   }
+                   	"discount": {
+								"20%": ["20"], 
+								"25%": ["25"], 
+								"30%": ["30"], 
+								"40%": ["40"]
+                        }
+                     }
                 ]]></target>
             </trans-unit>
             <trans-unit id="959.settings">

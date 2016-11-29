@@ -271,7 +271,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Tarjoamme yhteistyössä arvato Financen kanssa asiakkaillemme mahdollisuuden maksaa ostoksensa laskulla. Laskun maksuehto on 30 päivää ja laskutuslisä on 3 euroa. Laskulla ostaminen edellyttää että olet yli 18-vuotias, sinulla on  vakituinen väestörekisterin mukainen osoite Suomessa johon toimitus tapahtuu ja luottotietosi ovat kunnossa. Jos ostoksesi summa ylittää 50 euroa, saat laskun jossa tarjotaan mahdollisuutta maksaa osissa. Sinä päätät itse haluatko maksaa erissä. Tämä edellyttää luottoehtojen hyväksymistä sekä laskulla mainitun minimierän maksamista.
+        <target><![CDATA[Tarjoamme yhteistyössä arvato Financen kanssa asiakkaillemme mahdollisuuden maksaa ostoksensa laskulla. Laskun maksuehto on 30 päivää ja laskutuslisä on 3 euroa. Laskulla ostaminen edellyttää että olet yli 18-vuotias, sinulla on  vakituinen väestörekisterin mukainen osoite Suomessa johon toimitus tapahtuu ja luottotietosi ovat kunnossa. Jos ostoksesi summa ylittää 50 euroa, saat laskun jossa tarjotaan mahdollisuutta maksaa osissa. Sinä päätät itse haluatko maksaa erissä. Tämä edellyttää luottoehtojen hyväksymistä sekä laskulla mainitun minimierän maksamista. Lasku lähetetään sinulle tilauksen yhteydessä ilmoittamaasi sähköpostiin.
 Tarkat ehdot löytyvät linkistä: <a href="https://www.arvato.com/content/dam/arvato/documents/arvato%20Finance%20LUOTTOEHDOT.pdf" target="_blank">PDF.</a> ]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">

@@ -234,29 +234,19 @@ class AdvisorController extends CoreController
             foreach ($openHouseEvents as $event) {
                 $start = $event->getEventDate('U');
                 $end   = $event->getEventEndTime('U');
-                $key   = $event->getPostalCode().$event->getAddressLine1();
                 $cid   = $event->getConsultantsId();
                 $note  = str_replace("\n", '<br>', Tools::stripTags($event->getPublicNote()));
 
-                if (empty($events[$cid][$key])) {
-                    $events[$cid][$key] = [
-                        'address' => $event->getAddressLine1(),
-                        'city'    => $event->getCity(),
-                        'dates'   => [],
-                        'host'    => $event->getHost(),
-                        'notes'   => [],
-                        'rsvp'    => $translator->trans(Events::$eventRsvpMap[$event->getRsvpType()], [], 'events'),
-                        'zip'     => $event->getPostalCode(),
-                    ];
-                }
-
-                $events[$cid][$key]['dates'][] = [
+                $events[$cid][] = [
+                    'code' => $event->getCode(),
+                    'address' => $event->getAddressLine1(),
+                    'city'    => $event->getCity(),
+                    'host'    => $event->getHost(),
+                    'rsvp'    => $translator->trans(Events::$eventRsvpMap[$event->getRsvpType()], [], 'events'),
+                    'zip'     => $event->getPostalCode(),
                     'date' => ucfirst(strftime('%A %e/%m, %k:%M', $start) . ' - ' . strftime('%k:%M', $end)),
                     'note' => $note,
-                    'rsvp' => $translator->trans(Events::$eventRsvpMap[$event->getRsvpType()], [], 'events'),
                 ];
-
-                $events[$cid][$key]['notes'][] = $note;
             }
 
             foreach ($events as $consultantId => $items) {

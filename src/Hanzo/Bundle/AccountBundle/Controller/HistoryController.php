@@ -73,13 +73,24 @@ class HistoryController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
-        $event = new FilterOrderEvent($order);
-        $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
+        $locked = false;
+        if (Orders::STATE_PENDING < $order->getState()) {
+            $locked = true;
+            $transKey = 'unable.to.lock.order';
+        } else {
+            $event = new FilterOrderEvent($order);
+            $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
 
-        $status = $event->getStatus();
+            $status = $event->getStatus();
+            if (false === $status->code) {
+                $locked = true;
+                $transKey = $status->message;
+            }
+        }
 
-        if (false === $status->code) {
-            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
+
+        if ($locked) {
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans($transKey, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -92,6 +103,7 @@ class HistoryController extends CoreController
     public function blockAction($limit = 6, $link = true, $route = false, $pager = 1)
     {
         $hanzo = Hanzo::getInstance();
+        $domainKey  = $hanzo->get('core.domain_key');
         $customer = CustomersPeer::getCurrent();
 
         if (empty($route)) {
@@ -155,7 +167,11 @@ class HistoryController extends CoreController
                     $track_n_trace = strtr($trackntrace_url, [':order_id:' => $record->getId()]);
                 }
 
-                $return_label_url = $this->getReturnLabelUrl($record->getId());
+                if ('DE' == substr($domainKey, -2)) {
+                    $return_label_url = 'https://globalmaileurope.dhl.com/web/portal-europe/generate_label?location=1705543140';
+                } else {
+                    $return_label_url = $this->getReturnLabelUrl($record->getId());
+                }
             }
 
             $orders[] = [
