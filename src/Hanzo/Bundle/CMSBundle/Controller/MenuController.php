@@ -538,7 +538,7 @@ class MenuController extends CoreController
                     $path = '';
                 }
 
-                if ($record->getTitle()) {
+                if ($record->getTitle($this->locale)) {
                     $class = 'inactive';
                     if ((isset($this->trail[$record->getId()])) ||
                         ($path == $this->path)
@@ -561,7 +561,7 @@ class MenuController extends CoreController
                     $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                 }
 
-                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
+                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle($this->locale) . '<i class="sprite arrow-right"></i></a></li>';
 
             }
 
