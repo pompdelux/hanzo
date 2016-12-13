@@ -531,14 +531,17 @@ class MenuController extends CoreController
             $this->trail = array_reverse($this->trail);
             $this->menu[$type] .= '<ul class="breadcrumb">';
 
+            /** @var \Hanzo\Model\Cms $record */
             foreach ($this->trail as $record) {
+                $record->setLocale($this->locale);
+
                 $class = '';
                 $path = $record->getPath();
-                if ($record->getType() == 'frontpage') {
+                if ($record->getType() === 'frontpage') {
                     $path = '';
                 }
 
-                if ($record->getTitle($this->locale)) {
+                if ($record->getTitle()) {
                     $class = 'inactive';
                     if ((isset($this->trail[$record->getId()])) ||
                         ($path == $this->path)
