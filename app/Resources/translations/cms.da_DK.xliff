@@ -563,6 +563,7 @@
                 ]]></target>
         </trans-unit>
 		<!-- PIGE: Bukser -->
+		<trans-unit id="976.settings">
             <source>976.settings</source>
             <target><![CDATA[
                     {
@@ -663,6 +664,7 @@
                 ]]></target>
         </trans-unit>
 		<!-- PIGE: Bodystockings -->
+		<trans-unit id="983.settings">
             <source>983.settings</source>
             <target><![CDATA[
                     {
