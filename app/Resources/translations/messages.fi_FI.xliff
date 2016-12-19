@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX FI OY c/o POMPdeLUX ApS · Omega 3, Søften · DK-8382 Hinnerup · CRN 2482288-5 · mailfi@pompdelux.dk · 09 34870870</target>
+                <target>POMPdeLUX FI OY c/o POMPdeLUX ApS · Omega 3, Søften · DK-8382 Hinnerup · CRN 2482288-5 · mailfi@pompdelux.com · 09 34870870</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>

@@ -439,8 +439,8 @@
                         "colors": ""
                     }
                 ]]></target>
-				<!-- OVERDELE pige -->
         </trans-unit>
+		<!-- OVERDELE pige -->
         <trans-unit id="962.settings">
             <source>962.settings</source>
             <target><![CDATA[
@@ -451,6 +451,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Bluser -->
         <trans-unit id="970.settings">
             <source>970.settings</source>
             <target><![CDATA[
@@ -460,6 +461,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Cardigan -->
         <trans-unit id="971.settings">
             <source>971.settings</source>
             <target><![CDATA[
@@ -469,6 +471,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Kjoler -->
         <trans-unit id="972.settings">
             <source>972.settings</source>
             <target><![CDATA[
@@ -478,6 +481,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Sweatshirts -->
         <trans-unit id="973.settings">
             <source>973.settings</source>
             <target><![CDATA[
@@ -487,6 +491,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Toppe -->
         <trans-unit id="974.settings">
             <source>974.settings</source>
             <target><![CDATA[
@@ -496,6 +501,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: T-shirts -->
         <trans-unit id="975.settings">
             <source>975.settings</source>
             <target><![CDATA[
@@ -505,6 +511,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Basis -->
         <trans-unit id="1031.settings">
             <source>1031.settings</source>
             <target><![CDATA[
@@ -514,6 +521,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Sweaters -->
         <trans-unit id="1032.settings">
             <source>1032.settings</source>
             <target><![CDATA[
@@ -523,6 +531,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Kjoler og jumpsuits -->
         <trans-unit id="1079.settings">
             <source>1079.settings</source>
             <target><![CDATA[
@@ -532,6 +541,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Langærmet T-shirts -->
 		<trans-unit id="1097.settings">
             <source>1097.settings</source>
             <target><![CDATA[
@@ -541,6 +551,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: UNDERDELE -->
         <trans-unit id="963.settings">
             <source>963.settings</source>
             <target><![CDATA[
@@ -551,7 +562,7 @@
                     }
                 ]]></target>
         </trans-unit>
-        <trans-unit id="976.settings">
+		<!-- PIGE: Bukser -->
             <source>976.settings</source>
             <target><![CDATA[
                     {
@@ -560,6 +571,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Jeans -->
         <trans-unit id="977.settings">
             <source>977.settings</source>
             <target><![CDATA[
@@ -569,6 +581,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Jumpsuits -->
         <trans-unit id="978.settings">
             <source>978.settings</source>
             <target><![CDATA[
@@ -578,6 +591,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Leggings -->
         <trans-unit id="979.settings">
             <source>979.settings</source>
             <target><![CDATA[
@@ -587,6 +601,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Nederdele -->
         <trans-unit id="980.settings">
             <source>980.settings</source>
             <target><![CDATA[
@@ -596,6 +611,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Shorts -->
         <trans-unit id="981.settings">
             <source>981.settings</source>
             <target><![CDATA[
@@ -605,6 +621,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømpebukser -->
         <trans-unit id="982.settings">
             <source>982.settings</source>
             <target><![CDATA[
@@ -614,6 +631,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Basics underdele -->
         <trans-unit id="1081.settings">
             <source>1081.settings</source>
             <target><![CDATA[
@@ -623,6 +641,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømpebukser underdele -->
         <trans-unit id="1084.settings">
             <source>1084.settings</source>
             <target><![CDATA[
@@ -631,7 +650,8 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit><!-- PIGE Undertoej og nattøj -->
+        </trans-unit>
+		<!-- PIGE Undertoej og nattøj -->
         <trans-unit id="964.settings">
             <source>964.settings</source>
             <target><![CDATA[
@@ -642,7 +662,7 @@
                     }
                 ]]></target>
         </trans-unit>
-        <trans-unit id="983.settings">
+		<!-- PIGE: Bodystockings -->
             <source>983.settings</source>
             <target><![CDATA[
                     {
@@ -651,6 +671,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Nattøj -->
         <trans-unit id="984.settings">
             <source>984.settings</source>
             <target><![CDATA[
@@ -660,6 +681,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Undertøj -->
         <trans-unit id="985.settings">
             <source>985.settings</source>
             <target><![CDATA[
@@ -669,6 +691,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: TILBEHØR -->
         <trans-unit id="965.settings">
             <source>965.settings</source>
             <target><![CDATA[
@@ -679,6 +702,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Badetøj -->
         <trans-unit id="986.settings">
             <source>986.settings</source>
             <target><![CDATA[
@@ -688,6 +712,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Bælter -->
         <trans-unit id="987.settings">
             <source>987.settings</source>
             <target><![CDATA[
@@ -697,6 +722,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Hatte -->
         <trans-unit id="988.settings">
             <source>988.settings</source>
             <target><![CDATA[
@@ -706,6 +732,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Hårpynt -->
         <trans-unit id="989.settings">
             <source>989.settings</source>
             <target><![CDATA[
@@ -715,6 +742,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømper -->
         <trans-unit id="990.settings">
             <source>990.settings</source>
             <target><![CDATA[
@@ -724,6 +752,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Tørklæder -->
         <trans-unit id="991.settings">
             <source>991.settings</source>
             <target><![CDATA[
@@ -733,6 +762,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Tilbehør -->
         <trans-unit id="992.settings">
             <source>992.settings</source>
             <target><![CDATA[
@@ -742,6 +772,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Huer og Vanter -->
         <trans-unit id="1033.settings">
             <source>1033.settings</source>
             <target><![CDATA[
@@ -751,6 +782,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- DRENG: OVERTØJ -->
         <trans-unit id="993.settings">
             <source>993.settings</source>
             <target><![CDATA[
