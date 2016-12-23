@@ -446,7 +446,7 @@
             <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -547,6 +547,16 @@
             <target><![CDATA[
                     {
                         "category_id": "208",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+		<!-- PIGE: Rompers -->
+		<trans-unit id="1125.settings">
+            <source>1125.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "212",
                         "colors": ""
                     }
                 ]]></target>
@@ -994,7 +1004,7 @@
             <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128","189"],
+                        "embedded_category_id": ["119","120","128","189","213"],
                         "colors": ""
                     }
                 ]]></target>
@@ -1035,6 +1045,16 @@
             <target><![CDATA[
                     {
                         "category_id": "189",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+		<!-- Dreng Jumpsuit/Rompers -->
+        <trans-unit id="1126.settings">
+            <source>1126.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "213",
                         "colors": ""
                     }
                 ]]></target>
