@@ -424,12 +424,13 @@
                     }
                 ]]></target>
             </trans-unit>
+					<!-- OVERDELE pige -->
              <trans-unit id="962.settings">
                 <source>962.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -515,7 +516,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- PIGE: Langærmet T-shirts -->
 			<trans-unit id="1097.settings">
             <source>1097.settings</source>
             <target><![CDATA[
@@ -525,7 +526,16 @@
                     }
                 ]]></target>
         </trans-unit>
-			
+			<!-- PIGE: Rompers -->
+		<trans-unit id="1125.settings">
+            <source>1125.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "212",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
             <trans-unit id="963.settings">
                 <source>963.settings</source>
                 <target><![CDATA[
@@ -937,13 +947,13 @@
                     }
                 ]]></target>
         </trans-unit>
-			
+				<!-- Dreng Overdele -->		
             <trans-unit id="995.settings">
                 <source>995.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128","189"],
+                        "embedded_category_id": ["119","120","128","189","213"],
                         "colors": ""
                     }
                 ]]></target>
@@ -975,6 +985,7 @@
                     }
                 ]]></target>
             </trans-unit>
+		<!-- Dreng Basics underdele -->
 			 <trans-unit id="1082.settings">
                 <source>1082.settings</source>
                 <target><![CDATA[
@@ -984,6 +995,16 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Dreng Jumpsuit/Rompers -->
+        <trans-unit id="1126.settings">
+            <source>1126.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "213",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
             <trans-unit id="996.settings">
                 <source>996.settings</source>
                 <target><![CDATA[
