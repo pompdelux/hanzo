@@ -48,7 +48,8 @@
 						"186",
 						"187",
 						"207",
-						"209"
+						"209",
+						"211"
                     ],
                     "colors": "",
 						"color_sort": "Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Mint",
@@ -143,7 +144,7 @@
 		]
                         },
 						
-    "sizes": {
+       "sizes": {
                             "80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
                             "86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
                             "92": ["92", "86-92", "92-98", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
@@ -218,7 +219,8 @@
                    		"188",
                    		"189",
                    		"208",
-						"210"
+						"210",
+						"212"
                    	],
                    	"colors": "",
                    	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -436,7 +438,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207","211"],
                         "colors": ""
                     }
                 ]]></target>
@@ -532,7 +534,16 @@
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- PIGE: Rompers -->
+			<trans-unit id="940.settings">
+                <source>940.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "211",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
             <trans-unit id="821.settings">
                 <source>821.settings</source>
                 <target><![CDATA[
@@ -944,13 +955,13 @@
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- DRENG: Underdele -->
             <trans-unit id="835.settings">
                 <source>835.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "168",
-                        "embedded_category_id": ["119","120","128","189"],
+                        "embedded_category_id": ["119","120","128","189","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -987,6 +998,16 @@
                 <target><![CDATA[
                     {
                         "category_id": "189",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<!-- DRENG: Jumpsuits/Rompers -->
+			<trans-unit id="941.settings">
+                <source>941.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "212",
                         "colors": ""
                     }
                 ]]></target>
