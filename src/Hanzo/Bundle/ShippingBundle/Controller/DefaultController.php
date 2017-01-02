@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\ShippingBundle\Controller;
 
+use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CountriesQuery;
 use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
@@ -48,11 +50,18 @@ class DefaultController extends CoreController
         $methods = $api->getMethods();
 
         if (isset($methods[$request->request->get('method')])) {
+            /** @var \Hanzo\Model\ShippingMethods $method */
             $method = $methods[$request->request->get('method')];
 
             $order = OrdersPeer::getCurrent(true);
             $order->setDeliveryMethod($request->request->get('method'));
-            $order->setShipping($method, ShippingMethods::TYPE_NORMAL);
+
+            $vat = 0;
+            if (58 === $order->getDeliveryCountriesId()) {
+                $vat = 25;
+            }
+
+            $order->setShipping($method, ShippingMethods::TYPE_NORMAL, $vat);
 
             if ($method->getFee()) {
                 $order->setShipping($method, ShippingMethods::TYPE_FEE);
