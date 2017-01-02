@@ -528,10 +528,11 @@ class Orders extends BaseOrders
      *
      * @param ShippingMethods $shippingMethod
      * @param bool            $isFee
+     * @param mixed           $vat
      *
      * @return void
      */
-    public function setShipping(ShippingMethods $shippingMethod, $isFee = false)
+    public function setShipping(ShippingMethods $shippingMethod, $isFee = false, $vat = 0)
     {
         $sku = $shippingMethod->getFeeExternalId();
         $name = $shippingMethod->getName();
@@ -544,6 +545,16 @@ class Orders extends BaseOrders
             $type  = 'shipping';
         }
 
+        $vatAmount = 0;
+
+        // New vat rules kicks in 1/1 2017
+        if ($vat) {
+//        if ($vat && (2017 <= date('Y'))) {
+            $exVat = $price / (1 + ($vat / 100));
+            $vatAmount = number_format($price - $exVat, 4, '.', '');
+            $price = number_format($exVat, 4, '.', '');
+        }
+
         $line = OrdersLinesQuery::create()
             ->filterByType($type)
             ->filterByOrdersId($this->getId())
@@ -554,13 +565,13 @@ class Orders extends BaseOrders
             $line->setOrdersId($this->getId());
             $line->setType($type);
             $line->setQuantity(1);
-            $line->setVat(0.00);
+            $line->setVat($vatAmount);
         }
 
         $line->setProductsSku($sku);
         $line->setProductsName($name);
         $line->setPrice($price);
-        $line->setVat(0.00);
+        $line->setVat($vatAmount);
         $line->save();
     }
 
