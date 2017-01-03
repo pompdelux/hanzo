@@ -529,10 +529,13 @@ class MenuController extends CoreController
             $this->trail = array_reverse($this->trail);
             $this->menu[$type] .= '<ul class="breadcrumb">';
 
+            /** @var \Hanzo\Model\Cms $record */
             foreach ($this->trail as $record) {
+                $record->setLocale($this->locale);
+
                 $class = '';
                 $path = $record->getPath();
-                if ($record->getType() == 'frontpage') {
+                if ($record->getType() === 'frontpage') {
                     $path = '';
                 }
 
@@ -559,7 +562,7 @@ class MenuController extends CoreController
                     $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                 }
 
-                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
+                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle($this->locale) . '<i class="sprite arrow-right"></i></a></li>';
 
             }
 

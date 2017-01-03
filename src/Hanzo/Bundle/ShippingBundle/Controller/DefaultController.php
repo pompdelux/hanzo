@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\ShippingBundle\Controller;
 
+use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CountriesQuery;
 use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
@@ -48,13 +50,22 @@ class DefaultController extends CoreController
         $methods = $api->getMethods();
 
         if (isset($methods[$request->request->get('method')])) {
+            /** @var \Hanzo\Model\ShippingMethods $method */
             $method = $methods[$request->request->get('method')];
 
             $order = OrdersPeer::getCurrent(true);
             $order->setDeliveryMethod($request->request->get('method'));
-            $order->setShipping($method, ShippingMethods::TYPE_NORMAL);
+
+            $vat = 0;
+            // Only calculate vat on delivery in DK
+            if ('da_DK' === $request->getLocale()) {
+                $vat = 25;
+            }
+
+            $order->setShipping($method, ShippingMethods::TYPE_NORMAL, $vat);
 
             if ($method->getFee()) {
+                // No vat calculated on fees ... For now ...
                 $order->setShipping($method, ShippingMethods::TYPE_FEE);
             }
 

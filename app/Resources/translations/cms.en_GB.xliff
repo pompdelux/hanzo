@@ -46,7 +46,8 @@
 						"185",
 						"186",
 						"187",
-						"207"
+						"207",
+						"212"
 					
                     ],
                     "color_sort": "Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Mint",
@@ -162,14 +163,14 @@
 		                "Wool": ["210"]
                       },
                         "discount": {
-								"20%": ["20"], 
-								"25%": ["25"], 
-								"30%": ["30"], 
-								"40%": ["40"]
+								"50%": ["50"],
+								"60%": ["60"],
+								"70%": ["70"]
                         }
                      }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Hovedekategori -->
             <trans-unit id="862.settings">
                 <source>862.settings</source>
                 <target><![CDATA[
@@ -208,7 +209,8 @@
                    		"182",
                    		"188",
                    		"189",
-                   		"209"
+                   		"209",
+						"213"
                    	],
                    	"colors": "",
                    	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -315,10 +317,9 @@
                    		"Wool": ["211"]
                    	},
                    	"discount": {
-								"20%": ["20"], 
-								"25%": ["25"], 
-								"30%": ["30"], 
-								"40%": ["40"]
+								"50%": ["50"],
+								"60%": ["60"],
+								"70%": ["70"]
                         }
                      }
                 ]]></target>
@@ -414,12 +415,13 @@
                     }
                 ]]></target>
             </trans-unit>
+					<!-- OVERDELE pige -->
              <trans-unit id="962.settings">
                 <source>962.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -505,7 +507,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- PIGE: Langærmet T-shirts -->
 			<trans-unit id="1097.settings">
             <source>1097.settings</source>
             <target><![CDATA[
@@ -515,7 +517,16 @@
                     }
                 ]]></target>
         </trans-unit>
-			
+			<!-- PIGE: Rompers -->
+		<trans-unit id="1125.settings">
+            <source>1125.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "212",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
             <trans-unit id="963.settings">
                 <source>963.settings</source>
                 <target><![CDATA[
@@ -927,13 +938,13 @@
                     }
                 ]]></target>
         </trans-unit>
-			
+				<!--DRENG: Underdele -->		
             <trans-unit id="995.settings">
                 <source>995.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128","189"],
+                        "embedded_category_id": ["119","120","128","189","213"],
                         "colors": ""
                     }
                 ]]></target>
@@ -965,6 +976,7 @@
                     }
                 ]]></target>
             </trans-unit>
+		<!-- Dreng Basics underdele -->
 			 <trans-unit id="1082.settings">
                 <source>1082.settings</source>
                 <target><![CDATA[
@@ -974,6 +986,16 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- Dreng Jumpsuit/Rompers -->
+        <trans-unit id="1126.settings">
+            <source>1126.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "213",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
             <trans-unit id="996.settings">
                 <source>996.settings</source>
                 <target><![CDATA[

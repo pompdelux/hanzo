@@ -48,7 +48,8 @@
 							"186",
 							"187",
 							"208",
-							"210"
+							"210",
+							"212"
                         ],
                        "colors": "",
 						"color_sort": "Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Mint",
@@ -170,10 +171,9 @@
 							"Uld": ["210"]
                         },
                         "discount": {
-								"20%": ["20"], 
-								"25%": ["25"], 
-								"30%": ["30"], 
-								"40%": ["40"]
+								"50%": ["50"],
+								"60%": ["60"],
+								"70%": ["70"]
                         }
                      }
                 ]]></target>
@@ -218,7 +218,8 @@
                     		"188",
                     		"189",
                     		"209",
-							"211"
+							"211",
+							"213"
                     	],
                     	"colors": "",
                     	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -327,14 +328,14 @@
                     		"Uld": ["211"]
                     	},
                     	"discount": {
-								"20%": ["20"], 
-								"25%": ["25"], 
-								"30%": ["30"], 
-								"40%": ["40"]
+								"50%": ["50"],
+								"60%": ["60"],
+								"70%": ["70"]
                         }
                      }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Overtøj -->
         <trans-unit id="959.settings">
             <source>959.settings</source>
             <target><![CDATA[
@@ -345,6 +346,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Fleecejakker -->
         <trans-unit id="966.settings">
             <source>966.settings</source>
             <target><![CDATA[
@@ -354,6 +356,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Jakker -->
         <trans-unit id="967.settings">
             <source>967.settings</source>
             <target><![CDATA[
@@ -363,6 +366,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Skaljakker og overtræksbukser -->
         <trans-unit id="968.settings">
             <source>968.settings</source>
             <target><![CDATA[
@@ -372,6 +376,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Softshell -->
         <trans-unit id="969.settings">
             <source>969.settings</source>
             <target><![CDATA[
@@ -381,6 +386,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Adventure - funktionelt overtøj -->
         <trans-unit id="1028.settings">
             <source>1028.settings</source>
             <target><![CDATA[
@@ -390,6 +396,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Flyverdragter -->
         <trans-unit id="1029.settings">
             <source>1029.settings</source>
             <target><![CDATA[
@@ -399,6 +406,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Skibukser -->
         <trans-unit id="1034.settings">
             <source>1034.settings</source>
             <target><![CDATA[
@@ -408,6 +416,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Veste -->
         <trans-unit id="1030.settings">
             <source>1030.settings</source>
             <target><![CDATA[
@@ -417,6 +426,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Pige Rainwear -->
         <trans-unit id="1075.settings">
             <source>1075.settings</source>
             <target><![CDATA[
@@ -425,18 +435,19 @@
                         "colors": ""
                     }
                 ]]></target>
-				<!-- OVERDELE pige -->
         </trans-unit>
+		<!-- OVERDELE pige -->
         <trans-unit id="962.settings">
             <source>962.settings</source>
             <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Bluser -->
         <trans-unit id="970.settings">
             <source>970.settings</source>
             <target><![CDATA[
@@ -446,6 +457,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Cardigan -->
         <trans-unit id="971.settings">
             <source>971.settings</source>
             <target><![CDATA[
@@ -455,6 +467,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Kjoler -->
         <trans-unit id="972.settings">
             <source>972.settings</source>
             <target><![CDATA[
@@ -464,6 +477,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Sweatshirts -->
         <trans-unit id="973.settings">
             <source>973.settings</source>
             <target><![CDATA[
@@ -473,6 +487,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Toppe -->
         <trans-unit id="974.settings">
             <source>974.settings</source>
             <target><![CDATA[
@@ -482,6 +497,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: T-shirts -->
         <trans-unit id="975.settings">
             <source>975.settings</source>
             <target><![CDATA[
@@ -491,6 +507,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Basis -->
         <trans-unit id="1031.settings">
             <source>1031.settings</source>
             <target><![CDATA[
@@ -500,6 +517,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Sweaters -->
         <trans-unit id="1032.settings">
             <source>1032.settings</source>
             <target><![CDATA[
@@ -509,6 +527,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Kjoler og jumpsuits -->
         <trans-unit id="1079.settings">
             <source>1079.settings</source>
             <target><![CDATA[
@@ -518,6 +537,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Langærmet T-shirts -->
 		<trans-unit id="1097.settings">
             <source>1097.settings</source>
             <target><![CDATA[
@@ -527,6 +547,17 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Rompers -->
+		<trans-unit id="1125.settings">
+            <source>1125.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "212",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+		<!-- PIGE: UNDERDELE -->
         <trans-unit id="963.settings">
             <source>963.settings</source>
             <target><![CDATA[
@@ -537,7 +568,8 @@
                     }
                 ]]></target>
         </trans-unit>
-        <trans-unit id="976.settings">
+		<!-- PIGE: Bukser -->
+		<trans-unit id="976.settings">
             <source>976.settings</source>
             <target><![CDATA[
                     {
@@ -546,6 +578,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Jeans -->
         <trans-unit id="977.settings">
             <source>977.settings</source>
             <target><![CDATA[
@@ -555,6 +588,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Jumpsuits -->
         <trans-unit id="978.settings">
             <source>978.settings</source>
             <target><![CDATA[
@@ -564,6 +598,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Leggings -->
         <trans-unit id="979.settings">
             <source>979.settings</source>
             <target><![CDATA[
@@ -573,6 +608,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Nederdele -->
         <trans-unit id="980.settings">
             <source>980.settings</source>
             <target><![CDATA[
@@ -582,6 +618,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Shorts -->
         <trans-unit id="981.settings">
             <source>981.settings</source>
             <target><![CDATA[
@@ -591,6 +628,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømpebukser -->
         <trans-unit id="982.settings">
             <source>982.settings</source>
             <target><![CDATA[
@@ -600,6 +638,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Basics underdele -->
         <trans-unit id="1081.settings">
             <source>1081.settings</source>
             <target><![CDATA[
@@ -609,6 +648,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømpebukser underdele -->
         <trans-unit id="1084.settings">
             <source>1084.settings</source>
             <target><![CDATA[
@@ -617,7 +657,8 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit><!-- PIGE Undertoej og nattøj -->
+        </trans-unit>
+		<!-- PIGE Undertoej og nattøj -->
         <trans-unit id="964.settings">
             <source>964.settings</source>
             <target><![CDATA[
@@ -628,7 +669,8 @@
                     }
                 ]]></target>
         </trans-unit>
-        <trans-unit id="983.settings">
+		<!-- PIGE: Bodystockings -->
+		<trans-unit id="983.settings">
             <source>983.settings</source>
             <target><![CDATA[
                     {
@@ -637,6 +679,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Nattøj -->
         <trans-unit id="984.settings">
             <source>984.settings</source>
             <target><![CDATA[
@@ -646,6 +689,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Undertøj -->
         <trans-unit id="985.settings">
             <source>985.settings</source>
             <target><![CDATA[
@@ -655,6 +699,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: TILBEHØR -->
         <trans-unit id="965.settings">
             <source>965.settings</source>
             <target><![CDATA[
@@ -665,6 +710,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Badetøj -->
         <trans-unit id="986.settings">
             <source>986.settings</source>
             <target><![CDATA[
@@ -674,6 +720,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Bælter -->
         <trans-unit id="987.settings">
             <source>987.settings</source>
             <target><![CDATA[
@@ -683,6 +730,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Hatte -->
         <trans-unit id="988.settings">
             <source>988.settings</source>
             <target><![CDATA[
@@ -692,6 +740,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Hårpynt -->
         <trans-unit id="989.settings">
             <source>989.settings</source>
             <target><![CDATA[
@@ -701,6 +750,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Strømper -->
         <trans-unit id="990.settings">
             <source>990.settings</source>
             <target><![CDATA[
@@ -710,6 +760,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Tørklæder -->
         <trans-unit id="991.settings">
             <source>991.settings</source>
             <target><![CDATA[
@@ -719,6 +770,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Tilbehør -->
         <trans-unit id="992.settings">
             <source>992.settings</source>
             <target><![CDATA[
@@ -728,6 +780,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- PIGE: Huer og Vanter -->
         <trans-unit id="1033.settings">
             <source>1033.settings</source>
             <target><![CDATA[
@@ -737,6 +790,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- DRENG: OVERTØJ -->
         <trans-unit id="993.settings">
             <source>993.settings</source>
             <target><![CDATA[
@@ -827,8 +881,8 @@
                         "colors": ""
                     }
                 ]]></target>
-				<!-- Overdele dreng -->
         </trans-unit>
+		<!-- Overdele dreng -->
         <trans-unit id="994.settings">
             <source>994.settings</source>
             <target><![CDATA[
@@ -920,6 +974,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Basics -->
         <trans-unit id="1039.settings">
             <source>1039.settings</source>
             <target><![CDATA[
@@ -928,7 +983,8 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>	<!-- Dreng Langaermet T-shirt -->	
+        </trans-unit>
+		<!-- Dreng Langaermet T-shirt -->	
 		 <trans-unit id="1098.settings">
             <source>1098.settings</source>
             <target><![CDATA[
@@ -937,17 +993,19 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>		
+        </trans-unit>
+		<!-- Dreng Overdele -->		
         <trans-unit id="995.settings">
             <source>995.settings</source>
             <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128","189"],
+                        "embedded_category_id": ["119","120","128","189","213"],
                         "colors": ""
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Bukser -->
         <trans-unit id="998.settings">
             <source>998.settings</source>
             <target><![CDATA[
@@ -957,6 +1015,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Jeans -->
         <trans-unit id="999.settings">
             <source>999.settings</source>
             <target><![CDATA[
@@ -966,6 +1025,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Shorts -->
         <trans-unit id="1000.settings">
             <source>1000.settings</source>
             <target><![CDATA[
@@ -975,6 +1035,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Basics underdele -->
         <trans-unit id="1082.settings">
             <source>1082.settings</source>
             <target><![CDATA[
@@ -983,7 +1044,18 @@
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit><!-- DRENG Undertoej og nattøj -->
+        </trans-unit>
+		<!-- Dreng Jumpsuit/Rompers -->
+        <trans-unit id="1126.settings">
+            <source>1126.settings</source>
+            <target><![CDATA[
+                    {
+                        "category_id": "213",
+                        "colors": ""
+                    }
+                ]]></target>
+        </trans-unit>
+		<!-- DRENG Undertoej og nattøj -->
         <trans-unit id="996.settings">
             <source>996.settings</source>
             <target><![CDATA[
@@ -994,6 +1066,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Bodystockings -->
         <trans-unit id="1002.settings">
             <source>1002.settings</source>
             <target><![CDATA[
@@ -1003,6 +1076,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Nattøj -->
         <trans-unit id="1003.settings">
             <source>1003.settings</source>
             <target><![CDATA[
@@ -1012,6 +1086,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Undertøj -->
         <trans-unit id="1004.settings">
             <source>1004.settings</source>
             <target><![CDATA[
@@ -1021,6 +1096,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Tilbehør -->
         <trans-unit id="997.settings">
             <source>997.settings</source>
             <target><![CDATA[
@@ -1031,6 +1107,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Badetøj -->
         <trans-unit id="1005.settings">
             <source>1005.settings</source>
             <target><![CDATA[
@@ -1040,6 +1117,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Hatte -->
         <trans-unit id="1006.settings">
             <source>1006.settings</source>
             <target><![CDATA[
@@ -1049,6 +1127,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Strømper -->
         <trans-unit id="1007.settings">
             <source>1007.settings</source>
             <target><![CDATA[
@@ -1058,6 +1137,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Tilbehør -->
         <trans-unit id="1008.settings">
             <source>1008.settings</source>
             <target><![CDATA[
@@ -1067,6 +1147,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Butterfly -->
         <trans-unit id="1040.settings">
             <source>1040.settings</source>
             <target><![CDATA[
@@ -1076,6 +1157,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Dreng Huer og vanter -->
         <trans-unit id="1041.settings">
             <source>1041.settings</source>
             <target><![CDATA[
@@ -1085,6 +1167,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Tilbud -->
         <trans-unit id="1073.settings">
             <source>1073.settings</source>
             <target><![CDATA[
