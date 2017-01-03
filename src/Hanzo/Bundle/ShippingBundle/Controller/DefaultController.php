@@ -57,13 +57,15 @@ class DefaultController extends CoreController
             $order->setDeliveryMethod($request->request->get('method'));
 
             $vat = 0;
-            if (58 === $order->getDeliveryCountriesId()) {
+            // Only calculate vat on delivery in DK
+            if ('da_DK' === $request->getLocale()) {
                 $vat = 25;
             }
 
             $order->setShipping($method, ShippingMethods::TYPE_NORMAL, $vat);
 
             if ($method->getFee()) {
+                // No vat calculated on fees ... For now ...
                 $order->setShipping($method, ShippingMethods::TYPE_FEE);
             }
 

@@ -4,10 +4,6 @@
     <td>{{ 'confirm.sub_total'|trans({}, 'checkout') }}</td>
     <td class="right">{{ (order.getTotalPrice(true))|money }}</td>
   </tr>
-  <tr>
-    <td>{{ 'confirm.vat'|trans({}, 'checkout') }}</td>
-    <td class="right">{{ order.getTotalVat|money }}</td>
-  </tr>
 
 {% for line in order.getOrderLineShipping %}
   <tr>
@@ -19,6 +15,11 @@
       <td class="right">{{ line.price|money }}</td>
   </tr>
 {% endfor %}
+
+  <tr>
+    <td>{{ 'confirm.vat'|trans({}, 'checkout') }}</td>
+    <td class="right">{{ order.getTotalVat|money }}</td>
+  </tr>
 
 {% if order.getPaymentFee > 0 %}
   <tr>
