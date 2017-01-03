@@ -549,10 +549,8 @@ class Orders extends BaseOrders
 
         // New vat rules kicks in 1/1 2017
         if ($vat) {
-//        if ($vat && (2017 <= date('Y'))) {
             $exVat = $price / (1 + ($vat / 100));
             $vatAmount = number_format($price - $exVat, 4, '.', '');
-            $price = number_format($exVat, 4, '.', '');
         }
 
         $line = OrdersLinesQuery::create()
