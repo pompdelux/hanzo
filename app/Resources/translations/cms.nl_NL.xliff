@@ -49,7 +49,8 @@
 						"187",
 						"207",
 						"209",
-						"211"
+						"211",
+						"213"
                     ],
                     "color_sort": "Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Mint",
                         "colormap": {
@@ -210,7 +211,8 @@
                   		"189",
                   		"208",
 						"210",
-						"212"
+						"212",
+						"214"
                   	],
                   	"colors": "",
                   	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -323,13 +325,14 @@
                         }
                      }
                 ]]></target>
-            </trans-unit><!-- Subkategori: Overtoej Pige -->
+            </trans-unit>
+			<!-- Kategori: Overtoej Pige -->
             <trans-unit id="822.settings">
                 <source>822.settings</source>
                 <target><![CDATA[
                     {   
                         "category_id": "157",
-                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186"],
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186","213"],
                         "colors": ""
                     }
                 ]]></target>
@@ -414,7 +417,18 @@
                         "colors": ""
                     }
                 ]]></target>
-            </trans-unit><!-- Subkategori Pige Overdele -->
+            </trans-unit>
+			<!-- PIGE: Termotøj -->
+			<trans-unit id="946.settings">
+                <source>946.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "213",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<!-- Kategori Pige Overdele -->
             <trans-unit id="823.settings">
                 <source>823.settings</source>
                 <target><![CDATA[
@@ -736,13 +750,14 @@
                         "colors": ""
                     }
                 ]]></target>
-            </trans-unit><!-- Overtoej Dreng -->
+            </trans-unit>
+			<!-- Overtoej Dreng -->
             <trans-unit id="837.settings">
                 <source>837.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["5","6","7","8","180","118","188"],
+                        "embedded_category_id": ["5","6","7","8","180","118","188","214"],
                         "colors": ""
                     }
                 ]]></target>
@@ -824,6 +839,16 @@
                 <target><![CDATA[
                     {
                         "category_id": "188",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<!-- DRENG: Termotøj -->
+			<trans-unit id="947.settings">
+                <source>947.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "214",
                         "colors": ""
                     }
                 ]]></target>
