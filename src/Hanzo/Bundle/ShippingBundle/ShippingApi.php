@@ -55,6 +55,12 @@ class ShippingApi
         $query = ShippingMethodsQuery::create()
             ->filterByIsActive(1)
             ->filterById($methodsEnabled)
+            ->addAscendingOrderByColumn(sprintf(
+                "FIELD(%s, %s)",
+                ShippingMethodsPeer::ID,
+                implode(',',$methodsEnabled)
+
+            ))
             ->find()
         ;
 
