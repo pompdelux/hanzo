@@ -4,8 +4,11 @@
     'domain' : '{{ app.request.getHttpHost() }}',
     'path' : '{{ path('_homepage', {'_locale' : app.request.locale}) }}'
   };
-
-  var base_url = window.location.protocol+'//'+window.location.hostname+'/{{ app.request.locale }}/';
+  var port = '';
+//  if (window.location.port) {
+//      port = ':'+window.location.port;
+//  }
+  var base_url = window.location.protocol+'//'+window.location.hostname+port+'/{{ app.request.locale }}/';
   var cdn_url = '{{ cdn }}';
 {# for some reason this resolves to ssl ???
   var base_url = '{{ url('_homepage', {'_locale' : app.request.locale}) }}';
