@@ -328,7 +328,7 @@
                 var allowedTypes = [
                   "10",  // DK  - Post Danmark Privat
                   "20",  // COM - Post Danmark Private priority
-                  "30",  // SE  - Post Danmark Privat
+                  //"30",  // SE  - Post Danmark Privat
                   "70",  // NL  - DHL          verzendmethode
                   "500", // FI  - Postimaksu   FI
                   "601", // DE  - DHL          Paketpost
