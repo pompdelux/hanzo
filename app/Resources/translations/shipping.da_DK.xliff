@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.10">
         <source>shipping_method.name.10</source>
-        <target>Privatpakke</target>
+        <target>Bring Privatpakke</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.10">
         <source>shipping_method.desc.10</source>
@@ -20,11 +20,11 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.10">
         <source>shipping_method.label.10</source>
-        <target>Post Danmark Privat %price%</target>
+        <target>Bring Privat %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
-        <target>Erhvervspakke</target>
+        <target>Bring Erhvervspakke</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.11">
         <source>shipping_method.desc.11</source>
@@ -32,19 +32,19 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.11">
         <source>shipping_method.label.11</source>
-        <target>Post Danmark Erhverv %price%</target>
+        <target>Bring Erhverv %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
-        <target>Valgfri udlevering – Forsendelse til Pakkeboks</target>
+        <target>Bring Valgfri udlevering – Forsendelse til Swipbox</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Pakkeboks, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.]]></target>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Swipbox, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>
-        <target>Pakkeboks %price%</target>
+        <target>Swipbox %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>

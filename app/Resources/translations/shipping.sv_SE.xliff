@@ -10,6 +10,18 @@
         <source>page.desc</source>
         <target></target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.12">
+        <source>shipping_method.name.12</source>
+        <target>Bring Valfri utlämning – Försändelse till Swipbox</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.12">
+        <source>shipping_method.desc.12</source>
+        <target><![CDATA[Du kan fritt välja vart i Sverige du vill hämta ditt paket. Ska det vara det posthus, postbutik eller den swipbox som är närmast ditt hem, ditt arbete, dina fritidsintressen eller...? Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.]]></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.12">
+        <source>shipping_method.label.12</source>
+        <target>Swipbox %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_method.name.30">
         <source>shipping_method.name.30</source>
         <target>postnord</target>
