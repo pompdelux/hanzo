@@ -115,6 +115,7 @@
                         method = 'company_shipping';
                         break;
                     case '12':
+                    case '30': // overnight in se
                         method = 'overnightbox';
                         if ('da' === lang) {
                             $('#form_phone').parent().addClass('message notice');
