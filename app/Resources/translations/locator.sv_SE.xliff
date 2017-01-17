@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="description">
                 <source>description</source>
-                <target><![CDATA[Skriv postnummer på den by, hvor du gerne vil finde dit udleveringssted.<br> Derefter vælger du dit foretrukne udleveringssted, <br>og adressen udfyldes automatisk.]]></target>
+                <target><![CDATA[Skriv postnumret för det område som du vill hitta utlämningsställe inom.<br>Därefter väljer du ditt önskade utlämningsställe och adressen registreras automatiskt.]]></target>
             </trans-unit>
             <trans-unit id="lookup.label">
                 <source>lookup.label</source>
@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="submit.label">
                 <source>submit.label</source>
-                <target>Find</target>
+                <target>Hitta</target>
             </trans-unit>
             <trans-unit id="lookup.placeholder">
                 <source>lookup.placeholder</source>
@@ -20,15 +20,15 @@
             </trans-unit>
             <trans-unit id="point.header">
                 <source>point.header</source>
-                <target>Valgfri udleveringssted</target>
+                <target>Valfritt utlämningsställe</target>
             </trans-unit>
             <trans-unit id="distance.header">
                 <source>distance.header</source>
-                <target>Afstand</target>
+                <target>Avstånd</target>
             </trans-unit>
             <trans-unit id="open.hours">
                 <source>open.hours</source>
-                <target>Åbningstider</target>
+                <target>Öppningstider</target>
             </trans-unit>
             <trans-unit id="distance">
                 <source>distance</source>
@@ -36,11 +36,11 @@
             </trans-unit>
             <trans-unit id="day.mo">
                 <source>day.mo</source>
-                <target>Man</target>
+                <target>Mån</target>
             </trans-unit>
             <trans-unit id="day.tu">
                 <source>day.tu</source>
-                <target>Tir</target>
+                <target>Tis</target>
             </trans-unit>
             <trans-unit id="day.we">
                 <source>day.we</source>
@@ -56,19 +56,19 @@
             </trans-unit>
             <trans-unit id="day.sa">
                 <source>day.sa</source>
-                <target>Lør</target>
+                <target>Lör</target>
             </trans-unit>
             <trans-unit id="day.su">
                 <source>day.su</source>
-                <target>Søn</target>
+                <target>Sön</target>
             </trans-unit>
             <trans-unit id="no.records.found">
                 <source>no.records.found</source>
-                <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
+                <target>Det hittades inga utlämningsställen som matchar din sökning.</target>
             </trans-unit>
             <trans-unit id="service.down">
                 <source>service.down</source>
-                <target><![CDATA[Post Danmarks postnummerservice svarer ikke i øjeblikket.<br>Prøv igen senere eller vælg privat- eller erhvervsfragt.]]></target>
+                <target><![CDATA[Brings postnummerservice svarar inte just nu.<br>Prova igen senare eller välj privat- eller företagsleverans.]]></target>
             </trans-unit>
         </body>
     </file>
