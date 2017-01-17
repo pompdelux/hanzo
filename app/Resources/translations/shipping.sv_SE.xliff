@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[Du kan fritt välja vart i Sverige du vill hämta ditt paket.<br>Ska det vara det posthus, postbutik eller den swipbox som är närmast ditt hem, ditt arbete, dina fritidsintressen eller...?<br>>Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.]]></target>
+        <target><![CDATA[Du kan fritt välja vart i Sverige du vill hämta ditt paket.<br>Ska det vara det posthus, postbutik eller den swipbox som är närmast ditt hem, ditt arbete, dina fritidsintressen eller...?<br>Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>
