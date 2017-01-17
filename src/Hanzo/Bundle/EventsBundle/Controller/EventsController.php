@@ -284,7 +284,7 @@ class EventsController extends CoreController
         if ($customer instanceof Customers) {
             $c = new \Criteria();
             $c->add(AddressesPeer::TYPE, 'payment');
-            $address = $customer->getAddressess()->getFirst();
+            $address = $customer->getAddressess($c)->getFirst();
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response([
