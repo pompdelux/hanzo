@@ -46,6 +46,18 @@
         <source>shipping_method.label.12</source>
         <target>Swipbox %price%</target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.14">
+        <source>shipping_method.name.14</source>
+        <target>[AFTEN] Bring Privatpakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.14">
+        <source>shipping_method.desc.14</source>
+        <target>[AFTEN] Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.14">
+        <source>shipping_method.label.14</source>
+        <target>[AFTEN] Bring Privat %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
         <target>Ekspeditionsgebyr</target>
