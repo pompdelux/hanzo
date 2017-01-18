@@ -1183,7 +1183,6 @@
                     }
                 ]]></target>
         </trans-unit>
-		<!-- Tilbud -->
         <trans-unit id="1073.settings">
             <source>1073.settings</source>
             <target><![CDATA[
@@ -1193,6 +1192,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- Tilbud -->
 		<trans-unit id="1091.settings">
             <source>1091.settings</source>
             <target><![CDATA[
