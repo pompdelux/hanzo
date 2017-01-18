@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.30">
         <source>shipping_method.label.30</source>
-        <target>%price%</target>
+        <target>DHL/BRING - Valfritt utlämning %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
