@@ -729,7 +729,7 @@ POMPdeLUXin poikien pitkähihainen T-paita on klassikko joka koossa – sekä l�
 	  <!-- X_TILBUD -->
 	    <trans-unit id="headers.category-141">
         <source>headers.category-141</source>
-        <target><![CDATA[ ]]></target>
+        <target><![CDATA[<h1>FINAL SALE</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-141">
         <source>description.category-141</source>
