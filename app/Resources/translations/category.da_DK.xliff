@@ -741,7 +741,6 @@ POMPdeLUX regnjakker og bukser til drenge.</p>]]></target>
         <source>description.category-189</source>
         <target><![CDATA[<p>Blødt og behageligt basistøj danner hele grundlaget for en rigtig drengegarderobe. Drenges basistøj bliver flittigt brugt og derfor holder POMPdeLUX sig kun til de allerbedste kvaliteter, som bevarer sig pænt, uanset hvor mange ture det får i vaskemaskinen. POMPdeLUX producerer basisstyles til drenge året rundt og har alt det basistøj, som alle drenge har brug for. Snit og nuancer, er afstemt alt vores andet børnetøj, så basisting uden problemer kan kombineres på masser af måder, men er også rigtig flot at bruge alene. Basistøj til drenge designes i størrelserne 80 centimeter til 152 cm og er er et oplagt valg, hvis man vil have meget for pengene og ikke vil nøjes med mindre end den fineste kvalitet. POMPdeLUX basis over- og underdele er godt og enkelt børnetøj i flotte farver, som man sagtens kan købe meget af, uden at det koster en formue.</p>]]></target>
       </trans-unit>
-	  
 	  <!-- Langærmet T-shirts - pige -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
@@ -751,7 +750,6 @@ POMPdeLUX regnjakker og bukser til drenge.</p>]]></target>
         <source>description.category-208</source>
         <target><![CDATA[<p>Vores POMPdeLUX langærmet t-shirt til piger er det perfekte og fleksible basistøj, der kan anvendes på et hav af måder hele året rundt. Kvaliteten er så lækker og tilpas tynd, at t-shirten er god at bruge alene. De dage hvor vejret er godt, beskytter den bedre mod solen end en kortærmet bluse. I de kolde måneder er en langærmet t-shirt et formidabelt supplement til mange forskellige slags tøj og da vores langærmede t-shirts altid er i tråd med kollektionens farveskala, er de helt enkle at mikse og sætte sammen med andet POMPdeLUX pigetøj, som kjoler, nederdele, cardigans, fleecejakker og alt det andet. En POMPdeLUX langærmet t-shirt til piger er helt klassisk og super praktisk og derfor absolut uundværlig i pigegarderoben, uanset årstiden og vejret.</p>]]></target>
       </trans-unit>
-	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-209">
         <source>headers.category-209</source>
@@ -762,6 +760,36 @@ POMPdeLUX regnjakker og bukser til drenge.</p>]]></target>
         <target><![CDATA[<p>Med en POMPdeLUX langærmet t-shirt til drenge får man et perfekt stykke basistøj med mange fine anvendelsesmuligheder hele året rundt. Kvaliteten er så tilpas tynd og god, at den er rar at bruge alene når vejret tillader det og hvor den kan skærme lidt for solen. Når kulden bider giver en langærmet t-shirt det bedste supplement til andet tøj og da de altid fremstilles i sæsonens aktuelle farver, er de super nemme at kombinere med andet POMPdeLUX drengetøj, som cardigans, fleecetrøjer og andet. Kombiner også gerne de langærmede t-shirts med yndlingsskjorten eller den kortærmede favorit t-shirt, så deres levetid bliver lidt forlænget.
 En POMPdeLUX langærmet t-shirt til drenge er altså klassisk og nærmest uundværlig for alle størrelser, - både på varme og kolde dage, bare lige som de er eller sammen med andre af vores overdele til drenge. </p>]]></target>
       </trans-unit>
+	  <!-- PIGE: Rompers -->
+	    <trans-unit id="headers.category-212">
+        <source>headers.category-212</source>
+        <target><![CDATA[<h1>Rompers til piger</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-212">
+        <source>description.category-212</source>
+        <target><![CDATA[<p><!--Med en POMPdeLUX langærmet t-shirt til drenge får man et perfekt stykke basistøj med mange fine anvendelsesmuligheder hele året rundt. Kvaliteten er så tilpas tynd og god, at den er rar at bruge alene når vejret tillader det og hvor den kan skærme lidt for solen. Når kulden bider giver en langærmet t-shirt det bedste supplement til andet tøj og da de altid fremstilles i sæsonens aktuelle farver, er de super nemme at kombinere med andet POMPdeLUX drengetøj, som cardigans, fleecetrøjer og andet. Kombiner også gerne de langærmede t-shirts med yndlingsskjorten eller den kortærmede favorit t-shirt, så deres levetid bliver lidt forlænget.
+En POMPdeLUX langærmet t-shirt til drenge er altså klassisk og nærmest uundværlig for alle størrelser, - både på varme og kolde dage, bare lige som de er eller sammen med andre af vores overdele til drenge.--> </p>]]></target>
+      </trans-unit>
+	   <!-- PIGE: Termotøj -->
+	    <trans-unit id="headers.category-214">
+        <source>headers.category-214</source>
+        <target><![CDATA[<h1>Termotøj til piger</h1>]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-214">
+        <source>description.category-214</source>
+        <target><![CDATA[<p><!--Med en POMPdeLUX langærmet t-shirt til drenge får man et perfekt stykke basistøj med mange fine anvendelsesmuligheder hele året rundt. Kvaliteten er så tilpas tynd og god, at den er rar at bruge alene når vejret tillader det og hvor den kan skærme lidt for solen. Når kulden bider giver en langærmet t-shirt det bedste supplement til andet tøj og da de altid fremstilles i sæsonens aktuelle farver, er de super nemme at kombinere med andet POMPdeLUX drengetøj, som cardigans, fleecetrøjer og andet. Kombiner også gerne de langærmede t-shirts med yndlingsskjorten eller den kortærmede favorit t-shirt, så deres levetid bliver lidt forlænget.
+En POMPdeLUX langærmet t-shirt til drenge er altså klassisk og nærmest uundværlig for alle størrelser, - både på varme og kolde dage, bare lige som de er eller sammen med andre af vores overdele til drenge.--> </p>]]></target>
+      </trans-unit>
+	  <!-- X_TILBUD -->
+	    <trans-unit id="headers.category-141">
+        <source>headers.category-141</source>
+        <target><![CDATA[ ]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-141">
+        <source>description.category-141</source>
+        <target><![CDATA[ <img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_DK.jpg" width="714" height="300" alt=""/> ]]></target>
+      </trans-unit>
+	  
 	  
     </body>
   </file>
