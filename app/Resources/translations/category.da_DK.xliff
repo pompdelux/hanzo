@@ -548,11 +548,8 @@ Noget af det eksklusive udvalg af POMPdeLUX tilbehør til drenge, som vi selv ge
         <source>description.category-169</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-<<<<<<< HEAD
       	  <trans-unit id="headers.category-170">
-=======
 	  <trans-unit id="headers.category-170">
->>>>>>> origin/master
         <source>headers.category-170</source>
         <target><![CDATA[<h1>Adventure - funktionelt overtøj til piger</h1>]]></target>
       </trans-unit>
@@ -778,11 +775,11 @@ En POMPdeLUX langærmet t-shirt til drenge er altså klassisk og nærmest uundv�
       </trans-unit>
 	  <trans-unit id="headers.category-141">
         <source>headers.category-141</source>
-        <target><![CDATA[ ]]></target>
+        <target><![CDATA[<h1></h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-141">
         <source>description.category-141</source>
-        <target><![CDATA[ <img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_DK.jpg" width="714" height="300" alt=""/> ]]></target>
+        <target><![CDATA[<img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_DK.jpg" width="714" height="300" alt=""/>]]></target>
       </trans-unit>
     </body>
   </file>
