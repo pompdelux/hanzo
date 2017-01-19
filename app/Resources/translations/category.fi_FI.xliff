@@ -540,14 +540,6 @@ Emme keskity vain tyyliin vain myös mitoitukseen – vain täysin oikein mitoit
         <source>description.category-169</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-      <trans-unit id="headers.category-141">
-        <source>headers.category-141</source>
-        <target><![CDATA[<h1>ANNIVERSARY SALE</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-141">
-        <source>description.category-141</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
 	   <trans-unit id="headers.category-170">
         <source>headers.category-170</source>
         <target><![CDATA[<h1>Adventure – tekniset ulkovaatteet</h1>]]></target>
@@ -724,7 +716,6 @@ POMPdeLUX-sadetakit ja -housut.</p>]]></target>
         <target><![CDATA[<p>POMPdeLUXin pitkähihaiset T-paidat ovat täydellisiä ja monikäyttöisiä perusvaatteita, joita voi käyttää monella eri tavalla ympäri vuoden. Materiaali on niin ihanaa ja sopivan ohutta, että paitaa on hyvä käyttää sellaisenaan. Hyvällä säällä se suojaa paremmin auringolta kuin lyhythihainen paita. Kylmällä säällä pitkähihainen T-paita on hyvä lisä moniin eri vaatteisiin. Pitkähihaiset T-paitamme sopivat aina malliston värivalikoimaan, joten niitä on helppo yhdistellä muiden POMPdeLUXin tyttöjen vaatteiden, kuten mekkojen, hameiden, neuletakkien, fleecetakkien ja monien muiden vaatteiden kanssa.
 POMPdeLUXin tyttöjen pitkähihainen paita on tosi käytännöllinen klassikko, joka on ehdoton osa tyttöjen vaatevarastoa – kaikkina vuodenaikoina ja joka säällä.</p>]]></target>
       </trans-unit>
-	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
@@ -735,7 +726,15 @@ POMPdeLUXin tyttöjen pitkähihainen paita on tosi käytännöllinen klassikko, 
         <target><![CDATA[<p>Poikien pitkähihainen POMPdeLUX-paita on täydellinen perusvaate, jolla on monia hienoja käyttömahdollisuuksia ympäri vuoden. Materiaali on sopivan ohutta ja hyvää, joten paitaa voi käyttää sään salliessa sellaisenaan suojaamaan hieman auringolta. Kylmemmällä säällä pitkähihainen T-paita sopii hyvin yhteen muiden vaatteiden kanssa. Niitä on aina saatavana kauden väreissä, joten niitä on tosi helppo yhdistellä muiden POMPdeLUXin poikien vaatteiden, kuten neuletakkien ja fleecepuseroiden kanssa. Voit myös käyttää pitkähihaisia T-paitoja yhdessä suosikkipaitapuseron tai lyhythihaisen T-paidan kanssa, mikä pidentää niiden käyttöaikaa.
 POMPdeLUXin poikien pitkähihainen T-paita on klassikko joka koossa – sekä lämpiminä että kylminä päivinä, sellaisenaan tai yhdessä muiden poikien yläosien kanssa.</p>]]></target>
       </trans-unit>
-	  
+	  <!-- X_TILBUD -->
+	    <trans-unit id="headers.category-141">
+        <source>headers.category-141</source>
+        <target><![CDATA[ ]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-141">
+        <source>description.category-141</source>
+        <target><![CDATA[ <img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_FI.jpg" width="714" height="300" alt=""/> ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -533,14 +533,6 @@
         <source>description.category-169</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-      <trans-unit id="headers.category-141">
-        <source>headers.category-141</source>
-        <target><![CDATA[<h1>ANNIVERSARY SALE</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-141">
-        <source>description.category-141</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
 	  <trans-unit id="headers.category-170">
         <source>headers.category-170</source>
         <target><![CDATA[<h1>Adventure - functionele buitenkleding</h1>]]></target>
@@ -720,7 +712,6 @@
         <target><![CDATA[<p>Ons POMPdeLUX meisjes T-shirt met lange mouwen is het perfecte basic kledingstuk dat je het hele jaar door op allerlei manieren kunt dragen. De stof is mooi en zo dun dat je het T-shirt best op zichzelf kunt dragen. Als het goed weer is, beschermt het beter tegen schadelijke UV-straling dan een T-shirt met korte mouwen. In de koude maanden is een T-shirt met lange mouwen een prima aanvulling op andere kledingstukken. Onze T-shirts met lange mouwen passen qua kleur altijd bij de rest van de collectie. Daarom kun je ze eenvoudig combineren met onze andere POMPdeLUX meisjeskleding.  Zoals jurken, rokken, vesten, fleecejassen en nog veel meer.
 Een POMPdeLUX meisjes T-shirt met lange mouwen is superpraktisch en mag daarom niet ontbreken in de garderobe van je dochter. Ongeacht welk seizoen en wat voor weer het is.</p>]]></target>
       </trans-unit>
-	  
 	  <!-- Langærmet T-shirts - dreng -->
 	    <trans-unit id="headers.category-208">
         <source>headers.category-208</source>
@@ -730,7 +721,15 @@ Een POMPdeLUX meisjes T-shirt met lange mouwen is superpraktisch en mag daarom n
         <source>description.category-208</source>
         <target><![CDATA[<p>Met een POMPdeLUX jongens T-shirt met lange mouwen heb je een prima basic kledingstuk dat je het hele jaar door kunt dragen. De stof is zo dun, dat je het op zichzelf kunt dragen als het weer het toelaat. Het shirt beschermt dan tegen schadelijke UV-straling. En als het koud is, is een T-shirt met lange mouwen een prima aanvulling op je andere kleding. We produceren shirts die qua kleur bij de rest van de collectie passen. Daarom kun je ze eenvoudig combineren met de andere jongenskleding van POMPdeLUX. Zoals vesten, fleecejassen en dergelijke. Je kunt een T-shirt met lange mouwen ook onder je lievelingsoverhemd dragen of onder een T-shirt met korte mouwen. Op die manier gaat het shirt langer mee. Een jongens T-shirt met lange mouwen van POMPdeLUX is altijd handig – zowel op de warme als de koude dagen. En op zichzelf of gecombineerd met onze andere bovenkleding.</p>]]></target>
       </trans-unit>
-	  
+		 <!-- X_TILBUD -->
+	    <trans-unit id="headers.category-141">
+        <source>headers.category-141</source>
+        <target><![CDATA[ ]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-141">
+        <source>description.category-141</source>
+        <target><![CDATA[ <img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_NL.jpg" width="714" height="300" alt=""/> ]]></target>
+      </trans-unit>   
     </body>
   </file>
 </xliff>

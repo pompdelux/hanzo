@@ -554,14 +554,6 @@ Wir fokussieren nicht nur auf den Stil, sondern auch auf die Passform – denn n
         <source>description.category-169</source>
         <target><![CDATA[<p></p>]]></target>
       </trans-unit>
-      <trans-unit id="headers.category-141">
-        <source>headers.category-141</source>
-        <target><![CDATA[<h1>ANNIVERSARY SALE</h1>]]></target>
-      </trans-unit>
-      <trans-unit id="description.category-141">
-        <source>description.category-141</source>
-        <target><![CDATA[<p></p>]]></target>
-      </trans-unit>
 	   <trans-unit id="headers.category-170">
         <source>headers.category-170</source>
         <target><![CDATA[<h1>Adventure - funktionelle Oberbekleidung</h1>]]></target>
@@ -754,6 +746,15 @@ Ein POMPdeLUX Langarmshirt für Mädchen ist klassisch und super praktisch und d
 Wenn die Kälte einzieht, bietet das Langarmshirt die perfekte Ergänzung zur Kleidung und da sie immer in den saisonalen Farben hergestellt werden, kann man sie perfekt mit der restlichen POMPdeLUX-Jungskleidung, wie z.B. Strickjacken, Fleecejacken usw., kombinieren. 
 Kombinieren Sie also einfach das Langarmshirt mit dem Lieblingshemd oder dem Lieblings-Kurzarmshirt, sodass dessen Lebenszeit etwas verlängert wird. 
 Ein POMPdeLUX Langarmshirt für Jungs ist also klassisch und so gut wie unentbehrlich in allen Größen, - an warmen sowie an kalten Tagen, einfach so wie sie sind oder zusammen mit unseren anderen Oberteilen. </p>]]></target>
+      </trans-unit>
+	  <!-- X_TILBUD -->
+	    <trans-unit id="headers.category-141">
+        <source>headers.category-141</source>
+        <target><![CDATA[ ]]></target>
+      </trans-unit>
+      <trans-unit id="description.category-141">
+        <source>description.category-141</source>
+        <target><![CDATA[ <img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_DE.jpg" width="714" height="300" alt=""/> ]]></target>
       </trans-unit>
 	  
     </body>
