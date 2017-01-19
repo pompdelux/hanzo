@@ -1183,7 +1183,7 @@
                     }
                 ]]></target>
         </trans-unit>
-		<!-- Tilbud -->
+		<!-- X_TILBUD -->
         <trans-unit id="1073.settings">
             <source>1073.settings</source>
             <target><![CDATA[
