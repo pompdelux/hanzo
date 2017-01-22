@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · ATU68522618 · mail@pompdelux.dk · 01/5350375</target>
+                <target>POMPdeLUX A GmbH · Bauernmarkt 2 · AT – 1010 Wien · ATU68522618 · mailat@pompdelux.com · 01/5350375</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -177,7 +177,7 @@
                         <li>01/5350375</li>
                     </ul>
                     <ul>
-						            <li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
+                        <li>Rücksendung von Waren: POMPdeLUX A GmbH</li>
                         <li>Paketfach 10</li>
                         <li>6965 Wolfurt-Bahnhof</li>
                     </ul>
