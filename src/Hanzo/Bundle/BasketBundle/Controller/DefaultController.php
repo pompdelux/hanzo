@@ -538,7 +538,9 @@ class DefaultController extends CoreController
 
                 // find matching router
                 $key    = '_' . $locale . '_' . $categoryId;
-                $group  = $category2group[$categoryId];
+
+                // Figure out which group to put products into.
+                $group = $this->color2Group($category2group[$categoryId], $line['products_color']);
 
                 $line['master'] = $master->sku;
 
@@ -623,5 +625,48 @@ class DefaultController extends CoreController
                 'status'  => false,
             ]);
         }
+    }
+
+    /**
+     * Map specific boy/girl colors to specific grouping in basket view.
+     *
+     * @param string $key
+     * @param string $color
+     * @return string
+     */
+    private function color2Group($key, $color)
+    {
+        // remap these colors to specific groups:
+        $colorMap = [
+            // Mapped to "boy"
+            'papaya' => 'b',
+            'peach' => 'b',
+            'terracotta' => 'b',
+            'petrol' => 'b',
+            'dark petrol' => 'b',
+            'dark petrol melange' => 'b',
+            'petrol/grey melange' => 'b',
+            'turquise melange' => 'b',
+
+            // Mapped to "girl"
+            'rose' => 'g',
+            'black/rose' => 'g',
+            'black/light rose' => 'g',
+            'dark rose' => 'g',
+            'light rose' => 'g',
+            'light rose/black' => 'g',
+            'purple' => 'g',
+            'dark purple' => 'g',
+            'off white/purple' => 'g',
+            'purple print' => 'g',
+            'purple stripe' => 'g',
+        ];
+
+        $color = strtolower($color);
+        if (isset($colorMap[$color])) {
+            return 'product.group.'.$colorMap[$color];
+        }
+
+        return $key;
     }
 }
