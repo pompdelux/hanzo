@@ -12,15 +12,15 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.30">
         <source>shipping_method.name.30</source>
-        <target>Valfri utlämning – Försändelse till Service Point</target>
+        <target>DHL/BRING Valfritt Utlämningsställe</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.30">
         <source>shipping_method.desc.30</source>
-        <target><![CDATA[Du kan fritt välja vart i Sverige du vill hämta ditt paket.<br>Ska det vara det utlämningsställe som är närmast ditt hem, ditt arbete, dina fritidsintressen eller...?<br>Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.]]></target>
+        <target>Du kan fritt välja mellan DHL/BRING's utlämningsställen i Sverige. Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.30">
         <source>shipping_method.label.30</source>
-        <target>Swipbox %price%</target>
+        <target>DHL/BRING - Valfritt utlämning %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
