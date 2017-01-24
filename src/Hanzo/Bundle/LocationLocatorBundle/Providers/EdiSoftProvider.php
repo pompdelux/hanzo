@@ -67,10 +67,10 @@ class EdiSoftProvider extends BaseProvider
         $this->limit = $limit;
         $client = $this->getClient();
 
-        if (empty($address_parts['city'])) {
-            $address_parts['city'] = $address_parts['streetName'];
-            $address_parts['streetName'] = '';
-        }
+//        if (empty($address_parts['city'])) {
+//            $address_parts['city'] = $address_parts['streetName'];
+//            $address_parts['streetName'] = '';
+//        }
 
         preg_match('/^([0-9]{3,7}) (.+)/', $address_parts['city'], $result);
         if (3 == count($result)) {
