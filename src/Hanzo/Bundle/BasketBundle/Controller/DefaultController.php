@@ -651,6 +651,7 @@ class DefaultController extends CoreController
             // Mapped to "girl"
             'rose' => 'g',
             'black/rose' => 'g',
+            'rose/black' => 'g',
             'black/light rose' => 'g',
             'dark rose' => 'g',
             'light rose' => 'g',
