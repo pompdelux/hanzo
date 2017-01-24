@@ -1,4 +1,4 @@
-<form action="{{ path('hanzo_location_locator') }}" method="post" {{ form_enctype(form) }} class="location-locator">
+<form action="{{ path('hanzo_location_locator') }}" method="post" {{ form_enctype(form) }} class="location-locator" style="max-width: 620px;">
     {{ form_errors(form) }}
 
     <p>{{ 'description'|trans({}, 'locator')|raw }}</p>
