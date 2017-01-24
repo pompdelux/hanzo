@@ -318,20 +318,20 @@ class SyncSalesOrder extends BaseService
                 case 'FI':
                 case 'NL':
                     $bagPrice = '4.99';
-                    $keyPrice = '2.00';
+                    $keyPrice = '5.99';
                     break;
                 case 'CH':
                     $bagPrice = '5.90';
-                    $keyPrice = '2.50';
+                    $keyPrice = '6.90';
                     break;
                 case 'DK':
                     $bagPrice = '40.00';
-                    $keyPrice = '15.00';
+                    $keyPrice = '50.00';
                     break;
                 case 'NO':
                 case 'SE':
                     $bagPrice = '60.00';
-                    $keyPrice = '20.00';
+                    $keyPrice = '65.00';
                     break;
             }
 
