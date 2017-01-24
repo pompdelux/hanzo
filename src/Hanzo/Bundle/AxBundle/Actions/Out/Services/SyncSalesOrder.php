@@ -302,9 +302,6 @@ class SyncSalesOrder extends BaseService
                 'SalesUnit'  =>  'Stk.',
             ];
 
-            /*
-             * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
-             */
             $bagPrice = 0.00;
             $keyPrice = 0.00;
             $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
