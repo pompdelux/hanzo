@@ -97,11 +97,11 @@ class SyncCustomer extends BaseService
         $this->translator->setLocale(Tools::getLocaleFromDomainKey($this->getEndPoint()));
 
         $customerId = $this->customer->getId();
-        if ($this->customer->getMayBeContacted()) {
-            $customerId .= '-M1';
-        } else {
-            $customerId .= '-M0';
-        }
+//        if ($this->customer->getMayBeContacted()) {
+//            $customerId .= '-M1';
+//        } else {
+//            $customerId .= '-M0';
+//        }
 
         $this->data = [
             'customer' => [
