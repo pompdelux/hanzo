@@ -22,6 +22,7 @@ class DefaultController extends CoreController
         $data = [];
         $records = [];
         $error = '';
+        $streetAddress = '';
 
         if ($customer instanceof Customers) {
             $c = new Criteria();
@@ -30,7 +31,7 @@ class DefaultController extends CoreController
 
             if ($address->count()) {
                 $address = $address->getFirst();
-                $data['q'] = $address->getAddressLine1().', '.$address->getPostalCode().' '.$address->getCity();
+                $streetAddress = $address->getAddressLine1();
             }
         }
 
@@ -58,6 +59,10 @@ class DefaultController extends CoreController
                         $zip = $street;
                         $street = '';
                     }
+                }
+
+                if (empty($street) && $streetAddress) {
+                    $street = $streetAddress;
                 }
 
                 try {

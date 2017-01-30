@@ -321,16 +321,20 @@ return;
                 case 'FI':
                 case 'NL':
                     $bagPrice = '4.99';
+                    $keyPrice = '5.99';
                     break;
                 case 'CH':
                     $bagPrice = '5.90';
+                    $keyPrice = '6.90';
                     break;
                 case 'DK':
                     $bagPrice = '40.00';
+                    $keyPrice = '50.00';
                     break;
                 case 'NO':
                 case 'SE':
                     $bagPrice = '60.00';
+                    $keyPrice = '65.00';
                     break;
             }
 
@@ -339,12 +343,23 @@ return;
                 'SalesPrice'      => $bagPrice,
                 'LineDiscPercent' => 100,
                 'SalesQty'        => $salesQty,
-                'InventColorId'   => 'Navy',
+                'InventColorId'   => 'Off White',
                 'InventSizeId'    => 'One Size',
                 'SalesUnit'       => 'Stk.',
             ];
-
             $this->promotionsAdded[$itemId] = $salesQty;
+
+            // Key hanger - First added SS17
+            $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
+                'ItemId'          => $keyId,
+                'SalesPrice'      => $keyPrice,
+                'LineDiscPercent' => 100,
+                'SalesQty'        => $salesQty,
+                'InventColorId'   => 'Rose',
+                'InventSizeId'    => 'One Size',
+                'SalesUnit'       => 'Stk.',
+            ];
+            $this->promotionsAdded[$keyId] = $salesQty;
         }
     }
 
@@ -367,16 +382,16 @@ return;
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20160825;
-            $toDate   = 20161106;
-            $itemId   = 'FREEPOMPBAGAW16';
+            $fromDate = 20170223;
+            $toDate   = 20170430;
+            $itemId   = 'FREEPOMPBAGSS17';
 
             // Also check if promotion has been added already
             if (!isset($this->promotionsAdded[$itemId]) && (($fromDate <= $date) && ($toDate >= $date)) ||
                 ($this->inEdit && ($toDate >= $this->order->getCreatedAt('Ymd')))
             ) {
-                $bagPrice  = 0.00;
-                $salesQty  = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
+                $bagPrice = 0.00;
+                $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
 
                 switch($domainKey) {
                     case 'AT':
@@ -385,7 +400,7 @@ return;
                     case 'FI':
                     case 'NL':
                         $bagPrice = '1.99';
-                        break;
+                    break;
                     case 'CH':
                         $bagPrice = '1.90';
                         break;
@@ -394,7 +409,7 @@ return;
                         break;
                     case 'NO':
                     case 'SE':
-                        $bagPrice = '15.00';
+                        $bagPrice = '20.00';
                         break;
                 }
 
@@ -403,7 +418,7 @@ return;
                     'SalesPrice'      => $bagPrice,
                     'LineDiscPercent' => 100,
                     'SalesQty'        => $salesQty,
-                    'InventColorId'   => 'Navy',
+                    'InventColorId'   => 'Off White',
                     'InventSizeId'    => 'One Size',
                     'SalesUnit'       => 'Stk.',
                 ];
