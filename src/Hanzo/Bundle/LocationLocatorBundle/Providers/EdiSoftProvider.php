@@ -90,6 +90,7 @@ class EdiSoftProvider extends BaseProvider
 
         try {
             $result = $client->SearchForDropPoints($lookup);
+            //error_log($client->__getLastResponse());
         } catch (\Exception $e) {
             $this->logger->err($e->getMessage());
         }
