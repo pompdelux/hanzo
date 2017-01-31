@@ -58,6 +58,42 @@
         <source>shipping_method.label.14</source>
         <target>Bring Privat - Aftenlevering 17-21 %price%</target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.15">
+        <source>shipping_method.name.15</source>
+        <target>PostNord Valgfri Udleveringssted</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.15">
+        <source>shipping_method.desc.15</source>
+        <target>Du kan frit vælge blandt PostNords mange udleveringssteder i Danmark. Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.15">
+        <source>shipping_method.label.15</source>
+        <target>Valgfri Udleveringssted %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.16">
+        <source>shipping_method.name.16</source>
+        <target>PostNord Privatpakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.16">
+        <source>shipping_method.desc.16</source>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.16">
+        <source>shipping_method.label.16</source>
+        <target>PostNord Privat %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.17">
+        <source>shipping_method.name.17</source>
+        <target>PostNord Erhvervspakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.17">
+        <source>shipping_method.desc.17</source>
+        <target>Har du mulighed for at få din ordre leveret på din arbejdsplads, kan du vælge erhvervspakke. Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.17">
+        <source>shipping_method.label.17</source>
+        <target>PostNord Erhverv %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
         <target>Ekspeditionsgebyr</target>

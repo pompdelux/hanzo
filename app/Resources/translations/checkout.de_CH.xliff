@@ -473,11 +473,11 @@ Sie müssen Waren hinzufügen.
       </trans-unit>
       <trans-unit id="payment.invoicepayment.text">
         <source>payment.invoicepayment.text</source>
-        <target><![CDATA[Die Rechnung wird per Email an Sie gesendet sobald wir Ihre Waren versenden. Die Rechnung wird Ihnen dann ebenfalls unter „Meine Seite“ als PDF-Datei innerhalb von 24 Std. zur Verfügung stehen. Die Zahlungsfrist beträgt 30 Tage.<br><br>BEACHTEN SIE BITTE, DASS DIE RECHNUNG IHNEN NUR PER EMAIL ZUGESENDET WIRD.]]></target>
+        <target><![CDATA[Bitte beachten Sie: Wenn Sie die Zahlungsart „Zahlung per Überweisung“ wählen, kann Ihre Bestellung nur dann bearbeitet werden, sofern Sie keine offenen Posten bei POMPdeLUX haben. In diesem Fall kontaktieren wir Sie direkt per Email zwecks Begleichung der ausstehenden Posten. Sollte der Betrag nicht innerhalb von 5 Werktagen auf unserem Konto eingegangen sein, sehen wir uns leider gezwungen Ihre Bestellung automatisch zu löschen.]]></target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
-        <target>Rechnung</target>
+        <target>Zahlung per Überweisung</target>
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>
@@ -494,6 +494,7 @@ Sie müssen Waren hinzufügen.
       <trans-unit id="checkout.confirm.may_contact.no_label">
         <source>checkout.confirm.may_contact.no_label</source>
         <target>Nej tak</target>
+        <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
       </trans-unit>
     </body>
   </file>
