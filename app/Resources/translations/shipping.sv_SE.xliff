@@ -22,6 +22,18 @@
         <source>shipping_method.label.30</source>
         <target>DHL/BRING - Valfritt utlämning %price%</target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.31">
+        <source>shipping_method.name.31</source>
+        <target>PostNord Valfritt Utlämningsställe</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.31">
+        <source>shipping_method.desc.31</source>
+        <target>Du kan fritt välja mellan PostNord's utlämningsställen i Sverige. Det är helt upp till dig och du behöver inte använda samma utlämningsställe varje gång.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.31">
+        <source>shipping_method.label.31</source>
+        <target>PostNord- Valfritt utlämning %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
         <target>Expeditionsavgift</target>
