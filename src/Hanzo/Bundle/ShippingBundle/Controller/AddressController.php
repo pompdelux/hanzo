@@ -263,13 +263,16 @@ class AddressController extends CoreController
             $order = OrdersPeer::getCurrent();
             $data  = $request->request->get('form');
 
-            if ($type == 'shipping') {
+            if ($type === 'shipping') {
                 switch ($order->getDeliveryMethod()) {
-                    case 11:
-                    case 17:
+                    case 11: // bring dk
+                    case 17: // postnord dk
                         $method = 'company_shipping';
                         break;
-                    case 12:
+                    case 12: // bring dk (drop point)
+                    case 15: // postnord dk (drop point)
+                    case 30: // bring se (drop point)
+                    case 31: // postnord se (drop point)
                     case 71:
                         $method = 'overnightbox';
                         $validationFields[] = 'company_name';
@@ -319,7 +322,7 @@ class AddressController extends CoreController
             $address->setCountriesId($data['countries_id']);
 
             // special rules apply for overnightbox
-            if ($method == 'overnightbox') {
+            if ($method === 'overnightbox') {
                 $address->setExternalAddressId($data['external_address_id']);
                 $address->setAddressLine2(null);
             }
@@ -332,7 +335,7 @@ class AddressController extends CoreController
                 $address->setCompanyName($data['company_name']);
             }
 
-            if ('payment' == $method) {
+            if ('payment' === $method) {
                 $customer = $address->setPhone($data['phone']);
             }
 
@@ -380,13 +383,13 @@ class AddressController extends CoreController
             $address->save();
 
             // change phone number
-            if (isset($customer) && ('payment' == $method)) {
+            if (isset($customer) && ('payment' === $method)) {
                 $customer->save();
             }
 
-            if ($type == 'payment') {
+            if ($type === 'payment') {
                 $order->setBillingAddress($address);
-            } elseif ($type == 'shipping') {
+            } elseif ($type === 'shipping') {
                 $order->setDeliveryAddress($address);
             }
 
