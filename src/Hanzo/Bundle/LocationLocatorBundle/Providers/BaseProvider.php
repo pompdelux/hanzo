@@ -109,6 +109,22 @@ abstract class BaseProvider
         $this->environment    = $environment;
     }
 
+    /**
+     * Provide a way to override settings in the service.
+     *
+     * @param array $settings
+     *
+     * @return self
+     */
+    public function settingsOverride(array $settings)
+    {
+        foreach ($settings as $key => $value) {
+            $this->settings[$key] = $value;
+        }
+
+        return $this;
+    }
+
 
     /**
      * Build the form used to retrive the information needed for the lookup
