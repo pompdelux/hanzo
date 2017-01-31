@@ -130,17 +130,17 @@
         <source>confirm.total</source>
         <target>Gesamtbetrag</target>
       </trans-unit>
-	   <trans-unit id="payment.manualpayment.title">
+      <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Banküberweisung</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+        <target><![CDATA[<b>Bitte beachten:</b> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
-        <target>Banküberweisung</target>
+        <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
@@ -475,9 +475,21 @@ Sie müssen Waren hinzufügen.
                 <a href="/de_AT/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
         </trans-unit>
-<trans-unit id="late.delivery.notice">
+      <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
         <target><![CDATA[[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.title">
+        <source>payment.invoicepayment.title</source>
+        <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.text">
+        <source>payment.invoicepayment.text</source>
+        <target><![CDATA[Bitte beachten Sie: Wenn Sie die Zahlungsart „Zahlung per Überweisung“ wählen, kann Ihre Bestellung nur dann bearbeitet werden, sofern Sie keine offenen Posten bei POMPdeLUX haben. In diesem Fall kontaktieren wir Sie direkt per Email zwecks Begleichung der ausstehenden Posten. Sollte der Betrag nicht innerhalb von 5 Werktagen auf unserem Konto eingegangen sein, sehen wir uns leider gezwungen Ihre Bestellung automatisch zu löschen.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.invoicepayment.label">
+        <source>payment.invoicepayment.label</source>
+        <target>Zahlung per Überweisung</target>
       </trans-unit>
     </body>
   </file>

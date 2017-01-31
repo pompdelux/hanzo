@@ -1,0 +1,9 @@
+<h3>{{ 'payment.invoicepayment.title'|trans({}, 'checkout') }}</h3>
+<ul class="payment-methods" id="payment-method-invoicepayment" data-provider="invoicepayment">
+  <li>
+    <p>{{ 'payment.invoicepayment.text'|trans({}, 'checkout')|raw }}</p>
+
+    <input type="radio" value="invoicepayment:invoicepayment" id="invoicepayment-lbl" name="paytype"{% if selected_payment_type == 'invoicepayment:invoicepayment' %} checked{% endif %}>
+    <label for="invoicepayment-lbl">{{ 'payment.invoicepayment.label'|trans({}, 'checkout') }}</label>
+  </li>
+</ul>

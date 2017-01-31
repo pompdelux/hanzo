@@ -181,7 +181,6 @@ class SyncSalesOrder extends BaseService
             'FreightFeeAmt'           => $this->calculateCost(['shipping']),
             'HandlingFeeAmt'          => $this->calculateCost(['shipping.fee', 'payment.fee']),
             'PayByBillFeeAmt'         => $this->calculateCost(['payment']),
-            'CustPaymMode'            => $this->getCustPaymMode(),
             'BankAccountNumber'       => $this->getAttribute('payment', 'bank_account_no'),
             'BankId'                  => $this->getAttribute('payment', 'bank_id'),
             'DeliveryDropPointId'     => $this->order->getDeliveryExternalAddressId(),
@@ -199,6 +198,9 @@ class SyncSalesOrder extends BaseService
             'SalesType'        => 'Sales',
             'TransactionType'  => 'Write',
         ];
+
+        // CustAccount needs to be set before we set the CustPaymMode.
+        $this->data['salesOrder']['SalesTable']['CustPaymMode'] = $this->getCustPaymMode();
 
         // purge empty
         foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
@@ -586,6 +588,12 @@ class SyncSalesOrder extends BaseService
 
             case 'manualpayment':
                 $custPaymMode = 'Bank';
+                break;
+
+            case 'invoicepayment':
+                $custPaymMode = 'Bank';
+                // HACK to bypass WSDL restrictions.
+                $this->data['salesOrder']['SalesTable']['CustAccount'] .= '-F1';
                 break;
 
             case 'pensio':
