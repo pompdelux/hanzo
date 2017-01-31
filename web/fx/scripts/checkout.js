@@ -311,12 +311,12 @@
 
                 // Private postal - or types where address-copy should be shown
                 var allowedTypes = [
-                  "10",  // DK  - Post Danmark Privat
-                  "20",  // COM - Post Danmark Private priority
-                  "70",  // NL  - DHL          verzendmethode
-                  "601", // DE  - DHL          Paketpost
-                  "800", // CH  - DHL          Paketpost
-                  "900", // AT  - DHL          Paketpost
+                  "10",    // DK  - Post Danmark Privat
+                  "20",    // COM - Post Danmark Private priority
+                  "70",    // NL  - DHL          verzendmethode
+                  "601",   // DE  - DHL          Paketpost
+                  "800",   // CH  - DHL          Paketpost
+                  "900",   // AT  - DHL          Paketpost
                   //"30",  // SE  - Post Danmark Privat
                   //"500", // FI  - Postimaksu   FI
                   //"700", // NO  - Bring        Servicepakke
