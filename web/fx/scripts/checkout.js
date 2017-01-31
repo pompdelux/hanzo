@@ -112,6 +112,7 @@
 
                 switch (element.value) {
                     case '11':
+                    case '17':
                         method = 'company_shipping';
                         break;
                     case '12':
