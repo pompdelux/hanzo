@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="file.ext">
-    <body>
-      <trans-unit id="checkout.headline">
-        <source>checkout.headline</source>
-        <target>Checkout</target>
-      </trans-unit>
-      <trans-unit id="checkout_json_err_no_order">
-        <source>json.err.no_order</source>
-        <target>Die Bestellung existiert nicht.</target>
-      </trans-unit>
-      <trans-unit id="checkout_err_unknown_shipping_method">
-        <source>err.unknown_shipping_method</source>
-        <target>Unbekannte Versandart</target>
-      </trans-unit>
-      <trans-unit id="checkout.success.title">
-        <source>checkout.success.title</source>
-        <target>Bestellbestätigung</target>
-      </trans-unit>
-      <trans-unit id="checkout.success.text">
-        <source>checkout.success.text</source>
-        <target><![CDATA[
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="checkout.headline">
+                <source>checkout.headline</source>
+                <target>Checkout</target>
+            </trans-unit>
+            <trans-unit id="checkout_json_err_no_order">
+                <source>json.err.no_order</source>
+                <target>Die Bestellung existiert nicht.</target>
+            </trans-unit>
+            <trans-unit id="checkout_err_unknown_shipping_method">
+                <source>err.unknown_shipping_method</source>
+                <target>Unbekannte Versandart</target>
+            </trans-unit>
+            <trans-unit id="checkout.success.title">
+                <source>checkout.success.title</source>
+                <target>Bestellbestätigung</target>
+            </trans-unit>
+            <trans-unit id="checkout.success.text">
+                <source>checkout.success.text</source>
+                <target><![CDATA[
           <h2>E-Bestellnummer</h2>
           <p>E-Bestellnummer: <b>%id%</b></p>
 
@@ -50,467 +50,489 @@
             <a href="/de_CH/home/neuigkeiten">&raquo; Neuigkeiten</a>
           </p>
         ]]></target>
-      </trans-unit>
-      <trans-unit id="checkout.failed.title">
-        <source>checkout.failed.title</source>
-        <target>Zahlung fehlgeschlagen</target>
-      </trans-unit>
-      <trans-unit id="checkout.failed.text">
-        <source>checkout.failed.text</source>
-        <target><![CDATA[
+            </trans-unit>
+            <trans-unit id="checkout.failed.title">
+                <source>checkout.failed.title</source>
+                <target>Zahlung fehlgeschlagen</target>
+            </trans-unit>
+            <trans-unit id="checkout.failed.text">
+                <source>checkout.failed.text</source>
+                <target><![CDATA[
             Bei der Zahlung / Bestellbearbeitung ist ein Fehler aufgetreten. Wenden Sie sich bitte an den Kundendienst<br><br>
             <p>E-Bestellnummer: <b>%order_id%</b></p>
         ]]></target>
-      </trans-unit>
-      <trans-unit id="confirm.title">
-        <source>confirm.title</source>
-        <target>Akzeptieren</target>
-      </trans-unit>
-      <trans-unit id="confirm.order_id">
-        <source>confirm.order_id</source>
-        <target>E-Bestellnummer</target>
-      </trans-unit>
-      <trans-unit id="addresses">
-        <source>addresses</source>
-        <target>Adressen</target>
-      </trans-unit>
-      <trans-unit id="no_addresses">
-        <source>no_addresses</source>
-        <target>Es wurden keine Adressen erstellt</target>
-      </trans-unit>
-      <trans-unit id="shipping.address.edit">
-        <source>shipping.address.edit</source>
-        <target>» Lieferanschrift ändern</target>
-      </trans-unit>
-      <trans-unit id="shipping.address">
-        <source>shipping.address</source>
-        <target>Lieferanschrift</target>
-      </trans-unit>
-      <trans-unit id="company.shipping.address">
-        <source>company.shipping.address</source>
-        <target>Lieferanschrift</target>
-      </trans-unit>
-      <trans-unit id="overnightbox.address">
-        <source>overnightbox.address</source>
-        <target>Lieferanschrift</target>
-      </trans-unit>
-      <trans-unit id="shipping.address.overnight.edit">
-        <source>shipping.address.overnight.edit</source>
-        <target>» Packstationadresse ändern</target>
-      </trans-unit>
-      <trans-unit id="shipping.address.no_overnight">
-        <source>shipping.address.no_overnight</source>
-        <target>Keine Packstationadresse erstellt</target>
-      </trans-unit>
-      <trans-unit id="payment.method">
-        <source>payment.method</source>
-        <target>Zahlungsart</target>
-      </trans-unit>
-      <trans-unit id="payment.address">
-        <source>payment.address</source>
-        <target>Privatadresse</target>
-      </trans-unit>
-      <trans-unit id="payment.title">
-        <source>payment.title</source>
-        <target>Zahlungsart</target>
-      </trans-unit>
-      <trans-unit id="payment.text">
-        <source>payment.text</source>
-        <target>Bitte wählen Sie, wie Sie diese Bestellung bezahlen möchten.</target>
-      </trans-unit>
-      <trans-unit id="confirm.vat">
-        <source>confirm.vat</source>
-        <target>MwSt.-Betrag</target>
-      </trans-unit>
-      <trans-unit id="confirm.sub_total">
-        <source>confirm.sub_total</source>
-        <target>Waren insgesamt</target>
-      </trans-unit>
-      <trans-unit id="confirm.total">
-        <source>confirm.total</source>
-        <target>Gesamtbetrag</target>
-      </trans-unit>
-      <trans-unit id="payment.manualpayment.title">
-        <source>payment.manualpayment.title</source>
-        <target>Wahl der Bezahlungsform noch ausstehend</target>
-      </trans-unit>
-      <trans-unit id="payment.manualpayment.text">
-        <source>payment.manualpayment.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
-      </trans-unit>
-      <trans-unit id="payment.manualpayment.label">
-        <source>payment.manualpayment.label</source>
-        <target>Wahl der Bezahlungsform noch ausstehend</target>
-      </trans-unit>
-      <trans-unit id="payment.paybybill.title">
-        <source>payment.paybybill.title</source>
-        <target>Banküberweisung</target>
-      </trans-unit>
-      <trans-unit id="payment.paybybill.text">
-        <source>payment.paybybill.text</source>
-        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
-      </trans-unit>
-      <trans-unit id="payment.paybybill.label">
-        <source>payment.paybybill.label</source>
-        <target>Banküberweisung</target>
-      </trans-unit>
-      <trans-unit id="payment.gateway_id">
-        <source>payment.gateway_id</source>
-        <target>Zahlungs-ID</target>
-      </trans-unit>
-      <trans-unit id="payment.transaction_id">
-        <source>payment.transaction_id</source>
-        <target>Transaktionsnummer</target>
-      </trans-unit>
-      <trans-unit id="payment.fee">
-        <source>payment.fee</source>
-        <target>Zahlungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="payment.canceled">
-        <source>payment.canceled</source>
-        <target>Ihre Zahlung wurde abgebrochen</target>
-      </trans-unit>
-      <trans-unit id="customer.id">
-        <source>customer.id</source>
-        <target>Kundennummer</target>
-      </trans-unit>
-      <trans-unit id="quantity">
-        <source>quantity</source>
-        <target>Menge</target>
-      </trans-unit>
-      <trans-unit id="products">
-        <source>products</source>
-        <target>Produkte</target>
-      </trans-unit>
-      <trans-unit id="product.name">
-        <source>product.name</source>
-        <target>Warenname</target>
-      </trans-unit>
-      <trans-unit id="product.size">
-        <source>product.size</source>
-        <target>Größe</target>
-      </trans-unit>
-      <trans-unit id="product.color">
-        <source>product.color</source>
-        <target>Farbe</target>
-      </trans-unit>
-      <trans-unit id="product.price">
-        <source>product.price</source>
-        <target>Stückpreis</target>
-      </trans-unit>
-      <trans-unit id="product.total">
-        <source>product.total</source>
-        <target>Insgesamt</target>
-      </trans-unit>
-      <trans-unit id="total.excl_vat">
-        <source>total.excl_vat</source>
-        <target>Insgesamt zzgl. Versand und Bearbeitungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="total.vat">
-        <source>total.vat</source>
-        <target>MwSt. beträgt</target>
-      </trans-unit>
-      <trans-unit id="total.incl_vat">
-        <source>total.incl_vat</source>
-        <target>Insgesamt einschl. Versand, MwSt. und Bearbeitungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="expected_at">
-        <source>expected_at</source>
-        <target>Erwartete Bearbeitungszeit</target>
-      </trans-unit>
-      <trans-unit id="my.account.info">
-        <source>my.account.info</source>
-        <target>Ihre Bestellungen sehen, persönliche Informationen bearbeiten, Passwort ändern und vieles mehr.</target>
-      </trans-unit>
-      <trans-unit id="my.account.username">
-        <source>my.account.username</source>
-        <target>Benutzername</target>
-      </trans-unit>
-      <trans-unit id="my.account.password">
-        <source>my.account.password</source>
-        <target>Passwort</target>
-      </trans-unit>
-      <trans-unit id="shipping.fee">
-        <source>shipping.fee</source>
-        <target>Bearbeitungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="shipping.fee.description">
-        <source>shipping.fee.description</source>
-        <target>Wir erheben eine Bearbeitungsgebühr in Höhe von %amount% auf alle Bestellungen</target>
-      </trans-unit>
-      <trans-unit id="basket">
-        <source>basket</source>
-        <target>Warenkorb</target>
-      </trans-unit>
-      <trans-unit id="continue.shopping">
-        <source>continue.shopping</source>
-        <target>Weiter einkaufen</target>
-      </trans-unit>
-      <trans-unit id="proceed">
-        <source>proceed</source>
-        <target>Weiter</target>
-      </trans-unit>
-      <trans-unit id="38">
-        <source>cart.is.empty</source>
-        <target>Es sind keine Waren in Ihrem Warenkorb.</target>
-      </trans-unit>
-      <trans-unit id="no.such.product.in.cart">
-        <source>no.such.product.in.cart</source>
-        <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
-      </trans-unit>
-      <trans-unit id="late.delivery.notice">
-        <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind. ]]></target>
-      </trans-unit>
-      <trans-unit id="button.back">
-        <source>button.back</source>
-        <target>Zurück</target>
-      </trans-unit>
-      <trans-unit id="button.edit">
-        <source>button.edit</source>
-        <target>Ändern</target>
-      </trans-unit>
-      <trans-unit id="button.process">
-        <source>button.process</source>
-        <target>Bestellung bestätigen und bezahlen</target>
-      </trans-unit>
-      <trans-unit id="late.delivery.date.notice">
-        <source>late.delivery.date.notice</source>
-        <target><![CDATA[
+            </trans-unit>
+            <trans-unit id="confirm.title">
+                <source>confirm.title</source>
+                <target>Akzeptieren</target>
+            </trans-unit>
+            <trans-unit id="confirm.order_id">
+                <source>confirm.order_id</source>
+                <target>E-Bestellnummer</target>
+            </trans-unit>
+            <trans-unit id="addresses">
+                <source>addresses</source>
+                <target>Adressen</target>
+            </trans-unit>
+            <trans-unit id="no_addresses">
+                <source>no_addresses</source>
+                <target>Es wurden keine Adressen erstellt</target>
+            </trans-unit>
+            <trans-unit id="shipping.address.edit">
+                <source>shipping.address.edit</source>
+                <target>» Lieferanschrift ändern</target>
+            </trans-unit>
+            <trans-unit id="shipping.address">
+                <source>shipping.address</source>
+                <target>Lieferanschrift</target>
+            </trans-unit>
+            <trans-unit id="company.shipping.address">
+                <source>company.shipping.address</source>
+                <target>Lieferanschrift</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.address">
+                <source>overnightbox.address</source>
+                <target>Lieferanschrift</target>
+            </trans-unit>
+            <trans-unit id="shipping.address.overnight.edit">
+                <source>shipping.address.overnight.edit</source>
+                <target>» Packstationadresse ändern</target>
+            </trans-unit>
+            <trans-unit id="shipping.address.no_overnight">
+                <source>shipping.address.no_overnight</source>
+                <target>Keine Packstationadresse erstellt</target>
+            </trans-unit>
+            <trans-unit id="payment.method">
+                <source>payment.method</source>
+                <target>Zahlungsart</target>
+            </trans-unit>
+            <trans-unit id="payment.address">
+                <source>payment.address</source>
+                <target>Privatadresse</target>
+            </trans-unit>
+            <trans-unit id="payment.title">
+                <source>payment.title</source>
+                <target>Zahlungsart</target>
+            </trans-unit>
+            <trans-unit id="payment.text">
+                <source>payment.text</source>
+                <target>Bitte wählen Sie, wie Sie diese Bestellung bezahlen möchten.</target>
+            </trans-unit>
+            <trans-unit id="confirm.vat">
+                <source>confirm.vat</source>
+                <target>MwSt.-Betrag</target>
+            </trans-unit>
+            <trans-unit id="confirm.sub_total">
+                <source>confirm.sub_total</source>
+                <target>Waren insgesamt</target>
+            </trans-unit>
+            <trans-unit id="confirm.total">
+                <source>confirm.total</source>
+                <target>Gesamtbetrag</target>
+            </trans-unit>
+            <trans-unit id="payment.manualpayment.title">
+                <source>payment.manualpayment.title</source>
+                <target>Wahl der Bezahlungsform noch ausstehend</target>
+            </trans-unit>
+            <trans-unit id="payment.manualpayment.text">
+                <source>payment.manualpayment.text</source>
+                <target>
+                    <![CDATA[<b>Bitte beachten:</b> Denkt bitte daran, die Kunden daran zu erinnern, die Bestellung zu bearbeiten und die Bezahlungsform innerhalb von 24 Std. zu wählen. Die Bestellung muss sonst leider annulliert werden.]]></target>
+            </trans-unit>
+            <trans-unit id="payment.manualpayment.label">
+                <source>payment.manualpayment.label</source>
+                <target>Wahl der Bezahlungsform noch ausstehend</target>
+            </trans-unit>
+            <trans-unit id="payment.paybybill.title">
+                <source>payment.paybybill.title</source>
+                <target>Banküberweisung</target>
+            </trans-unit>
+            <trans-unit id="payment.paybybill.text">
+                <source>payment.paybybill.text</source>
+                <target>
+                    <![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+            </trans-unit>
+            <trans-unit id="payment.paybybill.label">
+                <source>payment.paybybill.label</source>
+                <target>Banküberweisung</target>
+            </trans-unit>
+            <trans-unit id="payment.gateway_id">
+                <source>payment.gateway_id</source>
+                <target>Zahlungs-ID</target>
+            </trans-unit>
+            <trans-unit id="payment.transaction_id">
+                <source>payment.transaction_id</source>
+                <target>Transaktionsnummer</target>
+            </trans-unit>
+            <trans-unit id="payment.fee">
+                <source>payment.fee</source>
+                <target>Zahlungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="payment.canceled">
+                <source>payment.canceled</source>
+                <target>Ihre Zahlung wurde abgebrochen</target>
+            </trans-unit>
+            <trans-unit id="customer.id">
+                <source>customer.id</source>
+                <target>Kundennummer</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="products">
+                <source>products</source>
+                <target>Produkte</target>
+            </trans-unit>
+            <trans-unit id="product.name">
+                <source>product.name</source>
+                <target>Warenname</target>
+            </trans-unit>
+            <trans-unit id="product.size">
+                <source>product.size</source>
+                <target>Größe</target>
+            </trans-unit>
+            <trans-unit id="product.color">
+                <source>product.color</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="product.price">
+                <source>product.price</source>
+                <target>Stückpreis</target>
+            </trans-unit>
+            <trans-unit id="product.total">
+                <source>product.total</source>
+                <target>Insgesamt</target>
+            </trans-unit>
+            <trans-unit id="total.excl_vat">
+                <source>total.excl_vat</source>
+                <target>Insgesamt zzgl. Versand und Bearbeitungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="total.vat">
+                <source>total.vat</source>
+                <target>MwSt. beträgt</target>
+            </trans-unit>
+            <trans-unit id="total.incl_vat">
+                <source>total.incl_vat</source>
+                <target>Insgesamt einschl. Versand, MwSt. und Bearbeitungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="expected_at">
+                <source>expected_at</source>
+                <target>Erwartete Bearbeitungszeit</target>
+            </trans-unit>
+            <trans-unit id="my.account.info">
+                <source>my.account.info</source>
+                <target>Ihre Bestellungen sehen, persönliche Informationen bearbeiten, Passwort ändern und vieles
+                    mehr.
+                </target>
+            </trans-unit>
+            <trans-unit id="my.account.username">
+                <source>my.account.username</source>
+                <target>Benutzername</target>
+            </trans-unit>
+            <trans-unit id="my.account.password">
+                <source>my.account.password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="shipping.fee">
+                <source>shipping.fee</source>
+                <target>Bearbeitungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="shipping.fee.description">
+                <source>shipping.fee.description</source>
+                <target>Wir erheben eine Bearbeitungsgebühr in Höhe von %amount% auf alle Bestellungen</target>
+            </trans-unit>
+            <trans-unit id="basket">
+                <source>basket</source>
+                <target>Warenkorb</target>
+            </trans-unit>
+            <trans-unit id="continue.shopping">
+                <source>continue.shopping</source>
+                <target>Weiter einkaufen</target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Weiter</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>cart.is.empty</source>
+                <target>Es sind keine Waren in Ihrem Warenkorb.</target>
+            </trans-unit>
+            <trans-unit id="no.such.product.in.cart">
+                <source>no.such.product.in.cart</source>
+                <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target>
+                    <![CDATA[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind. ]]></target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="button.edit">
+                <source>button.edit</source>
+                <target>Ändern</target>
+            </trans-unit>
+            <trans-unit id="button.process">
+                <source>button.process</source>
+                <target>Bestellung bestätigen und bezahlen</target>
+            </trans-unit>
+            <trans-unit id="late.delivery.date.notice">
+                <source>late.delivery.date.notice</source>
+                <target><![CDATA[
           <p>Ihre Bestellung enthält eine oder mehrere Waren, die wir zurzeit nicht auf Lager haben. Die Bestellung wird verpackt, wenn wir alle Waren auf Lager haben.</p>
           <p>Ihre gesamte Bestellung wird von unserem Lager erwartungsgemäß spätestens verschickt am: <strong>%date%</strong>.</p>
         ]]></target>
-      </trans-unit>
-      <trans-unit id="status.20">
-        <source>status.20</source>
-        <target>Zahlung erfolgreich</target>
-      </trans-unit>
-      <trans-unit id="status.30">
-        <source>status.30</source>
-        <target>Warten auf Bearbeitung</target>
-      </trans-unit>
-      <trans-unit id="status.40">
-        <source>status.40</source>
-        <target>Wird bearbeitet</target>
-      </trans-unit>
-      <trans-unit id="status.50">
-        <source>status.50</source>
-        <target>In Rechnung gestellt</target>
-      </trans-unit>
-      <trans-unit id="status.neg.50">
-        <source>status.neg.50</source>
-        <target>Bestellbearbeitung</target>
-      </trans-unit>
-      <trans-unit id="status.neg.20">
-        <source>status.neg.20</source>
-        <target>Bestellung noch ohne Zahlung</target>
-      </trans-unit>
-      <trans-unit id="payment.gothia.title">
-        <source>payment.gothia.title</source>
-        <target>Rechnung</target>
-      </trans-unit>
-      <trans-unit id="payment.gothia.desc">
-        <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia-Rechnung (Gebühr 5,00 CHF). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
-      </trans-unit>
-      <trans-unit id="payment.gothia_lv.desc">
-        <source>payment.gothia_lv.desc</source>
-        <target><![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
-      </trans-unit>
-      <trans-unit id="payment.fee.gothia.title">
-        <source>payment.fee.gothia.title</source>
-        <target>Gothia-Rechnungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="confirm.payment.fee">
-        <source>confirm.payment.fee</source>
-        <target>Zahlungsgebühr</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.title">
-        <source>payment.dibs.title</source>
-        <target>Kreditkartenzahlung</target>
-      </trans-unit>
-      <trans-unit id="payment.paypal.title">
-        <source>payment.paypal.title</source>
-        <target>Paypal</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.paytype.dk">
-        <source>payment.dibs.paytype.dk</source>
-        <target>Dankort</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.paytype.visa">
-        <source>payment.dibs.paytype.visa</source>
-        <target>Visa</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.paytype.visa_elec">
-        <source>payment.dibs.paytype.visa_elec</source>
-        <target>Visa Electron</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.paytype.master">
-        <source>payment.dibs.paytype.master</source>
-        <target>Mastercard/Eurocard</target>
-      </trans-unit>
-      <trans-unit id="payment.dibs.processing.title">
-        <source>payment.dibs.processing.title</source>
-        <target>Ihre Bestellung wird vom Webshop bearbeitet</target>
-      </trans-unit>
-      <trans-unit id="order.state_pre_payment.locked">
-        <source>order.state_pre_payment.locked</source>
-        <target>Ihre Bestellung wird bezahlt. Sie können Ihre Bestellung erst wieder nach erfolgreicher Zahlung bearbeiten.</target>
-      </trans-unit>
-      <trans-unit id="discount.private">
-        <source>discount.private</source>
-        <target>Ermäßigung:</target>
-      </trans-unit>
-      <trans-unit id="discount.group">
-        <source>discount.group</source>
-        <target>Ermäßigung:</target>
-      </trans-unit>
-      <trans-unit id="discount.hostess">
-        <source>discount.hostess</source>
-        <target>Gastgeberinnenermäßigung:</target>
-      </trans-unit>
-      <trans-unit id="discount.friend">
-        <source>discount.friend</source>
-        <target>Ermäßigung:</target>
-      </trans-unit>
-      <trans-unit id="discount.gift">
-        <source>discount.gift</source>
-        <target>Ermäßigung:</target>
-      </trans-unit>
-      <trans-unit id="product.group.u">
-        <source>product.group.u</source>
-        <target>UNISEX</target>
-      </trans-unit>
-      <trans-unit id="product.group.g">
-        <source>product.group.g</source>
-        <target>GIRL</target>
-      </trans-unit>
-      <trans-unit id="product.group.lg">
-        <source>product.group.lg</source>
-        <target>LITTLE GIRL</target>
-      </trans-unit>
-      <trans-unit id="product.group.b">
-        <source>product.group.b</source>
-        <target>BOY</target>
-      </trans-unit>
-      <trans-unit id="product.group.lb">
-        <source>product.group.lb</source>
-        <target>LITTLE BOY</target>
-      </trans-unit>
-      <trans-unit id="gift_card">
-        <source>gift_card</source>
-        <target>Geschenkgutschein</target>
-      </trans-unit>
-      <trans-unit id="toggle.gift_card.form">
-        <source>toggle.gift_card.form</source>
-        <target>» Gutscheincode eingeben</target>
-      </trans-unit>
-      <trans-unit id="invalid.gift_card.code">
-        <source>invalid.gift_card.code</source>
-        <target>Ungültiger Gutscheincode</target>
-      </trans-unit>
-      <trans-unit id="gift_card.label">
-        <source>gift_card.label</source>
-        <target>Gutscheincode:</target>
-      </trans-unit>
-      <trans-unit id="apply.gift_card.discount">
-        <source>apply.gift_card.discount</source>
-        <target>Speichern</target>
-      </trans-unit>
-      <trans-unit id="gift_card.description">
-        <source>gift_card.description</source>
-        <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
-      </trans-unit>
-      <trans-unit id="address.copy">
-        <source>address.copy</source>
-        <target>Wählen Sie eine alternative Lieferadresse</target>
-      </trans-unit>
-      <trans-unit id="dibs.down.message">
-        <source>dibs.down.message</source>
-        <target><![CDATA[
+            </trans-unit>
+            <trans-unit id="status.20">
+                <source>status.20</source>
+                <target>Zahlung erfolgreich</target>
+            </trans-unit>
+            <trans-unit id="status.30">
+                <source>status.30</source>
+                <target>Warten auf Bearbeitung</target>
+            </trans-unit>
+            <trans-unit id="status.40">
+                <source>status.40</source>
+                <target>Wird bearbeitet</target>
+            </trans-unit>
+            <trans-unit id="status.50">
+                <source>status.50</source>
+                <target>In Rechnung gestellt</target>
+            </trans-unit>
+            <trans-unit id="status.neg.50">
+                <source>status.neg.50</source>
+                <target>Bestellbearbeitung</target>
+            </trans-unit>
+            <trans-unit id="status.neg.20">
+                <source>status.neg.20</source>
+                <target>Bestellung noch ohne Zahlung</target>
+            </trans-unit>
+            <trans-unit id="payment.gothia.title">
+                <source>payment.gothia.title</source>
+                <target>Rechnung</target>
+            </trans-unit>
+            <trans-unit id="payment.gothia.desc">
+                <source>payment.gothia.desc</source>
+                <target>
+                    <![CDATA[Gothia-Rechnung (Gebühr 5,00 CHF). Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+            </trans-unit>
+            <trans-unit id="payment.gothia_lv.desc">
+                <source>payment.gothia_lv.desc</source>
+                <target>
+                    <![CDATA[Gothia-LV-Rechnung. Die Rechnung wird per E-Mail verschickt, wenn alle Waren unser Lager verlassen haben. Sie finden die Rechnung im Laufe von 24 Stunden als PDF auf "Meine Seite".]]></target>
+            </trans-unit>
+            <trans-unit id="payment.fee.gothia.title">
+                <source>payment.fee.gothia.title</source>
+                <target>Gothia-Rechnungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="confirm.payment.fee">
+                <source>confirm.payment.fee</source>
+                <target>Zahlungsgebühr</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.title">
+                <source>payment.dibs.title</source>
+                <target>Kreditkartenzahlung</target>
+            </trans-unit>
+            <trans-unit id="payment.paypal.title">
+                <source>payment.paypal.title</source>
+                <target>Paypal</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.paytype.dk">
+                <source>payment.dibs.paytype.dk</source>
+                <target>Dankort</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.paytype.visa">
+                <source>payment.dibs.paytype.visa</source>
+                <target>Visa</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.paytype.visa_elec">
+                <source>payment.dibs.paytype.visa_elec</source>
+                <target>Visa Electron</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.paytype.master">
+                <source>payment.dibs.paytype.master</source>
+                <target>Mastercard/Eurocard</target>
+            </trans-unit>
+            <trans-unit id="payment.dibs.processing.title">
+                <source>payment.dibs.processing.title</source>
+                <target>Ihre Bestellung wird vom Webshop bearbeitet</target>
+            </trans-unit>
+            <trans-unit id="order.state_pre_payment.locked">
+                <source>order.state_pre_payment.locked</source>
+                <target>Ihre Bestellung wird bezahlt. Sie können Ihre Bestellung erst wieder nach erfolgreicher Zahlung
+                    bearbeiten.
+                </target>
+            </trans-unit>
+            <trans-unit id="discount.private">
+                <source>discount.private</source>
+                <target>Ermäßigung:</target>
+            </trans-unit>
+            <trans-unit id="discount.group">
+                <source>discount.group</source>
+                <target>Ermäßigung:</target>
+            </trans-unit>
+            <trans-unit id="discount.hostess">
+                <source>discount.hostess</source>
+                <target>Gastgeberinnenermäßigung:</target>
+            </trans-unit>
+            <trans-unit id="discount.friend">
+                <source>discount.friend</source>
+                <target>Ermäßigung:</target>
+            </trans-unit>
+            <trans-unit id="discount.gift">
+                <source>discount.gift</source>
+                <target>Ermäßigung:</target>
+            </trans-unit>
+            <trans-unit id="product.group.u">
+                <source>product.group.u</source>
+                <target>UNISEX</target>
+            </trans-unit>
+            <trans-unit id="product.group.g">
+                <source>product.group.g</source>
+                <target>GIRL</target>
+            </trans-unit>
+            <trans-unit id="product.group.lg">
+                <source>product.group.lg</source>
+                <target>LITTLE GIRL</target>
+            </trans-unit>
+            <trans-unit id="product.group.b">
+                <source>product.group.b</source>
+                <target>BOY</target>
+            </trans-unit>
+            <trans-unit id="product.group.lb">
+                <source>product.group.lb</source>
+                <target>LITTLE BOY</target>
+            </trans-unit>
+            <trans-unit id="gift_card">
+                <source>gift_card</source>
+                <target>Geschenkgutschein</target>
+            </trans-unit>
+            <trans-unit id="toggle.gift_card.form">
+                <source>toggle.gift_card.form</source>
+                <target>» Gutscheincode eingeben</target>
+            </trans-unit>
+            <trans-unit id="invalid.gift_card.code">
+                <source>invalid.gift_card.code</source>
+                <target>Ungültiger Gutscheincode</target>
+            </trans-unit>
+            <trans-unit id="gift_card.label">
+                <source>gift_card.label</source>
+                <target>Gutscheincode:</target>
+            </trans-unit>
+            <trans-unit id="apply.gift_card.discount">
+                <source>apply.gift_card.discount</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="gift_card.description">
+                <source>gift_card.description</source>
+                <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres
+                    Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX
+                    verwenden.
+                </target>
+            </trans-unit>
+            <trans-unit id="address.copy">
+                <source>address.copy</source>
+                <target>Wählen Sie eine alternative Lieferadresse</target>
+            </trans-unit>
+            <trans-unit id="dibs.down.message">
+                <source>dibs.down.message</source>
+                <target><![CDATA[
           Lieber Kunde,<br>
           das Zahlungssystem (DIBS) ist im Augenblick außer Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
           Mit freundlichen Grüßen<br>
           POMPdeLUX
           ]]></target>
-      </trans-unit>
-      <trans-unit id="basket.header">
-        <source>basket.header</source>
-        <target><![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_CH/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
-      </trans-unit>
-      <trans-unit id="order.amount.to.low">
-        <source>order.amount.to.low</source>
-        <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
-          Sie müssen Waren hinzufügen.
-        </target>
-      </trans-unit>
-      <trans-unit id="order.amount.to.low.for.coupon">
-        <source>order.amount.to.low.for.coupon</source>
-        <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere varer.</target>
-      </trans-unit>
-      <trans-unit id="coupon">
-        <source>coupon</source>
-        <target>Rabattcode</target>
-      </trans-unit>
-      <trans-unit id="coupon.toggle.form">
-        <source>coupon.toggle.form</source>
-        <target>» Rabattgutschein eintragen</target>
-      </trans-unit>
-      <trans-unit id="coupon.description">
-        <source>coupon.description</source>
-        <target>Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
-      </trans-unit>
-      <trans-unit id="coupon.apply.discount">
-        <source>coupon.apply.discount</source>
-        <target>speichern</target>
-      </trans-unit>
-      <trans-unit id="coupon.label">
-        <source>coupon.label</source>
-        <target>Rabattgutschein eintragen.</target>
-      </trans-unit>
-      <trans-unit id="coupon.invalid.code">
-        <source>coupon.invalid.code</source>
-        <target>Der Rabattcode ist unkorrekt</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.terms">
-        <source>checkout.confirm.terms</source>
-        <target><![CDATA[
+            </trans-unit>
+            <trans-unit id="basket.header">
+                <source>basket.header</source>
+                <target>
+                    <![CDATA[<h1>Ihr Warenkorb</h1><p>Benötigen Sie Hilfe? <a href="/de_CH/kundendienst/telefonzeiten/faq">FAQ</a></p>]]></target>
+            </trans-unit>
+            <trans-unit id="order.amount.to.low">
+                <source>order.amount.to.low</source>
+                <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
+                    Sie müssen Waren hinzufügen.
+                </target>
+            </trans-unit>
+            <trans-unit id="order.amount.to.low.for.coupon">
+                <source>order.amount.to.low.for.coupon</source>
+                <target>Dit køb overstiger ikke minimumsgrænsen på %amount% for din rabatkode. Du skal tilføje flere
+                    varer.
+                </target>
+            </trans-unit>
+            <trans-unit id="coupon">
+                <source>coupon</source>
+                <target>Rabattcode</target>
+            </trans-unit>
+            <trans-unit id="coupon.toggle.form">
+                <source>coupon.toggle.form</source>
+                <target>» Rabattgutschein eintragen</target>
+            </trans-unit>
+            <trans-unit id="coupon.description">
+                <source>coupon.description</source>
+                <target>Pro Bestellung kann nur ein Rabattcode verwendet werden.</target>
+            </trans-unit>
+            <trans-unit id="coupon.apply.discount">
+                <source>coupon.apply.discount</source>
+                <target>speichern</target>
+            </trans-unit>
+            <trans-unit id="coupon.label">
+                <source>coupon.label</source>
+                <target>Rabattgutschein eintragen.</target>
+            </trans-unit>
+            <trans-unit id="coupon.invalid.code">
+                <source>coupon.invalid.code</source>
+                <target>Der Rabattcode ist unkorrekt</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.terms">
+                <source>checkout.confirm.terms</source>
+                <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere</label>
                 <a href="/de_CH/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
-      </trans-unit>
-        <trans-unit id="payment.invoicepayment.title">
-            <source>payment.invoicepayment.title</source>
-            <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
-        </trans-unit>
-        <trans-unit id="payment.invoicepayment.text">
-            <source>payment.invoicepayment.text</source>
-            <target><![CDATA[Bitte beachten Sie: Wenn Sie die Zahlungsart „Zahlung per Überweisung“ wählen, kann Ihre Bestellung nur dann bearbeitet werden, sofern Sie keine offenen Posten bei POMPdeLUX haben. In diesem Fall kontaktieren wir Sie direkt per Email zwecks Begleichung der ausstehenden Posten. Sollte der Betrag nicht innerhalb von 5 Werktagen auf unserem Konto eingegangen sein, sehen wir uns leider gezwungen Ihre Bestellung automatisch zu löschen.]]></target>
-        </trans-unit>
-        <trans-unit id="payment.invoicepayment.label">
-            <source>payment.invoicepayment.label</source>
-            <target>Zahlung per Überweisung</target>
-        </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.text">
-        <source>checkout.confirm.may_contact.text</source>
-        <target>Hiermit gebe ich mein Einverständnis damit, dass POMPdeLUX oder dessen Kooperationspartner, Communication Research ApS, mich elektronisch über Email, SMS/MMS oder eine ähnliche elektronische Medie (u.a. Soziale Medien) mit Angeboten zur Teilnahme an einer oder mehreren Kundenzufriedenheitsuntersuchungen oder Marktforschungsuntersuchungen, welche einen kommerziellen oder marketingspezifischen Inhalt haben, kontaktieren darf. Die Einverständniserklärung umfasst solche Kundenzufriedenheits- und Marketinguntersuchungen, welche den Zweck erfüllen, den Absatz von POMPdeLUX-Waren zu steigern, vermögenswirksamer zu werden oder die Dienstleistungen, welche POMPdeLUX anbietet, hierunter auch den Bekanntheitsgrad von POMPdeLUX und dessen Waren, zu steigern. Mir ist bekannt, dass ich meine Einverständnis zu jedem Zeitpunkt zurückziehen kann. Hierzu wenden Sie sich einfach an unseren Kundenservice.</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.required">
-        <source>checkout.confirm.may_contact.required</source>
-        <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.yes_label">
-        <source>checkout.confirm.may_contact.yes_label</source>
-        <target>Ja, gerne</target>
-      </trans-unit>
-      <trans-unit id="checkout.confirm.may_contact.no_label">
-        <source>checkout.confirm.may_contact.no_label</source>
-        <target>Nej tak</target>
-        </trans-unit>
-      <trans-unit id="late.delivery.notice">
-        <source>late.delivery.notice</source>
-        <target><![CDATA[[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
-      </trans-unit>
-    </body>
-  </file>
+            </trans-unit>
+            <trans-unit id="payment.invoicepayment.title">
+                <source>payment.invoicepayment.title</source>
+                <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
+            </trans-unit>
+            <trans-unit id="payment.invoicepayment.text">
+                <source>payment.invoicepayment.text</source>
+                <target>
+                    <![CDATA[Bitte beachten Sie: Wenn Sie die Zahlungsart „Zahlung per Überweisung“ wählen, kann Ihre Bestellung nur dann bearbeitet werden, sofern Sie keine offenen Posten bei POMPdeLUX haben. In diesem Fall kontaktieren wir Sie direkt per Email zwecks Begleichung der ausstehenden Posten. Sollte der Betrag nicht innerhalb von 5 Werktagen auf unserem Konto eingegangen sein, sehen wir uns leider gezwungen Ihre Bestellung automatisch zu löschen.]]></target>
+            </trans-unit>
+            <trans-unit id="payment.invoicepayment.label">
+                <source>payment.invoicepayment.label</source>
+                <target>Zahlung per Überweisung</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.may_contact.text">
+                <source>checkout.confirm.may_contact.text</source>
+                <target>Hiermit gebe ich mein Einverständnis damit, dass POMPdeLUX oder dessen Kooperationspartner,
+                    Communication Research ApS, mich elektronisch über Email, SMS/MMS oder eine ähnliche elektronische
+                    Medie (u.a. Soziale Medien) mit Angeboten zur Teilnahme an einer oder mehreren
+                    Kundenzufriedenheitsuntersuchungen oder Marktforschungsuntersuchungen, welche einen kommerziellen
+                    oder marketingspezifischen Inhalt haben, kontaktieren darf. Die Einverständniserklärung umfasst
+                    solche Kundenzufriedenheits- und Marketinguntersuchungen, welche den Zweck erfüllen, den Absatz von
+                    POMPdeLUX-Waren zu steigern, vermögenswirksamer zu werden oder die Dienstleistungen, welche
+                    POMPdeLUX anbietet, hierunter auch den Bekanntheitsgrad von POMPdeLUX und dessen Waren, zu steigern.
+                    Mir ist bekannt, dass ich meine Einverständnis zu jedem Zeitpunkt zurückziehen kann. Hierzu wenden
+                    Sie sich einfach an unseren Kundenservice.
+                </target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.may_contact.required">
+                <source>checkout.confirm.may_contact.required</source>
+                <target>Du mangler at tage stilling til om vi må kontakte dig.</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.may_contact.yes_label">
+                <source>checkout.confirm.may_contact.yes_label</source>
+                <target>Ja, gerne</target>
+            </trans-unit>
+            <trans-unit id="checkout.confirm.may_contact.no_label">
+                <source>checkout.confirm.may_contact.no_label</source>
+                <target>Nej tak</target>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>
