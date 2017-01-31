@@ -313,13 +313,13 @@
                 var allowedTypes = [
                   "10",  // DK  - Post Danmark Privat
                   "20",  // COM - Post Danmark Private priority
-                  //"30",  // SE  - Post Danmark Privat
                   "70",  // NL  - DHL          verzendmethode
-                  "500", // FI  - Postimaksu   FI
                   "601", // DE  - DHL          Paketpost
-                  "700", // NO  - Bring        Servicepakke
                   "800", // CH  - DHL          Paketpost
                   "900", // AT  - DHL          Paketpost
+                  //"30",  // SE  - Post Danmark Privat
+                  //"500", // FI  - Postimaksu   FI
+                  //"700", // NO  - Bring        Servicepakke
                 ];
 
                 if (allowedTypes.indexOf(m) !== -1) { // test

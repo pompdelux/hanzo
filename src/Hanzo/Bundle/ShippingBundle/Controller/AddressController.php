@@ -109,9 +109,9 @@ class AddressController extends CoreController
         // 12  = PostNord / Bring (dk)
         // 71  = hmmm ...
         // 30  = Bring SE
-        // 700 = Bring NO
         // 500 = Bring FI
-        $enableLocator = ($type != 'payment' && in_array($deliveryMethodId, [12, 71, 30, 700]));
+        // 700 = Bring NO
+        $enableLocator = ($type != 'payment' && in_array($deliveryMethodId, [12, 71, 30, 500, 700]));
 
         if (empty($address)) {
             $address = new Addresses();
