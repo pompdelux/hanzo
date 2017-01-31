@@ -74,13 +74,13 @@ class AddressController extends CoreController
         }
 
         // to enable address locator or not.
-        // 12  = Bring (dk)
-        // 15  = PostNord (dk)
+        // 12  = Bring (DK)
+        // 15  = PostNord (DK)
         // 71  = hmmm ...
-        // 30  = Bring SE
-        // 31  = PostNord SE
-        // 500 = Bring FI
-        // 700 = Bring NO
+        // 30  = Bring (SE)
+        // 31  = PostNord (SE)
+        // 500 = Bring (FI)
+        // 700 = Bring (NO)
         $enableLocator = (($type !== 'payment') && in_array($deliveryMethodId, [12, 15, 71, 30, 31, 500, 700]));
 
         if (empty($address)) {
@@ -92,7 +92,7 @@ class AddressController extends CoreController
                 $address->setFirstName($order->getFirstName());
                 $address->setLastName($order->getLastName());
             }
-        } elseif ('overnightbox' == $type) {
+        } elseif ('overnightbox' === $type) {
             $address->setFirstName($order->getFirstName());
             $address->setLastName($order->getLastName());
         }
@@ -103,7 +103,7 @@ class AddressController extends CoreController
 
         if (in_array($type, ['company_shipping', 'overnightbox'])) {
             $label = 'company.name';
-            if ($type == 'overnightbox') {
+            if ($type === 'overnightbox') {
                 $label = 'overnightbox.label';
             }
 
@@ -137,7 +137,7 @@ class AddressController extends CoreController
             'translation_domain' => 'account'
         ]);
 
-        if ($type == 'payment') {
+        if ($type === 'payment') {
             $builder->add('phone', null, [
                 'required'           => true,
                 'translation_domain' => 'account'
@@ -210,7 +210,7 @@ class AddressController extends CoreController
         $form = $builder->getForm();
 
         $baseType = 'is-shipping';
-        if ('payment' == $type) {
+        if ('payment' === $type) {
             $baseType = 'is-payment';
         }
 
@@ -266,6 +266,7 @@ class AddressController extends CoreController
             if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
                     case 11:
+                    case 17:
                         $method = 'company_shipping';
                         break;
                     case 12:
