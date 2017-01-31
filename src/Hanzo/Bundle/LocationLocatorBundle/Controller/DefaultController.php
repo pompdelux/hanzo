@@ -15,7 +15,7 @@ use Hanzo\Model\AddressesPeer;
 
 class DefaultController extends CoreController
 {
-    public function lookupAction(Request $request)
+    public function lookupAction(Request $request, $methodId = null)
     {
         $customer = CustomersPeer::getCurrent();
 
@@ -36,6 +36,20 @@ class DefaultController extends CoreController
         }
 
         $api = $this->get('hanzo_location_locator');
+
+        // Regarding scrumdo: #1284
+        // Quick fix for having multiple implementations active at the same time.
+        $methodOverrides = [
+            100 => [
+                'productConceptID' => 123,
+                'WebShopID'        => 123,
+                'installationID'   => 123,
+            ]
+        ];
+
+        if ($methodId && isset($methodOverrides[$methodId])) {
+            $api->settingsOverride($methodOverrides[$methodId]);
+        }
 
         try {
             $form = $api->getLookupForm($this->createFormBuilder(), $request);
