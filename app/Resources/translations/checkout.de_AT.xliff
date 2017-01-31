@@ -141,8 +141,6 @@
       <trans-unit id="payment.manualpayment.label">
         <source>payment.manualpayment.label</source>
         <target>Wahl der Bezahlungsform noch ausstehend</target>
-<<<<<<< HEAD
-=======
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
@@ -155,7 +153,6 @@
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
         <target>Banküberweisung</target>
->>>>>>> f/1284-two-location-enabled-services
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>

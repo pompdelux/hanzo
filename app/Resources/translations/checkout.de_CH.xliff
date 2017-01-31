@@ -142,6 +142,18 @@
         <source>payment.manualpayment.label</source>
         <target>Wahl der Bezahlungsform noch ausstehend</target>
       </trans-unit>
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Banküberweisung</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target><![CDATA[<b>Bitte beachten:</b> Banküberweisung darf <b><u>nur</u></b> bei fehlender Internetverbindung verwendet werden.]]></target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Banküberweisung</target>
+      </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
         <target>Zahlungs-ID</target>
@@ -243,8 +255,8 @@
         <target>Es sind keine Waren in Ihrem Warenkorb.</target>
       </trans-unit>
       <trans-unit id="no.such.product.in.cart">
-          <source>no.such.product.in.cart</source>
-          <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
+        <source>no.such.product.in.cart</source>
+        <target>Das gesuchte Produkt ist nicht in Ihrem Warenkorb.</target>
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
@@ -369,7 +381,7 @@
         <source>product.group.u</source>
         <target>UNISEX</target>
       </trans-unit>
-	  <trans-unit id="product.group.g">
+      <trans-unit id="product.group.g">
         <source>product.group.g</source>
         <target>GIRL</target>
       </trans-unit>
@@ -386,36 +398,36 @@
         <target>LITTLE BOY</target>
       </trans-unit>
       <trans-unit id="gift_card">
-         <source>gift_card</source>
-         <target>Geschenkgutschein</target>
+        <source>gift_card</source>
+        <target>Geschenkgutschein</target>
       </trans-unit>
       <trans-unit id="toggle.gift_card.form">
-         <source>toggle.gift_card.form</source>
-         <target>» Gutscheincode eingeben</target>
+        <source>toggle.gift_card.form</source>
+        <target>» Gutscheincode eingeben</target>
       </trans-unit>
       <trans-unit id="invalid.gift_card.code">
-         <source>invalid.gift_card.code</source>
-         <target>Ungültiger Gutscheincode</target>
+        <source>invalid.gift_card.code</source>
+        <target>Ungültiger Gutscheincode</target>
       </trans-unit>
       <trans-unit id="gift_card.label">
-         <source>gift_card.label</source>
-         <target>Gutscheincode:</target>
+        <source>gift_card.label</source>
+        <target>Gutscheincode:</target>
       </trans-unit>
       <trans-unit id="apply.gift_card.discount">
-         <source>apply.gift_card.discount</source>
-         <target>Speichern</target>
+        <source>apply.gift_card.discount</source>
+        <target>Speichern</target>
       </trans-unit>
       <trans-unit id="gift_card.description">
-         <source>gift_card.description</source>
-         <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
+        <source>gift_card.description</source>
+        <target>Unten können Sie Ihren Gutscheincode eingeben. Wenn Sie nicht den gesamten Betrag Ihres Geschenkgutscheins gebrauchen, können Sie den Gutscheincode erneut für Einkäufe bei POMPdeLUX verwenden.</target>
       </trans-unit>
       <trans-unit id="address.copy">
-         <source>address.copy</source>
-         <target>Wählen Sie eine alternative Lieferadresse</target>
+        <source>address.copy</source>
+        <target>Wählen Sie eine alternative Lieferadresse</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
-         <source>dibs.down.message</source>
-         <target><![CDATA[
+        <source>dibs.down.message</source>
+        <target><![CDATA[
           Lieber Kunde,<br>
           das Zahlungssystem (DIBS) ist im Augenblick außer Betrieb. Daher können Sie nicht mit Kreditkarte bezahlen. Stattdessen können Sie die Zahlung per Gothia-Rechnung nutzen oder später wieder vorbeischauen.<br>
           Mit freundlichen Grüßen<br>
@@ -429,8 +441,8 @@
       <trans-unit id="order.amount.to.low">
         <source>order.amount.to.low</source>
         <target>Ihre Gastgeberinnenermäßigung überschreitet Ihren Gesamtbetrag.
-Sie müssen Waren hinzufügen.
-</target>
+          Sie müssen Waren hinzufügen.
+        </target>
       </trans-unit>
       <trans-unit id="order.amount.to.low.for.coupon">
         <source>order.amount.to.low.for.coupon</source>
@@ -460,16 +472,16 @@ Sie müssen Waren hinzufügen.
         <source>coupon.invalid.code</source>
         <target>Der Rabattcode ist unkorrekt</target>
       </trans-unit>
-        <trans-unit id="checkout.confirm.terms">
-            <source>checkout.confirm.terms</source>
-            <target><![CDATA[
+      <trans-unit id="checkout.confirm.terms">
+        <source>checkout.confirm.terms</source>
+        <target><![CDATA[
                 <label for="js_checkout_confirm_terms">Ich bestelle hiermit das oben Angeführte und bestätige, dass ich Folgendes gelesen habe und akzeptiere</label>
                 <a href="/de_CH/home/kundendienst/abgs" class="js-external">POMPdeLUX AGB's</a>.
             ]]></target>
-        </trans-unit>
+      </trans-unit>
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
-        <target>Rechnung (Gebühr 0,00 EUR).</target>
+        <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.text">
         <source>payment.invoicepayment.text</source>
@@ -494,7 +506,10 @@ Sie müssen Waren hinzufügen.
       <trans-unit id="checkout.confirm.may_contact.no_label">
         <source>checkout.confirm.may_contact.no_label</source>
         <target>Nej tak</target>
-        <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[[<strong>Bitte beachten:</strong> Ihre Bestellung wird erst dann abgeschickt, wenn alle Waren im Lager sind.]]></target>
       </trans-unit>
     </body>
   </file>
