@@ -218,6 +218,7 @@ class AddressController extends CoreController
             'type'           => $type,
             'base_type'      => $baseType,
             'enable_locator' => $enableLocator,
+            'method_id'      => $deliveryMethodId,
             'form'           => $form->createView(),
         ]);
 
