@@ -42,17 +42,18 @@ class DefaultController extends CoreController
         // Regarding scrumdo: #1284
         // Quick fix for having multiple implementations active at the same time.
         $methodOverrides = [
-            // DK PostNord overrides default Bring
+            // DK PostNord overrides default Bring.
             15 => [
                 'productConceptID' => 92,
                 'WebShopID'        => 6,
-                'installationID'   => 90290000026,
+                //'installationID'   => 90290000026,
             ],
-            // SE PostNord overrides default Bring
+
+            // SE PostNord overrides default Bring.
             31 => [
                 'productConceptID' => 92,
                 'WebShopID'        => 6,
-                'installationID'   => 90290000026,
+                //'installationID'   => 90290000026,
             ],
         ];
 
