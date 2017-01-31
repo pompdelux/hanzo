@@ -17,9 +17,10 @@ class DefaultController extends CoreController
 {
     public function lookupAction(Request $request, $methodId = null)
     {
+        // We grab the methodId from either the submitted form - or from injected id.
+        $methodId = $request->request->get('form[method_id]', $methodId, true);
         $customer = CustomersPeer::getCurrent();
 
-        $data = [];
         $records = [];
         $error = '';
         $streetAddress = '';
@@ -35,16 +36,24 @@ class DefaultController extends CoreController
             }
         }
 
+        /** @var \Hanzo\Bundle\LocationLocatorBundle\Providers\BaseProvider $api */
         $api = $this->get('hanzo_location_locator');
 
         // Regarding scrumdo: #1284
         // Quick fix for having multiple implementations active at the same time.
         $methodOverrides = [
-            100 => [
-                'productConceptID' => 123,
-                'WebShopID'        => 123,
-                'installationID'   => 123,
-            ]
+            // DK PostNord overrides default Bring
+            15 => [
+                'productConceptID' => 92,
+                'WebShopID'        => 6,
+                'installationID'   => 90290000026,
+            ],
+            // SE PostNord overrides default Bring
+            31 => [
+                'productConceptID' => 92,
+                'WebShopID'        => 6,
+                'installationID'   => 90290000026,
+            ],
         ];
 
         if ($methodId && isset($methodOverrides[$methodId])) {
@@ -53,6 +62,10 @@ class DefaultController extends CoreController
 
         try {
             $form = $api->getLookupForm($this->createFormBuilder(), $request);
+
+            if ($methodId) {
+                $form->add('method_id', 'hidden', ['data' => $methodId]);
+            }
         } catch (\Exception $e) {
             return $this->response('');
         }
@@ -91,7 +104,7 @@ class DefaultController extends CoreController
                     $error = $this->get('translator')->trans('service.down', [], 'locator');
                 }
 
-                if ($this->getFormat() == 'json') {
+                if ($this->getFormat() === 'json') {
                     if (count($records)) {
                         $response = [
                             'status'  => true,
