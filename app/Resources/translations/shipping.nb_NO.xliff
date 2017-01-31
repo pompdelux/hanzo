@@ -24,15 +24,15 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.700">
         <source>shipping_method.name.700</source>
-        <target>Post i butik og Posthus</target>
+        <target>BRING Valgfritt utleveringssted</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.700">
         <source>shipping_method.desc.700</source>
-        <target>Alle ordrer sendes som servicepakke.</target>
+        <target>Du kan fritt velge mellom BRINGs mange utleveringsstedet i Norge. Det er helt opp deg, og du behøver ikke bruke det samme utleveringsstedet hver gang.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.700">
         <source>shipping_method.label.700</source>
-        <target>Servicepakke %price%</target>
+        <target>Valgfritt utleveringssted %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
