@@ -181,6 +181,7 @@ class SyncSalesOrder extends BaseService
             'FreightFeeAmt'           => $this->calculateCost(['shipping']),
             'HandlingFeeAmt'          => $this->calculateCost(['shipping.fee', 'payment.fee']),
             'PayByBillFeeAmt'         => $this->calculateCost(['payment']),
+            'CustPaymMode'            => $this->getCustPaymMode(),
             'BankAccountNumber'       => $this->getAttribute('payment', 'bank_account_no'),
             'BankId'                  => $this->getAttribute('payment', 'bank_id'),
             'DeliveryDropPointId'     => $this->order->getDeliveryExternalAddressId(),
@@ -198,9 +199,6 @@ class SyncSalesOrder extends BaseService
             'SalesType'        => 'Sales',
             'TransactionType'  => 'Write',
         ];
-
-        // CustAccount needs to be set before we set the CustPaymMode.
-        $this->data['salesOrder']['SalesTable']['CustPaymMode'] = $this->getCustPaymMode();
 
         // purge empty
         foreach ($this->data['salesOrder']['SalesTable'] as $key => $value) {
@@ -304,15 +302,14 @@ class SyncSalesOrder extends BaseService
                 'SalesUnit'  =>  'Stk.',
             ];
 
-// ONLY DONE IN TESTING BRANCH
-return;
-
             /*
              * remove POMPBIGBAGSS15 #998, https://github.com/pompdelux/hanzo/blob/f6a8cf650c7aa1344f17979118a497786e6b23f7/src/Hanzo/Bundle/AxBundle/Actions/Out/Services/SyncSalesOrder.php#L297
              */
-            $bagPrice  = 0.00;
-            $salesQty  = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-            $itemId    = 'FREEPOMPBIGBAGAW16';
+            $bagPrice = 0.00;
+            $keyPrice = 0.00;
+            $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
+            $itemId   = 'FREEPOMPBIGBAGSS17';
+            $keyId    = 'BloraKeychainSS17';
 
             switch($domainKey) {
                 case 'AT':
@@ -321,20 +318,20 @@ return;
                 case 'FI':
                 case 'NL':
                     $bagPrice = '4.99';
-                    $keyPrice = '5.99';
+                    $keyPrice = '2.00';
                     break;
                 case 'CH':
                     $bagPrice = '5.90';
-                    $keyPrice = '6.90';
+                    $keyPrice = '2.50';
                     break;
                 case 'DK':
                     $bagPrice = '40.00';
-                    $keyPrice = '50.00';
+                    $keyPrice = '15.00';
                     break;
                 case 'NO':
                 case 'SE':
                     $bagPrice = '60.00';
-                    $keyPrice = '65.00';
+                    $keyPrice = '20.00';
                     break;
             }
 
@@ -370,10 +367,6 @@ return;
      */
     public function buildPromotions()
     {
-
-// ONLY DONE IN TESTING BRANCH
-return;
-
         $date = date('Ymd');
         $domainKey = str_replace('SALES', '', strtoupper($this->getAttribute('global', 'domain_key')));
 
@@ -596,12 +589,6 @@ return;
 
             case 'manualpayment':
                 $custPaymMode = 'Bank';
-                break;
-
-            case 'invoicepayment':
-                $custPaymMode = 'Bank';
-                // HACK to bypass WSDL restrictions.
-                $this->data['salesOrder']['SalesTable']['CustAccount'] .= '-F1';
                 break;
 
             case 'pensio':
