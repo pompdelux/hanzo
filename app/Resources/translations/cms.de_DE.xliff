@@ -46,8 +46,7 @@
 						"185",
 						"186",
 						"187",
-						"207",
-						"209",
+						"208",
 						"212",
 						"214"
                     ],
@@ -209,7 +208,7 @@
                    		"182",
                    		"188",
                    		"189",
-                   		"208",
+                   		"209",
 						"210",
 						"213",
 						"216"
@@ -435,7 +434,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207","212"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -521,12 +520,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- PIGE: Langærmet T-shirt -->
 			 <trans-unit id="901.settings">
                 <source>901.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "207",
+                        "category_id": "208",
                         "colors": ""
                     }
                 ]]></target>
@@ -861,7 +860,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178","208"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","178","209"],
                         "colors": ""
                     }
                 ]]></target>
@@ -956,13 +955,12 @@
                     }
                 ]]></target>
             </trans-unit>
-			
 			<!-- Langaermet T-shirts - dreng -->
 			 <trans-unit id="903.settings">
                 <source>903.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "208",
+                        "category_id": "209",
                         "colors": ""
                     }
                 ]]></target>
