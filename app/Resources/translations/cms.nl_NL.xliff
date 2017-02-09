@@ -530,8 +530,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			
-			<!-- PIGE: Overdele -->
+			<!-- PIGE: Underdele -->
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
@@ -569,11 +568,12 @@
                     }
                 ]]></target>
             </trans-unit>
-            <trans-unit id="588.settings">
-                <source>588.settings</source>
+			<!-- PIGE: Rompers -->
+			<trans-unit id="944.settings">
+                <source>944.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "112",
+                        "category_id": "211",
                         "colors": ""
                     }
                 ]]></target>
@@ -619,16 +619,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "185",
-                        "colors": ""
-                    }
-                ]]></target>
-            </trans-unit>
-			<!-- PIGE: Rompers -->
-			<trans-unit id="944.settings">
-                <source>944.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "211",
                         "colors": ""
                     }
                 ]]></target>
@@ -752,7 +742,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- Overtoej Dreng -->
+			<!-- Dreng: Overtoej -->
             <trans-unit id="837.settings">
                 <source>837.settings</source>
                 <target><![CDATA[
@@ -854,6 +844,7 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Overdel -->
             <trans-unit id="838.settings">
                 <source>838.settings</source>
                 <target><![CDATA[
@@ -1021,6 +1012,7 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Undertøj og nattøj -->
                 <trans-unit id="840.settings">
                 <source>840.settings</source>
                 <target><![CDATA[
