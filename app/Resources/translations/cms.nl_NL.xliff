@@ -530,23 +530,14 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Rompers -->
-			<trans-unit id="944.settings">
-                <source>944.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "211",
-                        "colors": ""
-                    }
-                ]]></target>
-            </trans-unit>
 			
+			<!-- PIGE: Overdele -->
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "159",
-                        "embedded_category_id": ["46","79","81","112","113","114","115","185","187"],
+                        "embedded_category_id": ["46","79","81","112","113","114","115","185","187","211"],
                         "colors": ""
                     }
                 ]]></target>
@@ -628,6 +619,16 @@
                 <target><![CDATA[
                     {
                         "category_id": "185",
+                        "colors": ""
+                    }
+                ]]></target>
+            </trans-unit>
+			<!-- PIGE: Rompers -->
+			<trans-unit id="944.settings">
+                <source>944.settings</source>
+                <target><![CDATA[
+                    {
+                        "category_id": "211",
                         "colors": ""
                     }
                 ]]></target>
