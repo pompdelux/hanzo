@@ -751,6 +751,7 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Overtøj -->
              <trans-unit id="822.settings">
                 <source>822.settings</source>
                 <target><![CDATA[

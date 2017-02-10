@@ -169,6 +169,7 @@
                      }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Hovedkategori -->
             <trans-unit id="739.settings">
                 <source>739.settings</source>
                 <target><![CDATA[
@@ -755,6 +756,7 @@
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Overtøj -->
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
