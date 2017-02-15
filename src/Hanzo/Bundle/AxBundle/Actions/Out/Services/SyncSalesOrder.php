@@ -375,7 +375,7 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20170223;
+            $fromDate = 20170210;
             $toDate   = 20170430;
             $itemId   = 'FREEPOMPBAGSS17';
 
