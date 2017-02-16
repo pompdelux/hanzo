@@ -4,23 +4,25 @@
         <body>
             <trans-unit id="description">
                 <source>description</source>
-                <target><![CDATA[Skriv postnummer på den by, hvor du gerne vil finde dit udleveringssted.<br> Derefter vælger du dit foretrukne udleveringssted, <br>og adressen udfyldes automatisk.]]></target>
+                <target><![CDATA[Kirjoita postinumero jonne haluat tilauksesi saapuvan.<br> Tämän jälkeen valitse mieleisin noutopaikka ja osoite täyttyy automaattisesti.]]></target>
             </trans-unit>
             <trans-unit id="lookup.label">
                 <source>lookup.label</source>
                 <target></target>
             </trans-unit>
+			<!-- FIND -->
             <trans-unit id="submit.label">
                 <source>submit.label</source>
-                <target>Find</target>
+                <target>Löytää</target>
             </trans-unit>
             <trans-unit id="lookup.placeholder">
                 <source>lookup.placeholder</source>
                 <target>Postnummer</target>
             </trans-unit>
+			<!-- Valgfri udl.sted -->
             <trans-unit id="point.header">
                 <source>point.header</source>
-                <target>Valgfri udleveringssted</target>
+                <target>Vapaavalintainen noutopaikka</target>
             </trans-unit>
             <trans-unit id="distance.header">
                 <source>distance.header</source>

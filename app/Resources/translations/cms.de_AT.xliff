@@ -367,6 +367,7 @@
                         "colors": ""
                     }
                 ]]></target>
+		<!-- Pige Softshell -->
             </trans-unit>
             <trans-unit id="789.settings">
                 <source>789.settings</source>
@@ -792,6 +793,7 @@
                     }
                 ]]></target>
             </trans-unit>
+		  <!-- DRENG: Softshell -->
             <trans-unit id="790.settings">
                 <source>790.settings</source>
                 <target><![CDATA[

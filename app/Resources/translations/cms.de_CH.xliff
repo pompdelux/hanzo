@@ -365,6 +365,7 @@
                     }
                 ]]></target>
             </trans-unit>
+		<!-- Pige Softshell -->
             <trans-unit id="557.settings">
                 <source>557.settings</source>
                 <target><![CDATA[
@@ -789,6 +790,7 @@
                     }
                 ]]></target>
             </trans-unit>
+		  <!-- DRENG: Softshell -->
             <trans-unit id="572.settings">
                 <source>572.settings</source>
                 <target><![CDATA[
