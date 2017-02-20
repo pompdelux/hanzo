@@ -481,7 +481,7 @@
       </trans-unit>
       <trans-unit id="payment.invoicepayment.title">
         <source>payment.invoicepayment.title</source>
-        <target>Zahlungsziel: 14 Tage ohne Gebühr</target>
+        <target>Rechnung: Zahlungsziel 14 Tage ohne Gebühr</target>
       </trans-unit>
       <trans-unit id="payment.invoicepayment.text">
         <source>payment.invoicepayment.text</source>
@@ -489,7 +489,7 @@
       </trans-unit>
       <trans-unit id="payment.invoicepayment.label">
         <source>payment.invoicepayment.label</source>
-        <target>Zahlung per Überweisung</target>
+        <target>Rechnung</target>
       </trans-unit>
       <trans-unit id="checkout.confirm.may_contact.text">
         <source>checkout.confirm.may_contact.text</source>

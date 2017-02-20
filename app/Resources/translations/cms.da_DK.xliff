@@ -221,7 +221,7 @@
                     		"209",
 							"211",
 							"213",
-							"215"
+							"216"
                     	],
                     	"colors": "",
                     	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -343,7 +343,7 @@
             <target><![CDATA[
                     {
                         "category_id": "157",
-                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186","186","214"],
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186","214"],
                         "colors": ""
                     }
                 ]]></target>
@@ -808,7 +808,7 @@
             <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["5","6","7","8","171","173","175","118","188","215"],
+                        "embedded_category_id": ["5","6","7","8","171","173","175","118","188","216"],
                         "colors": ""
                     }
                 ]]></target>
@@ -840,6 +840,7 @@
                     }
                 ]]></target>
         </trans-unit>
+		<!-- DRENG: Softshell -->
         <trans-unit id="771.settings">
             <source>771.settings</source>
             <target><![CDATA[
@@ -899,7 +900,7 @@
             <source>1128.settings</source>
             <target><![CDATA[
                     {
-                        "category_id": "215",
+                        "category_id": "216",
                         "colors": ""
                     }
                 ]]></target>

@@ -47,10 +47,10 @@
 						"185",
 						"186",
 						"187",
-						"207",
+						"208",
 						"209",
-						"211",
-						"213"
+						"212",
+						"214"
                     ],
                     "color_sort": "Purple,Purple,Purple/Blue,Purple/Dark Blue,Purple/Navy,Dark Purple,Dark Purple/Navy,Dark Purple Print,Light Purple,Rose,Rose,Rose/Black,Rose/Dark Grey,Dark Rose,Dark Rose Print,Light Rose,Light Rose Circle,Light Rose Heart,Light Rose Rabbit,Light Rose Tree,Light Rose/Dark Blue,Light Rose/Green,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Mint",
                         "colormap": {
@@ -209,10 +209,10 @@
 						"182",
                   		"188",
                   		"189",
-                  		"208",
+                  		"209",
 						"210",
-						"212",
-						"214"
+						"213",
+						"216"
                   	],
                   	"colors": "",
                   	"color_sort": "Black,Black Melange,Blue,Navy,Blue,Navy/Blue,Blue Car,Blue Man,Blue Melange,Blue Scooter,Blue text,Blue/Grey Melange,Dark Blue,Dark Blue Melange,Navy Check,Navy Melange,Navy Small Stripe,Navy Stripe,Navy/Grey Melange,Brown,Brown Melange,Beige,Beige Melange,Mushroom,Denim,Blue Denim,Black Denim,Grey Denim,Dark Grey Denim,Eggplant,Green,Green,Green Melange,Green/Green Melange,Dark Green,Dusty Green,Grey,Grey,Grey Melange,Grey Melange/Petrol,Grey/Black,Grey/Mushroom,Light Grey,Light Grey Melange,Dark Grey,Dark Grey/Black,Dark Grey Melange,Khaki/Olive,Khaki,Olive,Petrol,Petrol,Petrol Melange,Petrol/Blue,Petrol/Grey Melange,Dark Petrol,Dark Petrol Melange,White,White,White/Petrol,Off White Melange,Off White/Black,Off White/Navy,Yellow,Yellow/Navy Melange",
@@ -332,7 +332,7 @@
                 <target><![CDATA[
                     {   
                         "category_id": "157",
-                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186","213"],
+                        "embedded_category_id": ["12","13","14","15","170","172","174","176","186","214"],
                         "colors": ""
                     }
                 ]]></target>
@@ -423,7 +423,7 @@
                 <source>946.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "213",
+                        "category_id": "214",
                         "colors": ""
                     }
                 ]]></target>
@@ -434,7 +434,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "158",
-                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","207","209","211"],
+                        "embedded_category_id": ["16","17","18","19","21","45","177","183","184","208","212"],
                         "colors": ""
                     }
                 ]]></target>
@@ -525,7 +525,7 @@
                 <source>921.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "207",
+                        "category_id": "208",
                         "colors": ""
                     }
                 ]]></target>
@@ -535,12 +535,12 @@
                 <source>944.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "211",
+                        "category_id": "212",
                         "colors": ""
                     }
                 ]]></target>
             </trans-unit>
-			
+			<!-- PIGE: Underdele -->
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
@@ -574,15 +574,6 @@
                 <target><![CDATA[
                     {
                         "category_id": "81",
-                        "colors": ""
-                    }
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="588.settings">
-                <source>588.settings</source>
-                <target><![CDATA[
-                    {
-                        "category_id": "112",
                         "colors": ""
                     }
                 ]]></target>
@@ -751,13 +742,13 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- Overtoej Dreng -->
+			<!-- Dreng: Overtoej -->
             <trans-unit id="837.settings">
                 <source>837.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "162",
-                        "embedded_category_id": ["5","6","7","8","180","118","188","214"],
+                        "embedded_category_id": ["5","6","7","8","180","118","188","216"],
                         "colors": ""
                     }
                 ]]></target>
@@ -848,17 +839,18 @@
                 <source>947.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "214",
+                        "category_id": "216",
                         "colors": ""
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Overdel -->
             <trans-unit id="838.settings">
                 <source>838.settings</source>
                 <target><![CDATA[
                     {
                         "category_id": "163",
-                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","208"],
+                        "embedded_category_id": ["9","11","43","44","83","84","116","117","179","209"],
                         "colors": ""
                     }
                 ]]></target>
@@ -958,7 +950,7 @@
                 <source>922.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "208",
+                        "category_id": "209",
                         "colors": ""
                     }
                 ]]></target>
@@ -969,7 +961,7 @@
                 <target><![CDATA[
                     {
                         "category_id": "164",
-                        "embedded_category_id": ["119","120","128","189","212"],
+                        "embedded_category_id": ["119","120","128","189","213"],
                         "colors": ""
                     }
                 ]]></target>
@@ -1015,11 +1007,12 @@
                 <source>945.settings</source>
                 <target><![CDATA[
                     {
-                        "category_id": "212",
+                        "category_id": "213",
                         "colors": ""
                     }
                 ]]></target>
             </trans-unit>
+			<!-- DRENG: Undertøj og nattøj -->
                 <trans-unit id="840.settings">
                 <source>840.settings</source>
                 <target><![CDATA[

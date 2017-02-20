@@ -12,15 +12,15 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.500">
         <source>shipping_method.name.500</source>
-        <target>Yksityinen paketti</target>
+        <target>Postin vapaavalintainen noutopaikka</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.500">
         <source>shipping_method.desc.500</source>
-        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, Postin noutopisteeseen.</target>
+        <target>Voit valita Suomessa 1500:sta Postin noutopaikasta. Saat valita vapaasti, eikä sinun tarvitse käyttää samaa toimituspaikkaa joka kerta.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.500">
         <source>shipping_method.label.500</source>
-        <target>Postitoimipaikkatoimitus %price%</target>
+        <target>Vapaavalintainen noutopaikka %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>

@@ -26,6 +26,7 @@
         <source>description.category-14</source>
         <target><![CDATA[<p>Der findes ikke dårligt vejr, kun forkert påklædning... Dette udsagn er POMPdeLUX helt enige i, for vi har nemlig overtøjet der matcher al slags vejr, så børnene sagtens kan komme ud og lege hver eneste dag, uden at blive hverken spor kolde eller våde. POMPdeLUX overtøj, kan du som forælder have tillid til både fungerer helt som det skal, overholder alle krav til sikkerhed og ikke hæmmer mulighederne for bevægelse. Skaljakker og skalbukser til piger er et godt eksempel på moderne og funktionelt overtøj i størrelse 80 cm til 152 cm, der nok skal give dårligt vejr kamp til stregen. Gode pasformer og åndbart materiale, gør skaljakker og skalbukser til noget af det bedste overtøj at have i børnenes garderobe. Alle POMPdeLUX skaljakker og skalbukser er i smarte og praktiske farver og har et hav af gode og gennemtænkte detaljer, som f.eks. trykknapper, refleksbånd og hætter, der kan tages af.</p>]]></target>
       </trans-unit>
+	  <!-- Softshell til piger -->
       <trans-unit id="headers.category-15">
         <source>headers.category-15</source>
         <target><![CDATA[<h1>Softshell til piger</h1>]]></target>

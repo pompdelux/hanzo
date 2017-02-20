@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="description">
+                <source>description</source>
+                <target><![CDATA[Kirjoita postinumero jonne haluat tilauksesi saapuvan.<br> Tämän jälkeen valitse mieleisin noutopaikka ja osoite täyttyy automaattisesti.]]></target>
+            </trans-unit>
+            <trans-unit id="lookup.label">
+                <source>lookup.label</source>
+                <target></target>
+            </trans-unit>
+			<!-- FIND -->
+            <trans-unit id="submit.label">
+                <source>submit.label</source>
+                <target>Löytää</target>
+            </trans-unit>
+            <trans-unit id="lookup.placeholder">
+                <source>lookup.placeholder</source>
+                <target>Postnummer</target>
+            </trans-unit>
+			<!-- Valgfri udl.sted -->
+            <trans-unit id="point.header">
+                <source>point.header</source>
+                <target>Vapaavalintainen noutopaikka</target>
+            </trans-unit>
+            <trans-unit id="distance.header">
+                <source>distance.header</source>
+                <target>Afstand</target>
+            </trans-unit>
+            <trans-unit id="open.hours">
+                <source>open.hours</source>
+                <target>Åbningstider</target>
+            </trans-unit>
+            <trans-unit id="distance">
+                <source>distance</source>
+                <target>%distance% km</target>
+            </trans-unit>
+            <trans-unit id="day.mo">
+                <source>day.mo</source>
+                <target>Man</target>
+            </trans-unit>
+            <trans-unit id="day.tu">
+                <source>day.tu</source>
+                <target>Tir</target>
+            </trans-unit>
+            <trans-unit id="day.we">
+                <source>day.we</source>
+                <target>Ons</target>
+            </trans-unit>
+            <trans-unit id="day.th">
+                <source>day.th</source>
+                <target>Tor</target>
+            </trans-unit>
+            <trans-unit id="day.fr">
+                <source>day.fr</source>
+                <target>Fre</target>
+            </trans-unit>
+            <trans-unit id="day.sa">
+                <source>day.sa</source>
+                <target>Lør</target>
+            </trans-unit>
+            <trans-unit id="day.su">
+                <source>day.su</source>
+                <target>Søn</target>
+            </trans-unit>
+            <trans-unit id="no.records.found">
+                <source>no.records.found</source>
+                <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
+            </trans-unit>
+            <trans-unit id="service.down">
+                <source>service.down</source>
+                <target><![CDATA[Post Danmarks postnummerservice svarer ikke i øjeblikket.<br>Prøv igen senere eller vælg privat- eller erhvervsfragt.]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
