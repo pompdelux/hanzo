@@ -308,7 +308,7 @@ class SyncSalesOrder extends BaseService
             $bagPrice = 0.00;
             $keyPrice = 0.00;
             $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-            $itemId   = 'FREEPOMPBIGBAGSS17';
+            $itemId   = 'FreeBigPompbagSS17';
             $keyId    = 'BloraKeychainSS17';
 
             switch($domainKey) {
@@ -377,7 +377,7 @@ class SyncSalesOrder extends BaseService
 
             $fromDate = 20170210;
             $toDate   = 20170430;
-            $itemId   = 'FREEPOMPBAGSS17';
+            $itemId   = 'FreePompbagSS17';
 
             // Also check if promotion has been added already
             if (!isset($this->promotionsAdded[$itemId]) && (($fromDate <= $date) && ($toDate >= $date)) ||
