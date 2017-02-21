@@ -311,28 +311,48 @@ class SyncSalesOrder extends BaseService
             $itemId   = 'FreeBigPompbagSS17';
             $keyId    = 'BloraKeychainSS17';
 
+            // Bag price
             switch($domainKey) {
                 case 'AT':
                 case 'COM':
                 case 'DE':
                 case 'FI':
                 case 'NL':
-                    $bagPrice = '4.99';
-                    $keyPrice = '2.00';
+                    $bagPrice = '5.99';
                     break;
                 case 'CH':
                     $bagPrice = '5.90';
-                    $keyPrice = '2.50';
                     break;
                 case 'DK':
-                    $bagPrice = '40.00';
-                    $keyPrice = '15.00';
+                    $bagPrice = '39.00';
                     break;
                 case 'NO':
                 case 'SE':
-                    $bagPrice = '60.00';
-                    $keyPrice = '20.00';
+                    $bagPrice = '49.00';
                     break;
+            }
+            
+            // Keychain price
+            switch($domainKey) {
+                case 'COM':
+                    $keyPrice = '0';
+                    break;
+                case 'AT':
+                case 'DE':
+                case 'FI':
+                case 'NL':
+                  $keyPrice = '20.00';
+                  break;
+                case 'CH':
+                  $keyPrice = '25.00';
+                  break;
+                case 'DK':
+                  $keyPrice = '150.00';
+                  break;
+                case 'NO':
+                case 'SE':
+                  $keyPrice = '200.00';
+                  break;
             }
 
             $this->data['salesOrder']['SalesTable']['SalesLine'][] = [
