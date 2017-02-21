@@ -44,16 +44,14 @@ class DefaultController extends CoreController
         $methodOverrides = [
             // DK PostNord overrides default Bring.
             15 => [
-                'productConceptID' => 553,
-                'WebShopID'        => 7,
-                //'installationID'   => 90290000026,
+                'productConceptID' => 92,
+                'WebShopID'        => 6,
             ],
 
             // SE PostNord overrides default Bring.
             31 => [
-                'productConceptID' => 553,
-                'WebShopID'        => 7,
-                //'installationID'   => 90290000026,
+                'productConceptID' => 92,
+                'WebShopID'        => 6,
             ],
         ];
 
