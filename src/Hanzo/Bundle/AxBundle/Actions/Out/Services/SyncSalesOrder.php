@@ -331,7 +331,7 @@ class SyncSalesOrder extends BaseService
                     $bagPrice = '49.00';
                     break;
             }
-            
+
             // Keychain price
             switch($domainKey) {
                 case 'COM':
@@ -405,24 +405,26 @@ class SyncSalesOrder extends BaseService
             ) {
                 $bagPrice = 0.00;
                 $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-
+                
                 switch($domainKey) {
-                    case 'AT':
                     case 'COM':
+                        $bagPrice = '2.00';
+                        break;
+                    case 'AT':
                     case 'DE':
                     case 'FI':
                     case 'NL':
-                        $bagPrice = '1.99';
+                        $bagPrice = '2.00';
                     break;
                     case 'CH':
-                        $bagPrice = '1.90';
+                        $bagPrice = '2.00';
                         break;
                     case 'DK':
-                        $bagPrice = '10.00';
+                        $bagPrice = '15.00';
                         break;
                     case 'NO':
                     case 'SE':
-                        $bagPrice = '20.00';
+                        $bagPrice = '19.00';
                         break;
                 }
 
