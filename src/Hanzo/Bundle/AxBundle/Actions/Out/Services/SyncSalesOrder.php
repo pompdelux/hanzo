@@ -305,30 +305,30 @@ class SyncSalesOrder extends BaseService
             $bagPrice = 0.00;
             $keyPrice = 0.00;
             $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-            $itemId   = 'FreeBigPompbagSS17';
+            $itemId   = 'FREEPOMPBIGBAGSS17';
             $keyId    = 'BloraKeychainSS17';
 
             switch($domainKey) {
-                case 'AT':
                 case 'COM':
+                case 'AT':
                 case 'DE':
                 case 'FI':
                 case 'NL':
-                    $bagPrice = '4.99';
-                    $keyPrice = '5.99';
+                    $bagPrice = '5.99';
+                    $keyPrice = '2.00';
                     break;
                 case 'CH':
                     $bagPrice = '5.90';
-                    $keyPrice = '6.90';
+                    $keyPrice = '2.50';
                     break;
                 case 'DK':
-                    $bagPrice = '40.00';
-                    $keyPrice = '50.00';
+                    $bagPrice = '39.00';
+                    $keyPrice = '15.00';
                     break;
                 case 'NO':
                 case 'SE':
-                    $bagPrice = '60.00';
-                    $keyPrice = '65.00';
+                    $bagPrice = '49.00';
+                    $keyPrice = '20.00';
                     break;
             }
 
@@ -364,6 +364,11 @@ class SyncSalesOrder extends BaseService
      */
     public function buildPromotions()
     {
+        // Hostesses does not get a second bag.
+        if (isset($this->promotionsAdded['FREEPOMPBIGBAGSS17'])) {
+            return;
+        }
+
         $date = date('Ymd');
         $domainKey = str_replace('SALES', '', strtoupper($this->getAttribute('global', 'domain_key')));
 
@@ -372,7 +377,8 @@ class SyncSalesOrder extends BaseService
             (in_array($this->getAttribute('purchase', 'type'), ['other', 'gift', 'private', 'friend'], true))
         ) {
 
-            $fromDate = 20170223;
+//            $fromDate = 20170223;
+            $fromDate = 20170210;
             $toDate   = 20170430;
             $itemId   = 'FreePompbagSS17';
 
@@ -384,22 +390,20 @@ class SyncSalesOrder extends BaseService
                 $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
 
                 switch($domainKey) {
-                    case 'AT':
                     case 'COM':
+                    case 'AT':
                     case 'DE':
                     case 'FI':
                     case 'NL':
-                        $bagPrice = '1.99';
-                    break;
                     case 'CH':
-                        $bagPrice = '1.90';
+                        $bagPrice = '2.00';
                         break;
                     case 'DK':
-                        $bagPrice = '10.00';
+                        $bagPrice = '15.00';
                         break;
                     case 'NO':
                     case 'SE':
-                        $bagPrice = '20.00';
+                        $bagPrice = '19.00';
                         break;
                 }
 
