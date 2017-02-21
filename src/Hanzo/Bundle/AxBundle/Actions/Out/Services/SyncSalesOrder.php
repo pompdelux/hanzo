@@ -365,7 +365,7 @@ class SyncSalesOrder extends BaseService
     public function buildPromotions()
     {
         // Hostesses does not get a second bag.
-        if (isset($this->promotionsAdded['FREEPOMPBIGBAGSS17'])) {
+        if (isset($this->promotionsAdded['FreeBigPompbagSS17'])) {
             return;
         }
 
