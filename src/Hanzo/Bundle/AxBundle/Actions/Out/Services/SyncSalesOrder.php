@@ -305,7 +305,7 @@ class SyncSalesOrder extends BaseService
             $bagPrice = 0.00;
             $keyPrice = 0.00;
             $salesQty = 1; // AX does not handle the same line twice, so add 2 here, and in buildPromotions we check if it is set
-            $itemId   = 'FREEPOMPBIGBAGSS17';
+            $itemId   = 'FreeBigPompbagSS17';
             $keyId    = 'BloraKeychainSS17';
 
             switch($domainKey) {
