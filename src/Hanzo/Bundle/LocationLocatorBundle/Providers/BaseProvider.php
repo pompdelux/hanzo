@@ -99,6 +99,12 @@ abstract class BaseProvider
      */
     public function setup(array $settings = [], Translator $translator, Logger $logger, ServiceLogger $service_logger, $environment)
     {
+        static $booted = false;
+
+        if ($booted) {
+            return;
+        }
+
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
         }
@@ -107,6 +113,8 @@ abstract class BaseProvider
         $this->logger         = $logger;
         $this->service_logger = $service_logger;
         $this->environment    = $environment;
+
+        $booted = true;
     }
 
     /**
