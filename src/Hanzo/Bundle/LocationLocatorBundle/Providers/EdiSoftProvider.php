@@ -73,7 +73,7 @@ class EdiSoftProvider extends BaseProvider
 //        }
 
         preg_match('/^([0-9]{3,7}) (.+)/', $address_parts['city'], $result);
-        if (3 == count($result)) {
+        if (3 === count($result)) {
             $address_parts['postalCode'] = trim($result[1]);
             $address_parts['city'] = trim($result[2]);
         }

@@ -112,9 +112,11 @@
 
                 switch (element.value) {
                     case '11':
+                    case '17':
                         method = 'company_shipping';
                         break;
                     case '12':
+                    case '15':
                         method = 'overnightbox';
                         if ('da' === lang) {
                             $('#form_phone').parent().addClass('message notice');
@@ -137,7 +139,7 @@
                 /**
                  * 1: opdater ordre med betalingsmetode
                  * 2: få ordretotalen opdateret
-                 * 3: overdrag til nsæte step (validering)
+                 * 3: overdrag til næste step (validering)
                  */
                 dialoug.loading($('#payment-block').prev('h2'), '', 'append');
                 $('.msg.error').toggleClass('hidden error');
@@ -311,7 +313,8 @@
 
                 // Private postal - or types where address-copy should be shown
                 var allowedTypes = [
-                  "10",    // DK  - Post Danmark Privat
+                  "10",    // DK  - BRING Privat
+                  "16",    // DK  - Post Danmark Privat
                   "20",    // COM - Post Danmark Private priority
                   "70",    // NL  - DHL          verzendmethode
                   "601",   // DE  - DHL          Paketpost

@@ -54,50 +54,18 @@ class AddressController extends CoreController
         $deliveryMethodId = $order->getDeliveryMethod();
 
         if ($type == 'CURRENT-SHIPPING-ADDRESS') {
-//            if ($deliveryMethodId && $order->getDeliveryFirstName()) {
-//                $address = new Addresses();
-//                $address->setCustomersId($customer_id);
-//                $address->setFirstName($order->getDeliveryFirstName());
-//                $address->setLastName($order->getDeliveryLastName());
-//                $address->setAddressLine1($order->getDeliveryAddressLine1());
-//                $address->setPostalCode($order->getDeliveryPostalCode());
-//                $address->setCity($order->getDeliveryCity());
-//                $address->setCountry($order->getDeliveryCountry());
-//                $address->setCountriesId($order->getDeliveryCountriesId());
-//                $address->setStateProvince($order->getDeliveryStateProvince());
-//                $address->setExternalAddressId($order->getDeliveryExternalAddressId());
-//
-//                switch ($deliveryMethodId) {
-//                    case 11:
-//                        $type = 'company_shipping';
-//                        $address->setType('company_shipping');
-//                        $address->setCompanyName($order->getDeliveryCompanyName());
-//                        break;
-//                    case 12:
-//                        $type = 'overnightbox';
-//                        $address->setType('overnightbox');
-//                        $address->setStateProvince(null);
-//                        $address->setCompanyName($order->getDeliveryCompanyName());
-//                        break;
-//                    default:
-//                        $type = 'shipping';
-//                        $address->setType('shipping');
-//                        break;
-//                }
-//            } else {
-                $type = 'shipping';
-                $form = '<div class="block"><form action="" method="post" class="address"></form></div>';
+            $type = 'shipping';
+            $form = '<div class="block"><form action="" method="post" class="address"></form></div>';
 
-                if ('json' === $this->getFormat()) {
-                    return $this->json_response([
-                        'status'  => true,
-                        'message' => '',
-                        'data'    => ['html' => $form],
-                    ]);
-                }
+            if ('json' === $this->getFormat()) {
+                return $this->json_response([
+                    'status'  => true,
+                    'message' => '',
+                    'data'    => ['html' => $form],
+                ]);
+            }
 
-                return $this->response($form);
-//            }
+            return $this->response($form);
         } elseif ('payment' == $type) {
             $address = AddressesQuery::create()
               ->filterByCustomersId($customer_id)
@@ -106,12 +74,14 @@ class AddressController extends CoreController
         }
 
         // to enable address locator or not.
-        // 12  = PostNord / Bring (dk)
+        // 12  = Bring (DK)
+        // 15  = PostNord (DK)
         // 71  = hmmm ...
-        // 30  = Bring SE
-        // 500 = Bring FI
-        // 700 = Bring NO
-        $enableLocator = ($type != 'payment' && in_array($deliveryMethodId, [12, 71, 30, 500, 700]));
+        // 30  = Bring (SE)
+        // 31  = PostNord (SE)
+        // 500 = Bring (FI)
+        // 700 = Bring (NO)
+        $enableLocator = (($type !== 'payment') && in_array($deliveryMethodId, [12, 15, 71, 30, 31, 500, 700]));
 
         if (empty($address)) {
             $address = new Addresses();
@@ -122,7 +92,7 @@ class AddressController extends CoreController
                 $address->setFirstName($order->getFirstName());
                 $address->setLastName($order->getLastName());
             }
-        } elseif ('overnightbox' == $type) {
+        } elseif ('overnightbox' === $type) {
             $address->setFirstName($order->getFirstName());
             $address->setLastName($order->getLastName());
         }
@@ -133,7 +103,7 @@ class AddressController extends CoreController
 
         if (in_array($type, ['company_shipping', 'overnightbox'])) {
             $label = 'company.name';
-            if ($type == 'overnightbox') {
+            if ($type === 'overnightbox') {
                 $label = 'overnightbox.label';
             }
 
@@ -167,7 +137,7 @@ class AddressController extends CoreController
             'translation_domain' => 'account'
         ]);
 
-        if ($type == 'payment') {
+        if ($type === 'payment') {
             $builder->add('phone', null, [
                 'required'           => true,
                 'translation_domain' => 'account'
@@ -240,7 +210,7 @@ class AddressController extends CoreController
         $form = $builder->getForm();
 
         $baseType = 'is-shipping';
-        if ('payment' == $type) {
+        if ('payment' === $type) {
             $baseType = 'is-payment';
         }
 
@@ -248,6 +218,7 @@ class AddressController extends CoreController
             'type'           => $type,
             'base_type'      => $baseType,
             'enable_locator' => $enableLocator,
+            'method_id'      => $deliveryMethodId,
             'form'           => $form->createView(),
         ]);
 
@@ -292,12 +263,16 @@ class AddressController extends CoreController
             $order = OrdersPeer::getCurrent();
             $data  = $request->request->get('form');
 
-            if ($type == 'shipping') {
+            if ($type === 'shipping') {
                 switch ($order->getDeliveryMethod()) {
-                    case 11:
+                    case 11: // bring dk
+                    case 17: // postnord dk
                         $method = 'company_shipping';
                         break;
-                    case 12:
+                    case 12: // bring dk (drop point)
+                    case 15: // postnord dk (drop point)
+                    case 30: // bring se (drop point)
+                    case 31: // postnord se (drop point)
                     case 71:
                         $method = 'overnightbox';
                         $validationFields[] = 'company_name';
@@ -347,7 +322,7 @@ class AddressController extends CoreController
             $address->setCountriesId($data['countries_id']);
 
             // special rules apply for overnightbox
-            if ($method == 'overnightbox') {
+            if ($method === 'overnightbox') {
                 $address->setExternalAddressId($data['external_address_id']);
                 $address->setAddressLine2(null);
             }
@@ -360,7 +335,7 @@ class AddressController extends CoreController
                 $address->setCompanyName($data['company_name']);
             }
 
-            if ('payment' == $method) {
+            if ('payment' === $method) {
                 $customer = $address->setPhone($data['phone']);
             }
 
@@ -408,13 +383,13 @@ class AddressController extends CoreController
             $address->save();
 
             // change phone number
-            if (isset($customer) && ('payment' == $method)) {
+            if (isset($customer) && ('payment' === $method)) {
                 $customer->save();
             }
 
-            if ($type == 'payment') {
+            if ($type === 'payment') {
                 $order->setBillingAddress($address);
-            } elseif ($type == 'shipping') {
+            } elseif ($type === 'shipping') {
                 $order->setDeliveryAddress($address);
             }
 
