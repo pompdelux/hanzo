@@ -118,7 +118,7 @@ class DefaultController extends CoreController
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
-            ->filterBySku('FREEPOMP%', \Criteria::NOT_LIKE)
+            ->filterBySku('FREE%', \Criteria::NOT_LIKE)
             ->filterByRange($productRange)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId($domainId)
