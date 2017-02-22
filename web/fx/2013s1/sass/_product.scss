@@ -375,6 +375,7 @@ a.product-color {
   @include colorbutton(_grey-melange9petrol);
   @include colorbutton(_grey-melange9print);
   @include colorbutton(_grey-melange);
+  @include colorbutton(_grey-melange-print);
   @include colorbutton(_grey);
   @include colorbutton(_hazelnut);
   @include colorbutton(_khaki);
@@ -466,6 +467,7 @@ a.product-color {
   @include colorbutton(_taupe);
   @include colorbutton(_terracotta);
   @include colorbutton(_turquise-melange);
+  @include colorbutton(_turquoise-melange);
   @include colorbutton(_white9black);
   @include colorbutton(_white9blue-stripe);
   @include colorbutton(_white9navy);
