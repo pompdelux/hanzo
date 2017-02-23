@@ -1,0 +1,106 @@
+Hanzo\Model\Addresses:
+    properties:
+        phone:
+            - NotBlank:
+                message: phone.required
+                groups:
+                    - shipping_bundle_payment
+            - Regex:
+                pattern: "/^\d+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - shipping_bundle_payment
+        first_name:
+            - NotBlank:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address.first_name.required
+            - Length:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                min:  2
+                minMessage: address.first_name.min.length
+        last_name:
+            - NotBlank:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                message: address.last_name.required
+            - Length:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                min:  2
+                minMessage: address.last_name.min.length
+        address_line_1:
+            - Length:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                min:  0
+                max:  35
+                minMessage: address_line_1.required
+                minMessage: address_line_1.max.length
+        postal_code:
+            - NotBlank:
+                message: postal_code.required
+            - Length:
+                min: 2
+                max: 10
+                minMessage: postal_code.length
+                maxMessage: postal_code.length
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+        city:
+            - NotBlank:
+                message: city.required
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+            - Length:
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+                min:  2
+                minMessage: city.required
+        countries_id:
+            - NotBlank:
+                message: address.countries_id.required
+                groups:
+                    - shipping_bundle_company_shipping
+                    - shipping_bundle_overnightbox
+                    - shipping_bundle_shipping
+                    - shipping_bundle_payment
+            - Type:
+                type: integer
+        company_name:
+            - NotBlank:
+                message: address.company_name.required
+                groups:
+                    - shipping_bundle_company_shipping
+    constraints:
+        - Callback:
+            methods: [isFullNameWithinLimits]
+            groups:
+                - shipping_bundle_company_shipping
+                - shipping_bundle_overnightbox
+                - shipping_bundle_shipping
+                - shipping_bundle_payment
