@@ -145,7 +145,6 @@ class AddressController extends CoreController
         }
 
         $builder->add('address_line_1', null, [
-            'required'           => true,
             'translation_domain' => 'account',
             'max_length'         => 35
         ]);
@@ -305,12 +304,16 @@ class AddressController extends CoreController
                 $address->setLastName($data['last_name']);
             }
 
-            $address->setAddressLine1($data['address_line_1']);
+            if (!empty($data['address_line_1'])) {
+              $address->setAddressLine1($data['address_line_1']);
+            } else {
+              $address->setAddressLine1(null);
+            }
 
             if (!empty($data['address_line_2'])) {
-                $address->setAddressLine2($data['address_line_2']);
+              $address->setAddressLine2($data['address_line_2']);
             } else {
-                $address->setAddressLine2(null);
+              $address->setAddressLine2(null);
             }
 
             $address->setPostalCode($data['postal_code']);
