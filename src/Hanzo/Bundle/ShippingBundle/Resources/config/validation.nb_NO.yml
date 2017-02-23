@@ -41,17 +41,6 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_payment
                 min:  2
                 minMessage: address.last_name.min.length
-        address_line_1:
-            - Length:
-                groups:
-                    - shipping_bundle_company_shipping
-                    - shipping_bundle_overnightbox
-                    - shipping_bundle_shipping
-                    - shipping_bundle_payment
-                min:  0
-                max:  35
-                minMessage: address_line_1.required
-                minMessage: address_line_1.max.length
         postal_code:
             - NotBlank:
                 message: postal_code.required
