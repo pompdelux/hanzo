@@ -13,7 +13,7 @@
 			<!-- FIND -->
             <trans-unit id="submit.label">
                 <source>submit.label</source>
-                <target>Löytää</target>
+                <target>Etsi</target>
             </trans-unit>
             <trans-unit id="lookup.placeholder">
                 <source>lookup.placeholder</source>
