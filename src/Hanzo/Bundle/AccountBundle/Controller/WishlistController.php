@@ -69,12 +69,13 @@ class WishlistController extends CoreController
      * Add/Edit/Update a product line to the wish list
      *
      * @param Request $request
+     * @param boolean $isApi
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function addItemAction(Request $request)
+    public function addItemAction(Request $request, $isApi = false)
     {
         if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json_response([
@@ -106,7 +107,7 @@ class WishlistController extends CoreController
 
         $productId = $request->request->get('product_id');
         if (empty($productId)) {
-            $product = ProductsPeer::findFromRequest($request);
+            $product = ProductsPeer::findFromRequest($request, $isApi);
 
             if (!is_object($product)) {
               return $this->json_response([

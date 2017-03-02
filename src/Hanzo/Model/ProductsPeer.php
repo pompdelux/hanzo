@@ -15,10 +15,11 @@ class ProductsPeer extends BaseProductsPeer
 {
     /**
      * @param Request $request
+     * @param boolean $isApi
      *
      * @return null|Products
      */
-    public static function findFromRequest(Request $request)
+    public static function findFromRequest(Request $request, $isApi = false)
     {
         static $productCache = [];
 
@@ -38,13 +39,19 @@ class ProductsPeer extends BaseProductsPeer
             $size   = $request->request->get('size');
             $color  = $request->request->get('color');
 
+            $domainKey = Hanzo::getInstance()->get('core.domain_id');
+
+            if ($isApi) {
+                $domainKey = 'Sales'.$domainKey;
+            }
+
             $productCache[$key] = ProductsQuery::create()
                 ->filterByMaster($master)
                 ->filterBySize($size)
                 ->filterByColor($color)
                 ->filterByIsOutOfStock(0)
                 ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
+                    ->filterByDomainsId($domainKey)
                 ->endUse()
                 ->findOne();
         }
