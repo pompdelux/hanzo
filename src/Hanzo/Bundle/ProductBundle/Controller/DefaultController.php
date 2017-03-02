@@ -286,11 +286,13 @@ class DefaultController extends CoreController
             ], 401);
         }
 
+        $domainKey = 'Sales'.Hanzo::getInstance()->get('core.domain_key');
+
         $cacheId = ['apiListAction', $request->getLocale()];
         $data = $this->getCache($cacheId);
 
         if (empty($data)) {
-            $data = $this->generateProductList($request);
+            $data = $this->generateProductList($request, $domainKey);
         }
 
         $this->setCache($cacheId, $data, 600); // 10 min cache.
@@ -300,17 +302,21 @@ class DefaultController extends CoreController
 
     /**
      * @param Request $request
+     * @param string  $domainKey
      *
      * @return array
      * @throws \Exception
      */
-    private function generateProductList(Request $request)
+    private function generateProductList(Request $request, $domainKey = null)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $request->getLocale();
         $translator = $this->get('translator');
         $router = $this->container->get('router');
-        $domainKey = $hanzo->get('core.domain_key');
+
+        if (null === $domainKey) {
+            $domainKey = $hanzo->get('core.domain_key');
+        }
 
         $sql = "
             SELECT
@@ -333,12 +339,13 @@ class DefaultController extends CoreController
                 ns = 'core'
         ";
 
+        // Injected domain keys can have "Sales" in it, so we
+        // need to sanitize before use in the range queue below.
+        $dk = str_replace('Sales', '', $domainKey);
+
         $con = \Propel::getConnection();
         $statement = $con->prepare($sql);
-        $statement->execute([
-            $domainKey,
-            'Sales'.$domainKey
-        ]);
+        $statement->execute([$dk, 'Sales'.$dk]);
         $statement->setFetchMode(\PDO::FETCH_ASSOC);
 
         $range = [];
@@ -402,7 +409,7 @@ class DefaultController extends CoreController
             ];
         }
 
-        foreach (ProductsDomainsPricesPeer::getProductsPrices($productIds) as $id => $prices) {
+        foreach (ProductsDomainsPricesPeer::getProductsPrices($productIds, $domainKey) as $id => $prices) {
             foreach ($prices as $type => $price) {
                 $price['formatted'] = $price['formattet'];
                 unset($price['currency'], $price['formattet']);
