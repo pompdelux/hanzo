@@ -36,6 +36,10 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             $domainId = $hanzo->get('core.domain_id');
         } else {
             $res = DomainsQuery::create()->findOneByDomainKey($domainKey);
+            if (!$res) {
+                return [];
+            }
+
             $domainId = $res->getId();
         }
 

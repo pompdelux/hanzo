@@ -15,7 +15,7 @@ class ProductsPeer extends BaseProductsPeer
 {
     /**
      * @param Request $request
-     * @param boolean $isApi
+     * @param mixed $isApi
      *
      * @return null|Products
      */
@@ -39,10 +39,8 @@ class ProductsPeer extends BaseProductsPeer
             $size   = $request->request->get('size');
             $color  = $request->request->get('color');
 
-            $domainKey = Hanzo::getInstance()->get('core.domain_id');
-
-            if ($isApi) {
-                $domainKey = 'Sales'.$domainKey;
+            if (false === $isApi) {
+                $domainKey = Hanzo::getInstance()->get('core.domain_id');
             }
 
             $productCache[$key] = ProductsQuery::create()

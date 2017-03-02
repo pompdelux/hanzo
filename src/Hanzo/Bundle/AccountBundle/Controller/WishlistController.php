@@ -84,6 +84,11 @@ class WishlistController extends CoreController
             ], 401);
         }
 
+        $domainKey = false;
+        if ($isApi) {
+            $domainKey = 'Sales'.explode('_', $request->getLocale())[1];
+        }
+
         $requestContent = $request->getContent();
 
         if ('{' === substr($requestContent, 0, 1)) {
@@ -107,7 +112,7 @@ class WishlistController extends CoreController
 
         $productId = $request->request->get('product_id');
         if (empty($productId)) {
-            $product = ProductsPeer::findFromRequest($request, $isApi);
+            $product = ProductsPeer::findFromRequest($request, $domainKey);
 
             if (!is_object($product)) {
               return $this->json_response([
@@ -157,7 +162,6 @@ class WishlistController extends CoreController
 
         $item->save();
 
-        $totalPrice = 0;
         $products   = $this->getAllWishlistItems();
         $totalPrice = $this->calculateTotalPrice($products);
 
