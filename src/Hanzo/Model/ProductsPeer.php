@@ -41,6 +41,8 @@ class ProductsPeer extends BaseProductsPeer
 
             if (false === $isApi) {
                 $domainKey = Hanzo::getInstance()->get('core.domain_id');
+            } else {
+                $domainKey = $isApi;
             }
 
             $productCache[$key] = ProductsQuery::create()
