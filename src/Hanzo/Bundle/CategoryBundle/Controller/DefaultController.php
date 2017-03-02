@@ -20,7 +20,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends CoreController
 {
-    // Contains setup for filters
+    /**
+     * Contains setup for filters
+     * @var null|array
+     */
     protected $filterConfiguration = null;
 
     /**
@@ -282,7 +285,7 @@ class DefaultController extends CoreController
         $router = $container->get('router');
 
         $domain_id = $hanzo->get('core.domain_id');
-        $show_by_look = (bool) ($show === 'look');
+        $show_by_look = (bool) ($show === 'overview');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         // Use embedded_category_id if exists, else fallback to category_id.
@@ -724,8 +727,7 @@ class DefaultController extends CoreController
         $filterTypes = [];
 
         // Note: we use id here and not the array keys because tokens/eco mess
-        foreach ($this->filterConfiguration as $key => $types)
-        {
+        foreach ($this->filterConfiguration as $key => $types) {
             $filterTypes[] = $types['id'];
         }
 
