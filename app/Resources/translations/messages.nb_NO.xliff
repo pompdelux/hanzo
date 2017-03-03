@@ -192,7 +192,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Frakt</b> fra 49,-</li>
+                        <li><b>Frakt</b> fra 69,-</li>
                         <li><b>Ekspedisjonstid</b> %expected_delivery_date%</li>
                         <li><b>Bytting</b> Gratis</li>
                     </ul>

@@ -191,7 +191,7 @@
                 <source>footer.text</source>
                 <target><![CDATA[
                     <ul>
-                        <li><b>Versand</b> ab CHF 7,95</li>
+                        <li><b>Versand</b> ab CHF 8,95</li>
                         <li><b>Bearbeitungszeit</b> %expected_delivery_date% (zzgl. Feiertage)</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
