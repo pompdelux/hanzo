@@ -27,11 +27,21 @@ use \Criteria;
 class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
 
-    public static function getProductsPrices(array $products)
+    public static function getProductsPrices(array $products, $domainKey = null)
     {
-        $hanzo     = Hanzo::getInstance();
-        $domainId  = $hanzo->get('core.domain_id');
-        $domainKey = $hanzo->get('core.domain_key');
+        $hanzo = Hanzo::getInstance();
+
+        if (null === $domainKey) {
+            $domainKey = $hanzo->get('core.domain_key');
+            $domainId = $hanzo->get('core.domain_id');
+        } else {
+            $res = DomainsQuery::create()->findOneByDomainKey($domainKey);
+            if (!$res) {
+                return [];
+            }
+
+            $domainId = $res->getId();
+        }
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)

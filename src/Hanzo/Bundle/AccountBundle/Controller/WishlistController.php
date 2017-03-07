@@ -69,18 +69,24 @@ class WishlistController extends CoreController
      * Add/Edit/Update a product line to the wish list
      *
      * @param Request $request
+     * @param boolean $isApi
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \PropelException
      */
-    public function addItemAction(Request $request)
+    public function addItemAction(Request $request, $isApi = false)
     {
         if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json_response([
                 'status'  => false,
                 'message' => 'requires.login',
             ], 401);
+        }
+
+        $domainKey = false;
+        if ($isApi) {
+            $domainKey = 'Sales'.explode('_', $request->getLocale())[1];
         }
 
         $requestContent = $request->getContent();
@@ -106,7 +112,7 @@ class WishlistController extends CoreController
 
         $productId = $request->request->get('product_id');
         if (empty($productId)) {
-            $product = ProductsPeer::findFromRequest($request);
+            $product = ProductsPeer::findFromRequest($request, $domainKey);
 
             if (!is_object($product)) {
               return $this->json_response([
@@ -156,7 +162,6 @@ class WishlistController extends CoreController
 
         $item->save();
 
-        $totalPrice = 0;
         $products   = $this->getAllWishlistItems();
         $totalPrice = $this->calculateTotalPrice($products);
 
@@ -410,7 +415,7 @@ class WishlistController extends CoreController
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function apiGetUserWishlistAction()
+    public function apiGetUserWishlistAction(Request $request)
     {
         if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json_response([
@@ -419,7 +424,9 @@ class WishlistController extends CoreController
             ], 401);
         }
 
-        $list = $this->getAllWishlistItems();
+        $domainKey = 'Sales'.explode('_', $request->getLocale())[1];
+
+        $list = $this->getAllWishlistItems($domainKey);
         sort($list);
 
         return $this->json_response($list);
@@ -450,14 +457,14 @@ class WishlistController extends CoreController
      *
      * @return array
      */
-    protected function getPrices($productId)
+    protected function getPrices($productId, $domainKey = null)
     {
         $normal    = 0;
         $sale      = false;
         $formattet = 0;
         $rawPrice  = 0;
 
-        $data = ProductsDomainsPricesPeer::getProductsPrices([$productId]);
+        $data = ProductsDomainsPricesPeer::getProductsPrices([$productId], $domainKey);
 
         if (is_array($data)) {
             // Key is product id so shift to get subarrays
@@ -505,7 +512,7 @@ class WishlistController extends CoreController
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      */
-    protected function getAllWishlistItems()
+    protected function getAllWishlistItems($domainKey = null)
     {
         $request = $this->container->get('request');
         $locale  = $request->getLocale();
@@ -558,7 +565,7 @@ class WishlistController extends CoreController
 
         /** @var \Hanzo\Model\WishlistsLines $item */
         foreach ($result as $item) {
-            $products[$item['sku']] = $this->getItemViewData($item);
+            $products[$item['sku']] = $this->getItemViewData($item, $domainKey);
         }
 
         return $products;
@@ -650,14 +657,14 @@ class WishlistController extends CoreController
      *
      * @return array
      */
-    private function getItemViewData($item)
+    private function getItemViewData($item, $domainKey = null)
     {
         if (!is_array($item)) {
             trigger_error("Item is not an array");
         }
 
         $image     = $this->getImageName($item['sku'], $item['color']);
-        $prices    = $this->getPrices($item['products_id']);
+        $prices    = $this->getPrices($item['products_id'], $domainKey);
         $sizeLabel = $this->container->get('translator')->trans('size.label.postfix');
 
         if (preg_match('/[a-z]/i', $item['size']) || ('size.label.postfix' === $sizeLabel)) {

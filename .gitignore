@@ -29,8 +29,10 @@
 /web/images/ordre/
 /web/images/pdf/
 /web/images/products/*.jpg
+/web/images/products/*.jpg~
 /web/images/products/*.png
 /web/images/products/thumb/*.jpg
+/web/images/products/thumb/*.jpg~
 /web/images/products/thumb/*.png
 /web/images/products/import/
 /web/images/translate/
@@ -49,3 +51,8 @@
 behat.yml
 /bin/behat
 /tools/docker/nginx/nginx.vhost.conf
+/web/images/frontpage/2017-w03
+/web/images/frontpage/2017-w05
+/web/images/frontpage/2017-w08
+/web/images/frontpage/2017-w09
+/web/images/frontpage/3_cols_design

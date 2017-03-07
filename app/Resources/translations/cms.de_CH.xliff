@@ -142,7 +142,7 @@
             "Off White/Navy"
 		]
                         },
-						
+
                         "sizes": {
                             "80": ["80", "80-86", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
                             "86": ["86", "80-86", "86-92", "86/92", "50", "52", "50-52", "XS", "S", "One Size", "ONE SIZE", "20-22", "23-26", "27-30", "31-34", "35-38"],
@@ -168,7 +168,7 @@
 								"60%": ["60"],
 								"70%": ["70"]
                         }
-					 }	
+					 }
                 ]]></target>
             </trans-unit><!-- DRENG Hovedkategori -->
             <trans-unit id="717.settings">
@@ -324,14 +324,14 @@
 								"60%": ["60"],
 								"70%": ["70"]
                         }
-					 }	
+					 }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Overtøj -->
+            <!-- PIGE: Overtøj -->
             <trans-unit id="807.settings">
                 <source>807.settings</source>
                 <target><![CDATA[
-                    {   
+                    {
                         "category_id": "157",
                         "embedded_category_id": ["12","13","14","15","170","172","174","176","186","214"],
                         "colors": ""
@@ -365,7 +365,7 @@
                     }
                 ]]></target>
             </trans-unit>
-		<!-- Pige Softshell -->
+            <!-- Pige Softshell -->
             <trans-unit id="557.settings">
                 <source>557.settings</source>
                 <target><![CDATA[
@@ -375,7 +375,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="847.settings">
+            <trans-unit id="847.settings">
                 <source>847.settings</source>
                 <target><![CDATA[
                     {
@@ -384,7 +384,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="848.settings">
+            <trans-unit id="848.settings">
                 <source>848.settings</source>
                 <target><![CDATA[
                     {
@@ -393,7 +393,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="849.settings">
+            <trans-unit id="849.settings">
                 <source>849.settings</source>
                 <target><![CDATA[
                     {
@@ -402,7 +402,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="850.settings">
+            <trans-unit id="850.settings">
                 <source>850.settings</source>
                 <target><![CDATA[
                     {
@@ -411,7 +411,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="890.settings">
+            <trans-unit id="890.settings">
                 <source>890.settings</source>
                 <target><![CDATA[
                     {
@@ -420,8 +420,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Termotøj -->
-			<trans-unit id="929.settings">
+            <!-- PIGE: Termotøj -->
+            <trans-unit id="929.settings">
                 <source>929.settings</source>
                 <target><![CDATA[
                     {
@@ -430,8 +430,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Overdele -->
-             <trans-unit id="808.settings">
+            <!-- PIGE: Overdele -->
+            <trans-unit id="808.settings">
                 <source>808.settings</source>
                 <target><![CDATA[
                     {
@@ -495,7 +495,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="851.settings">
+            <trans-unit id="851.settings">
                 <source>851.settings</source>
                 <target><![CDATA[
                     {
@@ -504,7 +504,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="852.settings">
+            <trans-unit id="852.settings">
                 <source>852.settings</source>
                 <target><![CDATA[
                     {
@@ -513,7 +513,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="892.settings">
+            <trans-unit id="892.settings">
                 <source>892.settings</source>
                 <target><![CDATA[
                     {
@@ -522,8 +522,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Langærmet T-shirts -->
-			<trans-unit id="904.settings">
+            <!-- PIGE: Langærmet T-shirts -->
+            <trans-unit id="904.settings">
                 <source>904.settings</source>
                 <target><![CDATA[
                     {
@@ -532,8 +532,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- PIGE: Rompers -->
-			<trans-unit id="927.settings">
+            <!-- PIGE: Rompers -->
+            <trans-unit id="927.settings">
                 <source>927.settings</source>
                 <target><![CDATA[
                     {
@@ -615,7 +615,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="893.settings">
+            <trans-unit id="893.settings">
                 <source>893.settings</source>
                 <target><![CDATA[
                     {
@@ -624,7 +624,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="895.settings">
+            <trans-unit id="895.settings">
                 <source>895.settings</source>
                 <target><![CDATA[
                     {
@@ -743,7 +743,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			   <trans-unit id="853.settings">
+            <trans-unit id="853.settings">
                 <source>853.settings</source>
                 <target><![CDATA[
                     {
@@ -752,8 +752,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- DRENG: Overtøj -->
-             <trans-unit id="822.settings">
+            <!-- DRENG: Overtøj -->
+            <trans-unit id="822.settings">
                 <source>822.settings</source>
                 <target><![CDATA[
                     {
@@ -790,7 +790,7 @@
                     }
                 ]]></target>
             </trans-unit>
-		  <!-- DRENG: Softshell -->
+            <!-- DRENG: Softshell -->
             <trans-unit id="572.settings">
                 <source>572.settings</source>
                 <target><![CDATA[
@@ -800,7 +800,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="854.settings">
+            <trans-unit id="854.settings">
                 <source>854.settings</source>
                 <target><![CDATA[
                     {
@@ -809,7 +809,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="855.settings">
+            <trans-unit id="855.settings">
                 <source>855.settings</source>
                 <target><![CDATA[
                     {
@@ -818,7 +818,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="856.settings">
+            <trans-unit id="856.settings">
                 <source>856.settings</source>
                 <target><![CDATA[
                     {
@@ -827,7 +827,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="891.settings">
+            <trans-unit id="891.settings">
                 <source>891.settings</source>
                 <target><![CDATA[
                     {
@@ -836,7 +836,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			 <trans-unit id="857.settings">
+            <trans-unit id="857.settings">
                 <source>857.settings</source>
                 <target><![CDATA[
                     {
@@ -845,8 +845,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- DRENG: Termotøj -->
-			<trans-unit id="930.settings">
+            <!-- DRENG: Termotøj -->
+            <trans-unit id="930.settings">
                 <source>930.settings</source>
                 <target><![CDATA[
                     {
@@ -874,7 +874,7 @@
                     }
                 ]]></target>
             </trans-unit>
-             <trans-unit id="575.settings">
+            <trans-unit id="575.settings">
                 <source>575.settings</source>
                 <target><![CDATA[
                     {
@@ -883,7 +883,7 @@
                     }
                 ]]></target>
             </trans-unit>
-             <trans-unit id="736.settings">
+            <trans-unit id="736.settings">
                 <source>736.settings</source>
                 <target><![CDATA[
                     {
@@ -946,7 +946,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="858.settings">
+            <trans-unit id="858.settings">
                 <source>858.settings</source>
                 <target><![CDATA[
                     {
@@ -955,8 +955,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- DRENG: Langærmet T-shirts -->
-			<trans-unit id="905.settings">
+            <!-- DRENG: Langærmet T-shirts -->
+            <trans-unit id="905.settings">
                 <source>905.settings</source>
                 <target><![CDATA[
                     {
@@ -965,7 +965,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- DRENG: Underdele -->
+            <!-- DRENG: Underdele -->
             <trans-unit id="824.settings">
                 <source>824.settings</source>
                 <target><![CDATA[
@@ -1003,7 +1003,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="894.settings">
+            <trans-unit id="894.settings">
                 <source>894.settings</source>
                 <target><![CDATA[
                     {
@@ -1049,8 +1049,8 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- DRENG: Jumpsuit/Rompers -->
-			<trans-unit id="928.settings">
+            <!-- DRENG: Jumpsuit/Rompers -->
+            <trans-unit id="928.settings">
                 <source>928.settings</source>
                 <target><![CDATA[
                     {
@@ -1105,7 +1105,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="859.settings">
+            <trans-unit id="859.settings">
                 <source>859.settings</source>
                 <target><![CDATA[
                     {
@@ -1114,7 +1114,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="860.settings">
+            <trans-unit id="860.settings">
                 <source>860.settings</source>
                 <target><![CDATA[
                     {
@@ -1123,7 +1123,7 @@
                     }
                 ]]></target>
             </trans-unit>
-			<!-- X_TILBUD -->
+            <!-- X_TILBUD -->
             <trans-unit id="889.settings">
                 <source>889.settings</source>
                 <target><![CDATA[
@@ -1133,15 +1133,15 @@
                     }
                 ]]></target>
             </trans-unit>
-			<trans-unit id="900.settings">
-            <source>900.settings</source>
-            <target><![CDATA[
+            <trans-unit id="900.settings">
+                <source>900.settings</source>
+                <target><![CDATA[
                     {
                         "category_id": "206",
                         "colors": ""
                     }
                 ]]></target>
-        </trans-unit>
+            </trans-unit>
 
             <trans-unit id="job_application_form.name_label">
                 <source>job_application_form.name_label</source>

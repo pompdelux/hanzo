@@ -378,7 +378,7 @@ class SyncSalesOrder extends BaseService
         ) {
 
 //            $fromDate = 20170223;
-            $fromDate = 20170210;
+            $fromDate = 20170223;
             $toDate   = 20170430;
             $itemId   = 'FreePompbagSS17';
 

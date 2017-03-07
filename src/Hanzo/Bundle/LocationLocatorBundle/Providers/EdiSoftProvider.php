@@ -226,6 +226,10 @@ class EdiSoftProvider extends BaseProvider
 
             $i=0;
             foreach ($result->$key->DropPointData as $record) {
+                if (empty($record->Address1)) {
+                    $record->Address1 = ' ';
+                }
+
                 $set[$i] = [
                     'id'            => $record->OriginalId,
                     'custom_id'     => $record->ESId,
