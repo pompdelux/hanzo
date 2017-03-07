@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
@@ -324,8 +323,19 @@ class AddressController extends CoreController
             $address->setCountry($country->getName());
             $address->setCountriesId($data['countries_id']);
 
+            // locator addresses needs external address id's to work.
+            // 12  = Bring (DK)
+            // 15  = PostNord (DK)
+            // 71  = hmmm ...
+            // 30  = Bring (SE)
+            // 31  = PostNord (SE)
+            // 500 = Bring (FI)
+            // 700 = Bring (NO)
+
+            $enableLocator = (in_array($order->getDeliveryMethod(), [12, 15, 71, 30, 31, 500, 700]));
+
             // special rules apply for overnightbox
-            if ($method === 'overnightbox') {
+            if ($method === 'overnightbox' || (isset($data['external_address_id']) && $enableLocator)) {
                 $address->setExternalAddressId($data['external_address_id']);
                 $address->setAddressLine2(null);
             }
@@ -348,7 +358,14 @@ class AddressController extends CoreController
             $translator = $this->get('translator');
 
             // fi uses different validation group to support different rules
-            $validationGroup = 'shipping_bundle_'.$method;
+
+            // In Norway delivery addresses differ a bit...
+            $rule = $method;
+            if (('shipping' === $method) && (700 == $order->getDeliveryMethod())) {
+                $rule .= '_no';
+            }
+
+            $validationGroup = 'shipping_bundle_'.$rule;
 
             $objectErrors = $validator->validate($address, [$validationGroup]);
 
