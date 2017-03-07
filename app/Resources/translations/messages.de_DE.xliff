@@ -192,7 +192,7 @@
                 <target><![CDATA[
                     <ul>
                         <li><b>Bearbeitungszeit</b> %expected_delivery_date%</li>
-                        <li><b>Fracht</b> AB EUR 3,95</li>
+                        <li><b>Fracht</b> AB EUR 5,45</li>
                         <li><b>Umtausch</b> Gratis</li>
                     </ul>
                 ]]></target>
