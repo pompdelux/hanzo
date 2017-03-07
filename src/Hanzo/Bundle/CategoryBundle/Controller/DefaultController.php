@@ -390,7 +390,7 @@ class DefaultController extends CoreController
                     ? implode(',', $category_ids_for_filter)
                     : $category_ids_for_filter;
                 $result = $result
-                    ->addDescendingOrderByColumn(sprintf(
+                    ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         BaseProductsImagesCategoriesSortPeer::CATEGORIES_ID,
                         $ob
