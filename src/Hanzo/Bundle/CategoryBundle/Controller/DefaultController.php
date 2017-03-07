@@ -894,12 +894,7 @@ class DefaultController extends CoreController
         $container = $hanzo->container;
 
         // Define classes to the body, dependently on the context of the category.
-<<<<<<< HEAD
         if (preg_match('/(pige|girl|tjej|tytto|jente|madchen|meisje)/', $container->get('request')->getPathInfo())) {
-=======
-        $this->categoryGender = '';
-        if (preg_match('/(pige|girl|tjej|tytto|jente|madchen)/', $container->get('request')->getPathInfo())) {
->>>>>>> f/1297-no-postal-without-address
             $this->categoryGender = 'girl';
         } elseif (preg_match('/(dreng|boy|kille|poika|gutt|junge|jongen)/', $container->get('request')->getPathInfo())) {
             $this->categoryGender = 'boy';
