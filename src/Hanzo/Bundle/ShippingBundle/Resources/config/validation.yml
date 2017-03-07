@@ -17,6 +17,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
                 message: address.first_name.required
             - Length:
@@ -24,6 +25,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
                 min:  2
                 minMessage: address.first_name.min.length
@@ -32,12 +34,14 @@ Hanzo\Model\Addresses:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
                 message: address.last_name.required
             - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
                 min:  2
                 minMessage: address.last_name.min.length
@@ -71,6 +75,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
         city:
             - NotBlank:
@@ -79,12 +84,14 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
             - Length:
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
                 min:  2
                 minMessage: city.required
@@ -95,6 +102,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
                     - shipping_bundle_shipping
+                    - shipping_bundle_shipping_no
                     - shipping_bundle_payment
             - Type:
                 type: integer
@@ -110,4 +118,5 @@ Hanzo\Model\Addresses:
                 - shipping_bundle_company_shipping
                 - shipping_bundle_overnightbox
                 - shipping_bundle_shipping
+                - shipping_bundle_shipping_no
                 - shipping_bundle_payment
