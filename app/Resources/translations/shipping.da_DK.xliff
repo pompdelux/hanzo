@@ -22,6 +22,18 @@
         <source>shipping_method.label.10</source>
         <target>Bring Privat %price%</target>
       </trans-unit>
+      <trans-unit id="shipping_method.name.19">
+        <source>shipping_method.name.19</source>
+        <target>Bring Privatpakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.19">
+        <source>shipping_method.desc.19</source>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.19">
+        <source>shipping_method.label.19</source>
+        <target>Bring Privat %price%</target>
+      </trans-unit>
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
         <target>Bring Erhvervspakke</target>
