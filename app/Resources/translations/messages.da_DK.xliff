@@ -270,12 +270,25 @@
             <trans-unit id="delivery.info">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
-    Du kan v&aelig;lge mellem tre forsendelsesmuligheder:
-    <br /><br />
-      Erhvervspakke: Hvis du gerne vil have leveret pakken på din arbejdsplads, vælger du erhvervspakke. Det koster DKK 39,00 (dog kun DKK 29,00 hvis du køber varerne til et Social Shopping eller Åbent Hus arrangement). Husk at udfylde firmanavn, kontaktperson og firmaadresse i leveringsadressen.
-      <br /><br />Privatpakke: Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Social Shopping eller Åbent Hus arrangement).<br /><br />Valgfri udlevering – Forsendelse til Pakkeboks: Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være Posthus, Postbutik eller den Pakkeboks der er tættest på dit hjem, dit arbejde eller din fritidsinteresse. Det er helt op til dig og du behøver ikke bruge det samme udleveringssted hver gang. Det koster DKK 39,00 at få leveret pakker til en Pakkeboks (dog kun DKK 29,00 hvis du køber varerne til et Social Shopping eller Åbent Hus arrangement).<br /><br />
-    N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
+                    <p>Alle varer sendes som pakkepost med BRING eller PostNord. Du har derfor mulighed for at f&oslash;lge din pakke via track &amp; trace fra den afsendes, til den bliver leveret. <br />
+    <br>
+  Du kan v&aelig;lge mellem følgende forsendelsesmuligheder:<br>
+  <br>
+  <strong>BRING: </strong><br />
+      <strong>Valgfri Udleveringssted:</strong> DKK 39,- ( DKK 29,- hvis du køber varerne til et Social Shopping eller Åbent Hus arrangement). <br />
+      <br />
+      <strong>Privatpakke - Levering til døren:</strong> DKK 59,- ( DKK 49,- hvis du køber varerne til et Social Shopping eller Åbent Hus arrangement).<br /><br />
+      <strong>Privatpakke - Aftenlevering (mellem kl. 17-21):</strong> DKK 69,- (DKK 59,- hvis du køber varerne til et Social Shopping/Åbent Hus-arrangement)<br>
+      <br>
+      <strong>Erhvervspakke:</strong> DKK 49,- (DKK 39,- hvis du køber varerne til et Social Shopping/Åbent Hus-arrangement)<br>
+<br>
+<strong>PostNord:</strong><br>
+<strong>Valgfri Udleveringssted:</strong> DKK 49,- (DKK 39,- hvis du køber varerne til et Social Shopping/Åbent Hus-arrangement)<br>
+<br>
+<strong>Privatpakke – Levering til døren:</strong> DKK 69,- (DKK 59,- hvis du køber varerne til et Social Shopping/Åbent Hus-arrangement)<br>
+<br>
+<strong>Erhvervspakke:</strong> DKK 39,- (DKK 29,- hvis du køber varerne til et Social Shopping/Åbent Hus-arrangement)<br /><br />
+N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til BRING / PostNord.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title">
