@@ -314,6 +314,7 @@
                 // Private postal - or types where address-copy should be shown
                 var allowedTypes = [
                   "10",    // DK  - BRING Privat
+                  "19",    // DK  - BRING Privat
                   "16",    // DK  - Post Danmark Privat
                   "20",    // COM - Post Danmark Private priority
                   "70",    // NL  - DHL          verzendmethode
