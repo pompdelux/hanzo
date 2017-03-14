@@ -279,11 +279,14 @@ class EventsController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $customer = CustomersQuery::create()->findOneByEmail(str_replace(' ', '+', $email));
+        $customer = CustomersQuery::create()
+            ->joinWithAddresses()
+            ->useAddressesQuery()
+                ->filterByType('payment')
+            ->endUse()
+            ->findOneByEmail(str_replace(' ', '+', $email));
 
         if ($customer instanceof Customers) {
-            $c = new \Criteria();
-            $c->add(AddressesPeer::TYPE, 'payment');
             $address = $customer->getAddressess()->getFirst();
 
             if ($this->getFormat() == 'json') {
