@@ -132,7 +132,7 @@
       </trans-unit>
       <trans-unit id="payment.manualpayment.title">
         <source>payment.manualpayment.title</source>
-        <target>Wahl der Bezahlungsform noch ausstehend</target>
+        <target>Vorauskasse</target>
       </trans-unit>
       <trans-unit id="payment.manualpayment.text">
         <source>payment.manualpayment.text</source>
