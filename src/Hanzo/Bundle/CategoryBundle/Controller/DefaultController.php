@@ -285,7 +285,7 @@ class DefaultController extends CoreController
         $router = $container->get('router');
 
         $domain_id = $hanzo->get('core.domain_id');
-        $show_by_look = (bool) ($show === 'overview');
+        $show_by_look = (bool) ($show === 'look');
         $product_range = $this->container->get('hanzo_product.range')->getCurrentRange();
 
         // Use embedded_category_id if exists, else fallback to category_id.
