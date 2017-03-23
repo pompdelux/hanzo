@@ -35,6 +35,19 @@
         <target>Bring Privat %price%</target>
       </trans-unit>
 	  <!-- TEKST IND HER -->
+      <trans-unit id="shipping_method.name.11">
+        <source>shipping_method.name.11</source>
+        <target>Bring Erhvervspakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.11">
+        <source>shipping_method.desc.11</source>
+        <target>Har du mulighed for at få din ordre leveret på din arbejdsplads, kan du vælge erhvervspakke. Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.11">
+        <source>shipping_method.label.11</source>
+        <target>Bring Erhverv %price%</target>
+      </trans-unit> 
+	 <!-- OUTCOMMENT -->
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
         <target>BRING Valgfri Udleveringssted</target>
@@ -72,6 +85,19 @@
         <target>Valgfri Udleveringssted %price%</target>
       </trans-unit> 
 	  <!-- TEXT ind HER -->
+      <trans-unit id="shipping_method.name.16">
+        <source>shipping_method.name.16</source>
+        <target>PostNord Privatpakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.16">
+        <source>shipping_method.desc.16</source>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.16">
+        <source>shipping_method.label.16</source>
+        <target>PostNord Privat %price%</target>
+      </trans-unit>
+	  <!-- OUTCOMMENT -->
       <trans-unit id="shipping_method.name.17">
         <source>shipping_method.name.17</source>
         <target>PostNord Erhvervspakke</target>
