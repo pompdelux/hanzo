@@ -34,6 +34,7 @@
         <source>shipping_method.label.19</source>
         <target>Bring Privat %price%</target>
       </trans-unit>
+	  <!-- OUTCOMMENT
       <trans-unit id="shipping_method.name.11">
         <source>shipping_method.name.11</source>
         <target>Bring Erhvervspakke</target>
@@ -45,7 +46,7 @@
       <trans-unit id="shipping_method.label.11">
         <source>shipping_method.label.11</source>
         <target>Bring Erhverv %price%</target>
-      </trans-unit>
+      </trans-unit>  -->
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
         <target>BRING Valgfri Udleveringssted</target>
@@ -81,7 +82,8 @@
       <trans-unit id="shipping_method.label.15">
         <source>shipping_method.label.15</source>
         <target>Valgfri Udleveringssted %price%</target>
-      </trans-unit>
+      </trans-unit> 
+	  <!-- OUTCOMMENT 
       <trans-unit id="shipping_method.name.16">
         <source>shipping_method.name.16</source>
         <target>PostNord Privatpakke</target>
@@ -94,6 +96,7 @@
         <source>shipping_method.label.16</source>
         <target>PostNord Privat %price%</target>
       </trans-unit>
+	  -->
       <trans-unit id="shipping_method.name.17">
         <source>shipping_method.name.17</source>
         <target>PostNord Erhvervspakke</target>
