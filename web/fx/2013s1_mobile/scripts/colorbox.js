@@ -4,8 +4,8 @@
   $.colorbox.settings.maxHeight = '97%';
 
   $('a.colorbox, a[rel="colorbox"]').colorbox();
-  $(document).bind('cbox_load', function(){
-    $('#cboxClose').remove();
-  });
+  // $(document).bind('cbox_load', function(){
+  //   $('#cboxClose').remove();
+  // });
 })(jQuery);
 

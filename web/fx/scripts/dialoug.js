@@ -78,6 +78,7 @@ var dialoug = (function ($) {
             'top': '25%',
             'maxWidth': '400px',
             'close': Translator.trans('close'),
+            className: 'is-'+type+'-alert',
             'html': templates.alert
                 .replace('%title%', title)
                 .replace('%message%', message)
