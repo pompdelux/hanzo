@@ -775,11 +775,11 @@ En POMPdeLUX langærmet t-shirt til drenge er altså klassisk og nærmest uundv�
       </trans-unit>
 	  <trans-unit id="headers.category-141">
         <source>headers.category-141</source>
-        <target><![CDATA[<h1>FINAL SALE</h1>]]></target>
+        <target><![CDATA[<h1>NYE STYLES</h1>]]></target>
       </trans-unit>
       <trans-unit id="description.category-141">
         <source>description.category-141</source>
-        <target><![CDATA[<img src="https://static.pompdelux.com/images/landingpages/Final-Sale/01_17_Top_landing_DK.jpg" width="714" height="300" alt=""/>]]></target>
+        <target><![CDATA[ ]]></target>
       </trans-unit>
 	  
     </body>
