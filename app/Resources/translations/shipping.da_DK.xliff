@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.10">
         <source>shipping_method.desc.10</source>
-        <target>Din ordre bliver sendt til din privatadresse. Bemærk at din ordre i de fleste tilfælde, vil blive leveret med DAO, hvilket betyder at din pakke kan blive leveret om natten, hvorfor der ikke kræves kvittering ved levering. Læs mere under Fragt og Levering</target>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.10">
         <source>shipping_method.label.10</source>
@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.19">
         <source>shipping_method.desc.19</source>
-        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du udfylde felterne ved Alternativ leveringsadresse.</target>
+        <target>Din ordre bliver sendt til din privatadresse. Bemærk at din ordre i de fleste tilfælde, vil blive leveret med DAO, hvilket betyder at din pakke kan blive leveret om natten, hvorfor der ikke kræves kvittering ved levering. Læs mere <a href="http://www.pompdelux.com/da_DK/forside/kundeservice/fragt-og-levering">her</a></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.19">
         <source>shipping_method.label.19</source>
