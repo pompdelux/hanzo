@@ -66,7 +66,7 @@
             </trans-unit>
             <trans-unit id="no.records.found">
                 <source>no.records.found</source>
-                <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
+                <target>Etsimääsi noutopaikkaa ei löytynyt.</target>
             </trans-unit>
             <trans-unit id="service.down">
                 <source>service.down</source>
