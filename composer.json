@@ -26,7 +26,7 @@
         "mrbase/smesg": "*",
         "ekino/newrelic-bundle": "master-dev",
         "liip/theme-bundle": "dev-master",
-        "drak/native-session": "master-dev",
+        "bellcom/NativeSession": "master-dev",
         "misd/guzzle-bundle": "~1.0",
 
         "knplabs/knp-snappy-bundle": "1.1",
