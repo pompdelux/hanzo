@@ -1275,7 +1275,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Ihre Bewerbung ist nun gesendet.</p><br/><p>Sollten Sie Fragen haben, wenden Sie sich bitte an unsere Sales Koordinatorin Kathrine Gjørup unter Tel.: 044 201 33 32 (deutschsprachig).</p>]]></target>
+                <target><![CDATA[<p>Ihre Bewerbung ist nun gesendet.</p><br/><p>Sollten Sie Fragen haben, wenden Sie sich bitte an unsere Sales Responsible Eveline Alexia Egelund unter Tel.: 01 535 03 76 (deutschsprachig).</p>]]></target>
             </trans-unit>
         </body>
     </file>

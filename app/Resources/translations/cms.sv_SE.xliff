@@ -1267,7 +1267,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Kundservice på tel. 08-6117103.</p>]]></target>
+                <target><![CDATA[<p>Din ansökning har skickats.</p><br/><p>Om du har frågor är du välkommen att kontakta Sales Coordinator Rikke Pedersen på tel. +45 2974 6620.</p>]]></target>
             </trans-unit>
         </body>
     </file>

@@ -1264,7 +1264,7 @@
             </trans-unit>
             <trans-unit id="job_application.success">
                 <source>job_application.success</source>
-                <target><![CDATA[<p>Je sollicitatie is nu verzonden.</p><br/><p>Heb je vragen, neem dan graag contact op met Sales Coördinator Penny Carlsen - 085-3001101.</p>]]></target>
+                <target><![CDATA[<p>Je sollicitatie is nu verzonden.</p><br/><p>Heb je vragen, neem dan graag contact op met Sales Responsible Eveline Alexia Egelund - 085-3001101.</p>]]></target>
             </trans-unit>
         </body>
     </file>
