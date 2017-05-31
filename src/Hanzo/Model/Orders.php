@@ -1217,26 +1217,34 @@ class Orders extends BaseOrders
      * returns latest delivery date.
      *
      * @param string $format
-     * @param bool   $override
+     * @param string $domainKey
      *
      * @throws Exception
      * @throws PropelException
      * @return mixed|string
      */
-    public function getExpectedDeliveryDate($format = 'Y-m-d', $override = false)
+    public function getExpectedDeliveryDate($format = 'Y-m-d', $domainKey = false)
     {
         $now        = date('Ymd');
         $latest     = 0;
         $expectedAt = '';
 
-        if (false == $override) {
+        if (false === $domainKey) {
             $result     = Hanzo::getInstance()->get('HD.expected_delivery_date');
             $expectedAt = $result ?: '';
         } else {
-            $setting = SettingsQuery::create()
-                ->filterByNs('HD')
+            $setting = DomainsSettingsQuery::create()
+                ->filterByDomainKey($domainKey)
                 ->filterByCKey('expected_delivery_date')
+                ->filterByNs('HD')
                 ->findOne($this->getDBConnection());
+
+            if (empty($setting)) {
+                $setting = SettingsQuery::create()
+                    ->filterByNs('HD')
+                    ->filterByCKey('expected_delivery_date')
+                    ->findOne($this->getDBConnection());
+            }
 
             if ($setting && $setting->getCValue()) {
                 $expectedAt = $setting->getCValue();
@@ -1253,6 +1261,7 @@ class Orders extends BaseOrders
 
         return $expectedAt;
     }
+
 
     /**
      * @param bool $v
