@@ -27,7 +27,10 @@ ADD ./add-files/dotdeb.list /etc/apt/sources.list.d/dotdeb.list
 
 RUN apt-get -q -y update;\
   apt-get -q -y upgrade;\
-  apt-get -q -y install ssh ssmtp vim pwgen locales nginx php5-fpm php5-cli php5-curl php5-gd php5-imagick php5-intl php5-mcrypt php5-mysql php5-redis php5-xdebug php5-xsl php-pear php5-dev mercurial redis-tools heirloom-mailx
+  apt-get -q -y install ssh ssmtp vim pwgen locales nginx php5-fpm php5-cli php5-curl php5-gd php5-imagick php5-intl php5-mcrypt php5-mysql php5-redis php5-xdebug php5-xsl php-pear php5-dev mercurial redis-tools heirloom-mailx ruby ruby-dev libsqlite3-dev
+
+# Install Gems
+RUN gem install mailcatcher --no-rdoc --no-ri
 
 # Locales
 RUN sed -i -e 's/# da_DK.UTF-8/da_DK.UTF-8/' /etc/locale.gen;\

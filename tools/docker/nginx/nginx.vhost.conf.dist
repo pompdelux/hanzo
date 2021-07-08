@@ -1,7 +1,7 @@
 server {
   listen 80;
 
-  server_name pdl.hf c.pdl.hf admin.pdl.hf www.pdl.hf;
+  server_name pompdelux.local c.pompdelux.local admin.pompdelux.local www.pompdelux.local;
   root /var/www/pompdelux/web/;
 
   error_log /var/www/logs/error.log;
@@ -28,7 +28,7 @@ server {
 server {
   listen 443;
 
-  server_name pdl.hf c.pdl.hf www.pdl.hf;
+  server_name pompdelux.local c.pompdelux.local www.pompdelux.local;
   root /var/www/pompdelux/web/;
 
   ssl on;
@@ -59,7 +59,7 @@ server {
 server {
   listen 80;
 
-  server_name cdn.pdl.hf static.pompdelux.hf;
+  server_name cdn.pompdelux.local static.pompdelux.local;
   root /var/www/pompdelux/web/;
 
   error_log /var/www/logs/error.log;
@@ -79,7 +79,7 @@ server {
 server {
   listen 443;
 
-  server_name cdn.pdl.hf static.pompdelux.hf;
+  server_name cdn.pompdelux.local static.pompdelux.local;
   root /var/www/pompdelux/web/;
 
   ssl on;
@@ -103,7 +103,7 @@ server {
 server {
   listen 80;
 
-  server_name mya.pompdelux.hf;
+  server_name mya.pompdelux.local;
 
   location /phpmyadmin {
     root /usr/share/;
